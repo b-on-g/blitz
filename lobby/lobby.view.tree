@@ -1,9 +1,6 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
-		<= Create $mol_button_major
-			title \Создать игру
-			click? <=> land_create? null
 		<= Qr $mol_image
 			uri <= qr_uri \
 		<= Players $mol_list

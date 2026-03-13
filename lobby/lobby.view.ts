@@ -1,7 +1,8 @@
 namespace $.$$ {
-	export class $bog_blitz_lobbyLand extends $giper_baza_entity.with({
+	class $bog_blitz_lobby_land extends $giper_baza_dict.with({
 		Name: $giper_baza_atom_text,
 	}) {}
+
 	export class $bog_blitz_lobby extends $.$bog_blitz_lobby {
 		@$mol_mem
 		land_link(next?: string | null) {
@@ -23,6 +24,12 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		lobby_data() {
+			const land = this.land() ?? this.land_create()
+			return land.Data($bog_blitz_lobby_land)
+		}
+
+		@$mol_mem
 		invite_link() {
 			const link = this.land_link()
 			if (!link) return ''
@@ -36,6 +43,11 @@ namespace $.$$ {
 			const invite = this.invite_link()
 			if (!invite) return ''
 			return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(invite)}`
+		}
+
+		body() {
+			this.lobby_data()
+			return super.body()
 		}
 	}
 }
