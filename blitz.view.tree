@@ -1,4 +1,5 @@
 $bog_blitz $mol_page
+	title @ \Giper Blitz quiz
 	tools /
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
