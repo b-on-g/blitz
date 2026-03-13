@@ -1,5 +1,6 @@
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
+	Lobby $bog_blitz_lobby
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *

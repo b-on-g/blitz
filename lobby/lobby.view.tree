@@ -1,0 +1,4 @@
+$bog_blitz_lobby $mol_page
+	Head null
+	body /
+		<= Players $mol_list
