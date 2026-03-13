@@ -1,0 +1,10 @@
+{
+	"name": "bog_blitz_app",
+	"short_name": "bog_blitz_app",
+	"description": "",
+	"id": "bog_blitz_app",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000"
+}
