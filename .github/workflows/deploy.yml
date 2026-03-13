@@ -17,7 +17,6 @@ jobs:
             - uses: hyoo-ru/mam_build@master2
               with:
                   package: "bog/blitz"
-                  modules: "app"
                   
             # - uses: b-on-g/mol-prerender-action@main
             #   if: github.ref == 'refs/heads/master'
