@@ -1,14 +1,18 @@
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
+	Navbar $mol_switch
+		value? <=> screen? \lobby
+		options *
+			lobby \Lobby
+			game \Game
+			admin \Admin
 	tools /
-		<= Navbar $mol_switch
-			value? <=> screen? \lobby
-			dictionary *string
-				lobby \Lobby
-				game \Game
-				admin \Admin
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
+	head /
+		<= Title
+		<= Navbar
+		<= Tools
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
