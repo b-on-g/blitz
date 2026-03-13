@@ -267,11 +267,75 @@ $bog_theme_toggle $mol_pop
 			theme_auto <= theme_auto
 			close? <=> picker_close? null
 
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$bog_blitz_lobby $mol_page
+	Head null
+	body /
+		<= Qr $mol_image
+			uri <= qr_uri \
+		<= Players $mol_list
+
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
+$mol_check_list $mol_view
+	dictionary *
+	Option* $mol_check
+		checked? <=> option_checked*? false
+		label <= option_label* /
+			<= option_title* \
+		enabled <= option_enabled* <= enabled true
+		hint <= option_hint* \
+		minimal_height 24
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch $mol_check_list
+	value? \
+
 $bog_blitz $mol_page
-	title @ \Giper Blitz quiz
+	title @ \Giper Blitz Quiz
+	Lobby $bog_blitz_lobby
+	Navbar $mol_switch
+		value? <=> screen? \lobby
+		options *
+			lobby \Lobby
+			game \Game
+			admin \Admin
 	tools /
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
+	head /
+		<= Title
+		<= Navbar
+		<= Tools
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
@@ -279,3 +343,4 @@ $bog_blitz $mol_page
 			themes /
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark
+	body <= screen_body /
