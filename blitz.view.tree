@@ -1,6 +1,18 @@
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
 	tools /
+		<= Lobby_link $mol_link
+			title \Lobby
+			arg *
+				screen \lobby
+		<= Game_link $mol_link
+			title \Game
+			arg *
+				screen \game
+		<= Admin_link $mol_link
+			title \Admin
+			arg *
+				screen \admin
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	plugins /
@@ -10,3 +22,4 @@ $bog_blitz $mol_page
 			themes /
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark
+	body <= screen_body /
