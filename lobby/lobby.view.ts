@@ -9,7 +9,6 @@ namespace $.$$ {
 			return this.$.$mol_state_arg.value('land', next) ?? ''
 		}
 
-		@$mol_mem
 		land() {
 			const link = this.land_link()
 			if (!link) return null
@@ -18,15 +17,9 @@ namespace $.$$ {
 
 		@$mol_action
 		land_create() {
-			const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('late')]])
+			const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('slow')]])
 			this.land_link(land.link().str)
 			return land
-		}
-
-		@$mol_mem
-		lobby_data() {
-			const land = this.land() ?? this.land_create()
-			return land.Data($bog_blitz_lobby_land)
 		}
 
 		@$mol_mem
@@ -45,9 +38,9 @@ namespace $.$$ {
 			return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(invite)}`
 		}
 
-		body() {
-			this.lobby_data()
-			return super.body()
+		auto() {
+			if (!this.land_link()) this.land_create()
+			super.auto()
 		}
 	}
 }

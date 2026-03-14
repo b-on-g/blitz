@@ -7,6 +7,7 @@ namespace $.$$ {
 			const method = (this as any)[key[0].toUpperCase() + key.slice(1)]
 			return method ? [method.call(this)] : [key + ' screen']
 		}
+
 		screen(next?: string) {
 			return this.$.$mol_state_arg.value('screen', next) ?? 'lobby'
 		}
