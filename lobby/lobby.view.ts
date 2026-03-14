@@ -5,7 +5,6 @@ namespace $.$$ {
 			return this.$.$mol_state_arg.value('land', next) ?? ''
 		}
 
-		@$mol_mem
 		land() {
 			const link = this.land_link()
 			if (!link) return null
@@ -19,9 +18,9 @@ namespace $.$$ {
 			return land
 		}
 
-		@$mol_mem
 		lobby_land() {
-			return this.land() ?? this.land_create()
+			if (!this.land_link()) this.land_create()
+			return this.land_link()
 		}
 
 		@$mol_mem
@@ -33,16 +32,11 @@ namespace $.$$ {
 			return url.toString()
 		}
 
-		@$mol_mem
 		qr_uri() {
+			this.lobby_land()
 			const invite = this.invite_link()
 			if (!invite) return ''
 			return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(invite)}`
-		}
-
-		body() {
-			this.lobby_land()
-			return super.body()
 		}
 	}
 }
