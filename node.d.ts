@@ -1130,7 +1130,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $mol_theme: Record<"image" | "line" | "text" | "focus" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "field" | "spirit", $mol_style_func<"var", unknown>>;
+    const $mol_theme: Record<"image" | "line" | "text" | "current" | "focus" | "back" | "hover" | "card" | "special" | "control" | "shade" | "field" | "spirit", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
@@ -1544,7 +1544,7 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    const $bog_theme: Record<"image" | "line" | "text" | "focus" | "background" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "field" | "spirit", $mol_style_func<"var", unknown>>;
+    const $bog_theme: Record<"image" | "line" | "text" | "current" | "focus" | "background" | "back" | "hover" | "card" | "special" | "control" | "shade" | "field" | "spirit", $mol_style_func<"var", unknown>>;
     const $bog_theme_names: readonly ["$mol_theme_giper_smash_dark", "$mol_theme_giper_smash_light", "$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark", "$mol_theme_calm_dark", "$mol_theme_calm_light"];
     type $bog_theme_name = (typeof $bog_theme_names)[number];
 }
@@ -5869,7 +5869,7 @@ declare namespace $ {
         static meta: $giper_baza_link;
         path(next?: string): string;
         type(next?: string): string;
-        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $mol_tree2 | Uint16Array<ArrayBuffer> | Uint8Array<ArrayBuffer> | $giper_baza_link | $mol_time_duration | $mol_time_moment | $mol_time_interval | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | readonly $giper_baza_vary_type[] | Readonly<{
+        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $giper_baza_link | Uint8Array<ArrayBuffer> | $mol_tree2 | Uint16Array<ArrayBuffer> | $mol_time_duration | $mol_time_moment | $mol_time_interval | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | readonly $giper_baza_vary_type[] | Readonly<{
             [x: string]: $giper_baza_vary_type;
         }> | null;
         kind(next?: $giper_baza_flex_meta): $giper_baza_flex_meta | null;
@@ -6469,10 +6469,8 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
         land_link(next?: string | null): string;
-        land(): $giper_baza_land | null;
-        land_create(): $giper_baza_land;
-        lobby_land(): string;
-        invite_link(): string;
+        lobby_land(): Promise<string>;
+        invite_link(): Promise<string>;
         qr_uri(): string;
     }
 }

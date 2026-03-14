@@ -16225,47 +16225,29 @@ var $;
             land_link(next) {
                 return this.$.$mol_state_arg.value('land', next) ?? '';
             }
-            land() {
+            async lobby_land() {
                 const link = this.land_link();
-                if (!link)
-                    return null;
-                return this.$.$giper_baza_glob.Land(new $giper_baza_link(link));
+                if (link)
+                    return link;
+                const land = await $mol_wire_async($giper_baza_glob).land_grab([[null, $giper_baza_rank_post('slow')]]);
+                const new_link = land.link().str;
+                this.land_link(new_link);
+                return new_link;
             }
-            land_create() {
-                const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]]);
-                this.land_link(land.link().str);
-                return land;
-            }
-            lobby_land() {
-                if (!this.land_link())
-                    this.land_create();
-                return this.land_link();
-            }
-            invite_link() {
-                const link = this.land_link();
+            async invite_link() {
+                const link = await this.lobby_land();
                 if (!link)
                     return '';
-                const url = new URL(this.$.$mol_dom_context.location.href);
-                url.searchParams.set('land', link);
-                return url.toString();
+                const loc = this.$.$mol_dom_context.location;
+                return loc.origin + loc.pathname + '#!land=' + encodeURIComponent(link);
             }
             qr_uri() {
-                this.lobby_land();
-                const invite = this.invite_link();
+                const invite = $mol_wire_sync(this.invite_link).toString();
                 if (!invite)
                     return '';
                 return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(invite)}`;
             }
         }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby.prototype, "land_link", null);
-        __decorate([
-            $mol_action
-        ], $bog_blitz_lobby.prototype, "land_create", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby.prototype, "invite_link", null);
         $$.$bog_blitz_lobby = $bog_blitz_lobby;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -16691,12 +16673,6 @@ var $;
                 return this.$.$mol_state_arg.value('screen', next) ?? 'Lobby';
             }
         }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz.prototype, "screen_body", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz.prototype, "screen", null);
         $$.$bog_blitz = $bog_blitz;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

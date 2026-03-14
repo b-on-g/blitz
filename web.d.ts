@@ -12423,10 +12423,8 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
         land_link(next?: string | null): string;
-        land(): $giper_baza_land | null;
-        land_create(): $giper_baza_land;
-        lobby_land(): string;
-        invite_link(): string;
+        lobby_land(): Promise<string>;
+        invite_link(): Promise<string>;
         qr_uri(): string;
     }
 }
