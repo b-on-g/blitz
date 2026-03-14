@@ -1,5 +1,6 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
+		@$mol_mem
 		screen_body() {
 			const key = this.screen()
 			if (!(key in this.Navbar().options())) return []
@@ -8,8 +9,9 @@ namespace $.$$ {
 			return method ? [method.call(this)] : [key + ' screen']
 		}
 
+		@$mol_mem
 		screen(next?: string) {
-			return this.$.$mol_state_arg.value('screen', next) ?? 'lobby'
+			return this.$.$mol_state_arg.value('screen', next) ?? 'Lobby'
 		}
 	}
 }
