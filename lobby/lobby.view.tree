@@ -1,7 +1,6 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
-		<= Status $giper_baza_status
 		<= Qr $bog_qr
 			uri <= qr_data \
 			error_correction \L
@@ -17,8 +16,8 @@ $bog_blitz_lobby $mol_page
 		<= Join $mol_button_major
 			title \Войти
 			click? <=> join? null
-		<= Players $mol_list
-			rows <= player_rows /
+		<= Players $mol_view
+			sub <= player_rows /
 	Player* $mol_view
 		sub /
 			<= player_name* \

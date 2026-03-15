@@ -4,7 +4,7 @@ namespace $.$$ {
 		qr_data() {
 			let link = this.$.$mol_state_arg.value('land') ?? ''
 			if (!link) {
-				const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('slow')]])
+				const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('fast')]])
 				this.$.$mol_state_arg.value('land', land.link().str)
 			}
 			return this.$.$mol_state_arg.link({ land: link })
@@ -56,26 +56,22 @@ namespace $.$$ {
 			return result
 		}
 
+		@$mol_mem_key
 		player_name(key: string) {
-			const entry = this.players_dict()?.key(key)
-			const name = entry?.Name()
-			console.log('Name obj', key.slice(0, 8), name)
-			const val = name?.val()
-			console.log('Name val', key.slice(0, 8), val)
-			return val ?? key.slice(0, 8)
-		}
-
-		@$mol_mem
-		player_keys() {
-			console.log('player_keys BEFORE')
-			const keys = (this.players_dict()?.keys() ?? []) as string[]
-			console.log('player_keys', keys)
-			return keys
+			return key.slice(0, 8)
 		}
 
 		@$mol_mem
 		player_rows() {
-			return this.player_keys().map(key => this.Player(key))
+			return this.player_keys().map(key => key.slice(0, 8))
+		}
+
+		@$mol_mem
+		player_keys() {
+			const raw = this.players_dict()?.keys() ?? []
+			const result = Array.from(raw).map(k => String(k))
+			console.log('player_keys', result)
+			return result
 		}
 
 		@$mol_mem
