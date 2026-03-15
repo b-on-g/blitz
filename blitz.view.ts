@@ -1,10 +1,8 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
 		screen_body() {
-			const key = this.screen()
-			if (!(key in this.Navbar().options())) return []
-			const method = (this as any)[key[0].toUpperCase() + key.slice(1)]
-			return method ? [method.call(this)] : []
+			const page = (this.Navbar().options() as Record<string, any>)[this.screen()]
+			return page ? [page] : []
 		}
 
 		screen(next?: string) {
