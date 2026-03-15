@@ -11,6 +11,7 @@ $bog_blitz $mol_page
 			game \Game
 			admin \Admin
 	tools /
+		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	head /

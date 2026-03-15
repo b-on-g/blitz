@@ -6,6 +6,9 @@ namespace $.$$ {
 		}
 
 		screen(next?: string) {
+			if (next && next !== 'lobby') {
+				this.$.$mol_state_arg.value('land', null)
+			}
 			return this.$.$mol_state_arg.value('screen', next) ?? 'lobby'
 		}
 	}
