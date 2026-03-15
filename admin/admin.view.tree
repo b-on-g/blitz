@@ -1,0 +1,5 @@
+$bog_blitz_admin $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Admin screen coming soon...
