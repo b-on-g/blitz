@@ -1,7 +1,7 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
 		screen_body() {
-			const page = (this.Navbar().options() as Record<string, any>)[this.screen()]
+			const page = (this.pages() as Record<string, any>)[this.screen()]
 			return page ? [page] : []
 		}
 

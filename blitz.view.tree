@@ -1,11 +1,15 @@
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
+	pages *
+		lobby <= Lobby $bog_blitz_lobby
+		game <= Game $bog_blitz_game
+		admin <= Admin $bog_blitz_admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *
-			lobby <= Lobby $bog_blitz_lobby
-			game <= Game $bog_blitz_game
-			admin <= Admin $bog_blitz_admin
+			lobby \Lobby
+			game \Game
+			admin \Admin
 	tools /
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme

@@ -1,6 +1,9 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
+		<= Div $mol_view
+			sub / 
+				<= div_text \
 		<= Qr $mol_image
 			uri <= qr_uri \
 		<= Players $mol_list
