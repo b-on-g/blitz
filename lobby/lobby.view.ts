@@ -36,25 +36,5 @@ namespace $.$$ {
 		my_lord_str() {
 			return this.$.$giper_baza_auth.current().pass().lord().str
 		}
-
-		auto() {
-			super.auto()
-			const land = this.land()
-			const dict = this.players_dict()
-			const host = this.is_host()
-			const lord = this.my_lord_str()
-			console.log('[lobby] land:', land?.link().str, 'dict:', dict, 'is_host:', host, 'lord:', lord)
-			if (dict) {
-				const keys = dict.keys()
-				console.log('[lobby] players in dict:', keys)
-			}
-			if (!host) {
-				console.log('[lobby] registering as player...')
-				if (dict) {
-					const entry = dict.key(lord, 'auto')
-					console.log('[lobby] registered:', entry)
-				}
-			}
-		}
 	}
 }
