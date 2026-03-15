@@ -12607,6 +12607,7 @@ declare namespace $ {
 		Game( ): $bog_blitz_game
 		Admin( ): $bog_blitz_admin
 		screen( next?: string ): string
+		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
 		Theme( ): $bog_theme_auto
 		screen_body( ): readonly(any)[]

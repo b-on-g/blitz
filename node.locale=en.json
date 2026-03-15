@@ -1,5 +1,10 @@
 {
 	"$bog_blitz_title": "Giper Blitz Quiz",
 	"$bog_theme_picker_Search_hint": "Just start typing",
-	"$bog_theme_toggle_Anchor_hint": "Cycle through themes"
+	"$bog_theme_toggle_Anchor_hint": "Cycle through themes",
+	"$mol_search_Clear_hint": "Clear",
+	"$mol_search_hint": "Search...",
+	"$mol_select_filter_hint": "Filter..",
+	"$mol_select_hint": "Pick..",
+	"$mol_select_no_options_message": "No options"
 }

@@ -27273,6 +27273,10 @@ var $;
 			if(next !== undefined) return next;
 			return "lobby";
 		}
+		Status(){
+			const obj = new this.$.$giper_baza_status();
+			return obj;
+		}
 		Theme_toggle(){
 			const obj = new this.$.$bog_theme_toggle();
 			(obj.theme_auto) = () => ((this.Theme()));
@@ -27309,7 +27313,7 @@ var $;
 			return obj;
 		}
 		tools(){
-			return [(this.Theme_toggle())];
+			return [(this.Status()), (this.Theme_toggle())];
 		}
 		head(){
 			return [
@@ -27329,6 +27333,7 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Game"));
 	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "screen"));
+	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
@@ -27475,6 +27480,9 @@ var $;
                 return page ? [page] : [];
             }
             screen(next) {
+                if (next && next !== 'lobby') {
+                    this.$.$mol_state_arg.value('land', null);
+                }
                 return this.$.$mol_state_arg.value('screen', next) ?? 'lobby';
             }
         }
