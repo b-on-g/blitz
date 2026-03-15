@@ -6468,7 +6468,6 @@ declare namespace $ {
 //# sourceMappingURL=lobby.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
-        land_ensure(): void;
         qr_uri(): string;
     }
 }
