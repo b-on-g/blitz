@@ -1977,6 +1977,18 @@ $giper_baza_app $mol_book2_catalog
 				<= Spread_close
 	placeholders /
 
+$bog_blitz_game $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Game screen coming soon...
+
+$bog_blitz_admin $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Admin screen coming soon...
+
 $mol_check_list $mol_view
 	dictionary *
 	Option* $mol_check
@@ -1996,6 +2008,8 @@ $mol_switch $mol_check_list
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
 	Lobby $bog_blitz_lobby
+	Game $bog_blitz_game
+	Admin $bog_blitz_admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *

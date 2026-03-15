@@ -27014,32 +27014,26 @@ var $;
     var $$;
     (function ($$) {
         class $bog_blitz_lobby extends $.$bog_blitz_lobby {
-            land_link(next) {
-                return this.$.$mol_state_arg.value('land', next) ?? '';
-            }
-            async lobby_land() {
-                const link = this.land_link();
-                if (link)
-                    return link;
-                const land = await $mol_wire_async($giper_baza_glob).land_grab([[null, $giper_baza_rank_post('slow')]]);
-                const new_link = land.link().str;
-                this.land_link(new_link);
-                return new_link;
-            }
-            async invite_link() {
-                const link = await this.lobby_land();
-                if (!link)
-                    return '';
-                const loc = this.$.$mol_dom_context.location;
-                return loc.origin + loc.pathname + '#!land=' + encodeURIComponent(link);
+            land_ensure() {
+                const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('slow')]]);
+                this.$.$mol_state_arg.value('land', land.link().str);
             }
             qr_uri() {
-                const invite = $mol_wire_sync(this.invite_link).toString();
-                if (!invite)
+                let link = this.$.$mol_state_arg.value('land') ?? '';
+                if (!link) {
+                    this.land_ensure();
                     return '';
+                }
+                const invite = this.$.$mol_state_arg.link({ land: link });
                 return `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(invite)}`;
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "land_ensure", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "qr_uri", null);
         $$.$bog_blitz_lobby = $bog_blitz_lobby;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -27060,6 +27054,70 @@ var $;
                 align: { self: 'center' },
             },
         });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_game) = class $bog_blitz_game extends ($.$mol_page) {
+		Placeholder(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ("Game screen coming soon...");
+			return obj;
+		}
+		Head(){
+			return null;
+		}
+		body(){
+			return [(this.Placeholder())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_game.prototype), "Placeholder"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_game extends $.$bog_blitz_game {
+        }
+        $$.$bog_blitz_game = $bog_blitz_game;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_admin) = class $bog_blitz_admin extends ($.$mol_page) {
+		Placeholder(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ("Admin screen coming soon...");
+			return obj;
+		}
+		Head(){
+			return null;
+		}
+		body(){
+			return [(this.Placeholder())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_admin.prototype), "Placeholder"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_admin extends $.$bog_blitz_admin {
+        }
+        $$.$bog_blitz_admin = $bog_blitz_admin;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -27227,6 +27285,14 @@ var $;
 			const obj = new this.$.$bog_blitz_lobby();
 			return obj;
 		}
+		Game(){
+			const obj = new this.$.$bog_blitz_game();
+			return obj;
+		}
+		Admin(){
+			const obj = new this.$.$bog_blitz_admin();
+			return obj;
+		}
 		Navbar(){
 			const obj = new this.$.$mol_switch();
 			(obj.value) = (next) => ((this.screen(next)));
@@ -27258,6 +27324,8 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Lobby"));
+	($mol_mem(($.$bog_blitz.prototype), "Game"));
+	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
 
 
@@ -27402,10 +27470,10 @@ var $;
                 if (!(key in this.Navbar().options()))
                     return [];
                 const method = this[key[0].toUpperCase() + key.slice(1)];
-                return method ? [method.call(this)] : [key + ' screen'];
+                return method ? [method.call(this)] : [];
             }
             screen(next) {
-                return this.$.$mol_state_arg.value('screen', next) ?? 'Lobby';
+                return this.$.$mol_state_arg.value('screen', next) ?? 'lobby';
             }
         }
         $$.$bog_blitz = $bog_blitz;

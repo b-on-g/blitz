@@ -12422,14 +12422,54 @@ declare namespace $ {
 //# sourceMappingURL=lobby.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
-        land_link(next?: string | null): string;
-        lobby_land(): Promise<string>;
-        invite_link(): Promise<string>;
+        land_ensure(): void;
         qr_uri(): string;
     }
 }
 
 declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_paragraph__title_bog_blitz_game_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	export class $bog_blitz_game extends $mol_page {
+		Placeholder( ): $mol_paragraph
+		Head( ): any
+		body( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=game.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_game extends $.$bog_blitz_game {
+    }
+}
+
+declare namespace $ {
+
+	type $mol_paragraph__title_bog_blitz_admin_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	export class $bog_blitz_admin extends $mol_page {
+		Placeholder( ): $mol_paragraph
+		Head( ): any
+		body( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=admin.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_admin extends $.$bog_blitz_admin {
+    }
 }
 
 declare namespace $ {
@@ -12563,6 +12603,8 @@ declare namespace $ {
 		screen_body( ): readonly(any)[]
 		title( ): string
 		Lobby( ): $bog_blitz_lobby
+		Game( ): $bog_blitz_game
+		Admin( ): $bog_blitz_admin
 		Navbar( ): $mol_switch
 		tools( ): readonly(any)[]
 		head( ): readonly(any)[]

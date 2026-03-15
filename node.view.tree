@@ -291,6 +291,25 @@ $bog_blitz_lobby $mol_page
 			uri <= qr_uri \
 		<= Players $mol_list
 
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$bog_blitz_game $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Game screen coming soon...
+
+$bog_blitz_admin $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Admin screen coming soon...
+
 $mol_check $mol_button_minor
 	attr *
 		^
@@ -323,6 +342,8 @@ $mol_switch $mol_check_list
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
 	Lobby $bog_blitz_lobby
+	Game $bog_blitz_game
+	Admin $bog_blitz_admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *
