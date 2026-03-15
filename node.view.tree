@@ -34,6 +34,66 @@ $mol_page $mol_view
 			dom_name \footer
 			sub <= foot /$mol_view
 
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
+
+$bog_blitz_lobby $mol_page
+	Head null
+	body /
+		<= Div $mol_view
+			sub / 
+				<= div_text \
+		<= Qr $mol_image
+			uri <= qr_uri \
+		<= Players $mol_list
+
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$bog_blitz_game $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Game screen coming soon...
+
+$bog_blitz_admin $mol_page
+	Head null
+	body /
+		<= Placeholder $mol_paragraph
+			title \Admin screen coming soon...
+
 $mol_ghost $mol_view
 	Sub $mol_view
 
@@ -157,20 +217,6 @@ $mol_string $mol_view
 			mod_ctrl <= submit_with_ctrl false
 			key * enter?event <=> submit?event null
 
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0.1
-	sub <= rows /$mol_view
-		<= Gap_before $mol_view style * paddingTop <= gap_before 0
-		<= Empty $mol_view
-		<= Gap_after $mol_view style * paddingTop <= gap_after 0
-	item_height_min* 1
-	item_width_min* 1
-	view_window_shift? 0
-	view_window /
-		0
-		0
-
 $bog_theme_auto $mol_plugin
 	themes <= themes_default /
 	theme_light \$mol_theme_light
@@ -267,49 +313,6 @@ $bog_theme_toggle $mol_pop
 			theme_auto <= theme_auto
 			close? <=> picker_close? null
 
-$mol_image $mol_view
-	dom_name \img
-	attr *any
-		^
-		src <= uri \
-		title <= hint
-		alt <= title \
-		loading <= loading \lazy
-		decoding <= decoding \async
-		crossOrigin <= cors null
-		width <= natural_width 0
-		height <= natural_height 0
-	event *any
-		load? <=> load? null
-	minimal_width 16
-	minimal_height 16
-
-$bog_blitz_lobby $mol_page
-	Head null
-	body /
-		<= Qr $mol_image
-			uri <= qr_uri \
-		<= Players $mol_list
-
-$mol_paragraph $mol_view
-	line_height 24
-	letter_width 7
-	width_limit +Infinity
-	row_width 0
-	sub / <= title
-
-$bog_blitz_game $mol_page
-	Head null
-	body /
-		<= Placeholder $mol_paragraph
-			title \Game screen coming soon...
-
-$bog_blitz_admin $mol_page
-	Head null
-	body /
-		<= Placeholder $mol_paragraph
-			title \Admin screen coming soon...
-
 $mol_check $mol_button_minor
 	attr *
 		^
@@ -341,9 +344,10 @@ $mol_switch $mol_check_list
 
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
-	Lobby $bog_blitz_lobby
-	Game $bog_blitz_game
-	Admin $bog_blitz_admin
+	pages *
+		lobby <= Lobby $bog_blitz_lobby
+		game <= Game $bog_blitz_game
+		admin <= Admin $bog_blitz_admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *

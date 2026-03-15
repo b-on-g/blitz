@@ -34,6 +34,56 @@ $mol_page $mol_view
 			dom_name \footer
 			sub <= foot /$mol_view
 
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
+
+$bog_blitz_lobby $mol_page
+	Head null
+	body /
+		<= Div $mol_view
+			sub / 
+				<= div_text \
+		<= Qr $mol_image
+			uri <= qr_uri \
+		<= Players $mol_list
+
+$mol_book2 $mol_scroll
+	menu_title \
+	sub /$mol_view
+		^ pages <= pages_deep /$mol_view
+		^ placeholders /$mol_view
+			<= Placeholder $mol_view
+	minimal_width 0
+	Gap* $mol_view title \
+
 $mol_ghost $mol_view
 	Sub $mol_view
 
@@ -83,37 +133,6 @@ $mol_pop_bubble $mol_view
 		tabindex 0
 		popover \manual
 
-$mol_svg $mol_view
-	dom_name \svg
-	dom_name_space \http://www.w3.org/2000/svg
-	font_size 16
-	font_family \
-	style_size *
-
-$mol_svg_root $mol_svg
-	dom_name \svg
-	attr *
-		^
-		viewBox <= view_box \0 0 100 100
-		preserveAspectRatio <= aspect \xMidYMid
-
-$mol_svg_path $mol_svg
-	dom_name \path
-	attr *
-		^
-		d <= geometry \
-
-
-$mol_icon $mol_svg_root
-	view_box \0 0 24 24
-	minimal_width 16
-	minimal_height 16
-	sub /
-		<= Path $mol_svg_path
-			geometry <= path \
-
-$mol_icon_brightness_4 $mol_icon path \M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z
-
 $mol_hotkey $mol_plugin
 	event *
 		^
@@ -122,6 +141,27 @@ $mol_hotkey $mol_plugin
 	mod_ctrl false
 	mod_alt false
 	mod_shift false
+
+$mol_nav $mol_plugin
+	cycle? false
+	-
+	mod_ctrl false
+	mod_shift false
+	mod_alt false
+	-
+	keys_x? /
+	keys_y? /
+	-
+	current_x? null
+	current_y? null
+	-
+	event_up?event null
+	event_down?event null
+	event_left?event null
+	event_right?event null
+	event *
+		^
+		keydown?event <=> event_key?event null
 
 $mol_string $mol_view
 	dom_name \input
@@ -157,28 +197,36 @@ $mol_string $mol_view
 			mod_ctrl <= submit_with_ctrl false
 			key * enter?event <=> submit?event null
 
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0.1
-	sub <= rows /$mol_view
-		<= Gap_before $mol_view style * paddingTop <= gap_before 0
-		<= Empty $mol_view
-		<= Gap_after $mol_view style * paddingTop <= gap_after 0
-	item_height_min* 1
-	item_width_min* 1
-	view_window_shift? 0
-	view_window /
-		0
-		0
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+	style_size *
 
-$bog_theme_auto $mol_plugin
-	themes <= themes_default /
-	theme_light \$mol_theme_light
-	theme_dark \$mol_theme_dark
-	theme_next? null
-	theme_prev? null
-	theme_set? null
-	attr * mol_theme <= theme \
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
 
 $mol_speck $mol_view
 	theme \$mol_theme_accent
@@ -211,117 +259,6 @@ $mol_button_typed $mol_button
 	minimal_width 40
 
 $mol_button_minor $mol_button_typed
-
-$bog_theme_picker_row $mol_button_minor
-	theme_name \
-	title <= theme_name
-	attr *
-		^
-		bog_theme_picker_row_focused <= focused_str \
-	event *
-		^
-		pointerenter?event <=> hover?event null
-
-$bog_theme_picker $mol_scroll
-	theme_auto $bog_theme_auto
-	close? null
-	query?val \
-	focused_index?val -1
-	Theme_row* $bog_theme_picker_row
-		theme_name <= theme_name* \
-		focused <= theme_focused* false
-		click?event <=> theme_select*?event null
-		hover?event <=> theme_hover*?event null
-	sub /
-		<= Content $mol_list rows /
-			<= Search $mol_string
-				value?val <=> query?val
-				hint @ \Just start typing
-			<= Theme_list $mol_list
-				rows <= theme_rows /
-	event *
-		^
-		keydown?event <=> key_down?event null
-
-$bog_theme_toggle $mol_pop
-	theme_auto $bog_theme_auto
-	showed?val false
-	align \bottom_right
-	Anchor $mol_button_minor
-		sub /
-			<= Icon $mol_icon_brightness_4
-		hint @ \Cycle through themes
-		click?event <=> clicked?event null
-		event *
-			^
-			pointerdown?event <=> press_start?event null
-			pointermove?event <=> press_move?event null
-			pointerup?event <=> press_end?event null
-			pointercancel?event <=> press_cancel?event null
-			lostpointercapture?event <=> press_lost?event null
-	bubble_content /
-		<= Backdrop $mol_view
-			event *
-				click?event <=> backdrop_click?event null
-		<= Picker $bog_theme_picker
-			theme_auto <= theme_auto
-			close? <=> picker_close? null
-
-$mol_image $mol_view
-	dom_name \img
-	attr *any
-		^
-		src <= uri \
-		title <= hint
-		alt <= title \
-		loading <= loading \lazy
-		decoding <= decoding \async
-		crossOrigin <= cors null
-		width <= natural_width 0
-		height <= natural_height 0
-	event *any
-		load? <=> load? null
-	minimal_width 16
-	minimal_height 16
-
-$bog_blitz_lobby $mol_page
-	Head null
-	body /
-		<= Qr $mol_image
-			uri <= qr_uri \
-		<= Players $mol_list
-
-$mol_book2 $mol_scroll
-	menu_title \
-	sub /$mol_view
-		^ pages <= pages_deep /$mol_view
-		^ placeholders /$mol_view
-			<= Placeholder $mol_view
-	minimal_width 0
-	Gap* $mol_view title \
-
-$mol_nav $mol_plugin
-	cycle? false
-	-
-	mod_ctrl false
-	mod_shift false
-	mod_alt false
-	-
-	keys_x? /
-	keys_y? /
-	-
-	current_x? null
-	current_y? null
-	-
-	event_up?event null
-	event_down?event null
-	event_left?event null
-	event_right?event null
-	event *
-		^
-		keydown?event <=> event_key?event null
-
-$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
 
 $mol_paragraph $mol_view
 	line_height 24
@@ -1989,6 +1926,72 @@ $bog_blitz_admin $mol_page
 		<= Placeholder $mol_paragraph
 			title \Admin screen coming soon...
 
+$mol_icon_brightness_4 $mol_icon path \M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z
+
+$bog_theme_auto $mol_plugin
+	themes <= themes_default /
+	theme_light \$mol_theme_light
+	theme_dark \$mol_theme_dark
+	theme_next? null
+	theme_prev? null
+	theme_set? null
+	attr * mol_theme <= theme \
+
+$bog_theme_picker_row $mol_button_minor
+	theme_name \
+	title <= theme_name
+	attr *
+		^
+		bog_theme_picker_row_focused <= focused_str \
+	event *
+		^
+		pointerenter?event <=> hover?event null
+
+$bog_theme_picker $mol_scroll
+	theme_auto $bog_theme_auto
+	close? null
+	query?val \
+	focused_index?val -1
+	Theme_row* $bog_theme_picker_row
+		theme_name <= theme_name* \
+		focused <= theme_focused* false
+		click?event <=> theme_select*?event null
+		hover?event <=> theme_hover*?event null
+	sub /
+		<= Content $mol_list rows /
+			<= Search $mol_string
+				value?val <=> query?val
+				hint @ \Just start typing
+			<= Theme_list $mol_list
+				rows <= theme_rows /
+	event *
+		^
+		keydown?event <=> key_down?event null
+
+$bog_theme_toggle $mol_pop
+	theme_auto $bog_theme_auto
+	showed?val false
+	align \bottom_right
+	Anchor $mol_button_minor
+		sub /
+			<= Icon $mol_icon_brightness_4
+		hint @ \Cycle through themes
+		click?event <=> clicked?event null
+		event *
+			^
+			pointerdown?event <=> press_start?event null
+			pointermove?event <=> press_move?event null
+			pointerup?event <=> press_end?event null
+			pointercancel?event <=> press_cancel?event null
+			lostpointercapture?event <=> press_lost?event null
+	bubble_content /
+		<= Backdrop $mol_view
+			event *
+				click?event <=> backdrop_click?event null
+		<= Picker $bog_theme_picker
+			theme_auto <= theme_auto
+			close? <=> picker_close? null
+
 $mol_check_list $mol_view
 	dictionary *
 	Option* $mol_check
@@ -2007,9 +2010,10 @@ $mol_switch $mol_check_list
 
 $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
-	Lobby $bog_blitz_lobby
-	Game $bog_blitz_game
-	Admin $bog_blitz_admin
+	pages *
+		lobby <= Lobby $bog_blitz_lobby
+		game <= Game $bog_blitz_game
+		admin <= Admin $bog_blitz_admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options *
