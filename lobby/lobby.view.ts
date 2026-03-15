@@ -33,6 +33,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		my_player() {
+			return this.players_dict()?.key(this.my_lord_str(), 'auto') ?? null
+		}
+
+		@$mol_mem
 		my_lord_str() {
 			return this.$.$giper_baza_auth.current().pass().lord().str
 		}
