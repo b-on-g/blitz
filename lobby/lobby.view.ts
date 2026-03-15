@@ -33,13 +33,60 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		my_player() {
-			return this.players_dict()?.key(this.my_lord_str(), 'auto') ?? null
+		my_lord_str() {
+			return this.$.$giper_baza_auth.current().pass().lord().str
 		}
 
 		@$mol_mem
-		my_lord_str() {
-			return this.$.$giper_baza_auth.current().pass().lord().str
+		my_player() {
+			const dict = this.players_dict()
+			if (!dict) return null
+			const lord = this.my_lord_str()
+			return dict.key(lord) ?? null
+		}
+
+		my_player_create() {
+			const dict = this.players_dict()
+			console.log('dict', dict)
+			if (!dict) return null
+			const lord = this.my_lord_str()
+			console.log('before key', lord.slice(0, 8))
+			const result = dict.key(lord, 'auto')
+			console.log('after key', result)
+			return result
+		}
+
+		player_name(key: string) {
+			const entry = this.players_dict()?.key(key)
+			const name = entry?.Name()
+			console.log('Name obj', key.slice(0, 8), name)
+			const val = name?.val()
+			console.log('Name val', key.slice(0, 8), val)
+			return val ?? key.slice(0, 8)
+		}
+
+		@$mol_mem
+		player_keys() {
+			console.log('player_keys BEFORE')
+			const keys = (this.players_dict()?.keys() ?? []) as string[]
+			console.log('player_keys', keys)
+			return keys
+		}
+
+		@$mol_mem
+		player_rows() {
+			return this.player_keys().map(key => this.Player(key))
+		}
+
+		@$mol_mem
+		join(e?: any) {
+			console.log('1')
+			if (e) {
+				console.log('2')
+				this.my_player_create()
+			}
+			console.log('3')
+			return null
 		}
 	}
 }
