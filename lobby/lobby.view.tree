@@ -1,6 +1,16 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
-		<= Qr $mol_image
-			uri <= qr_uri \
+		<= Qr $bog_blitz_qr
+			uri <= qr_data \
+			error_correction \L
+			center /
+				<= Logo $mol_image
+					uri \bog/blitz/assets/logo.svg
+			module_radius 0.35
+			finder_radius 1.2
+			gradient_angle 185
+			gradient_stops /
+				\var(--mol_theme_special)
+				\var(--mol_theme_focus)
 		<= Players $mol_list
