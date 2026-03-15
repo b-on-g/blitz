@@ -1,0 +1,5 @@
+$bog_blitz_lobby_players $mol_list
+	dict null
+	rows <= player_rows /
+	Player* $bog_blitz_lobby_players_player
+		name <= player_name* \

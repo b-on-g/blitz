@@ -1,0 +1,5 @@
+$bog_blitz_lobby_players_player $mol_view
+	name @ \Your name -- click to change
+	sub /
+		<= Name $mol_paragraph
+			title <= name

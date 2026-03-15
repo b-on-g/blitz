@@ -13,4 +13,5 @@ $bog_blitz_lobby $mol_page
 			gradient_stops /
 				\var(--mol_theme_special)
 				\var(--mol_theme_focus)
-		<= Players $mol_list
+		<= Players $bog_blitz_lobby_players
+			dict <= players_dict null
