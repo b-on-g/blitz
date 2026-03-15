@@ -51,6 +51,87 @@ $mol_image $mol_view
 	minimal_width 16
 	minimal_height 16
 
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+	style_size *
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$bog_qr $mol_svg_root
+	uri \
+	module_radius 0.35
+	finder_radius 1.2
+	gradient_angle 45
+	error_correction \M
+	quiet_zone 2
+	center /
+	gradient_stops /
+		\var(--mol_theme_special)
+		\var(--mol_theme_focus)
+	Stop* $mol_svg
+		dom_name \stop
+		attr *
+			^
+			offset <= stop_offset* \0%
+			stop-color <= stop_color* \
+	view_box <= qr_view_box \0 0 1 1
+	sub /
+		<= Defs $mol_svg
+			dom_name \defs
+			sub /
+				<= Gradient $mol_svg
+					dom_name \linearGradient
+					attr *
+						^
+						id \qr-grad
+						x1 <= grad_x1 \0
+						y1 <= grad_y1 \0
+						x2 <= grad_x2 \1
+						y2 <= grad_y2 \1
+					sub <= gradient_stop_list /
+		<= Modules $mol_svg_path
+			geometry <= modules_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+		<= Rings $mol_svg_path
+			geometry <= rings_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+				fill-rule \evenodd
+		<= Centers $mol_svg_path
+			geometry <= centers_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+		<= Center_wrap $mol_svg
+			dom_name \foreignObject
+			attr *
+				^
+				x <= center_x \0
+				y <= center_y \0
+				width <= center_size \0
+				height <= center_size
+			sub /
+				<= Center_body $mol_view
+					sub <= center
+
 $mol_list $mol_view
 	render_visible_only true
 	render_over 0.1
@@ -68,11 +149,18 @@ $mol_list $mol_view
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
-		<= Div $mol_view
-			sub / 
-				<= div_text \
-		<= Qr $mol_image
-			uri <= qr_uri \
+		<= Qr $bog_qr
+			uri <= qr_data \
+			error_correction \L
+			center /
+				<= Logo $mol_image
+					uri \bog/blitz/assets/logo.svg
+			module_radius 0.35
+			finder_radius 1.2
+			gradient_angle 185
+			gradient_stops /
+				\var(--mol_theme_special)
+				\var(--mol_theme_focus)
 		<= Players $mol_list
 
 $mol_book2 $mol_scroll
@@ -196,27 +284,6 @@ $mol_string $mol_view
 		<= Submit $mol_hotkey
 			mod_ctrl <= submit_with_ctrl false
 			key * enter?event <=> submit?event null
-
-$mol_svg $mol_view
-	dom_name \svg
-	dom_name_space \http://www.w3.org/2000/svg
-	font_size 16
-	font_family \
-	style_size *
-
-$mol_svg_root $mol_svg
-	dom_name \svg
-	attr *
-		^
-		viewBox <= view_box \0 0 100 100
-		preserveAspectRatio <= aspect \xMidYMid
-
-$mol_svg_path $mol_svg
-	dom_name \path
-	attr *
-		^
-		d <= geometry \
-
 
 $mol_icon $mol_svg_root
 	view_box \0 0 24 24
