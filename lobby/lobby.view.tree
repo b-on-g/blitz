@@ -1,7 +1,7 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	body /
-		<= Qr $bog_blitz_qr
+		<= Qr $bog_qr
 			uri <= qr_data \
 			error_correction \L
 			center /
