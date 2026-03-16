@@ -6,5 +6,13 @@ namespace $.$$ {
 			},
 			align: { self: 'center' },
 		},
+		Player_name_input: {
+			':not(:placeholder-shown):not(:focus):not(:hover):not(:disabled)': {
+				color: $mol_theme.text,
+			},
+		},
+		Player: {
+			alignItems: 'center',
+		},
 	})
 }

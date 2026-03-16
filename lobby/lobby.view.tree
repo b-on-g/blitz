@@ -14,10 +14,19 @@ $bog_blitz_lobby $mol_page
 				\var(--mol_theme_special)
 				\var(--mol_theme_focus)
 		<= Join $mol_button_major
-			title \Войти
+			title @ \Enter
 			click? <=> join? null
-		<= Players $mol_view
-			sub <= player_rows /
-	Player* $mol_view
+		<= Players $mol_list
+			rows <= player_views /
+	Player* $mol_row
 		sub /
-			<= player_name* \
+			<= Player_icon* $mol_avatar
+				id <= player_id* \
+			<= Player_id* $mol_paragraph
+				title <= player_id* \
+			<= player_name_content* null
+	Player_name_input* $mol_string_button
+		hint @ \Touch to change
+		value? <=> player_name*? \
+	Player_name_label* $mol_paragraph
+		title <= player_name* \
