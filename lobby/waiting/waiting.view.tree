@@ -1,6 +1,5 @@
 $bog_blitz_lobby_waiting $mol_page
 	Head null
-	players_string @ \Players
 	counter_string \
 	body /
 		<= Waiting_message $mol_paragraph

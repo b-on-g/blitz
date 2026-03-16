@@ -104,5 +104,17 @@ namespace $.$$ {
 			if (this.is_host()) return [this.Host()]
 			return [this.Waiting()]
 		}
+
+		@$mol_mem
+		counter_string() {
+			const dict = this.players_dict()
+			if (!dict) return ''
+			const keys = Array.from(dict.keys() ?? [])
+			const count = keys.filter(k => {
+				const player = dict.key(k)
+				return !player?.IsHost()?.val()
+			}).length
+			return `${this.players_string()}: ${count}`
+		}
 	}
 }

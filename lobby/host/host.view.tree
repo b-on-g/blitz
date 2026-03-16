@@ -1,6 +1,5 @@
 $bog_blitz_lobby_host $mol_page
 	Head null
-	players_string @ \Players
 	counter_string \
 	body /
 		<= Qr $bog_qr
