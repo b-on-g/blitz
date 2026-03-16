@@ -12,7 +12,7 @@ $bog_blitz_lobby $mol_page
 			gradient_angle 185
 			gradient_stops /
 				\var(--mol_theme_special)
-				\var(--mol_theme_focus)
+				\var(--mol_theme_current)
 		<= Join $mol_button_major
 			title @ \Enter
 			click? <=> join? null
