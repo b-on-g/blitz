@@ -1377,6 +1377,132 @@ declare namespace $ {
 }
 
 declare namespace $ {
+
+	export class $mol_paragraph extends $mol_view {
+		line_height( ): number
+		letter_width( ): number
+		width_limit( ): number
+		row_width( ): number
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=paragraph.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_paragraph extends $.$mol_paragraph {
+        maximal_width(): number;
+        width_limit(): number;
+        minimal_width(): number;
+        row_width(): number;
+        minimal_height(): number;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    let $mol_layer: Record<"hover" | "float" | "focus" | "speck" | "popup", $mol_style_func<"var", unknown>>;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_speck extends $mol_view {
+		value( ): any
+		theme( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=speck.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_speck__value_mol_button_1 = $mol_type_enforce<
+		ReturnType< $mol_button['error'] >
+		,
+		ReturnType< $mol_speck['value'] >
+	>
+	export class $mol_button extends $mol_view {
+		event_activate( next?: any ): any
+		activate( next?: ReturnType< $mol_button['event_activate'] > ): ReturnType< $mol_button['event_activate'] >
+		clicks( next?: any ): any
+		event_key_press( next?: any ): any
+		key_press( next?: ReturnType< $mol_button['event_key_press'] > ): ReturnType< $mol_button['event_key_press'] >
+		disabled( ): boolean
+		tab_index( ): number
+		hint( ): string
+		hint_safe( ): ReturnType< $mol_button['hint'] >
+		error( ): string
+		enabled( ): boolean
+		click( next?: any ): any
+		event_click( next?: any ): any
+		status( next?: readonly(any)[] ): readonly(any)[]
+		event( ): ({ 
+			click( next?: ReturnType< $mol_button['activate'] > ): ReturnType< $mol_button['activate'] >,
+			dblclick( next?: ReturnType< $mol_button['clicks'] > ): ReturnType< $mol_button['clicks'] >,
+			keydown( next?: ReturnType< $mol_button['key_press'] > ): ReturnType< $mol_button['key_press'] >,
+		})  & ReturnType< $mol_view['event'] >
+		attr( ): ({ 
+			'disabled': ReturnType< $mol_button['disabled'] >,
+			'role': string,
+			'tabindex': ReturnType< $mol_button['tab_index'] >,
+			'title': ReturnType< $mol_button['hint_safe'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		sub( ): readonly($mol_view_content)[]
+		Speck( ): $mol_speck
+	}
+	
+}
+
+//# sourceMappingURL=button.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_button extends $.$mol_button {
+        disabled(): boolean;
+        event_activate(next: Event): void;
+        event_key_press(event: KeyboardEvent): any;
+        tab_index(): number;
+        error(): string;
+        hint_safe(): string;
+        sub_visible(): ($mol_view_content | $mol_speck)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_button_typed extends $mol_button {
+		minimal_height( ): number
+		minimal_width( ): number
+	}
+	
+}
+
+//# sourceMappingURL=typed.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_button_minor extends $mol_button_typed {
+	}
+	
+}
+
+//# sourceMappingURL=minor.view.tree.d.ts.map
+declare namespace $ {
     class $mol_state_time extends $mol_object {
         static task(precision: number, reset?: null): $mol_after_timeout | $mol_after_frame;
         static now(precision: number): number;
@@ -1458,6 +1584,85 @@ declare namespace $ {
 
 //# sourceMappingURL=icon.view.tree.d.ts.map
 declare namespace $ {
+
+	export class $mol_icon_upload extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=upload.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_button_open_native__files_mol_button_open_1 = $mol_type_enforce<
+		ReturnType< $mol_button_open['files_handled'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_mol_button_open_2 = $mol_type_enforce<
+		ReturnType< $mol_button_open['accept'] >
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_mol_button_open_3 = $mol_type_enforce<
+		ReturnType< $mol_button_open['multiple'] >
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	export class $mol_button_open extends $mol_button_minor {
+		Icon( ): $mol_icon_upload
+		files( next?: readonly(File)[] ): readonly(File)[]
+		files_handled( next?: ReturnType< $mol_button_open['files'] > ): ReturnType< $mol_button_open['files'] >
+		accept( ): string
+		multiple( ): boolean
+		Native( ): $mol_button_open_native
+		sub( ): readonly(any)[]
+	}
+	
+	export class $mol_button_open_native extends $mol_view {
+		accept( ): string
+		multiple( ): boolean
+		picked( next?: any ): any
+		dom_name( ): string
+		files( next?: readonly(File)[] ): readonly(File)[]
+		attr( ): ({ 
+			'type': string,
+			'accept': ReturnType< $mol_button_open_native['accept'] >,
+			'multiple': ReturnType< $mol_button_open_native['multiple'] >,
+		}) 
+		event( ): ({ 
+			change( next?: ReturnType< $mol_button_open_native['picked'] > ): ReturnType< $mol_button_open_native['picked'] >,
+		}) 
+	}
+	
+}
+
+//# sourceMappingURL=open.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_button_open extends $.$mol_button_open {
+        files_handled(next?: readonly File[]): readonly File[];
+    }
+    class $mol_button_open_native extends $.$mol_button_open_native {
+        dom_node(): HTMLInputElement;
+        picked(): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_row extends $mol_view {
+	}
+	
+}
+
+//# sourceMappingURL=row.view.tree.d.ts.map
+declare namespace $ {
     function $mol_hash_numbers(buff: ArrayLike<number>, seed?: number): number;
 }
 
@@ -1487,41 +1692,36 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_paragraph extends $mol_view {
-		line_height( ): number
-		letter_width( ): number
-		width_limit( ): number
-		row_width( ): number
-		sub( ): readonly(any)[]
+	export class $mol_image extends $mol_view {
+		uri( ): string
+		title( ): string
+		loading( ): string
+		decoding( ): string
+		cors( ): any
+		natural_width( ): number
+		natural_height( ): number
+		load( next?: any ): any
+		dom_name( ): string
+		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
+		event( ): Record<string, any>
+		minimal_width( ): number
+		minimal_height( ): number
 	}
 	
 }
 
-//# sourceMappingURL=paragraph.view.tree.d.ts.map
+//# sourceMappingURL=image.view.tree.d.ts.map
 declare namespace $.$$ {
-    class $mol_paragraph extends $.$mol_paragraph {
-        maximal_width(): number;
-        width_limit(): number;
-        minimal_width(): number;
-        row_width(): number;
-        minimal_height(): number;
+    class $mol_image extends $.$mol_image {
+        natural_width(next?: null): number;
+        natural_height(next?: null): number;
+        load(): void;
     }
 }
 
 declare namespace $ {
 }
 
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_row extends $mol_view {
-	}
-	
-}
-
-//# sourceMappingURL=row.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_hotkey extends $mol_plugin {
@@ -1543,13 +1743,6 @@ declare namespace $.$$ {
         key(): { [key in keyof typeof $mol_keyboard_code]?: (event: KeyboardEvent) => void; };
         keydown(event?: KeyboardEvent): void;
     }
-}
-
-declare namespace $ {
-    let $mol_layer: Record<"hover" | "float" | "focus" | "speck" | "popup", $mol_style_func<"var", unknown>>;
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -1945,49 +2138,89 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_avatar__id_bog_blitz_lobby_players_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_players['player_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_2 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_id'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_row__sub_bog_blitz_lobby_players_3 = $mol_type_enforce<
+	type $mol_button_open_native__files_bog_blitz_lobby_players_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_avatar_files'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_bog_blitz_lobby_players_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_bog_blitz_lobby_players_4 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	type $mol_row__attr_bog_blitz_lobby_players_5 = $mol_type_enforce<
+		({ 
+			'bog_blitz_mine': ReturnType< $bog_blitz_lobby_players['is_mine'] >,
+		}) 
+		,
+		ReturnType< $mol_row['attr'] >
+	>
+	type $mol_row__sub_bog_blitz_lobby_players_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_lobby_players_4 = $mol_type_enforce<
+	type $mol_avatar__id_bog_blitz_lobby_players_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_image__uri_bog_blitz_lobby_players_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_avatar_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_string_button__hint_bog_blitz_lobby_players_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_lobby_players_5 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_lobby_players_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_6 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
+	type $mol_button_open__sub_bog_blitz_lobby_players_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_open['sub'] >
+	>
 	export class $bog_blitz_lobby_players extends $mol_list {
 		player_views( ): readonly(any)[]
+		is_mine( id: any): boolean
+		player_avatar_content( id: any): any
 		player_id( id: any): string
-		Player_icon( id: any): $mol_avatar
 		Player_id( id: any): $mol_paragraph
 		player_name_content( id: any): any
+		player_avatar_uri( id: any): string
 		player_name( id: any): string
+		player_avatar( id: any): any
+		player_avatar_files( id: any, next?: readonly(File)[] ): readonly(File)[]
+		Player_avatar_native( id: any): $mol_button_open_native
 		players_dict( ): any
 		my_lord_str( ): string
 		rows( ): ReturnType< $bog_blitz_lobby_players['player_views'] >
 		Player( id: any): $mol_row
+		Player_icon( id: any): $mol_avatar
+		Player_image( id: any): $mol_image
 		Player_name_input( id: any): $mol_string_button
 		Player_name_label( id: any): $mol_paragraph
+		Player_avatar_button( id: any): $mol_button_open
 	}
 	
 }
@@ -2001,42 +2234,15 @@ declare namespace $.$$ {
         player_views(): $mol_row[];
         player_name(key: string, next?: string): any;
         player_keys(): string[];
+        player_avatar_uri(key: string): string;
+        player_avatar(key: string): $.$mol_avatar | $.$mol_image;
+        player_avatar_content(key: string): $.$mol_button_open | $.$mol_avatar | $.$mol_image;
+        player_avatar_files(key: string, next?: readonly File[]): readonly File[];
+        is_mine(key: string): boolean;
     }
 }
 
 declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	export class $mol_image extends $mol_view {
-		uri( ): string
-		title( ): string
-		loading( ): string
-		decoding( ): string
-		cors( ): any
-		natural_width( ): number
-		natural_height( ): number
-		load( next?: any ): any
-		dom_name( ): string
-		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
-		event( ): Record<string, any>
-		minimal_width( ): number
-		minimal_height( ): number
-	}
-	
-}
-
-//# sourceMappingURL=image.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_image extends $.$mol_image {
-        natural_width(next?: null): number;
-        natural_height(next?: null): number;
-        load(): void;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -2236,99 +2442,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_speck extends $mol_view {
-		value( ): any
-		theme( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=speck.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_speck__value_mol_button_1 = $mol_type_enforce<
-		ReturnType< $mol_button['error'] >
-		,
-		ReturnType< $mol_speck['value'] >
-	>
-	export class $mol_button extends $mol_view {
-		event_activate( next?: any ): any
-		activate( next?: ReturnType< $mol_button['event_activate'] > ): ReturnType< $mol_button['event_activate'] >
-		clicks( next?: any ): any
-		event_key_press( next?: any ): any
-		key_press( next?: ReturnType< $mol_button['event_key_press'] > ): ReturnType< $mol_button['event_key_press'] >
-		disabled( ): boolean
-		tab_index( ): number
-		hint( ): string
-		hint_safe( ): ReturnType< $mol_button['hint'] >
-		error( ): string
-		enabled( ): boolean
-		click( next?: any ): any
-		event_click( next?: any ): any
-		status( next?: readonly(any)[] ): readonly(any)[]
-		event( ): ({ 
-			click( next?: ReturnType< $mol_button['activate'] > ): ReturnType< $mol_button['activate'] >,
-			dblclick( next?: ReturnType< $mol_button['clicks'] > ): ReturnType< $mol_button['clicks'] >,
-			keydown( next?: ReturnType< $mol_button['key_press'] > ): ReturnType< $mol_button['key_press'] >,
-		})  & ReturnType< $mol_view['event'] >
-		attr( ): ({ 
-			'disabled': ReturnType< $mol_button['disabled'] >,
-			'role': string,
-			'tabindex': ReturnType< $mol_button['tab_index'] >,
-			'title': ReturnType< $mol_button['hint_safe'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		sub( ): readonly($mol_view_content)[]
-		Speck( ): $mol_speck
-	}
-	
-}
-
-//# sourceMappingURL=button.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_button extends $.$mol_button {
-        disabled(): boolean;
-        event_activate(next: Event): void;
-        event_key_press(event: KeyboardEvent): any;
-        tab_index(): number;
-        error(): string;
-        hint_safe(): string;
-        sub_visible(): ($mol_view_content | $mol_speck)[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_button_typed extends $mol_button {
-		minimal_height( ): number
-		minimal_width( ): number
-	}
-	
-}
-
-//# sourceMappingURL=typed.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_button_minor extends $mol_button_typed {
-	}
-	
-}
-
-//# sourceMappingURL=minor.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
 	export class $mol_button_major extends $mol_button_minor {
 		theme( ): string
 	}
@@ -2422,74 +2535,6 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	export class $mol_icon_upload extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=upload.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_button_open_native__files_mol_button_open_1 = $mol_type_enforce<
-		ReturnType< $mol_button_open['files_handled'] >
-		,
-		ReturnType< $mol_button_open_native['files'] >
-	>
-	type $mol_button_open_native__accept_mol_button_open_2 = $mol_type_enforce<
-		ReturnType< $mol_button_open['accept'] >
-		,
-		ReturnType< $mol_button_open_native['accept'] >
-	>
-	type $mol_button_open_native__multiple_mol_button_open_3 = $mol_type_enforce<
-		ReturnType< $mol_button_open['multiple'] >
-		,
-		ReturnType< $mol_button_open_native['multiple'] >
-	>
-	export class $mol_button_open extends $mol_button_minor {
-		Icon( ): $mol_icon_upload
-		files( next?: readonly(File)[] ): readonly(File)[]
-		files_handled( next?: ReturnType< $mol_button_open['files'] > ): ReturnType< $mol_button_open['files'] >
-		accept( ): string
-		multiple( ): boolean
-		Native( ): $mol_button_open_native
-		sub( ): readonly(any)[]
-	}
-	
-	export class $mol_button_open_native extends $mol_view {
-		accept( ): string
-		multiple( ): boolean
-		picked( next?: any ): any
-		dom_name( ): string
-		files( next?: readonly(File)[] ): readonly(File)[]
-		attr( ): ({ 
-			'type': string,
-			'accept': ReturnType< $mol_button_open_native['accept'] >,
-			'multiple': ReturnType< $mol_button_open_native['multiple'] >,
-		}) 
-		event( ): ({ 
-			change( next?: ReturnType< $mol_button_open_native['picked'] > ): ReturnType< $mol_button_open_native['picked'] >,
-		}) 
-	}
-	
-}
-
-//# sourceMappingURL=open.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_button_open extends $.$mol_button_open {
-        files_handled(next?: readonly File[]): readonly File[];
-    }
-    class $mol_button_open_native extends $.$mol_button_open_native {
-        dom_node(): HTMLInputElement;
-        picked(): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
 	type $mol_button_open_native__files_bog_blitz_lobby_join_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['avatar_files'] >
 		,
@@ -2563,6 +2608,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby_join extends $.$bog_blitz_lobby_join {
         avatar_preview(): $.$mol_avatar | $.$mol_image;
+        avatar_uri(): string;
     }
 }
 
@@ -2591,6 +2637,9 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=waiting.view.tree.d.ts.map
+declare namespace $.$$ {
+}
+
 declare namespace $ {
     enum $giper_baza_slot_kind {
         free = 0,
@@ -9040,10 +9089,10 @@ declare namespace $ {
 //# sourceMappingURL=search.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_search extends $.$mol_search {
-        anchor_content(): ($.$mol_string | $mol_button_minor)[];
+        anchor_content(): ($mol_button_minor | $.$mol_string)[];
         suggests_showed(next?: boolean): boolean;
         suggest_selected(next?: string): void;
-        nav_components(): ($.$mol_string | $mol_button_minor)[];
+        nav_components(): ($mol_button_minor | $.$mol_string)[];
         nav_focused(component?: $mol_view): $mol_view | $.$mol_string | null;
         suggest_label(key: string): string;
         menu_items(): $mol_button_minor[];
@@ -14665,27 +14714,22 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_join['player_name'] >
 	>
-	type $bog_blitz_lobby_join__avatar_uri_bog_blitz_lobby_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_avatar_uri'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['avatar_uri'] >
-	>
-	type $bog_blitz_lobby_join__avatar_files_bog_blitz_lobby_7 = $mol_type_enforce<
+	type $bog_blitz_lobby_join__avatar_files_bog_blitz_lobby_6 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_avatar_files'] >
 		,
 		ReturnType< $bog_blitz_lobby_join['avatar_files'] >
 	>
-	type $bog_blitz_lobby_join__join_bog_blitz_lobby_8 = $mol_type_enforce<
+	type $bog_blitz_lobby_join__join_bog_blitz_lobby_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['join'] >
 		,
 		ReturnType< $bog_blitz_lobby_join['join'] >
 	>
-	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_9 = $mol_type_enforce<
+	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_8 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['counter_string'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['counter_string'] >
 	>
-	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_10 = $mol_type_enforce<
+	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['Host_players'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['Players'] >
@@ -14696,7 +14740,6 @@ declare namespace $ {
 		my_lord_str( ): string
 		Host_players( ): $bog_blitz_lobby_players
 		my_player_name( next?: string ): string
-		my_avatar_uri( ): string
 		my_avatar_files( next?: readonly(File)[] ): readonly(File)[]
 		join( next?: any ): any
 		lobby_content( ): readonly(any)[]

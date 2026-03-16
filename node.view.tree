@@ -48,6 +48,45 @@ $mol_list $mol_view
 		0
 		0
 
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$mol_speck $mol_view
+	theme \$mol_theme_accent
+	sub /
+		<= value null
+
+$mol_button $mol_view
+	enabled true
+	click?event null
+	event_click?event null
+	status? /
+	event *
+		^
+		click?event <=> activate?event <=> event_activate?event null
+		dblclick?event <=> clicks?event null
+		keydown?event <=> key_press?event <=> event_key_press?event null
+	attr *
+		^
+		disabled <= disabled false
+		role \button
+		tabindex <= tab_index 0
+		title <= hint_safe <= hint \
+	sub /$mol_view_content
+		<= title
+	Speck $mol_speck
+		value <= error \
+
+$mol_button_typed $mol_button
+	minimal_height 40
+	minimal_width 40
+
+$mol_button_minor $mol_button_typed
+
 $mol_svg $mol_view
 	dom_name \svg
 	dom_name_space \http://www.w3.org/2000/svg
@@ -77,19 +116,49 @@ $mol_icon $mol_svg_root
 		<= Path $mol_svg_path
 			geometry <= path \
 
+$mol_icon_upload $mol_icon path \M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z
+
+$mol_button_open $mol_button_minor
+	sub /
+		<= Icon $mol_icon_upload
+		<= Native $mol_button_open_native
+			files? <=> files_handled? <=> files? /File
+			accept <= accept \
+			multiple <= multiple true
+
+$mol_button_open_native $mol_view
+	dom_name \input
+	files? /File
+	attr *
+		type \file
+		accept <= accept \
+		multiple <= multiple true
+	event *
+		change?next <=> picked?next null
+
+$mol_row $mol_view
+
 $mol_avatar $mol_icon
 	view_box \0 0 24 24
 	id \
 	path \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
 
-$mol_paragraph $mol_view
-	line_height 24
-	letter_width 7
-	width_limit +Infinity
-	row_width 0
-	sub / <= title
-
-$mol_row $mol_view
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
 
 $mol_hotkey $mol_plugin
 	event *
@@ -141,34 +210,29 @@ $bog_blitz_lobby_players $mol_list
 	my_lord_str \
 	rows <= player_views /
 	Player* $mol_row
+		attr *
+			bog_blitz_mine <= is_mine* false
 		sub /
-			<= Player_icon* $mol_avatar
-				id <= player_id* \
+			<= player_avatar_content* null
 			<= Player_id* $mol_paragraph
 				title <= player_id* \
 			<= player_name_content* null
+	Player_icon* $mol_avatar
+		id <= player_id* \
+	Player_image* $mol_image
+		uri <= player_avatar_uri* \
 	Player_name_input* $mol_string_button
 		hint @ \Touch to change
 		value? <=> player_name*? \
 	Player_name_label* $mol_paragraph
 		title <= player_name* \
-
-$mol_image $mol_view
-	dom_name \img
-	attr *any
-		^
-		src <= uri \
-		title <= hint
-		alt <= title \
-		loading <= loading \lazy
-		decoding <= decoding \async
-		crossOrigin <= cors null
-		width <= natural_width 0
-		height <= natural_height 0
-	event *any
-		load? <=> load? null
-	minimal_width 16
-	minimal_height 16
+	Player_avatar_button* $mol_button_open
+		sub /
+			<= player_avatar* null
+			<= Player_avatar_native* $mol_button_open_native
+				files? <=> player_avatar_files*? /File
+				accept \image/*
+				multiple false
 
 $bog_qr $mol_svg_root
 	uri \
@@ -230,38 +294,6 @@ $bog_qr $mol_svg_root
 				<= Center_body $mol_view
 					sub <= center
 
-$mol_speck $mol_view
-	theme \$mol_theme_accent
-	sub /
-		<= value null
-
-$mol_button $mol_view
-	enabled true
-	click?event null
-	event_click?event null
-	status? /
-	event *
-		^
-		click?event <=> activate?event <=> event_activate?event null
-		dblclick?event <=> clicks?event null
-		keydown?event <=> key_press?event <=> event_key_press?event null
-	attr *
-		^
-		disabled <= disabled false
-		role \button
-		tabindex <= tab_index 0
-		title <= hint_safe <= hint \
-	sub /$mol_view_content
-		<= title
-	Speck $mol_speck
-		value <= error \
-
-$mol_button_typed $mol_button
-	minimal_height 40
-	minimal_width 40
-
-$mol_button_minor $mol_button_typed
-
 $mol_button_major $mol_button_minor
 	theme \$mol_theme_base
 
@@ -288,26 +320,6 @@ $bog_blitz_lobby_host $mol_page
 		<= Counter $mol_paragraph
 			title <= counter_string
 		<= Players $bog_blitz_lobby_players
-
-$mol_icon_upload $mol_icon path \M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z
-
-$mol_button_open $mol_button_minor
-	sub /
-		<= Icon $mol_icon_upload
-		<= Native $mol_button_open_native
-			files? <=> files_handled? <=> files? /File
-			accept <= accept \
-			multiple <= multiple true
-
-$mol_button_open_native $mol_view
-	dom_name \input
-	files? /File
-	attr *
-		type \file
-		accept <= accept \
-		multiple <= multiple true
-	event *
-		change?next <=> picked?next null
 
 $bog_blitz_lobby_join $mol_page
 	Head null
@@ -350,7 +362,6 @@ $bog_blitz_lobby $mol_page
 			my_lord_str <= my_lord_str \
 	Join_screen $bog_blitz_lobby_join
 		player_name? <=> my_player_name? \
-		avatar_uri <= my_avatar_uri \
 		avatar_files? <=> my_avatar_files? /File
 		join? <=> join? null
 	Waiting $bog_blitz_lobby_waiting
