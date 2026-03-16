@@ -6,12 +6,14 @@ namespace $.$$ {
 		}
 
 		screen(next?: string) {
+			if (next !== undefined) {
+				this.Mobile_menu().showed(false)
+			}
 			return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby'
 		}
 
-		@$mol_action
-		menu_toggle() {
-			this.menu_opened(!this.menu_opened())
+		mobile_menu_toggle() {
+			this.Mobile_menu().showed(!this.Mobile_menu().showed())
 		}
 	}
 }
