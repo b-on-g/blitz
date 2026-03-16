@@ -172,7 +172,7 @@ $bog_blitz_lobby $mol_page
 	body /
 		<= Qr $bog_qr
 			uri <= qr_data \
-			error_correction \L
+			error_correction \M
 			center /
 				<= Logo $mol_image
 					uri \bog/blitz/assets/logo.svg

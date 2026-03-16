@@ -6445,7 +6445,7 @@ var $;
 		Qr(){
 			const obj = new this.$.$bog_qr();
 			(obj.uri) = () => ((this.qr_data()));
-			(obj.error_correction) = () => ("L");
+			(obj.error_correction) = () => ("M");
 			(obj.center) = () => ([(this.Logo())]);
 			(obj.module_radius) = () => (0.35);
 			(obj.finder_radius) = () => (1.2);
