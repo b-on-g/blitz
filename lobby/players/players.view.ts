@@ -61,5 +61,28 @@ namespace $.$$ {
 			if (this.player_avatar_uri(key)) return this.Player_image(key)
 			return this.Player_icon(key)
 		}
+
+		@$mol_mem_key
+		player_avatar_content(key: string) {
+			if (key === this.my_lord_str()) {
+				return this.Player_avatar_button(key)
+			}
+			return this.player_avatar(key)
+		}
+
+		@$mol_mem_key
+		player_avatar_files(key: string, next?: readonly File[]) {
+			if (next?.length) {
+				const player = this.players_dict()?.key(key)
+				if (player) {
+					const store = player.Avatar(null)!.ensure(null)
+					if (store) {
+						store.blob(next[0])
+						player.Avatar(null)!.remote(store)
+					}
+				}
+			}
+			return next ?? []
+		}
 	}
 }
