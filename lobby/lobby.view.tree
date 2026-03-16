@@ -9,7 +9,7 @@ $bog_blitz_lobby $mol_page
 					uri \bog/blitz/assets/logo.svg
 			module_radius 0.35
 			finder_radius 1.2
-			gradient_angle 185
+			gradient_angle 125
 			gradient_stops /
 				\var(--mol_theme_special)
 				\var(--mol_theme_current)

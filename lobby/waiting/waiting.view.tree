@@ -1,0 +1,9 @@
+$bog_blitz_lobby_waiting $mol_page
+	Head null
+	players_string @ \Players
+	body /
+		<= Waiting_message $mol_paragraph
+			title @ \Waiting for host to start...
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_players

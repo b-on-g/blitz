@@ -122,5 +122,10 @@ namespace $.$$ {
 			console.log('3')
 			return null
 		}
+
+		@$mol_mem
+		lobby_content() {
+			return []
+		}
 	}
 }

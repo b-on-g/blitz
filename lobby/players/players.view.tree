@@ -1,0 +1,14 @@
+$bog_blitz_players $mol_list
+	rows <= player_views /
+	Player* $mol_row
+		sub /
+			<= Player_icon* $mol_avatar
+				id <= player_id* \
+			<= Player_id* $mol_paragraph
+				title <= player_id* \
+			<= player_name_content* null
+	Player_name_input* $mol_string_button
+		hint @ \Touch to change
+		value? <=> player_name*? \
+	Player_name_label* $mol_paragraph
+		title <= player_name* \

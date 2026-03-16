@@ -1,0 +1,22 @@
+$bog_blitz_lobby_host $mol_page
+	Head null
+	players_string @ \Players
+	body /
+		<= Qr $bog_qr
+			uri <= qr_data \
+			error_correction \M
+			center /
+				<= Logo $mol_image
+					uri \bog/blitz/assets/logo.svg
+			module_radius 0.35
+			finder_radius 1.2
+			gradient_angle 125
+			gradient_stops /
+				\var(--mol_theme_special)
+				\var(--mol_theme_current)
+		<= Start $mol_button_major
+			title @ \Start Game!
+			click? <=> start? null
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_players

@@ -1,0 +1,20 @@
+$bog_blitz_lobby_join $mol_page
+	Head null
+	Avatar_icon $mol_avatar
+		id <= player_id \
+	Avatar_image $mol_image
+		uri <= avatar_uri \
+	body /
+		<= Avatar $mol_button_open
+			sub /
+				<= avatar_preview null
+				<= Avatar_native $mol_button_open_native
+					files? <=> avatar_files? /File
+					accept \image/*
+					multiple false
+		<= Player_name_input $mol_string_button
+			hint @ \Touch to change
+			value? <=> player_name? \
+		<= Join $mol_button_major
+			title @ \Enter
+			click? <=> join? null
