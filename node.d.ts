@@ -6518,7 +6518,7 @@ declare namespace $.$$ {
         my_player_create(): $bog_blitz_player | null;
         player_id(key: string): string;
         player_name_content(key: string): $.$mol_paragraph | $mol_string_button;
-        is_host_key(key: string): boolean;
+        is_player_host(key: string): boolean;
         player_views(): $mol_row[];
         player_name(key: string, next?: string): string;
         player_keys(): string[];
@@ -6571,6 +6571,15 @@ declare namespace $.$$ {
     }
 }
 
+declare namespace $ {
+
+	export class $mol_icon_menu extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=menu.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_ghost extends $mol_view {
@@ -7791,32 +7800,42 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $bog_theme_toggle__theme_auto_bog_blitz_1 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz['menu_toggle'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__sub_bog_blitz_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_minor['sub'] >
+	>
+	type $bog_theme_toggle__theme_auto_bog_blitz_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_2 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_4 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_3 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_5 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_4 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_5 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_6 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_8 = $mol_type_enforce<
 		({ 
 			'lobby': string,
 			'game': string,
@@ -7825,11 +7844,30 @@ declare namespace $ {
 		,
 		ReturnType< $mol_switch['options'] >
 	>
+	type $mol_pop__showed_bog_blitz_9 = $mol_type_enforce<
+		ReturnType< $bog_blitz['menu_opened'] >
+		,
+		ReturnType< $mol_pop['showed'] >
+	>
+	type $mol_pop__Anchor_bog_blitz_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz['Menu_trigger'] >
+		,
+		ReturnType< $mol_pop['Anchor'] >
+	>
+	type $mol_pop__bubble_content_bog_blitz_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pop['bubble_content'] >
+	>
 	export class $bog_blitz extends $mol_page {
 		Lobby( ): $bog_blitz_lobby
 		Game( ): $bog_blitz_game
 		Admin( ): $bog_blitz_admin
 		screen( next?: string ): string
+		menu_opened( next?: boolean ): boolean
+		menu_toggle( next?: any ): any
+		Menu_icon( ): $mol_icon_menu
+		Menu_trigger( ): $mol_button_minor
 		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
 		Theme( ): $bog_theme_auto
@@ -7841,6 +7879,7 @@ declare namespace $ {
 			'admin': ReturnType< $bog_blitz['Admin'] >,
 		}) 
 		Navbar( ): $mol_switch
+		Mobile_menu( ): $mol_pop
 		tools( ): readonly(any)[]
 		head( ): readonly(any)[]
 		plugins( ): readonly(any)[]
@@ -7854,6 +7893,7 @@ declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
         screen_body(): any[];
         screen(next?: string): string;
+        menu_toggle(): void;
     }
 }
 

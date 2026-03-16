@@ -2011,6 +2011,8 @@ $bog_blitz_admin $mol_page
 		<= Placeholder $mol_paragraph
 			title \Admin screen coming soon...
 
+$mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
+
 $mol_icon_brightness_4 $mol_icon path \M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z
 
 $bog_theme_auto $mol_plugin
@@ -2105,12 +2107,21 @@ $bog_blitz $mol_page
 			lobby \Lobby
 			game \Game
 			admin \Admin
+	Mobile_menu $mol_pop
+		showed? <=> menu_opened? false
+		Anchor <= Menu_trigger $mol_button_minor
+			click? <=> menu_toggle? null
+			sub /
+				<= Menu_icon $mol_icon_menu
+		bubble_content /
+			<= Navbar
 	tools /
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	head /
 		<= Title
+		<= Mobile_menu
 		<= Navbar
 		<= Tools
 	plugins /

@@ -26894,12 +26894,8 @@ var $;
                 return this.$.$giper_baza_glob.Land(new $giper_baza_link(link));
             }
             is_host() {
-                const land = this.land();
-                if (!land)
-                    return false;
-                const my_lord = this.$.$giper_baza_auth.current().pass().lord();
-                console.log('is_host', 'land lord', land.link().lord().str, 'my lord', my_lord.str);
-                return land.link().lord().str === my_lord.str;
+                const player = this.my_player();
+                return player?.IsHost()?.val() ?? false;
             }
             players_dict() {
                 const land = this.land();
@@ -26935,7 +26931,7 @@ var $;
                 }
                 return this.Player_name_label(key);
             }
-            is_host_key(key) {
+            is_player_host(key) {
                 const player = this.players_dict()?.key(key);
                 const val = player?.IsHost()?.val();
                 console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val);
@@ -26944,7 +26940,7 @@ var $;
             player_views() {
                 const views = [];
                 for (const key of this.player_keys()) {
-                    if (this.is_host_key(key))
+                    if (this.is_player_host(key))
                         continue;
                     views.push(this.Player(key));
                 }
@@ -27107,6 +27103,17 @@ var $;
         $$.$bog_blitz_admin = $bog_blitz_admin;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
+
+;
+	($.$mol_icon_menu) = class $mol_icon_menu extends ($.$mol_icon) {
+		path(){
+			return "M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z";
+		}
+	};
+
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -27966,6 +27973,24 @@ var $;
 			if(next !== undefined) return next;
 			return "lobby";
 		}
+		menu_opened(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		menu_toggle(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Menu_icon(){
+			const obj = new this.$.$mol_icon_menu();
+			return obj;
+		}
+		Menu_trigger(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.click) = (next) => ((this.menu_toggle(next)));
+			(obj.sub) = () => ([(this.Menu_icon())]);
+			return obj;
+		}
 		Status(){
 			const obj = new this.$.$giper_baza_status();
 			return obj;
@@ -28005,12 +28030,20 @@ var $;
 			});
 			return obj;
 		}
+		Mobile_menu(){
+			const obj = new this.$.$mol_pop();
+			(obj.showed) = (next) => ((this.menu_opened(next)));
+			(obj.Anchor) = () => ((this.Menu_trigger()));
+			(obj.bubble_content) = () => ([(this.Navbar())]);
+			return obj;
+		}
 		tools(){
 			return [(this.Status()), (this.Theme_toggle())];
 		}
 		head(){
 			return [
 				(this.Title()), 
+				(this.Mobile_menu()), 
 				(this.Navbar()), 
 				(this.Tools())
 			];
@@ -28026,10 +28059,15 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Game"));
 	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "screen"));
+	($mol_mem(($.$bog_blitz.prototype), "menu_opened"));
+	($mol_mem(($.$bog_blitz.prototype), "menu_toggle"));
+	($mol_mem(($.$bog_blitz.prototype), "Menu_icon"));
+	($mol_mem(($.$bog_blitz.prototype), "Menu_trigger"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
+	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu"));
 
 
 ;
@@ -28175,7 +28213,13 @@ var $;
             screen(next) {
                 return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby';
             }
+            menu_toggle() {
+                this.menu_opened(!this.menu_opened());
+            }
         }
+        __decorate([
+            $mol_action
+        ], $bog_blitz.prototype, "menu_toggle", null);
         $$.$bog_blitz = $bog_blitz;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -28208,6 +28252,19 @@ var $;
                 },
                 justify: {
                     content: 'flex-end',
+                },
+            },
+            Mobile_menu: {
+                display: 'none',
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Mobile_menu: {
+                        display: 'flex',
+                    },
+                    Navbar: {
+                        display: 'none',
+                    },
                 },
             },
         });

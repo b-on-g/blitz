@@ -293,6 +293,8 @@ $bog_blitz_admin $mol_page
 		<= Placeholder $mol_paragraph
 			title \Admin screen coming soon...
 
+$mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
+
 $mol_ghost $mol_view
 	Sub $mol_view
 
@@ -617,12 +619,21 @@ $bog_blitz $mol_page
 			lobby \Lobby
 			game \Game
 			admin \Admin
+	Mobile_menu $mol_pop
+		showed? <=> menu_opened? false
+		Anchor <= Menu_trigger $mol_button_minor
+			click? <=> menu_toggle? null
+			sub /
+				<= Menu_icon $mol_icon_menu
+		bubble_content /
+			<= Navbar
 	tools /
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	head /
 		<= Title
+		<= Mobile_menu
 		<= Navbar
 		<= Tools
 	plugins /
