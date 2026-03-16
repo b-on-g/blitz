@@ -51,12 +51,12 @@ namespace $.$$ {
 
 		@$mol_mem
 		join(e?: any) {
-			console.log('1')
 			if (e) {
-				console.log('2')
-				this.my_player_create()
+				const player = this.my_player_create()
+				if (player) {
+					player.Name('auto')?.val(this.my_player_name())
+				}
 			}
-			console.log('3')
 			return null
 		}
 

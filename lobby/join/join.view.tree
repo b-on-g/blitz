@@ -13,7 +13,7 @@ $bog_blitz_lobby_join $mol_page
 					accept \image/*
 					multiple false
 		<= Player_name_input $mol_string_button
-			hint @ \Touch to change
+			hint @ \Touch to change your name
 			value? <=> player_name? \
 		<= Join $mol_button_major
 			title @ \Enter
