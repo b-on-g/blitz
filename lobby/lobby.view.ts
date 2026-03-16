@@ -86,8 +86,12 @@ namespace $.$$ {
 				return []
 			}
 			if (!this.my_player()) {
-				this.register_as_host()
-				return []
+				const keys = Array.from(this.players_dict()?.keys() ?? [])
+				if (keys.length === 0) {
+					this.register_as_host()
+					return [this.Host()]
+				}
+				return [this.Join_screen()]
 			}
 			if (this.is_host()) return [this.Host()]
 			return [this.Waiting()]
