@@ -12937,15 +12937,15 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_button_minor__click_bog_blitz_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz['menu_toggle'] >
+	type $mol_check__checked_bog_blitz_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
-		ReturnType< $mol_button_minor['click'] >
+		ReturnType< $mol_check['checked'] >
 	>
-	type $mol_button_minor__sub_bog_blitz_2 = $mol_type_enforce<
+	type $mol_check__sub_bog_blitz_2 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_check['sub'] >
 	>
 	type $bog_theme_toggle__theme_auto_bog_blitz_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
@@ -12973,25 +12973,31 @@ declare namespace $ {
 		ReturnType< $mol_switch['value'] >
 	>
 	type $mol_switch__options_bog_blitz_8 = $mol_type_enforce<
-		({ 
-			'lobby': string,
-			'game': string,
-			'admin': string,
-		}) 
+		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_9 = $mol_type_enforce<
-		ReturnType< $bog_blitz['menu_opened'] >
+	type $mol_switch__value_bog_blitz_9 = $mol_type_enforce<
+		ReturnType< $bog_blitz['screen'] >
+		,
+		ReturnType< $mol_switch['value'] >
+	>
+	type $mol_switch__options_bog_blitz_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz['nav_options'] >
+		,
+		ReturnType< $mol_switch['options'] >
+	>
+	type $mol_pop__showed_bog_blitz_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz['Menu_trigger'] >
+	type $mol_pop__Anchor_bog_blitz_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_11 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -13001,10 +13007,9 @@ declare namespace $ {
 		Game( ): $bog_blitz_game
 		Admin( ): $bog_blitz_admin
 		screen( next?: string ): string
-		menu_opened( next?: boolean ): boolean
-		menu_toggle( next?: any ): any
-		Menu_icon( ): $mol_icon_menu
-		Menu_trigger( ): $mol_button_minor
+		mobile_menu_showed( next?: boolean ): boolean
+		Mobile_menu_icon( ): $mol_icon_menu
+		Mobile_menu_trigger( ): $mol_check
 		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
 		Theme( ): $bog_theme_auto
@@ -13015,7 +13020,13 @@ declare namespace $ {
 			'game': ReturnType< $bog_blitz['Game'] >,
 			'admin': ReturnType< $bog_blitz['Admin'] >,
 		}) 
+		nav_options( ): ({ 
+			'lobby': string,
+			'game': string,
+			'admin': string,
+		}) 
 		Navbar( ): $mol_switch
+		Mobile_nav( ): $mol_switch
 		Mobile_menu( ): $mol_pop
 		tools( ): readonly(any)[]
 		head( ): readonly(any)[]
@@ -13030,7 +13041,6 @@ declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
         screen_body(): any[];
         screen(next?: string): string;
-        menu_toggle(): void;
     }
 }
 

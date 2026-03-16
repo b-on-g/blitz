@@ -27973,22 +27973,18 @@ var $;
 			if(next !== undefined) return next;
 			return "lobby";
 		}
-		menu_opened(next){
+		mobile_menu_showed(next){
 			if(next !== undefined) return next;
 			return false;
 		}
-		menu_toggle(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Menu_icon(){
+		Mobile_menu_icon(){
 			const obj = new this.$.$mol_icon_menu();
 			return obj;
 		}
-		Menu_trigger(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.click) = (next) => ((this.menu_toggle(next)));
-			(obj.sub) = () => ([(this.Menu_icon())]);
+		Mobile_menu_trigger(){
+			const obj = new this.$.$mol_check();
+			(obj.checked) = (next) => ((this.mobile_menu_showed(next)));
+			(obj.sub) = () => ([(this.Mobile_menu_icon())]);
 			return obj;
 		}
 		Status(){
@@ -28020,21 +28016,30 @@ var $;
 				"admin": (this.Admin())
 			};
 		}
-		Navbar(){
-			const obj = new this.$.$mol_switch();
-			(obj.value) = (next) => ((this.screen(next)));
-			(obj.options) = () => ({
+		nav_options(){
+			return {
 				"lobby": "Lobby", 
 				"game": "Game", 
 				"admin": "Admin"
-			});
+			};
+		}
+		Navbar(){
+			const obj = new this.$.$mol_switch();
+			(obj.value) = (next) => ((this.screen(next)));
+			(obj.options) = () => ((this.nav_options()));
+			return obj;
+		}
+		Mobile_nav(){
+			const obj = new this.$.$mol_switch();
+			(obj.value) = (next) => ((this.screen(next)));
+			(obj.options) = () => ((this.nav_options()));
 			return obj;
 		}
 		Mobile_menu(){
 			const obj = new this.$.$mol_pop();
-			(obj.showed) = (next) => ((this.menu_opened(next)));
-			(obj.Anchor) = () => ((this.Menu_trigger()));
-			(obj.bubble_content) = () => ([(this.Navbar())]);
+			(obj.showed) = (next) => ((this.mobile_menu_showed(next)));
+			(obj.Anchor) = () => ((this.Mobile_menu_trigger()));
+			(obj.bubble_content) = () => ([(this.Mobile_nav())]);
 			return obj;
 		}
 		tools(){
@@ -28043,9 +28048,9 @@ var $;
 		head(){
 			return [
 				(this.Title()), 
-				(this.Mobile_menu()), 
 				(this.Navbar()), 
-				(this.Tools())
+				(this.Tools()), 
+				(this.Mobile_menu())
 			];
 		}
 		plugins(){
@@ -28059,14 +28064,14 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Game"));
 	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "screen"));
-	($mol_mem(($.$bog_blitz.prototype), "menu_opened"));
-	($mol_mem(($.$bog_blitz.prototype), "menu_toggle"));
-	($mol_mem(($.$bog_blitz.prototype), "Menu_icon"));
-	($mol_mem(($.$bog_blitz.prototype), "Menu_trigger"));
+	($mol_mem(($.$bog_blitz.prototype), "mobile_menu_showed"));
+	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_icon"));
+	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_trigger"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
+	($mol_mem(($.$bog_blitz.prototype), "Mobile_nav"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu"));
 
 
@@ -28211,15 +28216,12 @@ var $;
                 return page ? [page] : [];
             }
             screen(next) {
+                if (next !== undefined) {
+                    this.mobile_menu_showed(false);
+                }
                 return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby';
             }
-            menu_toggle() {
-                this.menu_opened(!this.menu_opened());
-            }
         }
-        __decorate([
-            $mol_action
-        ], $bog_blitz.prototype, "menu_toggle", null);
         $$.$bog_blitz = $bog_blitz;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

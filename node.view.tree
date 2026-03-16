@@ -295,6 +295,19 @@ $bog_blitz_admin $mol_page
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
 $mol_ghost $mol_view
 	Sub $mol_view
 
@@ -343,19 +356,6 @@ $mol_pop_bubble $mol_view
 		^
 		tabindex 0
 		popover \manual
-
-$mol_check $mol_button_minor
-	attr *
-		^
-		mol_check_checked <= checked? false
-		aria-checked <= aria_checked \false
-		role <= aria_role \checkbox
-	sub /$mol_view_content
-		<= Icon null
-		<= label /
-			<= Title $mol_view
-				sub /
-					<= title \
 
 $mol_pick $mol_pop
 	event *
@@ -613,29 +613,33 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		game <= Game $bog_blitz_game
 		admin <= Admin $bog_blitz_admin
+	nav_options *
+		lobby \Lobby
+		game \Game
+		admin \Admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
-		options *
-			lobby \Lobby
-			game \Game
-			admin \Admin
+		options <= nav_options
+	Mobile_nav $mol_switch
+		value? <=> screen? \lobby
+		options <= nav_options
 	Mobile_menu $mol_pop
-		showed? <=> menu_opened? false
-		Anchor <= Menu_trigger $mol_button_minor
-			click? <=> menu_toggle? null
+		showed? <=> mobile_menu_showed? false
+		Anchor <= Mobile_menu_trigger $mol_check
+			checked? <=> mobile_menu_showed? false
 			sub /
-				<= Menu_icon $mol_icon_menu
+				<= Mobile_menu_icon $mol_icon_menu
 		bubble_content /
-			<= Navbar
+			<= Mobile_nav 
 	tools /
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	head /
 		<= Title
-		<= Mobile_menu
 		<= Navbar
 		<= Tools
+		<= Mobile_menu
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
