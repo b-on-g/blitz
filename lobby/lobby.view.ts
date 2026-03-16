@@ -55,6 +55,14 @@ namespace $.$$ {
 				const player = this.my_player_create()
 				if (player) {
 					player.Name('auto')?.val(this.my_player_name())
+					const files = this.my_avatar_files()
+					if (files?.length) {
+						const store = player.Avatar(null)!.ensure(null)
+						if (store) {
+							store.blob(files[0])
+							player.Avatar(null)!.remote(store)
+						}
+					}
 				}
 			}
 			return null

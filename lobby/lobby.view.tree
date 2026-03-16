@@ -7,7 +7,6 @@ $bog_blitz_lobby $mol_page
 			my_lord_str <= my_lord_str \
 	Join_screen $bog_blitz_lobby_join
 		player_name? <=> my_player_name? \
-		avatar_uri <= my_avatar_uri \
 		avatar_files? <=> my_avatar_files? /File
 		join? <=> join? null
 	Waiting $bog_blitz_lobby_waiting
