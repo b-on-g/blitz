@@ -34,22 +34,19 @@ $mol_page $mol_view
 			dom_name \footer
 			sub <= foot /$mol_view
 
-$mol_image $mol_view
-	dom_name \img
-	attr *any
-		^
-		src <= uri \
-		title <= hint
-		alt <= title \
-		loading <= loading \lazy
-		decoding <= decoding \async
-		crossOrigin <= cors null
-		width <= natural_width 0
-		height <= natural_height 0
-	event *any
-		load? <=> load? null
-	minimal_width 16
-	minimal_height 16
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
 
 $mol_svg $mol_view
 	dom_name \svg
@@ -71,6 +68,107 @@ $mol_svg_path $mol_svg
 		^
 		d <= geometry \
 
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_avatar $mol_icon
+	view_box \0 0 24 24
+	id \
+	path \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
+
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$mol_row $mol_view
+
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection? /number
+		0
+		0
+	auto /
+		<= selection_watcher null
+		<= error_report null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed? <=> value? \
+		placeholder <= hint_visible <= hint \
+		spellcheck <= spellcheck true
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+		inputMode <= keyboard \text
+		enterkeyhint <= enter \go
+	attr *
+		^
+		maxlength <= length_max +Infinity
+		type <= type? \text
+	event *
+		^
+		input?event <=> event_change?event null
+	plugins /
+		<= Submit $mol_hotkey
+			mod_ctrl <= submit_with_ctrl false
+			key * enter?event <=> submit?event null
+
+$mol_string_button $mol_string
+
+$bog_blitz_lobby_players $mol_list
+	players_dict null
+	my_lord_str \
+	rows <= player_views /
+	Player* $mol_row
+		sub /
+			<= Player_icon* $mol_avatar
+				id <= player_id* \
+			<= Player_id* $mol_paragraph
+				title <= player_id* \
+			<= player_name_content* null
+	Player_name_input* $mol_string_button
+		hint @ \Touch to change
+		value? <=> player_name*? \
+	Player_name_label* $mol_paragraph
+		title <= player_name* \
+
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
 
 $bog_qr $mol_svg_root
 	uri \
@@ -167,89 +265,10 @@ $mol_button_minor $mol_button_typed
 $mol_button_major $mol_button_minor
 	theme \$mol_theme_base
 
-$mol_list $mol_view
-	render_visible_only true
-	render_over 0.1
-	sub <= rows /$mol_view
-		<= Gap_before $mol_view style * paddingTop <= gap_before 0
-		<= Empty $mol_view
-		<= Gap_after $mol_view style * paddingTop <= gap_after 0
-	item_height_min* 1
-	item_width_min* 1
-	view_window_shift? 0
-	view_window /
-		0
-		0
-
-$mol_icon $mol_svg_root
-	view_box \0 0 24 24
-	minimal_width 16
-	minimal_height 16
-	sub /
-		<= Path $mol_svg_path
-			geometry <= path \
-
-$mol_avatar $mol_icon
-	view_box \0 0 24 24
-	id \
-	path \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
-
-$mol_paragraph $mol_view
-	line_height 24
-	letter_width 7
-	width_limit +Infinity
-	row_width 0
-	sub / <= title
-
-$mol_row $mol_view
-
-$mol_hotkey $mol_plugin
-	event *
-		^
-		keydown?event <=> keydown?event null
-	key *
-	mod_ctrl false
-	mod_alt false
-	mod_shift false
-
-$mol_string $mol_view
-	dom_name \input
-	enabled true
-	minimal_height 40
-	autocomplete false
-	selection? /number
-		0
-		0
-	auto /
-		<= selection_watcher null
-		<= error_report null
-	field *
-		^
-		disabled <= disabled false
-		value <= value_changed? <=> value? \
-		placeholder <= hint_visible <= hint \
-		spellcheck <= spellcheck true
-		autocomplete <= autocomplete_native \
-		selectionEnd <= selection_end 0
-		selectionStart <= selection_start 0
-		inputMode <= keyboard \text
-		enterkeyhint <= enter \go
-	attr *
-		^
-		maxlength <= length_max +Infinity
-		type <= type? \text
-	event *
-		^
-		input?event <=> event_change?event null
-	plugins /
-		<= Submit $mol_hotkey
-			mod_ctrl <= submit_with_ctrl false
-			key * enter?event <=> submit?event null
-
-$mol_string_button $mol_string
-
-$bog_blitz_lobby $mol_page
+$bog_blitz_lobby_host $mol_page
 	Head null
+	players_string @ \Players
+	counter_string \
 	body /
 		<= Qr $bog_qr
 			uri <= qr_data \
@@ -259,27 +278,87 @@ $bog_blitz_lobby $mol_page
 					uri \bog/blitz/assets/logo.svg
 			module_radius 0.35
 			finder_radius 1.2
-			gradient_angle 185
+			gradient_angle 125
 			gradient_stops /
 				\var(--mol_theme_special)
-				\var(--mol_theme_focus)
+				\var(--mol_theme_current)
+		<= Start $mol_button_major
+			title @ \Start Game!
+			click? <=> start? null
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_lobby_players
+
+$mol_icon_upload $mol_icon path \M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z
+
+$mol_button_open $mol_button_minor
+	sub /
+		<= Icon $mol_icon_upload
+		<= Native $mol_button_open_native
+			files? <=> files_handled? <=> files? /File
+			accept <= accept \
+			multiple <= multiple true
+
+$mol_button_open_native $mol_view
+	dom_name \input
+	files? /File
+	attr *
+		type \file
+		accept <= accept \
+		multiple <= multiple true
+	event *
+		change?next <=> picked?next null
+
+$bog_blitz_lobby_join $mol_page
+	Head null
+	Avatar_icon $mol_avatar
+		id <= player_id \
+	Avatar_image $mol_image
+		uri <= avatar_uri \
+	body /
+		<= Avatar $mol_button_open
+			sub /
+				<= avatar_preview null
+				<= Avatar_native $mol_button_open_native
+					files? <=> avatar_files? /File
+					accept \image/*
+					multiple false
+		<= Player_name_input $mol_string_button
+			hint @ \Touch to change your name
+			value? <=> player_name? \
 		<= Join $mol_button_major
 			title @ \Enter
 			click? <=> join? null
-		<= Players $mol_list
-			rows <= player_views /
-	Player* $mol_row
-		sub /
-			<= Player_icon* $mol_avatar
-				id <= player_id* \
-			<= Player_id* $mol_paragraph
-				title <= player_id* \
-			<= player_name_content* null
-	Player_name_input* $mol_string_button
-		hint @ \Touch to change
-		value? <=> player_name*? \
-	Player_name_label* $mol_paragraph
-		title <= player_name* \
+
+$bog_blitz_lobby_waiting $mol_page
+	Head null
+	players_string @ \Players
+	counter_string \
+	body /
+		<= Waiting_message $mol_paragraph
+			title @ \Waiting for host to start...
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_lobby_players
+
+$bog_blitz_lobby $mol_page
+	Head null
+	Host $bog_blitz_lobby_host
+		counter_string <= counter_string \
+		Players <= Host_players $bog_blitz_lobby_players
+			players_dict <= players_dict null
+			my_lord_str <= my_lord_str \
+	Join_screen $bog_blitz_lobby_join
+		player_name? <=> my_player_name? \
+		avatar_uri <= my_avatar_uri \
+		avatar_files? <=> my_avatar_files? /File
+		join? <=> join? null
+	Waiting $bog_blitz_lobby_waiting
+		counter_string <= counter_string \
+		Players <= Host_players $bog_blitz_lobby_players
+			players_dict <= players_dict null
+			my_lord_str <= my_lord_str \
+	body <= lobby_content /
 
 $mol_book2 $mol_scroll
 	menu_title \
@@ -1310,26 +1389,6 @@ $giper_baza_land_grab $mol_select
 		deny @ \🔐 Private
 	grab? null $giper_baza_rank_preset
 
-$mol_icon_upload $mol_icon path \M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z
-
-$mol_button_open $mol_button_minor
-	sub /
-		<= Icon $mol_icon_upload
-		<= Native $mol_button_open_native
-			files? <=> files_handled? <=> files? /File
-			accept <= accept \
-			multiple <= multiple true
-
-$mol_button_open_native $mol_view
-	dom_name \input
-	files? /File
-	attr *
-		type \file
-		accept <= accept \
-		multiple <= multiple true
-	event *
-		change?next <=> picked?next null
-
 $giper_baza_land_rights $mol_list
 	land $giper_baza_land
 	rows /
@@ -1383,9 +1442,9 @@ $giper_baza_land_rights $mol_list
 					param <= link_param \link
 					link <= peer_link* $giper_baza_link
 					sub /
+						^
 						<= Gift_avatar* $mol_avatar
 							id <= peer_id* \
-						^
 
 $giper_baza_glob_book $mol_book2_catalog
 	menu_title \🌐 Global Explorer
