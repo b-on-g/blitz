@@ -10,12 +10,21 @@ $bog_blitz $mol_page
 			lobby \Lobby
 			game \Game
 			admin \Admin
+	Mobile_menu $mol_pop
+		showed? <=> menu_opened? false
+		Anchor <= Menu_trigger $mol_button_minor
+			click? <=> menu_toggle? null
+			sub /
+				<= Menu_icon $mol_icon_menu
+		bubble_content /
+			<= Navbar
 	tools /
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
 	head /
 		<= Title
+		<= Mobile_menu
 		<= Navbar
 		<= Tools
 	plugins /

@@ -23,5 +23,20 @@ namespace $.$$ {
 				content: 'flex-end',
 			},
 		},
+
+		Mobile_menu: {
+			display: 'none',
+		},
+
+		'@media': {
+			'(width < 600px)': {
+				Mobile_menu: {
+					display: 'flex',
+				},
+				Navbar: {
+					display: 'none',
+				},
+			},
+		},
 	})
 }

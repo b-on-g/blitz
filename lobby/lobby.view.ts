@@ -30,11 +30,8 @@ namespace $.$$ {
 
 		@$mol_mem
 		is_host() {
-			const land = this.land()
-			if (!land) return false
-			const my_lord = this.$.$giper_baza_auth.current().pass().lord()
-			console.log('is_host', 'land lord', land.link().lord().str, 'my lord', my_lord.str)
-			return land.link().lord().str === my_lord.str
+			const player = this.my_player()
+			return player?.IsHost()?.val() ?? false
 		}
 
 		@$mol_mem
@@ -79,7 +76,7 @@ namespace $.$$ {
 			return this.Player_name_label(key)
 		}
 
-		is_host_key(key: string) {
+		is_player_host(key: string) {
 			const player = this.players_dict()?.key(key)
 			const val = player?.IsHost()?.val()
 			console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val)
@@ -90,7 +87,7 @@ namespace $.$$ {
 		player_views() {
 			const views = []
 			for (const key of this.player_keys()) {
-				if (this.is_host_key(key)) continue
+				if (this.is_player_host(key)) continue
 				views.push(this.Player(key))
 			}
 			return views
