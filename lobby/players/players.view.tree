@@ -3,6 +3,8 @@ $bog_blitz_lobby_players $mol_list
 	my_lord_str \
 	rows <= player_views /
 	Player* $mol_row
+		attr *
+			bog_blitz_mine <= is_mine* false
 		sub /
 			<= player_avatar_content* null
 			<= Player_id* $mol_paragraph

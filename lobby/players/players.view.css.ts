@@ -6,7 +6,16 @@ namespace $.$$ {
 			},
 		},
 		Player: {
-			alignItems: 'center',
+			align: { items: 'center' },
+			'@': {
+				bog_blitz_mine: {
+					true: {
+						background: { color: $mol_theme.card },
+						boxShadow: `0 0 0 1px ${$mol_theme.line}`,
+						borderRadius: '0.5rem',
+					},
+				},
+			},
 		},
 		Player_icon: {
 			width: '2.5rem',

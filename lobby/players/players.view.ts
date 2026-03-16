@@ -84,5 +84,9 @@ namespace $.$$ {
 			}
 			return next ?? []
 		}
+		@$mol_mem_key
+		is_mine(key: string) {
+			return key === this.my_lord_str()
+		}
 	}
 }
