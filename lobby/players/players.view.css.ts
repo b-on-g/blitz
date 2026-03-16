@@ -7,6 +7,10 @@ namespace $.$$ {
 		},
 		Player: {
 			align: { items: 'center' },
+			background: { color: $mol_theme.card },
+			borderRadius: '0.75rem',
+			padding: { top: '0.5rem', bottom: '0.5rem', left: '0.75rem', right: '0.75rem' },
+			margin: { bottom: '0.25rem', top: '0.25rem' },
 			'@': {
 				bog_blitz_mine: {
 					true: {

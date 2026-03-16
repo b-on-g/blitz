@@ -16,7 +16,7 @@ namespace $.$$ {
 			align: { self: 'center' },
 			font: { size: '1.25rem', weight: 500 },
 			opacity: 0.7,
-			margin: { top: '1.5rem' },
+			margin: { top: '1.5rem', bottom: '1.5rem' },
 		},
 	})
 }
