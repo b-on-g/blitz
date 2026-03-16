@@ -4,24 +4,23 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		game <= Game $bog_blitz_game
 		admin <= Admin $bog_blitz_admin
+	nav_options *
+		lobby \Lobby
+		game \Game
+		admin \Admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
-		options *
-			lobby \Lobby
-			game \Game
-			admin \Admin
+		options <= nav_options
 	Mobile_menu $mol_pop
-		Anchor <= Mobile_menu_trigger $mol_button_minor
-			click?event <=> mobile_menu_toggle?event null
+		showed? <=> mobile_menu_showed? false
+		Anchor <= Mobile_menu_trigger $mol_check
+			checked? <=> mobile_menu_showed? false
 			sub /
 				<= Mobile_menu_icon $mol_icon_menu
 		bubble_content /
 			<= Mobile_nav $mol_switch
 				value? <=> screen? \lobby
-				options *
-					lobby \Lobby
-					game \Game
-					admin \Admin
+				options <= nav_options
 	tools /
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle

@@ -7,13 +7,9 @@ namespace $.$$ {
 
 		screen(next?: string) {
 			if (next !== undefined) {
-				this.Mobile_menu().showed(false)
+				this.mobile_menu_showed(false)
 			}
 			return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby'
-		}
-
-		mobile_menu_toggle() {
-			this.Mobile_menu().showed(!this.Mobile_menu().showed())
 		}
 	}
 }
