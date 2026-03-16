@@ -299,7 +299,6 @@ $mol_button_major $mol_button_minor
 
 $bog_blitz_lobby_host $mol_page
 	Head null
-	players_string @ \Players
 	counter_string \
 	body /
 		<= Qr $bog_qr
@@ -344,7 +343,6 @@ $bog_blitz_lobby_join $mol_page
 
 $bog_blitz_lobby_waiting $mol_page
 	Head null
-	players_string @ \Players
 	counter_string \
 	body /
 		<= Waiting_message $mol_paragraph
@@ -355,6 +353,7 @@ $bog_blitz_lobby_waiting $mol_page
 
 $bog_blitz_lobby $mol_page
 	Head null
+	players_string @ \Players
 	Host $bog_blitz_lobby_host
 		counter_string <= counter_string \
 		Players <= Host_players $bog_blitz_lobby_players

@@ -7060,10 +7060,15 @@ var $;
             }
             player_views() {
                 const views = [];
-                for (const key of this.player_keys()) {
+                const my = this.my_lord_str();
+                const keys = this.player_keys();
+                for (const key of keys) {
                     if (this.is_player_host(key))
                         continue;
-                    views.push(this.Player(key));
+                    if (key === my)
+                        views.unshift(this.Player(key));
+                    else
+                        views.push(this.Player(key));
                 }
                 return views;
             }
@@ -7166,6 +7171,10 @@ var $;
             },
             Player: {
                 align: { items: 'center' },
+                background: { color: $mol_theme.card },
+                borderRadius: '0.75rem',
+                padding: { top: '0.5rem', bottom: '0.5rem', left: '0.75rem', right: '0.75rem' },
+                margin: { bottom: '0.25rem', top: '0.25rem' },
                 '@': {
                     bog_blitz_mine: {
                         true: {
@@ -7705,9 +7714,6 @@ var $;
 		Head(){
 			return null;
 		}
-		players_string(){
-			return (this.$.$mol_locale.text("$bog_blitz_lobby_host_players_string"));
-		}
 		counter_string(){
 			return "";
 		}
@@ -7738,17 +7744,10 @@ var $;
     var $$;
     (function ($$) {
         class $bog_blitz_lobby_host extends $.$bog_blitz_lobby_host {
-            counter_string() {
-                const count = this.Players().player_views().length;
-                return `${this.players_string()}: ${count}`;
-            }
             qr_data() {
                 return this.$.$mol_state_arg.link({ land: this.$.$mol_state_arg.value('land') ?? '' });
             }
         }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_host.prototype, "counter_string", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_host.prototype, "qr_data", null);
@@ -7768,6 +7767,18 @@ var $;
                     radius: $mol_gap.round,
                 },
                 align: { self: 'center' },
+            },
+            Start: {
+                align: { self: 'center' },
+                maxWidth: '20rem',
+                textAlign: 'center',
+                margin: { top: '1.5rem' },
+            },
+            Counter: {
+                align: { self: 'center' },
+                font: { size: '1.25rem', weight: 500 },
+                opacity: 0.7,
+                margin: { top: '1.5rem', bottom: '1.5rem' },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -7904,9 +7915,6 @@ var $;
 		Head(){
 			return null;
 		}
-		players_string(){
-			return (this.$.$mol_locale.text("$bog_blitz_lobby_waiting_players_string"));
-		}
 		counter_string(){
 			return "";
 		}
@@ -7932,7 +7940,20 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        $mol_style_define($bog_blitz_lobby_waiting, {});
+        $mol_style_define($bog_blitz_lobby_waiting, {
+            Waiting_message: {
+                align: { self: 'center' },
+                font: { size: '1.5rem', weight: 500 },
+                opacity: 0.6,
+                padding: { bottom: '0.5rem', top: '1rem' },
+            },
+            Counter: {
+                align: { self: 'center' },
+                font: { size: '1.25rem', weight: 500 },
+                opacity: 0.7,
+                padding: { bottom: '1.5rem', top: '1rem' },
+            },
+        });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -7970,6 +7991,9 @@ var $;
 		}
 		Head(){
 			return null;
+		}
+		players_string(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_players_string"));
 		}
 		Host(){
 			const obj = new this.$.$bog_blitz_lobby_host();
@@ -16711,6 +16735,17 @@ var $;
                     return [this.Host()];
                 return [this.Waiting()];
             }
+            counter_string() {
+                const dict = this.players_dict();
+                if (!dict)
+                    return '';
+                const keys = Array.from(dict.keys() ?? []);
+                const count = keys.filter(k => {
+                    const player = dict.key(k);
+                    return !player?.IsHost()?.val();
+                }).length;
+                return `${this.players_string()}: ${count}`;
+            }
         }
         __decorate([
             $mol_mem
@@ -16739,6 +16774,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "lobby_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "counter_string", null);
         $$.$bog_blitz_lobby = $bog_blitz_lobby;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

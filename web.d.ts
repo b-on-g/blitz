@@ -2515,7 +2515,6 @@ declare namespace $ {
 		Counter( ): $mol_paragraph
 		Players( ): $bog_blitz_lobby_players
 		Head( ): any
-		players_string( ): string
 		counter_string( ): string
 		body( ): readonly(any)[]
 	}
@@ -2525,7 +2524,6 @@ declare namespace $ {
 //# sourceMappingURL=host.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby_host extends $.$bog_blitz_lobby_host {
-        counter_string(): string;
         qr_data(): string;
     }
 }
@@ -2629,7 +2627,6 @@ declare namespace $ {
 		Counter( ): $mol_paragraph
 		Players( ): $bog_blitz_lobby_players
 		Head( ): any
-		players_string( ): string
 		counter_string( ): string
 		body( ): readonly(any)[]
 	}
@@ -14744,6 +14741,7 @@ declare namespace $ {
 		join( next?: any ): any
 		lobby_content( ): readonly(any)[]
 		Head( ): any
+		players_string( ): string
 		Host( ): $bog_blitz_lobby_host
 		Join_screen( ): $bog_blitz_lobby_join
 		Waiting( ): $bog_blitz_lobby_waiting
@@ -14802,6 +14800,7 @@ declare namespace $.$$ {
         create_land(): void;
         register_as_host(): void;
         lobby_content(): $.$bog_blitz_lobby_host[] | $.$bog_blitz_lobby_join[] | $bog_blitz_lobby_waiting[];
+        counter_string(): string;
     }
 }
 

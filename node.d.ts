@@ -2560,7 +2560,6 @@ declare namespace $ {
 		Counter( ): $mol_paragraph
 		Players( ): $bog_blitz_lobby_players
 		Head( ): any
-		players_string( ): string
 		counter_string( ): string
 		body( ): readonly(any)[]
 	}
@@ -2570,7 +2569,6 @@ declare namespace $ {
 //# sourceMappingURL=host.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby_host extends $.$bog_blitz_lobby_host {
-        counter_string(): string;
         qr_data(): string;
     }
 }
@@ -2674,7 +2672,6 @@ declare namespace $ {
 		Counter( ): $mol_paragraph
 		Players( ): $bog_blitz_lobby_players
 		Head( ): any
-		players_string( ): string
 		counter_string( ): string
 		body( ): readonly(any)[]
 	}
@@ -3749,7 +3746,7 @@ declare namespace $ {
     function $giper_baza_unit_sort(units: readonly $giper_baza_unit[]): $giper_baza_unit[];
     class $giper_baza_unit_base extends $mol_buffer {
         static compare(left: $giper_baza_unit_base | undefined, right: $giper_baza_unit_base | undefined): number;
-        static narrow(buf: ArrayBuffer): $giper_baza_auth_pass | $giper_baza_unit_sand | $giper_baza_unit_gift | $giper_baza_unit_seal;
+        static narrow(buf: ArrayBuffer): $giper_baza_auth_pass | $giper_baza_unit_seal | $giper_baza_unit_gift | $giper_baza_unit_sand;
         constructor(buffer: ArrayBuffer, byteOffset?: number, byteLength?: number);
         kind(next?: keyof typeof $giper_baza_unit_kind): Exclude<keyof typeof $giper_baza_unit_kind, 'pass'>;
         choose<Res>(ways: {
@@ -6171,7 +6168,7 @@ declare namespace $ {
         static meta: $giper_baza_link;
         path(next?: string): string;
         type(next?: string): string;
-        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | Uint8Array<ArrayBuffer> | $giper_baza_link | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | $mol_time_interval | $mol_tree2 | readonly $giper_baza_vary_type[] | Readonly<{
+        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $giper_baza_link | Uint8Array<ArrayBuffer> | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | $mol_time_interval | $mol_tree2 | readonly $giper_baza_vary_type[] | Readonly<{
             [x: string]: $giper_baza_vary_type;
         }> | null;
         kind(next?: $giper_baza_flex_meta): $giper_baza_flex_meta | null;
@@ -6923,6 +6920,7 @@ declare namespace $ {
 		join( next?: any ): any
 		lobby_content( ): readonly(any)[]
 		Head( ): any
+		players_string( ): string
 		Host( ): $bog_blitz_lobby_host
 		Join_screen( ): $bog_blitz_lobby_join
 		Waiting( ): $bog_blitz_lobby_waiting
@@ -6981,6 +6979,7 @@ declare namespace $.$$ {
         create_land(): void;
         register_as_host(): void;
         lobby_content(): $.$bog_blitz_lobby_host[] | $.$bog_blitz_lobby_join[] | $bog_blitz_lobby_waiting[];
+        counter_string(): string;
     }
 }
 
