@@ -1,0 +1,6 @@
+$bog_blitz_navbar $mol_switch
+	value? \lobby
+	options *
+		lobby \Lobby
+		game \Game
+		admin \Admin
