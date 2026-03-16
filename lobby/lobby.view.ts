@@ -1,27 +1,7 @@
 namespace $.$$ {
+	const Players_dict = $giper_baza_dict_to($bog_blitz_player)
+
 	export class $bog_blitz_lobby extends $.$bog_blitz_lobby {
-		@$mol_mem
-		qr_data() {
-			let link = this.$.$mol_state_arg.value('land') ?? ''
-			if (!link) {
-				const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]])
-				this.$.$mol_state_arg.value('land', land.link().str)
-				this.host_register(land)
-			}
-			return this.$.$mol_state_arg.link({ land: link })
-		}
-
-		@$mol_action
-		host_register(land: $giper_baza_land) {
-			const dict = land.Data($giper_baza_dict_to($bog_blitz_player))
-			const lord = this.my_lord_str()
-			const player = dict.key(lord, 'auto')
-			if (player) {
-				player.IsHost('auto')?.val(true)
-				console.log('host registered', lord.slice(0, 8))
-			}
-		}
-
 		@$mol_mem
 		land() {
 			const link = this.$.$mol_state_arg.value('land') ?? ''
@@ -38,8 +18,13 @@ namespace $.$$ {
 		@$mol_mem
 		my_player() {
 			const dict = this.players_dict()
-			if (!dict) return null
+			if (!dict) {
+				console.log('dict is null')
+				return null
+			}
+			const keys = Array.from(dict.keys() ?? [])
 			const lord = this.my_lord_str()
+			console.log('my_player', { keys, lord: lord.slice(0, 8) })
 			return dict.key(lord) ?? null
 		}
 
@@ -47,7 +32,7 @@ namespace $.$$ {
 		players_dict() {
 			const land = this.land()
 			if (!land) return null
-			return land.Data($giper_baza_dict_to($bog_blitz_player))
+			return land.Data(Players_dict)
 		}
 
 		@$mol_mem
@@ -75,11 +60,37 @@ namespace $.$$ {
 			return null
 		}
 
+		@$mol_action
+		create_land() {
+			const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]])
+			this.$.$mol_state_arg.value('land', land.link().str)
+		}
+
+		@$mol_action
+		register_as_host() {
+			const dict = this.players_dict()
+			if (!dict) return
+			const lord = this.my_lord_str()
+			const player = dict.key(lord, 'auto')
+			if (player) {
+				player.IsHost('auto')?.val(true)
+				console.log('host registered', lord.slice(0, 8))
+			}
+		}
+
 		@$mol_mem
 		lobby_content() {
+			const land = this.land()
+			if (!land) {
+				this.create_land()
+				return []
+			}
+			if (!this.my_player()) {
+				this.register_as_host()
+				return []
+			}
 			if (this.is_host()) return [this.Host()]
-			if (this.my_player()) return [this.Waiting()]
-			return [this.Join_screen()]
+			return [this.Waiting()]
 		}
 	}
 }

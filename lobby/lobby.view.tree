@@ -2,7 +2,6 @@ $bog_blitz_lobby $mol_page
 	Head null
 	Host $bog_blitz_lobby_host
 		counter_string <= counter_string \
-		qr_data <= qr_data \
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
