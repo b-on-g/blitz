@@ -23,9 +23,13 @@ namespace $.$$ {
 		@$mol_mem
 		player_views() {
 			const views = []
-			for (const key of this.player_keys()) {
+			const my = this.my_lord_str()
+			const keys = this.player_keys()
+
+			for (const key of keys) {
 				if (this.is_player_host(key)) continue
-				views.push(this.Player(key))
+				if (key === my) views.unshift(this.Player(key))
+				else views.push(this.Player(key))
 			}
 			return views
 		}
@@ -84,6 +88,7 @@ namespace $.$$ {
 			}
 			return next ?? []
 		}
+
 		@$mol_mem_key
 		is_mine(key: string) {
 			return key === this.my_lord_str()
