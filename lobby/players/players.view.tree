@@ -4,11 +4,14 @@ $bog_blitz_lobby_players $mol_list
 	rows <= player_views /
 	Player* $mol_row
 		sub /
-			<= Player_icon* $mol_avatar
-				id <= player_id* \
+			<= player_avatar* null
 			<= Player_id* $mol_paragraph
 				title <= player_id* \
 			<= player_name_content* null
+	Player_icon* $mol_avatar
+		id <= player_id* \
+	Player_image* $mol_image
+		uri <= player_avatar_uri* \
 	Player_name_input* $mol_string_button
 		hint @ \Touch to change
 		value? <=> player_name*? \

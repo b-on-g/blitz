@@ -8,5 +8,20 @@ namespace $.$$ {
 		Player: {
 			alignItems: 'center',
 		},
+		Player_icon: {
+			width: '2.5rem',
+			height: '2.5rem',
+			borderRadius: '50%',
+			overflow: 'hidden',
+			flex: { shrink: 0 },
+		},
+		Player_image: {
+			width: '2.5rem',
+			height: '2.5rem',
+			borderRadius: '50%',
+			overflow: 'hidden',
+			objectFit: 'cover',
+			flex: { shrink: 0 },
+		},
 	})
 }

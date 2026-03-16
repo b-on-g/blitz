@@ -48,5 +48,18 @@ namespace $.$$ {
 			console.log('player_keys', result)
 			return result
 		}
+		@$mol_mem_key
+		player_avatar_uri(key: string) {
+			const player = this.players_dict()?.key(key)
+			const file = player?.Avatar()?.remote()
+			if (!file) return ''
+			return URL.createObjectURL(file.blob())
+		}
+
+		@$mol_mem_key
+		player_avatar(key: string) {
+			if (this.player_avatar_uri(key)) return this.Player_image(key)
+			return this.Player_icon(key)
+		}
 	}
 }
