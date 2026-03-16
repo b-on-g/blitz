@@ -1,0 +1,52 @@
+namespace $.$$ {
+	export class $bog_blitz_lobby_players extends $.$bog_blitz_lobby_players {
+		@$mol_mem_key
+		player_id(key: string) {
+			return key.slice(0, 8)
+		}
+
+		@$mol_mem_key
+		player_name_content(key: string) {
+			if (key === this.my_lord_str()) {
+				return this.Player_name_input(key)
+			}
+			return this.Player_name_label(key)
+		}
+
+		is_player_host(key: string) {
+			const player = this.players_dict()?.key(key)
+			const val = player?.IsHost()?.val()
+			console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val)
+			return val ?? false
+		}
+
+		@$mol_mem
+		player_views() {
+			const views = []
+			for (const key of this.player_keys()) {
+				if (this.is_player_host(key)) continue
+				views.push(this.Player(key))
+			}
+			return views
+		}
+
+		@$mol_mem_key
+		player_name(key: string, next?: string) {
+			const player = this.players_dict()?.key(key)
+			if (!player) return ''
+			if (next !== undefined) {
+				player.Name('auto')?.val(next)
+				return next
+			}
+			return player.Name()?.val() ?? ''
+		}
+
+		@$mol_mem
+		player_keys() {
+			const raw = this.players_dict()?.keys() ?? []
+			const result = Array.from(raw).map(k => String(k))
+			console.log('player_keys', result)
+			return result
+		}
+	}
+}

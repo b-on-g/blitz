@@ -1,6 +1,7 @@
 $bog_blitz_lobby_host $mol_page
 	Head null
 	players_string @ \Players
+	counter_string \
 	body /
 		<= Qr $bog_qr
 			uri <= qr_data \
@@ -19,4 +20,4 @@ $bog_blitz_lobby_host $mol_page
 			click? <=> start? null
 		<= Counter $mol_paragraph
 			title <= counter_string
-		<= Players $bog_blitz_players
+		<= Players $bog_blitz_lobby_players

@@ -21,6 +21,7 @@ namespace $.$$ {
 				console.log('host registered', lord.slice(0, 8))
 			}
 		}
+
 		@$mol_mem
 		land() {
 			const link = this.$.$mol_state_arg.value('land') ?? ''
@@ -35,6 +36,14 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		my_player() {
+			const dict = this.players_dict()
+			if (!dict) return null
+			const lord = this.my_lord_str()
+			return dict.key(lord) ?? null
+		}
+
+		@$mol_mem
 		players_dict() {
 			const land = this.land()
 			if (!land) return null
@@ -46,69 +55,12 @@ namespace $.$$ {
 			return this.$.$giper_baza_auth.current().pass().lord().str
 		}
 
-		@$mol_mem
-		my_player() {
-			const dict = this.players_dict()
-			if (!dict) return null
-			const lord = this.my_lord_str()
-			return dict.key(lord) ?? null
-		}
-
 		my_player_create() {
 			const dict = this.players_dict()
 			if (!dict) return null
 			const lord = this.my_lord_str()
 			const result = dict.key(lord, 'auto')
 			console.log('dict', dict)
-			return result
-		}
-
-		@$mol_mem_key
-		player_id(key: string) {
-			return key.slice(0, 8)
-		}
-
-		@$mol_mem_key
-		player_name_content(key: string) {
-			if (key === this.my_lord_str()) {
-				return this.Player_name_input(key)
-			}
-			return this.Player_name_label(key)
-		}
-
-		is_player_host(key: string) {
-			const player = this.players_dict()?.key(key)
-			const val = player?.IsHost()?.val()
-			console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val)
-			return val ?? false
-		}
-
-		@$mol_mem
-		player_views() {
-			const views = []
-			for (const key of this.player_keys()) {
-				if (this.is_player_host(key)) continue
-				views.push(this.Player(key))
-			}
-			return views
-		}
-
-		@$mol_mem_key
-		player_name(key: string, next?: string) {
-			const player = this.players_dict()?.key(key)
-			if (!player) return ''
-			if (next !== undefined) {
-				player.Name('auto')?.val(next)
-				return next
-			}
-			return player.Name()?.val() ?? ''
-		}
-
-		@$mol_mem
-		player_keys() {
-			const raw = this.players_dict()?.keys() ?? []
-			const result = Array.from(raw).map(k => String(k))
-			console.log('player_keys', result)
 			return result
 		}
 
@@ -125,7 +77,9 @@ namespace $.$$ {
 
 		@$mol_mem
 		lobby_content() {
-			return []
+			if (this.is_host()) return [this.Host()]
+			if (this.my_player()) return [this.Waiting()]
+			return [this.Join_screen()]
 		}
 	}
 }

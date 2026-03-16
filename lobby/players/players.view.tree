@@ -1,4 +1,6 @@
-$bog_blitz_players $mol_list
+$bog_blitz_lobby_players $mol_list
+	players_dict null
+	my_lord_str \
 	rows <= player_views /
 	Player* $mol_row
 		sub /
