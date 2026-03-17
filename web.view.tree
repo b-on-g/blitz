@@ -2029,6 +2029,7 @@ $bog_blitz_lobby_join $mol_page
 	Head null
 	is_synced false
 	profile_avatar_uri \
+	profile_name \
 	syncing_title @ \Syncing...
 	join_title @ \Syncing...
 	enter_title @ \Enter
@@ -2037,9 +2038,13 @@ $bog_blitz_lobby_join $mol_page
 	Avatar_image $mol_image
 		uri <= avatar_uri \
 	body /
-		<= Avatar $mol_button_open
+		<= Avatar_circle $mol_view
 			sub /
 				<= avatar_preview null
+		<= Avatar $mol_button_open
+			sub /
+				<= Avatar_label $mol_paragraph
+					title @ \Change photo
 				<= Avatar_native $mol_button_open_native
 					files? <=> avatar_files? /File
 					accept \image/*
@@ -2319,6 +2324,7 @@ $bog_blitz_lobby $mol_page
 		is_synced <= is_synced false
 		player_id <= my_lord_str
 		profile_avatar_uri <= profile_avatar_uri \
+		profile_name <= profile_name \
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		quiz_title <= quiz_title

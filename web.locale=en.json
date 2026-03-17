@@ -44,6 +44,7 @@
 	"$bog_blitz_lobby_game_state_reading": "Read the question",
 	"$bog_blitz_lobby_game_state_reveal": "Correct answer",
 	"$bog_blitz_lobby_host_Start_title": "Start Game!",
+	"$bog_blitz_lobby_join_Avatar_label_title": "Change photo",
 	"$bog_blitz_lobby_join_Player_name_input_hint": "Touch to change your name",
 	"$bog_blitz_lobby_join_enter_title": "Enter",
 	"$bog_blitz_lobby_join_join_title": "Syncing...",

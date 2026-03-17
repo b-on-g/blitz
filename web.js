@@ -27832,6 +27832,16 @@ var $;
 		avatar_preview(){
 			return null;
 		}
+		Avatar_circle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.avatar_preview())]);
+			return obj;
+		}
+		Avatar_label(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_join_Avatar_label_title")));
+			return obj;
+		}
 		avatar_files(next){
 			if(next !== undefined) return next;
 			return [];
@@ -27845,7 +27855,7 @@ var $;
 		}
 		Avatar(){
 			const obj = new this.$.$mol_button_open();
-			(obj.sub) = () => ([(this.avatar_preview()), (this.Avatar_native())]);
+			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
 			return obj;
 		}
 		player_name(next){
@@ -27877,6 +27887,9 @@ var $;
 		profile_avatar_uri(){
 			return "";
 		}
+		profile_name(){
+			return "";
+		}
 		syncing_title(){
 			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_syncing_title"));
 		}
@@ -27898,12 +27911,15 @@ var $;
 		}
 		body(){
 			return [
+				(this.Avatar_circle()), 
 				(this.Avatar()), 
 				(this.Player_name_input()), 
 				(this.Join())
 			];
 		}
 	};
+	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar_circle"));
+	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar_label"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar_native"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar"));
@@ -27917,6 +27933,77 @@ var $;
 
 ;
 "use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_join, {
+            Body: {
+                flex: {
+                    direction: 'column',
+                },
+                align: {
+                    items: 'center',
+                    self: 'center',
+                },
+                gap: '1rem',
+                padding: {
+                    top: '2rem',
+                    bottom: '2rem',
+                    left: '1rem',
+                    right: '1rem',
+                },
+                maxWidth: '400px',
+            },
+            Avatar_circle: {
+                borderRadius: '50%',
+                overflow: 'hidden',
+                width: '80px',
+                height: '80px',
+                minWidth: '80px',
+                minHeight: '80px',
+                maxWidth: '80px',
+                maxHeight: '80px',
+                flex: {
+                    shrink: 0,
+                    grow: 0,
+                },
+            },
+            Avatar_image: {
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+            },
+            Avatar_icon: {
+                width: '100%',
+                height: '100%',
+                font: {
+                    size: '2.5rem',
+                },
+            },
+            Avatar: {
+                font: {
+                    size: '0.75rem',
+                },
+                opacity: 0.5,
+            },
+            Player_name_input: {
+                font: {
+                    size: '1.5rem',
+                    weight: 600,
+                },
+                textAlign: 'center',
+                width: '100%',
+            },
+            Join: {
+                width: '100%',
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -27940,6 +28027,16 @@ var $;
                     return URL.createObjectURL(files[0]);
                 return this.profile_avatar_uri();
             }
+            player_name(next) {
+                if (next !== undefined)
+                    return next;
+                try {
+                    return this.profile_name();
+                }
+                catch {
+                    return '';
+                }
+            }
             join_title() {
                 try {
                     this.is_synced();
@@ -27956,6 +28053,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_join.prototype, "avatar_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_join.prototype, "player_name", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_join.prototype, "join_title", null);
@@ -30261,6 +30361,9 @@ var $;
 		profile_avatar_uri(){
 			return "";
 		}
+		profile_name(){
+			return "";
+		}
 		No_game_text(){
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_No_game_text_title")));
@@ -30338,6 +30441,7 @@ var $;
 			(obj.is_synced) = () => ((this.is_synced()));
 			(obj.player_id) = () => ((this.my_lord_str()));
 			(obj.profile_avatar_uri) = () => ((this.profile_avatar_uri()));
+			(obj.profile_name) = () => ((this.profile_name()));
 			return obj;
 		}
 		Waiting(){
@@ -30500,6 +30604,9 @@ var $;
                     return '';
                 return file.uri() ?? '';
             }
+            profile_name() {
+                return this.profile_data().Name()?.val() ?? '';
+            }
             land_id() {
                 return this.$.$mol_state_arg.value('land') ?? '';
             }
@@ -30620,6 +30727,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "profile_avatar_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "profile_name", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "land_id", null);
