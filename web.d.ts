@@ -20658,26 +20658,76 @@ declare namespace $ {
 		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_paragraph__title_bog_blitz_profile_page_15 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_search__query_bog_blitz_profile_page_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['games_query'] >
+		,
+		ReturnType< $mol_search['query'] >
+	>
+	type $mol_list__rows_bog_blitz_profile_page_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['game_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['games_empty_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_profile_page_19 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_label'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_16 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_value'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_image__uri_bog_blitz_profile_page_17 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_22 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['game_title'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_23 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['game_details'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_profile_page_24 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['game_score'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_image__uri_bog_blitz_profile_page_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['avatar_uri'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_avatar__id_bog_blitz_profile_page_18 = $mol_type_enforce<
+	type $mol_avatar__id_bog_blitz_profile_page_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['player_id'] >
 		,
 		ReturnType< $mol_avatar['id'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_19 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_28 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_blitz_profile_page_29 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
@@ -20699,17 +20749,33 @@ declare namespace $ {
 		Fun_text( ): $mol_paragraph
 		Fun_card( ): $mol_view
 		Card( ): $mol_view
+		Games_title( ): $mol_paragraph
+		games_query( next?: string ): string
+		Games_search( ): $mol_search
+		game_rows( ): readonly(any)[]
+		Games_list( ): $mol_list
+		games_empty_text( ): string
+		Games_empty( ): $mol_paragraph
+		Games_section( ): $mol_view
 		avatar_uri( ): string
 		player_id( ): string
 		stat_label( id: any): string
 		Stat_label( id: any): $mol_paragraph
 		stat_value( id: any): string
 		Stat_value( id: any): $mol_paragraph
+		game_title( id: any): string
+		Game_title( id: any): $mol_paragraph
+		game_details( id: any): string
+		Game_details( id: any): $mol_paragraph
+		Game_info( id: any): $mol_view
+		game_score( id: any): string
+		Game_score( id: any): $mol_paragraph
 		Head( ): any
 		body( ): readonly(any)[]
 		Avatar_image( ): $mol_image
 		Avatar_icon( ): $mol_avatar
 		Stat_row( id: any): $mol_view
+		Game_row( id: any): $mol_view
 	}
 	
 }
@@ -20728,6 +20794,14 @@ declare namespace $.$$ {
         stat_label(key: string): string;
         stat_value(key: string): string;
         persona_text(): string;
+        games_history(): $bog_blitz_game_record[];
+        games_filtered(): $bog_blitz_game_record[];
+        games_empty_text(): "" | "Пока нет сыгранных игр" | "Ничего не найдено";
+        game_rows(): $mol_view[];
+        game_record(key: string): $bog_blitz_game_record;
+        game_title(key: string): string;
+        game_details(key: string): string;
+        game_score(key: string): string;
     }
 }
 

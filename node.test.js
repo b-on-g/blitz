@@ -29587,6 +29587,46 @@ var $;
 			]);
 			return obj;
 		}
+		Games_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Games_title_title")));
+			return obj;
+		}
+		games_query(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Games_search(){
+			const obj = new this.$.$mol_search();
+			(obj.query) = (next) => ((this.games_query(next)));
+			return obj;
+		}
+		game_rows(){
+			return [];
+		}
+		Games_list(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.game_rows()));
+			return obj;
+		}
+		games_empty_text(){
+			return "";
+		}
+		Games_empty(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.games_empty_text()));
+			return obj;
+		}
+		Games_section(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Games_title()), 
+				(this.Games_search()), 
+				(this.Games_list()), 
+				(this.Games_empty())
+			]);
+			return obj;
+		}
 		avatar_uri(){
 			return "";
 		}
@@ -29609,11 +29649,40 @@ var $;
 			(obj.title) = () => ((this.stat_value(id)));
 			return obj;
 		}
+		game_title(id){
+			return "";
+		}
+		Game_title(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.game_title(id)));
+			return obj;
+		}
+		game_details(id){
+			return "";
+		}
+		Game_details(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.game_details(id)));
+			return obj;
+		}
+		Game_info(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Game_title(id)), (this.Game_details(id))]);
+			return obj;
+		}
+		game_score(id){
+			return "";
+		}
+		Game_score(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.game_score(id)));
+			return obj;
+		}
 		Head(){
 			return null;
 		}
 		body(){
-			return [(this.Card())];
+			return [(this.Card()), (this.Games_section())];
 		}
 		Avatar_image(){
 			const obj = new this.$.$mol_image();
@@ -29630,6 +29699,11 @@ var $;
 			(obj.sub) = () => ([(this.Stat_label(id)), (this.Stat_value(id))]);
 			return obj;
 		}
+		Game_row(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Game_info(id)), (this.Game_score(id))]);
+			return obj;
+		}
 	};
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_label"));
@@ -29644,11 +29718,22 @@ var $;
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_text"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_card"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Card"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Games_title"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "games_query"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Games_search"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Games_list"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Games_empty"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Games_section"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_label"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_value"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Game_title"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Game_details"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Game_info"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Game_score"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_image"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_row"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Game_row"));
 
 
 ;
@@ -29779,6 +29864,56 @@ var $;
                 }
                 return `${persona.title} — ${persona.desc}`;
             }
+            games_history() {
+                const profile = this.profile_data();
+                const list = profile.Games_history()?.remote_list() ?? [];
+                return list.slice().sort((a, b) => {
+                    const da = a.Date()?.val() ?? 0;
+                    const db = b.Date()?.val() ?? 0;
+                    return db - da;
+                });
+            }
+            games_filtered() {
+                const query = this.games_query().toLowerCase().trim();
+                const all = this.games_history();
+                if (!query)
+                    return all;
+                return all.filter(g => {
+                    const title = (g.Quiz_title()?.val() ?? '').toLowerCase();
+                    return title.includes(query);
+                });
+            }
+            games_empty_text() {
+                if (this.games_history().length === 0)
+                    return 'Пока нет сыгранных игр';
+                if (this.games_filtered().length === 0)
+                    return 'Ничего не найдено';
+                return '';
+            }
+            game_rows() {
+                const games = this.games_filtered();
+                if (!games.length)
+                    return [];
+                return games.map((_, i) => this.Game_row(String(i)));
+            }
+            game_record(key) {
+                return this.games_filtered()[Number(key)];
+            }
+            game_title(key) {
+                return this.game_record(key)?.Quiz_title()?.val() ?? 'Untitled';
+            }
+            game_details(key) {
+                const rec = this.game_record(key);
+                const place = rec?.Place()?.val() ?? 0;
+                const players = rec?.Players_count()?.val() ?? 0;
+                const ts = rec?.Date()?.val() ?? 0;
+                const date = ts ? new Date(ts).toLocaleDateString('ru-RU') : '';
+                return `${date} · ${place}/${players} место`;
+            }
+            game_score(key) {
+                const score = Math.round(this.game_record(key)?.Score()?.val() ?? 0);
+                return String(score);
+            }
         }
         __decorate([
             $mol_mem
@@ -29804,6 +29939,18 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "persona_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_profile_page.prototype, "games_history", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_profile_page.prototype, "games_filtered", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_profile_page.prototype, "games_empty_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_profile_page.prototype, "game_rows", null);
         $$.$bog_blitz_profile_page = $bog_blitz_profile_page;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -29907,6 +30054,74 @@ var $;
                 font: {
                     size: '0.95rem',
                     weight: 700,
+                },
+            },
+            Games_section: {
+                flex: {
+                    direction: 'column',
+                },
+                width: '100%',
+                gap: '0.75rem',
+            },
+            Games_title: {
+                font: {
+                    size: '1.1rem',
+                    weight: 600,
+                },
+            },
+            Games_list: {
+                gap: '0.5rem',
+            },
+            Games_empty: {
+                textAlign: 'center',
+                opacity: 0.5,
+                font: {
+                    size: '0.875rem',
+                },
+            },
+            Game_row: {
+                justify: {
+                    content: 'space-between',
+                },
+                align: {
+                    items: 'center',
+                },
+                padding: {
+                    top: '0.5rem',
+                    bottom: '0.5rem',
+                    left: '0.75rem',
+                    right: '0.75rem',
+                },
+                borderRadius: '8px',
+                background: {
+                    color: $mol_theme.card,
+                },
+            },
+            Game_info: {
+                flex: {
+                    direction: 'column',
+                },
+                gap: '0.125rem',
+            },
+            Game_title: {
+                font: {
+                    size: '0.95rem',
+                    weight: 600,
+                },
+            },
+            Game_details: {
+                font: {
+                    size: '0.8rem',
+                },
+                opacity: 0.6,
+            },
+            Game_score: {
+                font: {
+                    size: '1.1rem',
+                    weight: 700,
+                },
+                flex: {
+                    shrink: 0,
                 },
             },
             Fun_card: {
