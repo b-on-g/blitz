@@ -1,7 +1,16 @@
 namespace $.$$ {
 	export class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
 		@$mol_mem
+		game_content() {
+			const state = this.game_state()
+			if (state === 'leaderboard') return this.leaderboard_content()
+			if (state === 'final') return this.final_content()
+			return this.question_content()
+		}
+
+		@$mol_mem
 		state_label() {
+			this.auto_advance()
 			const state = this.game_state()
 			switch (state) {
 				case 'reading':
@@ -125,6 +134,7 @@ namespace $.$$ {
 				quiz.Game_state('auto')?.val('answering')
 				quiz.Round_start('auto')?.val(Date.now())
 			} else if (state === 'answering') {
+				this.calculate_scores()
 				quiz.Game_state('auto')?.val('leaderboard')
 				quiz.Round_start('auto')?.val(Date.now())
 			} else if (state === 'leaderboard') {
@@ -140,6 +150,49 @@ namespace $.$$ {
 			}
 		}
 
+		correct_answer_key() {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return ''
+			const options = question.Options()?.remote_list() ?? []
+			for (let i = 0; i < options.length; i++) {
+				const opt = options[i] as $bog_blitz_question_option | undefined
+				if (opt?.Is_correct()?.val()) return String(i)
+			}
+			return ''
+		}
+
+		calculate_scores() {
+			const quiz = this.quiz_data() as $bog_blitz_quiz | null
+			if (!quiz) return
+
+			const correct = this.correct_answer_key()
+			const points_base = quiz.Points_base()!.val()!
+			const time_multiplier = quiz.Time_multiplier()!.val()!
+			const answer_duration = this.duration()
+			const round_start = this.round_start()
+
+			const dict = this.players_dict() as $giper_baza_dict | null
+			if (!dict) return
+			const keys = dict.keys() ?? []
+
+			for (const key of keys) {
+				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
+				if (!player) continue
+				if (player.IsHost()?.val()) continue
+
+				const answer = player.Answer()?.val() ?? ''
+				const answer_time = player.Answer_time()?.val() ?? 0
+				const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration
+				const time_ratio = Math.max(0, 1 - elapsed / answer_duration)
+				const base = points_base * (1 + time_ratio * time_multiplier)
+				const points = answer === correct ? base : -base
+
+				const prev = player.Score()?.val() ?? 0
+				player.Score('auto')?.val(prev + points)
+			}
+		}
+
 		reset_answers() {
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return
@@ -151,10 +204,6 @@ namespace $.$$ {
 				player.Answer('auto')?.val('')
 				player.Answer_time('auto')?.val(0)
 			}
-		}
-
-		override auto() {
-			this.auto_advance()
 		}
 	}
 }

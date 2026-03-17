@@ -1,0 +1,15 @@
+$bog_blitz_lobby_game_leaderboard_row $mol_view
+	rank 0
+	name \
+	score 0
+	mine false
+	attr *
+		^
+		data-mine <= mine
+	sub /
+		<= Rank $mol_paragraph
+			title <= rank_text \
+		<= Name $mol_paragraph
+			title <= name
+		<= Score $mol_paragraph
+			title <= score_text \

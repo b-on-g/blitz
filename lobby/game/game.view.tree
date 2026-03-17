@@ -16,11 +16,13 @@ $bog_blitz_lobby_game $mol_view
 	total_questions 0
 	current_question_index 0
 	players_dict null
+	my_lord_str \
 	countdown_number 0
 	countdown_text \
 	Countdown_number $mol_paragraph
 		title <= countdown_text
-	sub /
+	sub <= game_content /
+	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
@@ -32,6 +34,23 @@ $bog_blitz_lobby_game $mol_view
 			sub <= option_views /
 		<= Countdown $mol_view
 			sub <= countdown_content /
+	leaderboard_content /
+		<= Timer $bog_blitz_lobby_game_timer
+			round_start <= round_start
+			duration <= duration
+		<= State $mol_paragraph
+			title <= state_label
+		<= Leaderboard $bog_blitz_lobby_game_leaderboard
+			players_dict <= players_dict
+			my_lord_str <= my_lord_str \
+			is_host <= is_host
+	final_content /
+		<= State $mol_paragraph
+			title <= state_label
+		<= Final $bog_blitz_lobby_game_leaderboard
+			players_dict <= players_dict
+			my_lord_str <= my_lord_str \
+			is_host <= is_host
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
 		enabled <= option_enabled* true
