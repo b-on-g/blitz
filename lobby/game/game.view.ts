@@ -169,6 +169,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		countdown_number(next?: number) {
+			if (!this.is_host()) return 0
 			if (this.game_state() !== 'answering') return 0
 			if (this.is_paused()) return 0
 			const start = this.round_start()

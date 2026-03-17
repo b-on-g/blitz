@@ -25,5 +25,6 @@ namespace $.$$ {
 		'Current_question',
 		'Round_start',
 		'Paused_at',
+		'Paused_a',
 	])
 }
