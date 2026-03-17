@@ -43,4 +43,8 @@ $bog_blitz_lobby $mol_page
 		current_question_index <= current_question_index 0
 		players_dict <= players_dict null
 		my_lord_str <= my_lord_str
+	Reactions $bog_blitz_lobby_reactions
+		my_player <= my_player null
+		players_dict <= players_dict null
+		is_host <= is_host false
 	body <= lobby_content /

@@ -1,0 +1,15 @@
+[bog_blitz_lobby_reactions_fly] {
+	animation: bog_blitz_fly_up 1.5s ease-out forwards;
+	transform: translateX(-50%);
+}
+
+@keyframes bog_blitz_fly_up {
+	0% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(-200px);
+	}
+}

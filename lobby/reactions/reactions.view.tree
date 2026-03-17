@@ -1,0 +1,41 @@
+$bog_blitz_lobby_reactions $mol_view
+	my_player null
+	players_dict null
+	is_host false
+	Fly $mol_view
+	sub /
+		<= Group_heart $mol_view
+			sub /
+				<= Btn_heart $mol_button_minor
+					title \❤️
+					click? <=> react_heart?event null
+				<= Count_heart $mol_paragraph
+					title <= count_heart_text \
+		<= Group_smile $mol_view
+			sub /
+				<= Btn_smile $mol_button_minor
+					title \😊
+					click? <=> react_smile?event null
+				<= Count_smile $mol_paragraph
+					title <= count_smile_text \
+		<= Group_fire $mol_view
+			sub /
+				<= Btn_fire $mol_button_minor
+					title \🔥
+					click? <=> react_fire?event null
+				<= Count_fire $mol_paragraph
+					title <= count_fire_text \
+		<= Group_clap $mol_view
+			sub /
+				<= Btn_clap $mol_button_minor
+					title \👏
+					click? <=> react_clap?event null
+				<= Count_clap $mol_paragraph
+					title <= count_clap_text \
+		<= Group_poop $mol_view
+			sub /
+				<= Btn_poop $mol_button_minor
+					title \💩
+					click? <=> react_poop?event null
+				<= Count_poop $mol_paragraph
+					title <= count_poop_text \

@@ -159,11 +159,11 @@ namespace $.$$ {
 
 			const state = this.game_state()
 			if (state) {
-				return [this.Game_screen()]
+				return [this.Game_screen(), this.Reactions()]
 			}
 
-			if (this.is_host()) return [this.Host()]
-			return [this.Waiting()]
+			if (this.is_host()) return [this.Host(), this.Reactions()]
+			return [this.Waiting(), this.Reactions()]
 		}
 
 		@$mol_mem
