@@ -7352,6 +7352,11 @@ declare namespace $.$$ {
             } | null;
             readonly Answer: (auto?: any) => $giper_baza_atom_text | null;
             readonly Answer_time: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_heart: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_smile: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_fire: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_clap: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_poop: (auto?: any) => $giper_baza_atom_real | null;
         }>;
         path: string;
     } & {
@@ -7417,6 +7422,11 @@ declare namespace $.$$ {
             };
             readonly Answer: typeof $giper_baza_atom_text;
             readonly Answer_time: typeof $giper_baza_atom_real;
+            readonly React_heart: typeof $giper_baza_atom_real;
+            readonly React_smile: typeof $giper_baza_atom_real;
+            readonly React_fire: typeof $giper_baza_atom_real;
+            readonly React_clap: typeof $giper_baza_atom_real;
+            readonly React_poop: typeof $giper_baza_atom_real;
         };
     };
     export class $bog_blitz_player extends $bog_blitz_player_base {
@@ -7528,6 +7538,151 @@ declare namespace $.$$ {
             name: string;
             score: number;
         } | null;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_heart'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_smile'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_7 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_fire'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_9 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_clap'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_poop'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['row_name'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['row_count'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_lobby_game_reactboard extends $mol_view {
+		Title_heart( ): $mol_paragraph
+		rows_heart( ): readonly(any)[]
+		List_heart( ): $mol_list
+		Table_heart( ): $mol_view
+		Title_smile( ): $mol_paragraph
+		rows_smile( ): readonly(any)[]
+		List_smile( ): $mol_list
+		Table_smile( ): $mol_view
+		Title_fire( ): $mol_paragraph
+		rows_fire( ): readonly(any)[]
+		List_fire( ): $mol_list
+		Table_fire( ): $mol_view
+		Title_clap( ): $mol_paragraph
+		rows_clap( ): readonly(any)[]
+		List_clap( ): $mol_list
+		Table_clap( ): $mol_view
+		Title_poop( ): $mol_paragraph
+		rows_poop( ): readonly(any)[]
+		List_poop( ): $mol_list
+		Table_poop( ): $mol_view
+		row_name( id: any): string
+		Row_name( id: any): $mol_paragraph
+		row_count( id: any): string
+		Row_count( id: any): $mol_paragraph
+		players_dict( ): any
+		sub( ): readonly(any)[]
+		Row( id: any): $mol_view
+	}
+	
+}
+
+//# sourceMappingURL=reactboard.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game_reactboard extends $.$bog_blitz_lobby_game_reactboard {
+        sorted_by(key: string): {
+            name: string;
+            count: number;
+        }[];
+        make_rows(key: string): $mol_view[];
+        rows_heart(): $mol_view[];
+        rows_smile(): $mol_view[];
+        rows_fire(): $mol_view[];
+        rows_clap(): $mol_view[];
+        rows_poop(): $mol_view[];
+        row_name(id: string): string;
+        row_count(id: string): string;
     }
 }
 
@@ -7654,72 +7809,77 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_19 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_reactboard__players_dict_bog_blitz_lobby_game_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_reactboard['players_dict'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['countdown_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_20 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_game_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['pause_label'] >
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_21 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_lobby_game_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['pause_click'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_22 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_game_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['resume_label'] >
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_23 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_lobby_game_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['resume_click'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_string__hint_bog_blitz_lobby_game_24 = $mol_type_enforce<
+	type $mol_string__hint_bog_blitz_lobby_game_25 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_blitz_lobby_game_25 = $mol_type_enforce<
+	type $mol_string__value_bog_blitz_lobby_game_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_draft'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_string__enabled_bog_blitz_lobby_game_26 = $mol_type_enforce<
+	type $mol_string__enabled_bog_blitz_lobby_game_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
 		,
 		ReturnType< $mol_string['enabled'] >
 	>
-	type $mol_string__submit_bog_blitz_lobby_game_27 = $mol_type_enforce<
+	type $mol_string__submit_bog_blitz_lobby_game_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_submit'] >
 		,
 		ReturnType< $mol_string['submit'] >
 	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_28 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_selected'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_29 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_30 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_31 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_32 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
@@ -7748,6 +7908,7 @@ declare namespace $ {
 		my_lord_str( ): string
 		Leaderboard( ): $bog_blitz_lobby_game_leaderboard
 		Final( ): $bog_blitz_lobby_game_leaderboard
+		Reactions_board( ): $bog_blitz_lobby_game_reactboard
 		option_selected( id: any): string
 		option_enabled( id: any): boolean
 		option_text( id: any): string
@@ -7822,6 +7983,169 @@ declare namespace $.$$ {
         calculate_scores(): void;
         reset_answers(): void;
     }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_heart'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_heart_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_smile'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_smile_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_fire'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_fire_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_clap'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_clap_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_poop'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_poop_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_lobby_reactions extends $mol_view {
+		react_heart( next?: any ): any
+		Btn_heart( ): $mol_button_minor
+		count_heart_text( ): string
+		Count_heart( ): $mol_paragraph
+		Group_heart( ): $mol_view
+		react_smile( next?: any ): any
+		Btn_smile( ): $mol_button_minor
+		count_smile_text( ): string
+		Count_smile( ): $mol_paragraph
+		Group_smile( ): $mol_view
+		react_fire( next?: any ): any
+		Btn_fire( ): $mol_button_minor
+		count_fire_text( ): string
+		Count_fire( ): $mol_paragraph
+		Group_fire( ): $mol_view
+		react_clap( next?: any ): any
+		Btn_clap( ): $mol_button_minor
+		count_clap_text( ): string
+		Count_clap( ): $mol_paragraph
+		Group_clap( ): $mol_view
+		react_poop( next?: any ): any
+		Btn_poop( ): $mol_button_minor
+		count_poop_text( ): string
+		Count_poop( ): $mol_paragraph
+		Group_poop( ): $mol_view
+		my_player( ): any
+		players_dict( ): any
+		is_host( ): boolean
+		Fly( ): $mol_view
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=reactions.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_reactions extends $.$bog_blitz_lobby_reactions {
+        react(key: string): void;
+        react_heart(next?: Event): void;
+        react_smile(next?: Event): void;
+        react_fire(next?: Event): void;
+        react_clap(next?: Event): void;
+        react_poop(next?: Event): void;
+        total_count(key: string): number;
+        count_text(key: string): string;
+        count_heart_text(): string;
+        count_smile_text(): string;
+        count_fire_text(): string;
+        count_clap_text(): string;
+        count_poop_text(): string;
+        spawn_fly(key: string): void;
+    }
+}
+
+declare namespace $ {
 }
 
 declare namespace $.$$ {
@@ -7984,6 +8308,21 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
 	>
+	type $bog_blitz_lobby_reactions__my_player_bog_blitz_lobby_32 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_player'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['my_player'] >
+	>
+	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_33 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['players_dict'] >
+	>
+	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_34 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['is_host'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
+	>
 	export class $bog_blitz_lobby extends $mol_page {
 		counter_string( ): string
 		quiz_data( ): any
@@ -8017,6 +8356,7 @@ declare namespace $ {
 		Waiting( ): $bog_blitz_lobby_waiting
 		No_game( ): $mol_view
 		Game_screen( ): $bog_blitz_lobby_game
+		Reactions( ): $bog_blitz_lobby_reactions
 		body( ): ReturnType< $bog_blitz_lobby['lobby_content'] >
 	}
 	
@@ -8025,6 +8365,7 @@ declare namespace $ {
 //# sourceMappingURL=lobby.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
+        sub(): readonly any[];
         land(): $giper_baza_land | null;
         quiz_data(): $bog_blitz_quiz | null;
         is_host(): boolean;

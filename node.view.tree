@@ -418,6 +418,46 @@ $bog_blitz_lobby_game_leaderboard $mol_view
 		score <= row_score* 0
 		mine <= row_mine* false
 
+$bog_blitz_lobby_game_reactboard $mol_view
+	players_dict null
+	sub /
+		<= Table_heart $mol_view
+			sub /
+				<= Title_heart $mol_paragraph
+					title \❤️
+				<= List_heart $mol_list
+					rows <= rows_heart /
+		<= Table_smile $mol_view
+			sub /
+				<= Title_smile $mol_paragraph
+					title \😊
+				<= List_smile $mol_list
+					rows <= rows_smile /
+		<= Table_fire $mol_view
+			sub /
+				<= Title_fire $mol_paragraph
+					title \🔥
+				<= List_fire $mol_list
+					rows <= rows_fire /
+		<= Table_clap $mol_view
+			sub /
+				<= Title_clap $mol_paragraph
+					title \👏
+				<= List_clap $mol_list
+					rows <= rows_clap /
+		<= Table_poop $mol_view
+			sub /
+				<= Title_poop $mol_paragraph
+					title \💩
+				<= List_poop $mol_list
+					rows <= rows_poop /
+	Row*0 $mol_view
+		sub /
+			<= Row_name* $mol_paragraph
+				title <= row_name* \
+			<= Row_count* $mol_paragraph
+				title <= row_count* \
+
 $bog_blitz_lobby_game_option $mol_button_major
 	attr *
 		^
@@ -501,12 +541,56 @@ $bog_blitz_lobby_game $mol_view
 			players_dict <= players_dict
 			my_lord_str <= my_lord_str \
 			is_host <= is_host
+		<= Reactions_board $bog_blitz_lobby_game_reactboard
+			players_dict <= players_dict
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
 		enabled <= option_enabled* true
 		title <= option_text* \
 		image_uri <= option_image_uri* \
 		click? <=> option_click*? null
+
+$bog_blitz_lobby_reactions $mol_view
+	my_player null
+	players_dict null
+	is_host false
+	Fly $mol_view
+	sub /
+		<= Group_heart $mol_view
+			sub /
+				<= Btn_heart $mol_button_minor
+					title \❤️
+					click? <=> react_heart?event null
+				<= Count_heart $mol_paragraph
+					title <= count_heart_text \
+		<= Group_smile $mol_view
+			sub /
+				<= Btn_smile $mol_button_minor
+					title \😊
+					click? <=> react_smile?event null
+				<= Count_smile $mol_paragraph
+					title <= count_smile_text \
+		<= Group_fire $mol_view
+			sub /
+				<= Btn_fire $mol_button_minor
+					title \🔥
+					click? <=> react_fire?event null
+				<= Count_fire $mol_paragraph
+					title <= count_fire_text \
+		<= Group_clap $mol_view
+			sub /
+				<= Btn_clap $mol_button_minor
+					title \👏
+					click? <=> react_clap?event null
+				<= Count_clap $mol_paragraph
+					title <= count_clap_text \
+		<= Group_poop $mol_view
+			sub /
+				<= Btn_poop $mol_button_minor
+					title \💩
+					click? <=> react_poop?event null
+				<= Count_poop $mol_paragraph
+					title <= count_poop_text \
 
 $bog_blitz_lobby $mol_page
 	Head null
@@ -553,6 +637,10 @@ $bog_blitz_lobby $mol_page
 		current_question_index <= current_question_index 0
 		players_dict <= players_dict null
 		my_lord_str <= my_lord_str
+	Reactions $bog_blitz_lobby_reactions
+		my_player <= my_player null
+		players_dict <= players_dict null
+		is_host <= is_host false
 	body <= lobby_content /
 
 $mol_book2 $mol_scroll
