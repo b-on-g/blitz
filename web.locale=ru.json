@@ -42,6 +42,7 @@
 	"$bog_blitz_lobby_game_state_leaderboard": "Таблица лидеров",
 	"$bog_blitz_lobby_game_state_paused": "На паузе",
 	"$bog_blitz_lobby_game_state_reading": "Прочитайте вопрос",
+	"$bog_blitz_lobby_game_state_reveal": "Правильный ответ",
 	"$bog_blitz_lobby_host_Start_title": "Начать Игру!",
 	"$bog_blitz_lobby_join_Player_name_input_hint": "Нажмите, чтобы изменить имя",
 	"$bog_blitz_lobby_join_enter_title": "Войти",

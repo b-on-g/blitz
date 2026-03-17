@@ -2157,9 +2157,11 @@ $bog_blitz_lobby_game_reactboard $mol_view
 				title <= row_count* \
 
 $bog_blitz_lobby_game_option $mol_button_major
+	correct \
 	attr *
 		^
 		data-selected <= selected \false
+		data-correct <= correct \
 	image_uri \
 	Option_image $mol_image
 		uri <= image_uri
@@ -2174,6 +2176,7 @@ $bog_blitz_lobby_game $mol_view
 	paused_at 0
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
+	state_reveal @ \Correct answer
 	state_leaderboard @ \Leaderboard
 	state_final @ \Final Results
 	state_paused @ \Paused
@@ -2241,8 +2244,12 @@ $bog_blitz_lobby_game $mol_view
 			is_host <= is_host
 		<= Reactions_board $bog_blitz_lobby_game_reactboard
 			players_dict <= players_dict
+	reveal_correct_text \
+	Reveal_correct $mol_paragraph
+		title <= reveal_correct_text
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
+		correct <= option_correct* \
 		enabled <= option_enabled* true
 		title <= option_text* \
 		image_uri <= option_image_uri* \

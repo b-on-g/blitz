@@ -17538,8 +17538,15 @@ var $;
 		selected(){
 			return "false";
 		}
+		correct(){
+			return "";
+		}
 		attr(){
-			return {...(super.attr()), "data-selected": (this.selected())};
+			return {
+				...(super.attr()), 
+				"data-selected": (this.selected()), 
+				"data-correct": (this.correct())
+			};
 		}
 		image_uri(){
 			return "";
@@ -17599,6 +17606,22 @@ var $;
                     },
                     false: {
                         opacity: 0.4,
+                    },
+                },
+                'data-correct': {
+                    true: {
+                        boxShadow: '0 0 0 3px #22c55e',
+                        background: {
+                            color: '#22c55e33',
+                        },
+                        opacity: 1,
+                    },
+                    false: {
+                        boxShadow: '0 0 0 3px #ef4444',
+                        background: {
+                            color: '#ef444433',
+                        },
+                        opacity: 0.6,
                     },
                 },
             },
@@ -17717,6 +17740,9 @@ var $;
 		option_selected(id){
 			return "false";
 		}
+		option_correct(id){
+			return "";
+		}
 		option_enabled(id){
 			return true;
 		}
@@ -17756,6 +17782,9 @@ var $;
 		}
 		state_answering(){
 			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_answering"));
+		}
+		state_reveal(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_reveal"));
 		}
 		state_leaderboard(){
 			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_leaderboard"));
@@ -17850,9 +17879,18 @@ var $;
 				(this.Reactions_board())
 			];
 		}
+		reveal_correct_text(){
+			return "";
+		}
+		Reveal_correct(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.reveal_correct_text()));
+			return obj;
+		}
 		Option(id){
 			const obj = new this.$.$bog_blitz_lobby_game_option();
 			(obj.selected) = () => ((this.option_selected(id)));
+			(obj.correct) = () => ((this.option_correct(id)));
 			(obj.enabled) = () => ((this.option_enabled(id)));
 			(obj.title) = () => ((this.option_text(id)));
 			(obj.image_uri) = () => ((this.option_image_uri(id)));
@@ -17880,6 +17918,7 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Pause_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Resume_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Answer_input"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Reveal_correct"));
 	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "Option"));
 
 
@@ -17914,6 +17953,8 @@ var $;
                         return this.state_reading();
                     case 'answering':
                         return this.state_answering();
+                    case 'reveal':
+                        return this.state_reveal();
                     case 'leaderboard':
                         return this.state_leaderboard();
                     case 'final':
@@ -17972,7 +18013,11 @@ var $;
                 return file.uri() ?? '';
             }
             answer_views() {
+                const state = this.game_state();
                 if (this.question_type() === 'text_input') {
+                    if (state === 'reveal') {
+                        return [this.Answer_input(), this.Reveal_correct()];
+                    }
                     return [this.Answer_input()];
                 }
                 return this.option_views();
@@ -18037,14 +18082,39 @@ var $;
             option_enabled(key) {
                 if (this.is_host())
                     return false;
+                if (this.game_state() !== 'answering')
+                    return false;
                 return !this.has_answered();
             }
+            option_correct(key) {
+                if (this.game_state() !== 'reveal')
+                    return '';
+                const question = this.current_question();
+                if (!question)
+                    return '';
+                const options = question.Options()?.remote_list() ?? [];
+                const option = options[Number(key)];
+                if (!option)
+                    return '';
+                return option.Is_correct()?.val() ? 'true' : 'false';
+            }
             option_selected(key) {
+                const state = this.game_state();
+                if (state === 'reading')
+                    return '';
                 if (this.is_host())
                     return '';
                 if (!this.has_answered())
                     return '';
                 return String(this.my_answer() === key);
+            }
+            reveal_correct_text() {
+                if (this.game_state() !== 'reveal')
+                    return '';
+                if (this.question_type() !== 'text_input')
+                    return '';
+                const question = this.current_question();
+                return question?.Correct_text()?.val() ?? '';
             }
             countdown_number(next) {
                 if (!this.is_host())
@@ -18135,6 +18205,10 @@ var $;
                 }
                 else if (state === 'answering') {
                     this.calculate_scores();
+                    quiz.Round_start('auto')?.val(Date.now());
+                    quiz.Game_state('auto')?.val('reveal');
+                }
+                else if (state === 'reveal') {
                     if (index + 1 >= total) {
                         quiz.Round_start('auto')?.val(0);
                         quiz.Game_state('auto')?.val('final');
@@ -18278,7 +18352,13 @@ var $;
         ], $bog_blitz_lobby_game.prototype, "option_enabled", null);
         __decorate([
             $mol_mem_key
+        ], $bog_blitz_lobby_game.prototype, "option_correct", null);
+        __decorate([
+            $mol_mem_key
         ], $bog_blitz_lobby_game.prototype, "option_selected", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "reveal_correct_text", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "countdown_number", null);
@@ -19004,6 +19084,8 @@ var $;
                     return quiz.Time_read()?.val() ?? 10;
                 if (state === 'answering')
                     return quiz.Time_answer()?.val() ?? 20;
+                if (state === 'reveal')
+                    return 3;
                 if (state === 'leaderboard')
                     return quiz.Time_leaderboard()?.val() ?? 5;
                 return 0;

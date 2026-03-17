@@ -42,6 +42,7 @@
 	"$bog_blitz_lobby_game_state_leaderboard": "排行榜",
 	"$bog_blitz_lobby_game_state_paused": "已暂停",
 	"$bog_blitz_lobby_game_state_reading": "请阅读题目",
+	"$bog_blitz_lobby_game_state_reveal": "正确答案",
 	"$bog_blitz_lobby_host_Start_title": "开始游戏！",
 	"$bog_blitz_lobby_join_Player_name_input_hint": "点击修改您的名字",
 	"$bog_blitz_lobby_join_enter_title": "进入",

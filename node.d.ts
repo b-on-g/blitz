@@ -7698,8 +7698,10 @@ declare namespace $ {
 	>
 	export class $bog_blitz_lobby_game_option extends $mol_button_major {
 		selected( ): string
+		correct( ): string
 		attr( ): ({ 
 			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
+			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
 		})  & ReturnType< $mol_button_major['attr'] >
 		image_uri( ): string
 		Option_image( ): $mol_image
@@ -7859,27 +7861,37 @@ declare namespace $ {
 		,
 		ReturnType< $mol_string['submit'] >
 	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_29 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_game_29 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['reveal_correct_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_selected'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_30 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_31 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_correct'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['correct'] >
+	>
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_31 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_32 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_33 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
@@ -7910,6 +7922,7 @@ declare namespace $ {
 		Final( ): $bog_blitz_lobby_game_leaderboard
 		Reactions_board( ): $bog_blitz_lobby_game_reactboard
 		option_selected( id: any): string
+		option_correct( id: any): string
 		option_enabled( id: any): boolean
 		option_text( id: any): string
 		option_image_uri( id: any): string
@@ -7923,6 +7936,7 @@ declare namespace $ {
 		paused_at( ): number
 		state_reading( ): string
 		state_answering( ): string
+		state_reveal( ): string
 		state_leaderboard( ): string
 		state_final( ): string
 		state_paused( ): string
@@ -7944,6 +7958,8 @@ declare namespace $ {
 		Answer_input( ): $mol_string
 		leaderboard_content( ): readonly(any)[]
 		final_content( ): readonly(any)[]
+		reveal_correct_text( ): string
+		Reveal_correct( ): $mol_paragraph
 		Option( id: any): $bog_blitz_lobby_game_option
 	}
 	
@@ -7960,7 +7976,7 @@ declare namespace $.$$ {
         host_controls(): $mol_button_minor[];
         question_type(): string;
         question_image_uri(): string;
-        answer_views(): $.$mol_string[] | $.$bog_blitz_lobby_game_option[];
+        answer_views(): ($.$mol_paragraph | $.$mol_string)[] | $.$bog_blitz_lobby_game_option[];
         text_submit(next?: Event): void;
         text_input_enabled(): boolean;
         option_keys(): string[];
@@ -7970,7 +7986,9 @@ declare namespace $.$$ {
         my_answer(): string;
         has_answered(): boolean;
         option_enabled(key: string): boolean;
+        option_correct(key: string): "" | "true" | "false";
         option_selected(key: string): string;
+        reveal_correct_text(): string;
         countdown_number(next?: number): number;
         countdown_text(): string;
         countdown_content(): $.$mol_paragraph[];
