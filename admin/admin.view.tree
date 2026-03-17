@@ -12,7 +12,9 @@ $bog_blitz_admin $mol_page
 		title @ \Create Quiz
 		click? <=> create_quiz? null
 	Back_button $mol_button_minor
-		title @ \Back to Quizzes
+		sub /
+			<= Back_icon $mol_icon_arrow_left
+			<= Back_label @ \Back to Quizzes
 		click? <=> back_to_list? null
 	Editor $bog_blitz_admin_editor
 		quiz_land <= current_quiz_land null
