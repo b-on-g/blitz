@@ -58,6 +58,31 @@ namespace $.$$ {
 			return String(this.my_answer() === key)
 		}
 
+		@$mol_mem
+		countdown_number() {
+			const start = this.round_start()
+			if (!start) return 0
+			const elapsed = (Date.now() - start) / 1000
+			const num = Math.ceil(3 - elapsed)
+			if (num <= 0) return 0
+			new $mol_after_timeout(1000, () => this.countdown_number(null as any))
+			return num
+		}
+
+		@$mol_mem
+		countdown_text() {
+			const num = this.countdown_number()
+			return num ? String(num) : ''
+		}
+
+		@$mol_mem
+		countdown_content() {
+			if (!this.is_host()) return []
+			const num = this.countdown_number()
+			if (!num) return []
+			return [this.Countdown_number()]
+		}
+
 		@$mol_mem_key
 		option_click(key: string, e?: any) {
 			if (e) {

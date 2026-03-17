@@ -21,5 +21,20 @@ namespace $.$$ {
 			maxWidth: '30rem',
 			padding: { left: '1rem', right: '1rem' },
 		},
+		Countdown: {
+			position: 'fixed',
+			top: '20%',
+			left: 0,
+			right: 0,
+			height: '60%',
+			display: 'flex',
+			align: { items: 'center' },
+			justify: { content: 'center' },
+			pointer: { events: 'none' },
+		},
+		Countdown_number: {
+			font: { size: '15rem', weight: 900 },
+			opacity: 0.15,
+		},
 	})
 }
