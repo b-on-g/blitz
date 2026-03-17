@@ -234,6 +234,9 @@ $bog_blitz_lobby_players $mol_list
 				accept \image/*
 				multiple false
 
+$mol_button_major $mol_button_minor
+	theme \$mol_theme_base
+
 $bog_qr $mol_svg_root
 	uri \
 	module_radius 0.35
@@ -294,12 +297,11 @@ $bog_qr $mol_svg_root
 				<= Center_body $mol_view
 					sub <= center
 
-$mol_button_major $mol_button_minor
-	theme \$mol_theme_base
-
 $bog_blitz_lobby_host $mol_page
 	Head null
 	counter_string \
+	land_id \
+	quiz_title \
 	body /
 		<= Qr $bog_qr
 			uri <= qr_data \
@@ -313,6 +315,10 @@ $bog_blitz_lobby_host $mol_page
 			gradient_stops /
 				\var(--mol_theme_special)
 				\var(--mol_theme_current)
+		<= Quiz_title $mol_paragraph
+			title <= quiz_title
+		<= Land_id $mol_paragraph
+			title <= land_id
 		<= Start $mol_button_major
 			title @ \Start Game!
 			click? <=> start? null
@@ -348,7 +354,10 @@ $bog_blitz_lobby_join $mol_page
 $bog_blitz_lobby_waiting $mol_page
 	Head null
 	counter_string \
+	quiz_title \
 	body /
+		<= Quiz_title $mol_paragraph
+			title <= quiz_title
 		<= Waiting_message $mol_paragraph
 			title @ \Waiting for host to start...
 		<= Counter $mol_paragraph
@@ -358,8 +367,12 @@ $bog_blitz_lobby_waiting $mol_page
 $bog_blitz_lobby $mol_page
 	Head null
 	players_string @ \Players
+	land_id \
+	quiz_title \
 	Host $bog_blitz_lobby_host
 		counter_string <= counter_string \
+		land_id <= land_id
+		quiz_title <= quiz_title
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
@@ -370,9 +383,17 @@ $bog_blitz_lobby $mol_page
 		is_synced <= is_synced false
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
+		quiz_title <= quiz_title
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
+	No_game $mol_view
+		sub /
+			<= No_game_text $mol_paragraph
+				title @ \No active game
+			<= Go_admin $mol_button_major
+				title @ \Go to Admin
+				click? <=> go_admin? null
 	body <= lobby_content /
 
 $mol_book2 $mol_scroll

@@ -234,147 +234,6 @@ $bog_blitz_lobby_players $mol_list
 				accept \image/*
 				multiple false
 
-$bog_qr $mol_svg_root
-	uri \
-	module_radius 0.35
-	finder_radius 1.2
-	gradient_angle 45
-	error_correction \M
-	quiet_zone 2
-	center /
-	gradient_stops /
-		\var(--mol_theme_special)
-		\var(--mol_theme_focus)
-	Stop* $mol_svg
-		dom_name \stop
-		attr *
-			^
-			offset <= stop_offset* \0%
-			stop-color <= stop_color* \
-	view_box <= qr_view_box \0 0 1 1
-	sub /
-		<= Defs $mol_svg
-			dom_name \defs
-			sub /
-				<= Gradient $mol_svg
-					dom_name \linearGradient
-					attr *
-						^
-						id \qr-grad
-						x1 <= grad_x1 \0
-						y1 <= grad_y1 \0
-						x2 <= grad_x2 \1
-						y2 <= grad_y2 \1
-					sub <= gradient_stop_list /
-		<= Modules $mol_svg_path
-			geometry <= modules_d \
-			attr *
-				^
-				fill \url(#qr-grad)
-		<= Rings $mol_svg_path
-			geometry <= rings_d \
-			attr *
-				^
-				fill \url(#qr-grad)
-				fill-rule \evenodd
-		<= Centers $mol_svg_path
-			geometry <= centers_d \
-			attr *
-				^
-				fill \url(#qr-grad)
-		<= Center_wrap $mol_svg
-			dom_name \foreignObject
-			attr *
-				^
-				x <= center_x \0
-				y <= center_y \0
-				width <= center_size \0
-				height <= center_size
-			sub /
-				<= Center_body $mol_view
-					sub <= center
-
-$mol_button_major $mol_button_minor
-	theme \$mol_theme_base
-
-$bog_blitz_lobby_host $mol_page
-	Head null
-	counter_string \
-	body /
-		<= Qr $bog_qr
-			uri <= qr_data \
-			error_correction \M
-			center /
-				<= Logo $mol_image
-					uri \bog/blitz/assets/logo.svg
-			module_radius 0.35
-			finder_radius 1.2
-			gradient_angle 125
-			gradient_stops /
-				\var(--mol_theme_special)
-				\var(--mol_theme_current)
-		<= Start $mol_button_major
-			title @ \Start Game!
-			click? <=> start? null
-		<= Counter $mol_paragraph
-			title <= counter_string
-		<= Players $bog_blitz_lobby_players
-
-$bog_blitz_lobby_join $mol_page
-	Head null
-	is_synced false
-	syncing_title @ \Syncing...
-	join_title @ \Syncing...
-	enter_title @ \Enter
-	Avatar_icon $mol_avatar
-		id <= player_id \
-	Avatar_image $mol_image
-		uri <= avatar_uri \
-	body /
-		<= Avatar $mol_button_open
-			sub /
-				<= avatar_preview null
-				<= Avatar_native $mol_button_open_native
-					files? <=> avatar_files? /File
-					accept \image/*
-					multiple false
-		<= Player_name_input $mol_string_button
-			hint @ \Touch to change your name
-			value? <=> player_name? \
-		<= Join $mol_button_major
-			title <= join_title
-			click? <=> join? null
-
-$bog_blitz_lobby_waiting $mol_page
-	Head null
-	counter_string \
-	body /
-		<= Waiting_message $mol_paragraph
-			title @ \Waiting for host to start...
-		<= Counter $mol_paragraph
-			title <= counter_string
-		<= Players $bog_blitz_lobby_players
-
-$bog_blitz_lobby $mol_page
-	Head null
-	players_string @ \Players
-	Host $bog_blitz_lobby_host
-		counter_string <= counter_string \
-		Players <= Host_players $bog_blitz_lobby_players
-			players_dict <= players_dict null
-			my_lord_str <= my_lord_str \
-	Join_screen $bog_blitz_lobby_join
-		player_name? <=> my_player_name? \
-		avatar_files? <=> my_avatar_files? /File
-		join? <=> join? null
-		is_synced <= is_synced false
-	Waiting $bog_blitz_lobby_waiting
-		counter_string <= counter_string \
-		Players <= Host_players $bog_blitz_lobby_players
-			players_dict <= players_dict null
-			my_lord_str <= my_lord_str \
-	body <= lobby_content /
-
 $mol_book2 $mol_scroll
 	menu_title \
 	sub /$mol_view
@@ -1224,6 +1083,9 @@ $mol_form_field $mol_labeler
 			sub / <= bid \
 	content / <= control null
 
+$mol_button_major $mol_button_minor
+	theme \$mol_theme_base
+
 $mol_status $mol_view
 	status <= title
 	minimal_height 24
@@ -2072,6 +1934,165 @@ $giper_baza_app $mol_book2_catalog
 			tools /
 				<= Spread_close
 	placeholders /
+
+$bog_qr $mol_svg_root
+	uri \
+	module_radius 0.35
+	finder_radius 1.2
+	gradient_angle 45
+	error_correction \M
+	quiet_zone 2
+	center /
+	gradient_stops /
+		\var(--mol_theme_special)
+		\var(--mol_theme_focus)
+	Stop* $mol_svg
+		dom_name \stop
+		attr *
+			^
+			offset <= stop_offset* \0%
+			stop-color <= stop_color* \
+	view_box <= qr_view_box \0 0 1 1
+	sub /
+		<= Defs $mol_svg
+			dom_name \defs
+			sub /
+				<= Gradient $mol_svg
+					dom_name \linearGradient
+					attr *
+						^
+						id \qr-grad
+						x1 <= grad_x1 \0
+						y1 <= grad_y1 \0
+						x2 <= grad_x2 \1
+						y2 <= grad_y2 \1
+					sub <= gradient_stop_list /
+		<= Modules $mol_svg_path
+			geometry <= modules_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+		<= Rings $mol_svg_path
+			geometry <= rings_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+				fill-rule \evenodd
+		<= Centers $mol_svg_path
+			geometry <= centers_d \
+			attr *
+				^
+				fill \url(#qr-grad)
+		<= Center_wrap $mol_svg
+			dom_name \foreignObject
+			attr *
+				^
+				x <= center_x \0
+				y <= center_y \0
+				width <= center_size \0
+				height <= center_size
+			sub /
+				<= Center_body $mol_view
+					sub <= center
+
+$bog_blitz_lobby_host $mol_page
+	Head null
+	counter_string \
+	land_id \
+	quiz_title \
+	body /
+		<= Qr $bog_qr
+			uri <= qr_data \
+			error_correction \M
+			center /
+				<= Logo $mol_image
+					uri \bog/blitz/assets/logo.svg
+			module_radius 0.35
+			finder_radius 1.2
+			gradient_angle 125
+			gradient_stops /
+				\var(--mol_theme_special)
+				\var(--mol_theme_current)
+		<= Quiz_title $mol_paragraph
+			title <= quiz_title
+		<= Land_id $mol_paragraph
+			title <= land_id
+		<= Start $mol_button_major
+			title @ \Start Game!
+			click? <=> start? null
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_lobby_players
+
+$bog_blitz_lobby_join $mol_page
+	Head null
+	is_synced false
+	syncing_title @ \Syncing...
+	join_title @ \Syncing...
+	enter_title @ \Enter
+	Avatar_icon $mol_avatar
+		id <= player_id \
+	Avatar_image $mol_image
+		uri <= avatar_uri \
+	body /
+		<= Avatar $mol_button_open
+			sub /
+				<= avatar_preview null
+				<= Avatar_native $mol_button_open_native
+					files? <=> avatar_files? /File
+					accept \image/*
+					multiple false
+		<= Player_name_input $mol_string_button
+			hint @ \Touch to change your name
+			value? <=> player_name? \
+		<= Join $mol_button_major
+			title <= join_title
+			click? <=> join? null
+
+$bog_blitz_lobby_waiting $mol_page
+	Head null
+	counter_string \
+	quiz_title \
+	body /
+		<= Quiz_title $mol_paragraph
+			title <= quiz_title
+		<= Waiting_message $mol_paragraph
+			title @ \Waiting for host to start...
+		<= Counter $mol_paragraph
+			title <= counter_string
+		<= Players $bog_blitz_lobby_players
+
+$bog_blitz_lobby $mol_page
+	Head null
+	players_string @ \Players
+	land_id \
+	quiz_title \
+	Host $bog_blitz_lobby_host
+		counter_string <= counter_string \
+		land_id <= land_id
+		quiz_title <= quiz_title
+		Players <= Host_players $bog_blitz_lobby_players
+			players_dict <= players_dict null
+			my_lord_str <= my_lord_str \
+	Join_screen $bog_blitz_lobby_join
+		player_name? <=> my_player_name? \
+		avatar_files? <=> my_avatar_files? /File
+		join? <=> join? null
+		is_synced <= is_synced false
+	Waiting $bog_blitz_lobby_waiting
+		counter_string <= counter_string \
+		quiz_title <= quiz_title
+		Players <= Host_players $bog_blitz_lobby_players
+			players_dict <= players_dict null
+			my_lord_str <= my_lord_str \
+	No_game $mol_view
+		sub /
+			<= No_game_text $mol_paragraph
+				title @ \No active game
+			<= Go_admin $mol_button_major
+				title @ \Go to Admin
+				click? <=> go_admin? null
+	body <= lobby_content /
 
 $mol_theme_auto $mol_plugin
 	light \$mol_theme_light

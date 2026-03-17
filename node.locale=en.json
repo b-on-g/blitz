@@ -30,6 +30,8 @@
 	"$bog_blitz_admin_quiz_Edit_title": "Edit",
 	"$bog_blitz_admin_quiz_Start_title": "Play",
 	"$bog_blitz_admin_quiz_Title_input_hint": "Quiz name",
+	"$bog_blitz_lobby_Go_admin_title": "Go to Admin",
+	"$bog_blitz_lobby_No_game_text_title": "No active game",
 	"$bog_blitz_lobby_host_Start_title": "Start Game!",
 	"$bog_blitz_lobby_join_Player_name_input_hint": "Touch to change your name",
 	"$bog_blitz_lobby_join_enter_title": "Enter",
