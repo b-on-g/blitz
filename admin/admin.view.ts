@@ -104,6 +104,7 @@ namespace $.$$ {
 			}
 		}
 
+		@$mol_mem
 		override import_json_text(next?: string) {
 			return next ?? this.import_json_template()
 		}
