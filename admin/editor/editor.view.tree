@@ -11,8 +11,10 @@ $bog_blitz_admin_editor $mol_list
 		number <= question_number*0 0
 		question_text? <=> question_text*? \
 		question_type? <=> question_type*? \choice
-		points_plus? <=> points_plus*? 10
-		points_minus? <=> points_minus*? 0
 		delete? <=> delete_question*? null
 		option_rows <= option_rows* /
 		add_option? <=> add_option*? null
+	Option*0 $bog_blitz_admin_option
+		option_text? <=> option_text*? \
+		is_correct? <=> is_correct*? false
+		delete? <=> delete_option*? null

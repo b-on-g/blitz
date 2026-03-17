@@ -1,0 +1,11 @@
+$bog_blitz_admin_option $mol_row
+	sub /
+		<= Text $mol_string_button
+			hint @ \Write your option
+			value? <=> option_text? \
+		<= Checkbox $mol_check_box
+			title @ \Is it correct ?
+			checked? <=> is_correct? false
+		<= Delete $mol_button_minor
+			title @ \Delete
+			click? <=> delete? null

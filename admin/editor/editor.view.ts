@@ -69,8 +69,6 @@ namespace $.$$ {
 			const questions = quiz.Questions('auto')!
 			const q = questions.make(null)
 			q.Type('auto')?.val('choice')
-			q.Points_plus('auto')?.val(10)
-			q.Points_minus('auto')?.val(0)
 		}
 
 		@$mol_action
@@ -84,13 +82,55 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		option_rows(key: string) {
-			// TODO: option editing
-			return [] as any[]
+			const q = this.questions()[Number(key)]
+			if (!q) return []
+			const options = q.Options()?.remote_list() ?? []
+			return options.map((_: string, i: number) => this.Option(`${key}_${i}`))
 		}
 
 		@$mol_action
 		add_option(key: string) {
-			// TODO: add option to question
+			const q = this.questions()[Number(key)]
+			if (!q) return
+			q.Options('auto')!.make(null)
+		}
+
+		@$mol_action
+		delete_option(key: string) {
+			const [qKey, oKey] = key.split('_')
+			const q = this.questions()[Number(qKey)]
+			if (!q) return
+			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+			if (!opt) return
+			q.Options('auto')!.cut(opt.link())
+		}
+
+		@$mol_mem_key
+		option_text(key: string, next?: string) {
+			const [qKey, oKey] = key.split('_')
+			const q = this.questions()[Number(qKey)]
+			if (!q) return ''
+			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+			if (!opt) return ''
+			if (next !== undefined) {
+				opt.Text('auto')?.val(next)
+				return next
+			}
+			return opt.Text()?.val() ?? ''
+		}
+
+		@$mol_mem_key
+		is_correct(key: string, next?: boolean) {
+			const [qKey, oKey] = key.split('_')
+			const q = this.questions()[Number(qKey)]
+			if (!q) return false
+			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+			if (!opt) return false
+			if (next !== undefined) {
+				opt.Is_correct('auto')?.val(next)
+				return next
+			}
+			return opt.Is_correct()?.val() ?? false
 		}
 	}
 }
