@@ -1,0 +1,9 @@
+{
+	"$bog_blitz_admin_editor_Time_read_row_title": "阅读时间（秒）",
+	"$bog_blitz_admin_editor_Time_answer_row_title": "作答时间（秒）",
+	"$bog_blitz_admin_editor_Time_leaderboard_row_title": "排行榜展示时间（秒）",
+	"$bog_blitz_admin_editor_Points_base_row_title": "每题得分",
+	"$bog_blitz_admin_editor_Time_multiplier_row_title": "速度加成倍率",
+	"$bog_blitz_admin_editor_Title_input_hint": "问答标题",
+	"$bog_blitz_admin_editor_Add_question_title": "添加问题"
+}

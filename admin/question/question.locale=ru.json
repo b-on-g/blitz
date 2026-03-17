@@ -1,0 +1,10 @@
+{
+	"$bog_blitz_admin_question_Text_input_hint": "Вопрос...",
+	"$bog_blitz_admin_question_Type_select_dictionary_choice": "Выбор",
+	"$bog_blitz_admin_question_Type_select_dictionary_text_input": "Текстовый ввод",
+	"$bog_blitz_admin_question_Delete_title": "Удалить",
+	"$bog_blitz_admin_question_Add_option_title": "Добавить вариант",
+	"$bog_blitz_admin_question_Correct_text_input_hint": "Правильный ответ...",
+	"$bog_blitz_admin_question_Image_upload_title": "Добавить картинку",
+	"$bog_blitz_admin_question_Image_remove_title": "Удалить картинку"
+}

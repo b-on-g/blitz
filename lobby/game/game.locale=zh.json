@@ -1,0 +1,10 @@
+{
+	"$bog_blitz_lobby_game_pause_label": "暂停",
+	"$bog_blitz_lobby_game_resume_label": "继续",
+	"$bog_blitz_lobby_game_state_reading": "请阅读题目",
+	"$bog_blitz_lobby_game_state_answering": "作答时间！",
+	"$bog_blitz_lobby_game_state_leaderboard": "排行榜",
+	"$bog_blitz_lobby_game_state_final": "最终结果",
+	"$bog_blitz_lobby_game_state_paused": "已暂停",
+	"$bog_blitz_lobby_game_Answer_input_hint": "输入您的答案..."
+}

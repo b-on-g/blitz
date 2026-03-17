@@ -1,0 +1,10 @@
+{
+	"$bog_blitz_admin_question_Text_input_hint": "问题...",
+	"$bog_blitz_admin_question_Type_select_dictionary_choice": "选择题",
+	"$bog_blitz_admin_question_Type_select_dictionary_text_input": "文本输入",
+	"$bog_blitz_admin_question_Delete_title": "删除",
+	"$bog_blitz_admin_question_Add_option_title": "添加选项",
+	"$bog_blitz_admin_question_Correct_text_input_hint": "正确答案...",
+	"$bog_blitz_admin_question_Image_upload_title": "添加图片",
+	"$bog_blitz_admin_question_Image_remove_title": "删除图片"
+}

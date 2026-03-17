@@ -18,12 +18,14 @@ jobs:
               with:
                   package: "bog/blitz"
                   
-            # - uses: b-on-g/mol-prerender-action@main
-            #   if: github.ref == 'refs/heads/master'
-            #   with:
-            #       base-url: "https://b-on-g.github.io/blitz/"
-            #       screens: |
-            #           campaign-example-for-organic-articles-seo
+            - uses: b-on-g/mol-prerender-action@main
+              if: github.ref == 'refs/heads/master'
+              with:
+                  base-url: "https://b-on-g.github.io/blitz/"
+                  screens: |
+                      lobby
+                      admin
+                      game
 
 
             - uses: hyoo-ru/gh-deploy@v4.4.1
