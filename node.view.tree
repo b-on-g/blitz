@@ -1881,9 +1881,13 @@ $bog_blitz_profile_page $mol_page
 	body /
 		<= Card $mol_view
 			sub /
-				<= Avatar $mol_button_open
+				<= Avatar_circle $mol_view
 					sub /
 						<= avatar_preview null
+				<= Avatar $mol_button_open
+					sub /
+						<= Avatar_label $mol_paragraph
+							title @ \Change photo
 						<= Avatar_native $mol_button_open_native
 							files? <=> avatar_files? /File
 							accept \image/*

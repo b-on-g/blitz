@@ -29518,6 +29518,16 @@ var $;
 		avatar_preview(){
 			return null;
 		}
+		Avatar_circle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.avatar_preview())]);
+			return obj;
+		}
+		Avatar_label(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Avatar_label_title")));
+			return obj;
+		}
 		avatar_files(next){
 			if(next !== undefined) return next;
 			return [];
@@ -29531,7 +29541,7 @@ var $;
 		}
 		Avatar(){
 			const obj = new this.$.$mol_button_open();
-			(obj.sub) = () => ([(this.avatar_preview()), (this.Avatar_native())]);
+			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
 			return obj;
 		}
 		profile_name(next){
@@ -29591,6 +29601,7 @@ var $;
 		Card(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
+				(this.Avatar_circle()), 
 				(this.Avatar()), 
 				(this.Name_row()), 
 				(this.Stats()), 
@@ -29690,6 +29701,8 @@ var $;
 			return obj;
 		}
 	};
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_label"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_native"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
@@ -29853,9 +29866,8 @@ var $;
                 const profile = this.profile_data();
                 const list = profile.Games_history()?.remote_list() ?? [];
                 return list.filter(r => {
-                    const title = r.Quiz_title()?.val();
                     const date = r.Date()?.val();
-                    return title || date;
+                    return date && date > 0;
                 });
             }
             history_sorted() {
@@ -29996,7 +30008,7 @@ var $;
                     items: 'center',
                 },
             },
-            Avatar: {
+            Avatar_circle: {
                 borderRadius: '50%',
                 overflow: 'hidden',
                 width: '80px',
@@ -30009,6 +30021,12 @@ var $;
                     shrink: 0,
                     grow: 0,
                 },
+            },
+            Avatar: {
+                font: {
+                    size: '0.75rem',
+                },
+                opacity: 0.5,
             },
             Avatar_image: {
                 width: '100%',
