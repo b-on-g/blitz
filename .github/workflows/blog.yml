@@ -23,6 +23,8 @@ jobs:
               if: github.ref == 'refs/heads/master'
               with:
                   folder: "bog/blitz/blog/-"
+                  target-folder: 'blog/'
+
 
             - uses: b-on-g/mol-prerender-action@main
               if: github.ref == 'refs/heads/master'
