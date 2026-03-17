@@ -50,9 +50,7 @@ namespace $.$$ {
 				size: '0.7rem',
 			},
 			opacity: 0.5,
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 		},
 		Name_row: {
 			justify: {
@@ -64,9 +62,7 @@ namespace $.$$ {
 				size: '1.5rem',
 				weight: 600,
 			},
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 		},
 		Stats: {
 			flex: {
@@ -185,9 +181,7 @@ namespace $.$$ {
 			},
 		},
 		Fun_text: {
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 			opacity: 0.7,
 			font: {
 				size: '0.875rem',
