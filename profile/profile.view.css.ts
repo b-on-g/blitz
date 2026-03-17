@@ -42,12 +42,12 @@ namespace $.$$ {
 			height: 120,
 			borderRadius: '50%',
 			font: {
-				size: 64,
+				size: '4rem',
 			},
 		},
 		Avatar_upload_hint: {
 			font: {
-				size: 11,
+				size: '0.7rem',
 			},
 			opacity: 0.5,
 			text: {
@@ -61,7 +61,7 @@ namespace $.$$ {
 		},
 		Name_input: {
 			font: {
-				size: 24,
+				size: '1.5rem',
 				weight: 600,
 			},
 			text: {
@@ -92,18 +92,18 @@ namespace $.$$ {
 		},
 		Stat_label: {
 			font: {
-				size: 15,
+				size: '0.95rem',
 			},
 		},
 		Stat_value: {
 			font: {
-				size: 15,
+				size: '0.95rem',
 				weight: 700,
 			},
 		},
 		History_title: {
 			font: {
-				size: 18,
+				size: '1.1rem',
 				weight: 600,
 			},
 			margin: {
@@ -144,13 +144,13 @@ namespace $.$$ {
 		History_place: {
 			opacity: 0.6,
 			font: {
-				size: 13,
+				size: '0.8rem',
 			},
 		},
 		History_date: {
 			opacity: 0.4,
 			font: {
-				size: 12,
+				size: '0.75rem',
 			},
 		},
 		Fun_card: {
@@ -177,7 +177,7 @@ namespace $.$$ {
 		},
 		Fun_title: {
 			font: {
-				size: 16,
+				size: '1rem',
 				weight: 600,
 			},
 			margin: {
@@ -190,7 +190,7 @@ namespace $.$$ {
 			},
 			opacity: 0.7,
 			font: {
-				size: 14,
+				size: '0.875rem',
 			},
 		},
 	})
