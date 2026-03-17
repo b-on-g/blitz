@@ -27013,6 +27013,9 @@ var $;
             Time_leaderboard: $giper_baza_atom_real,
             Points_base: $giper_baza_atom_real,
             Time_multiplier: $giper_baza_atom_real,
+            Game_state: $giper_baza_atom_text,
+            Current_question: $giper_baza_atom_real,
+            Round_start: $giper_baza_atom_real,
         }) {
         }
         $$.$bog_blitz_quiz = $bog_blitz_quiz;
@@ -27024,6 +27027,9 @@ var $;
             'Time_leaderboard',
             'Points_base',
             'Time_multiplier',
+            'Game_state',
+            'Current_question',
+            'Round_start',
         ]);
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -27709,6 +27715,9 @@ var $;
 		quiz_title(){
 			return "";
 		}
+		quiz_data(){
+			return null;
+		}
 		body(){
 			return [
 				(this.Qr()), 
@@ -27746,10 +27755,24 @@ var $;
                     land: this.$.$mol_state_arg.value('land') ?? '',
                 });
             }
+            start(e) {
+                if (e) {
+                    const quiz = this.quiz_data();
+                    if (!quiz)
+                        return;
+                    quiz.Game_state('auto')?.val('reading');
+                    quiz.Current_question('auto')?.val(0);
+                    quiz.Round_start('auto')?.val(Date.now());
+                }
+                return null;
+            }
         }
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_host.prototype, "qr_data", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_host.prototype, "start", null);
         $$.$bog_blitz_lobby_host = $bog_blitz_lobby_host;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -27986,6 +28009,12 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bog_blitz_lobby_waiting, {
+            Quiz_title: {
+                align: { self: 'center' },
+                font: { size: '1.75rem', weight: 700 },
+                margin: { top: '1rem' },
+                textAlign: 'center',
+            },
             Waiting_message: {
                 align: { self: 'center' },
                 font: { size: '1.5rem', weight: 500 },
@@ -28003,9 +28032,1040 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_blitz_lobby_game_timer) = class $bog_blitz_lobby_game_timer extends ($.$mol_view) {
+		bar_animation(){
+			return "none";
+		}
+		Bar(){
+			const obj = new this.$.$mol_view();
+			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "animation": (this.bar_animation())});
+			return obj;
+		}
+		duration(){
+			return 0;
+		}
+		round_start(){
+			return 0;
+		}
+		sub(){
+			return [(this.Bar())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_lobby_game_timer.prototype), "Bar"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_lobby_game_timer extends $.$bog_blitz_lobby_game_timer {
+            bar_animation() {
+                const start = this.round_start();
+                const duration = this.duration();
+                if (!start || !duration)
+                    return 'none';
+                const elapsed = (Date.now() - start) / 1000;
+                return `bog_blitz_timer_shrink ${duration}s linear ${-elapsed}s forwards`;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_timer.prototype, "bar_animation", null);
+        $$.$bog_blitz_lobby_game_timer = $bog_blitz_lobby_game_timer;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("bog/blitz/lobby/game/timer/timer.view.css", "@keyframes bog_blitz_timer_shrink {\n\tfrom { width: 100%; }\n\tto { width: 0%; }\n}\n");
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game_timer, {
+            width: '100%',
+            height: '0.35rem',
+            Bar: {
+                height: '100%',
+                background: {
+                    color: $mol_theme.special,
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_lobby_game_leaderboard_row) = class $bog_blitz_lobby_game_leaderboard_row extends ($.$mol_view) {
+		rank_text(){
+			return "";
+		}
+		Rank(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.rank_text()));
+			return obj;
+		}
+		Name(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.name()));
+			return obj;
+		}
+		score_text(){
+			return "";
+		}
+		Score(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.score_text()));
+			return obj;
+		}
+		rank(){
+			return 0;
+		}
+		name(){
+			return "";
+		}
+		score(){
+			return 0;
+		}
+		mine(){
+			return false;
+		}
+		rank_medal(){
+			return "";
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"data-mine": (this.mine()), 
+				"data-medal": (this.rank_medal())
+			};
+		}
+		sub(){
+			return [
+				(this.Rank()), 
+				(this.Name()), 
+				(this.Score())
+			];
+		}
+	};
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard_row.prototype), "Rank"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard_row.prototype), "Name"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard_row.prototype), "Score"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_lobby_game_leaderboard_row extends $.$bog_blitz_lobby_game_leaderboard_row {
+            rank_text() {
+                const rank = this.rank();
+                if (rank === 1)
+                    return '\u{1F947}';
+                if (rank === 2)
+                    return '\u{1F948}';
+                if (rank === 3)
+                    return '\u{1F949}';
+                return `#${rank}`;
+            }
+            rank_medal() {
+                const rank = this.rank();
+                if (rank >= 1 && rank <= 3)
+                    return String(rank);
+                return '';
+            }
+            score_text() {
+                return String(Math.round(this.score()));
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard_row.prototype, "rank_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard_row.prototype, "rank_medal", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard_row.prototype, "score_text", null);
+        $$.$bog_blitz_lobby_game_leaderboard_row = $bog_blitz_lobby_game_leaderboard_row;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game_leaderboard_row, {
+            flex: { direction: 'row' },
+            align: { items: 'center' },
+            gap: '0.5rem',
+            padding: { top: '0.5rem', bottom: '0.5rem', left: '0.75rem', right: '0.75rem' },
+            background: { color: $mol_theme.card },
+            borderRadius: '0.75rem',
+            margin: { bottom: '0.25rem' },
+            Rank: {
+                minWidth: '2.5rem',
+                font: { weight: 700 },
+                opacity: 0.4,
+            },
+            Name: {
+                flex: { grow: 1 },
+            },
+            Score: {
+                font: { weight: 600 },
+                opacity: 0.7,
+            },
+            '@': {
+                'data-mine': {
+                    true: {
+                        Rank: {
+                            opacity: 1,
+                            color: $mol_theme.special,
+                        },
+                        Score: {
+                            opacity: 1,
+                        },
+                    },
+                },
+                'data-medal': {
+                    '1': {
+                        boxShadow: '0 0 0 2px #FFD700 inset',
+                        Rank: { opacity: 1, font: { size: '1.25rem' } },
+                    },
+                    '2': {
+                        boxShadow: '0 0 0 2px #C0C0C0 inset',
+                        Rank: { opacity: 1, font: { size: '1.25rem' } },
+                    },
+                    '3': {
+                        boxShadow: '0 0 0 2px #CD7F32 inset',
+                        Rank: { opacity: 1, font: { size: '1.25rem' } },
+                    },
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_lobby_game_leaderboard) = class $bog_blitz_lobby_game_leaderboard extends ($.$mol_view) {
+		board_content(){
+			return [];
+		}
+		my_row_content(){
+			return [];
+		}
+		Top_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_game_leaderboard_Top_title_title")));
+			return obj;
+		}
+		top_rows(){
+			return [];
+		}
+		Top_list(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.top_rows()));
+			return obj;
+		}
+		Bottom_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_game_leaderboard_Bottom_title_title")));
+			return obj;
+		}
+		bottom_rows(){
+			return [];
+		}
+		Bottom_list(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.bottom_rows()));
+			return obj;
+		}
+		row_rank(id){
+			return 0;
+		}
+		row_name(id){
+			return "";
+		}
+		row_score(id){
+			return 0;
+		}
+		row_mine(id){
+			return false;
+		}
+		players_dict(){
+			return null;
+		}
+		my_lord_str(){
+			return "";
+		}
+		is_host(){
+			return false;
+		}
+		sub(){
+			return (this.board_content());
+		}
+		My_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.my_row_content()));
+			return obj;
+		}
+		Top(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Top_title()), (this.Top_list())]);
+			return obj;
+		}
+		Bottom(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Bottom_title()), (this.Bottom_list())]);
+			return obj;
+		}
+		Row(id){
+			const obj = new this.$.$bog_blitz_lobby_game_leaderboard_row();
+			(obj.rank) = () => ((this.row_rank(id)));
+			(obj.name) = () => ((this.row_name(id)));
+			(obj.score) = () => ((this.row_score(id)));
+			(obj.mine) = () => ((this.row_mine(id)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top_title"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top_list"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom_title"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom_list"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "My_row"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom"));
+	($mol_mem_key(($.$bog_blitz_lobby_game_leaderboard.prototype), "Row"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_player extends $giper_baza_dict.with({
+            Score: $giper_baza_atom_real,
+            Name: $giper_baza_atom_text,
+            IsHost: $giper_baza_atom_bool,
+            Avatar: $giper_baza_atom_link_to(() => $giper_baza_file),
+            Answer: $giper_baza_atom_text,
+            Answer_time: $giper_baza_atom_real,
+        }) {
+        }
+        $$.$bog_blitz_player = $bog_blitz_player;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_lobby_game_leaderboard extends $.$bog_blitz_lobby_game_leaderboard {
+            board_content() {
+                const parts = [];
+                if (this.my_row_content().length)
+                    parts.push(this.My_row());
+                parts.push(this.Top());
+                parts.push(this.Bottom());
+                return parts;
+            }
+            sorted_players() {
+                const dict = this.players_dict();
+                if (!dict)
+                    return [];
+                const keys = dict.keys() ?? [];
+                const players = [];
+                for (const key of keys) {
+                    if ($bog_blitz_quiz_fields.has(String(key)))
+                        continue;
+                    const player = dict.dive(key, $bog_blitz_player);
+                    if (!player)
+                        continue;
+                    if (player.IsHost()?.val())
+                        continue;
+                    players.push({
+                        key: String(key),
+                        name: player.Name()?.val() ?? String(key).slice(0, 8),
+                        score: player.Score()?.val() ?? 0,
+                    });
+                }
+                return players.sort((a, b) => b.score - a.score);
+            }
+            my_rank() {
+                const lord = this.my_lord_str();
+                const sorted = this.sorted_players();
+                const index = sorted.findIndex(p => p.key === lord);
+                return index >= 0 ? index + 1 : 0;
+            }
+            my_row_content() {
+                if (this.is_host())
+                    return [];
+                const lord = this.my_lord_str();
+                const sorted = this.sorted_players();
+                const me = sorted.find(p => p.key === lord);
+                if (!me)
+                    return [];
+                return [this.Row(`my_${lord}`)];
+            }
+            top_rows() {
+                const sorted = this.sorted_players();
+                return sorted.slice(0, 10).map((_, i) => this.Row(`top_${i}`));
+            }
+            bottom_rows() {
+                const sorted = this.sorted_players();
+                return sorted.slice(-10).reverse().map((_, i) => this.Row(`bottom_${i}`));
+            }
+            row_rank(key) {
+                const [type, index] = key.split('_');
+                if (type === 'my')
+                    return this.my_rank();
+                if (type === 'top')
+                    return Number(index) + 1;
+                if (type === 'bottom') {
+                    const sorted = this.sorted_players();
+                    return sorted.length - Number(index);
+                }
+                return 0;
+            }
+            row_name(key) {
+                const player = this.player_by_row_key(key);
+                return player?.name ?? '';
+            }
+            row_score(key) {
+                const player = this.player_by_row_key(key);
+                return player?.score ?? 0;
+            }
+            row_mine(key) {
+                const player = this.player_by_row_key(key);
+                return player?.key === this.my_lord_str();
+            }
+            player_by_row_key(key) {
+                const [type, index] = key.split('_');
+                const sorted = this.sorted_players();
+                if (type === 'my') {
+                    const lord = this.my_lord_str();
+                    return sorted.find(p => p.key === lord) ?? null;
+                }
+                if (type === 'top')
+                    return sorted[Number(index)] ?? null;
+                if (type === 'bottom') {
+                    return sorted[sorted.length - 1 - Number(index)] ?? null;
+                }
+                return null;
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "board_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "sorted_players", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "my_rank", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "my_row_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "top_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "bottom_rows", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "row_rank", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "row_name", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "row_score", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game_leaderboard.prototype, "row_mine", null);
+        $$.$bog_blitz_lobby_game_leaderboard = $bog_blitz_lobby_game_leaderboard;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game_leaderboard, {
+            flex: {
+                direction: 'row',
+                wrap: 'wrap',
+            },
+            gap: '1.5rem',
+            padding: { top: '0.5rem', left: '1rem', right: '1rem' },
+            width: '100%',
+            My_row: {
+                width: '100%',
+                background: { color: $mol_theme.card },
+                borderRadius: '0.75rem',
+                boxShadow: `0 0 0 2px ${$mol_theme.special}`,
+                padding: { top: '0.5rem', bottom: '0.5rem', left: '0.75rem', right: '0.75rem' },
+            },
+            Top: {
+                flex: { grow: 1, basis: 0, direction: 'column' },
+                minWidth: '15rem',
+            },
+            Bottom: {
+                flex: { grow: 1, basis: 0, direction: 'column' },
+                minWidth: '15rem',
+            },
+            Top_title: {
+                font: { size: '1rem', weight: 700 },
+                opacity: 0.5,
+                padding: { bottom: '0.25rem', left: '0.75rem' },
+            },
+            Bottom_title: {
+                font: { size: '1rem', weight: 700 },
+                opacity: 0.5,
+                padding: { bottom: '0.25rem', left: '0.75rem' },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_lobby_game_option) = class $bog_blitz_lobby_game_option extends ($.$mol_button_major) {
+		selected(){
+			return "false";
+		}
+		attr(){
+			return {...(super.attr()), "data-selected": (this.selected())};
+		}
+	};
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game_option, {
+            '@': {
+                'data-selected': {
+                    true: {
+                        boxShadow: `0 0 0 3px ${$mol_theme.special}`,
+                        opacity: 1,
+                    },
+                    false: {
+                        opacity: 0.4,
+                    },
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_lobby_game) = class $bog_blitz_lobby_game extends ($.$mol_view) {
+		game_content(){
+			return [];
+		}
+		Timer(){
+			const obj = new this.$.$bog_blitz_lobby_game_timer();
+			(obj.round_start) = () => ((this.round_start()));
+			(obj.duration) = () => ((this.duration()));
+			return obj;
+		}
+		State(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.state_label()));
+			return obj;
+		}
+		Question(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.current_question_text()));
+			return obj;
+		}
+		option_views(){
+			return [];
+		}
+		Options(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.option_views()));
+			return obj;
+		}
+		countdown_content(){
+			return [];
+		}
+		Countdown(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.countdown_content()));
+			return obj;
+		}
+		my_lord_str(){
+			return "";
+		}
+		Leaderboard(){
+			const obj = new this.$.$bog_blitz_lobby_game_leaderboard();
+			(obj.players_dict) = () => ((this.players_dict()));
+			(obj.my_lord_str) = () => ((this.my_lord_str()));
+			(obj.is_host) = () => ((this.is_host()));
+			return obj;
+		}
+		Final(){
+			const obj = new this.$.$bog_blitz_lobby_game_leaderboard();
+			(obj.players_dict) = () => ((this.players_dict()));
+			(obj.my_lord_str) = () => ((this.my_lord_str()));
+			(obj.is_host) = () => ((this.is_host()));
+			return obj;
+		}
+		option_selected(id){
+			return "false";
+		}
+		option_enabled(id){
+			return true;
+		}
+		option_text(id){
+			return "";
+		}
+		option_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		quiz_data(){
+			return null;
+		}
+		game_state(){
+			return "";
+		}
+		current_question(){
+			return null;
+		}
+		current_question_text(){
+			return "";
+		}
+		my_player(){
+			return null;
+		}
+		is_host(){
+			return false;
+		}
+		state_reading(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_reading"));
+		}
+		state_answering(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_answering"));
+		}
+		state_leaderboard(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_leaderboard"));
+		}
+		state_final(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_state_final"));
+		}
+		state_label(){
+			return "";
+		}
+		option_keys(){
+			return [];
+		}
+		round_start(){
+			return 0;
+		}
+		duration(){
+			return 0;
+		}
+		total_questions(){
+			return 0;
+		}
+		current_question_index(){
+			return 0;
+		}
+		players_dict(){
+			return null;
+		}
+		countdown_number(){
+			return 0;
+		}
+		countdown_text(){
+			return "";
+		}
+		Countdown_number(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.countdown_text()));
+			return obj;
+		}
+		sub(){
+			return (this.game_content());
+		}
+		question_content(){
+			return [
+				(this.Timer()), 
+				(this.State()), 
+				(this.Question()), 
+				(this.Options()), 
+				(this.Countdown())
+			];
+		}
+		leaderboard_content(){
+			return [
+				(this.Timer()), 
+				(this.State()), 
+				(this.Leaderboard())
+			];
+		}
+		final_content(){
+			return [(this.State()), (this.Final())];
+		}
+		Option(id){
+			const obj = new this.$.$bog_blitz_lobby_game_option();
+			(obj.selected) = () => ((this.option_selected(id)));
+			(obj.enabled) = () => ((this.option_enabled(id)));
+			(obj.title) = () => ((this.option_text(id)));
+			(obj.click) = (next) => ((this.option_click(id, next)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Timer"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "State"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Question"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Options"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Leaderboard"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Final"));
+	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "option_click"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown_number"));
+	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "Option"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
+            game_content() {
+                const state = this.game_state();
+                if (state === 'leaderboard')
+                    return this.leaderboard_content();
+                if (state === 'final')
+                    return this.final_content();
+                return this.question_content();
+            }
+            state_label() {
+                this.auto_advance();
+                const state = this.game_state();
+                switch (state) {
+                    case 'reading':
+                        return this.state_reading();
+                    case 'answering':
+                        return this.state_answering();
+                    case 'leaderboard':
+                        return this.state_leaderboard();
+                    case 'final':
+                        return this.state_final();
+                    default:
+                        return state;
+                }
+            }
+            option_keys() {
+                const question = this.current_question();
+                if (!question)
+                    return [];
+                const options = question.Options()?.remote_list() ?? [];
+                return options.map((_, i) => String(i));
+            }
+            option_views() {
+                return this.option_keys().map(key => this.Option(key));
+            }
+            option_text(key) {
+                const question = this.current_question();
+                if (!question)
+                    return '';
+                const options = question.Options()?.remote_list() ?? [];
+                const option = options[Number(key)];
+                return option?.Text()?.val() ?? '';
+            }
+            my_answer() {
+                const player = this.my_player();
+                return player?.Answer()?.val() ?? '';
+            }
+            has_answered() {
+                return this.my_answer() !== '';
+            }
+            option_enabled(key) {
+                if (this.is_host())
+                    return false;
+                return !this.has_answered();
+            }
+            option_selected(key) {
+                if (this.is_host())
+                    return '';
+                if (!this.has_answered())
+                    return '';
+                return String(this.my_answer() === key);
+            }
+            countdown_number(next) {
+                const start = this.round_start();
+                if (!start)
+                    return 0;
+                const elapsed = (Date.now() - start) / 1000;
+                const num = Math.ceil(3 - elapsed);
+                if (num <= 0)
+                    return 0;
+                new $mol_after_timeout(1000, () => this.countdown_number(null));
+                return num;
+            }
+            countdown_text() {
+                const num = this.countdown_number();
+                return num ? String(num) : '';
+            }
+            countdown_content() {
+                if (!this.is_host())
+                    return [];
+                const num = this.countdown_number();
+                if (!num)
+                    return [];
+                return [this.Countdown_number()];
+            }
+            option_click(key, e) {
+                if (e) {
+                    const player = this.my_player();
+                    if (!player)
+                        return;
+                    player.Answer('auto')?.val(key);
+                    player.Answer_time('auto')?.val(Date.now());
+                }
+                return null;
+            }
+            auto_advance(next) {
+                if (!this.is_host())
+                    return;
+                const state = this.game_state();
+                const start = this.round_start();
+                const duration = this.duration();
+                if (!start || !duration)
+                    return;
+                const remaining = start + duration * 1000 - Date.now();
+                if (remaining > 0) {
+                    new $mol_after_timeout(remaining + 100, () => this.auto_advance(null));
+                    return;
+                }
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return;
+                const index = this.current_question_index();
+                const total = this.total_questions();
+                if (state === 'reading') {
+                    quiz.Game_state('auto')?.val('answering');
+                    quiz.Round_start('auto')?.val(Date.now());
+                }
+                else if (state === 'answering') {
+                    this.calculate_scores();
+                    quiz.Game_state('auto')?.val('leaderboard');
+                    quiz.Round_start('auto')?.val(Date.now());
+                }
+                else if (state === 'leaderboard') {
+                    this.reset_answers();
+                    if (index + 1 < total) {
+                        quiz.Current_question('auto')?.val(index + 1);
+                        quiz.Game_state('auto')?.val('reading');
+                        quiz.Round_start('auto')?.val(Date.now());
+                    }
+                    else {
+                        quiz.Game_state('auto')?.val('final');
+                        quiz.Round_start('auto')?.val(0);
+                    }
+                }
+            }
+            correct_answer_key() {
+                const question = this.current_question();
+                if (!question)
+                    return '';
+                const options = question.Options()?.remote_list() ?? [];
+                for (let i = 0; i < options.length; i++) {
+                    const opt = options[i];
+                    if (opt?.Is_correct()?.val())
+                        return String(i);
+                }
+                return '';
+            }
+            calculate_scores() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return;
+                const correct = this.correct_answer_key();
+                const points_base = quiz.Points_base().val();
+                const time_multiplier = quiz.Time_multiplier().val();
+                const answer_duration = this.duration();
+                const round_start = this.round_start();
+                const dict = this.players_dict();
+                if (!dict)
+                    return;
+                const keys = dict.keys() ?? [];
+                for (const key of keys) {
+                    if ($bog_blitz_quiz_fields.has(String(key)))
+                        continue;
+                    const player = dict.dive(key, $bog_blitz_player);
+                    if (!player)
+                        continue;
+                    if (player.IsHost()?.val())
+                        continue;
+                    const answer = player.Answer()?.val() ?? '';
+                    const answer_time = player.Answer_time()?.val() ?? 0;
+                    const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration;
+                    const time_ratio = Math.max(0, 1 - elapsed / answer_duration);
+                    const base = points_base * (1 + time_ratio * time_multiplier);
+                    const points = answer === correct ? base : -base;
+                    const prev = player.Score()?.val() ?? 0;
+                    player.Score('auto')?.val(prev + points);
+                }
+            }
+            reset_answers() {
+                const dict = this.players_dict();
+                if (!dict)
+                    return;
+                const keys = dict.keys() ?? [];
+                for (const key of keys) {
+                    if ($bog_blitz_quiz_fields.has(String(key)))
+                        continue;
+                    const player = dict.dive(key, $bog_blitz_player);
+                    if (!player)
+                        continue;
+                    player.Answer('auto')?.val('');
+                    player.Answer_time('auto')?.val(0);
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "game_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "state_label", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "option_keys", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "option_views", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game.prototype, "option_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "my_answer", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "has_answered", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game.prototype, "option_enabled", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game.prototype, "option_selected", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "countdown_number", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "countdown_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "countdown_content", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_lobby_game.prototype, "option_click", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "auto_advance", null);
+        $$.$bog_blitz_lobby_game = $bog_blitz_lobby_game;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game, {
+            flex: {
+                direction: 'column',
+            },
+            align: { items: 'center' },
+            padding: { top: '2rem' },
+            State: {
+                font: { size: '1rem', weight: 500 },
+                opacity: 0.5,
+            },
+            Question: {
+                font: { size: '1.75rem', weight: 700 },
+                textAlign: 'center',
+                padding: { top: '1rem', bottom: '1.5rem' },
+            },
+            Options: {
+                flex: { direction: 'column' },
+                gap: '0.75rem',
+                width: '100%',
+                maxWidth: '30rem',
+                padding: { left: '1rem', right: '1rem' },
+            },
+            Countdown: {
+                position: 'fixed',
+                top: '20%',
+                left: 0,
+                right: 0,
+                height: '60%',
+                display: 'flex',
+                align: { items: 'center' },
+                justify: { content: 'center' },
+                pointerEvents: 'none',
+            },
+            Countdown_number: {
+                font: { size: '15rem', weight: 900 },
+                opacity: 0.15,
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$bog_blitz_lobby) = class $bog_blitz_lobby extends ($.$mol_page) {
 		counter_string(){
 			return "";
+		}
+		quiz_data(){
+			return null;
 		}
 		players_dict(){
 			return null;
@@ -28049,6 +29109,33 @@ var $;
 			(obj.click) = (next) => ((this.go_admin(next)));
 			return obj;
 		}
+		game_state(){
+			return "";
+		}
+		current_question(){
+			return null;
+		}
+		current_question_text(){
+			return "";
+		}
+		my_player(){
+			return null;
+		}
+		is_host(){
+			return false;
+		}
+		round_start(){
+			return 0;
+		}
+		duration(){
+			return 0;
+		}
+		total_questions(){
+			return 0;
+		}
+		current_question_index(){
+			return 0;
+		}
 		lobby_content(){
 			return [];
 		}
@@ -28069,6 +29156,7 @@ var $;
 			(obj.counter_string) = () => ((this.counter_string()));
 			(obj.land_id) = () => ((this.land_id()));
 			(obj.quiz_title) = () => ((this.quiz_title()));
+			(obj.quiz_data) = () => ((this.quiz_data()));
 			(obj.Players) = () => ((this.Host_players()));
 			return obj;
 		}
@@ -28092,6 +29180,22 @@ var $;
 			(obj.sub) = () => ([(this.No_game_text()), (this.Go_admin())]);
 			return obj;
 		}
+		Game_screen(){
+			const obj = new this.$.$bog_blitz_lobby_game();
+			(obj.quiz_data) = () => ((this.quiz_data()));
+			(obj.game_state) = () => ((this.game_state()));
+			(obj.current_question) = () => ((this.current_question()));
+			(obj.current_question_text) = () => ((this.current_question_text()));
+			(obj.my_player) = () => ((this.my_player()));
+			(obj.is_host) = () => ((this.is_host()));
+			(obj.round_start) = () => ((this.round_start()));
+			(obj.duration) = () => ((this.duration()));
+			(obj.total_questions) = () => ((this.total_questions()));
+			(obj.current_question_index) = () => ((this.current_question_index()));
+			(obj.players_dict) = () => ((this.players_dict()));
+			(obj.my_lord_str) = () => ((this.my_lord_str()));
+			return obj;
+		}
 		body(){
 			return (this.lobby_content());
 		}
@@ -28107,24 +29211,8 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby.prototype), "Join_screen"));
 	($mol_mem(($.$bog_blitz_lobby.prototype), "Waiting"));
 	($mol_mem(($.$bog_blitz_lobby.prototype), "No_game"));
+	($mol_mem(($.$bog_blitz_lobby.prototype), "Game_screen"));
 
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $bog_blitz_player extends $giper_baza_dict.with({
-            Score: $giper_baza_atom_real,
-            Name: $giper_baza_atom_text,
-            IsHost: $giper_baza_atom_bool,
-            Avatar: $giper_baza_atom_link_to(() => $giper_baza_file),
-        }) {
-        }
-        $$.$bog_blitz_player = $bog_blitz_player;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
 
 ;
 "use strict";
@@ -28211,6 +29299,45 @@ var $;
                     .map(k => String(k))
                     .filter(k => !$bog_blitz_quiz_fields.has(k));
             }
+            game_state() {
+                return this.quiz_data()?.Game_state()?.val() ?? '';
+            }
+            current_question() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return null;
+                const index = quiz.Current_question()?.val() ?? 0;
+                const questions = quiz.Questions()?.remote_list() ?? [];
+                return questions[index] ?? null;
+            }
+            current_question_text() {
+                return this.current_question()?.Text()?.val() ?? '';
+            }
+            round_start() {
+                return this.quiz_data()?.Round_start()?.val() ?? 0;
+            }
+            duration() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return 0;
+                const state = this.game_state();
+                if (state === 'reading')
+                    return quiz.Time_read()?.val() ?? 10;
+                if (state === 'answering')
+                    return quiz.Time_answer()?.val() ?? 20;
+                if (state === 'leaderboard')
+                    return quiz.Time_leaderboard()?.val() ?? 5;
+                return 0;
+            }
+            total_questions() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return 0;
+                return quiz.Questions()?.remote_list()?.length ?? 0;
+            }
+            current_question_index() {
+                return this.quiz_data()?.Current_question()?.val() ?? 0;
+            }
             lobby_content() {
                 const land = this.land();
                 if (!land) {
@@ -28218,6 +29345,10 @@ var $;
                 }
                 if (!this.my_player()) {
                     return [this.Join_screen()];
+                }
+                const state = this.game_state();
+                if (state) {
+                    return [this.Game_screen()];
                 }
                 if (this.is_host())
                     return [this.Host()];
@@ -28273,6 +29404,27 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "player_keys", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "game_state", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "current_question", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "current_question_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "round_start", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "duration", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "total_questions", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "current_question_index", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "lobby_content", null);
@@ -33822,9 +34974,6 @@ var $;
             screen(next) {
                 if (next !== undefined) {
                     this.mobile_menu_showed(false);
-                    if (next === 'admin') {
-                        this.$.$mol_state_arg.value('land', null);
-                    }
                     if (next === 'lobby') {
                         this.$.$mol_state_arg.value('quiz', null);
                     }
