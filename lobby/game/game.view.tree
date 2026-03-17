@@ -13,6 +13,9 @@ $bog_blitz_lobby_game $mol_view
 	option_keys /string
 	round_start 0
 	duration 0
+	total_questions 0
+	current_question_index 0
+	players_dict null
 	countdown_number 0
 	countdown_text \
 	Countdown_number $mol_paragraph

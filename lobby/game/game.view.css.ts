@@ -30,7 +30,7 @@ namespace $.$$ {
 			display: 'flex',
 			align: { items: 'center' },
 			justify: { content: 'center' },
-			pointer: { events: 'none' },
+			pointerEvents: 'none',
 		},
 		Countdown_number: {
 			font: { size: '15rem', weight: 900 },

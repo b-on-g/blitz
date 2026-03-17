@@ -126,7 +126,20 @@ namespace $.$$ {
 			const state = this.game_state()
 			if (state === 'reading') return quiz.Time_read()?.val() ?? 10
 			if (state === 'answering') return quiz.Time_answer()?.val() ?? 20
+			if (state === 'leaderboard') return quiz.Time_leaderboard()?.val() ?? 5
 			return 0
+		}
+
+		@$mol_mem
+		total_questions() {
+			const quiz = this.quiz_data()
+			if (!quiz) return 0
+			return quiz.Questions()?.remote_list()?.length ?? 0
+		}
+
+		@$mol_mem
+		current_question_index() {
+			return this.quiz_data()?.Current_question()?.val() ?? 0
 		}
 
 		@$mol_mem

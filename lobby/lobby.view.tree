@@ -38,4 +38,7 @@ $bog_blitz_lobby $mol_page
 		is_host <= is_host false
 		round_start <= round_start 0
 		duration <= duration 0
+		total_questions <= total_questions 0
+		current_question_index <= current_question_index 0
+		players_dict <= players_dict null
 	body <= lobby_content /
