@@ -5,13 +5,13 @@ namespace $.$$ {
 				direction: 'column',
 			},
 			padding: {
-				top: 32,
-				bottom: 32,
-				left: 16,
-				right: 16,
+				top: '2rem',
+				bottom: '2rem',
+				left: '1rem',
+				right: '1rem',
 			},
 			gap: '1.5rem',
-			maxWidth: 480,
+			maxWidth: '480px',
 			align: {
 				self: 'center',
 				items: 'center',
@@ -22,27 +22,27 @@ namespace $.$$ {
 				content: 'center',
 			},
 		},
-		Avatar_button: {
+		Avatar: {
 			borderRadius: '50%',
 			overflow: 'hidden',
-			width: 120,
-			height: 120,
+			width: '80px',
+			height: '80px',
 			flex: {
 				shrink: 0,
 			},
 		},
 		Avatar_image: {
-			width: 120,
-			height: 120,
+			width: '80px',
+			height: '80px',
 			objectFit: 'cover',
 			borderRadius: '50%',
 		},
 		Avatar_icon: {
-			width: 120,
-			height: 120,
+			width: '80px',
+			height: '80px',
 			borderRadius: '50%',
 			font: {
-				size: '4rem',
+				size: '2.5rem',
 			},
 		},
 		Avatar_upload_hint: {
@@ -76,12 +76,12 @@ namespace $.$$ {
 				content: 'space-between',
 			},
 			padding: {
-				top: 8,
-				bottom: 8,
-				left: 12,
-				right: 12,
+				top: '0.5rem',
+				bottom: '0.5rem',
+				left: '0.75rem',
+				right: '0.75rem',
 			},
-			borderRadius: 8,
+			borderRadius: '8px',
 			background: {
 				color: $mol_theme.card,
 			},
@@ -103,7 +103,7 @@ namespace $.$$ {
 				weight: 600,
 			},
 			margin: {
-				top: 8,
+				top: '0.5rem',
 			},
 		},
 		History: {
@@ -112,12 +112,12 @@ namespace $.$$ {
 		},
 		History_row: {
 			padding: {
-				top: 10,
-				bottom: 10,
-				left: 12,
-				right: 12,
+				top: '0.625rem',
+				bottom: '0.625rem',
+				left: '0.75rem',
+				right: '0.75rem',
 			},
-			borderRadius: 8,
+			borderRadius: '8px',
 			background: {
 				color: $mol_theme.card,
 			},
@@ -157,18 +157,18 @@ namespace $.$$ {
 				items: 'center',
 			},
 			padding: {
-				top: 16,
-				bottom: 16,
-				left: 16,
-				right: 16,
+				top: '1rem',
+				bottom: '1rem',
+				left: '1rem',
+				right: '1rem',
 			},
-			borderRadius: 12,
+			borderRadius: '12px',
 			background: {
 				color: $mol_theme.card,
 			},
 			width: '100%',
 			margin: {
-				top: 8,
+				top: '0.5rem',
 			},
 		},
 		Fun_title: {
@@ -177,7 +177,7 @@ namespace $.$$ {
 				weight: 600,
 			},
 			margin: {
-				bottom: 4,
+				bottom: '0.25rem',
 			},
 		},
 		Fun_text: {

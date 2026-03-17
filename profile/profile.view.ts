@@ -32,6 +32,10 @@ namespace $.$$ {
 
 		@$mol_mem
 		avatar_uri() {
+			// Show local preview immediately after upload
+			const files = this.avatar_files()
+			if (files.length) return URL.createObjectURL(files[0])
+
 			const profile = this.profile_data()
 			const file = profile.Avatar()?.remote()
 			if (!file) return ''
@@ -54,7 +58,7 @@ namespace $.$$ {
 		@$mol_mem
 		avatar_preview() {
 			const uri = this.avatar_uri()
-			if (uri) return this.Avatar_button()
+			if (uri) return this.Avatar_image()
 			return this.Avatar_icon()
 		}
 
