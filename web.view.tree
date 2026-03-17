@@ -2066,11 +2066,12 @@ $bog_blitz_lobby_waiting $mol_page
 $bog_blitz_lobby_game_timer $mol_view
 	duration 0
 	round_start 0
+	paused_at 0
 	sub /
 		<= Bar $mol_view
 			style *
 				^
-				animation <= bar_animation \none
+				width <= bar_width \100%
 
 $bog_blitz_lobby_game_leaderboard_row $mol_view
 	rank 0
@@ -2119,6 +2120,9 @@ $bog_blitz_lobby_game_option $mol_button_major
 	attr *
 		^
 		data-selected <= selected \false
+	image_uri \
+	Option_image $mol_image
+		uri <= image_uri
 
 $bog_blitz_lobby_game $mol_view
 	quiz_data null
@@ -2127,10 +2131,12 @@ $bog_blitz_lobby_game $mol_view
 	current_question_text \
 	my_player null
 	is_host false
+	paused_at 0
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_leaderboard @ \Leaderboard
 	state_final @ \Final Results
+	state_paused @ \Paused
 	state_label \
 	option_keys /string
 	round_start 0
@@ -2144,22 +2150,42 @@ $bog_blitz_lobby_game $mol_view
 	Countdown_number $mol_paragraph
 		title <= countdown_text
 	sub <= game_content /
+	Pause_button $mol_button_minor
+		title <= pause_label @ \Pause
+		click? <=> pause_click?event null
+	Resume_button $mol_button_minor
+		title <= resume_label @ \Resume
+		click? <=> resume_click?event null
+	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
+			paused_at <= paused_at
+		<= Host_controls $mol_view
+			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
+		<= Question_image $mol_image
+			uri <= question_image_uri \
 		<= Question $mol_paragraph
 			title <= current_question_text
-		<= Options $mol_view
-			sub <= option_views /
+		<= Answer_area $mol_view
+			sub <= answer_views /
 		<= Countdown $mol_view
 			sub <= countdown_content /
+	Answer_input $mol_string
+		hint @ \Type your answer...
+		value? <=> text_draft? \
+		enabled <= text_input_enabled true
+		submit?event <=> text_submit?event null
 	leaderboard_content /
-		<= Timer $bog_blitz_lobby_game_timer
+		<= Leaderboard_timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
+			paused_at <= paused_at
+		<= Host_controls $mol_view
+			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Leaderboard $bog_blitz_lobby_game_leaderboard
@@ -2177,6 +2203,7 @@ $bog_blitz_lobby_game $mol_view
 		selected <= option_selected* \false
 		enabled <= option_enabled* true
 		title <= option_text* \
+		image_uri <= option_image_uri* \
 		click? <=> option_click*? null
 
 $bog_blitz_lobby $mol_page
@@ -2217,6 +2244,7 @@ $bog_blitz_lobby $mol_page
 		current_question_text <= current_question_text \
 		my_player <= my_player null
 		is_host <= is_host false
+		paused_at <= paused_at 0
 		round_start <= round_start 0
 		duration <= duration 0
 		total_questions <= total_questions 0

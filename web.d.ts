@@ -14449,6 +14449,7 @@ declare namespace $.$$ {
             readonly Game_state: (auto?: any) => $giper_baza_atom_text | null;
             readonly Current_question: (auto?: any) => $giper_baza_atom_real | null;
             readonly Round_start: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Paused_at: (auto?: any) => $giper_baza_atom_real | null;
         }>;
         path: string;
     } & {
@@ -14516,6 +14517,7 @@ declare namespace $.$$ {
             readonly Game_state: typeof $giper_baza_atom_text;
             readonly Current_question: typeof $giper_baza_atom_real;
             readonly Round_start: typeof $giper_baza_atom_real;
+            readonly Paused_at: typeof $giper_baza_atom_real;
         };
     };
     export class $bog_blitz_quiz extends $bog_blitz_quiz_base {
@@ -15045,16 +15047,17 @@ declare namespace $ {
 
 	type $mol_view__style_bog_blitz_lobby_game_timer_1 = $mol_type_enforce<
 		({ 
-			'animation': ReturnType< $bog_blitz_lobby_game_timer['bar_animation'] >,
+			'width': ReturnType< $bog_blitz_lobby_game_timer['bar_width'] >,
 		})  & ReturnType< $mol_view['style'] >
 		,
 		ReturnType< $mol_view['style'] >
 	>
 	export class $bog_blitz_lobby_game_timer extends $mol_view {
-		bar_animation( ): string
+		bar_width( ): string
 		Bar( ): $mol_view
 		duration( ): number
 		round_start( ): number
+		paused_at( ): number
 		sub( ): readonly(any)[]
 	}
 	
@@ -15063,7 +15066,7 @@ declare namespace $ {
 //# sourceMappingURL=timer.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_lobby_game_timer extends $.$bog_blitz_lobby_game_timer {
-        bar_animation(): string;
+        bar_width(next?: string): string;
     }
 }
 
@@ -15354,16 +15357,29 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
+	type $mol_image__uri_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
 	export class $bog_blitz_lobby_game_option extends $mol_button_major {
 		selected( ): string
 		attr( ): ({ 
 			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
 		})  & ReturnType< $mol_button_major['attr'] >
+		image_uri( ): string
+		Option_image( ): $mol_image
 	}
 	
 }
 
 //# sourceMappingURL=option.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
+        sub(): (string | $mol_view)[];
+    }
+}
+
 declare namespace $.$$ {
 }
 
@@ -15379,96 +15395,184 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_3 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_4 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['host_controls'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_5 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['state_label'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_4 = $mol_type_enforce<
+	type $mol_image__uri_bog_blitz_lobby_game_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['question_image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_game_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_views'] >
+	type $mol_view__sub_bog_blitz_lobby_game_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['answer_views'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_game_6 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_game_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['countdown_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_7 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_timer__round_start_bog_blitz_lobby_game_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['round_start'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['round_start'] >
+	>
+	type $bog_blitz_lobby_game_timer__duration_bog_blitz_lobby_game_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['duration'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
+	>
+	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_13 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_8 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_14 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_9 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_15 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['is_host'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_10 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_11 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_12 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['is_host'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_13 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_game_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['countdown_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_14 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_game_20 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['pause_label'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_game_21 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['pause_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_game_22 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['resume_label'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_game_23 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['resume_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_string__hint_bog_blitz_lobby_game_24 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_blitz_lobby_game_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_draft'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_string__enabled_bog_blitz_lobby_game_26 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
+		,
+		ReturnType< $mol_string['enabled'] >
+	>
+	type $mol_string__submit_bog_blitz_lobby_game_27 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_submit'] >
+		,
+		ReturnType< $mol_string['submit'] >
+	>
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_selected'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_15 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_16 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_17 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_31 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
+	>
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
 	>
 	export class $bog_blitz_lobby_game extends $mol_view {
 		game_content( ): readonly(any)[]
+		pause_label( ): string
+		pause_click( next?: any ): any
+		resume_label( ): string
+		resume_click( next?: any ): any
 		Timer( ): $bog_blitz_lobby_game_timer
+		host_controls( ): readonly(any)[]
+		Host_controls( ): $mol_view
 		State( ): $mol_paragraph
+		question_image_uri( ): string
+		Question_image( ): $mol_image
 		Question( ): $mol_paragraph
-		option_views( ): readonly(any)[]
-		Options( ): $mol_view
+		answer_views( ): readonly(any)[]
+		Answer_area( ): $mol_view
 		countdown_content( ): readonly(any)[]
 		Countdown( ): $mol_view
+		text_draft( next?: string ): string
+		text_input_enabled( ): boolean
+		text_submit( next?: any ): any
+		Leaderboard_timer( ): $bog_blitz_lobby_game_timer
 		my_lord_str( ): string
 		Leaderboard( ): $bog_blitz_lobby_game_leaderboard
 		Final( ): $bog_blitz_lobby_game_leaderboard
 		option_selected( id: any): string
 		option_enabled( id: any): boolean
 		option_text( id: any): string
+		option_image_uri( id: any): string
 		option_click( id: any, next?: any ): any
 		quiz_data( ): any
 		game_state( ): string
@@ -15476,10 +15580,12 @@ declare namespace $ {
 		current_question_text( ): string
 		my_player( ): any
 		is_host( ): boolean
+		paused_at( ): number
 		state_reading( ): string
 		state_answering( ): string
 		state_leaderboard( ): string
 		state_final( ): string
+		state_paused( ): string
 		state_label( ): string
 		option_keys( ): readonly(string)[]
 		round_start( ): number
@@ -15491,7 +15597,11 @@ declare namespace $ {
 		countdown_text( ): string
 		Countdown_number( ): $mol_paragraph
 		sub( ): ReturnType< $bog_blitz_lobby_game['game_content'] >
+		Pause_button( ): $mol_button_minor
+		Resume_button( ): $mol_button_minor
+		question_type( ): string
 		question_content( ): readonly(any)[]
+		Answer_input( ): $mol_string
 		leaderboard_content( ): readonly(any)[]
 		final_content( ): readonly(any)[]
 		Option( id: any): $bog_blitz_lobby_game_option
@@ -15503,10 +15613,20 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
         game_content(): readonly any[];
+        is_paused(): boolean;
         state_label(): string;
+        pause_click(next?: Event): void;
+        resume_click(next?: Event): void;
+        host_controls(): $mol_button_minor[];
+        question_type(): string;
+        question_image_uri(): string;
+        answer_views(): $.$mol_string[] | $.$bog_blitz_lobby_game_option[];
+        text_submit(next?: Event): void;
+        text_input_enabled(): boolean;
         option_keys(): string[];
-        option_views(): $bog_blitz_lobby_game_option[];
+        option_views(): $.$bog_blitz_lobby_game_option[];
         option_text(key: string): string;
+        option_image_uri(key: string): string;
         my_answer(): string;
         has_answered(): boolean;
         option_enabled(key: string): boolean;
@@ -15514,9 +15634,12 @@ declare namespace $.$$ {
         countdown_number(next?: number): number;
         countdown_text(): string;
         countdown_content(): $.$mol_paragraph[];
+        last_tick_num: number;
+        play_tick(num: number): void;
         option_click(key: string, e?: any): null | undefined;
         auto_advance(next?: null): void;
         correct_answer_key(): string;
+        is_text_answer_correct(answer: string): boolean;
         calculate_scores(): void;
         reset_answers(): void;
     }
@@ -15647,32 +15770,37 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game['is_host'] >
 	>
-	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_25 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__paused_at_bog_blitz_lobby_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+	>
+	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['round_start'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['round_start'] >
 	>
-	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_26 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['duration'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['duration'] >
 	>
-	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_27 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['total_questions'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['total_questions'] >
 	>
-	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_28 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['current_question_index'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
 	>
-	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_29 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['players_dict'] >
 	>
-	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_30 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_lord_str'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
@@ -15695,6 +15823,7 @@ declare namespace $ {
 		current_question_text( ): string
 		my_player( ): any
 		is_host( ): boolean
+		paused_at( ): number
 		round_start( ): number
 		duration( ): number
 		total_questions( ): number
@@ -15769,6 +15898,7 @@ declare namespace $.$$ {
         game_state(): string;
         current_question(): $bog_blitz_question | null;
         current_question_text(): string;
+        paused_at(): number;
         round_start(): number;
         duration(): number;
         total_questions(): number;
