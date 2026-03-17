@@ -16603,9 +16603,12 @@ var $;
     (function ($$) {
         class $bog_blitz_lobby_join extends $.$bog_blitz_lobby_join {
             avatar_preview() {
-                const uri = this.avatar_uri();
-                if (uri)
-                    return this.Avatar_image();
+                try {
+                    const uri = this.avatar_uri();
+                    if (uri)
+                        return this.Avatar_image();
+                }
+                catch { }
                 return this.Avatar_icon();
             }
             avatar_uri() {
@@ -29676,6 +29679,9 @@ var $;
 			(obj.title) = () => ((this.stat_value(id)));
 			return obj;
 		}
+		game_arg(id){
+			return {};
+		}
 		game_title(id){
 			return "";
 		}
@@ -29727,7 +29733,8 @@ var $;
 			return obj;
 		}
 		Game_row(id){
-			const obj = new this.$.$mol_view();
+			const obj = new this.$.$mol_link();
+			(obj.arg) = () => ((this.game_arg(id)));
 			(obj.sub) = () => ([(this.Game_info(id)), (this.Game_score(id))]);
 			return obj;
 		}
@@ -29926,6 +29933,10 @@ var $;
             game_record(key) {
                 return this.games_filtered()[Number(key)];
             }
+            game_arg(key) {
+                const land = this.game_record(key)?.Land_link()?.val() ?? '';
+                return { screen: 'lobby', land };
+            }
             game_title(key) {
                 return this.game_record(key)?.Quiz_title()?.val() ?? 'Untitled';
             }
@@ -29960,9 +29971,6 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "all_stats", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "stat_rows", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "persona_text", null);

@@ -3106,7 +3106,8 @@ $bog_blitz_profile_page $mol_page
 				title <= stat_label* \
 			<= Stat_value* $mol_paragraph
 				title <= stat_value* \
-	Game_row* $mol_view
+	Game_row* $mol_link
+		arg <= game_arg* *
 		sub /
 			<= Game_info* $mol_view
 				sub /

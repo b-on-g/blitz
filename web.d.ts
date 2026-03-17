@@ -20740,10 +20740,15 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_29 = $mol_type_enforce<
+	type $mol_link__arg_bog_blitz_profile_page_29 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['game_arg'] >
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_blitz_profile_page_30 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
 		avatar_preview( ): any
@@ -20776,6 +20781,7 @@ declare namespace $ {
 		Stat_label( id: any): $mol_paragraph
 		stat_value( id: any): string
 		Stat_value( id: any): $mol_paragraph
+		game_arg( id: any): Record<string, any>
 		game_title( id: any): string
 		Game_title( id: any): $mol_paragraph
 		game_details( id: any): string
@@ -20788,7 +20794,7 @@ declare namespace $ {
 		Avatar_image( ): $mol_image
 		Avatar_icon( ): $mol_avatar
 		Stat_row( id: any): $mol_view
-		Game_row( id: any): $mol_view
+		Game_row( id: any): $mol_link
 	}
 	
 }
@@ -20810,8 +20816,12 @@ declare namespace $.$$ {
         games_history(): $bog_blitz_game_record[];
         games_filtered(): $bog_blitz_game_record[];
         games_empty_text(): "" | "Пока нет сыгранных игр" | "Ничего не найдено";
-        game_rows(): $mol_view[];
+        game_rows(): $.$mol_link[];
         game_record(key: string): $bog_blitz_game_record;
+        game_arg(key: string): {
+            screen: string;
+            land: string;
+        };
         game_title(key: string): string;
         game_details(key: string): string;
         game_score(key: string): string;
