@@ -30,7 +30,6 @@ namespace $.$$ {
 
 		@$mol_mem
 		avatar_uri() {
-			// Show local preview immediately after upload
 			const files = this.avatar_files()
 			if (files.length) return URL.createObjectURL(files[0])
 
@@ -74,7 +73,6 @@ namespace $.$$ {
 			return [String(played), String(total), String(wins), String(avg), String(best), winRate]
 		}
 
-		@$mol_mem
 		stat_rows() {
 			return [0, 1, 2, 3, 4, 5].map(i => this.Stat_row(String(i)))
 		}
@@ -143,6 +141,11 @@ namespace $.$$ {
 
 		game_record(key: string) {
 			return this.games_filtered()[Number(key)]
+		}
+
+		game_arg(key: string) {
+			const land = this.game_record(key)?.Land_link()?.val() ?? ''
+			return { screen: 'lobby', land }
 		}
 
 		game_title(key: string) {
