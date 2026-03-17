@@ -17747,6 +17747,9 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		land_id(){
+			return "";
+		}
 		quiz_data(){
 			return null;
 		}
@@ -17963,6 +17966,7 @@ var $;
                 record.Place('auto')?.val(place);
                 record.Players_count('auto')?.val(this.players_count());
                 record.Date('auto')?.val(Date.now());
+                record.Land_link('auto')?.val(this.land_id());
             }
             my_place() {
                 const dict = this.players_dict();
@@ -19007,6 +19011,7 @@ var $;
 		}
 		Game_screen(){
 			const obj = new this.$.$bog_blitz_lobby_game();
+			(obj.land_id) = () => ((this.land_id()));
 			(obj.quiz_data) = () => ((this.quiz_data()));
 			(obj.game_state) = () => ((this.game_state()));
 			(obj.current_question) = () => ((this.current_question()));
@@ -19119,12 +19124,20 @@ var $;
                         const profile_name = profile.Name()?.val() ?? '';
                         const name = join_name || profile_name || '';
                         player.Name('auto')?.val(name);
+                        if (join_name) {
+                            profile.Name('auto')?.val(join_name);
+                        }
                         const files = this.my_avatar_files();
                         if (files?.length) {
                             const store = player.Avatar(null).ensure(null);
                             if (store) {
                                 store.blob(files[0]);
                                 player.Avatar(null).remote(store);
+                            }
+                            const profile_store = profile.Avatar(null).ensure(null);
+                            if (profile_store) {
+                                profile_store.blob(files[0]);
+                                profile.Avatar(null).remote(profile_store);
                             }
                         }
                         else {
@@ -29980,7 +29993,6 @@ var $;
             },
             Avatar: {
                 borderRadius: '50%',
-                overflow: 'hidden',
                 width: '80px',
                 height: '80px',
                 flex: {
