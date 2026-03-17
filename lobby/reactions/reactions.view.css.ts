@@ -6,7 +6,7 @@ namespace $.$$ {
 	} as const
 
 	const btn_style = {
-		font: { size: '1.5rem' },
+		font: { size: '2rem' },
 		padding: { left: '0.25rem', right: '0.25rem', top: '0.25rem', bottom: '0.25rem' },
 		minWidth: '2.5rem',
 		minHeight: '2.5rem',
@@ -19,10 +19,6 @@ namespace $.$$ {
 	} as const
 
 	$mol_style_define($bog_blitz_lobby_reactions, {
-		position: 'fixed',
-		bottom: '1rem',
-		right: '1rem',
-		zIndex: 100,
 		flex: { direction: 'row' },
 		gap: '0.25rem',
 		align: { items: 'flex-end' },

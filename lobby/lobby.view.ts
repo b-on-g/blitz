@@ -3,6 +3,13 @@ namespace $.$$ {
 
 	export class $bog_blitz_lobby extends $.$bog_blitz_lobby {
 		@$mol_mem
+		sub() {
+			const base = super.sub()
+			if (!this.my_player()) return base
+			return [...base, this.Reactions()]
+		}
+
+		@$mol_mem
 		land() {
 			const link = this.$.$mol_state_arg.value('land') ?? ''
 			if (!link) return null
@@ -159,11 +166,11 @@ namespace $.$$ {
 
 			const state = this.game_state()
 			if (state) {
-				return [this.Game_screen(), this.Reactions()]
+				return [this.Game_screen()]
 			}
 
-			if (this.is_host()) return [this.Host(), this.Reactions()]
-			return [this.Waiting(), this.Reactions()]
+			if (this.is_host()) return [this.Host()]
+			return [this.Waiting()]
 		}
 
 		@$mol_mem
