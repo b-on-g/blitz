@@ -100,15 +100,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		stat_rows() {
-			const stats = [
-				{ label: '🎮 Игр сыграно', value: String(this.games_played()) },
-				{ label: '⭐ Общий счёт', value: String(this.total_score()) },
-				{ label: '🏆 Побед', value: String(this.wins()) },
-				{ label: '📊 Средний счёт', value: String(this.avg_score()) },
-				{ label: '🔥 Лучший счёт', value: String(this.best_score()) },
-				{ label: '🎯 Винрейт', value: this.win_rate() },
-			]
-			return stats.map((s, i) => this.Stat_row(String(i)))
+			return [0, 1, 2, 3, 4, 5].map(i => this.Stat_row(String(i)))
 		}
 
 		stat_label(key: string) {
@@ -117,51 +109,75 @@ namespace $.$$ {
 		}
 
 		stat_value(key: string) {
-			const values = [
-				String(this.games_played()),
-				String(this.total_score()),
-				String(this.wins()),
-				String(this.avg_score()),
-				String(this.best_score()),
-				this.win_rate(),
-			]
-			return values[Number(key)] ?? ''
+			try {
+				const values = [
+					String(this.games_played()),
+					String(this.total_score()),
+					String(this.wins()),
+					String(this.avg_score()),
+					String(this.best_score()),
+					this.win_rate(),
+				]
+				return values[Number(key)] ?? '0'
+			} catch {
+				return '...'
+			}
 		}
 
 		@$mol_mem
 		history_records() {
 			const profile = this.profile_data()
 			const list = profile.Games_history()?.remote_list() ?? []
-			return list as $bog_blitz_game_record[]
+			// Filter out phantom/empty records
+			return (list as $bog_blitz_game_record[]).filter(r => {
+				const title = r.Quiz_title()?.val()
+				const date = r.Date()?.val()
+				return title || date
+			})
+		}
+
+		@$mol_mem
+		history_sorted() {
+			const records = this.history_records()
+			// Create index pairs and sort by date descending (newest first)
+			const indexed = records.map((r, i) => ({ i, date: r.Date()?.val() ?? 0 }))
+			indexed.sort((a, b) => b.date - a.date)
+			return indexed
 		}
 
 		@$mol_mem
 		history_rows() {
-			const records = this.history_records()
-			if (!records.length) return []
-			return records
-				.map((_: unknown, i: number) => this.History_row(String(i)))
-				.reverse()
+			const sorted = this.history_sorted()
+			if (!sorted.length) return []
+			return sorted.map((_, viewIdx) => this.History_row(String(viewIdx)))
+		}
+
+		history_record_index(viewKey: string) {
+			return this.history_sorted()[Number(viewKey)]?.i ?? 0
 		}
 
 		history_land(key: string) {
-			const record = this.history_records()[Number(key)]
+			const idx = this.history_record_index(key)
+			const record = this.history_records()[idx]
 			return record?.Land_link()?.val() ?? ''
 		}
 
 		history_title_text(key: string) {
-			const record = this.history_records()[Number(key)]
+			const idx = this.history_record_index(key)
+			const record = this.history_records()[idx]
 			return record?.Quiz_title()?.val() ?? 'Untitled'
 		}
 
 		history_score(key: string) {
-			const record = this.history_records()[Number(key)]
+			const idx = this.history_record_index(key)
+			const record = this.history_records()[idx]
 			const score = record?.Score()?.val() ?? 0
 			return `${Math.round(score)} pts`
 		}
 
 		history_place(key: string) {
-			const record = this.history_records()[Number(key)]
+			const idx = this.history_record_index(key)
+			const record = this.history_records()[idx]
 			const place = record?.Place()?.val() ?? 0
 			const count = record?.Players_count()?.val() ?? 0
 			if (!place) return ''
@@ -169,7 +185,8 @@ namespace $.$$ {
 		}
 
 		history_date(key: string) {
-			const record = this.history_records()[Number(key)]
+			const idx = this.history_record_index(key)
+			const record = this.history_records()[idx]
 			const ts = record?.Date()?.val() ?? 0
 			if (!ts) return ''
 			const d = new Date(ts)
