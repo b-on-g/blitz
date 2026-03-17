@@ -1,5 +1,11 @@
 namespace $.$$ {
 	$mol_style_define($bog_blitz_lobby_game_option, {
+		Option_image: {
+			maxWidth: '8rem',
+			maxHeight: '6rem',
+			objectFit: 'contain',
+			borderRadius: '0.5rem',
+		},
 		'@': {
 			'data-selected': {
 				true: {

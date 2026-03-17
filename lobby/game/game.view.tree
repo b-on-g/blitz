@@ -22,20 +22,27 @@ $bog_blitz_lobby_game $mol_view
 	Countdown_number $mol_paragraph
 		title <= countdown_text
 	sub <= game_content /
+	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
 		<= State $mol_paragraph
 			title <= state_label
+		<= Question_image $mol_image
+			uri <= question_image_uri \
 		<= Question $mol_paragraph
 			title <= current_question_text
-		<= Options $mol_view
-			sub <= option_views /
+		<= Answer_area $mol_view
+			sub <= answer_views /
 		<= Countdown $mol_view
 			sub <= countdown_content /
+	Answer_input $mol_string
+		hint @ \Type your answer...
+		value? <=> text_answer? \
+		enabled <= text_input_enabled true
 	leaderboard_content /
-		<= Timer $bog_blitz_lobby_game_timer
+		<= Leaderboard_timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
 		<= State $mol_paragraph
@@ -55,4 +62,5 @@ $bog_blitz_lobby_game $mol_view
 		selected <= option_selected* \false
 		enabled <= option_enabled* true
 		title <= option_text* \
+		image_uri <= option_image_uri* \
 		click? <=> option_click*? null

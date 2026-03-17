@@ -5,7 +5,13 @@ namespace $.$$ {
 			const state = this.game_state()
 			if (state === 'leaderboard') return this.leaderboard_content()
 			if (state === 'final') return this.final_content()
-			return this.question_content()
+
+			const parts: $mol_view[] = [this.Timer(), this.State()]
+			if (this.question_image_uri()) parts.push(this.Question_image())
+			parts.push(this.Question())
+			parts.push(this.Answer_area())
+			parts.push(this.Countdown())
+			return parts
 		}
 
 		@$mol_mem
@@ -24,6 +30,49 @@ namespace $.$$ {
 				default:
 					return state
 			}
+		}
+
+		@$mol_mem
+		question_type() {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return 'choice'
+			return question.Type()?.val() ?? 'choice'
+		}
+
+		@$mol_mem
+		question_image_uri() {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return ''
+			const file = question.Image()?.remote()
+			if (!file) return ''
+			return file.uri() ?? ''
+		}
+
+		@$mol_mem
+		answer_views() {
+			if (this.question_type() === 'text_input') {
+				return [this.Answer_input()]
+			}
+			return this.option_views()
+		}
+
+		@$mol_mem
+		text_answer(next?: string) {
+			if (next !== undefined) {
+				const player = this.my_player() as $bog_blitz_player | null
+				if (!player) return ''
+				player.Answer('auto')?.val(next)
+				player.Answer_time('auto')?.val(Date.now())
+				return next
+			}
+			return this.my_answer()
+		}
+
+		@$mol_mem
+		text_input_enabled() {
+			if (this.is_host()) return false
+			if (this.game_state() !== 'answering') return false
+			return !this.has_answered()
 		}
 
 		@$mol_mem
@@ -46,6 +95,18 @@ namespace $.$$ {
 			const options = question.Options()?.remote_list() ?? []
 			const option = options[Number(key)] as $bog_blitz_question_option | undefined
 			return option?.Text()?.val() ?? ''
+		}
+
+		@$mol_mem_key
+		option_image_uri(key: string) {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return ''
+			const options = question.Options()?.remote_list() ?? []
+			const option = options[Number(key)] as $bog_blitz_question_option | undefined
+			if (!option) return ''
+			const file = option.Image()?.remote()
+			if (!file) return ''
+			return file.uri() ?? ''
 		}
 
 		@$mol_mem
@@ -153,12 +214,22 @@ namespace $.$$ {
 		correct_answer_key() {
 			const question = this.current_question() as $bog_blitz_question | null
 			if (!question) return ''
+			if (this.question_type() === 'text_input') return '__text_input__'
 			const options = question.Options()?.remote_list() ?? []
 			for (let i = 0; i < options.length; i++) {
 				const opt = options[i] as $bog_blitz_question_option | undefined
 				if (opt?.Is_correct()?.val()) return String(i)
 			}
 			return ''
+		}
+
+		is_text_answer_correct(answer: string) {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return false
+			const correct_text = question.Correct_text()?.val() ?? ''
+			if (!correct_text) return false
+			const variants = correct_text.split(',').map(v => v.trim().toLowerCase())
+			return variants.includes(answer.trim().toLowerCase())
 		}
 
 		calculate_scores() {
@@ -186,7 +257,10 @@ namespace $.$$ {
 				const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration
 				const time_ratio = Math.max(0, 1 - elapsed / answer_duration)
 				const base = points_base * (1 + time_ratio * time_multiplier)
-				const points = answer === correct ? base : -base
+				const is_correct = correct === '__text_input__'
+					? this.is_text_answer_correct(answer)
+					: answer === correct
+				const points = is_correct ? base : -base
 
 				const prev = player.Score()?.val() ?? 0
 				player.Score('auto')?.val(prev + points)
