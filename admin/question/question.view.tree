@@ -1,0 +1,37 @@
+$bog_blitz_admin_question $mol_list
+	question null
+	number 0
+	rows /
+		<= Header $mol_row
+			sub /
+				<= Number $mol_paragraph
+					title <= number_title \
+				<= Type_select $mol_select
+					value? <=> question_type? \choice
+					dictionary *
+						choice @ \Choice
+						multi_choice @ \Multi Choice
+						text_input @ \Text Input
+				<= Delete $mol_button_minor
+					title @ \Delete
+					click? <=> delete? null
+		<= Text_input $mol_string
+			hint @ \Question text...
+			value? <=> question_text? \
+		<= Options_section $mol_list
+			rows <= option_rows /
+		<= Add_option $mol_button_minor
+			title @ \Add Option
+			click? <=> add_option? null
+		<= Points $mol_row
+			sub /
+				<= Points_plus_label $mol_paragraph
+					title @ \Reward
+				<= Points_plus_input $mol_number
+					hint \+
+					value? <=> points_plus? 10
+				<= Points_minus_label $mol_paragraph
+					title @ \Penalty
+				<= Points_minus_input $mol_number
+					hint \-
+					value? <=> points_minus? 0

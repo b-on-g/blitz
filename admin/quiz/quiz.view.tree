@@ -1,0 +1,14 @@
+$bog_blitz_admin_quiz $mol_row
+	sub /
+		<= Title_input $mol_string_button
+			hint @ \Quiz name
+			value? <=> quiz_title? \
+		<= Edit $mol_button_minor
+			title @ \Edit
+			click? <=> edit? null
+		<= Start $mol_button_major
+			title @ \Play
+			click? <=> start? null
+		<= Delete $mol_button_minor
+			title @ \Delete
+			click? <=> delete? null

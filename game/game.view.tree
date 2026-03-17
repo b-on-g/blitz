@@ -1,5 +1,0 @@
-$bog_blitz_game $mol_page
-	Head null
-	body /
-		<= Placeholder $mol_paragraph
-			title \Game screen coming soon...

@@ -9,7 +9,7 @@ namespace $.$$ {
 			if (next !== undefined) {
 				this.mobile_menu_showed(false)
 			}
-			return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby'
+			return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin'
 		}
 	}
 }

@@ -16,7 +16,6 @@ namespace $.$$ {
 		is_player_host(key: string) {
 			const player = this.players_dict()?.key(key)
 			const val = player?.IsHost()?.val()
-			console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val)
 			return val ?? false
 		}
 
@@ -49,7 +48,6 @@ namespace $.$$ {
 		player_keys() {
 			const raw = this.players_dict()?.keys() ?? []
 			const result = Array.from(raw).map(k => String(k))
-			console.log('player_keys', result)
 			return result
 		}
 		@$mol_mem_key

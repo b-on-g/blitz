@@ -19,12 +19,10 @@ namespace $.$$ {
 		my_player() {
 			const dict = this.players_dict()
 			if (!dict) {
-				console.log('dict is null')
 				return null
 			}
 			const keys = Array.from(dict.keys() ?? [])
 			const lord = this.my_lord_str()
-			console.log('my_player', { keys, lord: lord.slice(0, 8) })
 			return dict.key(lord) ?? null
 		}
 
@@ -45,7 +43,6 @@ namespace $.$$ {
 			if (!dict) return null
 			const lord = this.my_lord_str()
 			const result = dict.key(lord, 'auto')
-			console.log('dict', dict)
 			return result
 		}
 
@@ -88,7 +85,6 @@ namespace $.$$ {
 			const player = dict.key(lord, 'auto')
 			if (player) {
 				player.IsHost('auto')?.val(true)
-				console.log('host registered', lord.slice(0, 8))
 			}
 		}
 
