@@ -1,8 +1,8 @@
 {
-	"name": "bog_blitz",
-	"short_name": "bog_blitz",
+	"name": "bog_blitz_blog",
+	"short_name": "bog_blitz_blog",
 	"description": "",
-	"id": "bog_blitz",
+	"id": "bog_blitz_blog",
 	"start_url": ".",
 	"display": "standalone",
 	"background_color": "#000000",

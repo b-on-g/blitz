@@ -152,3 +152,5 @@
 \/bog/blitz
 	include \/mol/offline/install
 	deploy \/bog/blitz/assets
+\/bog/blitz/blog
+	deploy \/bog/blitz/assets
