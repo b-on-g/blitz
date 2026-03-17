@@ -157,9 +157,40 @@ namespace $.$$ {
 			if (next?.length) {
 				const q = this.questions()[Number(key)]
 				if (q) {
-					const store = q.Image('auto')!.ensure(null)
+					const store = q.Image(null)!.ensure(null)
 					if (store) {
 						store.blob(next[0])
+						q.Image(null)!.remote(store)
+					}
+				}
+			}
+			return next ?? []
+		}
+
+		@$mol_mem_key
+		option_image_uri(key: string) {
+			const [qKey, oKey] = key.split('_')
+			const q = this.questions()[Number(qKey)]
+			if (!q) return ''
+			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+			if (!opt) return ''
+			const file = opt.Image()?.remote()
+			if (!file) return ''
+			return URL.createObjectURL(file.blob())
+		}
+
+		@$mol_mem_key
+		option_image_files(key: string, next?: readonly File[]) {
+			if (next?.length) {
+				const [qKey, oKey] = key.split('_')
+				const q = this.questions()[Number(qKey)]
+				if (!q) return next ?? []
+				const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+				if (opt) {
+					const store = opt.Image(null)!.ensure(null)
+					if (store) {
+						store.blob(next[0])
+						opt.Image(null)!.remote(store)
 					}
 				}
 			}

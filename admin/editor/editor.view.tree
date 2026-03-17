@@ -21,3 +21,5 @@ $bog_blitz_admin_editor $mol_list
 		option_text? <=> option_text*? \
 		is_correct? <=> is_correct*? false
 		delete? <=> delete_option*? null
+		option_image_files? <=> option_image_files*? /
+		option_image_uri <= option_image_uri* \

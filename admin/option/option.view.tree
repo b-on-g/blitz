@@ -1,5 +1,10 @@
 $bog_blitz_admin_option $mol_row
 	sub /
+		<= Image_preview $mol_image
+			uri <= option_image_uri \
+		<= Image_upload $mol_button_open
+			title @ \Image
+			files? <=> option_image_files? /
 		<= Text $mol_string_button
 			hint @ \Write your option
 			value? <=> option_text? \
