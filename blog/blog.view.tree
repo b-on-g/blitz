@@ -12,7 +12,7 @@ $bog_blitz_blog $mol_book2
 		slug <= page_slug*0 \
 	App_link $mol_link
 		arg *
-			page null
+			screen null
 		title \Открыть Blitz Quiz
 		uri \https://b-on-g.github.io/blitz/
 	plugins /

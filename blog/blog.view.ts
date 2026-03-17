@@ -2,7 +2,7 @@ namespace $.$$ {
 	export class $bog_blitz_blog extends $.$bog_blitz_blog {
 
 		page(next?: string) {
-			return this.$.$mol_state_arg.value('page', next || undefined) ?? ''
+			return this.$.$mol_state_arg.value('screen', next || undefined) ?? ''
 		}
 
 		@$mol_mem

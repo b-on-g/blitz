@@ -4,7 +4,7 @@ $bog_blitz_blog_page $mol_page
 	head /
 		<= Back $mol_link
 			arg *
-				page null
+				screen null
 			sub /
 				<= Back_icon $mol_icon_arrow_left
 		<= Title

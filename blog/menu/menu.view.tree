@@ -13,5 +13,5 @@ $bog_blitz_blog_menu $mol_page
 			rows <= nav_rows /
 	Link*0 $mol_link
 		arg *
-			page <= link_slug*0 \
+			screen <= link_slug*0 \
 		title <= link_title*0 \
