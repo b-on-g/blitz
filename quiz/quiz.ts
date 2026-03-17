@@ -10,6 +10,7 @@ namespace $.$$ {
 		Game_state: $giper_baza_atom_text,
 		Current_question: $giper_baza_atom_real,
 		Round_start: $giper_baza_atom_real,
+		Paused_at: $giper_baza_atom_real,
 	}) {}
 
 	export const $bog_blitz_quiz_fields = new Set([
@@ -23,5 +24,6 @@ namespace $.$$ {
 		'Game_state',
 		'Current_question',
 		'Round_start',
+		'Paused_at',
 	])
 }

@@ -115,6 +115,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		paused_at() {
+			return this.quiz_data()?.Paused_at()?.val() ?? 0
+		}
+
+		@$mol_mem
 		round_start() {
 			return this.quiz_data()?.Round_start()?.val() ?? 0
 		}

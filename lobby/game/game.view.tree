@@ -5,10 +5,12 @@ $bog_blitz_lobby_game $mol_view
 	current_question_text \
 	my_player null
 	is_host false
+	paused_at 0
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_leaderboard @ \Leaderboard
 	state_final @ \Final Results
+	state_paused @ \Paused
 	state_label \
 	option_keys /string
 	round_start 0
@@ -22,11 +24,20 @@ $bog_blitz_lobby_game $mol_view
 	Countdown_number $mol_paragraph
 		title <= countdown_text
 	sub <= game_content /
+	Pause_button $mol_button_minor
+		title <= pause_label @ \Pause
+		click? <=> pause_click?event null
+	Resume_button $mol_button_minor
+		title <= resume_label @ \Resume
+		click? <=> resume_click?event null
 	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
+			paused_at <= paused_at
+		<= Host_controls $mol_view
+			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Question_image $mol_image
@@ -46,6 +57,9 @@ $bog_blitz_lobby_game $mol_view
 		<= Leaderboard_timer $bog_blitz_lobby_game_timer
 			round_start <= round_start
 			duration <= duration
+			paused_at <= paused_at
+		<= Host_controls $mol_view
+			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Leaderboard $bog_blitz_lobby_game_leaderboard

@@ -4,7 +4,10 @@ namespace $.$$ {
 			direction: 'column',
 		},
 		align: { items: 'center' },
-		padding: { top: '0' },
+		padding: { top: '0px' },
+		Host_controls: {
+			padding: { top: '0.5rem', bottom: '0.5rem' },
+		},
 		State: {
 			font: { size: '1.5rem', weight: 600 },
 			opacity: 0.5,

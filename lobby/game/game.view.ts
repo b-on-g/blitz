@@ -9,9 +9,14 @@ namespace $.$$ {
 			return this.question_content()
 		}
 
+		is_paused() {
+			return this.paused_at() > 0
+		}
+
 		@$mol_mem
 		state_label() {
 			this.auto_advance()
+			if (this.is_paused()) return this.state_paused()
 			const state = this.game_state()
 			switch (state) {
 				case 'reading':
@@ -25,6 +30,40 @@ namespace $.$$ {
 				default:
 					return state
 			}
+		}
+
+		@$mol_mem
+		pause_click(next?: Event) {
+			if (next !== undefined) {
+				const quiz = this.quiz_data() as $bog_blitz_quiz | null
+				if (!quiz) return
+				quiz.Paused_at('auto')?.val(Date.now())
+			}
+		}
+
+		@$mol_mem
+		resume_click(next?: Event) {
+			if (next !== undefined) {
+				const quiz = this.quiz_data() as $bog_blitz_quiz | null
+				if (!quiz) return
+				const paused_at = this.paused_at()
+				if (!paused_at) return
+				const pause_duration = Date.now() - paused_at
+				const old_start = this.round_start()
+				if (old_start) {
+					quiz.Round_start('auto')?.val(old_start + pause_duration)
+				}
+				quiz.Paused_at('auto')?.val(0)
+			}
+		}
+
+		@$mol_mem
+		host_controls() {
+			if (!this.is_host()) return []
+			const state = this.game_state()
+			if (state === 'final') return []
+			if (this.is_paused()) return [this.Resume_button()]
+			return [this.Pause_button()]
 		}
 
 		@$mol_mem
@@ -131,6 +170,7 @@ namespace $.$$ {
 		@$mol_mem
 		countdown_number(next?: number) {
 			if (this.game_state() !== 'answering') return 0
+			if (this.is_paused()) return 0
 			const start = this.round_start()
 			const duration = this.duration()
 			if (!start || !duration) return 0
@@ -194,6 +234,7 @@ namespace $.$$ {
 		@$mol_mem
 		auto_advance(next?: null) {
 			if (!this.is_host()) return
+			if (this.is_paused()) return
 
 			const state = this.game_state()
 			const start = this.round_start()
