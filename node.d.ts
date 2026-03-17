@@ -1140,7 +1140,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    let $mol_gap: Record<"text" | "space" | "block" | "blur" | "page" | "round" | "emoji", $mol_style_func<"var", unknown>>;
+    let $mol_gap: Record<"text" | "space" | "block" | "page" | "blur" | "round" | "emoji", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
@@ -14589,6 +14589,124 @@ declare namespace $.$$ {
 declare namespace $.$$ {
 }
 
+declare namespace $ {
+
+	type $mol_image__uri_bog_blitz_blog_menu_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_paragraph__title_bog_blitz_blog_menu_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_blog_menu_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_blog_menu_4 = $mol_type_enforce<
+		ReturnType< $bog_blitz_blog_menu['nav_rows'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_link__arg_bog_blitz_blog_menu_5 = $mol_type_enforce<
+		({ 
+			'page': ReturnType< $bog_blitz_blog_menu['link_slug'] >,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_blitz_blog_menu_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_blog_menu['link_title'] >
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	export class $bog_blitz_blog_menu extends $mol_page {
+		Logo( ): $mol_image
+		Heading( ): $mol_paragraph
+		Subtitle( ): $mol_paragraph
+		nav_rows( ): readonly(any)[]
+		Nav( ): $mol_list
+		link_slug( id: any): string
+		link_title( id: any): string
+		title( ): string
+		items( ): Record<string, any>
+		page( next?: string ): string
+		body( ): readonly(any)[]
+		Link( id: any): $mol_link
+	}
+	
+}
+
+//# sourceMappingURL=menu.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_blog_menu extends $.$bog_blitz_blog_menu {
+        nav_rows(): $.$mol_link[];
+        link_slug(key: string): string;
+        link_title(key: string): string;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_link__arg_bog_blitz_blog_page_1 = $mol_type_enforce<
+		({ 
+			'page': any,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__sub_bog_blitz_blog_page_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_text__text_bog_blitz_blog_page_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_blog_page['article_text'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_link_iconed__uri_bog_blitz_blog_page_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link_iconed['uri'] >
+	>
+	type $mol_link_iconed__title_bog_blitz_blog_page_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link_iconed['title'] >
+	>
+	export class $bog_blitz_blog_page extends $mol_page {
+		article_title( ): string
+		Back_icon( ): $mol_icon_arrow_left
+		Back( ): $mol_link
+		article_text( ): string
+		Content( ): $mol_text
+		App_link( ): $mol_link_iconed
+		slug( ): string
+		title( ): ReturnType< $bog_blitz_blog_page['article_title'] >
+		head( ): readonly(any)[]
+		body( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=page.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_blog_page extends $.$bog_blitz_blog_page {
+        article_title(): string;
+        article_text(): string;
+    }
+}
+
+declare namespace $.$$ {
+}
+
 declare namespace $.$$ {
     const $bog_blitz_profile_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
@@ -15050,6 +15168,92 @@ declare namespace $.$$ {
         game_title(key: string): string;
         game_details(key: string): string;
         game_score(key: string): string;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $bog_theme_auto__theme_light_bog_blitz_blog_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_theme_auto['theme_light'] >
+	>
+	type $bog_theme_auto__theme_dark_bog_blitz_blog_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_theme_auto['theme_dark'] >
+	>
+	type $bog_theme_auto__themes_bog_blitz_blog_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $bog_theme_auto['themes'] >
+	>
+	type $mol_view__sub_bog_blitz_blog_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_blitz_blog_menu__items_bog_blitz_blog_5 = $mol_type_enforce<
+		({ 
+			'about': string,
+			'guide': string,
+			'features': string,
+		}) 
+		,
+		ReturnType< $bog_blitz_blog_menu['items'] >
+	>
+	type $bog_blitz_blog_menu__page_bog_blitz_blog_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_blog['page'] >
+		,
+		ReturnType< $bog_blitz_blog_menu['page'] >
+	>
+	type $bog_blitz_blog_page__slug_bog_blitz_blog_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_blog['page_slug'] >
+		,
+		ReturnType< $bog_blitz_blog_page['slug'] >
+	>
+	type $mol_link__arg_bog_blitz_blog_8 = $mol_type_enforce<
+		({ 
+			'page': any,
+		}) 
+		,
+		ReturnType< $mol_link['arg'] >
+	>
+	type $mol_link__title_bog_blitz_blog_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_link__uri_bog_blitz_blog_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	export class $bog_blitz_blog extends $mol_book2 {
+		blog_pages( ): readonly(any)[]
+		page( next?: string ): string
+		page_slug( id: any): string
+		Theme( ): $bog_theme_auto
+		title( ): string
+		Placeholder( ): $mol_view
+		pages( ): ReturnType< $bog_blitz_blog['blog_pages'] >
+		Menu( ): $bog_blitz_blog_menu
+		Page( id: any): $bog_blitz_blog_page
+		App_link( ): $mol_link
+		plugins( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=blog.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_blog extends $.$bog_blitz_blog {
+        page(next?: string): string;
+        blog_pages(): ($.$bog_blitz_blog_menu | $.$bog_blitz_blog_page)[];
+        page_slug(key: string): string;
     }
 }
 
