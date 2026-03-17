@@ -1,1 +1,2 @@
 deploy \/bog/blitz/assets
+include \/mol/offline/install
