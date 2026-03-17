@@ -1,5 +1,4 @@
 namespace $.$$ {
-
 	const personas = [
 		{ min: 0, title: 'Новичок', desc: 'Вы только начали свой путь в квизах. Впереди много открытий!' },
 		{ min: 3, title: 'Любопытный', desc: 'Вы уже распробовали вкус квизов. Теперь вас не остановить!' },
@@ -9,7 +8,6 @@ namespace $.$$ {
 	]
 
 	export class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
-
 		profile_data() {
 			const home = this.$.$giper_baza_glob.home()
 			return home.land().Data($bog_blitz_profile)
@@ -73,14 +71,7 @@ namespace $.$$ {
 			const best = Math.round(profile.Best_score()?.val() ?? 0)
 			const avg = played ? Math.round(total / played) : 0
 			const winRate = played ? Math.round((wins / played) * 100) + '%' : '0%'
-			return [
-				String(played),
-				String(total),
-				String(wins),
-				String(avg),
-				String(best),
-				winRate,
-			]
+			return [String(played), String(total), String(wins), String(avg), String(best), winRate]
 		}
 
 		@$mol_mem
@@ -89,7 +80,14 @@ namespace $.$$ {
 		}
 
 		stat_label(key: string) {
-			const labels = ['🎮 Игр сыграно', '⭐ Общий счёт', '🏆 Побед', '📊 Средний счёт', '🔥 Лучший счёт', '🎯 Винрейт']
+			const labels = [
+				'🎮 Игр сыграно',
+				'⭐ Общий счёт',
+				'🏆 Побед',
+				'📊 Средний счёт',
+				'🔥 Лучший счёт',
+				'🎯 Винрейт',
+			]
 			return labels[Number(key)] ?? ''
 		}
 

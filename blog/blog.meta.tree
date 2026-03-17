@@ -1,1 +1,5 @@
+include \/bog/blitz/radio
+include \/bog/blitz/lobby
+include \/bog/blitz/admin
+include \/bog/blitz/profile
 deploy \/bog/blitz/assets
