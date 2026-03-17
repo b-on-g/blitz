@@ -29964,6 +29964,9 @@ var $;
         ], $bog_blitz_profile_page.prototype, "all_stats", null);
         __decorate([
             $mol_mem
+        ], $bog_blitz_profile_page.prototype, "stat_rows", null);
+        __decorate([
+            $mol_mem
         ], $bog_blitz_profile_page.prototype, "persona_text", null);
         __decorate([
             $mol_mem
