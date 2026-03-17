@@ -16698,12 +16698,7 @@ var $;
             player_name(next) {
                 if (next !== undefined)
                     return next;
-                try {
-                    return this.profile_name();
-                }
-                catch {
-                    return '';
-                }
+                return this.profile_name();
             }
             join_title() {
                 try {
