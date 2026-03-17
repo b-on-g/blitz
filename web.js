@@ -6691,7 +6691,6 @@ var $;
             is_player_host(key) {
                 const player = this.players_dict()?.key(key);
                 const val = player?.IsHost()?.val();
-                console.log('is_host_key', key.slice(0, 8), 'IsHost val:', val, typeof val);
                 return val ?? false;
             }
             player_views() {
@@ -6721,7 +6720,6 @@ var $;
             player_keys() {
                 const raw = this.players_dict()?.keys() ?? [];
                 const result = Array.from(raw).map(k => String(k));
-                console.log('player_keys', result);
                 return result;
             }
             player_avatar_uri(key) {
@@ -28010,12 +28008,10 @@ var $;
             my_player() {
                 const dict = this.players_dict();
                 if (!dict) {
-                    console.log('dict is null');
                     return null;
                 }
                 const keys = Array.from(dict.keys() ?? []);
                 const lord = this.my_lord_str();
-                console.log('my_player', { keys, lord: lord.slice(0, 8) });
                 return dict.key(lord) ?? null;
             }
             players_dict() {
@@ -28033,7 +28029,6 @@ var $;
                     return null;
                 const lord = this.my_lord_str();
                 const result = dict.key(lord, 'auto');
-                console.log('dict', dict);
                 return result;
             }
             join(e) {
@@ -28069,7 +28064,6 @@ var $;
                 const player = dict.key(lord, 'auto');
                 if (player) {
                     player.IsHost('auto')?.val(true);
-                    console.log('host registered', lord.slice(0, 8));
                 }
             }
             lobby_content() {
@@ -28162,20 +28156,178 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$bog_blitz_game) = class $bog_blitz_game extends ($.$mol_page) {
-		Placeholder(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("Game screen coming soon...");
+	($.$bog_blitz_admin_quiz) = class $bog_blitz_admin_quiz extends ($.$mol_row) {
+		quiz_title(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Title_input(){
+			const obj = new this.$.$mol_string_button();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Title_input_hint")));
+			(obj.value) = (next) => ((this.quiz_title(next)));
 			return obj;
 		}
-		Head(){
+		edit(next){
+			if(next !== undefined) return next;
 			return null;
 		}
-		body(){
-			return [(this.Placeholder())];
+		Edit(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Edit_title")));
+			(obj.click) = (next) => ((this.edit(next)));
+			return obj;
+		}
+		start(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Start(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Start_title")));
+			(obj.click) = (next) => ((this.start(next)));
+			return obj;
+		}
+		delete(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Delete(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Delete_title")));
+			(obj.click) = (next) => ((this.delete(next)));
+			return obj;
+		}
+		sub(){
+			return [
+				(this.Title_input()), 
+				(this.Edit()), 
+				(this.Start()), 
+				(this.Delete())
+			];
 		}
 	};
-	($mol_mem(($.$bog_blitz_game.prototype), "Placeholder"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "quiz_title"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Title_input"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "edit"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Edit"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "start"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Start"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "delete"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Delete"));
+
+
+;
+"use strict";
+
+;
+	($.$bog_blitz_admin_question) = class $bog_blitz_admin_question extends ($.$mol_list) {
+		number_title(){
+			return "";
+		}
+		Number(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.number_title()));
+			return obj;
+		}
+		question_type(next){
+			if(next !== undefined) return next;
+			return "choice";
+		}
+		Type_select(){
+			const obj = new this.$.$mol_select();
+			(obj.value) = (next) => ((this.question_type(next)));
+			(obj.dictionary) = () => ({"choice": (this.$.$mol_locale.text("$bog_blitz_admin_question_Type_select_dictionary_choice")), "text_input": (this.$.$mol_locale.text("$bog_blitz_admin_question_Type_select_dictionary_text_input"))});
+			return obj;
+		}
+		delete(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Delete(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Delete_title")));
+			(obj.click) = (next) => ((this.delete(next)));
+			return obj;
+		}
+		Header(){
+			const obj = new this.$.$mol_row();
+			(obj.sub) = () => ([
+				(this.Number()), 
+				(this.Type_select()), 
+				(this.Delete())
+			]);
+			return obj;
+		}
+		question_text(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Text_input(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Text_input_hint")));
+			(obj.value) = (next) => ((this.question_text(next)));
+			return obj;
+		}
+		option_rows(){
+			return [];
+		}
+		Options_section(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.option_rows()));
+			return obj;
+		}
+		add_option(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Add_option(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Add_option_title")));
+			(obj.click) = (next) => ((this.add_option(next)));
+			return obj;
+		}
+		correct_text(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Correct_text_input(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Correct_text_input_hint")));
+			(obj.value) = (next) => ((this.correct_text(next)));
+			return obj;
+		}
+		question_rows(){
+			return [
+				(this.Header()), 
+				(this.Text_input()), 
+				(this.Options_section()), 
+				(this.Add_option()), 
+				(this.Correct_text_input())
+			];
+		}
+		question(){
+			return null;
+		}
+		number(){
+			return 0;
+		}
+		rows(){
+			return (this.question_rows());
+		}
+	};
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Number"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "question_type"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Type_select"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "delete"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Delete"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Header"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "question_text"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Text_input"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Options_section"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "add_option"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Add_option"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "correct_text"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Correct_text_input"));
 
 
 ;
@@ -28187,28 +28339,563 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        class $bog_blitz_game extends $.$bog_blitz_game {
+        class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
+            question_rows() {
+                const rows = [this.Header(), this.Text_input()];
+                if (this.question_type() === 'text_input') {
+                    rows.push(this.Correct_text_input());
+                }
+                else {
+                    rows.push(this.Options_section());
+                    rows.push(this.Add_option());
+                }
+                return rows;
+            }
         }
-        $$.$bog_blitz_game = $bog_blitz_game;
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_question.prototype, "question_rows", null);
+        $$.$bog_blitz_admin_question = $bog_blitz_admin_question;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_admin_option) = class $bog_blitz_admin_option extends ($.$mol_row) {
+		option_text(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Text(){
+			const obj = new this.$.$mol_string_button();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Text_hint")));
+			(obj.value) = (next) => ((this.option_text(next)));
+			return obj;
+		}
+		is_correct(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		Checkbox(){
+			const obj = new this.$.$mol_check_box();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Checkbox_title")));
+			(obj.checked) = (next) => ((this.is_correct(next)));
+			return obj;
+		}
+		delete(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Delete(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Delete_title")));
+			(obj.click) = (next) => ((this.delete(next)));
+			return obj;
+		}
+		sub(){
+			return [
+				(this.Text()), 
+				(this.Checkbox()), 
+				(this.Delete())
+			];
+		}
+	};
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "option_text"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Text"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "is_correct"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Checkbox"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "delete"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Delete"));
+
+
+;
+"use strict";
+
+;
+	($.$bog_blitz_admin_editor) = class $bog_blitz_admin_editor extends ($.$mol_list) {
+		editor_rows(){
+			return [];
+		}
+		quiz_title(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		add_question(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		question_number(id){
+			return 0;
+		}
+		question_text(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		question_type(id, next){
+			if(next !== undefined) return next;
+			return "choice";
+		}
+		delete_question(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		option_rows(id){
+			return [];
+		}
+		add_option(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		correct_text(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		option_text(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		is_correct(id, next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		delete_option(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		quiz_land(){
+			return null;
+		}
+		rows(){
+			return (this.editor_rows());
+		}
+		Title_input(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_editor_Title_input_hint")));
+			(obj.value) = (next) => ((this.quiz_title(next)));
+			return obj;
+		}
+		Add_question(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_editor_Add_question_title")));
+			(obj.click) = (next) => ((this.add_question(next)));
+			return obj;
+		}
+		Question(id){
+			const obj = new this.$.$bog_blitz_admin_question();
+			(obj.number) = () => ((this.question_number("0")));
+			(obj.question_text) = (next) => ((this.question_text(id, next)));
+			(obj.question_type) = (next) => ((this.question_type(id, next)));
+			(obj.delete) = (next) => ((this.delete_question(id, next)));
+			(obj.option_rows) = () => ((this.option_rows(id)));
+			(obj.add_option) = (next) => ((this.add_option(id, next)));
+			(obj.correct_text) = (next) => ((this.correct_text(id, next)));
+			return obj;
+		}
+		Option(id){
+			const obj = new this.$.$bog_blitz_admin_option();
+			(obj.option_text) = (next) => ((this.option_text(id, next)));
+			(obj.is_correct) = (next) => ((this.is_correct(id, next)));
+			(obj.delete) = (next) => ((this.delete_option(id, next)));
+			return obj;
+		}
+	};
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "quiz_title"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "add_question"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "question_text"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "question_type"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "delete_question"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "add_option"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "correct_text"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "option_text"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "is_correct"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "delete_option"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Title_input"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Add_question"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "Question"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "Option"));
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_question_option extends $giper_baza_dict.with({
+            Text: $giper_baza_atom_text,
+            Image: $giper_baza_atom_link_to(() => $giper_baza_file),
+            Is_correct: $giper_baza_atom_bool,
+        }) {
+        }
+        $$.$bog_blitz_question_option = $bog_blitz_question_option;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_question extends $giper_baza_dict.with({
+            Text: $giper_baza_atom_text,
+            Type: $giper_baza_atom_text,
+            Options: $giper_baza_list_link_to(() => $bog_blitz_question_option),
+            Correct_text: $giper_baza_atom_text,
+            Image: $giper_baza_atom_link_to(() => $giper_baza_file),
+        }) {
+        }
+        $$.$bog_blitz_question = $bog_blitz_question;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_quiz extends $giper_baza_dict.with({
+            Title: $giper_baza_atom_text,
+            Questions: $giper_baza_list_link_to(() => $bog_blitz_question),
+            Time_read: $giper_baza_atom_real,
+            Time_answer: $giper_baza_atom_real,
+            Time_leaderboard: $giper_baza_atom_real,
+            Points_base: $giper_baza_atom_real,
+            Time_multiplier: $giper_baza_atom_real,
+        }) {
+        }
+        $$.$bog_blitz_quiz = $bog_blitz_quiz;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_admin_editor extends $.$bog_blitz_admin_editor {
+            quiz_data() {
+                const land = this.quiz_land();
+                if (!land)
+                    return null;
+                return land.Data($bog_blitz_quiz);
+            }
+            questions() {
+                return this.quiz_data()?.Questions()?.remote_list() ?? [];
+            }
+            editor_rows() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return [];
+                const rows = [this.Title_input()];
+                const questions = this.questions();
+                for (let i = 0; i < questions.length; i++) {
+                    rows.push(this.Question(String(i)));
+                }
+                rows.push(this.Add_question());
+                return rows;
+            }
+            quiz_title(next) {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return '';
+                if (next !== undefined) {
+                    quiz.Title('auto')?.val(next);
+                    return next;
+                }
+                return quiz.Title()?.val() ?? '';
+            }
+            question_number(key) {
+                return Number(key) + 1;
+            }
+            question_text(key, next) {
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return '';
+                if (next !== undefined) {
+                    q.Text('auto')?.val(next);
+                    return next;
+                }
+                return q.Text()?.val() ?? '';
+            }
+            question_type(key, next) {
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return 'choice';
+                if (next !== undefined) {
+                    q.Type('auto')?.val(next);
+                    return next;
+                }
+                return q.Type()?.val() ?? 'choice';
+            }
+            add_question() {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return;
+                const questions = quiz.Questions('auto');
+                const q = questions.make(null);
+                q.Type('auto')?.val('choice');
+            }
+            delete_question(key) {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return;
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return;
+                quiz.Questions('auto').cut(q.link());
+            }
+            option_rows(key) {
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return [];
+                const options = q.Options()?.remote_list() ?? [];
+                return options.map((_, i) => this.Option(`${key}_${i}`));
+            }
+            add_option(key) {
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return;
+                q.Options('auto').make(null);
+            }
+            delete_option(key) {
+                const [qKey, oKey] = key.split('_');
+                const q = this.questions()[Number(qKey)];
+                if (!q)
+                    return;
+                const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)];
+                if (!opt)
+                    return;
+                q.Options('auto').cut(opt.link());
+            }
+            option_text(key, next) {
+                const [qKey, oKey] = key.split('_');
+                const q = this.questions()[Number(qKey)];
+                if (!q)
+                    return '';
+                const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)];
+                if (!opt)
+                    return '';
+                if (next !== undefined) {
+                    opt.Text('auto')?.val(next);
+                    return next;
+                }
+                return opt.Text()?.val() ?? '';
+            }
+            is_correct(key, next) {
+                const [qKey, oKey] = key.split('_');
+                const q = this.questions()[Number(qKey)];
+                if (!q)
+                    return false;
+                const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)];
+                if (!opt)
+                    return false;
+                if (next !== undefined) {
+                    opt.Is_correct('auto')?.val(next);
+                    return next;
+                }
+                return opt.Is_correct()?.val() ?? false;
+            }
+            correct_text(key, next) {
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return '';
+                if (next !== undefined) {
+                    q.Correct_text('auto')?.val(next);
+                    return next;
+                }
+                return q.Correct_text()?.val() ?? '';
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_editor.prototype, "questions", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_editor.prototype, "editor_rows", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_editor.prototype, "quiz_title", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "question_number", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "question_text", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "question_type", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "add_question", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "delete_question", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "option_rows", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "add_option", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "delete_option", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "option_text", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "is_correct", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "correct_text", null);
+        $$.$bog_blitz_admin_editor = $bog_blitz_admin_editor;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
 ;
 	($.$bog_blitz_admin) = class $bog_blitz_admin extends ($.$mol_page) {
-		Placeholder(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("Admin screen coming soon...");
-			return obj;
+		admin_body(){
+			return [];
+		}
+		quiz_title(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		edit_quiz(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		delete_quiz(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		start_quiz(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		quiz_rows(){
+			return [];
+		}
+		create_quiz(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		back_to_list(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		current_quiz_land(){
+			return null;
+		}
+		question_obj(id){
+			return null;
+		}
+		question_number(id){
+			return 0;
+		}
+		question_text(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		question_type(id, next){
+			if(next !== undefined) return next;
+			return "choice";
+		}
+		delete_question(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		option_rows(id){
+			return [];
+		}
+		add_option(id, next){
+			if(next !== undefined) return next;
+			return null;
 		}
 		Head(){
 			return null;
 		}
 		body(){
-			return [(this.Placeholder())];
+			return (this.admin_body());
+		}
+		Quiz_card(id){
+			const obj = new this.$.$bog_blitz_admin_quiz();
+			(obj.quiz_title) = (next) => ((this.quiz_title(id, next)));
+			(obj.edit) = (next) => ((this.edit_quiz(id, next)));
+			(obj.delete) = (next) => ((this.delete_quiz(id, next)));
+			(obj.start) = (next) => ((this.start_quiz(id, next)));
+			return obj;
+		}
+		Quizzes_list(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.quiz_rows()));
+			return obj;
+		}
+		Create_button(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_Create_button_title")));
+			(obj.click) = (next) => ((this.create_quiz(next)));
+			return obj;
+		}
+		Back_button(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_Back_button_title")));
+			(obj.click) = (next) => ((this.back_to_list(next)));
+			return obj;
+		}
+		Editor(){
+			const obj = new this.$.$bog_blitz_admin_editor();
+			(obj.quiz_land) = () => ((this.current_quiz_land()));
+			return obj;
+		}
+		Question(id){
+			const obj = new this.$.$bog_blitz_admin_question();
+			(obj.question) = () => ((this.question_obj("0")));
+			(obj.number) = () => ((this.question_number("0")));
+			(obj.question_text) = (next) => ((this.question_text(id, next)));
+			(obj.question_type) = (next) => ((this.question_type(id, next)));
+			(obj.delete) = (next) => ((this.delete_question(id, next)));
+			(obj.option_rows) = () => ((this.option_rows(id)));
+			(obj.add_option) = (next) => ((this.add_option(id, next)));
+			return obj;
 		}
 	};
-	($mol_mem(($.$bog_blitz_admin.prototype), "Placeholder"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "quiz_title"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "edit_quiz"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "delete_quiz"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "start_quiz"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "create_quiz"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "back_to_list"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "question_text"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "question_type"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "delete_question"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "add_option"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "Quiz_card"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Quizzes_list"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Create_button"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Back_button"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Editor"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "Question"));
 
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_registry extends $giper_baza_dict.with({
+            Quizzes: $giper_baza_list_link_to(() => $bog_blitz_quiz),
+        }) {
+        }
+        $$.$bog_blitz_registry = $bog_blitz_registry;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -28220,7 +28907,114 @@ var $;
     var $$;
     (function ($$) {
         class $bog_blitz_admin extends $.$bog_blitz_admin {
+            registry() {
+                const home = this.$.$giper_baza_glob.home();
+                return home.land().Data($bog_blitz_registry);
+            }
+            quiz_links() {
+                return this.registry().Quizzes()?.remote_list() ?? [];
+            }
+            current_quiz_link() {
+                return this.$.$mol_state_arg.value('quiz') ?? '';
+            }
+            current_quiz_land() {
+                const link = this.current_quiz_link();
+                if (!link)
+                    return null;
+                return this.$.$giper_baza_glob.Land(new $giper_baza_link(link));
+            }
+            admin_body() {
+                if (this.current_quiz_link()) {
+                    return [this.Back_button(), this.Editor()];
+                }
+                return [this.Create_button(), this.Quizzes_list()];
+            }
+            quiz_rows() {
+                return this.quiz_links().map((quiz, i) => {
+                    const key = String(i);
+                    return this.Quiz_card(key);
+                });
+            }
+            quiz_title(key, next) {
+                const quiz = this.quiz_links()[Number(key)];
+                if (!quiz)
+                    return '';
+                if (next !== undefined) {
+                    quiz.Title('auto')?.val(next);
+                    return next;
+                }
+                return quiz.Title()?.val() ?? 'Untitled Quiz';
+            }
+            create_quiz() {
+                const quizzes = this.registry().Quizzes('auto');
+                const count = this.quiz_links().length;
+                const quiz = quizzes.make([[null, $giper_baza_rank_post('just')]]);
+                quiz.Title('auto')?.val(`New Quiz ${count + 1}`);
+                quiz.Time_read('auto')?.val(5);
+                quiz.Time_answer('auto')?.val(10);
+                quiz.Time_leaderboard('auto')?.val(10);
+                quiz.Points_base('auto')?.val(100);
+                quiz.Time_multiplier('auto')?.val(1.5);
+            }
+            edit_quiz(key) {
+                const quiz = this.quiz_links()[Number(key)];
+                if (!quiz)
+                    return;
+                this.$.$mol_state_arg.value('quiz', quiz.land().link().str);
+            }
+            delete_quiz(key) {
+                const quizzes = this.registry().Quizzes('auto');
+                const quiz = this.quiz_links()[Number(key)];
+                if (quiz) {
+                    quizzes.cut(quiz.link());
+                }
+            }
+            start_quiz(key) {
+                const quiz = this.quiz_links()[Number(key)];
+                if (!quiz)
+                    return;
+                const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]]);
+                this.$.$mol_state_arg.value('quiz', null);
+                this.$.$mol_state_arg.value('land', game_land.link().str);
+                this.$.$mol_state_arg.value('screen', 'lobby');
+            }
+            back_to_list() {
+                this.$.$mol_state_arg.value('quiz', null);
+            }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "registry", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "quiz_links", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "current_quiz_link", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "admin_body", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "quiz_rows", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin.prototype, "quiz_title", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "create_quiz", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "edit_quiz", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "delete_quiz", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "start_quiz", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "back_to_list", null);
         $$.$bog_blitz_admin = $bog_blitz_admin;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -29082,10 +29876,6 @@ var $;
 			const obj = new this.$.$bog_blitz_lobby();
 			return obj;
 		}
-		Game(){
-			const obj = new this.$.$bog_blitz_game();
-			return obj;
-		}
 		Admin(){
 			const obj = new this.$.$bog_blitz_admin();
 			return obj;
@@ -29131,18 +29921,10 @@ var $;
 			return (this.$.$mol_locale.text("$bog_blitz_title"));
 		}
 		pages(){
-			return {
-				"lobby": (this.Lobby()), 
-				"game": (this.Game()), 
-				"admin": (this.Admin())
-			};
+			return {"lobby": (this.Lobby()), "admin": (this.Admin())};
 		}
 		nav_options(){
-			return {
-				"lobby": "Lobby", 
-				"game": "Game", 
-				"admin": "Admin"
-			};
+			return {"lobby": "Lobby", "admin": "Admin"};
 		}
 		Navbar(){
 			const obj = new this.$.$mol_switch();
@@ -29182,7 +29964,6 @@ var $;
 		}
 	};
 	($mol_mem(($.$bog_blitz.prototype), "Lobby"));
-	($mol_mem(($.$bog_blitz.prototype), "Game"));
 	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "screen"));
 	($mol_mem(($.$bog_blitz.prototype), "mobile_menu_showed"));
@@ -29213,8 +29994,14 @@ var $;
             screen(next) {
                 if (next !== undefined) {
                     this.mobile_menu_showed(false);
+                    if (next === 'admin') {
+                        this.$.$mol_state_arg.value('land', null);
+                    }
+                    if (next === 'lobby') {
+                        this.$.$mol_state_arg.value('quiz', null);
+                    }
                 }
-                return this.$.$mol_state_arg.value('screen', next || undefined) || 'lobby';
+                return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin';
             }
         }
         $$.$bog_blitz = $bog_blitz;

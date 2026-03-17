@@ -2073,17 +2073,109 @@ $giper_baza_app $mol_book2_catalog
 				<= Spread_close
 	placeholders /
 
-$bog_blitz_game $mol_page
-	Head null
-	body /
-		<= Placeholder $mol_paragraph
-			title \Game screen coming soon...
+$bog_blitz_admin_quiz $mol_row
+	sub /
+		<= Title_input $mol_string_button
+			hint @ \Quiz name
+			value? <=> quiz_title? \
+		<= Edit $mol_button_minor
+			title @ \Edit
+			click? <=> edit? null
+		<= Start $mol_button_major
+			title @ \Play
+			click? <=> start? null
+		<= Delete $mol_button_minor
+			title @ \Delete
+			click? <=> delete? null
+
+$bog_blitz_admin_question $mol_list
+	question null
+	number 0
+	rows <= question_rows /
+		<= Header $mol_row
+			sub /
+				<= Number $mol_paragraph
+					title <= number_title \
+				<= Type_select $mol_select
+					value? <=> question_type? \choice
+					dictionary *
+						choice @ \Choice
+						text_input @ \Text Input
+				<= Delete $mol_button_minor
+					title @ \Delete
+					click? <=> delete? null
+		<= Text_input $mol_string
+			hint @ \Question text...
+			value? <=> question_text? \
+		<= Options_section $mol_list
+			rows <= option_rows /
+		<= Add_option $mol_button_minor
+			title @ \Add Option
+			click? <=> add_option? null
+		<= Correct_text_input $mol_string
+			hint @ \Correct answer...
+			value? <=> correct_text? \
+
+$bog_blitz_admin_option $mol_row
+	sub /
+		<= Text $mol_string_button
+			hint @ \Write your option
+			value? <=> option_text? \
+		<= Checkbox $mol_check_box
+			title @ \Is it correct ?
+			checked? <=> is_correct? false
+		<= Delete $mol_button_minor
+			title @ \Delete
+			click? <=> delete? null
+
+$bog_blitz_admin_editor $mol_list
+	quiz_land null
+	rows <= editor_rows /
+	Title_input $mol_string
+		hint @ \Quiz title
+		value? <=> quiz_title? \
+	Add_question $mol_button_major
+		title @ \Add Question
+		click? <=> add_question? null
+	Question*0 $bog_blitz_admin_question
+		number <= question_number*0 0
+		question_text? <=> question_text*? \
+		question_type? <=> question_type*? \choice
+		delete? <=> delete_question*? null
+		option_rows <= option_rows* /
+		add_option? <=> add_option*? null
+		correct_text? <=> correct_text*? \
+	Option*0 $bog_blitz_admin_option
+		option_text? <=> option_text*? \
+		is_correct? <=> is_correct*? false
+		delete? <=> delete_option*? null
 
 $bog_blitz_admin $mol_page
 	Head null
-	body /
-		<= Placeholder $mol_paragraph
-			title \Admin screen coming soon...
+	body <= admin_body /
+	Quiz_card*0 $bog_blitz_admin_quiz
+		quiz_title? <=> quiz_title*? \
+		edit? <=> edit_quiz*? null
+		delete? <=> delete_quiz*? null
+		start? <=> start_quiz*? null
+	Quizzes_list $mol_list
+		rows <= quiz_rows /
+	Create_button $mol_button_major
+		title @ \Create Quiz
+		click? <=> create_quiz? null
+	Back_button $mol_button_minor
+		title @ \Back to Quizzes
+		click? <=> back_to_list? null
+	Editor $bog_blitz_admin_editor
+		quiz_land <= current_quiz_land null
+	Question*0 $bog_blitz_admin_question
+		question <= question_obj*0 null
+		number <= question_number*0 0
+		question_text? <=> question_text*? \
+		question_type? <=> question_type*? \choice
+		delete? <=> delete_question*? null
+		option_rows <= option_rows* /
+		add_option? <=> add_option*? null
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 
@@ -2173,11 +2265,9 @@ $bog_blitz $mol_page
 	title @ \Giper Blitz Quiz
 	pages *
 		lobby <= Lobby $bog_blitz_lobby
-		game <= Game $bog_blitz_game
 		admin <= Admin $bog_blitz_admin
 	nav_options *
 		lobby \Lobby
-		game \Game
 		admin \Admin
 	Navbar $mol_switch
 		value? <=> screen? \lobby
