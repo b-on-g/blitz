@@ -29751,20 +29751,20 @@ var $;
                 const best = Math.round(profile.Best_score()?.val() ?? 0);
                 const avg = played ? Math.round(total / played) : 0;
                 const winRate = played ? Math.round((wins / played) * 100) + '%' : '0%';
-                return [
-                    String(played),
-                    String(total),
-                    String(wins),
-                    String(avg),
-                    String(best),
-                    winRate,
-                ];
+                return [String(played), String(total), String(wins), String(avg), String(best), winRate];
             }
             stat_rows() {
                 return [0, 1, 2, 3, 4, 5].map(i => this.Stat_row(String(i)));
             }
             stat_label(key) {
-                const labels = ['🎮 Игр сыграно', '⭐ Общий счёт', '🏆 Побед', '📊 Средний счёт', '🔥 Лучший счёт', '🎯 Винрейт'];
+                const labels = [
+                    '🎮 Игр сыграно',
+                    '⭐ Общий счёт',
+                    '🏆 Побед',
+                    '📊 Средний счёт',
+                    '🔥 Лучший счёт',
+                    '🎯 Винрейт',
+                ];
                 return labels[Number(key)] ?? '';
             }
             stat_value(key) {
