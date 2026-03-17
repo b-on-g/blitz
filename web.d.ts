@@ -19766,6 +19766,129 @@ declare namespace $ {
 
 //# sourceMappingURL=menu.view.tree.d.ts.map
 declare namespace $ {
+
+	export class $mol_icon_music extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=music.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_check__checked_bog_blitz_radio_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['menu_showed'] >
+		,
+		ReturnType< $mol_check['checked'] >
+	>
+	type $mol_check__sub_bog_blitz_radio_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_check['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_radio_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_up'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_down'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_view__sub_bog_blitz_radio_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['stop_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['station_title'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['station_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_view__sub_bog_blitz_radio_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['menu_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_radio extends $mol_pop {
+		menu_showed( next?: boolean ): boolean
+		Icon( ): $mol_icon_music
+		Toggle( ): $mol_check
+		volume_text( ): string
+		Volume_label( ): $mol_paragraph
+		volume_up( next?: any ): any
+		Volume_up( ): $mol_button_minor
+		volume_down( next?: any ): any
+		Volume_down( ): $mol_button_minor
+		Volume_row( ): $mol_view
+		stop_click( next?: any ): any
+		Stop_button( ): $mol_button_minor
+		station_title( id: any): string
+		station_click( id: any, next?: any ): any
+		Station( id: any): $mol_button_minor
+		menu_content( ): readonly(any)[]
+		Menu( ): $mol_view
+		showed( next?: ReturnType< $bog_blitz_radio['menu_showed'] > ): ReturnType< $bog_blitz_radio['menu_showed'] >
+		Anchor( ): ReturnType< $bog_blitz_radio['Toggle'] >
+		bubble_content( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=radio.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_radio extends $.$bog_blitz_radio {
+        audio: HTMLAudioElement | null;
+        current_station(next?: string): string;
+        volume(next?: number): number;
+        volume_text(): string;
+        volume_up(next?: Event): void;
+        volume_down(next?: Event): void;
+        station_keys(): string[];
+        menu_content(): $mol_view[];
+        station_title(id: string): string;
+        station_click(id: string, e?: Event): null;
+        stop_click(next?: Event): void;
+        play(id: string): void;
+        stop(): void;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
     const $bog_theme: Record<"image" | "line" | "text" | "field" | "current" | "hover" | "background" | "focus" | "back" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
     const $bog_theme_names: readonly ["$mol_theme_giper_smash_dark", "$mol_theme_giper_smash_light", "$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark", "$mol_theme_calm_dark", "$mol_theme_calm_light"];
     type $bog_theme_name = (typeof $bog_theme_names)[number];
@@ -20157,6 +20280,7 @@ declare namespace $ {
 		mobile_menu_showed( next?: boolean ): boolean
 		Mobile_menu_icon( ): $mol_icon_menu
 		Mobile_menu_trigger( ): $mol_check
+		Radio( ): $bog_blitz_radio
 		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
 		Theme( ): $bog_theme_auto
@@ -20184,6 +20308,7 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
+        tools(): ($.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle)[];
         screen_body(): any[];
         screen(next?: string): string;
     }

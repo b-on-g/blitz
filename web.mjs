@@ -35030,6 +35030,295 @@ var $;
 "use strict";
 
 ;
+	($.$mol_icon_music) = class $mol_icon_music extends ($.$mol_icon) {
+		path(){
+			return "M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z";
+		}
+	};
+
+
+;
+"use strict";
+
+;
+	($.$bog_blitz_radio) = class $bog_blitz_radio extends ($.$mol_pop) {
+		menu_showed(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		Icon(){
+			const obj = new this.$.$mol_icon_music();
+			return obj;
+		}
+		Toggle(){
+			const obj = new this.$.$mol_check();
+			(obj.checked) = (next) => ((this.menu_showed(next)));
+			(obj.sub) = () => ([(this.Icon())]);
+			return obj;
+		}
+		volume_text(){
+			return "";
+		}
+		Volume_label(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.volume_text()));
+			return obj;
+		}
+		volume_up(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Volume_up(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ("+");
+			(obj.click) = (next) => ((this.volume_up(next)));
+			return obj;
+		}
+		volume_down(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Volume_down(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ("-");
+			(obj.click) = (next) => ((this.volume_down(next)));
+			return obj;
+		}
+		Volume_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Volume_label()), 
+				(this.Volume_up()), 
+				(this.Volume_down())
+			]);
+			return obj;
+		}
+		stop_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Stop_button(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_radio_Stop_button_title")));
+			(obj.click) = (next) => ((this.stop_click(next)));
+			return obj;
+		}
+		station_title(id){
+			return "";
+		}
+		station_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Station(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.station_title(id)));
+			(obj.click) = (next) => ((this.station_click(id, next)));
+			return obj;
+		}
+		menu_content(){
+			return [
+				(this.Volume_row()), 
+				(this.Stop_button()), 
+				(this.Station("0"))
+			];
+		}
+		Menu(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.menu_content()));
+			return obj;
+		}
+		showed(next){
+			return (this.menu_showed(next));
+		}
+		Anchor(){
+			return (this.Toggle());
+		}
+		bubble_content(){
+			return [(this.Menu())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_radio.prototype), "menu_showed"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Icon"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Toggle"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_label"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_up"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_up"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_down"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_down"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_row"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "stop_click"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Stop_button"));
+	($mol_mem_key(($.$bog_blitz_radio.prototype), "station_click"));
+	($mol_mem_key(($.$bog_blitz_radio.prototype), "Station"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Menu"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const stations = [
+            { id: 'lofi', title: '🎧 Lofi Hip Hop', url: 'https://listen.reyfm.de/lofi_320kbps.mp3' },
+            { id: 'chill', title: '☕ Chillhop', url: 'https://ilm.stream35.radiohost.de/ilm_ilovechillhop_mp3-192' },
+            { id: 'party', title: '🎉 House Party', url: 'https://listen.reyfm.de/houseparty_192kbps.mp3' },
+            { id: 'dj', title: '🎵 DJ Charts', url: 'https://breakz-high.rautemusik.fm/' },
+            { id: 'lounge', title: '🍸 Workday Lounge', url: 'https://stream.epic-lounge.com/workday-lounge' },
+        ];
+        class $bog_blitz_radio extends $.$bog_blitz_radio {
+            audio = null;
+            current_station(next) {
+                return next ?? '';
+            }
+            volume(next) {
+                if (next !== undefined) {
+                    this.$.$mol_state_local.value('bog_blitz_radio_volume', next);
+                    return next;
+                }
+                return this.$.$mol_state_local.value('bog_blitz_radio_volume') ?? 50;
+            }
+            volume_text() {
+                const playing = this.current_station();
+                const vol = this.volume();
+                if (!playing)
+                    return `🔇 ${vol}%`;
+                return `🔊 ${vol}%`;
+            }
+            volume_up(next) {
+                if (next !== undefined) {
+                    const vol = Math.min(100, this.volume() + 10);
+                    this.volume(vol);
+                    if (this.audio)
+                        this.audio.volume = vol / 100;
+                }
+            }
+            volume_down(next) {
+                if (next !== undefined) {
+                    const vol = Math.max(0, this.volume() - 10);
+                    this.volume(vol);
+                    if (this.audio)
+                        this.audio.volume = vol / 100;
+                }
+            }
+            station_keys() {
+                return stations.map(s => s.id);
+            }
+            menu_content() {
+                return [
+                    this.Volume_row(),
+                    this.Stop_button(),
+                    ...this.station_keys().map(id => this.Station(id)),
+                ];
+            }
+            station_title(id) {
+                const s = stations.find(s => s.id === id);
+                const prefix = this.current_station() === id ? '▶ ' : '';
+                return prefix + (s?.title ?? id);
+            }
+            station_click(id, e) {
+                if (e) {
+                    this.play(id);
+                }
+                return null;
+            }
+            stop_click(next) {
+                if (next !== undefined) {
+                    this.stop();
+                }
+            }
+            play(id) {
+                this.stop();
+                const s = stations.find(s => s.id === id);
+                if (!s)
+                    return;
+                const audio = new Audio(s.url);
+                audio.volume = this.volume() / 100;
+                audio.play().catch(() => { });
+                this.audio = audio;
+                this.current_station(id);
+            }
+            stop() {
+                if (this.audio) {
+                    this.audio.pause();
+                    this.audio.src = '';
+                    this.audio = null;
+                }
+                this.current_station('');
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "current_station", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_up", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_down", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "station_keys", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "menu_content", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_radio.prototype, "station_title", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_radio.prototype, "station_click", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "stop_click", null);
+        $$.$bog_blitz_radio = $bog_blitz_radio;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_radio, {
+            Menu: {
+                flex: { direction: 'column' },
+                padding: { top: '0.5rem', bottom: '0.5rem', left: '0.5rem', right: '0.5rem' },
+                gap: '0.25rem',
+                minWidth: '12rem',
+            },
+            Volume_row: {
+                justify: { content: 'center' },
+                align: { items: 'center' },
+                gap: '0.25rem',
+            },
+            Volume_label: {
+                font: { size: '0.875rem' },
+                minWidth: '4rem',
+                textAlign: 'center',
+            },
+            Stop_button: {
+                justify: { content: 'center' },
+            },
+            Station: {
+                justify: { content: 'flex-start' },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 "use strict";
 var $;
 (function ($) {
@@ -35886,6 +36175,10 @@ var $;
 			(obj.sub) = () => ([(this.Mobile_menu_icon())]);
 			return obj;
 		}
+		Radio(){
+			const obj = new this.$.$bog_blitz_radio();
+			return obj;
+		}
 		Status(){
 			const obj = new this.$.$giper_baza_status();
 			return obj;
@@ -35934,7 +36227,11 @@ var $;
 			return obj;
 		}
 		tools(){
-			return [(this.Status()), (this.Theme_toggle())];
+			return [
+				(this.Radio()), 
+				(this.Status()), 
+				(this.Theme_toggle())
+			];
 		}
 		head(){
 			return [
@@ -35957,6 +36254,7 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "mobile_menu_showed"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_icon"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_trigger"));
+	($mol_mem(($.$bog_blitz.prototype), "Radio"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
@@ -35975,6 +36273,13 @@ var $;
     var $$;
     (function ($$) {
         class $bog_blitz extends $.$bog_blitz {
+            tools() {
+                const lobby = this.Lobby();
+                const is_host = lobby.is_host();
+                if (is_host)
+                    return [this.Radio(), this.Status(), this.Theme_toggle()];
+                return [this.Status(), this.Theme_toggle()];
+            }
             screen_body() {
                 const page = this.pages()[this.screen()];
                 return page ? [page] : [];
@@ -35989,6 +36294,9 @@ var $;
                 return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin';
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz.prototype, "tools", null);
         $$.$bog_blitz = $bog_blitz;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

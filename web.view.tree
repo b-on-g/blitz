@@ -2894,6 +2894,34 @@ $bog_blitz_admin $mol_page
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 
+$mol_icon_music $mol_icon path \M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z
+
+$bog_blitz_radio $mol_pop
+	showed? <=> menu_showed? false
+	Anchor <= Toggle $mol_check
+		checked? <=> menu_showed? false
+		sub /
+			<= Icon $mol_icon_music
+	bubble_content /
+		<= Menu $mol_view
+			sub <= menu_content /
+				<= Volume_row $mol_view
+					sub /
+						<= Volume_label $mol_paragraph
+							title <= volume_text \
+						<= Volume_up $mol_button_minor
+							title \+
+							click? <=> volume_up?event null
+						<= Volume_down $mol_button_minor
+							title \-
+							click? <=> volume_down?event null
+				<= Stop_button $mol_button_minor
+					title @ \Stop
+					click? <=> stop_click?event null
+				<= Station*0 $mol_button_minor
+					title <= station_title* \
+					click? <=> station_click*?event null
+
 $bog_theme_auto $mol_plugin
 	themes <= themes_default /
 	theme_light \$mol_theme_light
@@ -2997,6 +3025,7 @@ $bog_blitz $mol_page
 		bubble_content /
 			<= Mobile_nav 
 	tools /
+		<= Radio $bog_blitz_radio
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
