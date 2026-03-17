@@ -13,8 +13,10 @@ namespace $.$$ {
 
 			if (this.question_image_uri()) {
 				rows.push(this.Image_preview())
+				rows.push(this.Image_remove())
+			} else {
+				rows.push(this.Image_upload())
 			}
-			rows.push(this.Image_upload())
 
 			return rows
 		}

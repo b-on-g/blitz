@@ -196,5 +196,12 @@ namespace $.$$ {
 			}
 			return next ?? []
 		}
+
+		@$mol_action
+		remove_question_image(key: string) {
+			const q = this.questions()[Number(key)]
+			if (!q) return
+			q.Image('auto')?.val(null)
+		}
 	}
 }

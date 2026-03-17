@@ -17,6 +17,7 @@ $bog_blitz_admin_editor $mol_list
 		correct_text? <=> correct_text*? \
 		question_image_files? <=> question_image_files*? /
 		question_image_uri <= question_image_uri* \
+		remove_image? <=> remove_question_image*? null
 	Option*0 $bog_blitz_admin_option
 		option_text? <=> option_text*? \
 		is_correct? <=> is_correct*? false
