@@ -3087,9 +3087,9 @@ $bog_blitz_profile_page $mol_page
 		uri <= avatar_uri \
 	Avatar_icon $mol_avatar
 		id <= player_id \
-	Stat_row*0 $mol_view
+	Stat_row* $mol_view
 		sub /
-			<= Stat_label*0 $mol_paragraph
-				title <= stat_label*0 \
-			<= Stat_value*0 $mol_paragraph
-				title <= stat_value*0 \
+			<= Stat_label* $mol_paragraph
+				title <= stat_label* \
+			<= Stat_value* $mol_paragraph
+				title <= stat_value* \

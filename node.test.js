@@ -29598,7 +29598,7 @@ var $;
 		}
 		Stat_label(id){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.stat_label("0")));
+			(obj.title) = () => ((this.stat_label(id)));
 			return obj;
 		}
 		stat_value(id){
@@ -29606,7 +29606,7 @@ var $;
 		}
 		Stat_value(id){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.stat_value("0")));
+			(obj.title) = () => ((this.stat_value(id)));
 			return obj;
 		}
 		Head(){
@@ -29627,7 +29627,7 @@ var $;
 		}
 		Stat_row(id){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Stat_label("0")), (this.Stat_value("0"))]);
+			(obj.sub) = () => ([(this.Stat_label(id)), (this.Stat_value(id))]);
 			return obj;
 		}
 	};
