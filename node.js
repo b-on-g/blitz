@@ -29515,13 +29515,16 @@ var $;
 
 ;
 	($.$bog_blitz_profile_page) = class $bog_blitz_profile_page extends ($.$mol_page) {
+		card_content(){
+			return [];
+		}
+		Card(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.card_content()));
+			return obj;
+		}
 		avatar_preview(){
 			return null;
-		}
-		Avatar_circle(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.avatar_preview())]);
-			return obj;
 		}
 		Avatar_label(){
 			const obj = new this.$.$mol_paragraph();
@@ -29539,10 +29542,11 @@ var $;
 			(obj.multiple) = () => (false);
 			return obj;
 		}
-		Avatar(){
-			const obj = new this.$.$mol_button_open();
-			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
-			return obj;
+		avatar_uri(){
+			return "";
+		}
+		player_id(){
+			return "";
 		}
 		profile_name(next){
 			if(next !== undefined) return next;
@@ -29554,68 +29558,8 @@ var $;
 			(obj.value) = (next) => ((this.profile_name(next)));
 			return obj;
 		}
-		Name_row(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Name_input())]);
-			return obj;
-		}
 		stat_rows(){
 			return [];
-		}
-		Stats(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.stat_rows()));
-			return obj;
-		}
-		History_title(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_History_title_title")));
-			return obj;
-		}
-		history_rows(){
-			return [];
-		}
-		History(){
-			const obj = new this.$.$mol_list();
-			(obj.rows) = () => ((this.history_rows()));
-			return obj;
-		}
-		Fun_title(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Fun_title_title")));
-			return obj;
-		}
-		persona_text(){
-			return "";
-		}
-		Fun_text(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.persona_text()));
-			return obj;
-		}
-		Fun_card(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Fun_title()), (this.Fun_text())]);
-			return obj;
-		}
-		Card(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Avatar_circle()), 
-				(this.Avatar()), 
-				(this.Name_row()), 
-				(this.Stats()), 
-				(this.History_title()), 
-				(this.History()), 
-				(this.Fun_card())
-			]);
-			return obj;
-		}
-		avatar_uri(){
-			return "";
-		}
-		player_id(){
-			return "";
 		}
 		stat_label(id){
 			return "";
@@ -29632,6 +29576,9 @@ var $;
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.stat_value("0")));
 			return obj;
+		}
+		history_rows(){
+			return [];
 		}
 		history_land(id){
 			return "";
@@ -29668,11 +29615,34 @@ var $;
 			(obj.title) = () => ((this.history_date("0")));
 			return obj;
 		}
+		Fun_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Fun_title_title")));
+			return obj;
+		}
+		persona_text(){
+			return "";
+		}
+		Fun_text(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.persona_text()));
+			return obj;
+		}
 		Head(){
 			return null;
 		}
 		body(){
 			return [(this.Card())];
+		}
+		Avatar_circle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.avatar_preview())]);
+			return obj;
+		}
+		Avatar(){
+			const obj = new this.$.$mol_button_open();
+			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
+			return obj;
 		}
 		Avatar_image(){
 			const obj = new this.$.$mol_image();
@@ -29684,9 +29654,29 @@ var $;
 			(obj.id) = () => ((this.player_id()));
 			return obj;
 		}
+		Name_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Name_input())]);
+			return obj;
+		}
+		Stats(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.stat_rows()));
+			return obj;
+		}
 		Stat_row(id){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([(this.Stat_label("0")), (this.Stat_value("0"))]);
+			return obj;
+		}
+		History_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_History_title_title")));
+			return obj;
+		}
+		History(){
+			const obj = new this.$.$mol_list();
+			(obj.rows) = () => ((this.history_rows()));
 			return obj;
 		}
 		History_row(id){
@@ -29700,32 +29690,37 @@ var $;
 			]);
 			return obj;
 		}
+		Fun_card(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Fun_title()), (this.Fun_text())]);
+			return obj;
+		}
 	};
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Card"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_label"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_native"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "profile_name"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_input"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_row"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Stats"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "History_title"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "History"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_title"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_text"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_card"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Card"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_label"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_value"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_title_text"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_score"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_place"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_date"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_title"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_text"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_image"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_row"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Stats"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_row"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "History_title"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "History"));
 	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_row"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_card"));
 
 
 ;
@@ -29775,6 +29770,20 @@ var $;
             { min: 50, title: 'Грандмастер', desc: 'Вы — живая энциклопедия. Квиз — ваша стихия!' },
         ];
         class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
+            card_content() {
+                const base = [
+                    this.Avatar_circle(),
+                    this.Avatar(),
+                    this.Name_row(),
+                    this.Stats(),
+                ];
+                const rows = this.history_rows();
+                if (rows.length) {
+                    base.push(this.History_title(), this.History());
+                }
+                base.push(this.Fun_card());
+                return base;
+            }
             profile_data() {
                 const home = this.$.$giper_baza_glob.home();
                 return home.land().Data($bog_blitz_profile);
@@ -29929,6 +29938,9 @@ var $;
                 return `${persona.title} — ${persona.desc}`;
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_profile_page.prototype, "card_content", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "player_id", null);
