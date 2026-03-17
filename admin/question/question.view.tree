@@ -2,6 +2,9 @@ $bog_blitz_admin_question $mol_list
 	question null
 	number 0
 	rows <= question_rows /
+		<= Text_input $mol_string
+			hint @ \Question...
+			value? <=> question_text? \
 		<= Header $mol_row
 			sub /
 				<= Number $mol_paragraph
@@ -14,9 +17,6 @@ $bog_blitz_admin_question $mol_list
 				<= Delete $mol_button_minor
 					title @ \Delete
 					click? <=> delete? null
-		<= Text_input $mol_string
-			hint @ \Question text...
-			value? <=> question_text? \
 		<= Options_section $mol_list
 			rows <= option_rows /
 		<= Add_option $mol_button_minor
@@ -25,3 +25,8 @@ $bog_blitz_admin_question $mol_list
 		<= Correct_text_input $mol_string
 			hint @ \Correct answer...
 			value? <=> correct_text? \
+		<= Image_upload $mol_button_open
+			title @ \Add Image
+			files? <=> question_image_files? /
+		<= Image_preview $mol_image
+			uri <= question_image_uri \
