@@ -10,6 +10,7 @@ $bog_blitz_lobby $mol_page
 		player_name? <=> my_player_name? \
 		avatar_files? <=> my_avatar_files? /File
 		join? <=> join? null
+		is_synced <= is_synced false
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		Players <= Host_players $bog_blitz_lobby_players

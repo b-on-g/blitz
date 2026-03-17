@@ -68,10 +68,16 @@ namespace $.$$ {
 			return null
 		}
 
+		@$mol_mem
+		i_created_land(next?: boolean) {
+			return next ?? false
+		}
+
 		@$mol_action
 		create_land() {
 			const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]])
 			this.$.$mol_state_arg.value('land', land.link().str)
+			this.i_created_land(true)
 		}
 
 		@$mol_action
@@ -94,10 +100,12 @@ namespace $.$$ {
 				return []
 			}
 			if (!this.my_player()) {
-				const keys = Array.from(this.players_dict()?.keys() ?? [])
-				if (keys.length === 0) {
-					this.register_as_host()
-					return [this.Host()]
+				if (this.i_created_land()) {
+					const keys = Array.from(this.players_dict()?.keys() ?? [])
+					if (keys.length === 0) {
+						this.register_as_host()
+						return [this.Host()]
+					}
 				}
 				return [this.Join_screen()]
 			}
@@ -115,6 +123,15 @@ namespace $.$$ {
 				return !player?.IsHost()?.val()
 			}).length
 			return `${this.players_string()}: ${count}`
+		}
+
+		@$mol_mem
+		is_synced() {
+			const keys = Array.from(this.players_dict()?.keys() ?? [])
+			if (keys.length === 0) {
+				throw new Promise(() => {})
+			}
+			return true
 		}
 	}
 }

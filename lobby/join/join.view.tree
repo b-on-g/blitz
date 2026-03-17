@@ -1,5 +1,9 @@
 $bog_blitz_lobby_join $mol_page
 	Head null
+	is_synced false
+	syncing_title @ \Syncing...
+	join_title @ \Syncing...
+	enter_title @ \Enter
 	Avatar_icon $mol_avatar
 		id <= player_id \
 	Avatar_image $mol_image
@@ -16,5 +20,5 @@ $bog_blitz_lobby_join $mol_page
 			hint @ \Touch to change your name
 			value? <=> player_name? \
 		<= Join $mol_button_major
-			title @ \Enter
+			title <= join_title
 			click? <=> join? null
