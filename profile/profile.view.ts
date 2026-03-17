@@ -104,5 +104,63 @@ namespace $.$$ {
 			}
 			return `${persona.title} — ${persona.desc}`
 		}
+
+		@$mol_mem
+		games_history() {
+			const profile = this.profile_data()
+			const list = profile.Games_history()?.remote_list() ?? []
+			return list.slice().sort((a, b) => {
+				const da = a.Date()?.val() ?? 0
+				const db = b.Date()?.val() ?? 0
+				return db - da
+			})
+		}
+
+		@$mol_mem
+		games_filtered() {
+			const query = this.games_query().toLowerCase().trim()
+			const all = this.games_history()
+			if (!query) return all
+			return all.filter(g => {
+				const title = (g.Quiz_title()?.val() ?? '').toLowerCase()
+				return title.includes(query)
+			})
+		}
+
+		@$mol_mem
+		games_empty_text() {
+			if (this.games_history().length === 0) return 'Пока нет сыгранных игр'
+			if (this.games_filtered().length === 0) return 'Ничего не найдено'
+			return ''
+		}
+
+		@$mol_mem
+		game_rows() {
+			const games = this.games_filtered()
+			if (!games.length) return []
+			return games.map((_, i) => this.Game_row(String(i)))
+		}
+
+		game_record(key: string) {
+			return this.games_filtered()[Number(key)]
+		}
+
+		game_title(key: string) {
+			return this.game_record(key)?.Quiz_title()?.val() ?? 'Untitled'
+		}
+
+		game_details(key: string) {
+			const rec = this.game_record(key)
+			const place = rec?.Place()?.val() ?? 0
+			const players = rec?.Players_count()?.val() ?? 0
+			const ts = rec?.Date()?.val() ?? 0
+			const date = ts ? new Date(ts).toLocaleDateString('ru-RU') : ''
+			return `${date} · ${place}/${players} место`
+		}
+
+		game_score(key: string) {
+			const score = Math.round(this.game_record(key)?.Score()?.val() ?? 0)
+			return String(score)
+		}
 	}
 }

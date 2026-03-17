@@ -27,6 +27,16 @@ $bog_blitz_profile_page $mol_page
 							title @ \Your Quiz Persona
 						<= Fun_text $mol_paragraph
 							title <= persona_text \
+		<= Games_section $mol_view
+			sub /
+				<= Games_title $mol_paragraph
+					title @ \Game History
+				<= Games_search $mol_search
+					query? <=> games_query? \
+				<= Games_list $mol_list
+					rows <= game_rows /
+				<= Games_empty $mol_paragraph
+					title <= games_empty_text \
 	Avatar_image $mol_image
 		uri <= avatar_uri \
 	Avatar_icon $mol_avatar
@@ -37,3 +47,13 @@ $bog_blitz_profile_page $mol_page
 				title <= stat_label* \
 			<= Stat_value* $mol_paragraph
 				title <= stat_value* \
+	Game_row* $mol_view
+		sub /
+			<= Game_info* $mol_view
+				sub /
+					<= Game_title* $mol_paragraph
+						title <= game_title* \
+					<= Game_details* $mol_paragraph
+						title <= game_details* \
+			<= Game_score* $mol_paragraph
+				title <= game_score* \

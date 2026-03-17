@@ -94,6 +94,74 @@ namespace $.$$ {
 				weight: 700,
 			},
 		},
+		Games_section: {
+			flex: {
+				direction: 'column',
+			},
+			width: '100%',
+			gap: '0.75rem',
+		},
+		Games_title: {
+			font: {
+				size: '1.1rem',
+				weight: 600,
+			},
+		},
+		Games_list: {
+			gap: '0.5rem',
+		},
+		Games_empty: {
+			textAlign: 'center',
+			opacity: 0.5,
+			font: {
+				size: '0.875rem',
+			},
+		},
+		Game_row: {
+			justify: {
+				content: 'space-between',
+			},
+			align: {
+				items: 'center',
+			},
+			padding: {
+				top: '0.5rem',
+				bottom: '0.5rem',
+				left: '0.75rem',
+				right: '0.75rem',
+			},
+			borderRadius: '8px',
+			background: {
+				color: $mol_theme.card,
+			},
+		},
+		Game_info: {
+			flex: {
+				direction: 'column',
+			},
+			gap: '0.125rem',
+		},
+		Game_title: {
+			font: {
+				size: '0.95rem',
+				weight: 600,
+			},
+		},
+		Game_details: {
+			font: {
+				size: '0.8rem',
+			},
+			opacity: 0.6,
+		},
+		Game_score: {
+			font: {
+				size: '1.1rem',
+				weight: 700,
+			},
+			flex: {
+				shrink: 0,
+			},
+		},
 		Fun_card: {
 			flex: {
 				direction: 'column',
