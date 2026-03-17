@@ -94,58 +94,6 @@ namespace $.$$ {
 				weight: 700,
 			},
 		},
-		History_title: {
-			font: {
-				size: '1.1rem',
-				weight: 600,
-			},
-			margin: {
-				top: '0.5rem',
-			},
-		},
-		History: {
-			width: '100%',
-			gap: '0.5rem',
-		},
-		History_row: {
-			padding: {
-				top: '0.625rem',
-				bottom: '0.625rem',
-				left: '0.75rem',
-				right: '0.75rem',
-			},
-			borderRadius: '8px',
-			background: {
-				color: $mol_theme.card,
-			},
-			gap: '0.75rem',
-		},
-		History_title_text: {
-			flex: {
-				grow: 1,
-			},
-			font: {
-				weight: 500,
-			},
-		},
-		History_score: {
-			font: {
-				weight: 600,
-			},
-			color: $mol_theme.special,
-		},
-		History_place: {
-			opacity: 0.6,
-			font: {
-				size: '0.8rem',
-			},
-		},
-		History_date: {
-			opacity: 0.4,
-			font: {
-				size: '0.75rem',
-			},
-		},
 		Fun_card: {
 			flex: {
 				direction: 'column',

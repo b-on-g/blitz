@@ -10,22 +10,6 @@ namespace $.$$ {
 
 	export class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
 
-		@$mol_mem
-		card_content() {
-			const base = [
-				this.Avatar_circle(),
-				this.Avatar(),
-				this.Name_row(),
-				this.Stats(),
-			]
-			const rows = this.history_rows()
-			if (rows.length) {
-				base.push(this.History_title(), this.History())
-			}
-			base.push(this.Fun_card())
-			return base
-		}
-
 		profile_data() {
 			const home = this.$.$giper_baza_glob.home()
 			return home.land().Data($bog_blitz_profile)
@@ -135,73 +119,6 @@ namespace $.$$ {
 				case 5: return this.win_rate()
 				default: return '0'
 			}
-		}
-
-		@$mol_mem
-		history_records() {
-			const profile = this.profile_data()
-			const list = profile.Games_history()?.remote_list() ?? []
-			return (list as $bog_blitz_game_record[]).filter(r => {
-				const date = r.Date()?.val()
-				return date && date > 0
-			})
-		}
-
-		@$mol_mem
-		history_sorted() {
-			const records = this.history_records()
-			// Create index pairs and sort by date descending (newest first)
-			const indexed = records.map((r, i) => ({ i, date: r.Date()?.val() ?? 0 }))
-			indexed.sort((a, b) => b.date - a.date)
-			return indexed
-		}
-
-		@$mol_mem
-		history_rows() {
-			const sorted = this.history_sorted()
-			if (!sorted.length) return []
-			return sorted.map((_, viewIdx) => this.History_row(String(viewIdx)))
-		}
-
-		history_record_index(viewKey: string) {
-			return this.history_sorted()[Number(viewKey)]?.i ?? 0
-		}
-
-		history_land(key: string) {
-			const idx = this.history_record_index(key)
-			const record = this.history_records()[idx]
-			return record?.Land_link()?.val() ?? ''
-		}
-
-		history_title_text(key: string) {
-			const idx = this.history_record_index(key)
-			const record = this.history_records()[idx]
-			return record?.Quiz_title()?.val() ?? 'Untitled'
-		}
-
-		history_score(key: string) {
-			const idx = this.history_record_index(key)
-			const record = this.history_records()[idx]
-			const score = record?.Score()?.val() ?? 0
-			return `${Math.round(score)} pts`
-		}
-
-		history_place(key: string) {
-			const idx = this.history_record_index(key)
-			const record = this.history_records()[idx]
-			const place = record?.Place()?.val() ?? 0
-			const count = record?.Players_count()?.val() ?? 0
-			if (!place) return ''
-			return `#${place} / ${count}`
-		}
-
-		history_date(key: string) {
-			const idx = this.history_record_index(key)
-			const record = this.history_records()[idx]
-			const ts = record?.Date()?.val() ?? 0
-			if (!ts) return ''
-			const d = new Date(ts)
-			return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
 		}
 
 		@$mol_mem
