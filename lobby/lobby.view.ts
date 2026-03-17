@@ -101,13 +101,17 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		current_question_text() {
+		current_question() {
 			const quiz = this.quiz_data()
-			if (!quiz) return ''
+			if (!quiz) return null
 			const index = quiz.Current_question()?.val() ?? 0
 			const questions = quiz.Questions()?.remote_list() ?? []
-			const question = questions[index] as $bog_blitz_question | undefined
-			return question?.Text()?.val() ?? ''
+			return (questions[index] as $bog_blitz_question | undefined) ?? null
+		}
+
+		@$mol_mem
+		current_question_text() {
+			return this.current_question()?.Text()?.val() ?? ''
 		}
 
 		@$mol_mem

@@ -1,14 +1,26 @@
 $bog_blitz_lobby_game $mol_view
 	quiz_data null
 	game_state \
+	current_question null
 	current_question_text \
+	my_player null
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_leaderboard @ \Leaderboard
 	state_final @ \Final Results
 	state_label \
+	option_keys /string
 	sub /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Question $mol_paragraph
 			title <= current_question_text
+		<= Options $mol_view
+			sub <= option_views /
+	Option*0 $mol_button_major
+		attr *
+			^
+			mol_theme <= option_theme* \
+		enabled <= option_enabled* true
+		title <= option_text* \
+		click? <=> option_click*? null

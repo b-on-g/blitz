@@ -11,5 +11,60 @@ namespace $.$$ {
 				default: return state
 			}
 		}
+
+		@$mol_mem
+		option_keys() {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return []
+			const options = question.Options()?.remote_list() ?? []
+			return options.map((_: any, i: number) => String(i))
+		}
+
+		@$mol_mem
+		option_views() {
+			return this.option_keys().map(key => this.Option(key))
+		}
+
+		@$mol_mem_key
+		option_text(key: string) {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return ''
+			const options = question.Options()?.remote_list() ?? []
+			const option = options[Number(key)] as $bog_blitz_question_option | undefined
+			return option?.Text()?.val() ?? ''
+		}
+
+		@$mol_mem
+		my_answer() {
+			const player = this.my_player() as $bog_blitz_player | null
+			return player?.Answer()?.val() ?? ''
+		}
+
+		@$mol_mem
+		has_answered() {
+			return this.my_answer() !== ''
+		}
+
+		@$mol_mem_key
+		option_enabled(key: string) {
+			return !this.has_answered()
+		}
+
+		@$mol_mem_key
+		option_theme(key: string) {
+			if (!this.has_answered()) return ''
+			return this.my_answer() === key ? '$mol_theme_special' : ''
+		}
+
+		@$mol_mem_key
+		option_click(key: string, e?: any) {
+			if (e) {
+				const player = this.my_player() as $bog_blitz_player | null
+				if (!player) return
+				player.Answer('auto')?.val(key)
+				player.Answer_time('auto')?.val(Date.now())
+			}
+			return null
+		}
 	}
 }

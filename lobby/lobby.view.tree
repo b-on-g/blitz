@@ -32,5 +32,7 @@ $bog_blitz_lobby $mol_page
 	Game_screen $bog_blitz_lobby_game
 		quiz_data <= quiz_data null
 		game_state <= game_state \
+		current_question <= current_question null
 		current_question_text <= current_question_text \
+		my_player <= my_player null
 	body <= lobby_content /
