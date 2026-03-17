@@ -10,7 +10,12 @@ namespace $.$$ {
 	}) {}
 
 	export const $bog_blitz_quiz_fields = new Set([
-		'Title', 'Questions', 'Time_read', 'Time_answer',
-		'Time_leaderboard', 'Points_base', 'Time_multiplier',
+		'Title',
+		'Questions',
+		'Time_read',
+		'Time_answer',
+		'Time_leaderboard',
+		'Points_base',
+		'Time_multiplier',
 	])
 }

@@ -87,14 +87,6 @@ namespace $.$$ {
 			this.$.$mol_state_arg.value('screen', 'admin')
 		}
 
-		@$mol_action
-		register_as_host() {
-			const player = this.my_player_create()
-			if (player) {
-				player.IsHost('auto')?.val(true)
-			}
-		}
-
 		@$mol_mem
 		player_keys() {
 			const raw = this.players_dict()?.keys() ?? []
@@ -110,10 +102,6 @@ namespace $.$$ {
 				return [this.No_game()]
 			}
 			if (!this.my_player()) {
-				if (this.$.$mol_state_arg.value('host') === '1') {
-					this.register_as_host()
-					return [this.Host()]
-				}
 				return [this.Join_screen()]
 			}
 			if (this.is_host()) return [this.Host()]
