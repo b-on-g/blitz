@@ -57,8 +57,10 @@ namespace $.$$ {
 
 		@$mol_mem
 		avatar_preview() {
-			const uri = this.avatar_uri()
-			if (uri) return this.Avatar_image()
+			try {
+				const uri = this.avatar_uri()
+				if (uri) return this.Avatar_image()
+			} catch {}
 			return this.Avatar_icon()
 		}
 
