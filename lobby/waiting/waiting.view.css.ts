@@ -1,5 +1,11 @@
 namespace $.$$ {
 	$mol_style_define($bog_blitz_lobby_waiting, {
+		Quiz_title: {
+			align: { self: 'center' },
+			font: { size: '1.75rem', weight: 700 },
+			margin: { top: '1rem' },
+			textAlign: 'center',
+		},
 		Waiting_message: {
 			align: { self: 'center' },
 			font: { size: '1.5rem', weight: 500 },

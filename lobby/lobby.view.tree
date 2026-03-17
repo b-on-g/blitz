@@ -28,4 +28,8 @@ $bog_blitz_lobby $mol_page
 			<= Go_admin $mol_button_major
 				title @ \Go to Admin
 				click? <=> go_admin? null
+	Game_screen $mol_view
+		sub /
+			<= Game_status $mol_paragraph
+				title <= game_state \
 	body <= lobby_content /

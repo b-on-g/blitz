@@ -96,6 +96,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		game_state() {
+			return this.quiz_data()?.Game_state()?.val() ?? ''
+		}
+
+		@$mol_mem
 		lobby_content() {
 			const land = this.land()
 			if (!land) {
@@ -104,6 +109,12 @@ namespace $.$$ {
 			if (!this.my_player()) {
 				return [this.Join_screen()]
 			}
+
+			const state = this.game_state()
+			if (state) {
+				return [this.Game_screen()]
+			}
+
 			if (this.is_host()) return [this.Host()]
 			return [this.Waiting()]
 		}
