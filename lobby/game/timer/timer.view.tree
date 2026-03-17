@@ -5,4 +5,4 @@ $bog_blitz_lobby_game_timer $mol_view
 		<= Bar $mol_view
 			style *
 				^
-				animation <= bar_animation \none
+				width <= bar_width \100%

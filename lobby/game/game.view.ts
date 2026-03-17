@@ -6,12 +6,7 @@ namespace $.$$ {
 			if (state === 'leaderboard') return this.leaderboard_content()
 			if (state === 'final') return this.final_content()
 
-			const parts: $mol_view[] = [this.Timer(), this.State()]
-			if (this.question_image_uri()) parts.push(this.Question_image())
-			parts.push(this.Question())
-			parts.push(this.Answer_area())
-			parts.push(this.Countdown())
-			return parts
+			return this.question_content()
 		}
 
 		@$mol_mem
@@ -57,15 +52,15 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		text_answer(next?: string) {
+		text_submit(next?: Event) {
 			if (next !== undefined) {
+				const draft = this.text_draft()
+				if (!draft) return
 				const player = this.my_player() as $bog_blitz_player | null
-				if (!player) return ''
-				player.Answer('auto')?.val(next)
+				if (!player) return
+				player.Answer('auto')?.val(draft)
 				player.Answer_time('auto')?.val(Date.now())
-				return next
 			}
-			return this.my_answer()
 		}
 
 		@$mol_mem
@@ -135,11 +130,19 @@ namespace $.$$ {
 
 		@$mol_mem
 		countdown_number(next?: number) {
+			if (this.game_state() !== 'answering') return 0
 			const start = this.round_start()
-			if (!start) return 0
-			const elapsed = (Date.now() - start) / 1000
-			const num = Math.ceil(3 - elapsed)
-			if (num <= 0) return 0
+			const duration = this.duration()
+			if (!start || !duration) return 0
+			const remaining = (start + duration * 1000 - Date.now()) / 1000
+			const num = Math.ceil(remaining)
+			if (num > 3 || num <= 0) {
+				if (remaining > 3) {
+					new $mol_after_timeout((remaining - 3) * 1000 + 50, () => this.countdown_number(null!))
+				}
+				return 0
+			}
+			this.play_tick(num)
 			new $mol_after_timeout(1000, () => this.countdown_number(null!))
 			return num
 		}
@@ -152,10 +155,29 @@ namespace $.$$ {
 
 		@$mol_mem
 		countdown_content() {
-			if (!this.is_host()) return []
 			const num = this.countdown_number()
 			if (!num) return []
 			return [this.Countdown_number()]
+		}
+
+		last_tick_num = 0
+
+		play_tick(num: number) {
+			if (num === this.last_tick_num) return
+			this.last_tick_num = num
+			try {
+				const ctx = new AudioContext()
+				const osc = ctx.createOscillator()
+				const gain = ctx.createGain()
+				osc.connect(gain)
+				gain.connect(ctx.destination)
+				osc.type = 'sine'
+				osc.frequency.value = num === 1 ? 880 : num === 2 ? 660 : 520
+				gain.gain.setValueAtTime(0.3, ctx.currentTime)
+				gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3)
+				osc.start(ctx.currentTime)
+				osc.stop(ctx.currentTime + 0.3)
+			} catch {}
 		}
 
 		@$mol_mem_key
@@ -192,22 +214,22 @@ namespace $.$$ {
 			const total = this.total_questions()
 
 			if (state === 'reading') {
-				quiz.Game_state('auto')?.val('answering')
 				quiz.Round_start('auto')?.val(Date.now())
+				quiz.Game_state('auto')?.val('answering')
 			} else if (state === 'answering') {
 				this.calculate_scores()
-				quiz.Game_state('auto')?.val('leaderboard')
-				quiz.Round_start('auto')?.val(Date.now())
+				if (index + 1 >= total) {
+					quiz.Round_start('auto')?.val(0)
+					quiz.Game_state('auto')?.val('final')
+				} else {
+					quiz.Round_start('auto')?.val(Date.now())
+					quiz.Game_state('auto')?.val('leaderboard')
+				}
 			} else if (state === 'leaderboard') {
 				this.reset_answers()
-				if (index + 1 < total) {
-					quiz.Current_question('auto')?.val(index + 1)
-					quiz.Game_state('auto')?.val('reading')
-					quiz.Round_start('auto')?.val(Date.now())
-				} else {
-					quiz.Game_state('auto')?.val('final')
-					quiz.Round_start('auto')?.val(0)
-				}
+				quiz.Current_question('auto')?.val(index + 1)
+				quiz.Round_start('auto')?.val(Date.now())
+				quiz.Game_state('auto')?.val('reading')
 			}
 		}
 

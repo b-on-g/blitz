@@ -39,8 +39,9 @@ $bog_blitz_lobby_game $mol_view
 			sub <= countdown_content /
 	Answer_input $mol_string
 		hint @ \Type your answer...
-		value? <=> text_answer? \
+		value? <=> text_draft? \
 		enabled <= text_input_enabled true
+		submit?event <=> text_submit?event null
 	leaderboard_content /
 		<= Leaderboard_timer $bog_blitz_lobby_game_timer
 			round_start <= round_start

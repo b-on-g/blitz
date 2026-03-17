@@ -4,9 +4,9 @@ namespace $.$$ {
 			direction: 'column',
 		},
 		align: { items: 'center' },
-		padding: { top: '2rem' },
+		padding: { top: '0' },
 		State: {
-			font: { size: '1rem', weight: 500 },
+			font: { size: '1.5rem', weight: 600 },
 			opacity: 0.5,
 		},
 		Question_image: {
