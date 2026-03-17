@@ -101,6 +101,16 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		current_question_text() {
+			const quiz = this.quiz_data()
+			if (!quiz) return ''
+			const index = quiz.Current_question()?.val() ?? 0
+			const questions = quiz.Questions()?.remote_list() ?? []
+			const question = questions[index] as $bog_blitz_question | undefined
+			return question?.Text()?.val() ?? ''
+		}
+
+		@$mol_mem
 		lobby_content() {
 			const land = this.land()
 			if (!land) {

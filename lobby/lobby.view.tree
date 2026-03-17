@@ -7,6 +7,7 @@ $bog_blitz_lobby $mol_page
 		counter_string <= counter_string \
 		land_id <= land_id
 		quiz_title <= quiz_title
+		quiz_data <= quiz_data null
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
@@ -28,8 +29,8 @@ $bog_blitz_lobby $mol_page
 			<= Go_admin $mol_button_major
 				title @ \Go to Admin
 				click? <=> go_admin? null
-	Game_screen $mol_view
-		sub /
-			<= Game_status $mol_paragraph
-				title <= game_state \
+	Game_screen $bog_blitz_lobby_game
+		quiz_data <= quiz_data null
+		game_state <= game_state \
+		current_question_text <= current_question_text \
 	body <= lobby_content /
