@@ -73,6 +73,28 @@ namespace $.$$ {
 		@$mol_mem
 		count_poop_text() { return this.count_text('poop') }
 
+		prev_totals: Record<string, number> = {}
+
+		@$mol_mem
+		watch_reactions() {
+			if (!this.is_host()) return
+			for (const key of reaction_keys) {
+				const total = this.total_count(key)
+				const prev = this.prev_totals[key] ?? 0
+				if (total > prev && prev > 0) {
+					const diff = total - prev
+					for (let i = 0; i < Math.min(diff, 5); i++) {
+						this.spawn_fly(key)
+					}
+				}
+				this.prev_totals[key] = total
+			}
+		}
+
+		override auto() {
+			this.watch_reactions()
+		}
+
 		spawn_fly(key: string) {
 			const emoji = reaction_emojis[key]
 			if (!emoji) return
