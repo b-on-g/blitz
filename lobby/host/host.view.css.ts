@@ -6,6 +6,18 @@ namespace $.$$ {
 			},
 			align: { self: 'center' },
 		},
+		Quiz_title: {
+			align: { self: 'center' },
+			font: { size: '1.75rem', weight: 700 },
+			margin: { top: '1rem' },
+			textAlign: 'center',
+		},
+		Land_id: {
+			align: { self: 'center' },
+			font: { size: '0.85rem' },
+			opacity: 0.45,
+			textAlign: 'center',
+		},
 		Start: {
 			align: { self: 'center' },
 			maxWidth: '20rem',

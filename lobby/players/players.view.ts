@@ -47,8 +47,7 @@ namespace $.$$ {
 		@$mol_mem
 		player_keys() {
 			const raw = this.players_dict()?.keys() ?? []
-			const result = Array.from(raw).map(k => String(k))
-			return result
+			return Array.from(raw).map(k => String(k)).filter(k => k.length > 10)
 		}
 		@$mol_mem_key
 		player_avatar_uri(key: string) {

@@ -1,7 +1,10 @@
 $bog_blitz_lobby_waiting $mol_page
 	Head null
 	counter_string \
+	quiz_title \
 	body /
+		<= Quiz_title $mol_paragraph
+			title <= quiz_title
 		<= Waiting_message $mol_paragraph
 			title @ \Waiting for host to start...
 		<= Counter $mol_paragraph

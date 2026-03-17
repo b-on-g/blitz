@@ -66,43 +66,31 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		i_created_land(next?: boolean) {
-			return next ?? false
+		land_id() {
+			return this.$.$mol_state_arg.value('land') ?? ''
+		}
+
+		@$mol_mem
+		quiz_title() {
+			const land = this.land()
+			if (!land) return ''
+			const quiz = land.Data($bog_blitz_quiz)
+			return quiz.Title()?.val() ?? ''
 		}
 
 		@$mol_action
-		create_land() {
-			const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]])
-			this.$.$mol_state_arg.value('land', land.link().str)
-			this.i_created_land(true)
-		}
-
-		@$mol_action
-		register_as_host() {
-			const dict = this.players_dict()
-			if (!dict) return
-			const lord = this.my_lord_str()
-			const player = dict.key(lord, 'auto')
-			if (player) {
-				player.IsHost('auto')?.val(true)
-			}
+		go_admin() {
+			this.$.$mol_state_arg.value('land', null)
+			this.$.$mol_state_arg.value('screen', 'admin')
 		}
 
 		@$mol_mem
 		lobby_content() {
 			const land = this.land()
 			if (!land) {
-				this.create_land()
-				return []
+				return [this.No_game()]
 			}
 			if (!this.my_player()) {
-				if (this.i_created_land()) {
-					const keys = Array.from(this.players_dict()?.keys() ?? [])
-					if (keys.length === 0) {
-						this.register_as_host()
-						return [this.Host()]
-					}
-				}
 				return [this.Join_screen()]
 			}
 			if (this.is_host()) return [this.Host()]

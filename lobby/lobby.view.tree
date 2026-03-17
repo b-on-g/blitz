@@ -1,8 +1,12 @@
 $bog_blitz_lobby $mol_page
 	Head null
 	players_string @ \Players
+	land_id \
+	quiz_title \
 	Host $bog_blitz_lobby_host
 		counter_string <= counter_string \
+		land_id <= land_id
+		quiz_title <= quiz_title
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
@@ -13,7 +17,15 @@ $bog_blitz_lobby $mol_page
 		is_synced <= is_synced false
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
+		quiz_title <= quiz_title
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
+	No_game $mol_view
+		sub /
+			<= No_game_text $mol_paragraph
+				title @ \No active game
+			<= Go_admin $mol_button_major
+				title @ \Go to Admin
+				click? <=> go_admin? null
 	body <= lobby_content /
