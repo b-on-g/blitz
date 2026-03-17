@@ -1836,9 +1836,11 @@ $bog_blitz $mol_page
 	pages *
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
+		profile <= Profile $bog_blitz_profile_page
 	nav_options *
 		lobby \Lobby
 		admin \Admin
+		profile \Profile
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options <= nav_options
@@ -1871,3 +1873,60 @@ $bog_blitz $mol_page
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark
 	body <= screen_body /
+
+$bog_blitz_profile_page $mol_page
+	Head null
+	body /
+		<= Card $mol_view
+			sub /
+				<= Avatar_wrap $mol_view
+					sub /
+						<= Avatar $mol_button_open
+							sub /
+								<= avatar_preview null
+								<= Avatar_upload_hint $mol_paragraph
+									title @ \Tap to change
+								<= Avatar_native $mol_button_open_native
+									files? <=> avatar_files? /File
+									accept \image/*
+									multiple false
+				<= Name_row $mol_view
+					sub /
+						<= Name_input $mol_string_button
+							hint @ \Your name
+							value? <=> profile_name? \
+				<= Stats $mol_view
+					sub <= stat_rows /
+				<= History_title $mol_paragraph
+					title @ \Game History
+				<= History $mol_list
+					rows <= history_rows /
+				<= Fun_card $mol_view
+					sub /
+						<= Fun_title $mol_paragraph
+							title @ \Your Quiz Persona
+						<= Fun_text $mol_paragraph
+							title <= persona_text \
+	Avatar_image $mol_image
+		uri <= avatar_uri \
+	Avatar_icon $mol_avatar
+		id <= player_id \
+	Stat_row*0 $mol_view
+		sub /
+			<= Stat_label*0 $mol_paragraph
+				title <= stat_label*0 \
+			<= Stat_value*0 $mol_paragraph
+				title <= stat_value*0 \
+	History_row*0 $mol_link
+		arg *
+			screen \lobby
+			land <= history_land*0 \
+		sub /
+			<= History_title_text*0 $mol_paragraph
+				title <= history_title_text*0 \
+			<= History_score*0 $mol_paragraph
+				title <= history_score*0 \
+			<= History_place*0 $mol_paragraph
+				title <= history_place*0 \
+			<= History_date*0 $mol_paragraph
+				title <= history_date*0 \
