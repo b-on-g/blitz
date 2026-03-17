@@ -23,11 +23,3 @@ jobs:
               with:
                   folder: "bog/blitz/-"
                   
-            - uses: b-on-g/mol-prerender-action@main
-              if: github.ref == 'refs/heads/master'
-              with:
-                  base-url: "https://b-on-g.github.io/blitz/"
-                  screens: |
-                      lobby
-                      admin
-                      game

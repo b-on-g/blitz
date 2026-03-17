@@ -1,0 +1,24 @@
+$bog_blitz_blog $mol_book2
+	title \Giper Blitz Quiz — Блог
+	Placeholder $mol_view sub / <= Menu
+	pages <= blog_pages /
+	Menu $bog_blitz_blog_menu
+		items *
+			about \О проекте
+			guide \Как создать квиз
+			features \Возможности
+		page? <=> page? \
+	Page*0 $bog_blitz_blog_page
+		slug <= page_slug*0 \
+	App_link $mol_link
+		arg *
+			page null
+		title \Открыть Blitz Quiz
+		uri \https://b-on-g.github.io/blitz/
+	plugins /
+		<= Theme $bog_theme_auto
+			theme_light \$mol_theme_light
+			theme_dark \$mol_theme_dark
+			themes /
+				\$mol_theme_calm_light
+				\$mol_theme_calm_dark

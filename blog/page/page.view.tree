@@ -1,0 +1,15 @@
+$bog_blitz_blog_page $mol_page
+	title <= article_title \
+	head /
+		<= Back $mol_link
+			arg *
+				page null
+			sub /
+				<= Back_icon $mol_icon_arrow_left
+		<= Title
+	body /
+		<= Content $mol_text
+			text <= article_text \
+		<= App_link $mol_link_iconed
+			uri \https://b-on-g.github.io/blitz/
+			title \Открыть Blitz Quiz
