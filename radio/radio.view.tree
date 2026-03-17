@@ -1,0 +1,25 @@
+$bog_blitz_radio $mol_pop
+	showed? <=> menu_showed? false
+	Anchor <= Toggle $mol_check
+		checked? <=> menu_showed? false
+		sub /
+			<= Icon $mol_icon_music
+	bubble_content /
+		<= Menu $mol_view
+			sub <= menu_content /
+				<= Volume_row $mol_view
+					sub /
+						<= Volume_label $mol_paragraph
+							title <= volume_text \
+						<= Volume_up $mol_button_minor
+							title \+
+							click? <=> volume_up?event null
+						<= Volume_down $mol_button_minor
+							title \-
+							click? <=> volume_down?event null
+				<= Stop_button $mol_button_minor
+					title @ \Stop
+					click? <=> stop_click?event null
+				<= Station*0 $mol_button_minor
+					title <= station_title* \
+					click? <=> station_click*?event null

@@ -1,5 +1,13 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
+		@$mol_mem
+		tools() {
+			const lobby = this.Lobby()
+			const is_host = lobby.is_host()
+			if (is_host) return [this.Radio(), this.Status(), this.Theme_toggle()]
+			return [this.Status(), this.Theme_toggle()]
+		}
+
 		screen_body() {
 			const page = (this.pages() as Record<string, any>)[this.screen()]
 			return page ? [page] : []

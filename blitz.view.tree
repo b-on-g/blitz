@@ -21,6 +21,7 @@ $bog_blitz $mol_page
 		bubble_content /
 			<= Mobile_nav 
 	tools /
+		<= Radio $bog_blitz_radio
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme
