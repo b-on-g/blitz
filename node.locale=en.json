@@ -1,7 +1,9 @@
 {
 	"$bog_blitz_lobby_host_Start_title": "Start Game!",
-	"$bog_blitz_lobby_join_Join_title": "Enter",
 	"$bog_blitz_lobby_join_Player_name_input_hint": "Touch to change your name",
+	"$bog_blitz_lobby_join_enter_title": "Enter",
+	"$bog_blitz_lobby_join_join_title": "Syncing...",
+	"$bog_blitz_lobby_join_syncing_title": "Syncing...",
 	"$bog_blitz_lobby_players_Player_name_input_hint": "Touch to change",
 	"$bog_blitz_lobby_players_string": "Players",
 	"$bog_blitz_lobby_waiting_Waiting_message_title": "Waiting for host to start...",

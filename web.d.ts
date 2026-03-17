@@ -2564,7 +2564,7 @@ declare namespace $ {
 		ReturnType< $mol_string_button['value'] >
 	>
 	type $mol_button_major__title_bog_blitz_lobby_join_7 = $mol_type_enforce<
-		string
+		ReturnType< $bog_blitz_lobby_join['join_title'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
@@ -2595,6 +2595,10 @@ declare namespace $ {
 		join( next?: any ): any
 		Join( ): $mol_button_major
 		Head( ): any
+		is_synced( ): boolean
+		syncing_title( ): string
+		join_title( ): string
+		enter_title( ): string
 		Avatar_icon( ): $mol_avatar
 		Avatar_image( ): $mol_image
 		body( ): readonly(any)[]
@@ -2607,6 +2611,7 @@ declare namespace $.$$ {
     class $bog_blitz_lobby_join extends $.$bog_blitz_lobby_join {
         avatar_preview(): $.$mol_avatar | $.$mol_image;
         avatar_uri(): string;
+        join_title(): string;
     }
 }
 
@@ -14721,12 +14726,17 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_join['join'] >
 	>
-	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_8 = $mol_type_enforce<
+	type $bog_blitz_lobby_join__is_synced_bog_blitz_lobby_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['is_synced'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['is_synced'] >
+	>
+	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['counter_string'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['counter_string'] >
 	>
-	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_9 = $mol_type_enforce<
+	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['Host_players'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['Players'] >
@@ -14739,6 +14749,7 @@ declare namespace $ {
 		my_player_name( next?: string ): string
 		my_avatar_files( next?: readonly(File)[] ): readonly(File)[]
 		join( next?: any ): any
+		is_synced( ): boolean
 		lobby_content( ): readonly(any)[]
 		Head( ): any
 		players_string( ): string
@@ -14797,10 +14808,12 @@ declare namespace $.$$ {
         my_lord_str(): string;
         my_player_create(): $bog_blitz_player | null;
         join(e?: any): null;
+        i_created_land(next?: boolean): boolean;
         create_land(): void;
         register_as_host(): void;
         lobby_content(): $.$bog_blitz_lobby_host[] | $.$bog_blitz_lobby_join[] | $bog_blitz_lobby_waiting[];
         counter_string(): string;
+        is_synced(): boolean;
     }
 }
 

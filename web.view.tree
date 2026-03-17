@@ -322,6 +322,10 @@ $bog_blitz_lobby_host $mol_page
 
 $bog_blitz_lobby_join $mol_page
 	Head null
+	is_synced false
+	syncing_title @ \Syncing...
+	join_title @ \Syncing...
+	enter_title @ \Enter
 	Avatar_icon $mol_avatar
 		id <= player_id \
 	Avatar_image $mol_image
@@ -338,7 +342,7 @@ $bog_blitz_lobby_join $mol_page
 			hint @ \Touch to change your name
 			value? <=> player_name? \
 		<= Join $mol_button_major
-			title @ \Enter
+			title <= join_title
 			click? <=> join? null
 
 $bog_blitz_lobby_waiting $mol_page
@@ -363,6 +367,7 @@ $bog_blitz_lobby $mol_page
 		player_name? <=> my_player_name? \
 		avatar_files? <=> my_avatar_files? /File
 		join? <=> join? null
+		is_synced <= is_synced false
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		Players <= Host_players $bog_blitz_lobby_players

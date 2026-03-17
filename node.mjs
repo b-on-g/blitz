@@ -7827,12 +7827,24 @@ var $;
 		}
 		Join(){
 			const obj = new this.$.$mol_button_major();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_join_Join_title")));
+			(obj.title) = () => ((this.join_title()));
 			(obj.click) = (next) => ((this.join(next)));
 			return obj;
 		}
 		Head(){
 			return null;
+		}
+		is_synced(){
+			return false;
+		}
+		syncing_title(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_syncing_title"));
+		}
+		join_title(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_join_title"));
+		}
+		enter_title(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_enter_title"));
 		}
 		Avatar_icon(){
 			const obj = new this.$.$mol_avatar();
@@ -7885,6 +7897,15 @@ var $;
                     return '';
                 return URL.createObjectURL(files[0]);
             }
+            join_title() {
+                try {
+                    this.is_synced();
+                }
+                catch (e) {
+                    return this.syncing_title();
+                }
+                return this.enter_title();
+            }
         }
         __decorate([
             $mol_mem
@@ -7892,6 +7913,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_join.prototype, "avatar_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_join.prototype, "join_title", null);
         $$.$bog_blitz_lobby_join = $bog_blitz_lobby_join;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -7986,6 +8010,9 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		is_synced(){
+			return false;
+		}
 		lobby_content(){
 			return [];
 		}
@@ -8006,6 +8033,7 @@ var $;
 			(obj.player_name) = (next) => ((this.my_player_name(next)));
 			(obj.avatar_files) = (next) => ((this.my_avatar_files(next)));
 			(obj.join) = (next) => ((this.join(next)));
+			(obj.is_synced) = () => ((this.is_synced()));
 			return obj;
 		}
 		Waiting(){
@@ -16702,9 +16730,13 @@ var $;
                 }
                 return null;
             }
+            i_created_land(next) {
+                return next ?? false;
+            }
             create_land() {
                 const land = this.$.$giper_baza_glob.land_grab([[null, $giper_baza_rank_post('just')]]);
                 this.$.$mol_state_arg.value('land', land.link().str);
+                this.i_created_land(true);
             }
             register_as_host() {
                 const dict = this.players_dict();
@@ -16724,10 +16756,12 @@ var $;
                     return [];
                 }
                 if (!this.my_player()) {
-                    const keys = Array.from(this.players_dict()?.keys() ?? []);
-                    if (keys.length === 0) {
-                        this.register_as_host();
-                        return [this.Host()];
+                    if (this.i_created_land()) {
+                        const keys = Array.from(this.players_dict()?.keys() ?? []);
+                        if (keys.length === 0) {
+                            this.register_as_host();
+                            return [this.Host()];
+                        }
                     }
                     return [this.Join_screen()];
                 }
@@ -16745,6 +16779,13 @@ var $;
                     return !player?.IsHost()?.val();
                 }).length;
                 return `${this.players_string()}: ${count}`;
+            }
+            is_synced() {
+                const keys = Array.from(this.players_dict()?.keys() ?? []);
+                if (keys.length === 0) {
+                    throw new Promise(() => { });
+                }
+                return true;
             }
         }
         __decorate([
@@ -16766,6 +16807,9 @@ var $;
             $mol_mem
         ], $bog_blitz_lobby.prototype, "join", null);
         __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "i_created_land", null);
+        __decorate([
             $mol_action
         ], $bog_blitz_lobby.prototype, "create_land", null);
         __decorate([
@@ -16777,6 +16821,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "counter_string", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "is_synced", null);
         $$.$bog_blitz_lobby = $bog_blitz_lobby;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
