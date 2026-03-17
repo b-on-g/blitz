@@ -20587,30 +20587,30 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_paragraph__title_bog_blitz_profile_page_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_button_open_native__files_bog_blitz_profile_page_2 = $mol_type_enforce<
+	type $mol_button_open_native__files_bog_blitz_profile_page_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['avatar_files'] >
 		,
 		ReturnType< $mol_button_open_native['files'] >
 	>
-	type $mol_button_open_native__accept_bog_blitz_profile_page_3 = $mol_type_enforce<
+	type $mol_button_open_native__accept_bog_blitz_profile_page_2 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_open_native['accept'] >
 	>
-	type $mol_button_open_native__multiple_bog_blitz_profile_page_4 = $mol_type_enforce<
+	type $mol_button_open_native__multiple_bog_blitz_profile_page_3 = $mol_type_enforce<
 		boolean
 		,
 		ReturnType< $mol_button_open_native['multiple'] >
 	>
-	type $mol_button_open__sub_bog_blitz_profile_page_5 = $mol_type_enforce<
+	type $mol_button_open__sub_bog_blitz_profile_page_4 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_open['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
 	>
 	type $mol_view__sub_bog_blitz_profile_page_6 = $mol_type_enforce<
 		readonly(any)[]
@@ -20727,10 +20727,10 @@ declare namespace $ {
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
 		avatar_preview( ): any
-		Avatar_upload_hint( ): $mol_paragraph
 		avatar_files( next?: readonly(File)[] ): readonly(File)[]
 		Avatar_native( ): $mol_button_open_native
 		Avatar( ): $mol_button_open
+		Avatar_upload_hint( ): $mol_paragraph
 		Avatar_wrap( ): $mol_view
 		profile_name( next?: string ): string
 		Name_input( ): $mol_string_button

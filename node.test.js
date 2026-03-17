@@ -29509,11 +29509,6 @@ var $;
 		avatar_preview(){
 			return null;
 		}
-		Avatar_upload_hint(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Avatar_upload_hint_title")));
-			return obj;
-		}
 		avatar_files(next){
 			if(next !== undefined) return next;
 			return [];
@@ -29527,16 +29522,17 @@ var $;
 		}
 		Avatar(){
 			const obj = new this.$.$mol_button_open();
-			(obj.sub) = () => ([
-				(this.avatar_preview()), 
-				(this.Avatar_upload_hint()), 
-				(this.Avatar_native())
-			]);
+			(obj.sub) = () => ([(this.avatar_preview()), (this.Avatar_native())]);
+			return obj;
+		}
+		Avatar_upload_hint(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Avatar_upload_hint_title")));
 			return obj;
 		}
 		Avatar_wrap(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Avatar())]);
+			(obj.sub) = () => ([(this.Avatar()), (this.Avatar_upload_hint())]);
 			return obj;
 		}
 		profile_name(next){
@@ -29695,10 +29691,10 @@ var $;
 			return obj;
 		}
 	};
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_upload_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_native"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_upload_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_wrap"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "profile_name"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_input"));
@@ -30012,6 +30008,7 @@ var $;
             },
             Avatar: {
                 borderRadius: '50%',
+                overflow: 'hidden',
                 width: '80px',
                 height: '80px',
                 flex: {

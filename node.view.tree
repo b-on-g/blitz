@@ -1886,12 +1886,12 @@ $bog_blitz_profile_page $mol_page
 						<= Avatar $mol_button_open
 							sub /
 								<= avatar_preview null
-								<= Avatar_upload_hint $mol_paragraph
-									title @ \Tap to change
 								<= Avatar_native $mol_button_open_native
 									files? <=> avatar_files? /File
 									accept \image/*
 									multiple false
+						<= Avatar_upload_hint $mol_paragraph
+							title @ \Tap to change
 				<= Name_row $mol_view
 					sub /
 						<= Name_input $mol_string_button
