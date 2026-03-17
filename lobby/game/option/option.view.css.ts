@@ -3,7 +3,7 @@ namespace $.$$ {
 		'@': {
 			'data-selected': {
 				true: {
-					boxShadow: '0 0 0 3px var(--mol_theme_special)',
+					boxShadow: `0 0 0 3px ${$mol_theme.special}`,
 					opacity: 1,
 				},
 				false: {
