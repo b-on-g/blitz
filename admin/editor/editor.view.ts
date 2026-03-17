@@ -15,7 +15,7 @@ namespace $.$$ {
 		editor_rows() {
 			const quiz = this.quiz_data()
 			if (!quiz) return []
-			const rows: any[] = [this.Title_input()]
+			const rows: any[] = [this.Title_input(), this.Settings()]
 			const questions = this.questions()
 			for (let i = 0; i < questions.length; i++) {
 				rows.push(this.Question(String(i)))
@@ -212,6 +212,61 @@ namespace $.$$ {
 			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
 			if (!opt) return
 			opt.Image('auto')?.val(null)
+		}
+
+		@$mol_mem
+		time_read(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 5
+			if (next !== undefined) {
+				quiz.Time_read('auto')?.val(next)
+				return next
+			}
+			return quiz.Time_read()?.val() ?? 5
+		}
+
+		@$mol_mem
+		time_answer(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 10
+			if (next !== undefined) {
+				quiz.Time_answer('auto')?.val(next)
+				return next
+			}
+			return quiz.Time_answer()?.val() ?? 10
+		}
+
+		@$mol_mem
+		time_leaderboard(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 10
+			if (next !== undefined) {
+				quiz.Time_leaderboard('auto')?.val(next)
+				return next
+			}
+			return quiz.Time_leaderboard()?.val() ?? 10
+		}
+
+		@$mol_mem
+		points_base(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 100
+			if (next !== undefined) {
+				quiz.Points_base('auto')?.val(next)
+				return next
+			}
+			return quiz.Points_base()?.val() ?? 100
+		}
+
+		@$mol_mem
+		time_multiplier(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 1.5
+			if (next !== undefined) {
+				quiz.Time_multiplier('auto')?.val(next)
+				return next
+			}
+			return quiz.Time_multiplier()?.val() ?? 1.5
 		}
 	}
 }

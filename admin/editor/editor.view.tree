@@ -4,6 +4,28 @@ $bog_blitz_admin_editor $mol_list
 	Title_input $mol_string
 		hint @ \Quiz title
 		value? <=> quiz_title? \
+	Settings $mol_list
+		rows /
+			<= Time_read_row $mol_labeler
+				title @ \Read time (sec)
+				content / <= Time_read $mol_number
+					value? <=> time_read? 5
+			<= Time_answer_row $mol_labeler
+				title @ \Answer time (sec)
+				content / <= Time_answer $mol_number
+					value? <=> time_answer? 10
+			<= Time_leaderboard_row $mol_labeler
+				title @ \Leaderboard time (sec)
+				content / <= Time_leaderboard $mol_number
+					value? <=> time_leaderboard? 10
+			<= Points_base_row $mol_labeler
+				title @ \Points per answer
+				content / <= Points_base $mol_number
+					value? <=> points_base? 100
+			<= Time_multiplier_row $mol_labeler
+				title @ \Score multiplier for reaction
+				content / <= Time_multiplier $mol_number
+					value? <=> time_multiplier? 1.5
 	Add_question $mol_button_major
 		title @ \Add Question
 		click? <=> add_question? null
