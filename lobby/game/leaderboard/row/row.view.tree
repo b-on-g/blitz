@@ -3,9 +3,11 @@ $bog_blitz_lobby_game_leaderboard_row $mol_view
 	name \
 	score 0
 	mine false
+	rank_medal \
 	attr *
 		^
 		data-mine <= mine
+		data-medal <= rank_medal
 	sub /
 		<= Rank $mol_paragraph
 			title <= rank_text \

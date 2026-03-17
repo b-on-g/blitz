@@ -1,6 +1,15 @@
 namespace $.$$ {
 	export class $bog_blitz_lobby_game_leaderboard extends $.$bog_blitz_lobby_game_leaderboard {
 		@$mol_mem
+		board_content() {
+			const parts: ReturnType<typeof this.Top>[] = []
+			if (this.my_row_content().length) parts.push(this.My_row())
+			parts.push(this.Top())
+			parts.push(this.Bottom())
+			return parts
+		}
+
+		@$mol_mem
 		sorted_players() {
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return []
@@ -47,7 +56,6 @@ namespace $.$$ {
 		@$mol_mem
 		bottom_rows() {
 			const sorted = this.sorted_players()
-			if (sorted.length <= 10) return []
 			return sorted.slice(-10).reverse().map((_, i) => this.Row(`bottom_${i}`))
 		}
 
