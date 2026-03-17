@@ -15980,6 +15980,9 @@ declare namespace $.$$ {
         count_fire_text(): string;
         count_clap_text(): string;
         count_poop_text(): string;
+        prev_totals: Record<string, number>;
+        watch_reactions(): void;
+        auto(): void;
         spawn_fly(key: string): void;
     }
 }

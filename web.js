@@ -30002,6 +30002,25 @@ var $;
             count_fire_text() { return this.count_text('fire'); }
             count_clap_text() { return this.count_text('clap'); }
             count_poop_text() { return this.count_text('poop'); }
+            prev_totals = {};
+            watch_reactions() {
+                if (!this.is_host())
+                    return;
+                for (const key of reaction_keys) {
+                    const total = this.total_count(key);
+                    const prev = this.prev_totals[key] ?? 0;
+                    if (total > prev && prev > 0) {
+                        const diff = total - prev;
+                        for (let i = 0; i < Math.min(diff, 5); i++) {
+                            this.spawn_fly(key);
+                        }
+                    }
+                    this.prev_totals[key] = total;
+                }
+            }
+            auto() {
+                this.watch_reactions();
+            }
             spawn_fly(key) {
                 const emoji = reaction_emojis[key];
                 if (!emoji)
@@ -30060,6 +30079,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_reactions.prototype, "count_poop_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_reactions.prototype, "watch_reactions", null);
         $$.$bog_blitz_lobby_reactions = $bog_blitz_lobby_reactions;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
