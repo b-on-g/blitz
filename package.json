@@ -1,5 +1,5 @@
 {
-  "name": "bog_blitz_blog",
+  "name": "bog_blitz",
   "version": "0.0.1",
   "exports": {
     "node": {
@@ -15,7 +15,6 @@
   "browser": "./web.js",
   "types": "./web.d.ts",
   "keywords": [
-    "$bog_blitz_blog",
     "$bog_blitz",
     "$bog",
     "$mol_page",
@@ -434,9 +433,7 @@
     "$bog_theme_auto",
     "$bog_theme_picker_row",
     "$mol_switch",
-    "$mol_check_list",
-    "$bog_blitz_blog_menu",
-    "$bog_blitz_blog_page"
+    "$mol_check_list"
   ],
   "dependencies": {
     "autoinstall": "*",
