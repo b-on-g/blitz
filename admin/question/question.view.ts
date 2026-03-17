@@ -10,6 +10,12 @@ namespace $.$$ {
 				rows.push(this.Options_section())
 				rows.push(this.Add_option())
 			}
+
+			if (this.question_image_uri()) {
+				rows.push(this.Image_preview())
+			}
+			rows.push(this.Image_upload())
+
 			return rows
 		}
 	}

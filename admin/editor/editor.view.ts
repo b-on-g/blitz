@@ -142,5 +142,28 @@ namespace $.$$ {
 			}
 			return q.Correct_text()?.val() ?? ''
 		}
+
+		@$mol_mem_key
+		question_image_uri(key: string) {
+			const q = this.questions()[Number(key)]
+			if (!q) return ''
+			const file = q.Image()?.remote()
+			if (!file) return ''
+			return URL.createObjectURL(file.blob())
+		}
+
+		@$mol_mem_key
+		question_image_files(key: string, next?: readonly File[]) {
+			if (next?.length) {
+				const q = this.questions()[Number(key)]
+				if (q) {
+					const store = q.Image('auto')!.ensure(null)
+					if (store) {
+						store.blob(next[0])
+					}
+				}
+			}
+			return next ?? []
+		}
 	}
 }

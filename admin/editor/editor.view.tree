@@ -15,6 +15,8 @@ $bog_blitz_admin_editor $mol_list
 		option_rows <= option_rows* /
 		add_option? <=> add_option*? null
 		correct_text? <=> correct_text*? \
+		question_image_files? <=> question_image_files*? /
+		question_image_uri <= question_image_uri* \
 	Option*0 $bog_blitz_admin_option
 		option_text? <=> option_text*? \
 		is_correct? <=> is_correct*? false
