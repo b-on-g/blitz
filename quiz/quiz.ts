@@ -8,4 +8,9 @@ namespace $.$$ {
 		Points_base: $giper_baza_atom_real,
 		Time_multiplier: $giper_baza_atom_real,
 	}) {}
+
+	export const $bog_blitz_quiz_fields = new Set([
+		'Title', 'Questions', 'Time_read', 'Time_answer',
+		'Time_leaderboard', 'Points_base', 'Time_multiplier',
+	])
 }

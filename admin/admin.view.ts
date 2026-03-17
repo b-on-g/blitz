@@ -188,15 +188,8 @@ namespace $.$$ {
 			if (!quiz) return
 			const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]])
 
-			const Players_dict = $giper_baza_dict_to($bog_blitz_player)
-			const dict = game_land.Data(Players_dict)
-			const lord = this.$.$giper_baza_auth.current().pass().lord().str
-			const player = dict.key(lord, 'auto')
-			if (player) {
-				player.IsHost('auto')?.val(true)
-			}
-
 			this.$.$mol_state_arg.value('quiz', null)
+			this.$.$mol_state_arg.value('host', '1')
 			this.$.$mol_state_arg.value('land', game_land.link().str)
 			this.$.$mol_state_arg.value('screen', 'lobby')
 		}

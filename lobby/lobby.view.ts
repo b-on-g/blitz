@@ -10,6 +10,13 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		quiz_data() {
+			const land = this.land()
+			if (!land) return null
+			return land.Data($bog_blitz_quiz)
+		}
+
+		@$mol_mem
 		is_host() {
 			const player = this.my_player()
 			return player?.IsHost()?.val() ?? false
@@ -21,7 +28,6 @@ namespace $.$$ {
 			if (!dict) {
 				return null
 			}
-			const keys = Array.from(dict.keys() ?? [])
 			const lord = this.my_lord_str()
 			return dict.key(lord) ?? null
 		}
@@ -72,16 +78,29 @@ namespace $.$$ {
 
 		@$mol_mem
 		quiz_title() {
-			const land = this.land()
-			if (!land) return ''
-			const quiz = land.Data($bog_blitz_quiz)
-			return quiz.Title()?.val() ?? ''
+			return this.quiz_data()?.Title()?.val() ?? ''
 		}
 
 		@$mol_action
 		go_admin() {
 			this.$.$mol_state_arg.value('land', null)
 			this.$.$mol_state_arg.value('screen', 'admin')
+		}
+
+		@$mol_action
+		register_as_host() {
+			const player = this.my_player_create()
+			if (player) {
+				player.IsHost('auto')?.val(true)
+			}
+		}
+
+		@$mol_mem
+		player_keys() {
+			const raw = this.players_dict()?.keys() ?? []
+			return Array.from(raw)
+				.map(k => String(k))
+				.filter(k => !$bog_blitz_quiz_fields.has(k))
 		}
 
 		@$mol_mem
@@ -91,6 +110,10 @@ namespace $.$$ {
 				return [this.No_game()]
 			}
 			if (!this.my_player()) {
+				if (this.$.$mol_state_arg.value('host') === '1') {
+					this.register_as_host()
+					return [this.Host()]
+				}
 				return [this.Join_screen()]
 			}
 			if (this.is_host()) return [this.Host()]
@@ -101,18 +124,16 @@ namespace $.$$ {
 		counter_string() {
 			const dict = this.players_dict()
 			if (!dict) return ''
-			const keys = Array.from(dict.keys() ?? [])
-			const count = keys.filter(k => {
-				const player = dict.key(k)
-				return !player?.IsHost()?.val()
+			const count = this.player_keys().filter(k => {
+				const p = dict.key(k) as $bog_blitz_player | null
+				return !p?.IsHost()?.val()
 			}).length
 			return `${this.players_string()}: ${count}`
 		}
 
 		@$mol_mem
 		is_synced() {
-			const keys = Array.from(this.players_dict()?.keys() ?? [])
-			if (keys.length === 0) {
+			if (this.player_keys().length === 0) {
 				throw new Promise(() => {})
 			}
 			return true
