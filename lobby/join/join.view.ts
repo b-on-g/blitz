@@ -19,11 +19,7 @@ namespace $.$$ {
 		@$mol_mem
 		player_name(next?: string) {
 			if (next !== undefined) return next
-			try {
-				return this.profile_name()
-			} catch {
-				return ''
-			}
+			return this.profile_name()
 		}
 
 		@$mol_mem
