@@ -18,6 +18,11 @@ jobs:
               with:
                   package: "bog/blitz"
                   
+            - uses: hyoo-ru/gh-deploy@v4.4.1
+              if: github.ref == 'refs/heads/master'
+              with:
+                  folder: "bog/blitz/-"
+                  
             - uses: b-on-g/mol-prerender-action@main
               if: github.ref == 'refs/heads/master'
               with:
@@ -26,9 +31,3 @@ jobs:
                       lobby
                       admin
                       game
-
-
-            - uses: hyoo-ru/gh-deploy@v4.4.1
-              if: github.ref == 'refs/heads/master'
-              with:
-                  folder: "bog/blitz/-"
