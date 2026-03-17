@@ -25,11 +25,13 @@ $bog_blitz_admin_question $mol_list
 		<= Correct_text_input $mol_string_button
 			hint @ \Correct answer...
 			value? <=> correct_text? \
-		<= Image_upload $mol_button_open
-			title @ \Add Image
-			files? <=> question_image_files? /
-		<= Image_preview $mol_image
-			uri <= question_image_uri \
-		<= Image_remove $mol_button_minor
-			title @ \Remove Image
-			click? <=> remove_image? null
+	Image_section $mol_row
+		sub <= image_section_content /
+	Image_upload $mol_button_open
+		title @ \Add Image
+		files? <=> question_image_files? /
+	Image_preview $mol_image
+		uri <= question_image_uri \
+	Image_remove $mol_button_minor
+		title @ \Remove Image
+		click? <=> remove_image? null

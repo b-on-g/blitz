@@ -1,15 +1,16 @@
 namespace $.$$ {
 	export class $bog_blitz_admin_option extends $.$bog_blitz_admin_option {
 		@$mol_mem
-		option_content() {
-			const rows = [this.Controls()]
+		image_section_content() {
 			if (this.option_image_uri()) {
-				rows.unshift(this.Image_preview())
-				rows.push(this.Image_remove())
-			} else {
-				rows.push(this.Image_upload())
+				return [this.Image_preview(), this.Image_remove()]
 			}
-			return rows
+			return [this.Image_upload()]
+		}
+
+		@$mol_mem
+		option_content() {
+			return [this.Image_section(), this.Controls()]
 		}
 	}
 }

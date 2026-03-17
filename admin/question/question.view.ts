@@ -1,6 +1,14 @@
 namespace $.$$ {
 	export class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
 		@$mol_mem
+		image_section_content() {
+			if (this.question_image_uri()) {
+				return [this.Image_preview(), this.Image_remove()]
+			}
+			return [this.Image_upload()]
+		}
+
+		@$mol_mem
 		question_rows() {
 			const rows = [this.Text_input(), this.Header()]
 
@@ -11,12 +19,7 @@ namespace $.$$ {
 				rows.push(this.Add_option())
 			}
 
-			if (this.question_image_uri()) {
-				rows.push(this.Image_preview())
-				rows.push(this.Image_remove())
-			} else {
-				rows.push(this.Image_upload())
-			}
+			rows.push(this.Image_section())
 
 			return rows
 		}

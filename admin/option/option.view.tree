@@ -1,5 +1,7 @@
 $bog_blitz_admin_option $mol_list
 	rows <= option_content /
+	Image_section $mol_row
+		sub <= image_section_content /
 	Image_preview $mol_image
 		uri <= option_image_uri \
 	Image_upload $mol_button_open

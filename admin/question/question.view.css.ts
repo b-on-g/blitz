@@ -32,10 +32,13 @@ namespace $.$$ {
 				self: 'flex-start',
 			},
 		},
-		Image_upload: {
+		Image_section: {
 			align: {
-				self: 'flex-start',
+				items: 'center',
 			},
+			gap: '0.5rem',
+		},
+		Image_upload: {
 			Native: {
 				top: 0,
 				height: '100%',
