@@ -1,6 +1,7 @@
 $bog_blitz_lobby_join $mol_page
 	Head null
 	is_synced false
+	profile_avatar_uri \
 	syncing_title @ \Syncing...
 	join_title @ \Syncing...
 	enter_title @ \Enter

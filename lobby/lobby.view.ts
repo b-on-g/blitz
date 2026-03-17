@@ -106,6 +106,14 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		profile_avatar_uri() {
+			const profile = this.profile_data()
+			const file = profile.Avatar()?.remote()
+			if (!file) return ''
+			return file.uri() ?? ''
+		}
+
+		@$mol_mem
 		land_id() {
 			return this.$.$mol_state_arg.value('land') ?? ''
 		}

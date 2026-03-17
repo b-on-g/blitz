@@ -10,8 +10,8 @@ namespace $.$$ {
 		@$mol_mem
 		avatar_uri() {
 			const files = this.avatar_files()
-			if (!files || files.length === 0) return ''
-			return URL.createObjectURL(files[0])
+			if (files?.length) return URL.createObjectURL(files[0])
+			return this.profile_avatar_uri()
 		}
 
 		@$mol_mem
