@@ -29839,15 +29839,15 @@ var $;
                 return labels[Number(key)] ?? '';
             }
             stat_value(key) {
-                const values = [
-                    String(this.games_played()),
-                    String(this.total_score()),
-                    String(this.wins()),
-                    String(this.avg_score()),
-                    String(this.best_score()),
-                    this.win_rate(),
-                ];
-                return values[Number(key)] ?? '0';
+                switch (Number(key)) {
+                    case 0: return String(this.games_played());
+                    case 1: return String(this.total_score());
+                    case 2: return String(this.wins());
+                    case 3: return String(this.avg_score());
+                    case 4: return String(this.best_score());
+                    case 5: return this.win_rate();
+                    default: return '0';
+                }
             }
             history_records() {
                 const profile = this.profile_data();
@@ -30001,20 +30001,23 @@ var $;
                 overflow: 'hidden',
                 width: '80px',
                 height: '80px',
+                minWidth: '80px',
+                minHeight: '80px',
+                maxWidth: '80px',
+                maxHeight: '80px',
                 flex: {
                     shrink: 0,
+                    grow: 0,
                 },
             },
             Avatar_image: {
-                width: '80px',
-                height: '80px',
+                width: '100%',
+                height: '100%',
                 objectFit: 'cover',
-                borderRadius: '50%',
             },
             Avatar_icon: {
-                width: '80px',
-                height: '80px',
-                borderRadius: '50%',
+                width: '100%',
+                height: '100%',
                 font: {
                     size: '2.5rem',
                 },
