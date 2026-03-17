@@ -4,9 +4,80 @@ namespace $.$$ {
 		game_content() {
 			const state = this.game_state()
 			if (state === 'leaderboard') return this.leaderboard_content()
-			if (state === 'final') return this.final_content()
+			if (state === 'final') {
+				this.save_game_to_profile()
+				return this.final_content()
+			}
 
 			return this.question_content()
+		}
+
+		@$mol_mem
+		save_game_to_profile() {
+			if (this.is_host()) return
+
+			const player = this.my_player() as $bog_blitz_player | null
+			if (!player) return
+			const score = player.Score()?.val() ?? 0
+
+			const home = this.$.$giper_baza_glob.home()
+			const profile = home.land().Data($bog_blitz_profile)
+
+			const prev_played = profile.Games_played()?.val() ?? 0
+			const prev_total = profile.Total_score()?.val() ?? 0
+			const prev_best = profile.Best_score()?.val() ?? 0
+			const prev_wins = profile.Wins()?.val() ?? 0
+
+			profile.Games_played('auto')?.val(prev_played + 1)
+			profile.Total_score('auto')?.val(prev_total + score)
+			if (score > prev_best) {
+				profile.Best_score('auto')?.val(score)
+			}
+
+			const place = this.my_place()
+			if (place === 1) {
+				profile.Wins('auto')?.val(prev_wins + 1)
+			}
+
+			const quiz = this.quiz_data() as $bog_blitz_quiz | null
+			const history = profile.Games_history('auto')!
+			const record = history.make(null)
+			record.Quiz_title('auto')?.val(quiz?.Title()?.val() ?? 'Untitled')
+			record.Score('auto')?.val(score)
+			record.Place('auto')?.val(place)
+			record.Players_count('auto')?.val(this.players_count())
+			record.Date('auto')?.val(Date.now())
+		}
+
+		my_place() {
+			const dict = this.players_dict() as $giper_baza_dict | null
+			if (!dict) return 0
+			const keys = dict.keys() ?? []
+			const scores: { lord: string; score: number }[] = []
+			for (const key of keys) {
+				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
+				if (!p || p.IsHost()?.val()) continue
+				scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 })
+			}
+			scores.sort((a, b) => b.score - a.score)
+			const my_lord = this.my_lord_str()
+			const idx = scores.findIndex(s => s.lord === my_lord)
+			return idx >= 0 ? idx + 1 : 0
+		}
+
+		players_count() {
+			const dict = this.players_dict() as $giper_baza_dict | null
+			if (!dict) return 0
+			const keys = dict.keys() ?? []
+			let count = 0
+			for (const key of keys) {
+				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
+				if (!p || p.IsHost()?.val()) continue
+				count++
+			}
+			return count
 		}
 
 		is_paused() {

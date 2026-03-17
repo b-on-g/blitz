@@ -59,18 +59,34 @@ namespace $.$$ {
 			return result
 		}
 
+		profile_data() {
+			const home = this.$.$giper_baza_glob.home()
+			return home.land().Data($bog_blitz_profile)
+		}
+
 		@$mol_mem
 		join(e?: any) {
 			if (e) {
 				const player = this.my_player_create()
 				if (player) {
-					player.Name('auto')?.val(this.my_player_name())
+					const profile = this.profile_data()
+
+					const join_name = this.my_player_name()
+					const profile_name = profile.Name()?.val() ?? ''
+					const name = join_name || profile_name || ''
+					player.Name('auto')?.val(name)
+
 					const files = this.my_avatar_files()
 					if (files?.length) {
 						const store = player.Avatar(null)!.ensure(null)
 						if (store) {
 							store.blob(files[0])
 							player.Avatar(null)!.remote(store)
+						}
+					} else {
+						const profile_avatar = profile.Avatar()?.remote()
+						if (profile_avatar) {
+							player.Avatar(null)!.remote(profile_avatar)
 						}
 					}
 				}

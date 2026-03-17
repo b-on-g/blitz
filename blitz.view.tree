@@ -3,9 +3,11 @@ $bog_blitz $mol_page
 	pages *
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
+		profile <= Profile $bog_blitz_profile_page
 	nav_options *
 		lobby \Lobby
 		admin \Admin
+		profile \Profile
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options <= nav_options
