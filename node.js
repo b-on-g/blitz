@@ -29515,16 +29515,13 @@ var $;
 
 ;
 	($.$bog_blitz_profile_page) = class $bog_blitz_profile_page extends ($.$mol_page) {
-		card_content(){
-			return [];
-		}
-		Card(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.card_content()));
-			return obj;
-		}
 		avatar_preview(){
 			return null;
+		}
+		Avatar_circle(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.avatar_preview())]);
+			return obj;
 		}
 		Avatar_label(){
 			const obj = new this.$.$mol_paragraph();
@@ -29542,11 +29539,10 @@ var $;
 			(obj.multiple) = () => (false);
 			return obj;
 		}
-		avatar_uri(){
-			return "";
-		}
-		player_id(){
-			return "";
+		Avatar(){
+			const obj = new this.$.$mol_button_open();
+			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
+			return obj;
 		}
 		profile_name(next){
 			if(next !== undefined) return next;
@@ -29558,8 +29554,53 @@ var $;
 			(obj.value) = (next) => ((this.profile_name(next)));
 			return obj;
 		}
+		Name_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Name_input())]);
+			return obj;
+		}
 		stat_rows(){
 			return [];
+		}
+		Stats(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.stat_rows()));
+			return obj;
+		}
+		Fun_title(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Fun_title_title")));
+			return obj;
+		}
+		persona_text(){
+			return "";
+		}
+		Fun_text(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.persona_text()));
+			return obj;
+		}
+		Fun_card(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Fun_title()), (this.Fun_text())]);
+			return obj;
+		}
+		Card(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Avatar_circle()), 
+				(this.Avatar()), 
+				(this.Name_row()), 
+				(this.Stats()), 
+				(this.Fun_card())
+			]);
+			return obj;
+		}
+		avatar_uri(){
+			return "";
+		}
+		player_id(){
+			return "";
 		}
 		stat_label(id){
 			return "";
@@ -29577,72 +29618,11 @@ var $;
 			(obj.title) = () => ((this.stat_value("0")));
 			return obj;
 		}
-		history_rows(){
-			return [];
-		}
-		history_land(id){
-			return "";
-		}
-		history_title_text(id){
-			return "";
-		}
-		History_title_text(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.history_title_text("0")));
-			return obj;
-		}
-		history_score(id){
-			return "";
-		}
-		History_score(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.history_score("0")));
-			return obj;
-		}
-		history_place(id){
-			return "";
-		}
-		History_place(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.history_place("0")));
-			return obj;
-		}
-		history_date(id){
-			return "";
-		}
-		History_date(id){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.history_date("0")));
-			return obj;
-		}
-		Fun_title(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Fun_title_title")));
-			return obj;
-		}
-		persona_text(){
-			return "";
-		}
-		Fun_text(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.persona_text()));
-			return obj;
-		}
 		Head(){
 			return null;
 		}
 		body(){
 			return [(this.Card())];
-		}
-		Avatar_circle(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.avatar_preview())]);
-			return obj;
-		}
-		Avatar(){
-			const obj = new this.$.$mol_button_open();
-			(obj.sub) = () => ([(this.Avatar_label()), (this.Avatar_native())]);
-			return obj;
 		}
 		Avatar_image(){
 			const obj = new this.$.$mol_image();
@@ -29654,73 +29634,30 @@ var $;
 			(obj.id) = () => ((this.player_id()));
 			return obj;
 		}
-		Name_row(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Name_input())]);
-			return obj;
-		}
-		Stats(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.stat_rows()));
-			return obj;
-		}
 		Stat_row(id){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([(this.Stat_label("0")), (this.Stat_value("0"))]);
 			return obj;
 		}
-		History_title(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_History_title_title")));
-			return obj;
-		}
-		History(){
-			const obj = new this.$.$mol_list();
-			(obj.rows) = () => ((this.history_rows()));
-			return obj;
-		}
-		History_row(id){
-			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"screen": "lobby", "land": (this.history_land("0"))});
-			(obj.sub) = () => ([
-				(this.History_title_text("0")), 
-				(this.History_score("0")), 
-				(this.History_place("0")), 
-				(this.History_date("0"))
-			]);
-			return obj;
-		}
-		Fun_card(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Fun_title()), (this.Fun_text())]);
-			return obj;
-		}
 	};
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Card"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_label"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_native"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "profile_name"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_input"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_label"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_value"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_title_text"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_score"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_place"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_date"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_title"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_text"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_image"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_row"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Stats"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_row"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "History_title"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "History"));
-	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "History_row"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_title"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_text"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Fun_card"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Card"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_label"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_value"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_image"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
+	($mol_mem_key(($.$bog_blitz_profile_page.prototype), "Stat_row"));
 
 
 ;
@@ -29770,20 +29707,6 @@ var $;
             { min: 50, title: 'Грандмастер', desc: 'Вы — живая энциклопедия. Квиз — ваша стихия!' },
         ];
         class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
-            card_content() {
-                const base = [
-                    this.Avatar_circle(),
-                    this.Avatar(),
-                    this.Name_row(),
-                    this.Stats(),
-                ];
-                const rows = this.history_rows();
-                if (rows.length) {
-                    base.push(this.History_title(), this.History());
-                }
-                base.push(this.Fun_card());
-                return base;
-            }
             profile_data() {
                 const home = this.$.$giper_baza_glob.home();
                 return home.land().Data($bog_blitz_profile);
@@ -29871,63 +29794,6 @@ var $;
                     default: return '0';
                 }
             }
-            history_records() {
-                const profile = this.profile_data();
-                const list = profile.Games_history()?.remote_list() ?? [];
-                return list.filter(r => {
-                    const date = r.Date()?.val();
-                    return date && date > 0;
-                });
-            }
-            history_sorted() {
-                const records = this.history_records();
-                const indexed = records.map((r, i) => ({ i, date: r.Date()?.val() ?? 0 }));
-                indexed.sort((a, b) => b.date - a.date);
-                return indexed;
-            }
-            history_rows() {
-                const sorted = this.history_sorted();
-                if (!sorted.length)
-                    return [];
-                return sorted.map((_, viewIdx) => this.History_row(String(viewIdx)));
-            }
-            history_record_index(viewKey) {
-                return this.history_sorted()[Number(viewKey)]?.i ?? 0;
-            }
-            history_land(key) {
-                const idx = this.history_record_index(key);
-                const record = this.history_records()[idx];
-                return record?.Land_link()?.val() ?? '';
-            }
-            history_title_text(key) {
-                const idx = this.history_record_index(key);
-                const record = this.history_records()[idx];
-                return record?.Quiz_title()?.val() ?? 'Untitled';
-            }
-            history_score(key) {
-                const idx = this.history_record_index(key);
-                const record = this.history_records()[idx];
-                const score = record?.Score()?.val() ?? 0;
-                return `${Math.round(score)} pts`;
-            }
-            history_place(key) {
-                const idx = this.history_record_index(key);
-                const record = this.history_records()[idx];
-                const place = record?.Place()?.val() ?? 0;
-                const count = record?.Players_count()?.val() ?? 0;
-                if (!place)
-                    return '';
-                return `#${place} / ${count}`;
-            }
-            history_date(key) {
-                const idx = this.history_record_index(key);
-                const record = this.history_records()[idx];
-                const ts = record?.Date()?.val() ?? 0;
-                if (!ts)
-                    return '';
-                const d = new Date(ts);
-                return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
-            }
             persona_text() {
                 const played = this.games_played();
                 let persona = personas[0];
@@ -29938,9 +29804,6 @@ var $;
                 return `${persona.title} — ${persona.desc}`;
             }
         }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "card_content", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "player_id", null);
@@ -29980,15 +29843,6 @@ var $;
         __decorate([
             $mol_mem_key
         ], $bog_blitz_profile_page.prototype, "stat_value", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "history_records", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "history_sorted", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "history_rows", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "persona_text", null);
@@ -30095,58 +29949,6 @@ var $;
                 font: {
                     size: '0.95rem',
                     weight: 700,
-                },
-            },
-            History_title: {
-                font: {
-                    size: '1.1rem',
-                    weight: 600,
-                },
-                margin: {
-                    top: '0.5rem',
-                },
-            },
-            History: {
-                width: '100%',
-                gap: '0.5rem',
-            },
-            History_row: {
-                padding: {
-                    top: '0.625rem',
-                    bottom: '0.625rem',
-                    left: '0.75rem',
-                    right: '0.75rem',
-                },
-                borderRadius: '8px',
-                background: {
-                    color: $mol_theme.card,
-                },
-                gap: '0.75rem',
-            },
-            History_title_text: {
-                flex: {
-                    grow: 1,
-                },
-                font: {
-                    weight: 500,
-                },
-            },
-            History_score: {
-                font: {
-                    weight: 600,
-                },
-                color: $mol_theme.special,
-            },
-            History_place: {
-                opacity: 0.6,
-                font: {
-                    size: '0.8rem',
-                },
-            },
-            History_date: {
-                opacity: 0.4,
-                font: {
-                    size: '0.75rem',
                 },
             },
             Fun_card: {

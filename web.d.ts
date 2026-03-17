@@ -20588,7 +20588,7 @@ declare namespace $.$$ {
 declare namespace $ {
 
 	type $mol_view__sub_bog_blitz_profile_page_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['card_content'] >
+		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
@@ -20612,161 +20612,104 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_open_native['multiple'] >
 	>
-	type $mol_string_button__hint_bog_blitz_profile_page_6 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string_button['hint'] >
-	>
-	type $mol_string_button__value_bog_blitz_profile_page_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['profile_name'] >
-		,
-		ReturnType< $mol_string_button['value'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['stat_label'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_9 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['stat_value'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['history_title_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['history_score'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['history_place'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['history_date'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_14 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['persona_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_profile_page_16 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_open__sub_bog_blitz_profile_page_17 = $mol_type_enforce<
+	type $mol_button_open__sub_bog_blitz_profile_page_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_open['sub'] >
 	>
-	type $mol_image__uri_bog_blitz_profile_page_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['avatar_uri'] >
+	type $mol_string_button__hint_bog_blitz_profile_page_7 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_image['uri'] >
+		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_avatar__id_bog_blitz_profile_page_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['player_id'] >
+	type $mol_string_button__value_bog_blitz_profile_page_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['profile_name'] >
 		,
-		ReturnType< $mol_avatar['id'] >
+		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_20 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_9 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_21 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_22 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_23 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_list__rows_bog_blitz_profile_page_24 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['history_rows'] >
+	type $mol_paragraph__title_bog_blitz_profile_page_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['persona_text'] >
 		,
-		ReturnType< $mol_list['rows'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__arg_bog_blitz_profile_page_25 = $mol_type_enforce<
-		({ 
-			'screen': string,
-			'land': ReturnType< $bog_blitz_profile_page['history_land'] >,
-		}) 
-		,
-		ReturnType< $mol_link['arg'] >
-	>
-	type $mol_link__sub_bog_blitz_profile_page_26 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_link['sub'] >
+		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_27 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['stat_label'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['stat_value'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_image__uri_bog_blitz_profile_page_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['avatar_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_avatar__id_bog_blitz_profile_page_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['player_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_view__sub_bog_blitz_profile_page_19 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
-		card_content( ): readonly(any)[]
-		Card( ): $mol_view
 		avatar_preview( ): any
+		Avatar_circle( ): $mol_view
 		Avatar_label( ): $mol_paragraph
 		avatar_files( next?: readonly(File)[] ): readonly(File)[]
 		Avatar_native( ): $mol_button_open_native
-		avatar_uri( ): string
-		player_id( ): string
+		Avatar( ): $mol_button_open
 		profile_name( next?: string ): string
 		Name_input( ): $mol_string_button
+		Name_row( ): $mol_view
 		stat_rows( ): readonly(any)[]
+		Stats( ): $mol_view
+		Fun_title( ): $mol_paragraph
+		persona_text( ): string
+		Fun_text( ): $mol_paragraph
+		Fun_card( ): $mol_view
+		Card( ): $mol_view
+		avatar_uri( ): string
+		player_id( ): string
 		stat_label( id: any): string
 		Stat_label( id: any): $mol_paragraph
 		stat_value( id: any): string
 		Stat_value( id: any): $mol_paragraph
-		history_rows( ): readonly(any)[]
-		history_land( id: any): string
-		history_title_text( id: any): string
-		History_title_text( id: any): $mol_paragraph
-		history_score( id: any): string
-		History_score( id: any): $mol_paragraph
-		history_place( id: any): string
-		History_place( id: any): $mol_paragraph
-		history_date( id: any): string
-		History_date( id: any): $mol_paragraph
-		Fun_title( ): $mol_paragraph
-		persona_text( ): string
-		Fun_text( ): $mol_paragraph
 		Head( ): any
 		body( ): readonly(any)[]
-		Avatar_circle( ): $mol_view
-		Avatar( ): $mol_button_open
 		Avatar_image( ): $mol_image
 		Avatar_icon( ): $mol_avatar
-		Name_row( ): $mol_view
-		Stats( ): $mol_view
 		Stat_row( id: any): $mol_view
-		History_title( ): $mol_paragraph
-		History( ): $mol_list
-		History_row( id: any): $mol_link
-		Fun_card( ): $mol_view
 	}
 	
 }
@@ -20774,7 +20717,6 @@ declare namespace $ {
 //# sourceMappingURL=profile.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
-        card_content(): ($mol_view | $.$mol_button_open)[];
         profile_data(): $bog_blitz_profile;
         player_id(): string;
         profile_name(next?: string): string;
@@ -20790,18 +20732,6 @@ declare namespace $.$$ {
         stat_rows(): $mol_view[];
         stat_label(key: string): string;
         stat_value(key: string): string;
-        history_records(): $bog_blitz_game_record[];
-        history_sorted(): {
-            i: number;
-            date: number;
-        }[];
-        history_rows(): $.$mol_link[];
-        history_record_index(viewKey: string): number;
-        history_land(key: string): string;
-        history_title_text(key: string): string;
-        history_score(key: string): string;
-        history_place(key: string): string;
-        history_date(key: string): string;
         persona_text(): string;
     }
 }
