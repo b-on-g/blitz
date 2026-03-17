@@ -29525,16 +29525,6 @@ var $;
 			(obj.sub) = () => ([(this.avatar_preview()), (this.Avatar_native())]);
 			return obj;
 		}
-		Avatar_upload_hint(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Avatar_upload_hint_title")));
-			return obj;
-		}
-		Avatar_wrap(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Avatar()), (this.Avatar_upload_hint())]);
-			return obj;
-		}
 		profile_name(next){
 			if(next !== undefined) return next;
 			return "";
@@ -29592,7 +29582,7 @@ var $;
 		Card(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Avatar_wrap()), 
+				(this.Avatar()), 
 				(this.Name_row()), 
 				(this.Stats()), 
 				(this.History_title()), 
@@ -29694,8 +29684,6 @@ var $;
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "avatar_files"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_native"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_upload_hint"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_wrap"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "profile_name"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_input"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Name_row"));
@@ -29842,20 +29830,15 @@ var $;
                 return labels[Number(key)] ?? '';
             }
             stat_value(key) {
-                try {
-                    const values = [
-                        String(this.games_played()),
-                        String(this.total_score()),
-                        String(this.wins()),
-                        String(this.avg_score()),
-                        String(this.best_score()),
-                        this.win_rate(),
-                    ];
-                    return values[Number(key)] ?? '0';
-                }
-                catch {
-                    return '...';
-                }
+                const values = [
+                    String(this.games_played()),
+                    String(this.total_score()),
+                    String(this.wins()),
+                    String(this.avg_score()),
+                    String(this.best_score()),
+                    this.win_rate(),
+                ];
+                return values[Number(key)] ?? '0';
             }
             history_records() {
                 const profile = this.profile_data();
@@ -29962,6 +29945,9 @@ var $;
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "stat_rows", null);
         __decorate([
+            $mol_mem_key
+        ], $bog_blitz_profile_page.prototype, "stat_value", null);
+        __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "history_records", null);
         __decorate([
@@ -30001,11 +29987,6 @@ var $;
                     items: 'center',
                 },
             },
-            Avatar_wrap: {
-                justify: {
-                    content: 'center',
-                },
-            },
             Avatar: {
                 borderRadius: '50%',
                 overflow: 'hidden',
@@ -30028,13 +30009,6 @@ var $;
                 font: {
                     size: '2.5rem',
                 },
-            },
-            Avatar_upload_hint: {
-                font: {
-                    size: '0.7rem',
-                },
-                opacity: 0.5,
-                textAlign: 'center',
             },
             Name_row: {
                 justify: {

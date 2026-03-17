@@ -1881,17 +1881,13 @@ $bog_blitz_profile_page $mol_page
 	body /
 		<= Card $mol_view
 			sub /
-				<= Avatar_wrap $mol_view
+				<= Avatar $mol_button_open
 					sub /
-						<= Avatar $mol_button_open
-							sub /
-								<= avatar_preview null
-								<= Avatar_native $mol_button_open_native
-									files? <=> avatar_files? /File
-									accept \image/*
-									multiple false
-						<= Avatar_upload_hint $mol_paragraph
-							title @ \Tap to change
+						<= avatar_preview null
+						<= Avatar_native $mol_button_open_native
+							files? <=> avatar_files? /File
+							accept \image/*
+							multiple false
 				<= Name_row $mol_view
 					sub /
 						<= Name_input $mol_string_button
