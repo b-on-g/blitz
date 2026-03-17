@@ -10,7 +10,6 @@ $bog_blitz_admin_question $mol_list
 					value? <=> question_type? \choice
 					dictionary *
 						choice @ \Choice
-						multi_choice @ \Multi Choice
 						text_input @ \Text Input
 				<= Delete $mol_button_minor
 					title @ \Delete
