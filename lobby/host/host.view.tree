@@ -3,6 +3,7 @@ $bog_blitz_lobby_host $mol_page
 	counter_string \
 	land_id \
 	quiz_title \
+	quiz_data null
 	body /
 		<= Qr $bog_qr
 			uri <= qr_data \

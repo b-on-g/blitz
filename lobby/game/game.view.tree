@@ -4,6 +4,7 @@ $bog_blitz_lobby_game $mol_view
 	current_question null
 	current_question_text \
 	my_player null
+	is_host false
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_leaderboard @ \Leaderboard
@@ -17,10 +18,8 @@ $bog_blitz_lobby_game $mol_view
 			title <= current_question_text
 		<= Options $mol_view
 			sub <= option_views /
-	Option*0 $mol_button_major
-		attr *
-			^
-			mol_theme <= option_theme* \
+	Option*0 $bog_blitz_lobby_game_option
+		selected <= option_selected* \false
 		enabled <= option_enabled* true
 		title <= option_text* \
 		click? <=> option_click*? null

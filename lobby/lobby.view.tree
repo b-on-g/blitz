@@ -35,4 +35,5 @@ $bog_blitz_lobby $mol_page
 		current_question <= current_question null
 		current_question_text <= current_question_text \
 		my_player <= my_player null
+		is_host <= is_host false
 	body <= lobby_content /

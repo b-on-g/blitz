@@ -1,0 +1,4 @@
+$bog_blitz_lobby_game_option $mol_button_major
+	attr *
+		^
+		data-selected <= selected \false

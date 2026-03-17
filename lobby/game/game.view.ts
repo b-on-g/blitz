@@ -47,13 +47,13 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		option_enabled(key: string) {
+			if (this.is_host()) return false
 			return !this.has_answered()
 		}
 
 		@$mol_mem_key
-		option_theme(key: string) {
-			if (!this.has_answered()) return ''
-			return this.my_answer() === key ? '$mol_theme_special' : ''
+		option_selected(key: string) {
+			return String(this.my_answer() === key)
 		}
 
 		@$mol_mem_key
