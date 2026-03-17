@@ -27695,6 +27695,9 @@ var $;
             $mol_mem
         ], $bog_blitz_admin.prototype, "admin_body", null);
         __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "import_json_text", null);
+        __decorate([
             $mol_action
         ], $bog_blitz_admin.prototype, "import_json", null);
         __decorate([
