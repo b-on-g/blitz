@@ -22,4 +22,25 @@ jobs:
               if: github.ref == 'refs/heads/master'
               with:
                   folder: "bog/blitz/-"
-                  
+            
+            - uses: hyoo-ru/mam_build@master2
+              if: github.ref == 'refs/heads/master'
+              with:
+                  package: "bog/blitz"
+                  modules: 'blog'
+
+            - uses: b-on-g/mol-prerender-action@main
+              if: github.ref == 'refs/heads/master'
+              with:
+                  folder: "bog/blitz/blog/-"
+                  base-url: "https://b-on-g.github.io/blitz/blog/"
+                  screens: |
+                      about
+                      guide
+                      features
+
+            - uses: hyoo-ru/gh-deploy@v4.4.1
+              if: github.ref == 'refs/heads/master'
+              with:
+                  folder: "bog/blitz/blog/-"
+                  target-folder: 'blog/'
