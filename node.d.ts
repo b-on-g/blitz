@@ -7169,6 +7169,7 @@ declare namespace $ {
 		Join( ): $mol_button_major
 		Head( ): any
 		is_synced( ): boolean
+		profile_avatar_uri( ): string
 		syncing_title( ): string
 		join_title( ): string
 		enter_title( ): string
@@ -8248,107 +8249,117 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_join['is_synced'] >
 	>
-	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_15 = $mol_type_enforce<
+	type $bog_blitz_lobby_join__player_id_bog_blitz_lobby_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['player_id'] >
+	>
+	type $bog_blitz_lobby_join__profile_avatar_uri_bog_blitz_lobby_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['profile_avatar_uri'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['profile_avatar_uri'] >
+	>
+	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['counter_string'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['counter_string'] >
 	>
-	type $bog_blitz_lobby_waiting__quiz_title_bog_blitz_lobby_16 = $mol_type_enforce<
+	type $bog_blitz_lobby_waiting__quiz_title_bog_blitz_lobby_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['quiz_title'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['quiz_title'] >
 	>
-	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_17 = $mol_type_enforce<
+	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['Host_players'] >
 		,
 		ReturnType< $bog_blitz_lobby_waiting['Players'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_18 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_20 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_blitz_lobby_game__land_id_bog_blitz_lobby_19 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__land_id_bog_blitz_lobby_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['land_id'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['land_id'] >
 	>
-	type $bog_blitz_lobby_game__quiz_data_bog_blitz_lobby_20 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__quiz_data_bog_blitz_lobby_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['quiz_data'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['quiz_data'] >
 	>
-	type $bog_blitz_lobby_game__game_state_bog_blitz_lobby_21 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__game_state_bog_blitz_lobby_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['game_state'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['game_state'] >
 	>
-	type $bog_blitz_lobby_game__current_question_bog_blitz_lobby_22 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__current_question_bog_blitz_lobby_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['current_question'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['current_question'] >
 	>
-	type $bog_blitz_lobby_game__current_question_text_bog_blitz_lobby_23 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__current_question_text_bog_blitz_lobby_25 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['current_question_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
 	>
-	type $bog_blitz_lobby_game__my_player_bog_blitz_lobby_24 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__my_player_bog_blitz_lobby_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_player'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['my_player'] >
 	>
-	type $bog_blitz_lobby_game__is_host_bog_blitz_lobby_25 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__is_host_bog_blitz_lobby_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['is_host'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['is_host'] >
 	>
-	type $bog_blitz_lobby_game__paused_at_bog_blitz_lobby_26 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__paused_at_bog_blitz_lobby_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['paused_at'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['paused_at'] >
 	>
-	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_27 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['round_start'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['round_start'] >
 	>
-	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_28 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['duration'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['duration'] >
 	>
-	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_29 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['total_questions'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['total_questions'] >
 	>
-	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_30 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['current_question_index'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
 	>
-	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_31 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['players_dict'] >
 	>
-	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_32 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_lord_str'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
 	>
-	type $bog_blitz_lobby_reactions__my_player_bog_blitz_lobby_33 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__my_player_bog_blitz_lobby_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_player'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['my_player'] >
 	>
-	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_34 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['players_dict'] >
 	>
-	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_35 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['is_host'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
@@ -8363,6 +8374,7 @@ declare namespace $ {
 		my_avatar_files( next?: readonly(File)[] ): readonly(File)[]
 		join( next?: any ): any
 		is_synced( ): boolean
+		profile_avatar_uri( ): string
 		No_game_text( ): $mol_paragraph
 		go_admin( next?: any ): any
 		Go_admin( ): $mol_button_major
@@ -8442,6 +8454,7 @@ declare namespace $.$$ {
         my_player_create(): $bog_blitz_player | null;
         profile_data(): $bog_blitz_profile;
         join(e?: any): null;
+        profile_avatar_uri(): string;
         land_id(): string;
         quiz_title(): string;
         go_admin(): void;

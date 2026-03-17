@@ -16542,6 +16542,9 @@ var $;
 		is_synced(){
 			return false;
 		}
+		profile_avatar_uri(){
+			return "";
+		}
 		syncing_title(){
 			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_syncing_title"));
 		}
@@ -16598,9 +16601,9 @@ var $;
             }
             avatar_uri() {
                 const files = this.avatar_files();
-                if (!files || files.length === 0)
-                    return '';
-                return URL.createObjectURL(files[0]);
+                if (files?.length)
+                    return URL.createObjectURL(files[0]);
+                return this.profile_avatar_uri();
             }
             join_title() {
                 try {
@@ -18920,6 +18923,9 @@ var $;
 		is_synced(){
 			return false;
 		}
+		profile_avatar_uri(){
+			return "";
+		}
 		No_game_text(){
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_No_game_text_title")));
@@ -18995,6 +19001,8 @@ var $;
 			(obj.avatar_files) = (next) => ((this.my_avatar_files(next)));
 			(obj.join) = (next) => ((this.join(next)));
 			(obj.is_synced) = () => ((this.is_synced()));
+			(obj.player_id) = () => ((this.my_lord_str()));
+			(obj.profile_avatar_uri) = () => ((this.profile_avatar_uri()));
 			return obj;
 		}
 		Waiting(){
@@ -19150,6 +19158,13 @@ var $;
                 }
                 return null;
             }
+            profile_avatar_uri() {
+                const profile = this.profile_data();
+                const file = profile.Avatar()?.remote();
+                if (!file)
+                    return '';
+                return file.uri() ?? '';
+            }
             land_id() {
                 return this.$.$mol_state_arg.value('land') ?? '';
             }
@@ -19267,6 +19282,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "join", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "profile_avatar_uri", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "land_id", null);
