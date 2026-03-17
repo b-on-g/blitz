@@ -10,6 +10,22 @@ namespace $.$$ {
 
 	export class $bog_blitz_profile_page extends $.$bog_blitz_profile_page {
 
+		@$mol_mem
+		card_content() {
+			const base = [
+				this.Avatar_circle(),
+				this.Avatar(),
+				this.Name_row(),
+				this.Stats(),
+			]
+			const rows = this.history_rows()
+			if (rows.length) {
+				base.push(this.History_title(), this.History())
+			}
+			base.push(this.Fun_card())
+			return base
+		}
+
 		profile_data() {
 			const home = this.$.$giper_baza_glob.home()
 			return home.land().Data($bog_blitz_profile)
