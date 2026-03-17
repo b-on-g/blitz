@@ -1,7 +1,9 @@
 $bog_blitz_lobby_game_option $mol_button_major
+	correct \
 	attr *
 		^
 		data-selected <= selected \false
+		data-correct <= correct \
 	image_uri \
 	Option_image $mol_image
 		uri <= image_uri

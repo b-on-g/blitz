@@ -23,6 +23,8 @@ namespace $.$$ {
 					return this.state_reading()
 				case 'answering':
 					return this.state_answering()
+				case 'reveal':
+					return this.state_reveal()
 				case 'leaderboard':
 					return this.state_leaderboard()
 				case 'final':
@@ -84,7 +86,11 @@ namespace $.$$ {
 
 		@$mol_mem
 		answer_views() {
+			const state = this.game_state()
 			if (this.question_type() === 'text_input') {
+				if (state === 'reveal') {
+					return [this.Answer_input(), this.Reveal_correct()]
+				}
 				return [this.Answer_input()]
 			}
 			return this.option_views()
@@ -157,14 +163,36 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_enabled(key: string) {
 			if (this.is_host()) return false
+			if (this.game_state() !== 'answering') return false
 			return !this.has_answered()
 		}
 
 		@$mol_mem_key
+		option_correct(key: string) {
+			if (this.game_state() !== 'reveal') return ''
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return ''
+			const options = question.Options()?.remote_list() ?? []
+			const option = options[Number(key)] as $bog_blitz_question_option | undefined
+			if (!option) return ''
+			return option.Is_correct()?.val() ? 'true' : 'false'
+		}
+
+		@$mol_mem_key
 		option_selected(key: string) {
+			const state = this.game_state()
+			if (state === 'reading') return ''
 			if (this.is_host()) return ''
 			if (!this.has_answered()) return ''
 			return String(this.my_answer() === key)
+		}
+
+		@$mol_mem
+		reveal_correct_text() {
+			if (this.game_state() !== 'reveal') return ''
+			if (this.question_type() !== 'text_input') return ''
+			const question = this.current_question() as $bog_blitz_question | null
+			return question?.Correct_text()?.val() ?? ''
 		}
 
 		@$mol_mem
@@ -260,6 +288,9 @@ namespace $.$$ {
 				quiz.Game_state('auto')?.val('answering')
 			} else if (state === 'answering') {
 				this.calculate_scores()
+				quiz.Round_start('auto')?.val(Date.now())
+				quiz.Game_state('auto')?.val('reveal')
+			} else if (state === 'reveal') {
 				if (index + 1 >= total) {
 					quiz.Round_start('auto')?.val(0)
 					quiz.Game_state('auto')?.val('final')

@@ -3,6 +3,7 @@
 	"$bog_blitz_lobby_game_resume_label": "Продолжить",
 	"$bog_blitz_lobby_game_state_reading": "Прочитайте вопрос",
 	"$bog_blitz_lobby_game_state_answering": "Время отвечать!",
+	"$bog_blitz_lobby_game_state_reveal": "Правильный ответ",
 	"$bog_blitz_lobby_game_state_leaderboard": "Таблица лидеров",
 	"$bog_blitz_lobby_game_state_final": "Итоговые результаты",
 	"$bog_blitz_lobby_game_state_paused": "На паузе",

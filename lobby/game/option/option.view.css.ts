@@ -16,6 +16,22 @@ namespace $.$$ {
 					opacity: 0.4,
 				},
 			},
+			'data-correct': {
+				true: {
+					boxShadow: '0 0 0 3px #22c55e',
+					background: {
+						color: '#22c55e33',
+					},
+					opacity: 1,
+				},
+				false: {
+					boxShadow: '0 0 0 3px #ef4444',
+					background: {
+						color: '#ef444433',
+					},
+					opacity: 0.6,
+				},
+			},
 		},
 	})
 }
