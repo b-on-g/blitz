@@ -125,11 +125,9 @@ namespace $.$$ {
 		history_records() {
 			const profile = this.profile_data()
 			const list = profile.Games_history()?.remote_list() ?? []
-			// Filter out phantom/empty records
 			return (list as $bog_blitz_game_record[]).filter(r => {
-				const title = r.Quiz_title()?.val()
 				const date = r.Date()?.val()
-				return title || date
+				return date && date > 0
 			})
 		}
 

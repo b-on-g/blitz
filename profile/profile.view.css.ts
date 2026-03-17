@@ -17,7 +17,7 @@ namespace $.$$ {
 				items: 'center',
 			},
 		},
-		Avatar: {
+		Avatar_circle: {
 			borderRadius: '50%',
 			overflow: 'hidden',
 			width: '80px',
@@ -30,6 +30,12 @@ namespace $.$$ {
 				shrink: 0,
 				grow: 0,
 			},
+		},
+		Avatar: {
+			font: {
+				size: '0.75rem',
+			},
+			opacity: 0.5,
 		},
 		Avatar_image: {
 			width: '100%',
