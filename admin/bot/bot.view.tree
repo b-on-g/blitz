@@ -1,0 +1,4 @@
+$bog_blitz_admin_bot $giper_bot
+	Space null
+	dialog_title? @ \Quiz Generator
+	on_quiz? null

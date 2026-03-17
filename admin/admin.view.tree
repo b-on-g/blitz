@@ -11,6 +11,21 @@ $bog_blitz_admin $mol_page
 	Create_button $mol_button_major
 		title @ \Create Quiz
 		click? <=> create_quiz? null
+	Bot_expander $mol_expander
+		title @ \AI Generate Quiz
+		content /
+			<= Bot $bog_blitz_admin_bot
+				on_quiz? <=> import_bot_quiz? null
+	Import_expander $mol_expander
+		title @ \Import from JSON
+		content /
+			<= Import_hint $mol_paragraph
+				title @ \Edit JSON below or import as a preset
+			<= Import_area $mol_textarea
+				value? <=> import_json_text? \
+			<= Import_button $mol_button_major
+				title @ \Import
+				click? <=> import_json? null
 	Back_button $mol_button_minor
 		sub /
 			<= Back_icon $mol_icon_arrow_left

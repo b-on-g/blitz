@@ -21,6 +21,46 @@ namespace $.$$ {
 				right: '1rem',
 			},
 		},
+		Bot_expander: {
+			margin: {
+				top: 0,
+				bottom: 0,
+				left: '1rem',
+				right: '1rem',
+			},
+		},
+		Bot: {
+			height: '25rem',
+			border: {
+				radius: '0.5rem',
+			},
+			overflow: 'auto',
+		},
+		Import_expander: {
+			margin: {
+				top: 0,
+				bottom: 0,
+				left: '1rem',
+				right: '1rem',
+			},
+		},
+		Import_area: {
+			height: '19rem',
+			background: {
+				color: $mol_theme.card,
+			},
+			border: {
+				radius: '0.5rem',
+			},
+		},
+		Import_button: {
+			align: {
+				self: 'flex-start',
+			},
+			border: {
+				radius: '0.5rem',
+			},
+		},
 		Quizzes_list: {
 			gap: '0.5rem',
 			padding: {
