@@ -53,6 +53,8 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		option_selected(key: string) {
+			if (this.is_host()) return ''
+			if (!this.has_answered()) return ''
 			return String(this.my_answer() === key)
 		}
 

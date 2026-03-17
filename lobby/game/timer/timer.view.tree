@@ -1,0 +1,9 @@
+$bog_blitz_lobby_game_timer $mol_view
+	duration 0
+	round_start 0
+	sub /
+		<= Bar $mol_view
+			style *
+				^
+				width <= bar_width \100%
+				transition <= bar_transition \

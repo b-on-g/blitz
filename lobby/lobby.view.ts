@@ -115,6 +115,21 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		round_start() {
+			return this.quiz_data()?.Round_start()?.val() ?? 0
+		}
+
+		@$mol_mem
+		duration() {
+			const quiz = this.quiz_data()
+			if (!quiz) return 0
+			const state = this.game_state()
+			if (state === 'reading') return quiz.Time_read()?.val() ?? 10
+			if (state === 'answering') return quiz.Time_answer()?.val() ?? 20
+			return 0
+		}
+
+		@$mol_mem
 		lobby_content() {
 			const land = this.land()
 			if (!land) {

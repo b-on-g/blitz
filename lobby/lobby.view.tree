@@ -36,4 +36,6 @@ $bog_blitz_lobby $mol_page
 		current_question_text <= current_question_text \
 		my_player <= my_player null
 		is_host <= is_host false
+		round_start <= round_start 0
+		duration <= duration 0
 	body <= lobby_content /

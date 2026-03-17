@@ -11,7 +11,12 @@ $bog_blitz_lobby_game $mol_view
 	state_final @ \Final Results
 	state_label \
 	option_keys /string
+	round_start 0
+	duration 0
 	sub /
+		<= Timer $bog_blitz_lobby_game_timer
+			round_start <= round_start
+			duration <= duration
 		<= State $mol_paragraph
 			title <= state_label
 		<= Question $mol_paragraph
