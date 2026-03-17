@@ -132,5 +132,15 @@ namespace $.$$ {
 			}
 			return opt.Is_correct()?.val() ?? false
 		}
+		@$mol_mem_key
+		correct_text(key: string, next?: string) {
+			const q = this.questions()[Number(key)]
+			if (!q) return ''
+			if (next !== undefined) {
+				q.Correct_text('auto')?.val(next)
+				return next
+			}
+			return q.Correct_text()?.val() ?? ''
+		}
 	}
 }

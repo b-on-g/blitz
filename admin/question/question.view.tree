@@ -1,7 +1,7 @@
 $bog_blitz_admin_question $mol_list
 	question null
 	number 0
-	rows /
+	rows <= question_rows /
 		<= Header $mol_row
 			sub /
 				<= Number $mol_paragraph
@@ -22,3 +22,6 @@ $bog_blitz_admin_question $mol_list
 		<= Add_option $mol_button_minor
 			title @ \Add Option
 			click? <=> add_option? null
+		<= Correct_text_input $mol_string
+			hint @ \Correct answer...
+			value? <=> correct_text? \
