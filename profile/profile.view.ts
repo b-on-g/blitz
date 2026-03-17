@@ -110,15 +110,15 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		stat_value(key: string) {
-			const values = [
-				String(this.games_played()),
-				String(this.total_score()),
-				String(this.wins()),
-				String(this.avg_score()),
-				String(this.best_score()),
-				this.win_rate(),
-			]
-			return values[Number(key)] ?? '0'
+			switch (Number(key)) {
+				case 0: return String(this.games_played())
+				case 1: return String(this.total_score())
+				case 2: return String(this.wins())
+				case 3: return String(this.avg_score())
+				case 4: return String(this.best_score())
+				case 5: return this.win_rate()
+				default: return '0'
+			}
 		}
 
 		@$mol_mem
