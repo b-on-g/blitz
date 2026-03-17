@@ -65,37 +65,22 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		games_played() {
-			return this.profile_data().Games_played()?.val() ?? 0
-		}
-
-		@$mol_mem
-		total_score() {
-			return Math.round(this.profile_data().Total_score()?.val() ?? 0)
-		}
-
-		@$mol_mem
-		wins() {
-			return this.profile_data().Wins()?.val() ?? 0
-		}
-
-		@$mol_mem
-		best_score() {
-			return Math.round(this.profile_data().Best_score()?.val() ?? 0)
-		}
-
-		@$mol_mem
-		avg_score() {
-			const played = this.games_played()
-			if (!played) return 0
-			return Math.round(this.total_score() / played)
-		}
-
-		@$mol_mem
-		win_rate() {
-			const played = this.games_played()
-			if (!played) return '0%'
-			return Math.round((this.wins() / played) * 100) + '%'
+		all_stats() {
+			const profile = this.profile_data()
+			const played = profile.Games_played()?.val() ?? 0
+			const total = Math.round(profile.Total_score()?.val() ?? 0)
+			const wins = profile.Wins()?.val() ?? 0
+			const best = Math.round(profile.Best_score()?.val() ?? 0)
+			const avg = played ? Math.round(total / played) : 0
+			const winRate = played ? Math.round((wins / played) * 100) + '%' : '0%'
+			return [
+				String(played),
+				String(total),
+				String(wins),
+				String(avg),
+				String(best),
+				winRate,
+			]
 		}
 
 		@$mol_mem
@@ -108,22 +93,13 @@ namespace $.$$ {
 			return labels[Number(key)] ?? ''
 		}
 
-		@$mol_mem_key
 		stat_value(key: string) {
-			switch (Number(key)) {
-				case 0: return String(this.games_played())
-				case 1: return String(this.total_score())
-				case 2: return String(this.wins())
-				case 3: return String(this.avg_score())
-				case 4: return String(this.best_score())
-				case 5: return this.win_rate()
-				default: return '0'
-			}
+			return this.all_stats()[Number(key)] ?? '0'
 		}
 
 		@$mol_mem
 		persona_text() {
-			const played = this.games_played()
+			const played = Number(this.all_stats()[0] ?? 0)
 			let persona = personas[0]
 			for (const p of personas) {
 				if (played >= p.min) persona = p
