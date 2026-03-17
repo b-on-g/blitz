@@ -14990,7 +14990,12 @@ declare namespace $.$$ {
         stat_label(key: string): string;
         stat_value(key: string): string;
         history_records(): $bog_blitz_game_record[];
+        history_sorted(): {
+            i: number;
+            date: number;
+        }[];
         history_rows(): $.$mol_link[];
+        history_record_index(viewKey: string): number;
         history_land(key: string): string;
         history_title_text(key: string): string;
         history_score(key: string): string;
