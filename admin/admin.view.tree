@@ -21,8 +21,6 @@ $bog_blitz_admin $mol_page
 		number <= question_number*0 0
 		question_text? <=> question_text*? \
 		question_type? <=> question_type*? \choice
-		points_plus? <=> points_plus*? 10
-		points_minus? <=> points_minus*? 0
 		delete? <=> delete_question*? null
 		option_rows <= option_rows* /
 		add_option? <=> add_option*? null

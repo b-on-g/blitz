@@ -5,8 +5,6 @@ namespace $.$$ {
 		Options: $giper_baza_list_link_to(() => $bog_blitz_question_option),
 		Correct_option: $giper_baza_atom_real,
 		Correct_text: $giper_baza_atom_text,
-		Points_plus: $giper_baza_atom_real,
-		Points_minus: $giper_baza_atom_real,
 		Image: $giper_baza_atom_link_to(() => $giper_baza_file),
 	}) {}
 }

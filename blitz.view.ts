@@ -8,6 +8,12 @@ namespace $.$$ {
 		screen(next?: string) {
 			if (next !== undefined) {
 				this.mobile_menu_showed(false)
+				if (next === 'admin') {
+					this.$.$mol_state_arg.value('land', null)
+				}
+				if (next === 'lobby') {
+					this.$.$mol_state_arg.value('quiz', null)
+				}
 			}
 			return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin'
 		}

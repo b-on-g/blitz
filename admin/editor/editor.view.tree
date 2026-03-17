@@ -1,3 +1,18 @@
 $bog_blitz_admin_editor $mol_list
 	quiz_land null
 	rows <= editor_rows /
+	Title_input $mol_string
+		hint @ \Quiz title
+		value? <=> quiz_title? \
+	Add_question $mol_button_major
+		title @ \Add Question
+		click? <=> add_question? null
+	Question*0 $bog_blitz_admin_question
+		number <= question_number*0 0
+		question_text? <=> question_text*? \
+		question_type? <=> question_type*? \choice
+		points_plus? <=> points_plus*? 10
+		points_minus? <=> points_minus*? 0
+		delete? <=> delete_question*? null
+		option_rows <= option_rows* /
+		add_option? <=> add_option*? null

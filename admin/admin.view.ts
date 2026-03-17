@@ -30,8 +30,6 @@ namespace $.$$ {
 			return [this.Create_button(), this.Quizzes_list()]
 		}
 
-		// === My Quizzes list ===
-
 		@$mol_mem
 		quiz_rows() {
 			return this.quiz_links().map((quiz, i) => {
@@ -54,11 +52,14 @@ namespace $.$$ {
 		@$mol_action
 		create_quiz() {
 			const quizzes = this.registry().Quizzes('auto')!
+			const count = this.quiz_links().length
 			const quiz = quizzes.make([[null, $giper_baza_rank_post('just')]])
-			quiz.Title('auto')?.val('New Quiz')
+			quiz.Title('auto')?.val(`New Quiz ${count + 1}`)
 			quiz.Time_read('auto')?.val(5)
 			quiz.Time_answer('auto')?.val(10)
 			quiz.Time_leaderboard('auto')?.val(10)
+			quiz.Points_base('auto')?.val(100)
+			quiz.Time_multiplier('auto')?.val(1.5)
 		}
 
 		@$mol_action

@@ -23,15 +23,3 @@ $bog_blitz_admin_question $mol_list
 		<= Add_option $mol_button_minor
 			title @ \Add Option
 			click? <=> add_option? null
-		<= Points $mol_row
-			sub /
-				<= Points_plus_label $mol_paragraph
-					title @ \Reward
-				<= Points_plus_input $mol_number
-					hint \+
-					value? <=> points_plus? 10
-				<= Points_minus_label $mol_paragraph
-					title @ \Penalty
-				<= Points_minus_input $mol_number
-					hint \-
-					value? <=> points_minus? 0
