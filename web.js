@@ -27949,27 +27949,30 @@ var $;
                     items: 'center',
                     self: 'center',
                 },
-                gap: '1rem',
+                gap: '1.5rem',
                 padding: {
-                    top: '2rem',
+                    top: '3rem',
                     bottom: '2rem',
-                    left: '1rem',
-                    right: '1rem',
+                    left: '1.5rem',
+                    right: '1.5rem',
                 },
                 maxWidth: '400px',
             },
             Avatar_circle: {
                 borderRadius: '50%',
                 overflow: 'hidden',
-                width: '80px',
-                height: '80px',
-                minWidth: '80px',
-                minHeight: '80px',
-                maxWidth: '80px',
-                maxHeight: '80px',
+                width: '100px',
+                height: '100px',
+                minWidth: '100px',
+                minHeight: '100px',
+                maxWidth: '100px',
+                maxHeight: '100px',
                 flex: {
                     shrink: 0,
                     grow: 0,
+                },
+                margin: {
+                    bottom: '0.5rem',
                 },
             },
             Avatar_image: {
@@ -27981,7 +27984,7 @@ var $;
                 width: '100%',
                 height: '100%',
                 font: {
-                    size: '2.5rem',
+                    size: '3rem',
                 },
             },
             Avatar: {
@@ -28000,6 +28003,9 @@ var $;
             },
             Join: {
                 width: '100%',
+                margin: {
+                    top: '0.5rem',
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
