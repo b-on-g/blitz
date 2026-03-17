@@ -146,6 +146,9 @@
 	deploy \/giper/baza/docker/autopull_and_restart.sh
 \/giper/baza/file
 	include \/mol/offline/install
+\/giper/bot
+	deploy \/giper/bot/logo
+	include \/mol/offline/install
 \/bog/blitz
 	include \/mol/offline/install
 	deploy \/bog/blitz/assets

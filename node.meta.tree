@@ -81,6 +81,9 @@
 	deploy \/giper/baza/diagram/crus-jepsen.png
 	deploy \/giper/baza/docker/deploy.sh
 	deploy \/giper/baza/docker/autopull_and_restart.sh
+\/giper/bot
+	deploy \/giper/bot/logo
+	include \/mol/offline/install
 \/bog/blitz
 	include \/mol/offline/install
 	deploy \/bog/blitz/assets
