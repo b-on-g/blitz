@@ -14924,12 +14924,7 @@ declare namespace $.$$ {
         avatar_uri(): string;
         avatar_files(next?: File[]): File[];
         avatar_preview(): $.$mol_avatar | $.$mol_image;
-        games_played(): number;
-        total_score(): number;
-        wins(): number;
-        best_score(): number;
-        avg_score(): number;
-        win_rate(): string;
+        all_stats(): string[];
         stat_rows(): $mol_view[];
         stat_label(key: string): string;
         stat_value(key: string): string;

@@ -36805,29 +36805,22 @@ var $;
                 catch { }
                 return this.Avatar_icon();
             }
-            games_played() {
-                return this.profile_data().Games_played()?.val() ?? 0;
-            }
-            total_score() {
-                return Math.round(this.profile_data().Total_score()?.val() ?? 0);
-            }
-            wins() {
-                return this.profile_data().Wins()?.val() ?? 0;
-            }
-            best_score() {
-                return Math.round(this.profile_data().Best_score()?.val() ?? 0);
-            }
-            avg_score() {
-                const played = this.games_played();
-                if (!played)
-                    return 0;
-                return Math.round(this.total_score() / played);
-            }
-            win_rate() {
-                const played = this.games_played();
-                if (!played)
-                    return '0%';
-                return Math.round((this.wins() / played) * 100) + '%';
+            all_stats() {
+                const profile = this.profile_data();
+                const played = profile.Games_played()?.val() ?? 0;
+                const total = Math.round(profile.Total_score()?.val() ?? 0);
+                const wins = profile.Wins()?.val() ?? 0;
+                const best = Math.round(profile.Best_score()?.val() ?? 0);
+                const avg = played ? Math.round(total / played) : 0;
+                const winRate = played ? Math.round((wins / played) * 100) + '%' : '0%';
+                return [
+                    String(played),
+                    String(total),
+                    String(wins),
+                    String(avg),
+                    String(best),
+                    winRate,
+                ];
             }
             stat_rows() {
                 return [0, 1, 2, 3, 4, 5].map(i => this.Stat_row(String(i)));
@@ -36837,18 +36830,10 @@ var $;
                 return labels[Number(key)] ?? '';
             }
             stat_value(key) {
-                switch (Number(key)) {
-                    case 0: return String(this.games_played());
-                    case 1: return String(this.total_score());
-                    case 2: return String(this.wins());
-                    case 3: return String(this.avg_score());
-                    case 4: return String(this.best_score());
-                    case 5: return this.win_rate();
-                    default: return '0';
-                }
+                return this.all_stats()[Number(key)] ?? '0';
             }
             persona_text() {
-                const played = this.games_played();
+                const played = Number(this.all_stats()[0] ?? 0);
                 let persona = personas[0];
                 for (const p of personas) {
                     if (played >= p.min)
@@ -36874,28 +36859,10 @@ var $;
         ], $bog_blitz_profile_page.prototype, "avatar_preview", null);
         __decorate([
             $mol_mem
-        ], $bog_blitz_profile_page.prototype, "games_played", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "total_score", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "wins", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "best_score", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "avg_score", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_profile_page.prototype, "win_rate", null);
+        ], $bog_blitz_profile_page.prototype, "all_stats", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "stat_rows", null);
-        __decorate([
-            $mol_mem_key
-        ], $bog_blitz_profile_page.prototype, "stat_value", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_profile_page.prototype, "persona_text", null);
