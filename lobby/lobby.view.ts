@@ -76,12 +76,23 @@ namespace $.$$ {
 					const name = join_name || profile_name || ''
 					player.Name('auto')?.val(name)
 
+					// Sync name to profile
+					if (join_name) {
+						profile.Name('auto')?.val(join_name)
+					}
+
 					const files = this.my_avatar_files()
 					if (files?.length) {
 						const store = player.Avatar(null)!.ensure(null)
 						if (store) {
 							store.blob(files[0])
 							player.Avatar(null)!.remote(store)
+						}
+						// Sync avatar to profile
+						const profile_store = profile.Avatar(null)!.ensure(null)
+						if (profile_store) {
+							profile_store.blob(files[0])
+							profile.Avatar(null)!.remote(profile_store)
 						}
 					} else {
 						const profile_avatar = profile.Avatar()?.remote()

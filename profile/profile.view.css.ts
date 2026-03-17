@@ -24,7 +24,6 @@ namespace $.$$ {
 		},
 		Avatar: {
 			borderRadius: '50%',
-			overflow: 'hidden',
 			width: '80px',
 			height: '80px',
 			flex: {

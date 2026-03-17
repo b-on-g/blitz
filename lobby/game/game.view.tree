@@ -1,4 +1,5 @@
 $bog_blitz_lobby_game $mol_view
+	land_id \
 	quiz_data null
 	game_state \
 	current_question null

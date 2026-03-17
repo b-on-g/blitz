@@ -30,6 +30,7 @@ $bog_blitz_lobby $mol_page
 				title @ \Go to Admin
 				click? <=> go_admin? null
 	Game_screen $bog_blitz_lobby_game
+		land_id <= land_id
 		quiz_data <= quiz_data null
 		game_state <= game_state \
 		current_question <= current_question null

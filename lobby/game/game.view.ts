@@ -47,6 +47,7 @@ namespace $.$$ {
 			record.Place('auto')?.val(place)
 			record.Players_count('auto')?.val(this.players_count())
 			record.Date('auto')?.val(Date.now())
+			record.Land_link('auto')?.val(this.land_id())
 		}
 
 		my_place() {
