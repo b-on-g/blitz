@@ -27,6 +27,7 @@ jobs:
             - uses: b-on-g/mol-prerender-action@main
               if: github.ref == 'refs/heads/master'
               with:
+                  folder: "bog/blitz/blog/-"
                   base-url: "https://b-on-g.github.io/blitz/blog/"
                   screens: |
                       about
