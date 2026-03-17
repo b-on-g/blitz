@@ -1,50 +1,44 @@
 namespace $.$$ {
 	$mol_style_define($bog_blitz_blog_menu, {
 		Logo: {
-			width: 120,
-			height: 120,
+			width: '120px',
+			height: '120px',
 			align: {
 				self: 'center',
 			},
 			margin: {
-				top: 32,
-				bottom: 16,
+				top: '32px',
+				bottom: '16px',
 			},
 		},
 		Heading: {
 			font: {
-				size: 28,
+				size: '28px',
 				weight: 700,
 			},
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 		},
 		Subtitle: {
 			font: {
-				size: 16,
+				size: '16px',
 			},
-			text: {
-				align: 'center',
-			},
+			textAlign: 'center',
 			opacity: 0.6,
 			margin: {
-				bottom: 32,
+				bottom: '32px',
 			},
 		},
 		Link: {
 			font: {
-				size: 18,
+				size: '18px',
 			},
 			padding: {
-				top: 12,
-				bottom: 12,
-				left: 16,
-				right: 16,
+				top: '12px',
+				bottom: '12px',
+				left: '16px',
+				right: '16px',
 			},
-			border: {
-				radius: 8,
-			},
+			borderRadius: '8px',
 		},
 	})
 }

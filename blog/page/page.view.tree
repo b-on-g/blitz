@@ -1,4 +1,5 @@
 $bog_blitz_blog_page $mol_page
+	slug \
 	title <= article_title \
 	head /
 		<= Back $mol_link

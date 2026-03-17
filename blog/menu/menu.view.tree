@@ -1,5 +1,7 @@
 $bog_blitz_blog_menu $mol_page
 	title \Блог
+	items *
+	page? \
 	body /
 		<= Logo $mol_image
 			uri \bog/blitz/assets/logo.svg

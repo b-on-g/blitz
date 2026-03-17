@@ -2,24 +2,24 @@ namespace $.$$ {
 	$mol_style_define($bog_blitz_blog_page, {
 		Content: {
 			padding: {
-				top: 8,
-				bottom: 24,
-				left: 16,
-				right: 16,
+				top: '8px',
+				bottom: '24px',
+				left: '16px',
+				right: '16px',
 			},
-			maxWidth: 720,
+			maxWidth: '720px',
 		},
 		App_link: {
 			align: {
 				self: 'center',
 			},
 			font: {
-				size: 18,
+				size: '18px',
 				weight: 600,
 			},
 			margin: {
-				top: 16,
-				bottom: 32,
+				top: '16px',
+				bottom: '32px',
 			},
 		},
 	})
