@@ -2,7 +2,7 @@ $bog_blitz_admin_question $mol_list
 	question null
 	number 0
 	rows <= question_rows /
-		<= Text_input $mol_string
+		<= Text_input $mol_string_button
 			hint @ \Question...
 			value? <=> question_text? \
 		<= Header $mol_row
@@ -22,7 +22,7 @@ $bog_blitz_admin_question $mol_list
 		<= Add_option $mol_button_minor
 			title @ \Add Option
 			click? <=> add_option? null
-		<= Correct_text_input $mol_string
+		<= Correct_text_input $mol_string_button
 			hint @ \Correct answer...
 			value? <=> correct_text? \
 		<= Image_upload $mol_button_open

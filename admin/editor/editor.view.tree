@@ -1,7 +1,7 @@
 $bog_blitz_admin_editor $mol_list
 	quiz_land null
 	rows <= editor_rows /
-	Title_input $mol_string
+	Title_input $mol_string_button
 		hint @ \Quiz title
 		value? <=> quiz_title? \
 	Settings $mol_list
