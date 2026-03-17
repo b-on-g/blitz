@@ -108,20 +108,17 @@ namespace $.$$ {
 			return labels[Number(key)] ?? ''
 		}
 
+		@$mol_mem_key
 		stat_value(key: string) {
-			try {
-				const values = [
-					String(this.games_played()),
-					String(this.total_score()),
-					String(this.wins()),
-					String(this.avg_score()),
-					String(this.best_score()),
-					this.win_rate(),
-				]
-				return values[Number(key)] ?? '0'
-			} catch {
-				return '...'
-			}
+			const values = [
+				String(this.games_played()),
+				String(this.total_score()),
+				String(this.wins()),
+				String(this.avg_score()),
+				String(this.best_score()),
+				this.win_rate(),
+			]
+			return values[Number(key)] ?? '0'
 		}
 
 		@$mol_mem

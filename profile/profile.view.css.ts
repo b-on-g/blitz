@@ -17,11 +17,6 @@ namespace $.$$ {
 				items: 'center',
 			},
 		},
-		Avatar_wrap: {
-			justify: {
-				content: 'center',
-			},
-		},
 		Avatar: {
 			borderRadius: '50%',
 			overflow: 'hidden',
@@ -44,13 +39,6 @@ namespace $.$$ {
 			font: {
 				size: '2.5rem',
 			},
-		},
-		Avatar_upload_hint: {
-			font: {
-				size: '0.7rem',
-			},
-			opacity: 0.5,
-			textAlign: 'center',
 		},
 		Name_row: {
 			justify: {
