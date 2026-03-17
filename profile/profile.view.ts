@@ -73,6 +73,7 @@ namespace $.$$ {
 			return [String(played), String(total), String(wins), String(avg), String(best), winRate]
 		}
 
+		@$mol_mem
 		stat_rows() {
 			return [0, 1, 2, 3, 4, 5].map(i => this.Stat_row(String(i)))
 		}
