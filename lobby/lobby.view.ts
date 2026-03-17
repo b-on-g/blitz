@@ -114,6 +114,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		profile_name() {
+			return this.profile_data().Name()?.val() ?? ''
+		}
+
+		@$mol_mem
 		land_id() {
 			return this.$.$mol_state_arg.value('land') ?? ''
 		}

@@ -2,6 +2,7 @@ $bog_blitz_lobby_join $mol_page
 	Head null
 	is_synced false
 	profile_avatar_uri \
+	profile_name \
 	syncing_title @ \Syncing...
 	join_title @ \Syncing...
 	enter_title @ \Enter
@@ -10,9 +11,13 @@ $bog_blitz_lobby_join $mol_page
 	Avatar_image $mol_image
 		uri <= avatar_uri \
 	body /
-		<= Avatar $mol_button_open
+		<= Avatar_circle $mol_view
 			sub /
 				<= avatar_preview null
+		<= Avatar $mol_button_open
+			sub /
+				<= Avatar_label $mol_paragraph
+					title @ \Change photo
 				<= Avatar_native $mol_button_open_native
 					files? <=> avatar_files? /File
 					accept \image/*

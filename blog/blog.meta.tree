@@ -1,5 +1,1 @@
-require \/bog/blitz/radio
-require \/bog/blitz/lobby
-require \/bog/blitz/admin
-require \/bog/blitz/profile
 deploy \/bog/blitz/assets
