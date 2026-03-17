@@ -24,3 +24,4 @@ $bog_blitz_admin_editor $mol_list
 		delete? <=> delete_option*? null
 		option_image_files? <=> option_image_files*? /
 		option_image_uri <= option_image_uri* \
+		remove_image? <=> remove_option_image*? null

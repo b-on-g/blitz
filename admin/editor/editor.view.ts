@@ -203,5 +203,15 @@ namespace $.$$ {
 			if (!q) return
 			q.Image('auto')?.val(null)
 		}
+
+		@$mol_action
+		remove_option_image(key: string) {
+			const [qKey, oKey] = key.split('_')
+			const q = this.questions()[Number(qKey)]
+			if (!q) return
+			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
+			if (!opt) return
+			opt.Image('auto')?.val(null)
+		}
 	}
 }
