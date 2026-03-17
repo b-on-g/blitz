@@ -119,6 +119,18 @@ namespace $.$$ {
 		@$mol_action
 		import_bot_quiz(text: string) {
 			if (!text) return
+
+			try {
+				const data = JSON.parse(text)
+				const title = data.title ?? ''
+				if (title) {
+					const existing = this.quiz_links().find(
+						q => q.Title()?.val() === title
+					)
+					if (existing) return
+				}
+			} catch {}
+
 			this.create_quiz_from_json(text)
 		}
 

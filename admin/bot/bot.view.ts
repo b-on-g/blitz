@@ -41,6 +41,7 @@ Quiz generation rules:
 - For "choice": provide 2-6 options, at least one must have "is_correct": true
 - For "text_input": provide "correct_text" with comma-separated acceptable answers (case-insensitive)
 - Generate interesting, varied questions
+- Every quiz must have a unique title — always vary the title, even if the topic is the same
 - In "message" briefly describe what you generated
 - The "document" field must contain the quiz JSON as a string`
 		}
