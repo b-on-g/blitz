@@ -29,6 +29,14 @@ namespace $.$$ {
 				radius: $mol_gap.round,
 			},
 		},
+		GiperBaza_qr: {
+			width: '9rem',
+			height: '9rem',
+			marginLeft: '4rem',
+			border: {
+				radius: $mol_gap.round,
+			},
+		},
 		Spacer: {
 			flex: {
 				grow: 1,
