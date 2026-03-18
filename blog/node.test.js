@@ -29618,9 +29618,9 @@ var $;
 		}
 		nav_options(){
 			return {
-				"lobby": "Lobby", 
-				"admin": "Admin", 
-				"profile": "Profile"
+				"lobby": "Лобби", 
+				"admin": "Админ", 
+				"profile": "Профиль"
 			};
 		}
 		Navbar(){
