@@ -2005,7 +2005,7 @@ $bog_blitz_profile_page $mol_page
 		<= Games_section $mol_view
 			sub /
 				<= Games_title $mol_paragraph
-					title @ \Game History
+					title \История игр
 				<= Games_search $mol_search
 					query? <=> games_query? \
 				<= Games_list $mol_list

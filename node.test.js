@@ -29876,7 +29876,7 @@ var $;
 		}
 		Games_title(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_profile_page_Games_title_title")));
+			(obj.title) = () => ("История игр");
 			return obj;
 		}
 		games_query(next){
