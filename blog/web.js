@@ -30858,9 +30858,6 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     var $$;
@@ -30886,6 +30883,9 @@ var $;
 (function ($) {
     $mol_style_attach("giper/web/frame/frame.view.css", "/* @keyframes giper_web_frame_show {\n\tfrom {\n\t\topacity: 0;\n\t}\n}\n\n[giper_web_frame] {\n\tanimation: 5s -1s ease-in giper_web_frame_show;\n} */\n");
 })($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -35739,9 +35739,6 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     var $$;
@@ -35815,6 +35812,9 @@ var $;
 })($ || ($ = {}));
 
 ;
+"use strict";
+
+;
 	($.$bog_theme_picker_row) = class $bog_theme_picker_row extends ($.$mol_button_minor) {
 		focused_str(){
 			return "";
@@ -35841,9 +35841,6 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     var $$;
@@ -35856,6 +35853,9 @@ var $;
         $$.$bog_theme_picker_row = $bog_theme_picker_row;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -35960,9 +35960,6 @@ var $;
 	($mol_mem(($.$bog_theme_picker.prototype), "focused_index"));
 	($mol_mem_key(($.$bog_theme_picker.prototype), "Theme_row"));
 
-
-;
-"use strict";
 
 ;
 "use strict";
@@ -36094,6 +36091,9 @@ var $;
 
 ;
 "use strict";
+
+;
+"use strict";
 var $;
 (function ($) {
     var $$;
@@ -36209,9 +36209,6 @@ var $;
 
 ;
 "use strict";
-
-;
-"use strict";
 var $;
 (function ($) {
     var $$;
@@ -36304,6 +36301,9 @@ var $;
         $$.$bog_theme_toggle = $bog_theme_toggle;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
