@@ -31,6 +31,10 @@ $bog_blitz_admin $mol_page
 			<= Back_icon $mol_icon_arrow_left
 			<= Back_label @ \Back to Quizzes
 		click? <=> back_to_list? null
+	Game_land_warning $mol_status
+		sub /
+			<= Game_land_warning_text $mol_paragraph
+				title @ \This is a game session, not a quiz. Editing is not available.
 	Editor $bog_blitz_admin_editor
 		quiz_land <= current_quiz_land null
 	Question*0 $bog_blitz_admin_question

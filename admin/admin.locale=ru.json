@@ -4,5 +4,6 @@
 	"$bog_blitz_admin_Back_label": "Назад к Квизам",
 	"$bog_blitz_admin_Create_button_title": "Создать Квиз",
 	"$bog_blitz_admin_Bot_expander_title": "AI Генератор Квизов",
-	"$bog_blitz_admin_Import_expander_title": "Импорт из JSON"
+	"$bog_blitz_admin_Import_expander_title": "Импорт из JSON",
+	"$bog_blitz_admin_Game_land_warning_text_title": "Это игровая сессия, а не квиз. Редактирование недоступно."
 }

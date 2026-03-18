@@ -23,8 +23,20 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		is_game_land() {
+			const land = this.current_quiz_land()
+			if (!land) return false
+			const quiz = land.Data($bog_blitz_quiz)
+			const keys = quiz.keys() ?? []
+			return Array.from(keys).some(k => !$bog_blitz_quiz_fields.has(String(k)))
+		}
+
+		@$mol_mem
 		admin_body() {
 			if (this.current_quiz_link()) {
+				if (this.is_game_land()) {
+					return [this.Back_button(), this.Game_land_warning()]
+				}
 				return [this.Back_button(), this.Editor()]
 			}
 			return [

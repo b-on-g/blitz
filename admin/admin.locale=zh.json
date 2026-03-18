@@ -4,5 +4,6 @@
 	"$bog_blitz_admin_Back_label": "返回问答列表",
 	"$bog_blitz_admin_Create_button_title": "创建问答",
 	"$bog_blitz_admin_Bot_expander_title": "AI 生成问答",
-	"$bog_blitz_admin_Import_expander_title": "从JSON导入"
+	"$bog_blitz_admin_Import_expander_title": "从JSON导入",
+	"$bog_blitz_admin_Game_land_warning_text_title": "这是游戏会话，不是问答。无法编辑。"
 }
