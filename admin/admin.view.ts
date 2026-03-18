@@ -32,11 +32,23 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		ensure_in_registry() {
+			const link = this.current_quiz_link()
+			if (!link) return
+			if (this.is_game_land()) return
+			const existing = this.quiz_links()
+			if (existing.some(q => q.land().link().str === link)) return
+			const quizzes = this.registry().Quizzes('auto')!
+			quizzes.add(new $giper_baza_link(link))
+		}
+
+		@$mol_mem
 		admin_body() {
 			if (this.current_quiz_link()) {
 				if (this.is_game_land()) {
 					return [this.Back_button(), this.Game_land_warning()]
 				}
+				this.ensure_in_registry()
 				return [this.Back_button(), this.Editor()]
 			}
 			return [
