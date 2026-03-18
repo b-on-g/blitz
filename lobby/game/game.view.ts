@@ -196,7 +196,16 @@ namespace $.$$ {
 			const question = this.current_question() as $bog_blitz_question | null
 			if (!question) return []
 			const options = question.Options()?.remote_list() ?? []
-			return options.map((_: unknown, i: number) => String(i))
+			const keys = options.map((_: unknown, i: number) => String(i))
+
+			let seed = Math.floor(Date.now() / 1000)
+			for (let i = keys.length - 1; i > 0; i--) {
+				seed = (seed * 1103515245 + 12345) & 0x7fffffff
+				const j = seed % (i + 1)
+				;[keys[i], keys[j]] = [keys[j], keys[i]]
+			}
+
+			return keys
 		}
 
 		@$mol_mem
