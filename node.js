@@ -16427,6 +16427,12 @@ var $;
 				(this.Players())
 			];
 		}
+		Foot(){
+			return null;
+		}
+		sub(){
+			return [...(super.sub())];
+		}
 	};
 	($mol_mem(($.$bog_blitz_lobby_host.prototype), "Logo"));
 	($mol_mem(($.$bog_blitz_lobby_host.prototype), "Qr"));
@@ -16488,6 +16494,7 @@ var $;
                     radius: $mol_gap.round,
                 },
                 align: { self: 'center' },
+                maxWidth: '22rem',
             },
             Quiz_title: {
                 align: { self: 'center' },
@@ -18644,6 +18651,16 @@ var $;
 
 ;
 	($.$bog_blitz_lobby_reactions) = class $bog_blitz_lobby_reactions extends ($.$mol_view) {
+		Mol_qr(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/blitz/assets/mol_qr.png");
+			(obj.title) = () => ("$mol");
+			return obj;
+		}
+		Spacer(){
+			const obj = new this.$.$mol_view();
+			return obj;
+		}
 		react_heart(next){
 			if(next !== undefined) return next;
 			return null;
@@ -18774,6 +18791,8 @@ var $;
 		}
 		sub(){
 			return [
+				(this.Mol_qr()), 
+				(this.Spacer()), 
 				(this.Group_heart()), 
 				(this.Group_smile()), 
 				(this.Group_fire()), 
@@ -18782,6 +18801,8 @@ var $;
 			];
 		}
 	};
+	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Mol_qr"));
+	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Spacer"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "react_heart"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Btn_heart"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Count_heart"));
@@ -18998,7 +19019,20 @@ var $;
         $mol_style_define($bog_blitz_lobby_reactions, {
             flex: { direction: 'row' },
             gap: '0.25rem',
-            align: { items: 'flex-end' },
+            align: { items: 'flex-end', self: 'stretch' },
+            width: '95%',
+            Mol_qr: {
+                width: '9rem',
+                height: '9rem',
+                border: {
+                    radius: $mol_gap.round,
+                },
+            },
+            Spacer: {
+                flex: {
+                    grow: 1,
+                },
+            },
             Group_heart: group_style,
             Group_smile: group_style,
             Group_fire: group_style,
@@ -19214,6 +19248,8 @@ var $;
             sub() {
                 const base = super.sub();
                 if (!this.my_player())
+                    return base;
+                if (this.game_state() === 'final')
                     return base;
                 return [...base, this.Reactions()];
             }
