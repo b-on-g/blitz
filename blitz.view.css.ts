@@ -24,6 +24,20 @@ namespace $.$$ {
 			},
 		},
 
+		Powered: {
+			opacity: 0.5,
+			font: {
+				size: '.875rem',
+			},
+			gap: '.25rem',
+			align: {
+				items: 'center',
+			},
+			flex: {
+				wrap: 'wrap',
+			},
+		},
+
 		Mobile_menu: {
 			display: 'none',
 		},
@@ -34,6 +48,11 @@ namespace $.$$ {
 					display: 'flex',
 				},
 				Navbar: {
+					display: 'none',
+				},
+			},
+			'(width < 1030px)': {
+				Powered: {
 					display: 'none',
 				},
 			},
