@@ -4,6 +4,7 @@
 	"$bog_blitz_admin_Back_label": "Back to Quizzes",
 	"$bog_blitz_admin_Bot_expander_title": "AI Generate Quiz",
 	"$bog_blitz_admin_Create_button_title": "Create Quiz",
+	"$bog_blitz_admin_Game_land_warning_text_title": "This is a game session, not a quiz. Editing is not available.",
 	"$bog_blitz_admin_Import_button_title": "Import",
 	"$bog_blitz_admin_Import_expander_title": "Import from JSON",
 	"$bog_blitz_admin_Import_hint_title": "Edit JSON below or import as a preset",

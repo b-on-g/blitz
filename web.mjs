@@ -27238,7 +27238,7 @@ var $;
 			(obj.dom_name) = () => ("linearGradient");
 			(obj.attr) = () => ({
 				...(this.$.$mol_svg.prototype.attr.call(obj)), 
-				"id": "qr-grad", 
+				"id": (this.gradient_id()), 
 				"x1": (this.grad_x1()), 
 				"y1": (this.grad_y1()), 
 				"x2": (this.grad_x2()), 
@@ -27259,7 +27259,7 @@ var $;
 		Modules(){
 			const obj = new this.$.$mol_svg_path();
 			(obj.geometry) = () => ((this.modules_d()));
-			(obj.attr) = () => ({...(this.$.$mol_svg_path.prototype.attr.call(obj)), "fill": "url(#qr-grad)"});
+			(obj.attr) = () => ({...(this.$.$mol_svg_path.prototype.attr.call(obj)), "fill": (this.gradient_fill())});
 			return obj;
 		}
 		rings_d(){
@@ -27270,7 +27270,7 @@ var $;
 			(obj.geometry) = () => ((this.rings_d()));
 			(obj.attr) = () => ({
 				...(this.$.$mol_svg_path.prototype.attr.call(obj)), 
-				"fill": "url(#qr-grad)", 
+				"fill": (this.gradient_fill()), 
 				"fill-rule": "evenodd"
 			});
 			return obj;
@@ -27281,7 +27281,7 @@ var $;
 		Centers(){
 			const obj = new this.$.$mol_svg_path();
 			(obj.geometry) = () => ((this.centers_d()));
-			(obj.attr) = () => ({...(this.$.$mol_svg_path.prototype.attr.call(obj)), "fill": "url(#qr-grad)"});
+			(obj.attr) = () => ({...(this.$.$mol_svg_path.prototype.attr.call(obj)), "fill": (this.gradient_fill())});
 			return obj;
 		}
 		center_x(){
@@ -27331,6 +27331,12 @@ var $;
 		}
 		center(){
 			return [];
+		}
+		gradient_id(){
+			return "qr-grad";
+		}
+		gradient_fill(){
+			return "url(#qr-grad)";
 		}
 		gradient_stops(){
 			return ["var(--mol_theme_special)", "var(--mol_theme_focus)"];
@@ -27430,7 +27436,14 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        let grad_counter = 0;
         class $bog_qr extends $.$bog_qr {
+            gradient_id() {
+                return 'qr-grad-' + (++grad_counter);
+            }
+            gradient_fill() {
+                return `url(#${this.gradient_id()})`;
+            }
             grad_x1() {
                 const a = this.gradient_angle() * Math.PI / 180;
                 return String(0.5 - Math.cos(a) * 0.5);
@@ -27602,6 +27615,12 @@ var $;
                     .join('');
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_qr.prototype, "gradient_id", null);
+        __decorate([
+            $mol_mem
+        ], $bog_qr.prototype, "gradient_fill", null);
         __decorate([
             $mol_mem
         ], $bog_qr.prototype, "grad_x1", null);
@@ -34914,6 +34933,11 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
+		Game_land_warning_text(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_Game_land_warning_text_title")));
+			return obj;
+		}
 		current_quiz_land(){
 			return null;
 		}
@@ -34989,6 +35013,11 @@ var $;
 			(obj.click) = (next) => ((this.back_to_list(next)));
 			return obj;
 		}
+		Game_land_warning(){
+			const obj = new this.$.$mol_status();
+			(obj.sub) = () => ([(this.Game_land_warning_text())]);
+			return obj;
+		}
 		Editor(){
 			const obj = new this.$.$bog_blitz_admin_editor();
 			(obj.quiz_land) = () => ((this.current_quiz_land()));
@@ -35020,6 +35049,7 @@ var $;
 	($mol_mem(($.$bog_blitz_admin.prototype), "Import_button"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "Back_icon"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "back_to_list"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Game_land_warning_text"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "question_text"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "question_type"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "delete_question"));
@@ -35030,6 +35060,7 @@ var $;
 	($mol_mem(($.$bog_blitz_admin.prototype), "Bot_expander"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "Import_expander"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "Back_button"));
+	($mol_mem(($.$bog_blitz_admin.prototype), "Game_land_warning"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "Editor"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "Question"));
 
@@ -35074,8 +35105,19 @@ var $;
                     return null;
                 return this.$.$giper_baza_glob.Land(new $giper_baza_link(link));
             }
+            is_game_land() {
+                const land = this.current_quiz_land();
+                if (!land)
+                    return false;
+                const quiz = land.Data($bog_blitz_quiz);
+                const keys = quiz.keys() ?? [];
+                return Array.from(keys).some(k => !$bog_blitz_quiz_fields.has(String(k)));
+            }
             admin_body() {
                 if (this.current_quiz_link()) {
+                    if (this.is_game_land()) {
+                        return [this.Back_button(), this.Game_land_warning()];
+                    }
                     return [this.Back_button(), this.Editor()];
                 }
                 return [
@@ -35242,6 +35284,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "current_quiz_link", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "is_game_land", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "admin_body", null);

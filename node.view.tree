@@ -245,6 +245,8 @@ $bog_qr $mol_svg_root
 	error_correction \M
 	quiet_zone 2
 	center /
+	gradient_id \qr-grad
+	gradient_fill \url(#qr-grad)
 	gradient_stops /
 		\var(--mol_theme_special)
 		\var(--mol_theme_focus)
@@ -263,7 +265,7 @@ $bog_qr $mol_svg_root
 					dom_name \linearGradient
 					attr *
 						^
-						id \qr-grad
+						id <= gradient_id
 						x1 <= grad_x1 \0
 						y1 <= grad_y1 \0
 						x2 <= grad_x2 \1
@@ -273,18 +275,18 @@ $bog_qr $mol_svg_root
 			geometry <= modules_d \
 			attr *
 				^
-				fill \url(#qr-grad)
+				fill <= gradient_fill
 		<= Rings $mol_svg_path
 			geometry <= rings_d \
 			attr *
 				^
-				fill \url(#qr-grad)
+				fill <= gradient_fill
 				fill-rule \evenodd
 		<= Centers $mol_svg_path
 			geometry <= centers_d \
 			attr *
 				^
-				fill \url(#qr-grad)
+				fill <= gradient_fill
 		<= Center_wrap $mol_svg
 			dom_name \foreignObject
 			attr *
@@ -1700,6 +1702,10 @@ $bog_blitz_admin $mol_page
 			<= Back_icon $mol_icon_arrow_left
 			<= Back_label @ \Back to Quizzes
 		click? <=> back_to_list? null
+	Game_land_warning $mol_status
+		sub /
+			<= Game_land_warning_text $mol_paragraph
+				title @ \This is a game session, not a quiz. Editing is not available.
 	Editor $bog_blitz_admin_editor
 		quiz_land <= current_quiz_land null
 	Question*0 $bog_blitz_admin_question
