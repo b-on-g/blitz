@@ -5,9 +5,9 @@ $bog_blitz $mol_page
 		admin <= Admin $bog_blitz_admin
 		profile <= Profile $bog_blitz_profile_page
 	nav_options *
-		lobby \Lobby
-		admin \Admin
-		profile \Profile
+		lobby \Лобби
+		admin \Админ
+		profile \Профиль
 	Navbar $mol_switch
 		value? <=> screen? \lobby
 		options <= nav_options
