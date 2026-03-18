@@ -48,8 +48,8 @@ $bog_blitz $mol_page
 		<= Mobile_menu
 	plugins /
 		<= Theme $bog_theme_auto
-			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_dark
+			theme_light \$mol_theme_calm_light
+			theme_dark \$mol_theme_calm_dark
 			themes /
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark

@@ -22,21 +22,21 @@ namespace $.$$ {
 		gap: '0.25rem',
 		align: { items: 'flex-end', self: 'stretch' },
 		width: '95%',
-		Mol_qr: {
-			width: '9rem',
-			height: '9rem',
-			border: {
-				radius: $mol_gap.round,
-			},
-		},
-		GiperBaza_qr: {
-			width: '9rem',
-			height: '9rem',
-			marginLeft: '4rem',
-			border: {
-				radius: $mol_gap.round,
-			},
-		},
+		// Mol_qr: {
+		// 	width: '9rem',
+		// 	height: '9rem',
+		// 	border: {
+		// 		radius: $mol_gap.round,
+		// 	},
+		// },
+		// GiperBaza_qr: {
+		// 	width: '9rem',
+		// 	height: '9rem',
+		// 	marginLeft: '4rem',
+		// 	border: {
+		// 		radius: $mol_gap.round,
+		// 	},
+		// },
 		Spacer: {
 			flex: {
 				grow: 1,
