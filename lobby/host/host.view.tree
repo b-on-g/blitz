@@ -27,3 +27,6 @@ $bog_blitz_lobby_host $mol_page
 		<= Counter $mol_paragraph
 			title <= counter_string
 		<= Players $bog_blitz_lobby_players
+	Foot null
+	sub /
+		^

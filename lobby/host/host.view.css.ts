@@ -5,6 +5,7 @@ namespace $.$$ {
 				radius: $mol_gap.round,
 			},
 			align: { self: 'center' },
+			maxWidth: '22rem',
 		},
 		Quiz_title: {
 			align: { self: 'center' },

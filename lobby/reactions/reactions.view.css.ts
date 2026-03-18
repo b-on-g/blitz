@@ -1,5 +1,4 @@
 namespace $.$$ {
-
 	const group_style = {
 		flex: { direction: 'column' },
 		align: { items: 'center' },
@@ -21,7 +20,20 @@ namespace $.$$ {
 	$mol_style_define($bog_blitz_lobby_reactions, {
 		flex: { direction: 'row' },
 		gap: '0.25rem',
-		align: { items: 'flex-end' },
+		align: { items: 'flex-end', self: 'stretch' },
+		width: '95%',
+		Mol_qr: {
+			width: '9rem',
+			height: '9rem',
+			border: {
+				radius: $mol_gap.round,
+			},
+		},
+		Spacer: {
+			flex: {
+				grow: 1,
+			},
+		},
 		Group_heart: group_style,
 		Group_smile: group_style,
 		Group_fire: group_style,

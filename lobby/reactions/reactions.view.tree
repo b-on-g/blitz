@@ -4,6 +4,10 @@ $bog_blitz_lobby_reactions $mol_view
 	is_host false
 	Fly $mol_view
 	sub /
+		<= Mol_qr $mol_image
+			uri \bog/blitz/assets/mol_qr.png
+			title \$mol
+		<= Spacer $mol_view
 		<= Group_heart $mol_view
 			sub /
 				<= Btn_heart $mol_button_minor
