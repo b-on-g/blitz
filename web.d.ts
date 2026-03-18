@@ -15022,7 +15022,6 @@ declare namespace $.$$ {
     class $bog_blitz_lobby_join extends $.$bog_blitz_lobby_join {
         avatar_preview(): $.$mol_avatar | $.$mol_image;
         avatar_uri(): string;
-        player_name(next?: string): string;
         join_title(): string;
     }
 }
@@ -16299,6 +16298,7 @@ declare namespace $.$$ {
         profile_data(): $bog_blitz_profile;
         join(e?: any): null;
         profile_avatar_uri(): string;
+        my_player_name(next?: string): string;
         profile_name(): string;
         land_id(): string;
         quiz_title(): string;

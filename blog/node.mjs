@@ -16710,11 +16710,6 @@ var $;
                     return URL.createObjectURL(files[0]);
                 return this.profile_avatar_uri();
             }
-            player_name(next) {
-                if (next !== undefined)
-                    return next;
-                return this.profile_name();
-            }
             join_title() {
                 try {
                     this.is_synced();
@@ -16731,9 +16726,6 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_join.prototype, "avatar_uri", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_join.prototype, "player_name", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_join.prototype, "join_title", null);
@@ -19282,6 +19274,11 @@ var $;
                     return '';
                 return file.uri() ?? '';
             }
+            my_player_name(next) {
+                if (next !== undefined)
+                    return next;
+                return this.profile_name();
+            }
             profile_name() {
                 return this.profile_data().Name()?.val() ?? '';
             }
@@ -19405,6 +19402,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "profile_avatar_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "my_player_name", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "profile_name", null);
@@ -29696,8 +29696,8 @@ var $;
 		}
 		Link(id){
 			const obj = new this.$.$mol_link();
-			(obj.arg) = () => ({"screen": (this.link_slug("0"))});
-			(obj.title) = () => ((this.link_title("0")));
+			(obj.arg) = () => ({"screen": (this.link_slug(id))});
+			(obj.title) = () => ((this.link_title(id)));
 			return obj;
 		}
 	};
@@ -30073,7 +30073,7 @@ var $;
 		}
 		Page(id){
 			const obj = new this.$.$bog_blitz_blog_page();
-			(obj.slug) = () => ((this.page_slug("0")));
+			(obj.slug) = () => ((this.page_slug(id)));
 			return obj;
 		}
 		App_link(){
