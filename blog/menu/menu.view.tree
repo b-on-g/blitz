@@ -11,7 +11,7 @@ $bog_blitz_blog_menu $mol_page
 			title \Реалтайм квизы для митапов и мероприятий
 		<= Nav $mol_list
 			rows <= nav_rows /
-	Link*0 $mol_link
+	Link* $mol_link
 		arg *
-			screen <= link_slug*0 \
-		title <= link_title*0 \
+			screen <= link_slug* \
+		title <= link_title* \

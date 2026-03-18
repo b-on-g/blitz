@@ -114,6 +114,12 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		my_player_name(next?: string) {
+			if (next !== undefined) return next
+			return this.profile_name()
+		}
+
+		@$mol_mem
 		profile_name() {
 			return this.profile_data().Name()?.val() ?? ''
 		}

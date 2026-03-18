@@ -8,8 +8,8 @@ $bog_blitz_blog $mol_book2
 			guide \Как создать квиз
 			features \Возможности
 		page? <=> page? \
-	Page*0 $bog_blitz_blog_page
-		slug <= page_slug*0 \
+	Page* $bog_blitz_blog_page
+		slug <= page_slug* \
 	App_link $mol_link
 		arg *
 			screen null

@@ -17,12 +17,6 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		player_name(next?: string) {
-			if (next !== undefined) return next
-			return this.profile_name()
-		}
-
-		@$mol_mem
 		join_title() {
 			try {
 				this.is_synced()
