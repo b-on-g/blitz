@@ -15856,25 +15856,25 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_image__uri_bog_blitz_lobby_reactions_1 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_1 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $mol_image['uri'] >
+		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_image__title_bog_blitz_lobby_reactions_2 = $mol_type_enforce<
-		string
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_heart'] >
 		,
-		ReturnType< $mol_image['title'] >
+		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_image__uri_bog_blitz_lobby_reactions_3 = $mol_type_enforce<
-		string
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_heart_text'] >
 		,
-		ReturnType< $mol_image['uri'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_image__title_bog_blitz_lobby_reactions_4 = $mol_type_enforce<
-		string
+	type $mol_view__sub_bog_blitz_lobby_reactions_4 = $mol_type_enforce<
+		readonly(any)[]
 		,
-		ReturnType< $mol_image['title'] >
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_button_minor__title_bog_blitz_lobby_reactions_5 = $mol_type_enforce<
 		string
@@ -15882,12 +15882,12 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['title'] >
 	>
 	type $mol_button_minor__click_bog_blitz_lobby_reactions_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_heart'] >
+		ReturnType< $bog_blitz_lobby_reactions['react_smile'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
 	type $mol_paragraph__title_bog_blitz_lobby_reactions_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_heart_text'] >
+		ReturnType< $bog_blitz_lobby_reactions['count_smile_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
@@ -15902,12 +15902,12 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['title'] >
 	>
 	type $mol_button_minor__click_bog_blitz_lobby_reactions_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_smile'] >
+		ReturnType< $bog_blitz_lobby_reactions['react_fire'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
 	type $mol_paragraph__title_bog_blitz_lobby_reactions_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_smile_text'] >
+		ReturnType< $bog_blitz_lobby_reactions['count_fire_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
@@ -15922,12 +15922,12 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['title'] >
 	>
 	type $mol_button_minor__click_bog_blitz_lobby_reactions_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_fire'] >
+		ReturnType< $bog_blitz_lobby_reactions['react_clap'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
 	type $mol_paragraph__title_bog_blitz_lobby_reactions_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_fire_text'] >
+		ReturnType< $bog_blitz_lobby_reactions['count_clap_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
@@ -15942,12 +15942,12 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['title'] >
 	>
 	type $mol_button_minor__click_bog_blitz_lobby_reactions_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_clap'] >
+		ReturnType< $bog_blitz_lobby_reactions['react_poop'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
 	type $mol_paragraph__title_bog_blitz_lobby_reactions_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_clap_text'] >
+		ReturnType< $bog_blitz_lobby_reactions['count_poop_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
@@ -15956,29 +15956,7 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_21 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_22 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_poop'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_23 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_poop_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_24 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
 	export class $bog_blitz_lobby_reactions extends $mol_view {
-		Mol_qr( ): $mol_image
-		GiperBaza_qr( ): $mol_image
 		Spacer( ): $mol_view
 		react_heart( next?: any ): any
 		Btn_heart( ): $mol_button_minor
@@ -19847,6 +19825,7 @@ declare namespace $.$$ {
         current_quiz_link(): string;
         current_quiz_land(): $giper_baza_land | null;
         is_game_land(): boolean;
+        ensure_in_registry(): void;
         admin_body(): ($mol_button_minor | $.$mol_status)[] | ($mol_button_minor | $.$bog_blitz_admin_editor)[] | ($.$mol_list | $.$mol_expander | $mol_button_major)[];
         import_json_template(): string;
         create_quiz_from_json(text: string): void;

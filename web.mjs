@@ -29974,18 +29974,6 @@ var $;
 
 ;
 	($.$bog_blitz_lobby_reactions) = class $bog_blitz_lobby_reactions extends ($.$mol_view) {
-		Mol_qr(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/blitz/assets/mol_qr.png");
-			(obj.title) = () => ("$mol");
-			return obj;
-		}
-		GiperBaza_qr(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ("bog/blitz/assets/giper_baza_qr.png");
-			(obj.title) = () => ("giper baza");
-			return obj;
-		}
 		Spacer(){
 			const obj = new this.$.$mol_view();
 			return obj;
@@ -30120,8 +30108,6 @@ var $;
 		}
 		sub(){
 			return [
-				(this.Mol_qr()), 
-				(this.GiperBaza_qr()), 
 				(this.Spacer()), 
 				(this.Group_heart()), 
 				(this.Group_smile()), 
@@ -30131,8 +30117,6 @@ var $;
 			];
 		}
 	};
-	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Mol_qr"));
-	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "GiperBaza_qr"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Spacer"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "react_heart"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Btn_heart"));
@@ -30352,21 +30336,6 @@ var $;
             gap: '0.25rem',
             align: { items: 'flex-end', self: 'stretch' },
             width: '95%',
-            Mol_qr: {
-                width: '9rem',
-                height: '9rem',
-                border: {
-                    radius: $mol_gap.round,
-                },
-            },
-            GiperBaza_qr: {
-                width: '9rem',
-                height: '9rem',
-                marginLeft: '4rem',
-                border: {
-                    radius: $mol_gap.round,
-                },
-            },
             Spacer: {
                 flex: {
                     grow: 1,
@@ -35165,11 +35134,24 @@ var $;
                 const keys = quiz.keys() ?? [];
                 return Array.from(keys).some(k => !$bog_blitz_quiz_fields.has(String(k)));
             }
+            ensure_in_registry() {
+                const link = this.current_quiz_link();
+                if (!link)
+                    return;
+                if (this.is_game_land())
+                    return;
+                const existing = this.quiz_links();
+                if (existing.some(q => q.land().link().str === link))
+                    return;
+                const quizzes = this.registry().Quizzes('auto');
+                quizzes.add(new $giper_baza_link(link));
+            }
             admin_body() {
                 if (this.current_quiz_link()) {
                     if (this.is_game_land()) {
                         return [this.Back_button(), this.Game_land_warning()];
                     }
+                    this.ensure_in_registry();
                     return [this.Back_button(), this.Editor()];
                 }
                 return [
@@ -35339,6 +35321,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "is_game_land", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "ensure_in_registry", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "admin_body", null);
@@ -36676,8 +36661,8 @@ var $;
 		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
-			(obj.theme_light) = () => ("$mol_theme_light");
-			(obj.theme_dark) = () => ("$mol_theme_dark");
+			(obj.theme_light) = () => ("$mol_theme_calm_light");
+			(obj.theme_dark) = () => ("$mol_theme_calm_dark");
 			(obj.themes) = () => (["$mol_theme_calm_light", "$mol_theme_calm_dark"]);
 			return obj;
 		}

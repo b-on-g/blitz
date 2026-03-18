@@ -2273,10 +2273,10 @@ $bog_blitz_lobby_reactions $mol_view
 	is_host false
 	Fly $mol_view
 	sub /
-		<= Mol_qr $mol_image
+		- <= Mol_qr $mol_image
 			uri \bog/blitz/assets/mol_qr.png
 			title \$mol
-		<= GiperBaza_qr $mol_image
+		- <= GiperBaza_qr $mol_image
 			uri \bog/blitz/assets/giper_baza_qr.png
 			title \giper baza
 		<= Spacer $mol_view
@@ -3086,8 +3086,8 @@ $bog_blitz $mol_page
 		<= Mobile_menu
 	plugins /
 		<= Theme $bog_theme_auto
-			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_dark
+			theme_light \$mol_theme_calm_light
+			theme_dark \$mol_theme_calm_dark
 			themes /
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark
@@ -3148,8 +3148,8 @@ $bog_blitz_blog $mol_book2
 		uri \https://b-on-g.github.io/blitz/
 	plugins /
 		<= Theme $bog_theme_auto
-			theme_light \$mol_theme_light
-			theme_dark \$mol_theme_dark
+			theme_light \$mol_theme_calm_light
+			theme_dark \$mol_theme_calm_dark
 			themes /
 				\$mol_theme_calm_light
 				\$mol_theme_calm_dark
