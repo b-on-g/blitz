@@ -3414,6 +3414,13 @@ h6[mol_text_header] {
 	flex-basis: 0;
 	justify-content: flex-end;
 }
+[bog_blitz_powered] {
+	opacity: 0.5;
+	font-size: .875rem;
+	gap: .25rem;
+	align-items: center;
+	flex-wrap: wrap;
+}
 [bog_blitz_mobile_menu] {
 	display: none;
 }
@@ -3422,6 +3429,11 @@ h6[mol_text_header] {
 	display: flex;
 }
 [bog_blitz_navbar] {
+	display: none;
+}
+}
+@media (width < 1030px) {
+[bog_blitz_powered] {
 	display: none;
 }
 }

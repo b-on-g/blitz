@@ -36520,6 +36520,43 @@ var $;
 			(obj.sub) = () => ([(this.Mobile_menu_icon())]);
 			return obj;
 		}
+		Powered_prefix(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Powered_prefix_title")));
+			return obj;
+		}
+		Mol_link(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=docs/=4kd8nv_evh111");
+			(obj.title) = () => ("$mol");
+			return obj;
+		}
+		Powered_and(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Powered_and_title")));
+			return obj;
+		}
+		Baza_link(){
+			const obj = new this.$.$mol_link();
+			(obj.uri) = () => ("https://t.me/mol_news/226");
+			(obj.title) = () => ("Giper Baza");
+			return obj;
+		}
+		Powered(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Powered_prefix()), 
+				(this.Mol_link()), 
+				(this.Powered_and()), 
+				(this.Baza_link())
+			]);
+			return obj;
+		}
+		Sources(){
+			const obj = new this.$.$mol_link_source();
+			(obj.uri) = () => ("https://github.com/b-on-g/blitz");
+			return obj;
+		}
 		Radio(){
 			const obj = new this.$.$bog_blitz_radio();
 			return obj;
@@ -36581,6 +36618,8 @@ var $;
 		}
 		tools(){
 			return [
+				(this.Powered()), 
+				(this.Sources()), 
 				(this.Radio()), 
 				(this.Status()), 
 				(this.Theme_toggle())
@@ -36608,6 +36647,12 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "mobile_menu_showed"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_icon"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_trigger"));
+	($mol_mem(($.$bog_blitz.prototype), "Powered_prefix"));
+	($mol_mem(($.$bog_blitz.prototype), "Mol_link"));
+	($mol_mem(($.$bog_blitz.prototype), "Powered_and"));
+	($mol_mem(($.$bog_blitz.prototype), "Baza_link"));
+	($mol_mem(($.$bog_blitz.prototype), "Powered"));
+	($mol_mem(($.$bog_blitz.prototype), "Sources"));
 	($mol_mem(($.$bog_blitz.prototype), "Radio"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
@@ -36631,8 +36676,8 @@ var $;
                 const lobby = this.Lobby();
                 const is_host = lobby.is_host();
                 if (is_host)
-                    return [this.Radio(), this.Status(), this.Theme_toggle()];
-                return [this.Status(), this.Theme_toggle()];
+                    return [this.Powered(), this.Sources(), this.Radio(), this.Status(), this.Theme_toggle()];
+                return [this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()];
             }
             screen_body() {
                 const page = this.pages()[this.screen()];
@@ -36685,6 +36730,19 @@ var $;
                     content: 'flex-end',
                 },
             },
+            Powered: {
+                opacity: 0.5,
+                font: {
+                    size: '.875rem',
+                },
+                gap: '.25rem',
+                align: {
+                    items: 'center',
+                },
+                flex: {
+                    wrap: 'wrap',
+                },
+            },
             Mobile_menu: {
                 display: 'none',
             },
@@ -36694,6 +36752,11 @@ var $;
                         display: 'flex',
                     },
                     Navbar: {
+                        display: 'none',
+                    },
+                },
+                '(width < 1030px)': {
+                    Powered: {
                         display: 'none',
                     },
                 },

@@ -20286,57 +20286,97 @@ declare namespace $ {
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_3 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_link__uri_bog_blitz_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__title_bog_blitz_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_link__uri_bog_blitz_7 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__title_bog_blitz_8 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_view__sub_bog_blitz_9 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_link_source__uri_bog_blitz_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link_source['uri'] >
+	>
+	type $bog_theme_toggle__theme_auto_bog_blitz_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_4 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_12 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_5 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_6 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_7 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_15 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_8 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_9 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_10 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_11 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_12 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_13 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -20349,6 +20389,12 @@ declare namespace $ {
 		mobile_menu_showed( next?: boolean ): boolean
 		Mobile_menu_icon( ): $mol_icon_menu
 		Mobile_menu_trigger( ): $mol_check
+		Powered_prefix( ): $mol_paragraph
+		Mol_link( ): $mol_link
+		Powered_and( ): $mol_paragraph
+		Baza_link( ): $mol_link
+		Powered( ): $mol_view
+		Sources( ): $mol_link_source
 		Radio( ): $bog_blitz_radio
 		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
@@ -20379,7 +20425,7 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
-        tools(): ($.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle)[];
+        tools(): ($mol_view | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
         screen_body(): any[];
         screen(next?: string): string;
     }
