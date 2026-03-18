@@ -17,22 +17,19 @@ jobs:
             - uses: hyoo-ru/mam_build@master2
               with:
                   package: "bog/blitz"
-                  
-            - uses: hyoo-ru/gh-deploy@v4.4.1
+
+            - name: Build blog
               if: github.ref == 'refs/heads/master'
-              with:
-                  folder: "bog/blitz/-"
-            
-            - uses: hyoo-ru/mam_build@master2
+              run: npx mam bog/blitz/blog
+
+            - name: Merge blog into app
               if: github.ref == 'refs/heads/master'
-              with:
-                  package: "bog/blitz"
-                  modules: 'blog'
+              run: cp -r bog/blitz/blog/-/* bog/blitz/-/blog/ || mkdir -p bog/blitz/-/blog && cp -r bog/blitz/blog/-/* bog/blitz/-/blog/
 
             - uses: b-on-g/mol-prerender-action@main
               if: github.ref == 'refs/heads/master'
               with:
-                  folder: "bog/blitz/blog/-"
+                  folder: "bog/blitz/-/blog"
                   base-url: "https://b-on-g.github.io/blitz/blog/"
                   screens: |
                       about
@@ -42,5 +39,4 @@ jobs:
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/master'
               with:
-                  folder: "bog/blitz/blog/-"
-                  target-folder: 'blog/'
+                  folder: "bog/blitz/-"
