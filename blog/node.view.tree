@@ -578,6 +578,9 @@ $bog_blitz_lobby_reactions $mol_view
 		<= Mol_qr $mol_image
 			uri \bog/blitz/assets/mol_qr.png
 			title \$mol
+		<= GiperBaza_qr $mol_image
+			uri \bog/blitz/assets/giper_baza_qr.png
+			title \giper baza
 		<= Spacer $mol_view
 		<= Group_heart $mol_view
 			sub /

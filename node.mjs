@@ -18657,6 +18657,12 @@ var $;
 			(obj.title) = () => ("$mol");
 			return obj;
 		}
+		GiperBaza_qr(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ("bog/blitz/assets/giper_baza_qr.png");
+			(obj.title) = () => ("giper baza");
+			return obj;
+		}
 		Spacer(){
 			const obj = new this.$.$mol_view();
 			return obj;
@@ -18792,6 +18798,7 @@ var $;
 		sub(){
 			return [
 				(this.Mol_qr()), 
+				(this.GiperBaza_qr()), 
 				(this.Spacer()), 
 				(this.Group_heart()), 
 				(this.Group_smile()), 
@@ -18802,6 +18809,7 @@ var $;
 		}
 	};
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Mol_qr"));
+	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "GiperBaza_qr"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Spacer"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "react_heart"));
 	($mol_mem(($.$bog_blitz_lobby_reactions.prototype), "Btn_heart"));
@@ -19024,6 +19032,14 @@ var $;
             Mol_qr: {
                 width: '9rem',
                 height: '9rem',
+                border: {
+                    radius: $mol_gap.round,
+                },
+            },
+            GiperBaza_qr: {
+                width: '9rem',
+                height: '9rem',
+                marginLeft: '4rem',
                 border: {
                     radius: $mol_gap.round,
                 },
