@@ -23,6 +23,10 @@ namespace $.$$ {
 			const home = this.$.$giper_baza_glob.home()
 			const profile = home.land().Data($bog_blitz_profile)
 
+			const land_id = this.land_id()
+			const existing = profile.Games_history()?.remote_list() ?? []
+			if (existing.some(r => r.Land_link()?.val() === land_id)) return
+
 			const prev_played = profile.Games_played()?.val() ?? 0
 			const prev_total = profile.Total_score()?.val() ?? 0
 			const prev_best = profile.Best_score()?.val() ?? 0
@@ -47,7 +51,7 @@ namespace $.$$ {
 			record.Place('auto')?.val(place)
 			record.Players_count('auto')?.val(this.players_count())
 			record.Date('auto')?.val(Date.now())
-			record.Land_link('auto')?.val(this.land_id())
+			record.Land_link('auto')?.val(land_id)
 		}
 
 		my_place() {
