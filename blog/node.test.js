@@ -28077,6 +28077,7 @@ var $;
     (function ($$) {
         class $bog_blitz_registry extends $giper_baza_dict.with({
             Quizzes: $giper_baza_list_link_to(() => $bog_blitz_quiz),
+            Shared_quizzes: $giper_baza_list_link_to(() => $bog_blitz_quiz),
         }) {
         }
         $$.$bog_blitz_registry = $bog_blitz_registry;
@@ -28099,6 +28100,15 @@ var $;
             }
             quiz_links() {
                 return this.registry().Quizzes()?.remote_list() ?? [];
+            }
+            shared_quiz_links() {
+                return this.registry().Shared_quizzes()?.remote_list() ?? [];
+            }
+            quiz_by_key(key) {
+                if (key.startsWith('s_')) {
+                    return this.shared_quiz_links()[Number(key.slice(2))];
+                }
+                return this.quiz_links()[Number(key)];
             }
             current_quiz_link() {
                 return this.$.$mol_state_arg.value('quiz') ?? '';
@@ -28123,11 +28133,14 @@ var $;
                     return;
                 if (this.is_game_land())
                     return;
-                const existing = this.quiz_links();
-                if (existing.some(q => q.land().link().str === link))
+                const own = this.quiz_links();
+                if (own.some(q => q.land().link().str === link))
                     return;
-                const quizzes = this.registry().Quizzes('auto');
-                quizzes.add(new $giper_baza_link(link));
+                const shared = this.shared_quiz_links();
+                if (shared.some(q => q.land().link().str === link))
+                    return;
+                const shared_quizzes = this.registry().Shared_quizzes('auto');
+                shared_quizzes.add(new $giper_baza_link(link));
             }
             admin_body() {
                 if (this.current_quiz_link()) {
@@ -28232,17 +28245,11 @@ var $;
                 catch { }
                 this.create_quiz_from_json(text);
             }
-            my_lord() {
-                return this.$.$giper_baza_auth.current().pass().lord().str;
-            }
             quiz_is_shared(key) {
-                const quiz = this.quiz_links()[Number(key)];
-                if (!quiz)
-                    return false;
-                return quiz.land().link().lord().str !== this.my_lord();
+                return key.startsWith('s_');
             }
             share_quiz(key) {
-                const quiz = this.quiz_links()[Number(key)];
+                const quiz = this.quiz_by_key(key);
                 if (!quiz)
                     return;
                 const link = quiz.land().link().str;
@@ -28251,13 +28258,19 @@ var $;
                 this.$.$mol_dom_context.navigator.clipboard.writeText(url);
             }
             quiz_rows() {
-                return this.quiz_links().map((quiz, i) => {
-                    const key = String(i);
-                    return this.Quiz_card(key);
-                });
+                const own = this.quiz_links();
+                const shared = this.shared_quiz_links();
+                const rows = [];
+                for (let i = 0; i < own.length; i++) {
+                    rows.push(this.Quiz_card(String(i)));
+                }
+                for (let i = 0; i < shared.length; i++) {
+                    rows.push(this.Quiz_card(`s_${i}`));
+                }
+                return rows;
             }
             quiz_title(key, next) {
-                const quiz = this.quiz_links()[Number(key)];
+                const quiz = this.quiz_by_key(key);
                 if (!quiz)
                     return '';
                 if (next !== undefined) {
@@ -28278,20 +28291,24 @@ var $;
                 quiz.Time_multiplier('auto')?.val(1.5);
             }
             edit_quiz(key) {
-                const quiz = this.quiz_links()[Number(key)];
+                const quiz = this.quiz_by_key(key);
                 if (!quiz)
                     return;
                 this.$.$mol_state_arg.value('quiz', quiz.land().link().str);
             }
             delete_quiz(key) {
-                const quizzes = this.registry().Quizzes('auto');
-                const quiz = this.quiz_links()[Number(key)];
-                if (quiz) {
-                    quizzes.cut(quiz.link());
+                const quiz = this.quiz_by_key(key);
+                if (!quiz)
+                    return;
+                if (key.startsWith('s_')) {
+                    this.registry().Shared_quizzes('auto').cut(quiz.link());
+                }
+                else {
+                    this.registry().Quizzes('auto').cut(quiz.link());
                 }
             }
             start_quiz(key) {
-                const quiz = this.quiz_links()[Number(key)];
+                const quiz = this.quiz_by_key(key);
                 if (!quiz)
                     return;
                 const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]]);
@@ -28307,7 +28324,7 @@ var $;
                 this.$.$mol_state_arg.value('screen', 'lobby');
             }
             duplicate_quiz(key) {
-                const source = this.quiz_links()[Number(key)];
+                const source = this.quiz_by_key(key);
                 if (!source)
                     return;
                 const quizzes = this.registry().Quizzes('auto');
@@ -28339,7 +28356,12 @@ var $;
                         }
                     }
                 }
-                quizzes.cut(source.link());
+                if (key.startsWith('s_')) {
+                    this.registry().Shared_quizzes('auto').cut(source.link());
+                }
+                else {
+                    this.registry().Quizzes('auto').cut(source.link());
+                }
             }
             back_to_list() {
                 this.$.$mol_state_arg.value('quiz', null);
@@ -28351,6 +28373,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "quiz_links", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin.prototype, "shared_quiz_links", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin.prototype, "current_quiz_link", null);
@@ -28372,9 +28397,6 @@ var $;
         __decorate([
             $mol_action
         ], $bog_blitz_admin.prototype, "import_bot_quiz", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_admin.prototype, "my_lord", null);
         __decorate([
             $mol_mem_key
         ], $bog_blitz_admin.prototype, "quiz_is_shared", null);

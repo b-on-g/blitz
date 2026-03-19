@@ -19638,6 +19638,44 @@ declare namespace $.$$ {
                 [$mol_ambient_ref]: $;
                 [Symbol.dispose](): void;
             } | null;
+            readonly Shared_quizzes: (auto?: any) => {
+                remote_list(next?: readonly $bog_blitz_quiz[] | undefined): readonly $bog_blitz_quiz[];
+                remote_add(item: $bog_blitz_quiz): void;
+                make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_quiz;
+                items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                cut(vary: $giper_baza_vary_type): void;
+                move(from: number, to: number): void;
+                wipe(seat: number): void;
+                pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
         }>;
         path: string;
     } & {
@@ -19645,6 +19683,58 @@ declare namespace $.$$ {
             [x: string]: typeof $giper_baza_pawn;
         } & {
             readonly Quizzes: {
+                new (): {
+                    remote_list(next?: readonly $bog_blitz_quiz[] | undefined): readonly $bog_blitz_quiz[];
+                    remote_add(item: $bog_blitz_quiz): void;
+                    make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_quiz;
+                    items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                    items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                    splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                    has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                    add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    cut(vary: $giper_baza_vary_type): void;
+                    move(from: number, to: number): void;
+                    wipe(seat: number): void;
+                    pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                Value: Value;
+                toString(): any;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+            readonly Shared_quizzes: {
                 new (): {
                     remote_list(next?: readonly $bog_blitz_quiz[] | undefined): readonly $bog_blitz_quiz[];
                     remote_add(item: $bog_blitz_quiz): void;
@@ -19910,6 +20000,8 @@ declare namespace $.$$ {
     class $bog_blitz_admin extends $.$bog_blitz_admin {
         registry(): $bog_blitz_registry;
         quiz_links(): readonly $bog_blitz_quiz[];
+        shared_quiz_links(): readonly $bog_blitz_quiz[];
+        quiz_by_key(key: string): $bog_blitz_quiz;
         current_quiz_link(): string;
         current_quiz_land(): $giper_baza_land | null;
         is_game_land(): boolean;
@@ -19920,10 +20012,9 @@ declare namespace $.$$ {
         import_json_text(next?: string): string;
         import_json(): void;
         import_bot_quiz(text: string): void;
-        my_lord(): string;
         quiz_is_shared(key: string): boolean;
         share_quiz(key: string): void;
-        quiz_rows(): $.$bog_blitz_admin_quiz[];
+        quiz_rows(): $mol_view[];
         quiz_title(key: string, next?: string): string;
         create_quiz(): void;
         edit_quiz(key: string): void;
