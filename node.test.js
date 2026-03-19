@@ -15769,10 +15769,7 @@ var $;
                 return this.Player_icon(key);
             }
             player_avatar_content(key) {
-                if (key === this.my_lord_str()) {
-                    return this.Player_avatar_button(key);
-                }
-                return this.player_avatar(key);
+                return null;
             }
             player_avatar_files(key, next) {
                 if (next?.length) {
