@@ -1,4 +1,5 @@
 {
+	"$bog_blitz_admin_editor_Manual_mode_row_title": "Ручной режим (хост переключает экраны)",
 	"$bog_blitz_admin_editor_Time_read_row_title": "Время чтения (сек)",
 	"$bog_blitz_admin_editor_Time_answer_row_title": "Время ответа (сек)",
 	"$bog_blitz_admin_editor_Time_reveal_row_title": "Время показа ответа (сек)",

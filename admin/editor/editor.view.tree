@@ -6,6 +6,10 @@ $bog_blitz_admin_editor $mol_list
 		value? <=> quiz_title? \
 	Settings $mol_list
 		rows /
+			<= Manual_mode_row $mol_labeler
+				title @ \Manual mode (host controls transitions)
+				content / <= Manual_mode $mol_check_box
+					checked? <=> manual_mode? false
 			<= Time_read_row $mol_labeler
 				title @ \Read time (sec)
 				content / <= Time_read $mol_number

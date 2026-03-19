@@ -215,6 +215,17 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		manual_mode(next?: boolean) {
+			const quiz = this.quiz_data()
+			if (!quiz) return false
+			if (next !== undefined) {
+				quiz.Manual_mode('auto')?.val(next)
+				return next
+			}
+			return quiz.Manual_mode()?.val() ?? false
+		}
+
+		@$mol_mem
 		time_read(next?: number) {
 			const quiz = this.quiz_data()
 			if (!quiz) return 5

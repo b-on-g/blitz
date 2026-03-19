@@ -7,6 +7,7 @@ $bog_blitz_lobby_game $mol_view
 	my_player null
 	is_host false
 	paused_at 0
+	manual_mode false
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_reveal @ \Correct answer
@@ -32,6 +33,9 @@ $bog_blitz_lobby_game $mol_view
 	Resume_button $mol_button_minor
 		title <= resume_label @ \Resume
 		click? <=> resume_click?event null
+	Next_button $mol_button_major
+		title <= next_label @ \Next
+		click? <=> next_click?event null
 	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer

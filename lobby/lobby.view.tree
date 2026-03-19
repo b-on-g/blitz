@@ -41,6 +41,7 @@ $bog_blitz_lobby $mol_page
 		my_player <= my_player null
 		is_host <= is_host false
 		paused_at <= paused_at 0
+		manual_mode <= manual_mode false
 		round_start <= round_start 0
 		duration <= duration 0
 		total_questions <= total_questions 0

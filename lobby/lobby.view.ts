@@ -174,6 +174,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		manual_mode() {
+			return this.quiz_data()?.Manual_mode()?.val() ?? false
+		}
+
+		@$mol_mem
 		round_start() {
 			return this.quiz_data()?.Round_start()?.val() ?? 0
 		}
