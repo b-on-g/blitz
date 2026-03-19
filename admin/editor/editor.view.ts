@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	function compress_image(file: File, max_size = 800, quality = 0.5): Promise<Blob> {
+	function compress_image(file: File, max_size = 400, quality = 0.3): Promise<Blob> {
 		return new Promise((resolve, reject) => {
 			const img = new Image()
 			img.onload = () => {
