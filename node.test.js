@@ -7275,12 +7275,23 @@ var $;
         static from(serial) {
             if (typeof serial === 'string') {
                 serial = new Uint8Array(serial.match(/.{43}/g)
-                    .flatMap(chunk => [...$mol_base64_url_decode(chunk)]));
+                    ?.flatMap(chunk => [...$mol_base64_url_decode(chunk)])
+                    ?? $mol_fail(new Error('Str key too short', { cause: {
+                            min: 43,
+                            real: serial.length,
+                        } })));
             }
             return super.from(serial);
         }
         asArray() {
-            return new Uint8Array(this.buffer, this.byteOffset, this.constructor.size_bin);
+            const size = this.constructor.size_bin;
+            if (this.byteLength < size) {
+                return $mol_fail(new Error('Bin key too short', { cause: {
+                        min: size,
+                        real: this.byteLength,
+                    } }));
+            }
+            return new Uint8Array(this.buffer, this.byteOffset, size);
         }
         toString() {
             return $mol_base64_url_encode(this.asArray());
@@ -17853,6 +17864,16 @@ var $;
 			(obj.players_dict) = () => ((this.players_dict()));
 			return obj;
 		}
+		submit_label(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_submit_label"));
+		}
+		submit_answer(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		submit_enabled(){
+			return true;
+		}
 		option_selected(id){
 			return "false";
 		}
@@ -18006,6 +18027,13 @@ var $;
 			(obj.title) = () => ((this.reveal_correct_text()));
 			return obj;
 		}
+		Submit_answer(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.submit_label()));
+			(obj.click) = (next) => ((this.submit_answer(next)));
+			(obj.enabled) = () => ((this.submit_enabled()));
+			return obj;
+		}
 		Option(id){
 			const obj = new this.$.$bog_blitz_lobby_game_option();
 			(obj.selected) = () => ((this.option_selected(id)));
@@ -18032,12 +18060,14 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Leaderboard"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Final"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Reactions_board"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "submit_answer"));
 	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "option_click"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown_number"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Pause_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Resume_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Answer_input"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Reveal_correct"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Submit_answer"));
 	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "Option"));
 
 
@@ -18204,6 +18234,41 @@ var $;
                     return '';
                 return file.uri() ?? '';
             }
+            selected_options(next) {
+                this.current_question_index();
+                if (next !== undefined)
+                    return next;
+                return [];
+            }
+            has_multiple_correct() {
+                const question = this.current_question();
+                if (!question)
+                    return false;
+                const options = question.Options()?.remote_list() ?? [];
+                let count = 0;
+                for (const opt of options) {
+                    if (opt?.Is_correct()?.val())
+                        count++;
+                    if (count >= 2)
+                        return true;
+                }
+                return false;
+            }
+            submit_enabled() {
+                return this.selected_options().length > 0;
+            }
+            submit_answer(next) {
+                if (next !== undefined) {
+                    const selected = this.selected_options();
+                    if (!selected.length)
+                        return;
+                    const player = this.my_player();
+                    if (!player)
+                        return;
+                    player.Answer('auto')?.val(selected.sort().join(','));
+                    player.Answer_time('auto')?.val(Date.now());
+                }
+            }
             answer_views() {
                 const state = this.game_state();
                 if (this.question_type() === 'text_input') {
@@ -18212,7 +18277,11 @@ var $;
                     }
                     return [this.Answer_input()];
                 }
-                return this.option_views();
+                const views = this.option_views();
+                if (state === 'answering' && !this.is_host() && !this.has_answered()) {
+                    return [...views, this.Submit_answer()];
+                }
+                return views;
             }
             text_submit(next) {
                 if (next !== undefined) {
@@ -18303,9 +18372,13 @@ var $;
                     return '';
                 if (this.is_host())
                     return '';
+                if (state === 'answering' && !this.has_answered()) {
+                    return String(this.selected_options().includes(key));
+                }
                 if (!this.has_answered())
                     return '';
-                return String(this.my_answer() === key);
+                const answers = this.my_answer().split(',');
+                return String(answers.includes(key));
             }
             reveal_correct_text() {
                 if (this.game_state() !== 'reveal')
@@ -18370,11 +18443,18 @@ var $;
             }
             option_click(key, e) {
                 if (e) {
-                    const player = this.my_player();
-                    if (!player)
-                        return;
-                    player.Answer('auto')?.val(key);
-                    player.Answer_time('auto')?.val(Date.now());
+                    const current = this.selected_options();
+                    if (this.has_multiple_correct()) {
+                        if (current.includes(key)) {
+                            this.selected_options(current.filter(k => k !== key));
+                        }
+                        else {
+                            this.selected_options([...current, key]);
+                        }
+                    }
+                    else {
+                        this.selected_options(current.includes(key) ? [] : [key]);
+                    }
                 }
                 return null;
             }
@@ -18424,19 +18504,18 @@ var $;
                     quiz.Game_state('auto')?.val('reading');
                 }
             }
-            correct_answer_key() {
+            correct_answer_keys() {
                 const question = this.current_question();
                 if (!question)
-                    return '';
-                if (this.question_type() === 'text_input')
-                    return '__text_input__';
+                    return new Set();
                 const options = question.Options()?.remote_list() ?? [];
+                const keys = new Set();
                 for (let i = 0; i < options.length; i++) {
                     const opt = options[i];
                     if (opt?.Is_correct()?.val())
-                        return String(i);
+                        keys.add(String(i));
                 }
-                return '';
+                return keys;
             }
             is_text_answer_correct(answer) {
                 const question = this.current_question();
@@ -18452,7 +18531,8 @@ var $;
                 const quiz = this.quiz_data();
                 if (!quiz)
                     return;
-                const correct = this.correct_answer_key();
+                const is_text = this.question_type() === 'text_input';
+                const correct_keys = is_text ? new Set() : this.correct_answer_keys();
                 const points_base = quiz.Points_base().val();
                 const time_multiplier = quiz.Time_multiplier().val();
                 const answer_duration = this.duration();
@@ -18474,9 +18554,15 @@ var $;
                     const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration;
                     const time_ratio = Math.max(0, 1 - elapsed / answer_duration);
                     const base = points_base * (1 + time_ratio * time_multiplier);
-                    const is_correct = correct === '__text_input__'
-                        ? this.is_text_answer_correct(answer)
-                        : answer === correct;
+                    let is_correct;
+                    if (is_text) {
+                        is_correct = this.is_text_answer_correct(answer);
+                    }
+                    else {
+                        const answer_keys = new Set(answer.split(',').filter(Boolean));
+                        is_correct = correct_keys.size === answer_keys.size &&
+                            [...correct_keys].every(k => answer_keys.has(k));
+                    }
                     const points = is_correct ? base : -base;
                     const prev = player.Score()?.val() ?? 0;
                     player.Score('auto')?.val(prev + points);
@@ -18522,6 +18608,15 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "question_image_uri", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "selected_options", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "submit_enabled", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "submit_answer", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "answer_views", null);
@@ -25073,7 +25168,27 @@ Quiz generation rules:
 "use strict";
 
 ;
+	($.$mol_icon_share) = class $mol_icon_share extends ($.$mol_icon) {
+		path(){
+			return "M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z";
+		}
+	};
+
+
+;
+"use strict";
+
+;
 	($.$bog_blitz_admin_quiz) = class $bog_blitz_admin_quiz extends ($.$mol_row) {
+		Shared_icon(){
+			const obj = new this.$.$mol_icon_share();
+			return obj;
+		}
+		Shared_badge(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Shared_icon())]);
+			return obj;
+		}
 		quiz_title(next){
 			if(next !== undefined) return next;
 			return "";
@@ -25082,6 +25197,26 @@ Quiz generation rules:
 			const obj = new this.$.$mol_string_button();
 			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Title_input_hint")));
 			(obj.value) = (next) => ((this.quiz_title(next)));
+			return obj;
+		}
+		share(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Share(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Share_title")));
+			(obj.click) = (next) => ((this.share(next)));
+			return obj;
+		}
+		duplicate(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Duplicate(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_quiz_Duplicate_title")));
+			(obj.click) = (next) => ((this.duplicate(next)));
 			return obj;
 		}
 		edit(next){
@@ -25114,17 +25249,29 @@ Quiz generation rules:
 			(obj.click) = (next) => ((this.delete(next)));
 			return obj;
 		}
+		is_shared(){
+			return false;
+		}
 		sub(){
 			return [
+				(this.Shared_badge()), 
 				(this.Title_input()), 
+				(this.Share()), 
+				(this.Duplicate()), 
 				(this.Edit()), 
 				(this.Start()), 
 				(this.Delete())
 			];
 		}
 	};
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Shared_icon"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Shared_badge"));
 	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "quiz_title"));
 	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Title_input"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "share"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Share"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "duplicate"));
+	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Duplicate"));
 	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "edit"));
 	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "Edit"));
 	($mol_mem(($.$bog_blitz_admin_quiz.prototype), "start"));
@@ -25135,6 +25282,38 @@ Quiz generation rules:
 
 ;
 "use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_admin_quiz extends $.$bog_blitz_admin_quiz {
+            sub() {
+                if (this.is_shared()) {
+                    return [
+                        this.Shared_badge(),
+                        this.Title_input(),
+                        this.Share(),
+                        this.Duplicate(),
+                        this.Edit(),
+                        this.Start(),
+                        this.Delete(),
+                    ];
+                }
+                return [
+                    this.Title_input(),
+                    this.Share(),
+                    this.Edit(),
+                    this.Start(),
+                    this.Delete(),
+                ];
+            }
+        }
+        $$.$bog_blitz_admin_quiz = $bog_blitz_admin_quiz;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
 
 ;
 "use strict";
@@ -25164,6 +25343,9 @@ var $;
                     grow: 1,
                     shrink: 1,
                 },
+            },
+            Shared_badge: {
+                color: $mol_theme.focus,
             },
             Delete: {
                 color: '#cc3333',
@@ -27676,6 +27858,9 @@ var $;
 			if(next !== undefined) return next;
 			return "";
 		}
+		quiz_is_shared(id){
+			return false;
+		}
 		edit_quiz(id, next){
 			if(next !== undefined) return next;
 			return null;
@@ -27685,6 +27870,14 @@ var $;
 			return null;
 		}
 		start_quiz(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		duplicate_quiz(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		share_quiz(id, next){
 			if(next !== undefined) return next;
 			return null;
 		}
@@ -27781,9 +27974,12 @@ var $;
 		Quiz_card(id){
 			const obj = new this.$.$bog_blitz_admin_quiz();
 			(obj.quiz_title) = (next) => ((this.quiz_title(id, next)));
+			(obj.is_shared) = () => ((this.quiz_is_shared(id)));
 			(obj.edit) = (next) => ((this.edit_quiz(id, next)));
 			(obj.delete) = (next) => ((this.delete_quiz(id, next)));
 			(obj.start) = (next) => ((this.start_quiz(id, next)));
+			(obj.duplicate) = (next) => ((this.duplicate_quiz(id, next)));
+			(obj.share) = (next) => ((this.share_quiz(id, next)));
 			return obj;
 		}
 		Quizzes_list(){
@@ -27845,6 +28041,8 @@ var $;
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "edit_quiz"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "delete_quiz"));
 	($mol_mem_key(($.$bog_blitz_admin.prototype), "start_quiz"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "duplicate_quiz"));
+	($mol_mem_key(($.$bog_blitz_admin.prototype), "share_quiz"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "create_quiz"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "import_bot_quiz"));
 	($mol_mem(($.$bog_blitz_admin.prototype), "Bot"));
@@ -28034,6 +28232,24 @@ var $;
                 catch { }
                 this.create_quiz_from_json(text);
             }
+            my_lord() {
+                return this.$.$giper_baza_auth.current().pass().lord().str;
+            }
+            quiz_is_shared(key) {
+                const quiz = this.quiz_links()[Number(key)];
+                if (!quiz)
+                    return false;
+                return quiz.land().link().lord().str !== this.my_lord();
+            }
+            share_quiz(key) {
+                const quiz = this.quiz_links()[Number(key)];
+                if (!quiz)
+                    return;
+                const link = quiz.land().link().str;
+                const loc = this.$.$mol_dom_context.location;
+                const url = loc.origin + loc.pathname + '?screen=admin&quiz=' + encodeURIComponent(link);
+                this.$.$mol_dom_context.navigator.clipboard.writeText(url);
+            }
             quiz_rows() {
                 return this.quiz_links().map((quiz, i) => {
                     const key = String(i);
@@ -28090,6 +28306,41 @@ var $;
                 this.$.$mol_state_arg.value('land', game_land.link().str);
                 this.$.$mol_state_arg.value('screen', 'lobby');
             }
+            duplicate_quiz(key) {
+                const source = this.quiz_links()[Number(key)];
+                if (!source)
+                    return;
+                const quizzes = this.registry().Quizzes('auto');
+                const target = quizzes.make([[null, $giper_baza_rank_post('just')]]);
+                target.Title('auto')?.val(source.Title()?.val() ?? 'Untitled Quiz');
+                target.Time_read('auto')?.val(source.Time_read()?.val() ?? 5);
+                target.Time_answer('auto')?.val(source.Time_answer()?.val() ?? 10);
+                target.Time_leaderboard('auto')?.val(source.Time_leaderboard()?.val() ?? 10);
+                target.Points_base('auto')?.val(source.Points_base()?.val() ?? 100);
+                target.Time_multiplier('auto')?.val(source.Time_multiplier()?.val() ?? 1.5);
+                const source_questions = source.Questions()?.remote_list() ?? [];
+                if (source_questions.length) {
+                    const target_questions = target.Questions('auto');
+                    for (const sq of source_questions) {
+                        const tq = target_questions.make(null);
+                        tq.Text('auto')?.val(sq.Text()?.val() ?? '');
+                        tq.Type('auto')?.val(sq.Type()?.val() ?? 'choice');
+                        if (sq.Type()?.val() === 'text_input') {
+                            tq.Correct_text('auto')?.val(sq.Correct_text()?.val() ?? '');
+                        }
+                        const source_options = sq.Options()?.remote_list() ?? [];
+                        if (source_options.length) {
+                            const target_options = tq.Options('auto');
+                            for (const so of source_options) {
+                                const to = target_options.make(null);
+                                to.Text('auto')?.val(so.Text()?.val() ?? '');
+                                to.Is_correct('auto')?.val(so.Is_correct()?.val() ?? false);
+                            }
+                        }
+                    }
+                }
+                quizzes.cut(source.link());
+            }
             back_to_list() {
                 this.$.$mol_state_arg.value('quiz', null);
             }
@@ -28123,6 +28374,15 @@ var $;
         ], $bog_blitz_admin.prototype, "import_bot_quiz", null);
         __decorate([
             $mol_mem
+        ], $bog_blitz_admin.prototype, "my_lord", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin.prototype, "quiz_is_shared", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "share_quiz", null);
+        __decorate([
+            $mol_mem
         ], $bog_blitz_admin.prototype, "quiz_rows", null);
         __decorate([
             $mol_mem_key
@@ -28139,6 +28399,9 @@ var $;
         __decorate([
             $mol_action
         ], $bog_blitz_admin.prototype, "start_quiz", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin.prototype, "duplicate_quiz", null);
         __decorate([
             $mol_action
         ], $bog_blitz_admin.prototype, "back_to_list", null);

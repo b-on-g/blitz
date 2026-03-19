@@ -2259,6 +2259,10 @@ $bog_blitz_lobby_game $mol_view
 	reveal_correct_text \
 	Reveal_correct $mol_paragraph
 		title <= reveal_correct_text
+	Submit_answer $mol_button_major
+		title <= submit_label @ \Submit
+		click? <=> submit_answer?event null
+		enabled <= submit_enabled true
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
 		correct <= option_correct* \
@@ -2751,11 +2755,23 @@ $bog_blitz_admin_bot $giper_bot
 
 $mol_icon_arrow_left $mol_icon path \M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z
 
+$mol_icon_share $mol_icon path \M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z
+
 $bog_blitz_admin_quiz $mol_row
+	is_shared false
 	sub /
+		<= Shared_badge $mol_view
+			sub /
+				<= Shared_icon $mol_icon_share
 		<= Title_input $mol_string_button
 			hint @ \Quiz name
 			value? <=> quiz_title? \
+		<= Share $mol_button_minor
+			title @ \Share
+			click? <=> share? null
+		<= Duplicate $mol_button_minor
+			title @ \Duplicate
+			click? <=> duplicate? null
 		<= Edit $mol_button_minor
 			title @ \Edit
 			click? <=> edit? null
@@ -2883,9 +2899,12 @@ $bog_blitz_admin $mol_page
 	body <= admin_body /
 	Quiz_card*0 $bog_blitz_admin_quiz
 		quiz_title? <=> quiz_title*? \
+		is_shared <= quiz_is_shared* false
 		edit? <=> edit_quiz*? null
 		delete? <=> delete_quiz*? null
 		start? <=> start_quiz*? null
+		duplicate? <=> duplicate_quiz*? null
+		share? <=> share_quiz*? null
 	Quizzes_list $mol_list
 		rows <= quiz_rows /
 	Create_button $mol_button_major
