@@ -12,6 +12,18 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		shared_quiz_links() {
+			return this.registry().Shared_quizzes()?.remote_list() ?? []
+		}
+
+		quiz_by_key(key: string) {
+			if (key.startsWith('s_')) {
+				return this.shared_quiz_links()[Number(key.slice(2))]
+			}
+			return this.quiz_links()[Number(key)]
+		}
+
+		@$mol_mem
 		current_quiz_link() {
 			return this.$.$mol_state_arg.value('quiz') ?? ''
 		}
@@ -36,10 +48,12 @@ namespace $.$$ {
 			const link = this.current_quiz_link()
 			if (!link) return
 			if (this.is_game_land()) return
-			const existing = this.quiz_links()
-			if (existing.some(q => q.land().link().str === link)) return
-			const quizzes = this.registry().Quizzes('auto')!
-			quizzes.add(new $giper_baza_link(link))
+			const own = this.quiz_links()
+			if (own.some(q => q.land().link().str === link)) return
+			const shared = this.shared_quiz_links()
+			if (shared.some(q => q.land().link().str === link)) return
+			const shared_quizzes = this.registry().Shared_quizzes('auto')!
+			shared_quizzes.add(new $giper_baza_link(link))
 		}
 
 		@$mol_mem
@@ -159,21 +173,14 @@ namespace $.$$ {
 			this.create_quiz_from_json(text)
 		}
 
-		@$mol_mem
-		my_lord() {
-			return this.$.$giper_baza_auth.current().pass().lord().str
-		}
-
 		@$mol_mem_key
 		quiz_is_shared(key: string) {
-			const quiz = this.quiz_links()[Number(key)]
-			if (!quiz) return false
-			return quiz.land().link().lord().str !== this.my_lord()
+			return key.startsWith('s_')
 		}
 
 		@$mol_action
 		share_quiz(key: string) {
-			const quiz = this.quiz_links()[Number(key)]
+			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
 			const link = quiz.land().link().str
 			const loc = this.$.$mol_dom_context.location
@@ -183,15 +190,21 @@ namespace $.$$ {
 
 		@$mol_mem
 		quiz_rows() {
-			return this.quiz_links().map((quiz, i) => {
-				const key = String(i)
-				return this.Quiz_card(key)
-			})
+			const own = this.quiz_links()
+			const shared = this.shared_quiz_links()
+			const rows: $mol_view[] = []
+			for (let i = 0; i < own.length; i++) {
+				rows.push(this.Quiz_card(String(i)))
+			}
+			for (let i = 0; i < shared.length; i++) {
+				rows.push(this.Quiz_card(`s_${i}`))
+			}
+			return rows
 		}
 
 		@$mol_mem_key
 		quiz_title(key: string, next?: string) {
-			const quiz = this.quiz_links()[Number(key)]
+			const quiz = this.quiz_by_key(key)
 			if (!quiz) return ''
 			if (next !== undefined) {
 				quiz.Title('auto')?.val(next)
@@ -215,23 +228,25 @@ namespace $.$$ {
 
 		@$mol_action
 		edit_quiz(key: string) {
-			const quiz = this.quiz_links()[Number(key)]
+			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
 			this.$.$mol_state_arg.value('quiz', quiz.land().link().str)
 		}
 
 		@$mol_action
 		delete_quiz(key: string) {
-			const quizzes = this.registry().Quizzes('auto')!
-			const quiz = this.quiz_links()[Number(key)]
-			if (quiz) {
-				quizzes.cut(quiz.link())
+			const quiz = this.quiz_by_key(key)
+			if (!quiz) return
+			if (key.startsWith('s_')) {
+				this.registry().Shared_quizzes('auto')!.cut(quiz.link())
+			} else {
+				this.registry().Quizzes('auto')!.cut(quiz.link())
 			}
 		}
 
 		@$mol_action
 		start_quiz(key: string) {
-			const quiz = this.quiz_links()[Number(key)]
+			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
 			const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]])
 
@@ -250,7 +265,7 @@ namespace $.$$ {
 
 		@$mol_action
 		duplicate_quiz(key: string) {
-			const source = this.quiz_links()[Number(key)]
+			const source = this.quiz_by_key(key)
 			if (!source) return
 
 			const quizzes = this.registry().Quizzes('auto')!
@@ -287,7 +302,11 @@ namespace $.$$ {
 				}
 			}
 
-			quizzes.cut(source.link())
+			if (key.startsWith('s_')) {
+				this.registry().Shared_quizzes('auto')!.cut(source.link())
+			} else {
+				this.registry().Quizzes('auto')!.cut(source.link())
+			}
 		}
 
 		@$mol_action
