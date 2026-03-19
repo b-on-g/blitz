@@ -67,10 +67,11 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		player_avatar_content(key: string) {
-			if (key === this.my_lord_str()) {
-				return this.Player_avatar_button(key)
-			}
-			return this.player_avatar(key)
+			return null
+			// if (key === this.my_lord_str()) {
+			// 	return this.Player_avatar_button(key)
+			// }
+			// return this.player_avatar(key)
 		}
 
 		@$mol_mem_key
