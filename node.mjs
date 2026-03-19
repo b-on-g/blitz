@@ -27591,7 +27591,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        function compress_image(file, max_size = 800, quality = 0.5) {
+        function compress_image(file, max_size = 400, quality = 0.3) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
                 img.onload = () => {
