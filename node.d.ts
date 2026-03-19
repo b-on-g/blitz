@@ -6614,6 +6614,7 @@ declare namespace $.$$ {
             readonly Time_reveal: (auto?: any) => $giper_baza_atom_real | null;
             readonly Points_base: (auto?: any) => $giper_baza_atom_real | null;
             readonly Time_multiplier: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Manual_mode: (auto?: any) => $giper_baza_atom_bool | null;
             readonly Game_state: (auto?: any) => $giper_baza_atom_text | null;
             readonly Current_question: (auto?: any) => $giper_baza_atom_real | null;
             readonly Round_start: (auto?: any) => $giper_baza_atom_real | null;
@@ -6683,6 +6684,7 @@ declare namespace $.$$ {
             readonly Time_reveal: typeof $giper_baza_atom_real;
             readonly Points_base: typeof $giper_baza_atom_real;
             readonly Time_multiplier: typeof $giper_baza_atom_real;
+            readonly Manual_mode: typeof $giper_baza_atom_bool;
             readonly Game_state: typeof $giper_baza_atom_text;
             readonly Current_question: typeof $giper_baza_atom_real;
             readonly Round_start: typeof $giper_baza_atom_real;
@@ -7866,72 +7868,82 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_string__hint_bog_blitz_lobby_game_25 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_lobby_game_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['next_label'] >
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_blitz_lobby_game_26 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['next_click'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_string__hint_bog_blitz_lobby_game_27 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_blitz_lobby_game_26 = $mol_type_enforce<
+	type $mol_string__value_bog_blitz_lobby_game_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_draft'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_string__enabled_bog_blitz_lobby_game_27 = $mol_type_enforce<
+	type $mol_string__enabled_bog_blitz_lobby_game_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
 		,
 		ReturnType< $mol_string['enabled'] >
 	>
-	type $mol_string__submit_bog_blitz_lobby_game_28 = $mol_type_enforce<
+	type $mol_string__submit_bog_blitz_lobby_game_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_submit'] >
 		,
 		ReturnType< $mol_string['submit'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_29 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_game_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['reveal_correct_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_major__title_bog_blitz_lobby_game_30 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_lobby_game_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_label'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_lobby_game_31 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_lobby_game_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_answer'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_button_major__enabled_bog_blitz_lobby_game_32 = $mol_type_enforce<
+	type $mol_button_major__enabled_bog_blitz_lobby_game_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_enabled'] >
 		,
 		ReturnType< $mol_button_major['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_33 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_selected'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_34 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_correct'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['correct'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_35 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_36 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_37 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_38 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_40 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
@@ -7942,6 +7954,8 @@ declare namespace $ {
 		pause_click( next?: any ): any
 		resume_label( ): string
 		resume_click( next?: any ): any
+		next_label( ): string
+		next_click( next?: any ): any
 		Timer( ): $bog_blitz_lobby_game_timer
 		host_controls( ): readonly(any)[]
 		Host_controls( ): $mol_view
@@ -7978,6 +7992,7 @@ declare namespace $ {
 		my_player( ): any
 		is_host( ): boolean
 		paused_at( ): number
+		manual_mode( ): boolean
 		state_reading( ): string
 		state_answering( ): string
 		state_reveal( ): string
@@ -7997,6 +8012,7 @@ declare namespace $ {
 		sub( ): ReturnType< $bog_blitz_lobby_game['game_content'] >
 		Pause_button( ): $mol_button_minor
 		Resume_button( ): $mol_button_minor
+		Next_button( ): $mol_button_major
 		question_type( ): string
 		question_content( ): readonly(any)[]
 		Answer_input( ): $mol_string
@@ -8018,10 +8034,14 @@ declare namespace $.$$ {
         my_place(): number;
         players_count(): number;
         is_paused(): boolean;
+        question_content(): ($mol_view | $.$mol_paragraph | $.$mol_image | $.$bog_blitz_lobby_game_timer)[];
+        leaderboard_content(): ($mol_view | $.$mol_paragraph | $.$bog_blitz_lobby_game_timer | $.$bog_blitz_lobby_game_leaderboard)[];
+        countdown_content(): $.$mol_paragraph[];
         state_label(): string;
         pause_click(next?: Event): void;
         resume_click(next?: Event): void;
         host_controls(): $mol_button_minor[];
+        next_click(next?: Event): void;
         question_type(): string;
         question_image_uri(): string;
         selected_options(next?: string[]): string[];
@@ -8043,10 +8063,10 @@ declare namespace $.$$ {
         reveal_correct_text(): string;
         countdown_number(next?: number): number;
         countdown_text(): string;
-        countdown_content(): $.$mol_paragraph[];
         last_tick_num: number;
         play_tick(num: number): void;
         option_click(key: string, e?: any): null;
+        advance_state(): void;
         auto_advance(next?: null): void;
         correct_answer_keys(): Set<string>;
         is_text_answer_correct(answer: string): boolean;
@@ -8372,47 +8392,52 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game['paused_at'] >
 	>
-	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_30 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__manual_mode_bog_blitz_lobby_30 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['manual_mode'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['manual_mode'] >
+	>
+	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['round_start'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['round_start'] >
 	>
-	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_31 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['duration'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['duration'] >
 	>
-	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_32 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['total_questions'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['total_questions'] >
 	>
-	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_33 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['current_question_index'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
 	>
-	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_34 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['players_dict'] >
 	>
-	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_35 = $mol_type_enforce<
+	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_lord_str'] >
 		,
 		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
 	>
-	type $bog_blitz_lobby_reactions__my_player_bog_blitz_lobby_36 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__my_player_bog_blitz_lobby_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['my_player'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['my_player'] >
 	>
-	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_37 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['players_dict'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['players_dict'] >
 	>
-	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_38 = $mol_type_enforce<
+	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby['is_host'] >
 		,
 		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
@@ -8438,6 +8463,7 @@ declare namespace $ {
 		my_player( ): any
 		is_host( ): boolean
 		paused_at( ): number
+		manual_mode( ): boolean
 		round_start( ): number
 		duration( ): number
 		total_questions( ): number
@@ -8519,6 +8545,7 @@ declare namespace $.$$ {
         current_question(): $bog_blitz_question | null;
         current_question_text(): string;
         paused_at(): number;
+        manual_mode(): boolean;
         round_start(): number;
         duration(): number;
         total_questions(): number;
@@ -12491,6 +12518,63 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+
+	export class $mol_icon_tick extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=tick.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_check_box extends $mol_check {
+		Icon( ): $mol_icon_tick
+	}
+	
+}
+
+//# sourceMappingURL=box.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_view__minimal_height_mol_labeler_1 = $mol_type_enforce<
+		number
+		,
+		ReturnType< $mol_view['minimal_height'] >
+	>
+	type $mol_view__sub_mol_labeler_2 = $mol_type_enforce<
+		ReturnType< $mol_labeler['label'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__minimal_height_mol_labeler_3 = $mol_type_enforce<
+		number
+		,
+		ReturnType< $mol_view['minimal_height'] >
+	>
+	type $mol_view__sub_mol_labeler_4 = $mol_type_enforce<
+		ReturnType< $mol_labeler['content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $mol_labeler extends $mol_list {
+		label( ): readonly($mol_view_content)[]
+		Label( ): $mol_view
+		content( ): readonly(any)[]
+		Content( ): $mol_view
+		rows( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=labeler.view.tree.d.ts.map
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -12612,42 +12696,6 @@ declare namespace $.$$ {
     }
 }
 
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_view__minimal_height_mol_labeler_1 = $mol_type_enforce<
-		number
-		,
-		ReturnType< $mol_view['minimal_height'] >
-	>
-	type $mol_view__sub_mol_labeler_2 = $mol_type_enforce<
-		ReturnType< $mol_labeler['label'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__minimal_height_mol_labeler_3 = $mol_type_enforce<
-		number
-		,
-		ReturnType< $mol_view['minimal_height'] >
-	>
-	type $mol_view__sub_mol_labeler_4 = $mol_type_enforce<
-		ReturnType< $mol_labeler['content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $mol_labeler extends $mol_list {
-		label( ): readonly($mol_view_content)[]
-		Label( ): $mol_view
-		content( ): readonly(any)[]
-		Content( ): $mol_view
-		rows( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=labeler.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_ghost extends $mol_view {
@@ -13338,27 +13386,6 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	export class $mol_icon_tick extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=tick.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_check_box extends $mol_check {
-		Icon( ): $mol_icon_tick
-	}
-	
-}
-
-//# sourceMappingURL=box.view.tree.d.ts.map
-declare namespace $ {
-
 	type $mol_string_button__hint_bog_blitz_admin_option_1 = $mol_type_enforce<
 		string
 		,
@@ -13459,10 +13486,10 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_number__value_bog_blitz_admin_editor_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_read'] >
+	type $mol_check_box__checked_bog_blitz_admin_editor_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['manual_mode'] >
 		,
-		ReturnType< $mol_number['value'] >
+		ReturnType< $mol_check_box['checked'] >
 	>
 	type $mol_labeler__title_bog_blitz_admin_editor_2 = $mol_type_enforce<
 		string
@@ -13475,7 +13502,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_answer'] >
+		ReturnType< $bog_blitz_admin_editor['time_read'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13490,7 +13517,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_reveal'] >
+		ReturnType< $bog_blitz_admin_editor['time_answer'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13505,7 +13532,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_leaderboard'] >
+		ReturnType< $bog_blitz_admin_editor['time_reveal'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13520,7 +13547,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['points_base'] >
+		ReturnType< $bog_blitz_admin_editor['time_leaderboard'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13535,7 +13562,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_multiplier'] >
+		ReturnType< $bog_blitz_admin_editor['points_base'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13549,107 +13576,122 @@ declare namespace $ {
 		,
 		ReturnType< $mol_labeler['content'] >
 	>
-	type $mol_string_button__hint_bog_blitz_admin_editor_19 = $mol_type_enforce<
+	type $mol_number__value_bog_blitz_admin_editor_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['time_multiplier'] >
+		,
+		ReturnType< $mol_number['value'] >
+	>
+	type $mol_labeler__title_bog_blitz_admin_editor_20 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_labeler['title'] >
+	>
+	type $mol_labeler__content_bog_blitz_admin_editor_21 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_labeler['content'] >
+	>
+	type $mol_string_button__hint_bog_blitz_admin_editor_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_admin_editor_20 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_admin_editor_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['quiz_title'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_list__rows_bog_blitz_admin_editor_21 = $mol_type_enforce<
+	type $mol_list__rows_bog_blitz_admin_editor_24 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_button_major__title_bog_blitz_admin_editor_22 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_admin_editor_25 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_admin_editor_23 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_admin_editor_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['add_question'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $bog_blitz_admin_question__number_bog_blitz_admin_editor_24 = $mol_type_enforce<
+	type $bog_blitz_admin_question__number_bog_blitz_admin_editor_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_number'] >
 		,
 		ReturnType< $bog_blitz_admin_question['number'] >
 	>
-	type $bog_blitz_admin_question__question_text_bog_blitz_admin_editor_25 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_text_bog_blitz_admin_editor_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_text'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_text'] >
 	>
-	type $bog_blitz_admin_question__question_type_bog_blitz_admin_editor_26 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_type_bog_blitz_admin_editor_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_type'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_type'] >
 	>
-	type $bog_blitz_admin_question__delete_bog_blitz_admin_editor_27 = $mol_type_enforce<
+	type $bog_blitz_admin_question__delete_bog_blitz_admin_editor_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_question'] >
 		,
 		ReturnType< $bog_blitz_admin_question['delete'] >
 	>
-	type $bog_blitz_admin_question__option_rows_bog_blitz_admin_editor_28 = $mol_type_enforce<
+	type $bog_blitz_admin_question__option_rows_bog_blitz_admin_editor_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_rows'] >
 		,
 		ReturnType< $bog_blitz_admin_question['option_rows'] >
 	>
-	type $bog_blitz_admin_question__add_option_bog_blitz_admin_editor_29 = $mol_type_enforce<
+	type $bog_blitz_admin_question__add_option_bog_blitz_admin_editor_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['add_option'] >
 		,
 		ReturnType< $bog_blitz_admin_question['add_option'] >
 	>
-	type $bog_blitz_admin_question__correct_text_bog_blitz_admin_editor_30 = $mol_type_enforce<
+	type $bog_blitz_admin_question__correct_text_bog_blitz_admin_editor_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['correct_text'] >
 		,
 		ReturnType< $bog_blitz_admin_question['correct_text'] >
 	>
-	type $bog_blitz_admin_question__question_image_files_bog_blitz_admin_editor_31 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_image_files_bog_blitz_admin_editor_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_files'] >
 	>
-	type $bog_blitz_admin_question__question_image_uri_bog_blitz_admin_editor_32 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_image_uri_bog_blitz_admin_editor_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_uri'] >
 	>
-	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_33 = $mol_type_enforce<
+	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_question_image'] >
 		,
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 	>
-	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_34 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_text'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_text'] >
 	>
-	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_35 = $mol_type_enforce<
+	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['is_correct'] >
 		,
 		ReturnType< $bog_blitz_admin_option['is_correct'] >
 	>
-	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_36 = $mol_type_enforce<
+	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_option'] >
 		,
 		ReturnType< $bog_blitz_admin_option['delete'] >
 	>
-	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_37 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_40 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_files'] >
 	>
-	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_38 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_41 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
 	>
-	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_39 = $mol_type_enforce<
+	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_42 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_option_image'] >
 		,
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
@@ -13657,6 +13699,9 @@ declare namespace $ {
 	export class $bog_blitz_admin_editor extends $mol_list {
 		editor_rows( ): readonly(any)[]
 		quiz_title( next?: string ): string
+		manual_mode( next?: boolean ): boolean
+		Manual_mode( ): $mol_check_box
+		Manual_mode_row( ): $mol_labeler
 		time_read( next?: number ): number
 		Time_read( ): $mol_number
 		Time_read_row( ): $mol_labeler
@@ -13727,6 +13772,7 @@ declare namespace $.$$ {
         option_image_files(key: string, next?: readonly File[]): readonly File[];
         remove_question_image(key: string): void;
         remove_option_image(key: string): void;
+        manual_mode(next?: boolean): any;
         time_read(next?: number): any;
         time_answer(next?: number): any;
         time_reveal(next?: number): any;

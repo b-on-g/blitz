@@ -2186,6 +2186,7 @@ $bog_blitz_lobby_game $mol_view
 	my_player null
 	is_host false
 	paused_at 0
+	manual_mode false
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_reveal @ \Correct answer
@@ -2211,6 +2212,9 @@ $bog_blitz_lobby_game $mol_view
 	Resume_button $mol_button_minor
 		title <= resume_label @ \Resume
 		click? <=> resume_click?event null
+	Next_button $mol_button_major
+		title <= next_label @ \Next
+		click? <=> next_click?event null
 	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
@@ -2363,6 +2367,7 @@ $bog_blitz_lobby $mol_page
 		my_player <= my_player null
 		is_host <= is_host false
 		paused_at <= paused_at 0
+		manual_mode <= manual_mode false
 		round_start <= round_start 0
 		duration <= duration 0
 		total_questions <= total_questions 0
@@ -2852,6 +2857,10 @@ $bog_blitz_admin_editor $mol_list
 		value? <=> quiz_title? \
 	Settings $mol_list
 		rows /
+			<= Manual_mode_row $mol_labeler
+				title @ \Manual mode (host controls transitions)
+				content / <= Manual_mode $mol_check_box
+					checked? <=> manual_mode? false
 			<= Time_read_row $mol_labeler
 				title @ \Read time (sec)
 				content / <= Time_read $mol_number

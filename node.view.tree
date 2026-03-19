@@ -488,6 +488,7 @@ $bog_blitz_lobby_game $mol_view
 	my_player null
 	is_host false
 	paused_at 0
+	manual_mode false
 	state_reading @ \Read the question
 	state_answering @ \Time to answer!
 	state_reveal @ \Correct answer
@@ -513,6 +514,9 @@ $bog_blitz_lobby_game $mol_view
 	Resume_button $mol_button_minor
 		title <= resume_label @ \Resume
 		click? <=> resume_click?event null
+	Next_button $mol_button_major
+		title <= next_label @ \Next
+		click? <=> next_click?event null
 	question_type \choice
 	question_content /
 		<= Timer $bog_blitz_lobby_game_timer
@@ -665,6 +669,7 @@ $bog_blitz_lobby $mol_page
 		my_player <= my_player null
 		is_host <= is_host false
 		paused_at <= paused_at 0
+		manual_mode <= manual_mode false
 		round_start <= round_start 0
 		duration <= duration 0
 		total_questions <= total_questions 0
@@ -1370,6 +1375,21 @@ $bog_blitz_admin_quiz $mol_row
 			title @ \Delete
 			click? <=> delete? null
 
+$mol_icon_tick $mol_icon path \M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z
+
+$mol_check_box $mol_check
+	Icon $mol_icon_tick
+
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 32
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
 $mol_number $mol_view
 	precision_view <= precision 1
 	precision_change <= precision 1
@@ -1403,16 +1423,6 @@ $mol_number $mol_view
 			event_click? <=> event_inc? null
 			enabled <= inc_enabled <= enabled
 			sub / <= inc_icon $mol_icon_chevron_right
-
-$mol_labeler $mol_list
-	rows /
-		<= Label $mol_view
-			minimal_height 32
-			sub <= label /$mol_view_content
-				<= title
-		<= Content $mol_view
-			minimal_height 24
-			sub <= content /
 
 $mol_ghost $mol_view
 	Sub $mol_view
@@ -1616,11 +1626,6 @@ $bog_blitz_admin_question $mol_list
 		title @ \Remove Image
 		click? <=> remove_image? null
 
-$mol_icon_tick $mol_icon path \M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z
-
-$mol_check_box $mol_check
-	Icon $mol_icon_tick
-
 $bog_blitz_admin_option $mol_list
 	rows <= option_content /
 	Image_section $mol_row
@@ -1653,6 +1658,10 @@ $bog_blitz_admin_editor $mol_list
 		value? <=> quiz_title? \
 	Settings $mol_list
 		rows /
+			<= Manual_mode_row $mol_labeler
+				title @ \Manual mode (host controls transitions)
+				content / <= Manual_mode $mol_check_box
+					checked? <=> manual_mode? false
 			<= Time_read_row $mol_labeler
 				title @ \Read time (sec)
 				content / <= Time_read $mol_number
