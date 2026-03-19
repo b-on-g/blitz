@@ -2,5 +2,7 @@
 	"$bog_blitz_admin_quiz_Title_input_hint": "问答名称",
 	"$bog_blitz_admin_quiz_Edit_title": "编辑",
 	"$bog_blitz_admin_quiz_Start_title": "开始",
-	"$bog_blitz_admin_quiz_Delete_title": "删除"
+	"$bog_blitz_admin_quiz_Delete_title": "删除",
+	"$bog_blitz_admin_quiz_Share_title": "分享",
+	"$bog_blitz_admin_quiz_Duplicate_title": "复制"
 }

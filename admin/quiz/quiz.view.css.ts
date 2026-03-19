@@ -22,6 +22,9 @@ namespace $.$$ {
 				shrink: 1,
 			},
 		},
+		Shared_badge: {
+			color: $mol_theme.focus,
+		},
 		Delete: {
 			color: '#cc3333',
 		},

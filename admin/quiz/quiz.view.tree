@@ -1,8 +1,18 @@
 $bog_blitz_admin_quiz $mol_row
+	is_shared false
 	sub /
+		<= Shared_badge $mol_view
+			sub /
+				<= Shared_icon $mol_icon_share
 		<= Title_input $mol_string_button
 			hint @ \Quiz name
 			value? <=> quiz_title? \
+		<= Share $mol_button_minor
+			title @ \Share
+			click? <=> share? null
+		<= Duplicate $mol_button_minor
+			title @ \Duplicate
+			click? <=> duplicate? null
 		<= Edit $mol_button_minor
 			title @ \Edit
 			click? <=> edit? null

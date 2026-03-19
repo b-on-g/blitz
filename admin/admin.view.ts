@@ -160,6 +160,28 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		my_lord() {
+			return this.$.$giper_baza_auth.current().pass().lord().str
+		}
+
+		@$mol_mem_key
+		quiz_is_shared(key: string) {
+			const quiz = this.quiz_links()[Number(key)]
+			if (!quiz) return false
+			return quiz.land().link().lord().str !== this.my_lord()
+		}
+
+		@$mol_action
+		share_quiz(key: string) {
+			const quiz = this.quiz_links()[Number(key)]
+			if (!quiz) return
+			const link = quiz.land().link().str
+			const loc = this.$.$mol_dom_context.location
+			const url = loc.origin + loc.pathname + '?screen=admin&quiz=' + encodeURIComponent(link)
+			this.$.$mol_dom_context.navigator.clipboard.writeText(url)
+		}
+
+		@$mol_mem
 		quiz_rows() {
 			return this.quiz_links().map((quiz, i) => {
 				const key = String(i)
@@ -224,6 +246,48 @@ namespace $.$$ {
 			this.$.$mol_state_arg.value('quiz', null)
 			this.$.$mol_state_arg.value('land', game_land.link().str)
 			this.$.$mol_state_arg.value('screen', 'lobby')
+		}
+
+		@$mol_action
+		duplicate_quiz(key: string) {
+			const source = this.quiz_links()[Number(key)]
+			if (!source) return
+
+			const quizzes = this.registry().Quizzes('auto')!
+			const target = quizzes.make([[null, $giper_baza_rank_post('just')]])
+
+			target.Title('auto')?.val(source.Title()?.val() ?? 'Untitled Quiz')
+			target.Time_read('auto')?.val(source.Time_read()?.val() ?? 5)
+			target.Time_answer('auto')?.val(source.Time_answer()?.val() ?? 10)
+			target.Time_leaderboard('auto')?.val(source.Time_leaderboard()?.val() ?? 10)
+			target.Points_base('auto')?.val(source.Points_base()?.val() ?? 100)
+			target.Time_multiplier('auto')?.val(source.Time_multiplier()?.val() ?? 1.5)
+
+			const source_questions = source.Questions()?.remote_list() ?? []
+			if (source_questions.length) {
+				const target_questions = target.Questions('auto')!
+				for (const sq of source_questions) {
+					const tq = target_questions.make(null)
+					tq.Text('auto')?.val(sq.Text()?.val() ?? '')
+					tq.Type('auto')?.val(sq.Type()?.val() ?? 'choice')
+
+					if (sq.Type()?.val() === 'text_input') {
+						tq.Correct_text('auto')?.val(sq.Correct_text()?.val() ?? '')
+					}
+
+					const source_options = sq.Options()?.remote_list() ?? []
+					if (source_options.length) {
+						const target_options = tq.Options('auto')!
+						for (const so of source_options) {
+							const to = target_options.make(null)
+							to.Text('auto')?.val(so.Text()?.val() ?? '')
+							to.Is_correct('auto')?.val(so.Is_correct()?.val() ?? false)
+						}
+					}
+				}
+			}
+
+			quizzes.cut(source.link())
 		}
 
 		@$mol_action

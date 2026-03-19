@@ -7,5 +7,6 @@
 	"$bog_blitz_lobby_game_state_leaderboard": "Таблица лидеров",
 	"$bog_blitz_lobby_game_state_final": "Итоговые результаты",
 	"$bog_blitz_lobby_game_state_paused": "На паузе",
-	"$bog_blitz_lobby_game_Answer_input_hint": "Введите ваш ответ..."
+	"$bog_blitz_lobby_game_Answer_input_hint": "Введите ваш ответ...",
+	"$bog_blitz_lobby_game_submit_label": "Ответить"
 }

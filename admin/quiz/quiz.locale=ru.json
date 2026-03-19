@@ -2,5 +2,7 @@
 	"$bog_blitz_admin_quiz_Title_input_hint": "Название квиза",
 	"$bog_blitz_admin_quiz_Edit_title": "Редактировать",
 	"$bog_blitz_admin_quiz_Start_title": "Играть",
-	"$bog_blitz_admin_quiz_Delete_title": "Удалить"
+	"$bog_blitz_admin_quiz_Delete_title": "Удалить",
+	"$bog_blitz_admin_quiz_Share_title": "Поделиться",
+	"$bog_blitz_admin_quiz_Duplicate_title": "Дублировать"
 }

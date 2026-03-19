@@ -3,9 +3,12 @@ $bog_blitz_admin $mol_page
 	body <= admin_body /
 	Quiz_card*0 $bog_blitz_admin_quiz
 		quiz_title? <=> quiz_title*? \
+		is_shared <= quiz_is_shared* false
 		edit? <=> edit_quiz*? null
 		delete? <=> delete_quiz*? null
 		start? <=> start_quiz*? null
+		duplicate? <=> duplicate_quiz*? null
+		share? <=> share_quiz*? null
 	Quizzes_list $mol_list
 		rows <= quiz_rows /
 	Create_button $mol_button_major

@@ -161,6 +161,42 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		selected_options(next?: string[]): string[] {
+			this.current_question_index()
+			if (next !== undefined) return next
+			return []
+		}
+
+		has_multiple_correct() {
+			const question = this.current_question() as $bog_blitz_question | null
+			if (!question) return false
+			const options = question.Options()?.remote_list() ?? []
+			let count = 0
+			for (const opt of options) {
+				if ((opt as $bog_blitz_question_option)?.Is_correct()?.val()) count++
+				if (count >= 2) return true
+			}
+			return false
+		}
+
+		@$mol_mem
+		submit_enabled() {
+			return this.selected_options().length > 0
+		}
+
+		@$mol_mem
+		submit_answer(next?: Event) {
+			if (next !== undefined) {
+				const selected = this.selected_options()
+				if (!selected.length) return
+				const player = this.my_player() as $bog_blitz_player | null
+				if (!player) return
+				player.Answer('auto')?.val(selected.sort().join(','))
+				player.Answer_time('auto')?.val(Date.now())
+			}
+		}
+
+		@$mol_mem
 		answer_views() {
 			const state = this.game_state()
 			if (this.question_type() === 'text_input') {
@@ -169,7 +205,11 @@ namespace $.$$ {
 				}
 				return [this.Answer_input()]
 			}
-			return this.option_views()
+			const views = this.option_views()
+			if (state === 'answering' && !this.is_host() && !this.has_answered()) {
+				return [...views, this.Submit_answer()]
+			}
+			return views
 		}
 
 		@$mol_mem
@@ -268,8 +308,12 @@ namespace $.$$ {
 			const state = this.game_state()
 			if (state === 'reading') return ''
 			if (this.is_host()) return ''
+			if (state === 'answering' && !this.has_answered()) {
+				return String(this.selected_options().includes(key))
+			}
 			if (!this.has_answered()) return ''
-			return String(this.my_answer() === key)
+			const answers = this.my_answer().split(',')
+			return String(answers.includes(key))
 		}
 
 		@$mol_mem
@@ -337,10 +381,16 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_click(key: string, e?: any) {
 			if (e) {
-				const player = this.my_player() as $bog_blitz_player | null
-				if (!player) return
-				player.Answer('auto')?.val(key)
-				player.Answer_time('auto')?.val(Date.now())
+				const current = this.selected_options()
+				if (this.has_multiple_correct()) {
+					if (current.includes(key)) {
+						this.selected_options(current.filter(k => k !== key))
+					} else {
+						this.selected_options([...current, key])
+					}
+				} else {
+					this.selected_options(current.includes(key) ? [] : [key])
+				}
 			}
 			return null
 		}
@@ -391,16 +441,16 @@ namespace $.$$ {
 			}
 		}
 
-		correct_answer_key() {
+		correct_answer_keys() {
 			const question = this.current_question() as $bog_blitz_question | null
-			if (!question) return ''
-			if (this.question_type() === 'text_input') return '__text_input__'
+			if (!question) return new Set<string>()
 			const options = question.Options()?.remote_list() ?? []
+			const keys = new Set<string>()
 			for (let i = 0; i < options.length; i++) {
 				const opt = options[i] as $bog_blitz_question_option | undefined
-				if (opt?.Is_correct()?.val()) return String(i)
+				if (opt?.Is_correct()?.val()) keys.add(String(i))
 			}
-			return ''
+			return keys
 		}
 
 		is_text_answer_correct(answer: string) {
@@ -416,7 +466,8 @@ namespace $.$$ {
 			const quiz = this.quiz_data() as $bog_blitz_quiz | null
 			if (!quiz) return
 
-			const correct = this.correct_answer_key()
+			const is_text = this.question_type() === 'text_input'
+			const correct_keys = is_text ? new Set<string>() : this.correct_answer_keys()
 			const points_base = quiz.Points_base()!.val()!
 			const time_multiplier = quiz.Time_multiplier()!.val()!
 			const answer_duration = this.duration()
@@ -437,11 +488,17 @@ namespace $.$$ {
 				const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration
 				const time_ratio = Math.max(0, 1 - elapsed / answer_duration)
 				const base = points_base * (1 + time_ratio * time_multiplier)
-				const is_correct = correct === '__text_input__'
-					? this.is_text_answer_correct(answer)
-					: answer === correct
-				const points = is_correct ? base : -base
 
+				let is_correct: boolean
+				if (is_text) {
+					is_correct = this.is_text_answer_correct(answer)
+				} else {
+					const answer_keys = new Set(answer.split(',').filter(Boolean))
+					is_correct = correct_keys.size === answer_keys.size &&
+						[...correct_keys].every(k => answer_keys.has(k))
+				}
+
+				const points = is_correct ? base : -base
 				const prev = player.Score()?.val() ?? 0
 				player.Score('auto')?.val(prev + points)
 			}
