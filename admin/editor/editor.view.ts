@@ -237,6 +237,17 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		time_reveal(next?: number) {
+			const quiz = this.quiz_data()
+			if (!quiz) return 5
+			if (next !== undefined) {
+				quiz.Time_reveal('auto')?.val(next)
+				return next
+			}
+			return quiz.Time_reveal()?.val() ?? 5
+		}
+
+		@$mol_mem
 		time_leaderboard(next?: number) {
 			const quiz = this.quiz_data()
 			if (!quiz) return 10

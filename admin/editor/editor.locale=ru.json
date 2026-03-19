@@ -1,6 +1,7 @@
 {
 	"$bog_blitz_admin_editor_Time_read_row_title": "Время чтения (сек)",
 	"$bog_blitz_admin_editor_Time_answer_row_title": "Время ответа (сек)",
+	"$bog_blitz_admin_editor_Time_reveal_row_title": "Время показа ответа (сек)",
 	"$bog_blitz_admin_editor_Time_leaderboard_row_title": "Время таблицы лидеров (сек)",
 	"$bog_blitz_admin_editor_Points_base_row_title": "Баллы за ответ",
 	"$bog_blitz_admin_editor_Time_multiplier_row_title": "Множитель за скорость",

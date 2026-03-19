@@ -79,6 +79,7 @@ namespace $.$$ {
 				'  "title": "Quiz Title",',
 				'  "time_read": 5,',
 				'  "time_answer": 10,',
+				'  "time_reveal": 5,',
 				'  "time_leaderboard": 10,',
 				'  "points_base": 100,',
 				'  "time_multiplier": 1.5,',
@@ -115,6 +116,7 @@ namespace $.$$ {
 			quiz.Title('auto')?.val(data.title ?? 'Imported Quiz')
 			quiz.Time_read('auto')?.val(data.time_read ?? 5)
 			quiz.Time_answer('auto')?.val(data.time_answer ?? 10)
+			quiz.Time_reveal('auto')?.val(data.time_reveal ?? 5)
 			quiz.Time_leaderboard('auto')?.val(data.time_leaderboard ?? 10)
 			quiz.Points_base('auto')?.val(data.points_base ?? 100)
 			quiz.Time_multiplier('auto')?.val(data.time_multiplier ?? 1.5)
@@ -221,6 +223,7 @@ namespace $.$$ {
 			quiz.Title('auto')?.val(`New Quiz ${count + 1}`)
 			quiz.Time_read('auto')?.val(5)
 			quiz.Time_answer('auto')?.val(10)
+			quiz.Time_reveal('auto')?.val(5)
 			quiz.Time_leaderboard('auto')?.val(10)
 			quiz.Points_base('auto')?.val(100)
 			quiz.Time_multiplier('auto')?.val(1.5)
@@ -274,6 +277,7 @@ namespace $.$$ {
 			target.Title('auto')?.val(source.Title()?.val() ?? 'Untitled Quiz')
 			target.Time_read('auto')?.val(source.Time_read()?.val() ?? 5)
 			target.Time_answer('auto')?.val(source.Time_answer()?.val() ?? 10)
+			target.Time_reveal('auto')?.val(source.Time_reveal()?.val() ?? 5)
 			target.Time_leaderboard('auto')?.val(source.Time_leaderboard()?.val() ?? 10)
 			target.Points_base('auto')?.val(source.Points_base()?.val() ?? 100)
 			target.Time_multiplier('auto')?.val(source.Time_multiplier()?.val() ?? 1.5)
