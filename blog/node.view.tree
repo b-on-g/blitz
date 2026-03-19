@@ -1661,6 +1661,10 @@ $bog_blitz_admin_editor $mol_list
 				title @ \Answer time (sec)
 				content / <= Time_answer $mol_number
 					value? <=> time_answer? 10
+			<= Time_reveal_row $mol_labeler
+				title @ \Reveal time (sec)
+				content / <= Time_reveal $mol_number
+					value? <=> time_reveal? 5
 			<= Time_leaderboard_row $mol_labeler
 				title @ \Leaderboard time (sec)
 				content / <= Time_leaderboard $mol_number

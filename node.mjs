@@ -15681,6 +15681,7 @@ var $;
             Time_read: $giper_baza_atom_real,
             Time_answer: $giper_baza_atom_real,
             Time_leaderboard: $giper_baza_atom_real,
+            Time_reveal: $giper_baza_atom_real,
             Points_base: $giper_baza_atom_real,
             Time_multiplier: $giper_baza_atom_real,
             Game_state: $giper_baza_atom_text,
@@ -15696,6 +15697,7 @@ var $;
             'Time_read',
             'Time_answer',
             'Time_leaderboard',
+            'Time_reveal',
             'Points_base',
             'Time_multiplier',
             'Game_state',
@@ -19474,7 +19476,7 @@ var $;
                 if (state === 'answering')
                     return quiz.Time_answer()?.val() ?? 20;
                 if (state === 'reveal')
-                    return 3;
+                    return quiz.Time_reveal()?.val() ?? 5;
                 if (state === 'leaderboard')
                     return quiz.Time_leaderboard()?.val() ?? 5;
                 return 0;
@@ -27263,6 +27265,21 @@ var $;
 			(obj.content) = () => ([(this.Time_answer())]);
 			return obj;
 		}
+		time_reveal(next){
+			if(next !== undefined) return next;
+			return 5;
+		}
+		Time_reveal(){
+			const obj = new this.$.$mol_number();
+			(obj.value) = (next) => ((this.time_reveal(next)));
+			return obj;
+		}
+		Time_reveal_row(){
+			const obj = new this.$.$mol_labeler();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_editor_Time_reveal_row_title")));
+			(obj.content) = () => ([(this.Time_reveal())]);
+			return obj;
+		}
 		time_leaderboard(next){
 			if(next !== undefined) return next;
 			return 10;
@@ -27389,6 +27406,7 @@ var $;
 			(obj.rows) = () => ([
 				(this.Time_read_row()), 
 				(this.Time_answer_row()), 
+				(this.Time_reveal_row()), 
 				(this.Time_leaderboard_row()), 
 				(this.Points_base_row()), 
 				(this.Time_multiplier_row())
@@ -27433,6 +27451,9 @@ var $;
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "time_answer"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_answer"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_answer_row"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "time_reveal"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_reveal"));
+	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_reveal_row"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "time_leaderboard"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_leaderboard"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Time_leaderboard_row"));
@@ -27692,6 +27713,16 @@ var $;
                 }
                 return quiz.Time_answer()?.val() ?? 10;
             }
+            time_reveal(next) {
+                const quiz = this.quiz_data();
+                if (!quiz)
+                    return 5;
+                if (next !== undefined) {
+                    quiz.Time_reveal('auto')?.val(next);
+                    return next;
+                }
+                return quiz.Time_reveal()?.val() ?? 5;
+            }
             time_leaderboard(next) {
                 const quiz = this.quiz_data();
                 if (!quiz)
@@ -27789,6 +27820,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_admin_editor.prototype, "time_answer", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_editor.prototype, "time_reveal", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin_editor.prototype, "time_leaderboard", null);
@@ -28172,6 +28206,7 @@ var $;
                     '  "title": "Quiz Title",',
                     '  "time_read": 5,',
                     '  "time_answer": 10,',
+                    '  "time_reveal": 5,',
                     '  "time_leaderboard": 10,',
                     '  "points_base": 100,',
                     '  "time_multiplier": 1.5,',
@@ -28206,6 +28241,7 @@ var $;
                 quiz.Title('auto')?.val(data.title ?? 'Imported Quiz');
                 quiz.Time_read('auto')?.val(data.time_read ?? 5);
                 quiz.Time_answer('auto')?.val(data.time_answer ?? 10);
+                quiz.Time_reveal('auto')?.val(data.time_reveal ?? 5);
                 quiz.Time_leaderboard('auto')?.val(data.time_leaderboard ?? 10);
                 quiz.Points_base('auto')?.val(data.points_base ?? 100);
                 quiz.Time_multiplier('auto')?.val(data.time_multiplier ?? 1.5);
@@ -28295,6 +28331,7 @@ var $;
                 quiz.Title('auto')?.val(`New Quiz ${count + 1}`);
                 quiz.Time_read('auto')?.val(5);
                 quiz.Time_answer('auto')?.val(10);
+                quiz.Time_reveal('auto')?.val(5);
                 quiz.Time_leaderboard('auto')?.val(10);
                 quiz.Points_base('auto')?.val(100);
                 quiz.Time_multiplier('auto')?.val(1.5);
@@ -28341,6 +28378,7 @@ var $;
                 target.Title('auto')?.val(source.Title()?.val() ?? 'Untitled Quiz');
                 target.Time_read('auto')?.val(source.Time_read()?.val() ?? 5);
                 target.Time_answer('auto')?.val(source.Time_answer()?.val() ?? 10);
+                target.Time_reveal('auto')?.val(source.Time_reveal()?.val() ?? 5);
                 target.Time_leaderboard('auto')?.val(source.Time_leaderboard()?.val() ?? 10);
                 target.Points_base('auto')?.val(source.Points_base()?.val() ?? 100);
                 target.Time_multiplier('auto')?.val(source.Time_multiplier()?.val() ?? 1.5);

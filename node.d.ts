@@ -6611,6 +6611,7 @@ declare namespace $.$$ {
             readonly Time_read: (auto?: any) => $giper_baza_atom_real | null;
             readonly Time_answer: (auto?: any) => $giper_baza_atom_real | null;
             readonly Time_leaderboard: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Time_reveal: (auto?: any) => $giper_baza_atom_real | null;
             readonly Points_base: (auto?: any) => $giper_baza_atom_real | null;
             readonly Time_multiplier: (auto?: any) => $giper_baza_atom_real | null;
             readonly Game_state: (auto?: any) => $giper_baza_atom_text | null;
@@ -6679,6 +6680,7 @@ declare namespace $.$$ {
             readonly Time_read: typeof $giper_baza_atom_real;
             readonly Time_answer: typeof $giper_baza_atom_real;
             readonly Time_leaderboard: typeof $giper_baza_atom_real;
+            readonly Time_reveal: typeof $giper_baza_atom_real;
             readonly Points_base: typeof $giper_baza_atom_real;
             readonly Time_multiplier: typeof $giper_baza_atom_real;
             readonly Game_state: typeof $giper_baza_atom_text;
@@ -13488,7 +13490,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_leaderboard'] >
+		ReturnType< $bog_blitz_admin_editor['time_reveal'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13503,7 +13505,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['points_base'] >
+		ReturnType< $bog_blitz_admin_editor['time_leaderboard'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13518,7 +13520,7 @@ declare namespace $ {
 		ReturnType< $mol_labeler['content'] >
 	>
 	type $mol_number__value_bog_blitz_admin_editor_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['time_multiplier'] >
+		ReturnType< $bog_blitz_admin_editor['points_base'] >
 		,
 		ReturnType< $mol_number['value'] >
 	>
@@ -13532,107 +13534,122 @@ declare namespace $ {
 		,
 		ReturnType< $mol_labeler['content'] >
 	>
-	type $mol_string_button__hint_bog_blitz_admin_editor_16 = $mol_type_enforce<
+	type $mol_number__value_bog_blitz_admin_editor_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['time_multiplier'] >
+		,
+		ReturnType< $mol_number['value'] >
+	>
+	type $mol_labeler__title_bog_blitz_admin_editor_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_labeler['title'] >
+	>
+	type $mol_labeler__content_bog_blitz_admin_editor_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_labeler['content'] >
+	>
+	type $mol_string_button__hint_bog_blitz_admin_editor_19 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_admin_editor_17 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_admin_editor_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['quiz_title'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_list__rows_bog_blitz_admin_editor_18 = $mol_type_enforce<
+	type $mol_list__rows_bog_blitz_admin_editor_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_button_major__title_bog_blitz_admin_editor_19 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_admin_editor_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_admin_editor_20 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_admin_editor_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['add_question'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $bog_blitz_admin_question__number_bog_blitz_admin_editor_21 = $mol_type_enforce<
+	type $bog_blitz_admin_question__number_bog_blitz_admin_editor_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_number'] >
 		,
 		ReturnType< $bog_blitz_admin_question['number'] >
 	>
-	type $bog_blitz_admin_question__question_text_bog_blitz_admin_editor_22 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_text_bog_blitz_admin_editor_25 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_text'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_text'] >
 	>
-	type $bog_blitz_admin_question__question_type_bog_blitz_admin_editor_23 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_type_bog_blitz_admin_editor_26 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_type'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_type'] >
 	>
-	type $bog_blitz_admin_question__delete_bog_blitz_admin_editor_24 = $mol_type_enforce<
+	type $bog_blitz_admin_question__delete_bog_blitz_admin_editor_27 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_question'] >
 		,
 		ReturnType< $bog_blitz_admin_question['delete'] >
 	>
-	type $bog_blitz_admin_question__option_rows_bog_blitz_admin_editor_25 = $mol_type_enforce<
+	type $bog_blitz_admin_question__option_rows_bog_blitz_admin_editor_28 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_rows'] >
 		,
 		ReturnType< $bog_blitz_admin_question['option_rows'] >
 	>
-	type $bog_blitz_admin_question__add_option_bog_blitz_admin_editor_26 = $mol_type_enforce<
+	type $bog_blitz_admin_question__add_option_bog_blitz_admin_editor_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['add_option'] >
 		,
 		ReturnType< $bog_blitz_admin_question['add_option'] >
 	>
-	type $bog_blitz_admin_question__correct_text_bog_blitz_admin_editor_27 = $mol_type_enforce<
+	type $bog_blitz_admin_question__correct_text_bog_blitz_admin_editor_30 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['correct_text'] >
 		,
 		ReturnType< $bog_blitz_admin_question['correct_text'] >
 	>
-	type $bog_blitz_admin_question__question_image_files_bog_blitz_admin_editor_28 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_image_files_bog_blitz_admin_editor_31 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_files'] >
 	>
-	type $bog_blitz_admin_question__question_image_uri_bog_blitz_admin_editor_29 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_image_uri_bog_blitz_admin_editor_32 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['question_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_uri'] >
 	>
-	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_30 = $mol_type_enforce<
+	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_33 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_question_image'] >
 		,
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 	>
-	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_31 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_text'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_text'] >
 	>
-	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_32 = $mol_type_enforce<
+	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['is_correct'] >
 		,
 		ReturnType< $bog_blitz_admin_option['is_correct'] >
 	>
-	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_33 = $mol_type_enforce<
+	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_option'] >
 		,
 		ReturnType< $bog_blitz_admin_option['delete'] >
 	>
-	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_34 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_files'] >
 	>
-	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_35 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
 	>
-	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_36 = $mol_type_enforce<
+	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_option_image'] >
 		,
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
@@ -13646,6 +13663,9 @@ declare namespace $ {
 		time_answer( next?: number ): number
 		Time_answer( ): $mol_number
 		Time_answer_row( ): $mol_labeler
+		time_reveal( next?: number ): number
+		Time_reveal( ): $mol_number
+		Time_reveal_row( ): $mol_labeler
 		time_leaderboard( next?: number ): number
 		Time_leaderboard( ): $mol_number
 		Time_leaderboard_row( ): $mol_labeler
@@ -13709,6 +13729,7 @@ declare namespace $.$$ {
         remove_option_image(key: string): void;
         time_read(next?: number): any;
         time_answer(next?: number): any;
+        time_reveal(next?: number): any;
         time_leaderboard(next?: number): any;
         points_base(next?: number): any;
         time_multiplier(next?: number): any;

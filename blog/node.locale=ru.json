@@ -15,6 +15,7 @@
 	"$bog_blitz_admin_editor_Time_leaderboard_row_title": "Время таблицы лидеров (сек)",
 	"$bog_blitz_admin_editor_Time_multiplier_row_title": "Множитель за скорость",
 	"$bog_blitz_admin_editor_Time_read_row_title": "Время чтения (сек)",
+	"$bog_blitz_admin_editor_Time_reveal_row_title": "Время показа ответа (сек)",
 	"$bog_blitz_admin_editor_Title_input_hint": "Название квиза",
 	"$bog_blitz_admin_option_Checkbox_title": "Правильный ответ?",
 	"$bog_blitz_admin_option_Delete_title": "Удалить",

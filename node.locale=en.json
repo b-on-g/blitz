@@ -15,6 +15,7 @@
 	"$bog_blitz_admin_editor_Time_leaderboard_row_title": "Leaderboard time (sec)",
 	"$bog_blitz_admin_editor_Time_multiplier_row_title": "Score multiplier for reaction",
 	"$bog_blitz_admin_editor_Time_read_row_title": "Read time (sec)",
+	"$bog_blitz_admin_editor_Time_reveal_row_title": "Reveal time (sec)",
 	"$bog_blitz_admin_editor_Title_input_hint": "Quiz title",
 	"$bog_blitz_admin_option_Checkbox_title": "Is it correct ?",
 	"$bog_blitz_admin_option_Delete_title": "Delete",
