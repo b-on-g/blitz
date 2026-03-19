@@ -15770,6 +15770,10 @@ var $;
             }
             player_avatar_content(key) {
                 return null;
+                if (key === this.my_lord_str()) {
+                    return this.Player_avatar_button(key);
+                }
+                return this.player_avatar(key);
             }
             player_avatar_files(key, next) {
                 if (next?.length) {
@@ -27578,6 +27582,26 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        function compress_image(file, max_size = 800, quality = 0.5) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    let { width, height } = img;
+                    if (width > max_size || height > max_size) {
+                        const ratio = Math.min(max_size / width, max_size / height);
+                        width = Math.round(width * ratio);
+                        height = Math.round(height * ratio);
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                    canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('compress failed')), 'image/jpeg', quality);
+                };
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
         class $bog_blitz_admin_editor extends $.$bog_blitz_admin_editor {
             quiz_data() {
                 const land = this.quiz_land();
@@ -27726,8 +27750,10 @@ var $;
                     if (q) {
                         const store = q.Image(null).ensure(null);
                         if (store) {
-                            store.blob(next[0]);
-                            q.Image(null).remote(store);
+                            compress_image(next[0]).then(blob => {
+                                store.blob(blob);
+                                q.Image(null).remote(store);
+                            });
                         }
                     }
                 }
@@ -27756,8 +27782,10 @@ var $;
                     if (opt) {
                         const store = opt.Image(null).ensure(null);
                         if (store) {
-                            store.blob(next[0]);
-                            opt.Image(null).remote(store);
+                            compress_image(next[0]).then(blob => {
+                                store.blob(blob);
+                                opt.Image(null).remote(store);
+                            });
                         }
                     }
                 }

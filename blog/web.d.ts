@@ -14630,7 +14630,7 @@ declare namespace $.$$ {
         player_keys(): string[];
         player_avatar_uri(key: string): string;
         player_avatar(key: string): $.$mol_avatar | $.$mol_image;
-        player_avatar_content(key: string): null;
+        player_avatar_content(key: string): $.$mol_button_open | $.$mol_avatar | $.$mol_image | null;
         player_avatar_files(key: string, next?: readonly File[]): readonly File[];
         is_mine(key: string): boolean;
     }
