@@ -1,5 +1,5 @@
 $bog_blitz_blog $mol_book2
-	title \Giper Blitz Quiz — Блог
+	title \Blitz Quiz — Блог
 	Placeholder $mol_view sub / <= Menu
 	pages <= blog_pages /
 	Menu $bog_blitz_blog_menu

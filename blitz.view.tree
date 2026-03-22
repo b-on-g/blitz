@@ -1,5 +1,5 @@
 $bog_blitz $mol_page
-	title @ \Giper Blitz Quiz
+	title @ \Blitz Quiz
 	pages *
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
