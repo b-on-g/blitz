@@ -1,9 +1,30 @@
 namespace $.$$ {
 	export class $bog_blitz_admin extends $.$bog_blitz_admin {
 		@$mol_mem
-		registry() {
+		home_ref() {
 			const home = this.$.$giper_baza_glob.home()
-			return home.land().Data($bog_blitz_registry)
+			return home.land().Data($bog_blitz_home_ref)
+		}
+
+		@$mol_action
+		quizzes_land_make() {
+			const land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_read],
+			])
+			this.home_ref().Quizzes_land('auto')?.val(land.link().str)
+			return land
+		}
+
+		@$mol_mem
+		quizzes_land() {
+			const link_str = this.home_ref().Quizzes_land()?.val()
+			if (!link_str) return this.quizzes_land_make()
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link_str))
+		}
+
+		@$mol_mem
+		registry() {
+			return this.quizzes_land().Data($bog_blitz_registry)
 		}
 
 		@$mol_mem
