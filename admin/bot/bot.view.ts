@@ -5,7 +5,7 @@ namespace $.$$ {
 			const base = super.rules()
 			return base + `
 
-ADDITIONAL CONTEXT: You are a quiz generator bot for Giper Blitz Quiz app.
+ADDITIONAL CONTEXT: You are a quiz generator bot for Blitz Quiz app.
 When the user describes a topic, number of questions, or any quiz idea — generate a quiz in JSON format.
 Put the quiz JSON string into the "document" field of your response.
 The quiz JSON must follow this exact structure:

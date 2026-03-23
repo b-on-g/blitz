@@ -1,9 +1,30 @@
 namespace $.$$ {
 	export class $bog_blitz_admin extends $.$bog_blitz_admin {
 		@$mol_mem
-		registry() {
+		home_ref() {
 			const home = this.$.$giper_baza_glob.home()
-			return home.land().Data($bog_blitz_registry)
+			return home.land().Data($bog_blitz_home_ref)
+		}
+
+		@$mol_action
+		quizzes_land_make() {
+			const land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_read],
+			])
+			this.home_ref().Quizzes_land('auto')?.val(land.link().str)
+			return land
+		}
+
+		@$mol_mem
+		quizzes_land() {
+			const link_str = this.home_ref().Quizzes_land()?.val()
+			if (!link_str) return this.quizzes_land_make()
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link_str))
+		}
+
+		@$mol_mem
+		registry() {
+			return this.quizzes_land().Data($bog_blitz_registry)
 		}
 
 		@$mol_mem
@@ -38,9 +59,8 @@ namespace $.$$ {
 		is_game_land() {
 			const land = this.current_quiz_land()
 			if (!land) return false
-			const quiz = land.Data($bog_blitz_quiz)
-			const keys = quiz.keys() ?? []
-			return Array.from(keys).some(k => !$bog_blitz_quiz_fields.has(String(k)))
+			const session = land.Data($bog_blitz_session)
+			return !!session.Quiz_link()?.val()
 		}
 
 		@$mol_mem
@@ -251,10 +271,42 @@ namespace $.$$ {
 		start_quiz(key: string) {
 			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
-			const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]])
+
+			// Session land — все могут писать (игроки регистрируются)
+			const session_land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_post('just')],
+			])
+
+			// Encrypted land — только хост читает правильные ответы
+			const key_land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_deny],
+			])
+			const answers_key = key_land.Data($bog_blitz_answers_key)
+			const questions = quiz.Questions()?.remote_list() ?? []
+			const keys: { type: string; correct: string }[] = []
+			for (const q of questions) {
+				const type = q.Type()?.val() ?? 'choice'
+				if (type === 'text_input') {
+					keys.push({ type, correct: q.Correct_text()?.val() ?? '' })
+				} else {
+					const options = q.Options()?.remote_list() ?? []
+					const indices: number[] = []
+					for (let i = 0; i < options.length; i++) {
+						if ((options[i] as $bog_blitz_question_option)?.Is_correct()?.val()) {
+							indices.push(i)
+						}
+					}
+					keys.push({ type, correct: indices.join(',') })
+				}
+			}
+			answers_key.Data('auto')?.val(JSON.stringify(keys))
+
+			const session = session_land.Data($bog_blitz_session)
+			session.Quiz_link('auto')?.val(quiz.land().link().str)
+			session.Answers_key_land('auto')?.val(key_land.link().str)
 
 			const Players_dict = $giper_baza_dict_to($bog_blitz_player)
-			const dict = game_land.Data(Players_dict)
+			const dict = session_land.Data(Players_dict)
 			const lord = this.$.$giper_baza_auth.current().pass().lord().str
 			const player = dict.key(lord, 'auto')
 			if (player) {
@@ -262,7 +314,7 @@ namespace $.$$ {
 			}
 
 			this.$.$mol_state_arg.value('quiz', null)
-			this.$.$mol_state_arg.value('land', game_land.link().str)
+			this.$.$mol_state_arg.value('land', session_land.link().str)
 			this.$.$mol_state_arg.value('screen', 'lobby')
 		}
 
