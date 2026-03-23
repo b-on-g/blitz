@@ -11,6 +11,12 @@ namespace $.$$ {
 
 	export class $bog_blitz_lobby_game_reactboard extends $.$bog_blitz_lobby_game_reactboard {
 
+		player_answers_data(player: $bog_blitz_player) {
+			const link = player.Answer_land()?.val()
+			if (!link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers)
+		}
+
 		sorted_by(key: string) {
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return []
@@ -19,11 +25,13 @@ namespace $.$$ {
 			if (!field) return []
 			const players: { name: string; count: number }[] = []
 			for (const k of keys) {
-				if ($bog_blitz_quiz_fields.has(String(k))) continue
+				if ($bog_blitz_session_fields.has(String(k))) continue
 				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
-				const count = player[field]()?.val() ?? 0
+				const pa = this.player_answers_data(player)
+				if (!pa) continue
+				const count = pa[field]()?.val() ?? 0
 				if (!count) continue
 				players.push({
 					name: player.Name()?.val() ?? String(k).slice(0, 8),

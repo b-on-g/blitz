@@ -6,7 +6,7 @@ $bog_blitz_blog_menu $mol_page
 		<= Logo $mol_image
 			uri \bog/blitz/assets/logo.svg
 		<= Heading $mol_paragraph
-			title \Giper Blitz Quiz
+			title \Blitz Quiz
 		<= Subtitle $mol_paragraph
 			title \Реалтайм квизы для митапов и мероприятий
 		<= Nav $mol_list

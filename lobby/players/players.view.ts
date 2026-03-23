@@ -49,7 +49,7 @@ namespace $.$$ {
 			const raw = this.players_dict()?.keys() ?? []
 			return Array.from(raw)
 				.map(k => String(k))
-				.filter(k => !$bog_blitz_quiz_fields.has(k))
+				.filter(k => !$bog_blitz_session_fields.has(k))
 		}
 		@$mol_mem_key
 		player_avatar_uri(key: string) {
@@ -67,7 +67,6 @@ namespace $.$$ {
 
 		@$mol_mem_key
 		player_avatar_content(key: string) {
-			return null
 			if (key === this.my_lord_str()) {
 				return this.Player_avatar_button(key)
 			}

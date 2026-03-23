@@ -18,10 +18,19 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		quiz_data() {
+		session() {
 			const land = this.land()
 			if (!land) return null
-			return land.Data($bog_blitz_quiz)
+			return land.Data($bog_blitz_session)
+		}
+
+		@$mol_mem
+		quiz_data() {
+			const session = this.session()
+			if (!session) return null
+			const quiz_link = session.Quiz_link()?.val()
+			if (!quiz_link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(quiz_link)).Data($bog_blitz_quiz)
 		}
 
 		@$mol_mem
@@ -38,6 +47,15 @@ namespace $.$$ {
 			}
 			const lord = this.my_lord_str()
 			return dict.key(lord) ?? null
+		}
+
+		@$mol_mem
+		my_answers() {
+			const player = this.my_player()
+			if (!player) return null
+			const link = player.Answer_land()?.val()
+			if (!link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers)
 		}
 
 		@$mol_mem
@@ -70,18 +88,13 @@ namespace $.$$ {
 			if (e) {
 				const player = this.my_player_create()
 				if (player) {
-					const profile = this.profile_data()
-
+					// Write name from join form (no async deps)
 					const join_name = this.my_player_name()
-					const profile_name = profile.Name()?.val() ?? ''
-					const name = join_name || profile_name || ''
-					player.Name('auto')?.val(name)
-
-					// Sync name to profile
 					if (join_name) {
-						profile.Name('auto')?.val(join_name)
+						player.Name('auto')?.val(join_name)
 					}
 
+					// Write avatar from join form
 					const files = this.my_avatar_files()
 					if (files?.length) {
 						const store = player.Avatar(null)!.ensure(null)
@@ -89,21 +102,45 @@ namespace $.$$ {
 							store.blob(files[0])
 							player.Avatar(null)!.remote(store)
 						}
-						// Sync avatar to profile
-						const profile_store = profile.Avatar(null)!.ensure(null)
-						if (profile_store) {
-							profile_store.blob(files[0])
-							profile.Avatar(null)!.remote(profile_store)
-						}
-					} else {
-						const profile_avatar = profile.Avatar()?.remote()
-						if (profile_avatar) {
-							player.Avatar(null)!.remote(profile_avatar)
-						}
 					}
+
+					// Create answer land (may throw Promise on first run)
+					const answer_land = this.$.$giper_baza_glob.land_grab([
+						[null, $giper_baza_rank_read],
+					])
+					player.Answer_land('auto')?.val(answer_land.link().str)
+
+					// Sync with profile (may throw Promise — runs after core data is written)
+					this.sync_profile(player, join_name, files)
 				}
 			}
 			return null
+		}
+
+		sync_profile(player: $bog_blitz_player, join_name: string, files?: readonly File[]) {
+			const profile = this.profile_data()
+
+			// Fallback name from profile if join name was empty
+			if (!join_name) {
+				const profile_name = profile.Name()?.val() ?? ''
+				if (profile_name) player.Name('auto')?.val(profile_name)
+			} else {
+				profile.Name('auto')?.val(join_name)
+			}
+
+			// Sync avatar
+			if (files?.length) {
+				const profile_store = profile.Avatar(null)!.ensure(null)
+				if (profile_store) {
+					profile_store.blob(files[0])
+					profile.Avatar(null)!.remote(profile_store)
+				}
+			} else {
+				const profile_avatar = profile.Avatar()?.remote()
+				if (profile_avatar) {
+					player.Avatar(null)!.remote(profile_avatar)
+				}
+			}
 		}
 
 		@$mol_mem
@@ -146,19 +183,20 @@ namespace $.$$ {
 			const raw = this.players_dict()?.keys() ?? []
 			return Array.from(raw)
 				.map(k => String(k))
-				.filter(k => !$bog_blitz_quiz_fields.has(k))
+				.filter(k => !$bog_blitz_session_fields.has(k))
 		}
 
 		@$mol_mem
 		game_state() {
-			return this.quiz_data()?.Game_state()?.val() ?? ''
+			return this.session()?.Game_state()?.val() ?? ''
 		}
 
 		@$mol_mem
 		current_question() {
 			const quiz = this.quiz_data()
 			if (!quiz) return null
-			const index = quiz.Current_question()?.val() ?? 0
+			const session = this.session()
+			const index = session?.Current_question()?.val() ?? 0
 			const questions = quiz.Questions()?.remote_list() ?? []
 			return (questions[index] as $bog_blitz_question | undefined) ?? null
 		}
@@ -170,7 +208,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		paused_at() {
-			return this.quiz_data()?.Paused_at()?.val() ?? 0
+			return this.session()?.Paused_at()?.val() ?? 0
 		}
 
 		@$mol_mem
@@ -180,7 +218,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		round_start() {
-			return this.quiz_data()?.Round_start()?.val() ?? 0
+			return this.session()?.Round_start()?.val() ?? 0
 		}
 
 		@$mol_mem
@@ -204,7 +242,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		current_question_index() {
-			return this.quiz_data()?.Current_question()?.val() ?? 0
+			return this.session()?.Current_question()?.val() ?? 0
 		}
 
 		@$mol_mem

@@ -1,10 +1,12 @@
 $bog_blitz_lobby_game $mol_view
 	land_id \
+	session null
 	quiz_data null
 	game_state \
 	current_question null
 	current_question_text \
 	my_player null
+	my_answers null
 	is_host false
 	paused_at 0
 	manual_mode false

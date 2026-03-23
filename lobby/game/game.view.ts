@@ -60,7 +60,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 			const scores: { lord: string; score: number }[] = []
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
 				scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 })
@@ -77,7 +77,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 			let count = 0
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
 				count++
@@ -145,25 +145,25 @@ namespace $.$$ {
 		@$mol_mem
 		pause_click(next?: Event) {
 			if (next !== undefined) {
-				const quiz = this.quiz_data() as $bog_blitz_quiz | null
-				if (!quiz) return
-				quiz.Paused_at('auto')?.val(Date.now())
+				const session = this.session() as $bog_blitz_session | null
+				if (!session) return
+				session.Paused_at('auto')?.val(Date.now())
 			}
 		}
 
 		@$mol_mem
 		resume_click(next?: Event) {
 			if (next !== undefined) {
-				const quiz = this.quiz_data() as $bog_blitz_quiz | null
-				if (!quiz) return
+				const session = this.session() as $bog_blitz_session | null
+				if (!session) return
 				const paused_at = this.paused_at()
 				if (!paused_at) return
 				const pause_duration = Date.now() - paused_at
 				const old_start = this.round_start()
 				if (old_start) {
-					quiz.Round_start('auto')?.val(old_start + pause_duration)
+					session.Round_start('auto')?.val(old_start + pause_duration)
 				}
-				quiz.Paused_at('auto')?.val(0)
+				session.Paused_at('auto')?.val(0)
 			}
 		}
 
@@ -206,16 +206,18 @@ namespace $.$$ {
 			return []
 		}
 
+		publish_question_meta(session: $bog_blitz_session, index: number) {
+			const keys = this.answers_key_data()
+			if (!keys) return
+			const key = keys[index]
+			if (!key) return
+			const multi = key.type !== 'text_input' && key.correct.split(',').length >= 2
+			session.Multi_correct('auto')?.val(multi)
+		}
+
 		has_multiple_correct() {
-			const question = this.current_question() as $bog_blitz_question | null
-			if (!question) return false
-			const options = question.Options()?.remote_list() ?? []
-			let count = 0
-			for (const opt of options) {
-				if ((opt as $bog_blitz_question_option)?.Is_correct()?.val()) count++
-				if (count >= 2) return true
-			}
-			return false
+			const session = this.session() as $bog_blitz_session | null
+			return session?.Multi_correct()?.val() ?? false
 		}
 
 		@$mol_mem
@@ -228,10 +230,10 @@ namespace $.$$ {
 			if (next !== undefined) {
 				const selected = this.selected_options()
 				if (!selected.length) return
-				const player = this.my_player() as $bog_blitz_player | null
-				if (!player) return
-				player.Answer('auto')?.val(selected.sort().join(','))
-				player.Answer_time('auto')?.val(Date.now())
+				const answers = this.my_answers() as $bog_blitz_player_answers | null
+				if (!answers) return
+				answers.Answer('auto')?.val(selected.sort().join(','))
+				answers.Answer_time('auto')?.val(Date.now())
 			}
 		}
 
@@ -256,10 +258,10 @@ namespace $.$$ {
 			if (next !== undefined) {
 				const draft = this.text_draft()
 				if (!draft) return
-				const player = this.my_player() as $bog_blitz_player | null
-				if (!player) return
-				player.Answer('auto')?.val(draft)
-				player.Answer_time('auto')?.val(Date.now())
+				const answers = this.my_answers() as $bog_blitz_player_answers | null
+				if (!answers) return
+				answers.Answer('auto')?.val(draft)
+				answers.Answer_time('auto')?.val(Date.now())
 			}
 		}
 
@@ -315,8 +317,8 @@ namespace $.$$ {
 
 		@$mol_mem
 		my_answer() {
-			const player = this.my_player() as $bog_blitz_player | null
-			return player?.Answer()?.val() ?? ''
+			const answers = this.my_answers() as $bog_blitz_player_answers | null
+			return answers?.Answer()?.val() ?? ''
 		}
 
 		@$mol_mem
@@ -334,12 +336,11 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_correct(key: string) {
 			if (this.game_state() !== 'reveal') return ''
-			const question = this.current_question() as $bog_blitz_question | null
-			if (!question) return ''
-			const options = question.Options()?.remote_list() ?? []
-			const option = options[Number(key)] as $bog_blitz_question_option | undefined
-			if (!option) return ''
-			return option.Is_correct()?.val() ? 'true' : 'false'
+			const session = this.session() as $bog_blitz_session | null
+			const reveal = session?.Reveal_correct()?.val() ?? ''
+			if (!reveal) return ''
+			const correct_indices = new Set(reveal.split(','))
+			return correct_indices.has(key) ? 'true' : 'false'
 		}
 
 		@$mol_mem_key
@@ -359,8 +360,8 @@ namespace $.$$ {
 		reveal_correct_text() {
 			if (this.game_state() !== 'reveal') return ''
 			if (this.question_type() !== 'text_input') return ''
-			const question = this.current_question() as $bog_blitz_question | null
-			return question?.Correct_text()?.val() ?? ''
+			const session = this.session() as $bog_blitz_session | null
+			return session?.Reveal_correct()?.val() ?? ''
 		}
 
 		@$mol_mem
@@ -431,33 +432,34 @@ namespace $.$$ {
 
 		@$mol_action
 		advance_state() {
-			const quiz = this.quiz_data() as $bog_blitz_quiz | null
-			if (!quiz) return
+			const session = this.session() as $bog_blitz_session | null
+			if (!session) return
 
 			const state = this.game_state()
 			const index = this.current_question_index()
 			const total = this.total_questions()
 
 			if (state === 'reading') {
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('answering')
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('answering')
 			} else if (state === 'answering') {
 				this.calculate_scores()
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('reveal')
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('reveal')
 			} else if (state === 'reveal') {
 				if (index + 1 >= total) {
-					quiz.Round_start('auto')?.val(0)
-					quiz.Game_state('auto')?.val('final')
+					session.Round_start('auto')?.val(0)
+					session.Game_state('auto')?.val('final')
 				} else {
-					quiz.Round_start('auto')?.val(Date.now())
-					quiz.Game_state('auto')?.val('leaderboard')
+					session.Round_start('auto')?.val(Date.now())
+					session.Game_state('auto')?.val('leaderboard')
 				}
 			} else if (state === 'leaderboard') {
 				this.reset_answers()
-				quiz.Current_question('auto')?.val(index + 1)
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('reading')
+				session.Current_question('auto')?.val(index + 1)
+				this.publish_question_meta(session, index + 1)
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('reading')
 			}
 		}
 
@@ -482,61 +484,72 @@ namespace $.$$ {
 			this.advance_state()
 		}
 
-		correct_answer_keys() {
-			const question = this.current_question() as $bog_blitz_question | null
-			if (!question) return new Set<string>()
-			const options = question.Options()?.remote_list() ?? []
-			const keys = new Set<string>()
-			for (let i = 0; i < options.length; i++) {
-				const opt = options[i] as $bog_blitz_question_option | undefined
-				if (opt?.Is_correct()?.val()) keys.add(String(i))
-			}
-			return keys
+		answers_key_data() {
+			const session = this.session() as $bog_blitz_session | null
+			if (!session) return null
+			const link = session.Answers_key_land()?.val()
+			if (!link) return null
+			const land = this.$.$giper_baza_glob.Land(new $giper_baza_link(link))
+			const raw = land.Data($bog_blitz_answers_key).Data()?.val()
+			if (!raw) return null
+			try { return JSON.parse(raw) as { type: string; correct: string }[] }
+			catch { return null }
 		}
 
-		is_text_answer_correct(answer: string) {
-			const question = this.current_question() as $bog_blitz_question | null
-			if (!question) return false
-			const correct_text = question.Correct_text()?.val() ?? ''
-			if (!correct_text) return false
-			const variants = correct_text.split(',').map(v => v.trim().toLowerCase())
-			return variants.includes(answer.trim().toLowerCase())
+		current_answer_key() {
+			const keys = this.answers_key_data()
+			if (!keys) return null
+			const index = this.current_question_index()
+			return keys[index] ?? null
+		}
+
+		player_answers_data(player: $bog_blitz_player) {
+			const link = player.Answer_land()?.val()
+			if (!link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers)
 		}
 
 		calculate_scores() {
 			const quiz = this.quiz_data() as $bog_blitz_quiz | null
 			if (!quiz) return
+			const key = this.current_answer_key()
+			if (!key) return
 
-			const is_text = this.question_type() === 'text_input'
-			const correct_keys = is_text ? new Set<string>() : this.correct_answer_keys()
 			const points_base = quiz.Points_base()!.val()!
 			const time_multiplier = quiz.Time_multiplier()!.val()!
 			const answer_duration = this.duration()
 			const round_start = this.round_start()
 
+			// Publish correct answer for reveal
+			const session = this.session() as $bog_blitz_session | null
+			session?.Reveal_correct('auto')?.val(key.correct)
+
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return
 			const keys = dict.keys() ?? []
 
-			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
-				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
+			for (const k of keys) {
+				if ($bog_blitz_session_fields.has(String(k))) continue
+				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
 
-				const answer = player.Answer()?.val() ?? ''
-				const answer_time = player.Answer_time()?.val() ?? 0
+				const pa = this.player_answers_data(player)
+				const answer = pa?.Answer()?.val() ?? ''
+				const answer_time = pa?.Answer_time()?.val() ?? 0
 				const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration
 				const time_ratio = Math.max(0, 1 - elapsed / answer_duration)
 				const base = points_base * (1 + time_ratio * time_multiplier)
 
 				let is_correct: boolean
-				if (is_text) {
-					is_correct = this.is_text_answer_correct(answer)
+				if (key.type === 'text_input') {
+					const variants = key.correct.split(',').map((v: string) => v.trim().toLowerCase())
+					is_correct = variants.includes(answer.trim().toLowerCase())
 				} else {
-					const answer_keys = new Set(answer.split(',').filter(Boolean))
-					is_correct = correct_keys.size === answer_keys.size &&
-						[...correct_keys].every(k => answer_keys.has(k))
+					const correct_set = new Set(key.correct.split(',').filter(Boolean))
+					const answer_set = new Set(answer.split(',').filter(Boolean))
+					is_correct = correct_set.size === answer_set.size &&
+						[...correct_set].every(k => answer_set.has(k))
 				}
 
 				const points = is_correct ? base : -base
@@ -550,12 +563,17 @@ namespace $.$$ {
 			if (!dict) return
 			const keys = dict.keys() ?? []
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
-				player.Answer('auto')?.val('')
-				player.Answer_time('auto')?.val(0)
+				const pa = this.player_answers_data(player)
+				if (!pa) continue
+				pa.Answer('auto')?.val('')
+				pa.Answer_time('auto')?.val(0)
 			}
+			// Clear reveal data
+			const session = this.session() as $bog_blitz_session | null
+			session?.Reveal_correct('auto')?.val('')
 		}
 	}
 }
