@@ -20547,7 +20547,7 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
-        tools(): ($mol_view | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
+        tools(): ($mol_view | $.$mol_paragraph | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
         screen_body(): any[];
         screen(next?: string): string;
     }
