@@ -304,6 +304,7 @@ $bog_blitz_lobby_host $mol_page
 	counter_string \
 	land_id \
 	quiz_title \
+	session null
 	quiz_data null
 	body /
 		<= Qr $bog_qr
@@ -481,11 +482,13 @@ $bog_blitz_lobby_game_option $mol_button_major
 
 $bog_blitz_lobby_game $mol_view
 	land_id \
+	session null
 	quiz_data null
 	game_state \
 	current_question null
 	current_question_text \
 	my_player null
+	my_answers null
 	is_host false
 	paused_at 0
 	manual_mode false
@@ -578,7 +581,7 @@ $bog_blitz_lobby_game $mol_view
 		click? <=> option_click*? null
 
 $bog_blitz_lobby_reactions $mol_view
-	my_player null
+	my_answers null
 	players_dict null
 	is_host false
 	Fly $mol_view
@@ -635,6 +638,7 @@ $bog_blitz_lobby $mol_page
 		counter_string <= counter_string \
 		land_id <= land_id
 		quiz_title <= quiz_title
+		session <= session null
 		quiz_data <= quiz_data null
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
@@ -662,11 +666,13 @@ $bog_blitz_lobby $mol_page
 				click? <=> go_admin? null
 	Game_screen $bog_blitz_lobby_game
 		land_id <= land_id
+		session <= session null
 		quiz_data <= quiz_data null
 		game_state <= game_state \
 		current_question <= current_question null
 		current_question_text <= current_question_text \
 		my_player <= my_player null
+		my_answers <= my_answers null
 		is_host <= is_host false
 		paused_at <= paused_at 0
 		manual_mode <= manual_mode false
@@ -677,7 +683,7 @@ $bog_blitz_lobby $mol_page
 		players_dict <= players_dict null
 		my_lord_str <= my_lord_str
 	Reactions $bog_blitz_lobby_reactions
-		my_player <= my_player null
+		my_answers <= my_answers null
 		players_dict <= players_dict null
 		is_host <= is_host false
 	body <= lobby_content /
@@ -1891,7 +1897,7 @@ $mol_switch $mol_check_list
 	value? \
 
 $bog_blitz $mol_page
-	title @ \Giper Blitz Quiz
+	title @ \Blitz Quiz
 	pages *
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
