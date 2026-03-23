@@ -24,6 +24,13 @@ namespace $.$$ {
 			},
 		},
 
+		Version: {
+			opacity: 0.3,
+			font: {
+				size: '.75rem',
+			},
+		},
+
 		Powered: {
 			opacity: 0.5,
 			font: {
