@@ -59,9 +59,8 @@ namespace $.$$ {
 		is_game_land() {
 			const land = this.current_quiz_land()
 			if (!land) return false
-			const quiz = land.Data($bog_blitz_quiz)
-			const keys = quiz.keys() ?? []
-			return Array.from(keys).some(k => !$bog_blitz_quiz_fields.has(String(k)))
+			const session = land.Data($bog_blitz_session)
+			return !!session.Quiz_link()?.val()
 		}
 
 		@$mol_mem
@@ -272,10 +271,16 @@ namespace $.$$ {
 		start_quiz(key: string) {
 			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
-			const game_land = quiz.land().fork([[null, $giper_baza_rank_post('just')]])
+
+			const session_land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_post('just')],
+			])
+
+			const session = session_land.Data($bog_blitz_session)
+			session.Quiz_link('auto')?.val(quiz.land().link().str)
 
 			const Players_dict = $giper_baza_dict_to($bog_blitz_player)
-			const dict = game_land.Data(Players_dict)
+			const dict = session_land.Data(Players_dict)
 			const lord = this.$.$giper_baza_auth.current().pass().lord().str
 			const player = dict.key(lord, 'auto')
 			if (player) {
@@ -283,7 +288,7 @@ namespace $.$$ {
 			}
 
 			this.$.$mol_state_arg.value('quiz', null)
-			this.$.$mol_state_arg.value('land', game_land.link().str)
+			this.$.$mol_state_arg.value('land', session_land.link().str)
 			this.$.$mol_state_arg.value('screen', 'lobby')
 		}
 

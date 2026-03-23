@@ -47,7 +47,7 @@ namespace $.$$ {
 			if (!field) return 0
 			let total = 0
 			for (const k of keys) {
-				if ($bog_blitz_quiz_fields.has(String(k))) continue
+				if ($bog_blitz_session_fields.has(String(k))) continue
 				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue

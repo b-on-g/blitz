@@ -11,11 +11,11 @@ namespace $.$$ {
 		@$mol_mem
 		start(e?: any) {
 			if (e) {
-				const quiz = this.quiz_data() as $bog_blitz_quiz | null
-				if (!quiz) return
-				quiz.Current_question('auto')?.val(0)
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('reading')
+				const session = this.session() as $bog_blitz_session | null
+				if (!session) return
+				session.Current_question('auto')?.val(0)
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('reading')
 			}
 			return null
 		}

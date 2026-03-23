@@ -60,7 +60,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 			const scores: { lord: string; score: number }[] = []
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
 				scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 })
@@ -77,7 +77,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 			let count = 0
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
 				count++
@@ -145,25 +145,25 @@ namespace $.$$ {
 		@$mol_mem
 		pause_click(next?: Event) {
 			if (next !== undefined) {
-				const quiz = this.quiz_data() as $bog_blitz_quiz | null
-				if (!quiz) return
-				quiz.Paused_at('auto')?.val(Date.now())
+				const session = this.session() as $bog_blitz_session | null
+				if (!session) return
+				session.Paused_at('auto')?.val(Date.now())
 			}
 		}
 
 		@$mol_mem
 		resume_click(next?: Event) {
 			if (next !== undefined) {
-				const quiz = this.quiz_data() as $bog_blitz_quiz | null
-				if (!quiz) return
+				const session = this.session() as $bog_blitz_session | null
+				if (!session) return
 				const paused_at = this.paused_at()
 				if (!paused_at) return
 				const pause_duration = Date.now() - paused_at
 				const old_start = this.round_start()
 				if (old_start) {
-					quiz.Round_start('auto')?.val(old_start + pause_duration)
+					session.Round_start('auto')?.val(old_start + pause_duration)
 				}
-				quiz.Paused_at('auto')?.val(0)
+				session.Paused_at('auto')?.val(0)
 			}
 		}
 
@@ -431,33 +431,33 @@ namespace $.$$ {
 
 		@$mol_action
 		advance_state() {
-			const quiz = this.quiz_data() as $bog_blitz_quiz | null
-			if (!quiz) return
+			const session = this.session() as $bog_blitz_session | null
+			if (!session) return
 
 			const state = this.game_state()
 			const index = this.current_question_index()
 			const total = this.total_questions()
 
 			if (state === 'reading') {
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('answering')
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('answering')
 			} else if (state === 'answering') {
 				this.calculate_scores()
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('reveal')
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('reveal')
 			} else if (state === 'reveal') {
 				if (index + 1 >= total) {
-					quiz.Round_start('auto')?.val(0)
-					quiz.Game_state('auto')?.val('final')
+					session.Round_start('auto')?.val(0)
+					session.Game_state('auto')?.val('final')
 				} else {
-					quiz.Round_start('auto')?.val(Date.now())
-					quiz.Game_state('auto')?.val('leaderboard')
+					session.Round_start('auto')?.val(Date.now())
+					session.Game_state('auto')?.val('leaderboard')
 				}
 			} else if (state === 'leaderboard') {
 				this.reset_answers()
-				quiz.Current_question('auto')?.val(index + 1)
-				quiz.Round_start('auto')?.val(Date.now())
-				quiz.Game_state('auto')?.val('reading')
+				session.Current_question('auto')?.val(index + 1)
+				session.Round_start('auto')?.val(Date.now())
+				session.Game_state('auto')?.val('reading')
 			}
 		}
 
@@ -519,7 +519,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
@@ -550,7 +550,7 @@ namespace $.$$ {
 			if (!dict) return
 			const keys = dict.keys() ?? []
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				player.Answer('auto')?.val('')

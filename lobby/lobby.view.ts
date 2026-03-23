@@ -18,10 +18,19 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		quiz_data() {
+		session() {
 			const land = this.land()
 			if (!land) return null
-			return land.Data($bog_blitz_quiz)
+			return land.Data($bog_blitz_session)
+		}
+
+		@$mol_mem
+		quiz_data() {
+			const session = this.session()
+			if (!session) return null
+			const quiz_link = session.Quiz_link()?.val()
+			if (!quiz_link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(quiz_link)).Data($bog_blitz_quiz)
 		}
 
 		@$mol_mem
@@ -146,19 +155,20 @@ namespace $.$$ {
 			const raw = this.players_dict()?.keys() ?? []
 			return Array.from(raw)
 				.map(k => String(k))
-				.filter(k => !$bog_blitz_quiz_fields.has(k))
+				.filter(k => !$bog_blitz_session_fields.has(k))
 		}
 
 		@$mol_mem
 		game_state() {
-			return this.quiz_data()?.Game_state()?.val() ?? ''
+			return this.session()?.Game_state()?.val() ?? ''
 		}
 
 		@$mol_mem
 		current_question() {
 			const quiz = this.quiz_data()
 			if (!quiz) return null
-			const index = quiz.Current_question()?.val() ?? 0
+			const session = this.session()
+			const index = session?.Current_question()?.val() ?? 0
 			const questions = quiz.Questions()?.remote_list() ?? []
 			return (questions[index] as $bog_blitz_question | undefined) ?? null
 		}
@@ -170,7 +180,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		paused_at() {
-			return this.quiz_data()?.Paused_at()?.val() ?? 0
+			return this.session()?.Paused_at()?.val() ?? 0
 		}
 
 		@$mol_mem
@@ -180,7 +190,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		round_start() {
-			return this.quiz_data()?.Round_start()?.val() ?? 0
+			return this.session()?.Round_start()?.val() ?? 0
 		}
 
 		@$mol_mem
@@ -204,7 +214,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		current_question_index() {
-			return this.quiz_data()?.Current_question()?.val() ?? 0
+			return this.session()?.Current_question()?.val() ?? 0
 		}
 
 		@$mol_mem

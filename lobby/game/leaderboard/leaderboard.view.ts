@@ -16,7 +16,7 @@ namespace $.$$ {
 			const keys = dict.keys() ?? []
 			const players: { key: string; name: string; score: number }[] = []
 			for (const key of keys) {
-				if ($bog_blitz_quiz_fields.has(String(key))) continue
+				if ($bog_blitz_session_fields.has(String(key))) continue
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
