@@ -50,6 +50,15 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		my_answers() {
+			const player = this.my_player()
+			if (!player) return null
+			const link = player.Answer_land()?.val()
+			if (!link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers)
+		}
+
+		@$mol_mem
 		players_dict() {
 			const land = this.land()
 			if (!land) return null
@@ -80,6 +89,12 @@ namespace $.$$ {
 				const player = this.my_player_create()
 				if (player) {
 					const profile = this.profile_data()
+
+					// Create player's own answer land
+					const answer_land = this.$.$giper_baza_glob.land_grab([
+						[null, $giper_baza_rank_read],
+					])
+					player.Answer_land('auto')?.val(answer_land.link().str)
 
 					const join_name = this.my_player_name()
 					const profile_name = profile.Name()?.val() ?? ''

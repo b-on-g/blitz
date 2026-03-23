@@ -19,12 +19,12 @@ namespace $.$$ {
 	export class $bog_blitz_lobby_reactions extends $.$bog_blitz_lobby_reactions {
 
 		react(key: string) {
-			const player = this.my_player() as $bog_blitz_player | null
-			if (!player) return
+			const answers = this.my_answers() as $bog_blitz_player_answers | null
+			if (!answers) return
 			const field = reaction_fields[key]
 			if (!field) return
-			const prev = player[field]()?.val() ?? 0
-			player[field]('auto')?.val(prev + 1)
+			const prev = answers[field]()?.val() ?? 0
+			answers[field]('auto')?.val(prev + 1)
 			this.spawn_fly(key)
 		}
 
@@ -39,6 +39,12 @@ namespace $.$$ {
 		@$mol_mem
 		react_poop(next?: Event) { if (next !== undefined) this.react('poop') }
 
+		player_answers_data(player: $bog_blitz_player) {
+			const link = player.Answer_land()?.val()
+			if (!link) return null
+			return this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers)
+		}
+
 		total_count(key: string) {
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return 0
@@ -51,7 +57,9 @@ namespace $.$$ {
 				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
-				total += player[field]()?.val() ?? 0
+				const pa = this.player_answers_data(player)
+				if (!pa) continue
+				total += pa[field]()?.val() ?? 0
 			}
 			return total
 		}

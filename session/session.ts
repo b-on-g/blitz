@@ -5,6 +5,8 @@ namespace $.$$ {
 		Current_question: $giper_baza_atom_real,
 		Round_start: $giper_baza_atom_real,
 		Paused_at: $giper_baza_atom_real,
+		Answers_key_land: $giper_baza_atom_text,
+		Reveal_correct: $giper_baza_atom_text,
 	}) {}
 
 	export const $bog_blitz_session_fields = new Set([
@@ -13,5 +15,12 @@ namespace $.$$ {
 		'Current_question',
 		'Round_start',
 		'Paused_at',
+		'Answers_key_land',
+		'Reveal_correct',
 	])
+
+	/** Зашифрованный ленд — только хост читает. JSON с правильными ответами */
+	export class $bog_blitz_answers_key extends $giper_baza_dict.with({
+		Data: $giper_baza_atom_text,
+	}) {}
 }

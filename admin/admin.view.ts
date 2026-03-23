@@ -272,12 +272,38 @@ namespace $.$$ {
 			const quiz = this.quiz_by_key(key)
 			if (!quiz) return
 
+			// Session land — все могут писать (игроки регистрируются)
 			const session_land = this.$.$giper_baza_glob.land_grab([
 				[null, $giper_baza_rank_post('just')],
 			])
 
+			// Encrypted land — только хост читает правильные ответы
+			const key_land = this.$.$giper_baza_glob.land_grab([
+				[null, $giper_baza_rank_deny],
+			])
+			const answers_key = key_land.Data($bog_blitz_answers_key)
+			const questions = quiz.Questions()?.remote_list() ?? []
+			const keys: { type: string; correct: string }[] = []
+			for (const q of questions) {
+				const type = q.Type()?.val() ?? 'choice'
+				if (type === 'text_input') {
+					keys.push({ type, correct: q.Correct_text()?.val() ?? '' })
+				} else {
+					const options = q.Options()?.remote_list() ?? []
+					const indices: number[] = []
+					for (let i = 0; i < options.length; i++) {
+						if ((options[i] as $bog_blitz_question_option)?.Is_correct()?.val()) {
+							indices.push(i)
+						}
+					}
+					keys.push({ type, correct: indices.join(',') })
+				}
+			}
+			answers_key.Data('auto')?.val(JSON.stringify(keys))
+
 			const session = session_land.Data($bog_blitz_session)
 			session.Quiz_link('auto')?.val(quiz.land().link().str)
+			session.Answers_key_land('auto')?.val(key_land.link().str)
 
 			const Players_dict = $giper_baza_dict_to($bog_blitz_player)
 			const dict = session_land.Data(Players_dict)

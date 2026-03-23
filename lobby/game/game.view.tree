@@ -6,6 +6,7 @@ $bog_blitz_lobby_game $mol_view
 	current_question null
 	current_question_text \
 	my_player null
+	my_answers null
 	is_host false
 	paused_at 0
 	manual_mode false

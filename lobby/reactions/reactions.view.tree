@@ -1,5 +1,5 @@
 $bog_blitz_lobby_reactions $mol_view
-	my_player null
+	my_answers null
 	players_dict null
 	is_host false
 	Fly $mol_view
