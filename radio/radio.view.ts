@@ -27,7 +27,16 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		volume_text() {
+		volume_input(next?: string): string {
+			if (next !== undefined) {
+				const num = parseInt(next, 10)
+				if (!isNaN(num)) {
+					const vol = Math.max(0, Math.min(100, num))
+					this.volume(vol)
+					if (this.audio) this.audio.volume = vol / 100
+				}
+				return next
+			}
 			const playing = this.current_station()
 			const vol = this.volume()
 			if (!playing) return `🔇 ${vol}%`
