@@ -16392,6 +16392,7 @@ declare namespace $.$$ {
         my_player_create(): $bog_blitz_player | null;
         profile_data(): $bog_blitz_profile;
         join(e?: any): null;
+        sync_profile(player: $bog_blitz_player, join_name: string, files?: readonly File[]): void;
         profile_avatar_uri(): string;
         my_player_name(next?: string): string;
         profile_name(): string;

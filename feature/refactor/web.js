@@ -30854,13 +30854,9 @@ var $;
                 if (e) {
                     const player = this.my_player_create();
                     if (player) {
-                        const profile = this.profile_data();
                         const join_name = this.my_player_name();
-                        const profile_name = profile.Name()?.val() ?? '';
-                        const name = join_name || profile_name || '';
-                        player.Name('auto')?.val(name);
                         if (join_name) {
-                            profile.Name('auto')?.val(join_name);
+                            player.Name('auto')?.val(join_name);
                         }
                         const files = this.my_avatar_files();
                         if (files?.length) {
@@ -30869,25 +30865,39 @@ var $;
                                 store.blob(files[0]);
                                 player.Avatar(null).remote(store);
                             }
-                            const profile_store = profile.Avatar(null).ensure(null);
-                            if (profile_store) {
-                                profile_store.blob(files[0]);
-                                profile.Avatar(null).remote(profile_store);
-                            }
-                        }
-                        else {
-                            const profile_avatar = profile.Avatar()?.remote();
-                            if (profile_avatar) {
-                                player.Avatar(null).remote(profile_avatar);
-                            }
                         }
                         const answer_land = this.$.$giper_baza_glob.land_grab([
                             [null, $giper_baza_rank_read],
                         ]);
                         player.Answer_land('auto')?.val(answer_land.link().str);
+                        this.sync_profile(player, join_name, files);
                     }
                 }
                 return null;
+            }
+            sync_profile(player, join_name, files) {
+                const profile = this.profile_data();
+                if (!join_name) {
+                    const profile_name = profile.Name()?.val() ?? '';
+                    if (profile_name)
+                        player.Name('auto')?.val(profile_name);
+                }
+                else {
+                    profile.Name('auto')?.val(join_name);
+                }
+                if (files?.length) {
+                    const profile_store = profile.Avatar(null).ensure(null);
+                    if (profile_store) {
+                        profile_store.blob(files[0]);
+                        profile.Avatar(null).remote(profile_store);
+                    }
+                }
+                else {
+                    const profile_avatar = profile.Avatar()?.remote();
+                    if (profile_avatar) {
+                        player.Avatar(null).remote(profile_avatar);
+                    }
+                }
             }
             profile_avatar_uri() {
                 const profile = this.profile_data();
