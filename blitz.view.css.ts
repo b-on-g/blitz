@@ -22,12 +22,18 @@ namespace $.$$ {
 			justify: {
 				content: 'flex-end',
 			},
+			align: {
+				items: 'center',
+			},
 		},
 
 		Version: {
 			opacity: 0.3,
 			font: {
 				size: '.75rem',
+			},
+			margin: {
+				right: '.5rem',
 			},
 		},
 
