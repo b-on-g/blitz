@@ -296,5 +296,137 @@ namespace $.$$ {
 			$mol_assert_equal(p2.Score()!.val(), 150)
 		},
 
+		async 'Player name writable without profile dependency'($) {
+			const land = $giper_baza_land.make({ $ })
+			const dict = land.Data(Players_dict)
+
+			// Simulate join: create player and write name immediately
+			const player = dict.key('new_player', null)!
+			const join_name = 'TestUser'
+
+			// Name must be writable directly — no profile/home land needed
+			player.Name(null)!.val(join_name)
+			$mol_assert_equal(player.Name()!.val(), 'TestUser')
+
+			// Avatar file link also writable without external deps
+			player.Answer_land(null)!.val('some_answer_land')
+			$mol_assert_equal(player.Answer_land()!.val(), 'some_answer_land')
+		},
+
+		async 'Player answers live in separate land from session'($) {
+			const session_land = $giper_baza_land.make({ $ })
+			const answer_land = $giper_baza_land.make({ $ })
+
+			// Player registered in session land
+			const dict = session_land.Data(Players_dict)
+			const player = dict.key('player_lord', null)!
+			player.Name(null)!.val('Alice')
+			player.Answer_land(null)!.val(answer_land.link().str)
+
+			// Answers written to player's own land
+			const answers = answer_land.Data($bog_blitz_player_answers)
+			answers.Answer(null)!.val('1,3')
+			answers.Answer_time(null)!.val(5000)
+			answers.React_fire(null)!.val(2)
+
+			// Session land player has no answer data — it's in the separate land
+			$mol_assert_equal(player.Name()!.val(), 'Alice')
+			$mol_assert_equal(player.Answer_land()!.val(), answer_land.link().str)
+
+			// Answers readable from the answer land
+			$mol_assert_equal(answers.Answer()!.val(), '1,3')
+			$mol_assert_equal(answers.React_fire()!.val(), 2)
+		},
+
+		async 'Multi_correct published to session, not read from encrypted land'($) {
+			const session_land = $giper_baza_land.make({ $ })
+			const key_land = $giper_baza_land.make({ $ })
+
+			// Host writes answer keys to encrypted land
+			const keys_data = [
+				{ type: 'choice', correct: '0,2' },
+				{ type: 'choice', correct: '1' },
+			]
+			key_land.Data($bog_blitz_answers_key).Data(null)!.val(JSON.stringify(keys_data))
+
+			const session = session_land.Data($bog_blitz_session)
+			session.Answers_key_land(null)!.val(key_land.link().str)
+
+			// Host publishes Multi_correct for question 0 (has 2 correct)
+			const q0 = keys_data[0]
+			const multi0 = q0.type !== 'text_input' && q0.correct.split(',').length >= 2
+			session.Multi_correct(null)!.val(multi0)
+			$mol_assert_equal(session.Multi_correct()!.val(), true)
+
+			// Host publishes Multi_correct for question 1 (single correct)
+			const q1 = keys_data[1]
+			const multi1 = q1.type !== 'text_input' && q1.correct.split(',').length >= 2
+			session.Multi_correct(null)!.val(multi1)
+			$mol_assert_equal(session.Multi_correct()!.val(), false)
+		},
+
+		async 'Reveal correct published to session from encrypted key'($) {
+			const session_land = $giper_baza_land.make({ $ })
+			const key_land = $giper_baza_land.make({ $ })
+
+			const keys_data = [
+				{ type: 'choice', correct: '1,3' },
+				{ type: 'text_input', correct: 'Paris, paris' },
+			]
+			key_land.Data($bog_blitz_answers_key).Data(null)!.val(JSON.stringify(keys_data))
+
+			const session = session_land.Data($bog_blitz_session)
+
+			// During reveal, host reads from encrypted land and publishes to session
+			const parsed = JSON.parse(key_land.Data($bog_blitz_answers_key).Data()!.val()!)
+
+			// Question 0: choice
+			session.Reveal_correct(null)!.val(parsed[0].correct)
+			$mol_assert_equal(session.Reveal_correct()!.val(), '1,3')
+
+			// Players can check their answer against revealed correct
+			const my_answer = '1,3'
+			const correct_set = new Set(session.Reveal_correct()!.val()!.split(','))
+			const answer_set = new Set(my_answer.split(','))
+			const is_correct = correct_set.size === answer_set.size &&
+				[...correct_set].every(k => answer_set.has(k))
+			$mol_assert_equal(is_correct, true)
+
+			// Question 1: text
+			session.Reveal_correct(null)!.val(parsed[1].correct)
+			$mol_assert_equal(session.Reveal_correct()!.val(), 'Paris, paris')
+		},
+
+		async 'Score written by host to session land player'($) {
+			const session_land = $giper_baza_land.make({ $ })
+			const answer_land = $giper_baza_land.make({ $ })
+
+			const dict = session_land.Data(Players_dict)
+			const player = dict.key('player_1', null)!
+			player.Name(null)!.val('Alice')
+			player.Score(null)!.val(0)
+			player.Answer_land(null)!.val(answer_land.link().str)
+
+			// Player writes answer to own land
+			const answers = answer_land.Data($bog_blitz_player_answers)
+			answers.Answer(null)!.val('0,2')
+			answers.Answer_time(null)!.val(3000)
+
+			// Host reads answer from player's land and calculates score
+			const answer = answers.Answer()!.val()!
+			const correct = '0,2'
+			const correct_set = new Set(correct.split(','))
+			const answer_set = new Set(answer.split(','))
+			const is_correct = correct_set.size === answer_set.size &&
+				[...correct_set].every(k => answer_set.has(k))
+
+			const points = is_correct ? 175 : -175
+			const prev_score = player.Score()!.val()!
+			player.Score(null)!.val(prev_score + points)
+
+			// Score written to session land, readable by everyone
+			$mol_assert_equal(player.Score()!.val(), 175)
+		},
+
 	})
 }
