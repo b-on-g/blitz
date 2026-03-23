@@ -7091,7 +7091,6 @@ var $;
                 return this.Player_icon(key);
             }
             player_avatar_content(key) {
-                return null;
                 if (key === this.my_lord_str()) {
                     return this.Player_avatar_button(key);
                 }
