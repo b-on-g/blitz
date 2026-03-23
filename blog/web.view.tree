@@ -2979,8 +2979,8 @@ $bog_blitz_radio $mol_pop
 			sub <= menu_content /
 				<= Volume_row $mol_view
 					sub /
-						<= Volume_label $mol_paragraph
-							title <= volume_text \
+						<= Volume_label $mol_string_button
+							value? <=> volume_input? \
 						<= Volume_up $mol_button_minor
 							title \+
 							click? <=> volume_up?event null
@@ -3111,6 +3111,8 @@ $bog_blitz $mol_page
 				<= Baza_link $mol_link
 					uri \https://t.me/mol_news/226
 					title \Giper Baza
+		<= Version $mol_paragraph
+			title @ \Version: 1.0
 		<= Sources $mol_link_source
 			uri \https://github.com/b-on-g/blitz
 		<= Radio $bog_blitz_radio

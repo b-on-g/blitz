@@ -28869,12 +28869,13 @@ var $;
 			(obj.sub) = () => ([(this.Icon())]);
 			return obj;
 		}
-		volume_text(){
+		volume_input(next){
+			if(next !== undefined) return next;
 			return "";
 		}
 		Volume_label(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.volume_text()));
+			const obj = new this.$.$mol_string_button();
+			(obj.value) = (next) => ((this.volume_input(next)));
 			return obj;
 		}
 		volume_up(next){
@@ -28954,6 +28955,7 @@ var $;
 	($mol_mem(($.$bog_blitz_radio.prototype), "menu_showed"));
 	($mol_mem(($.$bog_blitz_radio.prototype), "Icon"));
 	($mol_mem(($.$bog_blitz_radio.prototype), "Toggle"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_input"));
 	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_label"));
 	($mol_mem(($.$bog_blitz_radio.prototype), "volume_up"));
 	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_up"));
@@ -28995,7 +28997,17 @@ var $;
                 }
                 return this.$.$mol_state_local.value('bog_blitz_radio_volume') ?? 50;
             }
-            volume_text() {
+            volume_input(next) {
+                if (next !== undefined) {
+                    const num = parseInt(next, 10);
+                    if (!isNaN(num)) {
+                        const vol = Math.max(0, Math.min(100, num));
+                        this.volume(vol);
+                        if (this.audio)
+                            this.audio.volume = vol / 100;
+                    }
+                    return next;
+                }
                 const playing = this.current_station();
                 const vol = this.volume();
                 if (!playing)
@@ -29072,7 +29084,7 @@ var $;
         ], $bog_blitz_radio.prototype, "volume", null);
         __decorate([
             $mol_mem
-        ], $bog_blitz_radio.prototype, "volume_text", null);
+        ], $bog_blitz_radio.prototype, "volume_input", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_radio.prototype, "volume_up", null);
@@ -30177,6 +30189,11 @@ var $;
 			]);
 			return obj;
 		}
+		Version(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Version_title")));
+			return obj;
+		}
 		Sources(){
 			const obj = new this.$.$mol_link_source();
 			(obj.uri) = () => ("https://github.com/b-on-g/blitz");
@@ -30244,6 +30261,7 @@ var $;
 		tools(){
 			return [
 				(this.Powered()), 
+				(this.Version()), 
 				(this.Sources()), 
 				(this.Radio()), 
 				(this.Status()), 
@@ -30277,6 +30295,7 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Powered_and"));
 	($mol_mem(($.$bog_blitz.prototype), "Baza_link"));
 	($mol_mem(($.$bog_blitz.prototype), "Powered"));
+	($mol_mem(($.$bog_blitz.prototype), "Version"));
 	($mol_mem(($.$bog_blitz.prototype), "Sources"));
 	($mol_mem(($.$bog_blitz.prototype), "Radio"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));

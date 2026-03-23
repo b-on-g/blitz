@@ -14091,10 +14091,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_radio_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['volume_text'] >
+	type $mol_string_button__value_bog_blitz_radio_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_input'] >
 		,
-		ReturnType< $mol_paragraph['title'] >
+		ReturnType< $mol_string_button['value'] >
 	>
 	type $mol_button_minor__title_bog_blitz_radio_4 = $mol_type_enforce<
 		string
@@ -14150,8 +14150,8 @@ declare namespace $ {
 		menu_showed( next?: boolean ): boolean
 		Icon( ): $mol_icon_music
 		Toggle( ): $mol_check
-		volume_text( ): string
-		Volume_label( ): $mol_paragraph
+		volume_input( next?: string ): string
+		Volume_label( ): $mol_string_button
 		volume_up( next?: any ): any
 		Volume_up( ): $mol_button_minor
 		volume_down( next?: any ): any
@@ -14177,7 +14177,7 @@ declare namespace $.$$ {
         audio: HTMLAudioElement | null;
         current_station(next?: string): string;
         volume(next?: number): number;
-        volume_text(): string;
+        volume_input(next?: string): string;
         volume_up(next?: Event): void;
         volume_down(next?: Event): void;
         station_keys(): string[];
@@ -14638,62 +14638,67 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link_source__uri_bog_blitz_10 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_link_source__uri_bog_blitz_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_11 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_12 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_12 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_13 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_14 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_15 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_16 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_17 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_18 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_19 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_20 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_21 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_22 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -14711,6 +14716,7 @@ declare namespace $ {
 		Powered_and( ): $mol_paragraph
 		Baza_link( ): $mol_link
 		Powered( ): $mol_view
+		Version( ): $mol_paragraph
 		Sources( ): $mol_link_source
 		Radio( ): $bog_blitz_radio
 		Status( ): $giper_baza_status
