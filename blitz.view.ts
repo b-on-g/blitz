@@ -4,8 +4,16 @@ namespace $.$$ {
 		tools() {
 			const lobby = this.Lobby()
 			const is_host = lobby.is_host()
-			if (is_host) return [this.Powered(), this.Sources(), this.Radio(), this.Status(), this.Theme_toggle()]
-			return [this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()]
+			if (is_host)
+				return [
+					this.Version(),
+					this.Powered(),
+					this.Sources(),
+					this.Radio(),
+					this.Status(),
+					this.Theme_toggle(),
+				]
+			return [this.Version(), this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()]
 		}
 
 		screen_body() {
