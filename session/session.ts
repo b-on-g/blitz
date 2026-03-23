@@ -7,6 +7,7 @@ namespace $.$$ {
 		Paused_at: $giper_baza_atom_real,
 		Answers_key_land: $giper_baza_atom_text,
 		Reveal_correct: $giper_baza_atom_text,
+		Multi_correct: $giper_baza_atom_bool,
 	}) {}
 
 	export const $bog_blitz_session_fields = new Set([
@@ -17,6 +18,7 @@ namespace $.$$ {
 		'Paused_at',
 		'Answers_key_land',
 		'Reveal_correct',
+		'Multi_correct',
 	])
 
 	/** Зашифрованный ленд — только хост читает. JSON с правильными ответами */

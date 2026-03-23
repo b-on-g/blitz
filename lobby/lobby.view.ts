@@ -90,12 +90,6 @@ namespace $.$$ {
 				if (player) {
 					const profile = this.profile_data()
 
-					// Create player's own answer land
-					const answer_land = this.$.$giper_baza_glob.land_grab([
-						[null, $giper_baza_rank_read],
-					])
-					player.Answer_land('auto')?.val(answer_land.link().str)
-
 					const join_name = this.my_player_name()
 					const profile_name = profile.Name()?.val() ?? ''
 					const name = join_name || profile_name || ''
@@ -125,6 +119,12 @@ namespace $.$$ {
 							player.Avatar(null)!.remote(profile_avatar)
 						}
 					}
+
+					// Create answer land last — land_grab may throw Promise (async crypto)
+					const answer_land = this.$.$giper_baza_glob.land_grab([
+						[null, $giper_baza_rank_read],
+					])
+					player.Answer_land('auto')?.val(answer_land.link().str)
 				}
 			}
 			return null

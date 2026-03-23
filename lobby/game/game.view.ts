@@ -206,10 +206,18 @@ namespace $.$$ {
 			return []
 		}
 
+		publish_question_meta(session: $bog_blitz_session, index: number) {
+			const keys = this.answers_key_data()
+			if (!keys) return
+			const key = keys[index]
+			if (!key) return
+			const multi = key.type !== 'text_input' && key.correct.split(',').length >= 2
+			session.Multi_correct('auto')?.val(multi)
+		}
+
 		has_multiple_correct() {
-			const key = this.current_answer_key()
-			if (!key || key.type === 'text_input') return false
-			return key.correct.split(',').length >= 2
+			const session = this.session() as $bog_blitz_session | null
+			return session?.Multi_correct()?.val() ?? false
 		}
 
 		@$mol_mem
@@ -449,6 +457,7 @@ namespace $.$$ {
 			} else if (state === 'leaderboard') {
 				this.reset_answers()
 				session.Current_question('auto')?.val(index + 1)
+				this.publish_question_meta(session, index + 1)
 				session.Round_start('auto')?.val(Date.now())
 				session.Game_state('auto')?.val('reading')
 			}
