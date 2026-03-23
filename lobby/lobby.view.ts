@@ -88,18 +88,13 @@ namespace $.$$ {
 			if (e) {
 				const player = this.my_player_create()
 				if (player) {
-					const profile = this.profile_data()
-
+					// Write name from join form (no async deps)
 					const join_name = this.my_player_name()
-					const profile_name = profile.Name()?.val() ?? ''
-					const name = join_name || profile_name || ''
-					player.Name('auto')?.val(name)
-
-					// Sync name to profile
 					if (join_name) {
-						profile.Name('auto')?.val(join_name)
+						player.Name('auto')?.val(join_name)
 					}
 
+					// Write avatar from join form
 					const files = this.my_avatar_files()
 					if (files?.length) {
 						const store = player.Avatar(null)!.ensure(null)
@@ -107,27 +102,45 @@ namespace $.$$ {
 							store.blob(files[0])
 							player.Avatar(null)!.remote(store)
 						}
-						// Sync avatar to profile
-						const profile_store = profile.Avatar(null)!.ensure(null)
-						if (profile_store) {
-							profile_store.blob(files[0])
-							profile.Avatar(null)!.remote(profile_store)
-						}
-					} else {
-						const profile_avatar = profile.Avatar()?.remote()
-						if (profile_avatar) {
-							player.Avatar(null)!.remote(profile_avatar)
-						}
 					}
 
-					// Create answer land last — land_grab may throw Promise (async crypto)
+					// Create answer land (may throw Promise on first run)
 					const answer_land = this.$.$giper_baza_glob.land_grab([
 						[null, $giper_baza_rank_read],
 					])
 					player.Answer_land('auto')?.val(answer_land.link().str)
+
+					// Sync with profile (may throw Promise — runs after core data is written)
+					this.sync_profile(player, join_name, files)
 				}
 			}
 			return null
+		}
+
+		sync_profile(player: $bog_blitz_player, join_name: string, files?: readonly File[]) {
+			const profile = this.profile_data()
+
+			// Fallback name from profile if join name was empty
+			if (!join_name) {
+				const profile_name = profile.Name()?.val() ?? ''
+				if (profile_name) player.Name('auto')?.val(profile_name)
+			} else {
+				profile.Name('auto')?.val(join_name)
+			}
+
+			// Sync avatar
+			if (files?.length) {
+				const profile_store = profile.Avatar(null)!.ensure(null)
+				if (profile_store) {
+					profile_store.blob(files[0])
+					profile.Avatar(null)!.remote(profile_store)
+				}
+			} else {
+				const profile_avatar = profile.Avatar()?.remote()
+				if (profile_avatar) {
+					player.Avatar(null)!.remote(profile_avatar)
+				}
+			}
 		}
 
 		@$mol_mem
