@@ -6973,9 +6973,9 @@ var $;
                 dict.key('player_lord_1', null).Name(null).val('Alice');
                 const all_keys = Array.from(dict.keys() ?? []).map(k => String(k));
                 const player_keys = all_keys.filter(k => !$bog_blitz_session_fields.has(k));
-                $mol_assert_ok(player_keys.includes('player_lord_1'));
+                $mol_assert_equal(player_keys.includes('player_lord_1'), true);
                 for (const key of player_keys) {
-                    $mol_assert_not($bog_blitz_session_fields.has(key));
+                    $mol_assert_equal($bog_blitz_session_fields.has(key), false);
                 }
             },
             async 'Player entity has Answer_land field'($) {
@@ -7032,9 +7032,9 @@ var $;
                 const slow_ratio = Math.max(0, 1 - slow_elapsed / answer_duration);
                 const fast_score = points_base * (1 + fast_ratio * time_multiplier);
                 const slow_score = points_base * (1 + slow_ratio * time_multiplier);
-                $mol_assert_ok(fast_score > slow_score);
-                $mol_assert_ok(fast_score > points_base);
-                $mol_assert_ok(slow_score > points_base);
+                $mol_assert_equal(fast_score > slow_score, true);
+                $mol_assert_equal(fast_score > points_base, true);
+                $mol_assert_equal(slow_score > points_base, true);
             },
             async 'Score: wrong answer is negative'($) {
                 const points_base = 100;
@@ -7045,8 +7045,8 @@ var $;
                 const base = points_base * (1 + time_ratio * time_multiplier);
                 const correct_points = base;
                 const wrong_points = -base;
-                $mol_assert_ok(correct_points > 0);
-                $mol_assert_ok(wrong_points < 0);
+                $mol_assert_equal(correct_points > 0, true);
+                $mol_assert_equal(wrong_points < 0, true);
                 $mol_assert_equal(correct_points, -wrong_points);
             },
             async 'Choice answer: order does not matter'($) {
@@ -7057,12 +7057,12 @@ var $;
                     return correct_set.size === answer_set.size &&
                         [...correct_set].every(k => answer_set.has(k));
                 }
-                $mol_assert_ok(check('0,2'));
-                $mol_assert_ok(check('2,0'));
-                $mol_assert_not(check('0'));
-                $mol_assert_not(check('0,1'));
-                $mol_assert_not(check('0,1,2'));
-                $mol_assert_not(check(''));
+                $mol_assert_equal(check('0,2'), true);
+                $mol_assert_equal(check('2,0'), true);
+                $mol_assert_equal(check('0'), false);
+                $mol_assert_equal(check('0,1'), false);
+                $mol_assert_equal(check('0,1,2'), false);
+                $mol_assert_equal(check(''), false);
             },
             async 'Text answer: case insensitive with variants'($) {
                 const correct_text = 'Paris, paris, Париж';
@@ -7070,13 +7070,13 @@ var $;
                 function check(answer) {
                     return variants.includes(answer.trim().toLowerCase());
                 }
-                $mol_assert_ok(check('Paris'));
-                $mol_assert_ok(check('paris'));
-                $mol_assert_ok(check('PARIS'));
-                $mol_assert_ok(check('Париж'));
-                $mol_assert_ok(check(' paris '));
-                $mol_assert_not(check('London'));
-                $mol_assert_not(check(''));
+                $mol_assert_equal(check('Paris'), true);
+                $mol_assert_equal(check('paris'), true);
+                $mol_assert_equal(check('PARIS'), true);
+                $mol_assert_equal(check('Париж'), true);
+                $mol_assert_equal(check(' paris '), true);
+                $mol_assert_equal(check('London'), false);
+                $mol_assert_equal(check(''), false);
             },
             async 'Multi_correct flag from answer key'($) {
                 const keys = [
@@ -7087,9 +7087,9 @@ var $;
                 function is_multi(key) {
                     return key.type !== 'text_input' && key.correct.split(',').length >= 2;
                 }
-                $mol_assert_ok(is_multi(keys[0]));
-                $mol_assert_not(is_multi(keys[1]));
-                $mol_assert_not(is_multi(keys[2]));
+                $mol_assert_equal(is_multi(keys[0]), true);
+                $mol_assert_equal(is_multi(keys[1]), false);
+                $mol_assert_equal(is_multi(keys[2]), false);
             },
             async 'Game state transitions stored in session'($) {
                 const land = $giper_baza_land.make({ $ });
@@ -7118,7 +7118,7 @@ var $;
                 session.Paused_at(null).val(0);
                 $mol_assert_equal(session.Paused_at().val(), 0);
                 session.Paused_at(null).val(1500);
-                $mol_assert_ok(session.Paused_at().val() > 0);
+                $mol_assert_equal(session.Paused_at().val() > 0, true);
                 const pause_duration = 500;
                 session.Round_start(null).val(1000 + pause_duration);
                 session.Paused_at(null).val(0);
@@ -7155,10 +7155,10 @@ var $;
                 p2.Name(null).val('Bob');
                 p2.Score(null).val(150);
                 const all_keys = Array.from(dict.keys() ?? []).map(k => String(k));
-                $mol_assert_ok(all_keys.includes('host_lord'));
-                $mol_assert_ok(all_keys.includes('player_1'));
-                $mol_assert_ok(all_keys.includes('player_2'));
-                $mol_assert_ok(host.IsHost().val());
+                $mol_assert_equal(all_keys.includes('host_lord'), true);
+                $mol_assert_equal(all_keys.includes('player_1'), true);
+                $mol_assert_equal(all_keys.includes('player_2'), true);
+                $mol_assert_equal(host.IsHost().val(), true);
                 $mol_assert_equal(p1.Name().val(), 'Alice');
                 $mol_assert_equal(p1.Score().val(), 200);
                 $mol_assert_equal(p2.Name().val(), 'Bob');
