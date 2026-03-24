@@ -36447,16 +36447,6 @@ var $;
                     this.topic().Title('auto').val(next);
                 return this.topic().Title()?.val() ?? '';
             }
-            descr(next) {
-                const content = next !== undefined
-                    ? this.topic().Descr('auto')
-                    : this.topic().Descr();
-                if (!content)
-                    return '';
-                if (next !== undefined)
-                    content.text(next);
-                return content.text();
-            }
             is_owner() {
                 const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
                 return my_lord === OWNER_LORD;
@@ -36469,17 +36459,23 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
-            entry_existing() {
+            _entry_created = null;
+            entry_ensure() {
+                if (this._entry_created)
+                    return this._entry_created;
                 const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
-                return this.entry_list().find(entry => entry.land().link().lord().str === my_lord) ?? null;
-            }
-            entry_create() {
+                const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
+                if (existing) {
+                    this._entry_created = existing;
+                    return existing;
+                }
                 const preset = [
                     [null, $giper_baza_rank_post('late')],
                 ];
                 const land = this.glob().land_grab(preset);
                 const entry = land.Data($bog_feedback_entry);
                 this.topic().Entries('auto').add(land.link());
+                this._entry_created = entry;
                 return entry;
             }
             entry_list() {
@@ -36493,21 +36489,33 @@ var $;
             }
             entry_text(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_existing() ?? this.entry_create();
+                    const entry = this.entry_ensure();
                     entry.Text('auto').text(next);
                     return next;
                 }
-                const entry = this.entry_existing();
-                return entry?.Text()?.text() ?? '';
+                if (!this._entry_created) {
+                    const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
+                    const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
+                    if (!existing)
+                        return '';
+                    this._entry_created = existing;
+                }
+                return this._entry_created?.Text()?.text() ?? '';
             }
             contact(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_existing() ?? this.entry_create();
+                    const entry = this.entry_ensure();
                     entry.Contact('auto').val(next);
                     return next;
                 }
-                const entry = this.entry_existing();
-                return entry?.Contact()?.val() ?? '';
+                if (!this._entry_created) {
+                    const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
+                    const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
+                    if (!existing)
+                        return '';
+                    this._entry_created = existing;
+                }
+                return this._entry_created?.Contact()?.val() ?? '';
             }
             body() {
                 return [
@@ -36536,12 +36544,6 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "prompt", null);
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "entry_existing", null);
-        __decorate([
-            $mol_action
-        ], $bog_feedback_form.prototype, "entry_create", null);
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "entry_list", null);
