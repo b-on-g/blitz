@@ -2,8 +2,8 @@ namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
 
 		feedback_topic() {
-			const home = this.$.$giper_baza_glob.home()
-			return home.land().Data( $bog_feedback ) as $bog_feedback
+			const land = this.$.$giper_baza_glob.Land( new $giper_baza_link( 'tJQkJ0DN_xqvqDmsx' ) )
+			return land.Data( $bog_feedback ) as $bog_feedback
 		}
 
 		@$mol_mem
