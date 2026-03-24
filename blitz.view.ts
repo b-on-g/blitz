@@ -1,14 +1,9 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
+
 		feedback_topic() {
-			const land = this.$.$giper_baza_glob.land_grab( [
-				[ null, $giper_baza_rank_post( 'late' ) ],
-			] )
-			const topic = land.Data( $bog_feedback ) as $bog_feedback
-			if( !topic.Title()?.val() ) {
-				topic.Title( 'auto' )!.val( 'Blitz Quiz Feedback' )
-			}
-			return topic
+			const home = this.$.$giper_baza_glob.home()
+			return home.land().Data( $bog_feedback ) as $bog_feedback
 		}
 
 		@$mol_mem

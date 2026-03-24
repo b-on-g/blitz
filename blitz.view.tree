@@ -6,6 +6,7 @@ $bog_blitz $mol_page
 		profile <= Profile $bog_blitz_profile_page
 		feedback <= Feedback $bog_feedback_form
 			topic <= feedback_topic $bog_feedback
+			Status null
 	nav_options *
 		lobby \Лобби
 		admin \Админ
@@ -25,6 +26,11 @@ $bog_blitz $mol_page
 		bubble_content /
 			<= Mobile_nav 
 	tools /
+		<= Feedback_link $mol_link
+			arg *
+				screen \feedback
+			sub /
+				<= Feedback_icon $mol_icon_message_draw
 		<= Powered $mol_view
 			sub /
 				<= Powered_prefix $mol_paragraph
@@ -41,11 +47,6 @@ $bog_blitz $mol_page
 			title @ \Version: 1.0
 		<= Sources $mol_link_source
 			uri \https://github.com/b-on-g/blitz
-		<= Feedback_link $mol_link
-			arg *
-				screen \feedback
-			sub /
-				<= Feedback_icon $mol_icon_message_draw
 		<= Radio $bog_blitz_radio
 		<= Status $giper_baza_status
 		<= Theme_toggle $bog_theme_toggle
