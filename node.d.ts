@@ -14471,7 +14471,8 @@ declare namespace $.$$ {
         descr(next?: string): string;
         is_owner(): boolean;
         prompt(): string;
-        entry_my(): $bog_feedback_entry;
+        entry_existing(): $bog_feedback_entry | null;
+        entry_create(): $bog_feedback_entry;
         entry_list(): $bog_feedback_entry[];
         entry_text(next?: string): string;
         contact(next?: string): string;

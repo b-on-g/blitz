@@ -29660,12 +29660,11 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
-            entry_my() {
-                const my_pass = this.$.$giper_baza_auth.current().pass();
-                const my_lord = my_pass.lord().str;
-                const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
-                if (existing)
-                    return existing;
+            entry_existing() {
+                const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
+                return this.entry_list().find(entry => entry.land().link().lord().str === my_lord) ?? null;
+            }
+            entry_create() {
                 const preset = [
                     [null, $giper_baza_rank_post('late')],
                 ];
@@ -29684,29 +29683,25 @@ var $;
                 });
             }
             entry_text(next) {
-                const entry = this.entry_my();
-                if (!entry)
-                    return '';
-                const text = next !== undefined
-                    ? entry.Text('auto')
-                    : entry.Text();
-                if (!text)
-                    return '';
-                if (next !== undefined)
-                    text.text(next);
-                return text.text();
+                if (next !== undefined) {
+                    const entry = this.entry_existing() ?? this.entry_create();
+                    entry.Text('auto').text(next);
+                    return next;
+                }
+                const entry = this.entry_existing();
+                return entry?.Text()?.text() ?? '';
             }
             contact(next) {
-                const entry = this.entry_my();
-                if (!entry)
-                    return '';
-                if (next !== undefined)
+                if (next !== undefined) {
+                    const entry = this.entry_existing() ?? this.entry_create();
                     entry.Contact('auto').val(next);
-                return entry.Contact()?.val() ?? '';
+                    return next;
+                }
+                const entry = this.entry_existing();
+                return entry?.Contact()?.val() ?? '';
             }
             body() {
                 return [
-                    ...(this.is_owner() || this.descr()) ? [this.Descr()] : [],
                     this.Prompt(),
                     this.Entry_my(),
                     this.Contact(),
@@ -29734,7 +29729,10 @@ var $;
         ], $bog_feedback_form.prototype, "prompt", null);
         __decorate([
             $mol_mem
-        ], $bog_feedback_form.prototype, "entry_my", null);
+        ], $bog_feedback_form.prototype, "entry_existing", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback_form.prototype, "entry_create", null);
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "entry_list", null);
