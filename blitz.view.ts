@@ -1,11 +1,23 @@
 namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
+		feedback_topic() {
+			const land = this.$.$giper_baza_glob.land_grab( [
+				[ null, $giper_baza_rank_post( 'late' ) ],
+			] )
+			const topic = land.Data( $bog_feedback ) as $bog_feedback
+			if( !topic.Title()?.val() ) {
+				topic.Title( 'auto' )!.val( 'Blitz Quiz Feedback' )
+			}
+			return topic
+		}
+
 		@$mol_mem
 		tools() {
 			const lobby = this.Lobby()
 			const is_host = lobby.is_host()
 			if (is_host)
 				return [
+					this.Feedback_link(),
 					this.Version(),
 					this.Powered(),
 					this.Sources(),
@@ -13,7 +25,7 @@ namespace $.$$ {
 					this.Status(),
 					this.Theme_toggle(),
 				]
-			return [this.Version(), this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()]
+			return [this.Feedback_link(), this.Version(), this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()]
 		}
 
 		screen_body() {
