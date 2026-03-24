@@ -14062,6 +14062,430 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    const $giper_baza_entity_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Title: (auto?: any) => $giper_baza_atom_text | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Title: typeof $giper_baza_atom_text;
+        };
+    };
+    export class $giper_baza_entity extends $giper_baza_entity_base {
+        title(next?: string): string;
+    }
+    export {};
+}
+
+declare namespace $ {
+    let $giper_baza_text_tokens: $mol_regexp<{
+        [x: string]: string;
+        readonly token: string;
+        readonly link: string;
+        readonly emoji: string;
+        readonly 'line-break': string;
+        readonly indents: string;
+        readonly Word: string;
+        readonly word: string;
+        readonly spaces: string;
+        readonly others: string;
+        readonly space: string;
+        readonly win_end: string;
+        readonly mac_end: string;
+    }>;
+}
+
+declare namespace $ {
+    class $giper_baza_text extends $giper_baza_pawn {
+        static tag: keyof typeof $giper_baza_unit_sand_tag;
+        value(next?: string): string;
+        text(next?: string): string;
+        str(next?: string): string;
+        write(next: string, str_from?: number, str_to?: number): this;
+        point_by_offset(offset: number): readonly [head: string, x: number, y: number];
+        offset_by_point([self, offset]: readonly [head: string, x: number, y: number]): readonly [head: string, pos: number];
+        selection(lord: $giper_baza_link, next?: readonly [begin: number, end: number]): readonly [begin: number, end: number];
+    }
+}
+
+declare namespace $ {
+    const $bog_feedback_base: Omit<typeof $giper_baza_entity, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_entity, {
+            readonly Descr: (auto?: any) => $giper_baza_text | null;
+            readonly Trusted: (auto?: any) => $giper_baza_list_str | null;
+            readonly Entries: (auto?: any) => $giper_baza_list_link | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Descr: typeof $giper_baza_text;
+            readonly Trusted: typeof $giper_baza_list_str;
+            readonly Entries: typeof $giper_baza_list_link;
+        };
+    };
+    export class $bog_feedback extends $bog_feedback_base {
+    }
+    const $bog_feedback_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Text: (auto?: any) => $giper_baza_text | null;
+            readonly Contact: (auto?: any) => $giper_baza_atom_text | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Text: typeof $giper_baza_text;
+            readonly Contact: typeof $giper_baza_atom_text;
+        };
+    };
+    export class $bog_feedback_entry extends $bog_feedback_entry_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+
+	export class $mol_icon_sync extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=sync.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_sync_off extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=off.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_avatar__id_giper_baza_status_1 = $mol_type_enforce<
+		ReturnType< $giper_baza_status['master_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_avatar__id_giper_baza_status_2 = $mol_type_enforce<
+		ReturnType< $giper_baza_status['master_link'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_link__uri_giper_baza_status_3 = $mol_type_enforce<
+		ReturnType< $giper_baza_status['master_link'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_giper_baza_status_4 = $mol_type_enforce<
+		ReturnType< $giper_baza_status['link_content'] >
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_link__hint_giper_baza_status_5 = $mol_type_enforce<
+		ReturnType< $giper_baza_status['message'] >
+		,
+		ReturnType< $mol_link['hint'] >
+	>
+	export class $giper_baza_status extends $mol_select {
+		master_id( id: any): string
+		Option_logo( id: any): $mol_avatar
+		master_link( ): string
+		Well( ): $mol_avatar
+		Fail( ): $mol_icon_sync_off
+		link_content( ): readonly(any)[]
+		hint( ): string
+		message( ): ReturnType< $giper_baza_status['hint'] >
+		Link( ): $mol_link
+		minimal_width( ): number
+		minimal_height( ): number
+		Filter( ): any
+		option_content( id: any): readonly(any)[]
+		trigger_content( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=status.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $giper_baza_status extends $.$giper_baza_status {
+        message(): string;
+        link_content(): $mol_icon_sync_off[];
+        options(): string[];
+        master_link(): string;
+        master_id(uri: string): string;
+        option_label(uri: string): string;
+        value(next?: string): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_icon_help extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=help.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_help_circle extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=circle.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_help_circle_outline extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=outline.view.tree.d.ts.map
+declare namespace $ {
+    function $mol_array_lottery<Value>(list: readonly Value[]): Value;
+}
+
+declare namespace $ {
+
+	export class $mol_hint extends $mol_check {
+		dictionary( ): Record<string, any>
+		Icon( ): $mol_icon_help_circle_outline
+		hint_close( ): string
+		hint_open( ): string
+	}
+	
+}
+
+//# sourceMappingURL=hint.view.tree.d.ts.map
+declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
+    class $mol_hint extends $.$mol_hint {
+        keys_all(): string[];
+        keys_hidden(next?: string[]): Set<string>;
+        keys_allowed(): string[];
+        key_picked(): string;
+        title(): any;
+        sub(): any[];
+        hint(): string;
+        checked(next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
+
+	type $mol_view__dom_name_mol_section_1 = $mol_type_enforce<
+		ReturnType< $mol_section['title_dom_name'] >
+		,
+		ReturnType< $mol_view['dom_name'] >
+	>
+	type $mol_view__sub_mol_section_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_mol_section_3 = $mol_type_enforce<
+		ReturnType< $mol_section['tools'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_mol_section_4 = $mol_type_enforce<
+		ReturnType< $mol_section['head'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_list__rows_mol_section_5 = $mol_type_enforce<
+		ReturnType< $mol_section['content'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	export class $mol_section extends $mol_list {
+		title_dom_name( ): string
+		Title( ): $mol_view
+		tools( ): readonly(any)[]
+		Tools( ): $mol_view
+		head( ): readonly(any)[]
+		Head( ): $mol_view
+		content( ): readonly(any)[]
+		Content( ): $mol_list
+		level( ): number
+		rows( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=section.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_section extends $.$mol_section {
+        title_dom_name(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_textarea__hint_bog_feedback_form_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_textarea['hint'] >
+	>
+	type $mol_textarea__value_bog_feedback_form_2 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['descr'] >
+		,
+		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_textarea__enabled_bog_feedback_form_3 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['is_owner'] >
+		,
+		ReturnType< $mol_textarea['enabled'] >
+	>
+	type $mol_text__text_bog_feedback_form_4 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['prompt'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_textarea__hint_bog_feedback_form_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_textarea['hint'] >
+	>
+	type $mol_textarea__value_bog_feedback_form_6 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['entry_text'] >
+		,
+		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_string__hint_bog_feedback_form_7 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_feedback_form_8 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['contact'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_hint__dictionary_bog_feedback_form_9 = $mol_type_enforce<
+		({ 
+			'auto': string,
+		}) 
+		,
+		ReturnType< $mol_hint['dictionary'] >
+	>
+	type $mol_bar__sub_bog_feedback_form_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_bar['sub'] >
+	>
+	type $mol_text__text_bog_feedback_form_11 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['entry_row_text'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_section__title_bog_feedback_form_12 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['entry_row_contact'] >
+		,
+		ReturnType< $mol_section['title'] >
+	>
+	type $mol_section__content_bog_feedback_form_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_section['content'] >
+	>
+	type $mol_section__title_bog_feedback_form_14 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_section['title'] >
+	>
+	type $mol_section__content_bog_feedback_form_15 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['entry_rows'] >
+		,
+		ReturnType< $mol_section['content'] >
+	>
+	type $mol_string_button__value_bog_feedback_form_16 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['title'] >
+		,
+		ReturnType< $mol_string_button['value'] >
+	>
+	type $mol_string_button__hint_bog_feedback_form_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string_button['hint'] >
+	>
+	type $mol_string_button__enabled_bog_feedback_form_18 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['is_owner'] >
+		,
+		ReturnType< $mol_string_button['enabled'] >
+	>
+	export class $bog_feedback_form extends $mol_page {
+		title( next?: string ): string
+		is_owner( ): boolean
+		Status( ): $giper_baza_status
+		Close( ): any
+		descr( next?: string ): string
+		Descr( ): $mol_textarea
+		prompt( ): string
+		Prompt( ): $mol_text
+		entry_text( next?: string ): string
+		Entry_my( ): $mol_textarea
+		contact( next?: string ): string
+		Contact( ): $mol_string
+		Hint_auto( ): $mol_hint
+		Hints( ): $mol_bar
+		entry_row_contact( id: any): string
+		entry_row_text( id: any): string
+		Entry_row_text( id: any): $mol_text
+		Entry_row( id: any): $mol_section
+		entry_rows( ): readonly(any)[]
+		Entries( ): $mol_section
+		topic( ): $bog_feedback
+		Title( ): $mol_string_button
+		tools( ): readonly(any)[]
+		body( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=form.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_feedback_form extends $.$bog_feedback_form {
+        glob(): typeof $giper_baza_glob;
+        title(next?: string): string;
+        descr(next?: string): string;
+        is_owner(): boolean;
+        prompt(): string;
+        entry_my(): $bog_feedback_entry;
+        entry_list(): $bog_feedback_entry[];
+        entry_text(next?: string): string;
+        contact(next?: string): string;
+        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $mol_bar | $.$mol_section)[];
+        entry_rows(): $.$mol_section[];
+        entry_row_text(index: number): string;
+        entry_row_contact(index: number): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
 
 	export class $mol_icon_menu extends $mol_icon {
 		path( ): string
@@ -14070,6 +14494,24 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=menu.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_message extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=message.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_message_draw extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=draw.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_icon_music extends $mol_icon {
@@ -14191,86 +14633,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	export class $mol_icon_sync extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=sync.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_sync_off extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=off.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_avatar__id_giper_baza_status_1 = $mol_type_enforce<
-		ReturnType< $giper_baza_status['master_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_avatar__id_giper_baza_status_2 = $mol_type_enforce<
-		ReturnType< $giper_baza_status['master_link'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_link__uri_giper_baza_status_3 = $mol_type_enforce<
-		ReturnType< $giper_baza_status['master_link'] >
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__sub_giper_baza_status_4 = $mol_type_enforce<
-		ReturnType< $giper_baza_status['link_content'] >
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	type $mol_link__hint_giper_baza_status_5 = $mol_type_enforce<
-		ReturnType< $giper_baza_status['message'] >
-		,
-		ReturnType< $mol_link['hint'] >
-	>
-	export class $giper_baza_status extends $mol_select {
-		master_id( id: any): string
-		Option_logo( id: any): $mol_avatar
-		master_link( ): string
-		Well( ): $mol_avatar
-		Fail( ): $mol_icon_sync_off
-		link_content( ): readonly(any)[]
-		hint( ): string
-		message( ): ReturnType< $giper_baza_status['hint'] >
-		Link( ): $mol_link
-		minimal_width( ): number
-		minimal_height( ): number
-		Filter( ): any
-		option_content( id: any): readonly(any)[]
-		trigger_content( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=status.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $giper_baza_status extends $.$giper_baza_status {
-        message(): string;
-        link_content(): $mol_icon_sync_off[];
-        options(): string[];
-        master_link(): string;
-        master_id(uri: string): string;
-        option_label(uri: string): string;
-        value(next?: string): string;
-    }
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -14631,112 +14993,134 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_check__checked_bog_blitz_1 = $mol_type_enforce<
+	type $bog_feedback_form__topic_bog_blitz_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz['feedback_topic'] >
+		,
+		ReturnType< $bog_feedback_form['topic'] >
+	>
+	type $bog_feedback_form__Status_bog_blitz_2 = $mol_type_enforce<
+		any
+		,
+		ReturnType< $bog_feedback_form['Status'] >
+	>
+	type $mol_check__checked_bog_blitz_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_check['checked'] >
 	>
-	type $mol_check__sub_bog_blitz_2 = $mol_type_enforce<
+	type $mol_check__sub_bog_blitz_4 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_3 = $mol_type_enforce<
-		string
+	type $mol_link__arg_bog_blitz_5 = $mol_type_enforce<
+		({ 
+			'screen': string,
+		}) 
 		,
-		ReturnType< $mol_paragraph['title'] >
+		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__uri_bog_blitz_4 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__title_bog_blitz_5 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_6 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_link__uri_bog_blitz_7 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__title_bog_blitz_8 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_view__sub_bog_blitz_9 = $mol_type_enforce<
+	type $mol_link__sub_bog_blitz_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $mol_link['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_7 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_link__uri_bog_blitz_8 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__title_bog_blitz_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
 	>
 	type $mol_paragraph__title_bog_blitz_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link_source__uri_bog_blitz_11 = $mol_type_enforce<
+	type $mol_link__uri_bog_blitz_11 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__title_bog_blitz_12 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link['title'] >
+	>
+	type $mol_view__sub_bog_blitz_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_14 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_link_source__uri_bog_blitz_15 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_12 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_13 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_17 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_14 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_18 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_15 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_19 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_16 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_17 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_20 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_21 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_25 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_22 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_26 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -14745,10 +15129,14 @@ declare namespace $ {
 		Lobby( ): $bog_blitz_lobby
 		Admin( ): $bog_blitz_admin
 		Profile( ): $bog_blitz_profile_page
+		feedback_topic( ): $bog_feedback
+		Feedback( ): $bog_feedback_form
 		screen( next?: string ): string
 		mobile_menu_showed( next?: boolean ): boolean
 		Mobile_menu_icon( ): $mol_icon_menu
 		Mobile_menu_trigger( ): $mol_check
+		Feedback_icon( ): $mol_icon_message_draw
+		Feedback_link( ): $mol_link
 		Powered_prefix( ): $mol_paragraph
 		Mol_link( ): $mol_link
 		Powered_and( ): $mol_paragraph
@@ -14766,6 +15154,7 @@ declare namespace $ {
 			'lobby': ReturnType< $bog_blitz['Lobby'] >,
 			'admin': ReturnType< $bog_blitz['Admin'] >,
 			'profile': ReturnType< $bog_blitz['Profile'] >,
+			'feedback': ReturnType< $bog_blitz['Feedback'] >,
 		}) 
 		nav_options( ): ({ 
 			'lobby': string,
@@ -14786,7 +15175,8 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
-        tools(): ($mol_view | $.$mol_paragraph | $.$bog_blitz_radio | $.$giper_baza_status | $.$bog_theme_toggle | $mol_link_source)[];
+        feedback_topic(): $bog_feedback;
+        tools(): ($mol_view | $.$mol_paragraph | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
         screen_body(): any[];
         screen(next?: string): string;
     }

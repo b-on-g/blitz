@@ -71,6 +71,8 @@
 	"$giper_bot_Prompt_text_hint": "Спроси что-нибудь...",
 	"$giper_bot_Reset_hint": "Сбросить",
 	"$giper_bot_dialog_title": "🤖 Гипер Бот",
+	"$mol_hint_hint_close": "Скрыть",
+	"$mol_hint_hint_open": "Подсказка",
 	"$mol_lights_toggle_hint": "Переключить освещение",
 	"$mol_link_donate_hint": "Поблагодарить рублём",
 	"$mol_link_source_hint": "Исходные коды",
