@@ -29621,9 +29621,6 @@ var $;
     (function ($$) {
         const OWNER_LORD = 'Q4zRr2UW_0m2uzoRR';
         class $bog_feedback_form extends $.$bog_feedback_form {
-            glob() {
-                return this.$.$giper_baza_glob;
-            }
             title(next) {
                 if (next !== undefined)
                     this.topic().Title('auto').val(next);
@@ -29641,63 +29638,55 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
-            _entry_created = null;
-            entry_ensure() {
-                if (this._entry_created)
-                    return this._entry_created;
-                const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
-                const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
-                if (existing) {
-                    this._entry_created = existing;
-                    return existing;
-                }
-                const preset = [
-                    [null, $giper_baza_rank_post('late')],
-                ];
-                const land = this.glob().land_grab(preset);
-                const entry = land.Data($bog_feedback_entry);
-                this.topic().Entries('auto').add(land.link());
-                this._entry_created = entry;
-                return entry;
+            my_lord() {
+                return this.$.$giper_baza_auth.current().pass().lord().str;
             }
             entry_list() {
                 const links = this.topic().Entries()?.items() ?? [];
                 return links
                     .filter((link) => link !== null)
                     .map(link => {
-                    const land = this.glob().Land(link);
-                    return land.Data($bog_feedback_entry);
+                    return this.topic().land().Pawn($bog_feedback_entry).Head(link);
                 });
+            }
+            _my_entry = null;
+            entry_mine() {
+                if (this._my_entry)
+                    return this._my_entry;
+                const my_lord = this.my_lord();
+                const existing = this.entry_list().find(entry => {
+                    return entry.Contact()?.val() === my_lord
+                        || entry.land().link().lord().str === my_lord;
+                });
+                if (existing) {
+                    this._my_entry = existing;
+                    return existing;
+                }
+                return null;
+            }
+            entry_create() {
+                const land = this.topic().land();
+                const self = land.self_make();
+                const entry = land.Pawn($bog_feedback_entry).Head(self);
+                this.topic().Entries('auto').add(self);
+                this._my_entry = entry;
+                return entry;
             }
             entry_text(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_ensure();
+                    const entry = this.entry_mine() ?? this.entry_create();
                     entry.Text('auto').text(next);
                     return next;
                 }
-                if (!this._entry_created) {
-                    const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
-                    const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
-                    if (!existing)
-                        return '';
-                    this._entry_created = existing;
-                }
-                return this._entry_created?.Text()?.text() ?? '';
+                return this.entry_mine()?.Text()?.text() ?? '';
             }
             contact(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_ensure();
+                    const entry = this.entry_mine() ?? this.entry_create();
                     entry.Contact('auto').val(next);
                     return next;
                 }
-                if (!this._entry_created) {
-                    const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
-                    const existing = this.entry_list().find(entry => entry.land().link().lord().str === my_lord);
-                    if (!existing)
-                        return '';
-                    this._entry_created = existing;
-                }
-                return this._entry_created?.Contact()?.val() ?? '';
+                return this.entry_mine()?.Contact()?.val() ?? '';
             }
             body() {
                 return [
@@ -29712,12 +29701,10 @@ var $;
                 return this.entry_list().map((_, i) => this.Entry_row(i));
             }
             entry_row_text(index) {
-                const entries = this.entry_list();
-                return entries[index]?.Text()?.text() ?? '';
+                return this.entry_list()[index]?.Text()?.text() ?? '';
             }
             entry_row_contact(index) {
-                const entries = this.entry_list();
-                return entries[index]?.Contact()?.val() ?? 'Anonymous';
+                return this.entry_list()[index]?.Contact()?.val() ?? 'Anonymous';
             }
         }
         __decorate([
@@ -29729,6 +29716,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "entry_list", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback_form.prototype, "entry_create", null);
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "body", null);
@@ -31255,7 +31245,7 @@ var $;
     (function ($$) {
         class $bog_blitz extends $.$bog_blitz {
             feedback_topic() {
-                const land = this.$.$giper_baza_glob.Land(new $giper_baza_link('tJQkJ0DN_xqvqDmsx'));
+                const land = this.$.$giper_baza_glob.Land(new $giper_baza_link('nuAHt21o_6EkWk37t'));
                 return land.Data($bog_feedback);
             }
             tools() {

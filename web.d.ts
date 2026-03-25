@@ -20215,13 +20215,14 @@ declare namespace $ {
 //# sourceMappingURL=form.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_feedback_form extends $.$bog_feedback_form {
-        glob(): typeof $giper_baza_glob;
         title(next?: string): string;
         is_owner(): boolean;
         prompt(): string;
-        _entry_created: $bog_feedback_entry | null;
-        entry_ensure(): $bog_feedback_entry;
+        my_lord(): string;
         entry_list(): $bog_feedback_entry[];
+        _my_entry: $bog_feedback_entry | null;
+        entry_mine(): $bog_feedback_entry | null;
+        entry_create(): $bog_feedback_entry;
         entry_text(next?: string): string;
         contact(next?: string): string;
         body(): ($.$mol_string | $.$mol_textarea | $mol_bar | $.$mol_text | $.$mol_section)[];
