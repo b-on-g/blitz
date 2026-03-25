@@ -29225,170 +29225,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$mol_icon_help) = class $mol_icon_help extends ($.$mol_icon) {
-		path(){
-			return "M10,19H13V22H10V19M12,2C17.35,2.22 19.68,7.62 16.5,11.67C15.67,12.67 14.33,13.33 13.67,14.17C13,15 13,16 13,17H10C10,15.33 10,13.92 10.67,12.92C11.33,11.92 12.67,11.33 13.5,10.67C15.92,8.43 15.32,5.26 12,5A3,3 0 0,0 9,8H6A6,6 0 0,1 12,2Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_help_circle) = class $mol_icon_help_circle extends ($.$mol_icon) {
-		path(){
-			return "M15.07,11.25L14.17,12.17C13.45,12.89 13,13.5 13,15H11V14.5C11,13.39 11.45,12.39 12.17,11.67L13.41,10.41C13.78,10.05 14,9.55 14,9C14,7.89 13.1,7 12,7A2,2 0 0,0 10,9H8A4,4 0 0,1 12,5A4,4 0 0,1 16,9C16,9.88 15.64,10.67 15.07,11.25M13,19H11V17H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_icon_help_circle_outline) = class $mol_icon_help_circle_outline extends ($.$mol_icon) {
-		path(){
-			return "M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z";
-		}
-	};
-
-
-;
-"use strict";
-
-;
-	($.$mol_hint) = class $mol_hint extends ($.$mol_check) {
-		dictionary(){
-			return {};
-		}
-		Icon(){
-			const obj = new this.$.$mol_icon_help_circle_outline();
-			return obj;
-		}
-		hint_close(){
-			return (this.$.$mol_locale.text("$mol_hint_hint_close"));
-		}
-		hint_open(){
-			return (this.$.$mol_locale.text("$mol_hint_hint_open"));
-		}
-	};
-	($mol_mem(($.$mol_hint.prototype), "Icon"));
-
-
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_array_lottery(list) {
-        return list[Math.floor(Math.random() * list.length)];
-    }
-    $.$mol_array_lottery = $mol_array_lottery;
-})($ || ($ = {}));
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        $mol_style_define($mol_hint, {
-            color: $mol_theme.shade,
-            flex: {
-                shrink: 1,
-            },
-            align: {
-                items: 'flex-start',
-            },
-            Icon: {
-                color: $mol_theme.control,
-            },
-        });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $mol_hint extends $.$mol_hint {
-            keys_all() {
-                return Object.keys(this.dictionary());
-            }
-            keys_hidden(next) {
-                return new Set(this.$.$mol_state_local.value(`${this}`, next) ?? []);
-            }
-            keys_allowed() {
-                const hidden = this.keys_hidden();
-                return this.keys_all().filter(key => !hidden.has(key));
-            }
-            key_picked() {
-                return $mol_array_lottery(this.keys_allowed());
-            }
-            title() {
-                return this.dictionary()[this.key_picked()] ?? '';
-            }
-            sub() {
-                return this.checked()
-                    ? [this.Icon(), this.title()]
-                    : [this.Icon()];
-            }
-            hint() {
-                return this.checked()
-                    ? this.hint_close()
-                    : this.hint_open();
-            }
-            checked(next) {
-                if (next === undefined)
-                    return this.keys_allowed().length > 0;
-                if (next) {
-                    if (this.keys_allowed().length === 0) {
-                        this.keys_hidden([]);
-                    }
-                }
-                else {
-                    this.keys_hidden([
-                        ...this.keys_hidden(),
-                        this.key_picked(),
-                    ]);
-                }
-                return next;
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "keys_all", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "keys_hidden", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "keys_allowed", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "key_picked", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "title", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "sub", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "hint", null);
-        __decorate([
-            $mol_mem
-        ], $mol_hint.prototype, "checked", null);
-        $$.$mol_hint = $mol_hint;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
 	($.$mol_section) = class $mol_section extends ($.$mol_list) {
 		title_dom_name(){
 			return "h1";
@@ -29478,29 +29314,37 @@ var $;
 			(obj.text) = () => ((this.prompt()));
 			return obj;
 		}
-		entry_text(next){
+		draft_text(next){
 			if(next !== undefined) return next;
 			return "";
 		}
 		Entry_my(){
 			const obj = new this.$.$mol_textarea();
 			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback_form_Entry_my_hint")));
-			(obj.value) = (next) => ((this.entry_text(next)));
+			(obj.value) = (next) => ((this.draft_text(next)));
 			return obj;
 		}
-		contact(next){
+		draft_contact(next){
 			if(next !== undefined) return next;
 			return "";
 		}
-		Contact(){
+		Contact_field(){
 			const obj = new this.$.$mol_string();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback_form_Contact_hint")));
-			(obj.value) = (next) => ((this.contact(next)));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback_form_Contact_field_hint")));
+			(obj.value) = (next) => ((this.draft_contact(next)));
 			return obj;
 		}
-		Hint_auto(){
-			const obj = new this.$.$mol_hint();
-			(obj.dictionary) = () => ({"auto": (this.$.$mol_locale.text("$bog_feedback_form_Hint_auto_dictionary_auto"))});
+		submit_title(){
+			return "";
+		}
+		submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Submit(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.submit_title()));
+			(obj.click) = (next) => ((this.submit(next)));
 			return obj;
 		}
 		entry_row_contact(id){
@@ -29539,19 +29383,20 @@ var $;
 			return [
 				(this.Prompt()), 
 				(this.Entry_my()), 
-				(this.Contact()), 
-				(this.Hint_auto()), 
+				(this.Contact_field()), 
+				(this.Submit()), 
 				(this.Entries())
 			];
 		}
 	};
 	($mol_mem(($.$bog_feedback_form.prototype), "Status"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Prompt"));
-	($mol_mem(($.$bog_feedback_form.prototype), "entry_text"));
+	($mol_mem(($.$bog_feedback_form.prototype), "draft_text"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Entry_my"));
-	($mol_mem(($.$bog_feedback_form.prototype), "contact"));
-	($mol_mem(($.$bog_feedback_form.prototype), "Contact"));
-	($mol_mem(($.$bog_feedback_form.prototype), "Hint_auto"));
+	($mol_mem(($.$bog_feedback_form.prototype), "draft_contact"));
+	($mol_mem(($.$bog_feedback_form.prototype), "Contact_field"));
+	($mol_mem(($.$bog_feedback_form.prototype), "submit"));
+	($mol_mem(($.$bog_feedback_form.prototype), "Submit"));
 	($mol_mem_key(($.$bog_feedback_form.prototype), "Entry_row_text"));
 	($mol_mem_key(($.$bog_feedback_form.prototype), "Entry_row"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Entries"));
@@ -29567,7 +29412,7 @@ var $;
     var $$;
     (function ($$) {
         const LAND_ID = 'TiKq9q8X_9p8WA2PU';
-        const OWNER_LORD = 'Q4zRr2UW_0m2uzoRR';
+        const OWNER_LORDS = ['Q4zRr2UW_0m2uzoRR', 'W9NwdbGh_rw599iGj'];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
             land() {
@@ -29580,7 +29425,7 @@ var $;
                 return this.$.$giper_baza_auth.current().pass().lord().str;
             }
             is_owner() {
-                return this.my_lord() === OWNER_LORD;
+                return OWNER_LORDS.includes(this.my_lord());
             }
             entry_mine() {
                 return this.entries_dict().key(this.my_lord()) ?? null;
@@ -29596,37 +29441,31 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
-            entry_text(next) {
-                if (next !== undefined) {
-                    const entry = this.entry_mine_or_create();
-                    if (entry)
-                        entry.Text('auto').text(next);
-                    return next;
-                }
-                const entry = this.entry_mine();
-                if (!entry)
-                    return '';
-                return entry.Text()?.text() ?? '';
+            has_entry() {
+                return !!this.entry_mine();
             }
-            contact(next) {
-                if (next !== undefined) {
-                    const entry = this.entry_mine_or_create();
-                    if (entry)
-                        entry.Contact('auto').val(next);
-                    return next;
-                }
-                const entry = this.entry_mine();
+            submit_title() {
+                return this.has_entry() ? 'Update feedback' : 'Send feedback';
+            }
+            submit() {
+                const text = this.draft_text();
+                const contact = this.draft_contact();
+                if (!text)
+                    return;
+                const entry = this.entry_mine_or_create();
                 if (!entry)
-                    return '';
-                return entry.Contact()?.val() ?? '';
+                    return;
+                entry.Text('auto').text(text);
+                if (contact)
+                    entry.Contact('auto').val(contact);
             }
             body() {
                 return [
                     this.Status(),
                     this.Prompt(),
                     this.Entry_my(),
-                    this.Contact(),
-                    this.Hint_auto(),
+                    this.Contact_field(),
+                    this.Submit(),
                     ...(this.is_owner() ? [this.Entries()] : []),
                 ];
             }
@@ -29654,6 +29493,9 @@ var $;
         __decorate([
             $mol_action
         ], $bog_feedback_form.prototype, "entry_mine_or_create", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback_form.prototype, "submit", null);
         $$.$bog_feedback_form = $bog_feedback_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -29674,6 +29516,11 @@ var $;
         Entry_my: {
             margin: {
                 bottom: $mol_gap.block,
+            },
+        },
+        Submit: {
+            margin: {
+                top: $mol_gap.block,
             },
         },
     });

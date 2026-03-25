@@ -14194,65 +14194,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_icon_help extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=help.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_help_circle extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=circle.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_help_circle_outline extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=outline.view.tree.d.ts.map
-declare namespace $ {
-    function $mol_array_lottery<Value>(list: readonly Value[]): Value;
-}
-
-declare namespace $ {
-
-	export class $mol_hint extends $mol_check {
-		dictionary( ): Record<string, any>
-		Icon( ): $mol_icon_help_circle_outline
-		hint_close( ): string
-		hint_open( ): string
-	}
-	
-}
-
-//# sourceMappingURL=hint.view.tree.d.ts.map
-declare namespace $.$$ {
-}
-
-declare namespace $.$$ {
-    class $mol_hint extends $.$mol_hint {
-        keys_all(): string[];
-        keys_hidden(next?: string[]): Set<string>;
-        keys_allowed(): string[];
-        key_picked(): string;
-        title(): any;
-        sub(): any[];
-        hint(): string;
-        checked(next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-
 	type $mol_view__dom_name_mol_section_1 = $mol_type_enforce<
 		ReturnType< $mol_section['title_dom_name'] >
 		,
@@ -14316,7 +14257,7 @@ declare namespace $ {
 		ReturnType< $mol_textarea['hint'] >
 	>
 	type $mol_textarea__value_bog_feedback_form_3 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['entry_text'] >
+		ReturnType< $bog_feedback_form['draft_text'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
@@ -14326,38 +14267,41 @@ declare namespace $ {
 		ReturnType< $mol_string['hint'] >
 	>
 	type $mol_string__value_bog_feedback_form_5 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['contact'] >
+		ReturnType< $bog_feedback_form['draft_contact'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_hint__dictionary_bog_feedback_form_6 = $mol_type_enforce<
-		({ 
-			'auto': string,
-		}) 
+	type $mol_button_major__title_bog_feedback_form_6 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['submit_title'] >
 		,
-		ReturnType< $mol_hint['dictionary'] >
+		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_text__text_bog_feedback_form_7 = $mol_type_enforce<
+	type $mol_button_major__click_bog_feedback_form_7 = $mol_type_enforce<
+		ReturnType< $bog_feedback_form['submit'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_text__text_bog_feedback_form_8 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_row_text'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_section__title_bog_feedback_form_8 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback_form_9 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_row_contact'] >
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_9 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback_form_10 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_section__title_bog_feedback_form_10 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback_form_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_11 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback_form_12 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_rows'] >
 		,
 		ReturnType< $mol_section['content'] >
@@ -14367,11 +14311,13 @@ declare namespace $ {
 		Close( ): any
 		prompt( ): string
 		Prompt( ): $mol_text
-		entry_text( next?: string ): string
+		draft_text( next?: string ): string
 		Entry_my( ): $mol_textarea
-		contact( next?: string ): string
-		Contact( ): $mol_string
-		Hint_auto( ): $mol_hint
+		draft_contact( next?: string ): string
+		Contact_field( ): $mol_string
+		submit_title( ): string
+		submit( next?: any ): any
+		Submit( ): $mol_button_major
 		entry_row_contact( id: any): string
 		entry_row_text( id: any): string
 		Entry_row_text( id: any): $mol_text
@@ -14432,9 +14378,10 @@ declare namespace $.$$ {
         entry_mine(): $bog_feedback_entry;
         entry_mine_or_create(): $bog_feedback_entry;
         prompt(): string;
-        entry_text(next?: string): string;
-        contact(next?: string): string;
-        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $.$giper_baza_status | $.$mol_hint | $.$mol_section)[];
+        has_entry(): boolean;
+        submit_title(): "Update feedback" | "Send feedback";
+        submit(): void;
+        body(): ($.$mol_string | $mol_button_major | $.$mol_text | $.$mol_textarea | $.$giper_baza_status | $.$mol_section)[];
         all_lords(): readonly $giper_baza_vary_type[];
         entry_rows(): $.$mol_section[];
         entry_row_text(index: number): string;
