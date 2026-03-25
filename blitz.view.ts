@@ -2,7 +2,7 @@ namespace $.$$ {
 	export class $bog_blitz extends $.$bog_blitz {
 
 		feedback_topic() {
-			const land = this.$.$giper_baza_glob.Land( new $giper_baza_link( 'tJQkJ0DN_xqvqDmsx' ) )
+			const land = this.$.$giper_baza_glob.Land( new $giper_baza_link( 'nuAHt21o_6EkWk37t' ) )
 			return land.Data( $bog_feedback ) as $bog_feedback
 		}
 
