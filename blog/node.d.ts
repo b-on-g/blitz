@@ -14062,25 +14062,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    const $giper_baza_entity_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Title: (auto?: any) => $giper_baza_atom_text | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Title: typeof $giper_baza_atom_text;
-        };
-    };
-    export class $giper_baza_entity extends $giper_baza_entity_base {
-        title(next?: string): string;
-    }
-    export {};
-}
-
-declare namespace $ {
     let $giper_baza_text_tokens: $mol_regexp<{
         [x: string]: string;
         readonly token: string;
@@ -14112,24 +14093,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $bog_feedback_base: Omit<typeof $giper_baza_entity, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_entity, {
-            readonly Descr: (auto?: any) => $giper_baza_text | null;
-            readonly Trusted: (auto?: any) => $giper_baza_list_str | null;
-            readonly Entries: (auto?: any) => $giper_baza_list_link | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Descr: typeof $giper_baza_text;
-            readonly Trusted: typeof $giper_baza_list_str;
-            readonly Entries: typeof $giper_baza_list_link;
-        };
-    };
-    export class $bog_feedback extends $bog_feedback_base {
-    }
     const $bog_feedback_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
             readonly Text: (auto?: any) => $giper_baza_text | null;
@@ -14342,105 +14305,66 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_textarea__hint_bog_feedback_form_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_textarea['hint'] >
-	>
-	type $mol_textarea__value_bog_feedback_form_2 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['descr'] >
-		,
-		ReturnType< $mol_textarea['value'] >
-	>
-	type $mol_textarea__enabled_bog_feedback_form_3 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['is_owner'] >
-		,
-		ReturnType< $mol_textarea['enabled'] >
-	>
-	type $mol_text__text_bog_feedback_form_4 = $mol_type_enforce<
+	type $mol_text__text_bog_feedback_form_1 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['prompt'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_textarea__hint_bog_feedback_form_5 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_feedback_form_2 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_textarea__value_bog_feedback_form_6 = $mol_type_enforce<
+	type $mol_textarea__value_bog_feedback_form_3 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_text'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_string__hint_bog_feedback_form_7 = $mol_type_enforce<
+	type $mol_string__hint_bog_feedback_form_4 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_feedback_form_8 = $mol_type_enforce<
+	type $mol_string__value_bog_feedback_form_5 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['contact'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_hint__dictionary_bog_feedback_form_9 = $mol_type_enforce<
+	type $mol_hint__dictionary_bog_feedback_form_6 = $mol_type_enforce<
 		({ 
 			'auto': string,
 		}) 
 		,
 		ReturnType< $mol_hint['dictionary'] >
 	>
-	type $mol_bar__sub_bog_feedback_form_10 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_bar['sub'] >
-	>
-	type $mol_text__text_bog_feedback_form_11 = $mol_type_enforce<
+	type $mol_text__text_bog_feedback_form_7 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_row_text'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_section__title_bog_feedback_form_12 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback_form_8 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_row_contact'] >
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_13 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback_form_9 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_section__title_bog_feedback_form_14 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback_form_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_15 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback_form_11 = $mol_type_enforce<
 		ReturnType< $bog_feedback_form['entry_rows'] >
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_string_button__value_bog_feedback_form_16 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['title'] >
-		,
-		ReturnType< $mol_string_button['value'] >
-	>
-	type $mol_string_button__hint_bog_feedback_form_17 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string_button['hint'] >
-	>
-	type $mol_string_button__enabled_bog_feedback_form_18 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['is_owner'] >
-		,
-		ReturnType< $mol_string_button['enabled'] >
-	>
 	export class $bog_feedback_form extends $mol_page {
-		title( next?: string ): string
-		is_owner( ): boolean
 		Status( ): $giper_baza_status
 		Close( ): any
-		descr( next?: string ): string
-		Descr( ): $mol_textarea
 		prompt( ): string
 		Prompt( ): $mol_text
 		entry_text( next?: string ): string
@@ -14448,15 +14372,13 @@ declare namespace $ {
 		contact( next?: string ): string
 		Contact( ): $mol_string
 		Hint_auto( ): $mol_hint
-		Hints( ): $mol_bar
 		entry_row_contact( id: any): string
 		entry_row_text( id: any): string
 		Entry_row_text( id: any): $mol_text
 		Entry_row( id: any): $mol_section
 		entry_rows( ): readonly(any)[]
 		Entries( ): $mol_section
-		topic( ): $bog_feedback
-		Title( ): $mol_string_button
+		title( ): string
 		tools( ): readonly(any)[]
 		body( ): readonly(any)[]
 	}
@@ -14466,17 +14388,55 @@ declare namespace $ {
 //# sourceMappingURL=form.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_feedback_form extends $.$bog_feedback_form {
-        title(next?: string): string;
-        is_owner(): boolean;
-        prompt(): string;
+        fresh_land(): $giper_baza_land;
+        land(): $giper_baza_land;
+        entries_dict(): {
+            Value: typeof $bog_feedback_entry;
+            key(key: $giper_baza_vary_type, auto?: any): $bog_feedback_entry;
+            keys(): readonly $giper_baza_vary_type[];
+            dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
+            [$mol_dev_format_head](): any[];
+            items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+            splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+            has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+            add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            cut(vary: $giper_baza_vary_type): void;
+            move(from: number, to: number): void;
+            wipe(seat: number): void;
+            pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+            land(): $giper_baza_land;
+            head(): $giper_baza_link;
+            land_link(): $giper_baza_link;
+            link(): $giper_baza_link;
+            toJSON(): string;
+            cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+            pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+            units(): $giper_baza_unit_sand[];
+            units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+            meta(next?: $giper_baza_link): $giper_baza_link | null;
+            meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+            filled(): boolean;
+            can_change(): boolean;
+            last_change(): $mol_time_moment | null;
+            authors(): $giper_baza_auth_pass[];
+            get $(): $;
+            set $(next: $);
+            destructor(): void;
+            toString(): string;
+            [Symbol.toStringTag]: string;
+            [$mol_ambient_ref]: $;
+            [Symbol.dispose](): void;
+        };
         my_lord(): string;
-        entry_list(): $bog_feedback_entry[];
-        _my_entry: $bog_feedback_entry | null;
-        entry_mine(): $bog_feedback_entry | null;
-        entry_create(): $bog_feedback_entry;
+        is_owner(): boolean;
+        entry_mine(): $bog_feedback_entry;
+        entry_mine_or_create(): $bog_feedback_entry;
+        prompt(): string;
         entry_text(next?: string): string;
         contact(next?: string): string;
-        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $mol_bar | $.$mol_section)[];
+        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $.$giper_baza_status | $.$mol_hint)[];
+        all_lords(): readonly $giper_baza_vary_type[];
         entry_rows(): $.$mol_section[];
         entry_row_text(index: number): string;
         entry_row_contact(index: number): string;
@@ -14994,134 +14954,129 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $bog_feedback_form__topic_bog_blitz_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz['feedback_topic'] >
-		,
-		ReturnType< $bog_feedback_form['topic'] >
-	>
-	type $bog_feedback_form__Status_bog_blitz_2 = $mol_type_enforce<
+	type $bog_feedback_form__Status_bog_blitz_1 = $mol_type_enforce<
 		any
 		,
 		ReturnType< $bog_feedback_form['Status'] >
 	>
-	type $mol_check__checked_bog_blitz_3 = $mol_type_enforce<
+	type $mol_check__checked_bog_blitz_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_check['checked'] >
 	>
-	type $mol_check__sub_bog_blitz_4 = $mol_type_enforce<
+	type $mol_check__sub_bog_blitz_3 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $mol_link__arg_bog_blitz_5 = $mol_type_enforce<
+	type $mol_link__arg_bog_blitz_4 = $mol_type_enforce<
 		({ 
 			'screen': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_blitz_6 = $mol_type_enforce<
+	type $mol_link__sub_bog_blitz_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_7 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__uri_bog_blitz_8 = $mol_type_enforce<
+	type $mol_link__uri_bog_blitz_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_blitz_9 = $mol_type_enforce<
+	type $mol_link__title_bog_blitz_8 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_10 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__uri_bog_blitz_11 = $mol_type_enforce<
+	type $mol_link__uri_bog_blitz_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_blitz_12 = $mol_type_enforce<
+	type $mol_link__title_bog_blitz_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_view__sub_bog_blitz_13 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_12 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_14 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link_source__uri_bog_blitz_15 = $mol_type_enforce<
+	type $mol_link_source__uri_bog_blitz_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_16 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_15 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_17 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_16 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_18 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_17 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_19 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_18 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_20 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_21 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_22 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_23 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_24 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_25 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_26 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_25 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -15130,7 +15085,6 @@ declare namespace $ {
 		Lobby( ): $bog_blitz_lobby
 		Admin( ): $bog_blitz_admin
 		Profile( ): $bog_blitz_profile_page
-		feedback_topic( ): $bog_feedback
 		Feedback( ): $bog_feedback_form
 		screen( next?: string ): string
 		mobile_menu_showed( next?: boolean ): boolean
@@ -15176,7 +15130,6 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
-        feedback_topic(): $bog_feedback;
         tools(): ($mol_view | $.$mol_paragraph | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
         screen_body(): any[];
         screen(next?: string): string;

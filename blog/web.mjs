@@ -36042,13 +36042,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $bog_feedback extends $giper_baza_entity.with({
-        Descr: $giper_baza_text,
-        Trusted: $giper_baza_list_str,
-        Entries: $giper_baza_list_link,
-    }) {
-    }
-    $.$bog_feedback = $bog_feedback;
     class $bog_feedback_entry extends $giper_baza_dict.with({
         Text: $giper_baza_text,
         Contact: $giper_baza_atom_text,
@@ -36296,30 +36289,12 @@ var $;
 
 ;
 	($.$bog_feedback_form) = class $bog_feedback_form extends ($.$mol_page) {
-		title(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		is_owner(){
-			return false;
-		}
 		Status(){
 			const obj = new this.$.$giper_baza_status();
 			return obj;
 		}
 		Close(){
 			return null;
-		}
-		descr(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		Descr(){
-			const obj = new this.$.$mol_textarea();
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback_form_Descr_hint")));
-			(obj.value) = (next) => ((this.descr(next)));
-			(obj.enabled) = () => ((this.is_owner()));
-			return obj;
 		}
 		prompt(){
 			return "";
@@ -36354,11 +36329,6 @@ var $;
 			(obj.dictionary) = () => ({"auto": (this.$.$mol_locale.text("$bog_feedback_form_Hint_auto_dictionary_auto"))});
 			return obj;
 		}
-		Hints(){
-			const obj = new this.$.$mol_bar();
-			(obj.sub) = () => ([(this.Hint_auto())]);
-			return obj;
-		}
 		entry_row_contact(id){
 			return "";
 		}
@@ -36385,47 +36355,32 @@ var $;
 			(obj.content) = () => ((this.entry_rows()));
 			return obj;
 		}
-		topic(){
-			const obj = new this.$.$bog_feedback();
-			return obj;
-		}
-		Title(){
-			const obj = new this.$.$mol_string_button();
-			(obj.value) = (next) => ((this.title(next)));
-			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback_form_Title_hint")));
-			(obj.enabled) = () => ((this.is_owner()));
-			return obj;
+		title(){
+			return (this.$.$mol_locale.text("$bog_feedback_form_title"));
 		}
 		tools(){
 			return [(this.Status()), (this.Close())];
 		}
 		body(){
 			return [
-				(this.Descr()), 
 				(this.Prompt()), 
 				(this.Entry_my()), 
 				(this.Contact()), 
-				(this.Hints()), 
+				(this.Hint_auto()), 
 				(this.Entries())
 			];
 		}
 	};
-	($mol_mem(($.$bog_feedback_form.prototype), "title"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Status"));
-	($mol_mem(($.$bog_feedback_form.prototype), "descr"));
-	($mol_mem(($.$bog_feedback_form.prototype), "Descr"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Prompt"));
 	($mol_mem(($.$bog_feedback_form.prototype), "entry_text"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Entry_my"));
 	($mol_mem(($.$bog_feedback_form.prototype), "contact"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Contact"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Hint_auto"));
-	($mol_mem(($.$bog_feedback_form.prototype), "Hints"));
 	($mol_mem_key(($.$bog_feedback_form.prototype), "Entry_row_text"));
 	($mol_mem_key(($.$bog_feedback_form.prototype), "Entry_row"));
 	($mol_mem(($.$bog_feedback_form.prototype), "Entries"));
-	($mol_mem(($.$bog_feedback_form.prototype), "topic"));
-	($mol_mem(($.$bog_feedback_form.prototype), "Title"));
 
 
 ;
@@ -36437,16 +36392,33 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const LAND_ID = 'nuAHt21o_6EkWk37t';
         const OWNER_LORD = 'Q4zRr2UW_0m2uzoRR';
+        const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
-            title(next) {
-                if (next !== undefined)
-                    this.topic().Title('auto').val(next);
-                return this.topic().Title()?.val() ?? '';
+            fresh_land() {
+                console.log('[feedback] creating fresh land via land_grab');
+                return this.$.$giper_baza_glob.land_grab([
+                    [null, $giper_baza_rank_post('late')],
+                ]);
+            }
+            land() {
+                return this.fresh_land();
+            }
+            entries_dict() {
+                return this.land().Data(Entries_dict);
+            }
+            my_lord() {
+                return this.$.$giper_baza_auth.current().pass().lord().str;
             }
             is_owner() {
-                const my_lord = this.$.$giper_baza_auth.current().pass().lord().str;
-                return my_lord === OWNER_LORD;
+                return this.my_lord() === OWNER_LORD;
+            }
+            entry_mine() {
+                return this.entries_dict().key(this.my_lord()) ?? null;
+            }
+            entry_mine_or_create() {
+                return this.entries_dict().key(this.my_lord(), 'auto');
             }
             prompt() {
                 return [
@@ -36456,93 +36428,72 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
-            my_lord() {
-                return this.$.$giper_baza_auth.current().pass().lord().str;
-            }
-            entry_list() {
-                const links = this.topic().Entries()?.items() ?? [];
-                return links
-                    .filter((link) => link !== null)
-                    .map(link => {
-                    return this.topic().land().Pawn($bog_feedback_entry).Head(link);
-                });
-            }
-            _my_entry = null;
-            entry_mine() {
-                if (this._my_entry)
-                    return this._my_entry;
-                const my_lord = this.my_lord();
-                const existing = this.entry_list().find(entry => {
-                    return entry.Contact()?.val() === my_lord
-                        || entry.land().link().lord().str === my_lord;
-                });
-                if (existing) {
-                    this._my_entry = existing;
-                    return existing;
-                }
-                return null;
-            }
-            entry_create() {
-                const land = this.topic().land();
-                const self = land.self_make();
-                const entry = land.Pawn($bog_feedback_entry).Head(self);
-                this.topic().Entries('auto').add(self);
-                this._my_entry = entry;
-                return entry;
-            }
             entry_text(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_mine() ?? this.entry_create();
-                    entry.Text('auto').text(next);
+                    const entry = this.entry_mine_or_create();
+                    if (entry)
+                        entry.Text('auto').text(next);
                     return next;
                 }
-                return this.entry_mine()?.Text()?.text() ?? '';
+                const entry = this.entry_mine();
+                if (!entry)
+                    return '';
+                return entry.Text()?.text() ?? '';
             }
             contact(next) {
                 if (next !== undefined) {
-                    const entry = this.entry_mine() ?? this.entry_create();
-                    entry.Contact('auto').val(next);
+                    const entry = this.entry_mine_or_create();
+                    if (entry)
+                        entry.Contact('auto').val(next);
                     return next;
                 }
-                return this.entry_mine()?.Contact()?.val() ?? '';
+                const entry = this.entry_mine();
+                if (!entry)
+                    return '';
+                return entry.Contact()?.val() ?? '';
             }
             body() {
                 return [
+                    this.Status(),
                     this.Prompt(),
                     this.Entry_my(),
                     this.Contact(),
-                    this.Hints(),
-                    ...this.is_owner() ? [this.Entries()] : [],
+                    this.Hint_auto(),
                 ];
             }
+            all_lords() {
+                return this.entries_dict().keys() ?? [];
+            }
             entry_rows() {
-                return this.entry_list().map((_, i) => this.Entry_row(i));
+                return this.all_lords().map((_, i) => this.Entry_row(i));
             }
             entry_row_text(index) {
-                return this.entry_list()[index]?.Text()?.text() ?? '';
+                const lord = this.all_lords()[index];
+                if (!lord)
+                    return '';
+                const entry = this.entries_dict().key(lord);
+                return entry?.Text()?.text() ?? '';
             }
             entry_row_contact(index) {
-                return this.entry_list()[index]?.Contact()?.val() ?? 'Anonymous';
+                const lord = this.all_lords()[index];
+                if (!lord)
+                    return '';
+                const entry = this.entries_dict().key(lord);
+                return entry?.Contact()?.val() ?? 'Anonymous';
             }
         }
         __decorate([
             $mol_mem
-        ], $bog_feedback_form.prototype, "is_owner", null);
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "prompt", null);
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "entry_list", null);
+        ], $bog_feedback_form.prototype, "fresh_land", null);
         __decorate([
             $mol_action
-        ], $bog_feedback_form.prototype, "entry_create", null);
+        ], $bog_feedback_form.prototype, "entry_mine_or_create", null);
         __decorate([
             $mol_mem
-        ], $bog_feedback_form.prototype, "body", null);
+        ], $bog_feedback_form.prototype, "entry_text", null);
         __decorate([
             $mol_mem
-        ], $bog_feedback_form.prototype, "entry_rows", null);
+        ], $bog_feedback_form.prototype, "contact", null);
         $$.$bog_feedback_form = $bog_feedback_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -36552,15 +36503,11 @@ var $;
 var $;
 (function ($) {
     $mol_style_define($bog_feedback_form, {
+        color: $mol_theme.text,
         flex: {
             basis: '40rem',
         },
         margin: [0, 'auto'],
-        Descr: {
-            flex: {
-                grow: 0,
-            },
-        },
         Prompt: {
             padding: $mol_gap.block,
         },
@@ -36569,7 +36516,6 @@ var $;
                 bottom: $mol_gap.block,
             },
         },
-        Entries: {},
     });
 })($ || ($ = {}));
 
@@ -37859,13 +37805,8 @@ var $;
 			const obj = new this.$.$bog_blitz_profile_page();
 			return obj;
 		}
-		feedback_topic(){
-			const obj = new this.$.$bog_feedback();
-			return obj;
-		}
 		Feedback(){
 			const obj = new this.$.$bog_feedback_form();
-			(obj.topic) = () => ((this.feedback_topic()));
 			(obj.Status) = () => (null);
 			return obj;
 		}
@@ -38028,7 +37969,6 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Lobby"));
 	($mol_mem(($.$bog_blitz.prototype), "Admin"));
 	($mol_mem(($.$bog_blitz.prototype), "Profile"));
-	($mol_mem(($.$bog_blitz.prototype), "feedback_topic"));
 	($mol_mem(($.$bog_blitz.prototype), "Feedback"));
 	($mol_mem(($.$bog_blitz.prototype), "screen"));
 	($mol_mem(($.$bog_blitz.prototype), "mobile_menu_showed"));
@@ -38062,10 +38002,6 @@ var $;
     var $$;
     (function ($$) {
         class $bog_blitz extends $.$bog_blitz {
-            feedback_topic() {
-                const land = this.$.$giper_baza_glob.Land(new $giper_baza_link('nuAHt21o_6EkWk37t'));
-                return land.Data($bog_feedback);
-            }
             tools() {
                 const lobby = this.Lobby();
                 const is_host = lobby.is_host();
