@@ -29654,12 +29654,6 @@ var $;
         __decorate([
             $mol_action
         ], $bog_feedback_form.prototype, "entry_mine_or_create", null);
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "entry_text", null);
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "contact", null);
         $$.$bog_feedback_form = $bog_feedback_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
