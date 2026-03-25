@@ -36267,6 +36267,18 @@ var $;
                     '- Any **suggestions** for the future?',
                 ].join('\n');
             }
+            draft_text(next) {
+                if (next !== undefined)
+                    return next;
+                const entry = this.entry_mine();
+                return entry?.Text()?.text() ?? '';
+            }
+            draft_contact(next) {
+                if (next !== undefined)
+                    return next;
+                const entry = this.entry_mine();
+                return entry?.Contact()?.val() ?? '';
+            }
             has_entry() {
                 return !!this.entry_mine();
             }
@@ -36320,8 +36332,11 @@ var $;
             $mol_action
         ], $bog_feedback_form.prototype, "entry_mine_or_create", null);
         __decorate([
-            $mol_action
-        ], $bog_feedback_form.prototype, "submit", null);
+            $mol_mem
+        ], $bog_feedback_form.prototype, "draft_text", null);
+        __decorate([
+            $mol_mem
+        ], $bog_feedback_form.prototype, "draft_contact", null);
         $$.$bog_feedback_form = $bog_feedback_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));

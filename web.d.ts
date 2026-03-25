@@ -20146,6 +20146,8 @@ declare namespace $.$$ {
         entry_mine(): $bog_feedback_entry;
         entry_mine_or_create(): $bog_feedback_entry;
         prompt(): string;
+        draft_text(next?: string): string;
+        draft_contact(next?: string): string;
         has_entry(): boolean;
         submit_title(): "Update feedback" | "Send feedback";
         submit(): void;
