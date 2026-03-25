@@ -1993,7 +1993,7 @@ $bog_blitz $mol_page
 					uri \https://t.me/mol_news/226
 					title \Giper Baza
 		<= Version $mol_paragraph
-			title \v1.2
+			title \v1.3
 		<= Sources $mol_link_source
 			uri \https://github.com/b-on-g/blitz
 		<= Radio $bog_blitz_radio

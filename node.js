@@ -28836,235 +28836,8 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    const { unicode_only, line_end, tab, repeat_greedy, optional, forbid_after, force_after, char_only, char_except } = $mol_regexp;
-    $.$giper_baza_text_tokens = $mol_regexp.from({
-        token: {
-            'line-break': line_end,
-            'indents': repeat_greedy(tab, 1),
-            'emoji': [
-                unicode_only('Extended_Pictographic'),
-                optional(unicode_only('Emoji_Modifier')),
-                repeat_greedy([
-                    unicode_only('Emoji_Component'),
-                    unicode_only('Extended_Pictographic'),
-                    optional(unicode_only('Emoji_Modifier')),
-                ]),
-            ],
-            'link': /\b(https?:\/\/[^\s,.;:!?")]+(?:[,.;:!?")][^\s,.;:!?")]+)+)/,
-            'Word': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]), 1),
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ])),
-            ],
-            'word': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]), 1),
-            ],
-            'spaces': [
-                forbid_after(line_end),
-                repeat_greedy(unicode_only('White_Space'), 1),
-                force_after(unicode_only('White_Space')),
-            ],
-            'space': [
-                forbid_after(line_end),
-                unicode_only('White_Space'),
-                forbid_after([
-                    unicode_only('White_Space'),
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]),
-            ],
-            'others': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_except([
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                    unicode_only('White_Space'),
-                ]), 1),
-            ],
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $giper_baza_text extends $giper_baza_pawn {
-        static tag = $giper_baza_unit_sand_tag[$giper_baza_unit_sand_tag.vals];
-        value(next) {
-            return this.text(next);
-        }
-        text(next) {
-            if (next !== undefined) {
-                const land = this.land();
-                const prev = this.units();
-                const lines = next.match(/.*\n|.+$/g) ?? [];
-                $mol_reconcile({
-                    prev,
-                    from: 0,
-                    to: prev.length,
-                    next: lines,
-                    equal: (next, prev) => {
-                        return land.Pawn($giper_baza_text).Head(prev.self()).str() === next;
-                    },
-                    drop: (prev, lead) => this.land().post(lead?.self() ?? $giper_baza_link.hole, prev.head(), prev.self(), null),
-                    insert: (next, lead) => {
-                        const sand = this.land().post(lead?.self() ?? $giper_baza_link.hole, this.head(), land.self_make(), 'p', 'vals');
-                        land.Pawn($giper_baza_text).Head(sand.self()).str(next);
-                        return sand;
-                    },
-                    replace: (next, prev, lead) => {
-                        land.Pawn($giper_baza_text).Head(prev.self()).str(next);
-                        return prev;
-                    },
-                });
-            }
-            return this.str();
-        }
-        str(next) {
-            if (next === undefined) {
-                let str = '';
-                const land = this.land();
-                for (const unit of this.units()) {
-                    if (unit.tag() === 'term')
-                        str += $giper_baza_vary_cast_text(land.sand_decode(unit)) ?? '';
-                    else
-                        str += land.Pawn($giper_baza_text).Head(unit.self()).str();
-                }
-                return str;
-            }
-            else {
-                this.write(next, 0, -1);
-                return this.str();
-            }
-        }
-        write(next, str_from = -1, str_to = str_from) {
-            const land = this.land();
-            const list = this.units();
-            let from = str_from < 0 ? list.length : 0;
-            let word = '';
-            while (from < list.length) {
-                word = $giper_baza_vary_cast_text(land.sand_decode(list[from])) ?? '';
-                if (str_from <= word.length) {
-                    next = word.slice(0, str_from) + next;
-                    break;
-                }
-                str_from -= word.length;
-                if (str_to > 0)
-                    str_to -= word.length;
-                from++;
-            }
-            let to = str_to < 0 ? list.length : from;
-            while (to < list.length) {
-                word = $giper_baza_vary_cast_text(land.sand_decode(list[to])) ?? '';
-                to++;
-                if (str_to < word.length) {
-                    next = next + word.slice(str_to);
-                    break;
-                }
-                str_to -= word.length;
-            }
-            if (from && from === list.length) {
-                --from;
-                next = ($giper_baza_vary_cast_text(land.sand_decode(list[from])) ?? '') + next;
-            }
-            const words = next.match($giper_baza_text_tokens) ?? [];
-            this.cast($giper_baza_list_vary).splice(words, from, to);
-            return this;
-        }
-        point_by_offset(offset) {
-            const land = this.land();
-            let off = offset;
-            for (const unit of this.units()) {
-                if (unit.tag() === 'term') {
-                    const len = $giper_baza_vary_cast_text(land.sand_decode(unit))?.length ?? 0;
-                    if (off <= len)
-                        return [unit.self().str, off, 0];
-                    else
-                        off -= len;
-                }
-                else {
-                    const found = land.Pawn($giper_baza_text).Head(unit.self()).point_by_offset(off);
-                    if (found[0])
-                        return found;
-                    off = found[1];
-                }
-            }
-            return ['', off, 0];
-        }
-        offset_by_point([self, offset]) {
-            const land = this.land();
-            for (const unit of this.units()) {
-                if (unit.self().str === self)
-                    return [self, offset];
-                if (unit.tag() === 'term') {
-                    offset += $giper_baza_vary_cast_text(land.sand_decode(unit))?.length ?? 0;
-                }
-                else {
-                    const found = land.Pawn($giper_baza_text).Head(unit.self()).offset_by_point([self, offset, 0]);
-                    if (found[0])
-                        return [self, found[1]];
-                    offset = found[1];
-                }
-            }
-            return ['', offset];
-        }
-        selection(lord, next) {
-            const user = this.$.$giper_baza_glob.Land(lord).Data($giper_baza_flex_user);
-            if (next) {
-                user.caret(next.map(offset => this.point_by_offset(offset)));
-                return next;
-            }
-            else {
-                this.text();
-                return user.caret()?.map(point => this.offset_by_point(point)[1]) ?? [0, 0];
-            }
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_text.prototype, "text", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_text.prototype, "str", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "write", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "point_by_offset", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "offset_by_point", null);
-    __decorate([
-        $mol_mem_key
-    ], $giper_baza_text.prototype, "selection", null);
-    $.$giper_baza_text = $giper_baza_text;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     class $bog_feedback_entry extends $giper_baza_dict.with({
-        Text: $giper_baza_text,
+        Text: $giper_baza_atom_text,
         Contact: $giper_baza_atom_text,
     }) {
     }
@@ -29445,7 +29218,7 @@ var $;
                 if (next !== undefined)
                     return next;
                 const entry = this.entry_mine();
-                return entry?.Text()?.text() ?? '';
+                return entry?.Text()?.val() ?? '';
             }
             draft_contact(next) {
                 if (next !== undefined)
@@ -29468,8 +29241,8 @@ var $;
                 const entry = this.entry_mine_or_create();
                 if (!entry)
                     return;
-                entry.Text('auto').text(text);
-                console.log('written text:', entry.Text()?.text());
+                entry.Text('auto').val(text);
+                console.log('written text:', entry.Text()?.val());
                 if (contact)
                     entry.Contact('auto').val(contact);
                 console.log('written contact:', entry.Contact()?.val());
@@ -29495,7 +29268,7 @@ var $;
                 if (!lord)
                     return '';
                 const entry = this.entries_dict().key(lord);
-                const text = entry?.Text()?.text() ?? '';
+                const text = entry?.Text()?.val() ?? '';
                 console.log('entry_row_text', index, { lord, text });
                 return text;
             }
@@ -30901,7 +30674,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.2");
+			(obj.title) = () => ("v1.3");
 			return obj;
 		}
 		Sources(){

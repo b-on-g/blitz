@@ -28827,235 +28827,8 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    const { unicode_only, line_end, tab, repeat_greedy, optional, forbid_after, force_after, char_only, char_except } = $mol_regexp;
-    $.$giper_baza_text_tokens = $mol_regexp.from({
-        token: {
-            'line-break': line_end,
-            'indents': repeat_greedy(tab, 1),
-            'emoji': [
-                unicode_only('Extended_Pictographic'),
-                optional(unicode_only('Emoji_Modifier')),
-                repeat_greedy([
-                    unicode_only('Emoji_Component'),
-                    unicode_only('Extended_Pictographic'),
-                    optional(unicode_only('Emoji_Modifier')),
-                ]),
-            ],
-            'link': /\b(https?:\/\/[^\s,.;:!?")]+(?:[,.;:!?")][^\s,.;:!?")]+)+)/,
-            'Word': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]), 1),
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ])),
-            ],
-            'word': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_only([
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]), 1),
-            ],
-            'spaces': [
-                forbid_after(line_end),
-                repeat_greedy(unicode_only('White_Space'), 1),
-                force_after(unicode_only('White_Space')),
-            ],
-            'space': [
-                forbid_after(line_end),
-                unicode_only('White_Space'),
-                forbid_after([
-                    unicode_only('White_Space'),
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                ]),
-            ],
-            'others': [
-                [char_only(' ', 0xA0)],
-                repeat_greedy(char_except([
-                    unicode_only('General_Category', 'Uppercase_Letter'),
-                    unicode_only('General_Category', 'Lowercase_Letter'),
-                    unicode_only('Diacritic'),
-                    unicode_only('General_Category', 'Number'),
-                    unicode_only('White_Space'),
-                ]), 1),
-            ],
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    class $giper_baza_text extends $giper_baza_pawn {
-        static tag = $giper_baza_unit_sand_tag[$giper_baza_unit_sand_tag.vals];
-        value(next) {
-            return this.text(next);
-        }
-        text(next) {
-            if (next !== undefined) {
-                const land = this.land();
-                const prev = this.units();
-                const lines = next.match(/.*\n|.+$/g) ?? [];
-                $mol_reconcile({
-                    prev,
-                    from: 0,
-                    to: prev.length,
-                    next: lines,
-                    equal: (next, prev) => {
-                        return land.Pawn($giper_baza_text).Head(prev.self()).str() === next;
-                    },
-                    drop: (prev, lead) => this.land().post(lead?.self() ?? $giper_baza_link.hole, prev.head(), prev.self(), null),
-                    insert: (next, lead) => {
-                        const sand = this.land().post(lead?.self() ?? $giper_baza_link.hole, this.head(), land.self_make(), 'p', 'vals');
-                        land.Pawn($giper_baza_text).Head(sand.self()).str(next);
-                        return sand;
-                    },
-                    replace: (next, prev, lead) => {
-                        land.Pawn($giper_baza_text).Head(prev.self()).str(next);
-                        return prev;
-                    },
-                });
-            }
-            return this.str();
-        }
-        str(next) {
-            if (next === undefined) {
-                let str = '';
-                const land = this.land();
-                for (const unit of this.units()) {
-                    if (unit.tag() === 'term')
-                        str += $giper_baza_vary_cast_text(land.sand_decode(unit)) ?? '';
-                    else
-                        str += land.Pawn($giper_baza_text).Head(unit.self()).str();
-                }
-                return str;
-            }
-            else {
-                this.write(next, 0, -1);
-                return this.str();
-            }
-        }
-        write(next, str_from = -1, str_to = str_from) {
-            const land = this.land();
-            const list = this.units();
-            let from = str_from < 0 ? list.length : 0;
-            let word = '';
-            while (from < list.length) {
-                word = $giper_baza_vary_cast_text(land.sand_decode(list[from])) ?? '';
-                if (str_from <= word.length) {
-                    next = word.slice(0, str_from) + next;
-                    break;
-                }
-                str_from -= word.length;
-                if (str_to > 0)
-                    str_to -= word.length;
-                from++;
-            }
-            let to = str_to < 0 ? list.length : from;
-            while (to < list.length) {
-                word = $giper_baza_vary_cast_text(land.sand_decode(list[to])) ?? '';
-                to++;
-                if (str_to < word.length) {
-                    next = next + word.slice(str_to);
-                    break;
-                }
-                str_to -= word.length;
-            }
-            if (from && from === list.length) {
-                --from;
-                next = ($giper_baza_vary_cast_text(land.sand_decode(list[from])) ?? '') + next;
-            }
-            const words = next.match($giper_baza_text_tokens) ?? [];
-            this.cast($giper_baza_list_vary).splice(words, from, to);
-            return this;
-        }
-        point_by_offset(offset) {
-            const land = this.land();
-            let off = offset;
-            for (const unit of this.units()) {
-                if (unit.tag() === 'term') {
-                    const len = $giper_baza_vary_cast_text(land.sand_decode(unit))?.length ?? 0;
-                    if (off <= len)
-                        return [unit.self().str, off, 0];
-                    else
-                        off -= len;
-                }
-                else {
-                    const found = land.Pawn($giper_baza_text).Head(unit.self()).point_by_offset(off);
-                    if (found[0])
-                        return found;
-                    off = found[1];
-                }
-            }
-            return ['', off, 0];
-        }
-        offset_by_point([self, offset]) {
-            const land = this.land();
-            for (const unit of this.units()) {
-                if (unit.self().str === self)
-                    return [self, offset];
-                if (unit.tag() === 'term') {
-                    offset += $giper_baza_vary_cast_text(land.sand_decode(unit))?.length ?? 0;
-                }
-                else {
-                    const found = land.Pawn($giper_baza_text).Head(unit.self()).offset_by_point([self, offset, 0]);
-                    if (found[0])
-                        return [self, found[1]];
-                    offset = found[1];
-                }
-            }
-            return ['', offset];
-        }
-        selection(lord, next) {
-            const user = this.$.$giper_baza_glob.Land(lord).Data($giper_baza_flex_user);
-            if (next) {
-                user.caret(next.map(offset => this.point_by_offset(offset)));
-                return next;
-            }
-            else {
-                this.text();
-                return user.caret()?.map(point => this.offset_by_point(point)[1]) ?? [0, 0];
-            }
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_text.prototype, "text", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_text.prototype, "str", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "write", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "point_by_offset", null);
-    __decorate([
-        $mol_action
-    ], $giper_baza_text.prototype, "offset_by_point", null);
-    __decorate([
-        $mol_mem_key
-    ], $giper_baza_text.prototype, "selection", null);
-    $.$giper_baza_text = $giper_baza_text;
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     class $bog_feedback_entry extends $giper_baza_dict.with({
-        Text: $giper_baza_text,
+        Text: $giper_baza_atom_text,
         Contact: $giper_baza_atom_text,
     }) {
     }
@@ -29436,7 +29209,7 @@ var $;
                 if (next !== undefined)
                     return next;
                 const entry = this.entry_mine();
-                return entry?.Text()?.text() ?? '';
+                return entry?.Text()?.val() ?? '';
             }
             draft_contact(next) {
                 if (next !== undefined)
@@ -29459,8 +29232,8 @@ var $;
                 const entry = this.entry_mine_or_create();
                 if (!entry)
                     return;
-                entry.Text('auto').text(text);
-                console.log('written text:', entry.Text()?.text());
+                entry.Text('auto').val(text);
+                console.log('written text:', entry.Text()?.val());
                 if (contact)
                     entry.Contact('auto').val(contact);
                 console.log('written contact:', entry.Contact()?.val());
@@ -29486,7 +29259,7 @@ var $;
                 if (!lord)
                     return '';
                 const entry = this.entries_dict().key(lord);
-                const text = entry?.Text()?.text() ?? '';
+                const text = entry?.Text()?.val() ?? '';
                 console.log('entry_row_text', index, { lord, text });
                 return text;
             }
@@ -30892,7 +30665,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.2");
+			(obj.title) = () => ("v1.3");
 			return obj;
 		}
 		Sources(){
@@ -38084,139 +37857,6 @@ var $;
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'empty string'() {
-            $mol_assert_equal(''.match($giper_baza_text_tokens), null);
-        },
-        'new lines'() {
-            $mol_assert_equal('\n\r\n'.match($giper_baza_text_tokens), ['\n', '\r\n']);
-        },
-        'numbers'() {
-            $mol_assert_equal('123'.match($giper_baza_text_tokens), ['123']);
-        },
-        'emoji'() {
-            $mol_assert_equal('😀😁'.match($giper_baza_text_tokens), ['😀', '😁']);
-        },
-        'emoji with modifier'() {
-            $mol_assert_equal('👩🏿👩🏿'.match($giper_baza_text_tokens), ['👩🏿', '👩🏿']);
-        },
-        'combo emoji with modifier'() {
-            $mol_assert_equal('👩🏿‍🤝‍🧑🏿👩🏿‍🤝‍🧑🏿'.match($giper_baza_text_tokens), ['👩🏿‍🤝‍🧑🏿', '👩🏿‍🤝‍🧑🏿']);
-        },
-        'word with spaces'() {
-            $mol_assert_equal('foo1  bar2'.match($giper_baza_text_tokens), ['foo1', ' ', ' bar2']);
-        },
-        'word with diactric'() {
-            $mol_assert_equal('Е́е́'.match($giper_baza_text_tokens), ['Е́е́']);
-        },
-        'word with punctuation'() {
-            $mol_assert_equal('foo--bar'.match($giper_baza_text_tokens), ['foo', '--', 'bar']);
-        },
-        'CamelCase'() {
-            $mol_assert_equal('Foo1BAR2'.match($giper_baza_text_tokens), ['Foo1', 'BAR2']);
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    $mol_test({
-        'Change sequences'($) {
-            const land = $giper_baza_land.make({ $ });
-            const text = land.Data($giper_baza_text);
-            const list = land.Data($giper_baza_list_vary);
-            $mol_assert_equal(text.str(), '');
-            $mol_assert_equal(list.items_vary(), []);
-            text.str('foo');
-            $mol_assert_equal(text.str(), 'foo');
-            $mol_assert_equal(list.items_vary(), ['foo']);
-            text.str('foo bar');
-            $mol_assert_equal(text.str(), 'foo bar');
-            $mol_assert_equal(list.items_vary(), ['foo', ' bar']);
-            text.str('foo lol bar');
-            $mol_assert_equal(text.str(), 'foo lol bar');
-            $mol_assert_equal(list.items_vary(), ['foo', ' lol', ' bar']);
-            text.str('lol bar');
-            $mol_assert_equal(text.str(), 'lol bar');
-            $mol_assert_equal(list.items_vary(), ['lol', ' bar']);
-            text.str('foo bar');
-            $mol_assert_equal(text.str(), 'foo bar');
-            $mol_assert_equal(list.items_vary(), ['foo', ' bar']);
-            text.str('foo  bar');
-            $mol_assert_equal(text.str(), 'foo  bar');
-            $mol_assert_equal(list.items_vary(), ['foo', ' ', ' bar']);
-            text.str('foo  BarBar');
-            $mol_assert_equal(text.str(), 'foo  BarBar');
-            $mol_assert_equal(list.items_vary(), ['foo', ' ', ' Bar', 'Bar']);
-        },
-        async 'str: Offset <=> Point'($) {
-            const land = $giper_baza_land.make({ $ });
-            const text = land.Data($giper_baza_text);
-            text.str('fooBar');
-            const [first, second] = text.units();
-            $mol_assert_equal(text.point_by_offset(0), [first.self().str, 0, 0]);
-            $mol_assert_equal(text.offset_by_point([first.self().str, 0, 0]), [first.self().str, 0]);
-            $mol_assert_equal(text.point_by_offset(3), [first.self().str, 3, 0]);
-            $mol_assert_equal(text.offset_by_point([first.self().str, 3, 0]), [first.self().str, 3]);
-            $mol_assert_equal(text.offset_by_point([first.self().str, 5, 0]), [first.self().str, 5]);
-            $mol_assert_equal(text.point_by_offset(5), [second.self().str, 2, 0]);
-            $mol_assert_equal(text.offset_by_point([second.self().str, 2, 0]), [second.self().str, 5]);
-            $mol_assert_equal(text.point_by_offset(6), [second.self().str, 3, 0]);
-            $mol_assert_equal(text.offset_by_point([second.self().str, 3, 0]), [second.self().str, 6]);
-            $mol_assert_equal(text.point_by_offset(7), ['', 1, 0]);
-            $mol_assert_equal(text.offset_by_point(['', 1, 0]), ['', 7]);
-        },
-        async 'text: Offset <=> Point'($) {
-            const land = $giper_baza_land.make({ $ });
-            const text = land.Data($giper_baza_text);
-            text.text('foo bar\n666 777');
-            const [first, second] = text.pawns($giper_baza_text);
-            $mol_assert_equal(text.point_by_offset(0), [first.units()[0].self().str, 0, 0]);
-            $mol_assert_equal(text.offset_by_point([first.units()[0].self().str, 0, 0]), [first.units()[0].self().str, 0]);
-            $mol_assert_equal(text.point_by_offset(8), [first.units()[2].self().str, 1, 0]);
-            $mol_assert_equal(text.offset_by_point([first.units()[2].self().str, 1, 0]), [first.units()[2].self().str, 8]);
-        },
-        async 'Merge different sequences'($) {
-            const land1 = $giper_baza_land.make({ $ });
-            const land2 = $giper_baza_land.make({ $ });
-            const text1 = land1.Pawn($giper_baza_text).Data();
-            const text2 = land2.Pawn($giper_baza_text).Data();
-            text1.str('foo bar.');
-            land2.faces.stat.time = land1.faces.stat.time;
-            text2.str('xxx yyy.');
-            const delta1 = await $mol_wire_async(land1).diff_units();
-            const delta2 = await $mol_wire_async(land2).diff_units();
-            await $mol_wire_async(land1).diff_apply(delta2);
-            await $mol_wire_async(land2).diff_apply(delta1);
-            $mol_assert_equal(text1.str(), text2.str(), 'xxx yyy.foo bar.');
-        },
-        async 'Merge same insertions with different changes to same place'($) {
-            const base = $giper_baza_land.make({ $ });
-            base.Data($giper_baza_text).str('( )');
-            const left = $giper_baza_land.make({ $ });
-            await $mol_wire_async(left).units_steal(base);
-            left.Data($giper_baza_text).str('( [ f ] )');
-            left.Data($giper_baza_text).str('( [ foo ] )');
-            const right = $giper_baza_land.make({ $ });
-            await $mol_wire_async(right).units_steal(base);
-            right.faces.sync(left.faces);
-            right.Data($giper_baza_text).str('( [ f ] )');
-            right.Data($giper_baza_text).str('( [ fu ] )');
-            const left_delta = await $mol_wire_async(left).diff_units(base.faces);
-            const right_delta = await $mol_wire_async(right).diff_units(base.faces);
-            await $mol_wire_async(left).diff_apply(right_delta);
-            await $mol_wire_async(right).diff_apply(left_delta);
-            $mol_assert_equal(left.Data($giper_baza_text).str(), right.Data($giper_baza_text).str(), '( [ fu ] [ foo ] )');
-        },
-    });
 })($ || ($ = {}));
 
 ;

@@ -19943,7 +19943,7 @@ declare namespace $.$$ {
 declare namespace $ {
     const $bog_feedback_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Text: (auto?: any) => $giper_baza_text | null;
+            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
             readonly Contact: (auto?: any) => $giper_baza_atom_text | null;
         }>;
         path: string;
@@ -19951,7 +19951,7 @@ declare namespace $ {
         schema: {
             [x: string]: typeof $giper_baza_pawn;
         } & {
-            readonly Text: typeof $giper_baza_text;
+            readonly Text: typeof $giper_baza_atom_text;
             readonly Contact: typeof $giper_baza_atom_text;
         };
     };

@@ -36043,7 +36043,7 @@ var $;
 var $;
 (function ($) {
     class $bog_feedback_entry extends $giper_baza_dict.with({
-        Text: $giper_baza_text,
+        Text: $giper_baza_atom_text,
         Contact: $giper_baza_atom_text,
     }) {
     }
@@ -36271,7 +36271,7 @@ var $;
                 if (next !== undefined)
                     return next;
                 const entry = this.entry_mine();
-                return entry?.Text()?.text() ?? '';
+                return entry?.Text()?.val() ?? '';
             }
             draft_contact(next) {
                 if (next !== undefined)
@@ -36294,8 +36294,8 @@ var $;
                 const entry = this.entry_mine_or_create();
                 if (!entry)
                     return;
-                entry.Text('auto').text(text);
-                console.log('written text:', entry.Text()?.text());
+                entry.Text('auto').val(text);
+                console.log('written text:', entry.Text()?.val());
                 if (contact)
                     entry.Contact('auto').val(contact);
                 console.log('written contact:', entry.Contact()?.val());
@@ -36321,7 +36321,7 @@ var $;
                 if (!lord)
                     return '';
                 const entry = this.entries_dict().key(lord);
-                const text = entry?.Text()?.text() ?? '';
+                const text = entry?.Text()?.val() ?? '';
                 console.log('entry_row_text', index, { lord, text });
                 return text;
             }
@@ -37727,7 +37727,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.2");
+			(obj.title) = () => ("v1.3");
 			return obj;
 		}
 		Sources(){

@@ -14062,40 +14062,9 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    let $giper_baza_text_tokens: $mol_regexp<{
-        [x: string]: string;
-        readonly token: string;
-        readonly link: string;
-        readonly emoji: string;
-        readonly 'line-break': string;
-        readonly indents: string;
-        readonly Word: string;
-        readonly word: string;
-        readonly spaces: string;
-        readonly others: string;
-        readonly space: string;
-        readonly win_end: string;
-        readonly mac_end: string;
-    }>;
-}
-
-declare namespace $ {
-    class $giper_baza_text extends $giper_baza_pawn {
-        static tag: keyof typeof $giper_baza_unit_sand_tag;
-        value(next?: string): string;
-        text(next?: string): string;
-        str(next?: string): string;
-        write(next: string, str_from?: number, str_to?: number): this;
-        point_by_offset(offset: number): readonly [head: string, x: number, y: number];
-        offset_by_point([self, offset]: readonly [head: string, x: number, y: number]): readonly [head: string, pos: number];
-        selection(lord: $giper_baza_link, next?: readonly [begin: number, end: number]): readonly [begin: number, end: number];
-    }
-}
-
-declare namespace $ {
     const $bog_feedback_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Text: (auto?: any) => $giper_baza_text | null;
+            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
             readonly Contact: (auto?: any) => $giper_baza_atom_text | null;
         }>;
         path: string;
@@ -14103,7 +14072,7 @@ declare namespace $ {
         schema: {
             [x: string]: typeof $giper_baza_pawn;
         } & {
-            readonly Text: typeof $giper_baza_text;
+            readonly Text: typeof $giper_baza_atom_text;
             readonly Contact: typeof $giper_baza_atom_text;
         };
     };
