@@ -36238,7 +36238,7 @@ var $;
     var $$;
     (function ($$) {
         const LAND_ID = 'iexkmPYx_9RQxWRZF';
-        const OWNER_LORDS = ['Pawt3l7U_skvMQP3r', 'W9NwdbGh_rw599iGj'];
+        const OWNER_LORDS = ['30rPfnwR_eBFtt8H6', 'G4l4UZr3_ibnzXhgQ'];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
             land() {
@@ -36288,14 +36288,17 @@ var $;
             submit() {
                 const text = this.draft_text();
                 const contact = this.draft_contact();
+                console.log('submit', { text, contact });
                 if (!text)
                     return;
                 const entry = this.entry_mine_or_create();
                 if (!entry)
                     return;
                 entry.Text('auto').text(text);
+                console.log('written text:', entry.Text()?.text());
                 if (contact)
                     entry.Contact('auto').val(contact);
+                console.log('written contact:', entry.Contact()?.val());
             }
             body() {
                 return [
@@ -36318,7 +36321,9 @@ var $;
                 if (!lord)
                     return '';
                 const entry = this.entries_dict().key(lord);
-                return entry?.Text()?.text() ?? '';
+                const text = entry?.Text()?.text() ?? '';
+                console.log('entry_row_text', index, { lord, text });
+                return text;
             }
             entry_row_contact(index) {
                 const lord = this.all_lords()[index];
@@ -37722,7 +37727,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Version_title")));
+			(obj.title) = () => ("v1.2");
 			return obj;
 		}
 		Sources(){
