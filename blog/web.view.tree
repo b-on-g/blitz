@@ -3171,7 +3171,7 @@ $bog_blitz $mol_page
 					uri \https://t.me/mol_news/226
 					title \Giper Baza
 		<= Version $mol_paragraph
-			title @ \Version: 1.0
+			title @ \Version: 1.1
 		<= Sources $mol_link_source
 			uri \https://github.com/b-on-g/blitz
 		<= Radio $bog_blitz_radio
