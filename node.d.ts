@@ -14388,7 +14388,6 @@ declare namespace $ {
 //# sourceMappingURL=form.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_feedback_form extends $.$bog_feedback_form {
-        fresh_land(): $giper_baza_land;
         land(): $giper_baza_land;
         entries_dict(): {
             Value: typeof $bog_feedback_entry;
@@ -14435,7 +14434,7 @@ declare namespace $.$$ {
         prompt(): string;
         entry_text(next?: string): string;
         contact(next?: string): string;
-        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $.$giper_baza_status | $.$mol_hint)[];
+        body(): ($.$mol_string | $.$mol_text | $.$mol_textarea | $.$giper_baza_status | $.$mol_hint | $.$mol_section)[];
         all_lords(): readonly $giper_baza_vary_type[];
         entry_rows(): $.$mol_section[];
         entry_row_text(index: number): string;

@@ -29557,18 +29557,12 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const LAND_ID = 'nuAHt21o_6EkWk37t';
+        const LAND_ID = 'TiKq9q8X_9p8WA2PU';
         const OWNER_LORD = 'Q4zRr2UW_0m2uzoRR';
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
-            fresh_land() {
-                console.log('[feedback] creating fresh land via land_grab');
-                return this.$.$giper_baza_glob.land_grab([
-                    [null, $giper_baza_rank_post('late')],
-                ]);
-            }
             land() {
-                return this.fresh_land();
+                return this.$.$giper_baza_glob.Land(new $giper_baza_link(LAND_ID));
             }
             entries_dict() {
                 return this.land().Data(Entries_dict);
@@ -29624,6 +29618,7 @@ var $;
                     this.Entry_my(),
                     this.Contact(),
                     this.Hint_auto(),
+                    ...(this.is_owner() ? [this.Entries()] : []),
                 ];
             }
             all_lords() {
@@ -29647,9 +29642,6 @@ var $;
                 return entry?.Contact()?.val() ?? 'Anonymous';
             }
         }
-        __decorate([
-            $mol_mem
-        ], $bog_feedback_form.prototype, "fresh_land", null);
         __decorate([
             $mol_action
         ], $bog_feedback_form.prototype, "entry_mine_or_create", null);
