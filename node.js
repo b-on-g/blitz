@@ -29411,7 +29411,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const LAND_ID = 'TiKq9q8X_9p8WA2PU';
+        const LAND_ID = 'iexkmPYx_9RQxWRZF';
         const OWNER_LORDS = ['Q4zRr2UW_0m2uzoRR', 'W9NwdbGh_rw599iGj'];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
@@ -29511,6 +29511,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_feedback_form.prototype, "draft_contact", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback_form.prototype, "submit", null);
         $$.$bog_feedback_form = $bog_feedback_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
