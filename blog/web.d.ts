@@ -20670,129 +20670,124 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $bog_feedback_form__Status_bog_blitz_1 = $mol_type_enforce<
-		any
-		,
-		ReturnType< $bog_feedback_form['Status'] >
-	>
-	type $mol_check__checked_bog_blitz_2 = $mol_type_enforce<
+	type $mol_check__checked_bog_blitz_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_check['checked'] >
 	>
-	type $mol_check__sub_bog_blitz_3 = $mol_type_enforce<
+	type $mol_check__sub_bog_blitz_2 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $mol_link__arg_bog_blitz_4 = $mol_type_enforce<
+	type $mol_link__arg_bog_blitz_3 = $mol_type_enforce<
 		({ 
 			'screen': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_blitz_5 = $mol_type_enforce<
+	type $mol_link__sub_bog_blitz_4 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_6 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_5 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__uri_bog_blitz_7 = $mol_type_enforce<
+	type $mol_link__uri_bog_blitz_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_blitz_8 = $mol_type_enforce<
+	type $mol_link__title_bog_blitz_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_9 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_8 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link__uri_bog_blitz_10 = $mol_type_enforce<
+	type $mol_link__uri_bog_blitz_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['uri'] >
 	>
-	type $mol_link__title_bog_blitz_11 = $mol_type_enforce<
+	type $mol_link__title_bog_blitz_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link['title'] >
 	>
-	type $mol_view__sub_bog_blitz_12 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_13 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_12 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_link_source__uri_bog_blitz_14 = $mol_type_enforce<
+	type $mol_link_source__uri_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_15 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_14 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_16 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_15 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_17 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_16 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_18 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_17 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_19 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_20 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_21 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_22 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_23 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_24 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_25 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_24 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >

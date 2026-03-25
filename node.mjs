@@ -29412,7 +29412,7 @@ var $;
     var $$;
     (function ($$) {
         const LAND_ID = 'iexkmPYx_9RQxWRZF';
-        const OWNER_LORDS = ['Q4zRr2UW_0m2uzoRR', 'W9NwdbGh_rw599iGj'];
+        const OWNER_LORDS = ['Pawt3l7U_skvMQP3r', 'W9NwdbGh_rw599iGj'];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
             land() {
@@ -30832,7 +30832,6 @@ var $;
 		}
 		Feedback(){
 			const obj = new this.$.$bog_feedback_form();
-			(obj.Status) = () => (null);
 			return obj;
 		}
 		screen(next){
