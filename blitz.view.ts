@@ -1,36 +1,24 @@
 namespace $.$$ {
-	export class $bog_blitz extends $.$bog_blitz {
+    export class $bog_blitz extends $.$bog_blitz {
+        @$mol_mem
+        tools() {
+            const is_host = this.Lobby().is_host()
+            return [is_host ? this.Radio() : null, this.Feedback_link(), this.Settings()]
+        }
 
-		@$mol_mem
-		tools() {
-			const lobby = this.Lobby()
-			const is_host = lobby.is_host()
-			if (is_host)
-				return [
-					this.Feedback_link(),
-					this.Version(),
-					this.Powered(),
-					this.Sources(),
-					this.Radio(),
-					this.Status(),
-					this.Theme_toggle(),
-				]
-			return [this.Feedback_link(), this.Version(), this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()]
-		}
+        screen_body() {
+            const page = (this.pages() as Record<string, any>)[this.screen()]
+            return page ? [page] : []
+        }
 
-		screen_body() {
-			const page = (this.pages() as Record<string, any>)[this.screen()]
-			return page ? [page] : []
-		}
-
-		screen(next?: string) {
-			if (next !== undefined) {
-				this.mobile_menu_showed(false)
-				if (next === 'lobby') {
-					this.$.$mol_state_arg.value('quiz', null)
-				}
-			}
-			return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin'
-		}
-	}
+        screen(next?: string) {
+            if (next !== undefined) {
+                this.mobile_menu_showed(false)
+                if (next === 'lobby') {
+                    this.$.$mol_state_arg.value('quiz', null)
+                }
+            }
+            return this.$.$mol_state_arg.value('screen', next || undefined) || 'admin'
+        }
+    }
 }
