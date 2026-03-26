@@ -30715,7 +30715,7 @@ var $;
 		}
 		Settings(){
 			const obj = new this.$.$mol_pick();
-			(obj.hint) = () => ("О приложении");
+			(obj.hint) = () => ("Настройки");
 			(obj.trigger_content) = () => ([(this.Settings_icon())]);
 			(obj.bubble_content) = () => ([(this.Settings_content()), (this.Powered())]);
 			return obj;

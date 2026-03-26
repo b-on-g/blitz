@@ -3161,7 +3161,7 @@ $bog_blitz $mol_page
 			sub /
 				<= Feedback_icon $mol_icon_message_draw
 		<= Settings $mol_pick
-			hint \О приложении
+			hint \Настройки
 			trigger_content /
 				<= Settings_icon $mol_icon_cog
 			bubble_content /
