@@ -36238,7 +36238,14 @@ var $;
     var $$;
     (function ($$) {
         const LAND_ID = 'Yv6cfn0R_FhyKACZ3';
-        const OWNER_LORDS = ['30rPfnwR_eBFtt8H6', 'G4l4UZr3_ibnzXhgQ', 'BJ7CAnEP_XYEV6Z67', 'yu093r0P_aTtfK2iV'];
+        const OWNER_LORDS = [
+            'GGZYntZ4_Q4XRUU01',
+            '30rPfnwR_eBFtt8H6',
+            'G4l4UZr3_ibnzXhgQ',
+            'BJ7CAnEP_XYEV6Z67',
+            'yu093r0P_aTtfK2iV',
+            'ru2hfLLC_HYZLTNnf',
+        ];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
             land() {
@@ -36362,14 +36369,37 @@ var $;
         Prompt: {
             padding: $mol_gap.block,
         },
-        Entry_my: {
+        Contact_field: {
             margin: {
-                bottom: $mol_gap.block,
+                top: $mol_gap.space,
             },
         },
         Submit: {
             margin: {
                 top: $mol_gap.block,
+            },
+        },
+        Entries: {
+            margin: {
+                top: $mol_gap.block,
+            },
+            Content: {
+                gap: $mol_gap.block,
+            },
+        },
+        Entry_row: {
+            background: {
+                color: $mol_theme.card,
+            },
+            border: {
+                radius: $mol_gap.round,
+            },
+            padding: $mol_gap.block,
+            boxShadow: `0 0 0 1px ${$mol_theme.line}`,
+            Head: {
+                font: {
+                    size: '1rem',
+                },
             },
         },
     });
@@ -36409,305 +36439,15 @@ var $;
 "use strict";
 
 ;
-	($.$mol_icon_music) = class $mol_icon_music extends ($.$mol_icon) {
+	($.$mol_icon_cog) = class $mol_icon_cog extends ($.$mol_icon) {
 		path(){
-			return "M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z";
+			return "M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z";
 		}
 	};
 
 
 ;
 "use strict";
-
-;
-	($.$bog_blitz_radio) = class $bog_blitz_radio extends ($.$mol_pop) {
-		menu_showed(next){
-			if(next !== undefined) return next;
-			return false;
-		}
-		Icon(){
-			const obj = new this.$.$mol_icon_music();
-			return obj;
-		}
-		Toggle(){
-			const obj = new this.$.$mol_check();
-			(obj.checked) = (next) => ((this.menu_showed(next)));
-			(obj.sub) = () => ([(this.Icon())]);
-			return obj;
-		}
-		volume_input(next){
-			if(next !== undefined) return next;
-			return "";
-		}
-		Volume_label(){
-			const obj = new this.$.$mol_string_button();
-			(obj.value) = (next) => ((this.volume_input(next)));
-			return obj;
-		}
-		volume_up(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Volume_up(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.title) = () => ("+");
-			(obj.click) = (next) => ((this.volume_up(next)));
-			return obj;
-		}
-		volume_down(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Volume_down(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.title) = () => ("-");
-			(obj.click) = (next) => ((this.volume_down(next)));
-			return obj;
-		}
-		Volume_row(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Volume_label()), 
-				(this.Volume_up()), 
-				(this.Volume_down())
-			]);
-			return obj;
-		}
-		stop_click(next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Stop_button(){
-			const obj = new this.$.$mol_button_minor();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_radio_Stop_button_title")));
-			(obj.click) = (next) => ((this.stop_click(next)));
-			return obj;
-		}
-		station_title(id){
-			return "";
-		}
-		station_click(id, next){
-			if(next !== undefined) return next;
-			return null;
-		}
-		Station(id){
-			const obj = new this.$.$mol_button_minor();
-			(obj.title) = () => ((this.station_title(id)));
-			(obj.click) = (next) => ((this.station_click(id, next)));
-			return obj;
-		}
-		menu_content(){
-			return [
-				(this.Volume_row()), 
-				(this.Stop_button()), 
-				(this.Station("0"))
-			];
-		}
-		Menu(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.menu_content()));
-			return obj;
-		}
-		showed(next){
-			return (this.menu_showed(next));
-		}
-		Anchor(){
-			return (this.Toggle());
-		}
-		bubble_content(){
-			return [(this.Menu())];
-		}
-	};
-	($mol_mem(($.$bog_blitz_radio.prototype), "menu_showed"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Icon"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Toggle"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "volume_input"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_label"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "volume_up"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_up"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "volume_down"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_down"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_row"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "stop_click"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Stop_button"));
-	($mol_mem_key(($.$bog_blitz_radio.prototype), "station_click"));
-	($mol_mem_key(($.$bog_blitz_radio.prototype), "Station"));
-	($mol_mem(($.$bog_blitz_radio.prototype), "Menu"));
-
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        const stations = [
-            { id: 'lofi', title: '🎧 Lofi Hip Hop', url: 'https://listen.reyfm.de/lofi_320kbps.mp3' },
-            { id: 'chill', title: '☕ Chillhop', url: 'https://ilm.stream35.radiohost.de/ilm_ilovechillhop_mp3-192' },
-            { id: 'party', title: '🎉 House Party', url: 'https://listen.reyfm.de/houseparty_192kbps.mp3' },
-            { id: 'dj', title: '🎵 DJ Charts', url: 'https://breakz-high.rautemusik.fm/' },
-            { id: 'lounge', title: '🍸 Workday Lounge', url: 'https://stream.epic-lounge.com/workday-lounge' },
-        ];
-        class $bog_blitz_radio extends $.$bog_blitz_radio {
-            audio = null;
-            current_station(next) {
-                return next ?? '';
-            }
-            volume(next) {
-                if (next !== undefined) {
-                    this.$.$mol_state_local.value('bog_blitz_radio_volume', next);
-                    return next;
-                }
-                return this.$.$mol_state_local.value('bog_blitz_radio_volume') ?? 50;
-            }
-            volume_input(next) {
-                if (next !== undefined) {
-                    const num = parseInt(next, 10);
-                    if (!isNaN(num)) {
-                        const vol = Math.max(0, Math.min(100, num));
-                        this.volume(vol);
-                        if (this.audio)
-                            this.audio.volume = vol / 100;
-                    }
-                    return next;
-                }
-                const playing = this.current_station();
-                const vol = this.volume();
-                if (!playing)
-                    return `🔇 ${vol}%`;
-                return `🔊 ${vol}%`;
-            }
-            volume_up(next) {
-                if (next !== undefined) {
-                    const vol = Math.min(100, this.volume() + 10);
-                    this.volume(vol);
-                    if (this.audio)
-                        this.audio.volume = vol / 100;
-                }
-            }
-            volume_down(next) {
-                if (next !== undefined) {
-                    const vol = Math.max(0, this.volume() - 10);
-                    this.volume(vol);
-                    if (this.audio)
-                        this.audio.volume = vol / 100;
-                }
-            }
-            station_keys() {
-                return stations.map(s => s.id);
-            }
-            menu_content() {
-                return [
-                    this.Volume_row(),
-                    this.Stop_button(),
-                    ...this.station_keys().map(id => this.Station(id)),
-                ];
-            }
-            station_title(id) {
-                const s = stations.find(s => s.id === id);
-                const prefix = this.current_station() === id ? '▶ ' : '';
-                return prefix + (s?.title ?? id);
-            }
-            station_click(id, e) {
-                if (e) {
-                    this.play(id);
-                }
-                return null;
-            }
-            stop_click(next) {
-                if (next !== undefined) {
-                    this.stop();
-                }
-            }
-            play(id) {
-                this.stop();
-                const s = stations.find(s => s.id === id);
-                if (!s)
-                    return;
-                const audio = new Audio(s.url);
-                audio.volume = this.volume() / 100;
-                audio.play().catch(() => { });
-                this.audio = audio;
-                this.current_station(id);
-            }
-            stop() {
-                if (this.audio) {
-                    this.audio.pause();
-                    this.audio.src = '';
-                    this.audio = null;
-                }
-                this.current_station('');
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "current_station", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "volume", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "volume_input", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "volume_up", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "volume_down", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "station_keys", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "menu_content", null);
-        __decorate([
-            $mol_mem_key
-        ], $bog_blitz_radio.prototype, "station_title", null);
-        __decorate([
-            $mol_mem_key
-        ], $bog_blitz_radio.prototype, "station_click", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_radio.prototype, "stop_click", null);
-        $$.$bog_blitz_radio = $bog_blitz_radio;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        $mol_style_define($bog_blitz_radio, {
-            Menu: {
-                flex: { direction: 'column' },
-                padding: { top: '0.5rem', bottom: '0.5rem', left: '0.5rem', right: '0.5rem' },
-                gap: '0.25rem',
-                minWidth: '12rem',
-            },
-            Volume_row: {
-                justify: { content: 'center' },
-                align: { items: 'center' },
-                gap: '0.25rem',
-            },
-            Volume_label: {
-                font: { size: '0.875rem' },
-                minWidth: '4rem',
-                textAlign: 'center',
-            },
-            Stop_button: {
-                justify: { content: 'center' },
-            },
-            Station: {
-                justify: { content: 'flex-start' },
-            },
-        });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
 
 ;
 "use strict";
@@ -37512,6 +37252,307 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$mol_icon_music) = class $mol_icon_music extends ($.$mol_icon) {
+		path(){
+			return "M21,3V15.5A3.5,3.5 0 0,1 17.5,19A3.5,3.5 0 0,1 14,15.5A3.5,3.5 0 0,1 17.5,12C18.04,12 18.55,12.12 19,12.34V6.47L9,8.6V17.5A3.5,3.5 0 0,1 5.5,21A3.5,3.5 0 0,1 2,17.5A3.5,3.5 0 0,1 5.5,14C6.04,14 6.55,14.12 7,14.34V6L21,3Z";
+		}
+	};
+
+
+;
+"use strict";
+
+;
+	($.$bog_blitz_radio) = class $bog_blitz_radio extends ($.$mol_pop) {
+		menu_showed(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		Icon(){
+			const obj = new this.$.$mol_icon_music();
+			return obj;
+		}
+		Toggle(){
+			const obj = new this.$.$mol_check();
+			(obj.checked) = (next) => ((this.menu_showed(next)));
+			(obj.sub) = () => ([(this.Icon())]);
+			return obj;
+		}
+		volume_input(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Volume_label(){
+			const obj = new this.$.$mol_string_button();
+			(obj.value) = (next) => ((this.volume_input(next)));
+			return obj;
+		}
+		volume_up(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Volume_up(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ("+");
+			(obj.click) = (next) => ((this.volume_up(next)));
+			return obj;
+		}
+		volume_down(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Volume_down(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ("-");
+			(obj.click) = (next) => ((this.volume_down(next)));
+			return obj;
+		}
+		Volume_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([
+				(this.Volume_label()), 
+				(this.Volume_up()), 
+				(this.Volume_down())
+			]);
+			return obj;
+		}
+		stop_click(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Stop_button(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_radio_Stop_button_title")));
+			(obj.click) = (next) => ((this.stop_click(next)));
+			return obj;
+		}
+		station_title(id){
+			return "";
+		}
+		station_click(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Station(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.station_title(id)));
+			(obj.click) = (next) => ((this.station_click(id, next)));
+			return obj;
+		}
+		menu_content(){
+			return [
+				(this.Volume_row()), 
+				(this.Stop_button()), 
+				(this.Station("0"))
+			];
+		}
+		Menu(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.menu_content()));
+			return obj;
+		}
+		showed(next){
+			return (this.menu_showed(next));
+		}
+		Anchor(){
+			return (this.Toggle());
+		}
+		bubble_content(){
+			return [(this.Menu())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_radio.prototype), "menu_showed"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Icon"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Toggle"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_input"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_label"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_up"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_up"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "volume_down"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_down"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Volume_row"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "stop_click"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Stop_button"));
+	($mol_mem_key(($.$bog_blitz_radio.prototype), "station_click"));
+	($mol_mem_key(($.$bog_blitz_radio.prototype), "Station"));
+	($mol_mem(($.$bog_blitz_radio.prototype), "Menu"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const stations = [
+            { id: 'lofi', title: '🎧 Lofi Hip Hop', url: 'https://listen.reyfm.de/lofi_320kbps.mp3' },
+            { id: 'chill', title: '☕ Chillhop', url: 'https://ilm.stream35.radiohost.de/ilm_ilovechillhop_mp3-192' },
+            { id: 'party', title: '🎉 House Party', url: 'https://listen.reyfm.de/houseparty_192kbps.mp3' },
+            { id: 'dj', title: '🎵 DJ Charts', url: 'https://breakz-high.rautemusik.fm/' },
+            { id: 'lounge', title: '🍸 Workday Lounge', url: 'https://stream.epic-lounge.com/workday-lounge' },
+        ];
+        class $bog_blitz_radio extends $.$bog_blitz_radio {
+            audio = null;
+            current_station(next) {
+                return next ?? '';
+            }
+            volume(next) {
+                if (next !== undefined) {
+                    this.$.$mol_state_local.value('bog_blitz_radio_volume', next);
+                    return next;
+                }
+                return this.$.$mol_state_local.value('bog_blitz_radio_volume') ?? 50;
+            }
+            volume_input(next) {
+                if (next !== undefined) {
+                    const num = parseInt(next, 10);
+                    if (!isNaN(num)) {
+                        const vol = Math.max(0, Math.min(100, num));
+                        this.volume(vol);
+                        if (this.audio)
+                            this.audio.volume = vol / 100;
+                    }
+                    return next;
+                }
+                const playing = this.current_station();
+                const vol = this.volume();
+                if (!playing)
+                    return `🔇 ${vol}%`;
+                return `🔊 ${vol}%`;
+            }
+            volume_up(next) {
+                if (next !== undefined) {
+                    const vol = Math.min(100, this.volume() + 10);
+                    this.volume(vol);
+                    if (this.audio)
+                        this.audio.volume = vol / 100;
+                }
+            }
+            volume_down(next) {
+                if (next !== undefined) {
+                    const vol = Math.max(0, this.volume() - 10);
+                    this.volume(vol);
+                    if (this.audio)
+                        this.audio.volume = vol / 100;
+                }
+            }
+            station_keys() {
+                return stations.map(s => s.id);
+            }
+            menu_content() {
+                return [
+                    this.Volume_row(),
+                    this.Stop_button(),
+                    ...this.station_keys().map(id => this.Station(id)),
+                ];
+            }
+            station_title(id) {
+                const s = stations.find(s => s.id === id);
+                const prefix = this.current_station() === id ? '▶ ' : '';
+                return prefix + (s?.title ?? id);
+            }
+            station_click(id, e) {
+                if (e) {
+                    this.play(id);
+                }
+                return null;
+            }
+            stop_click(next) {
+                if (next !== undefined) {
+                    this.stop();
+                }
+            }
+            play(id) {
+                this.stop();
+                const s = stations.find(s => s.id === id);
+                if (!s)
+                    return;
+                const audio = new Audio(s.url);
+                audio.volume = this.volume() / 100;
+                audio.play().catch(() => { });
+                this.audio = audio;
+                this.current_station(id);
+            }
+            stop() {
+                if (this.audio) {
+                    this.audio.pause();
+                    this.audio.src = '';
+                    this.audio = null;
+                }
+                this.current_station('');
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "current_station", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_input", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_up", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "volume_down", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "station_keys", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "menu_content", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_radio.prototype, "station_title", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_radio.prototype, "station_click", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_radio.prototype, "stop_click", null);
+        $$.$bog_blitz_radio = $bog_blitz_radio;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_radio, {
+            Menu: {
+                flex: { direction: 'column' },
+                padding: { top: '0.5rem', bottom: '0.5rem', left: '0.5rem', right: '0.5rem' },
+                gap: '0.25rem',
+                minWidth: '12rem',
+            },
+            Volume_row: {
+                justify: { content: 'center' },
+                align: { items: 'center' },
+                gap: '0.25rem',
+            },
+            Volume_label: {
+                font: { size: '0.875rem' },
+                minWidth: '4rem',
+                textAlign: 'center',
+            },
+            Stop_button: {
+                justify: { content: 'center' },
+            },
+            Station: {
+                justify: { content: 'flex-start' },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$mol_check_list) = class $mol_check_list extends ($.$mol_view) {
 		option_checked(id, next){
 			if(next !== undefined) return next;
@@ -37693,50 +37734,8 @@ var $;
 			(obj.sub) = () => ([(this.Feedback_icon())]);
 			return obj;
 		}
-		Powered_prefix(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Powered_prefix_title")));
-			return obj;
-		}
-		Mol_link(){
-			const obj = new this.$.$mol_link();
-			(obj.uri) = () => ("https://mol.hyoo.ru/#!section=docs/=4kd8nv_evh111");
-			(obj.title) = () => ("$mol");
-			return obj;
-		}
-		Powered_and(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_Powered_and_title")));
-			return obj;
-		}
-		Baza_link(){
-			const obj = new this.$.$mol_link();
-			(obj.uri) = () => ("https://t.me/mol_news/226");
-			(obj.title) = () => ("Giper Baza");
-			return obj;
-		}
-		Powered(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([
-				(this.Powered_prefix()), 
-				(this.Mol_link()), 
-				(this.Powered_and()), 
-				(this.Baza_link())
-			]);
-			return obj;
-		}
-		Version(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.5");
-			return obj;
-		}
-		Sources(){
-			const obj = new this.$.$mol_link_source();
-			(obj.uri) = () => ("https://github.com/b-on-g/blitz");
-			return obj;
-		}
-		Radio(){
-			const obj = new this.$.$bog_blitz_radio();
+		Settings_icon(){
+			const obj = new this.$.$mol_icon_cog();
 			return obj;
 		}
 		Status(){
@@ -37746,6 +37745,36 @@ var $;
 		Theme_toggle(){
 			const obj = new this.$.$bog_theme_toggle();
 			(obj.theme_auto) = () => ((this.Theme()));
+			return obj;
+		}
+		Sources(){
+			const obj = new this.$.$mol_link_source();
+			(obj.uri) = () => ("https://github.com/b-on-g/blitz");
+			return obj;
+		}
+		Settings_content(){
+			const obj = new this.$.$mol_row();
+			(obj.sub) = () => ([
+				(this.Status()), 
+				(this.Theme_toggle()), 
+				(this.Sources())
+			]);
+			return obj;
+		}
+		Powered(){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ("Пишите нам в [Telegram](https://t.me/@Dev_Cmyser)\n*Создано на [$mol](https://mol.hyoo.ru/#!section=docs/=4kd8nv_evh111) и [Giper Baza](https://t.me/mol_news/226)*");
+			return obj;
+		}
+		Settings(){
+			const obj = new this.$.$mol_pick();
+			(obj.hint) = () => ("Настройки");
+			(obj.trigger_content) = () => ([(this.Settings_icon())]);
+			(obj.bubble_content) = () => ([(this.Settings_content()), (this.Powered())]);
+			return obj;
+		}
+		Radio(){
+			const obj = new this.$.$bog_blitz_radio();
 			return obj;
 		}
 		Theme(){
@@ -37798,12 +37827,8 @@ var $;
 		tools(){
 			return [
 				(this.Feedback_link()), 
-				(this.Powered()), 
-				(this.Version()), 
-				(this.Sources()), 
-				(this.Radio()), 
-				(this.Status()), 
-				(this.Theme_toggle())
+				(this.Settings()), 
+				(this.Radio())
 			];
 		}
 		head(){
@@ -37831,16 +37856,14 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_menu_trigger"));
 	($mol_mem(($.$bog_blitz.prototype), "Feedback_icon"));
 	($mol_mem(($.$bog_blitz.prototype), "Feedback_link"));
-	($mol_mem(($.$bog_blitz.prototype), "Powered_prefix"));
-	($mol_mem(($.$bog_blitz.prototype), "Mol_link"));
-	($mol_mem(($.$bog_blitz.prototype), "Powered_and"));
-	($mol_mem(($.$bog_blitz.prototype), "Baza_link"));
-	($mol_mem(($.$bog_blitz.prototype), "Powered"));
-	($mol_mem(($.$bog_blitz.prototype), "Version"));
-	($mol_mem(($.$bog_blitz.prototype), "Sources"));
-	($mol_mem(($.$bog_blitz.prototype), "Radio"));
+	($mol_mem(($.$bog_blitz.prototype), "Settings_icon"));
 	($mol_mem(($.$bog_blitz.prototype), "Status"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme_toggle"));
+	($mol_mem(($.$bog_blitz.prototype), "Sources"));
+	($mol_mem(($.$bog_blitz.prototype), "Settings_content"));
+	($mol_mem(($.$bog_blitz.prototype), "Powered"));
+	($mol_mem(($.$bog_blitz.prototype), "Settings"));
+	($mol_mem(($.$bog_blitz.prototype), "Radio"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_nav"));
@@ -37858,19 +37881,8 @@ var $;
     (function ($$) {
         class $bog_blitz extends $.$bog_blitz {
             tools() {
-                const lobby = this.Lobby();
-                const is_host = lobby.is_host();
-                if (is_host)
-                    return [
-                        this.Feedback_link(),
-                        this.Version(),
-                        this.Powered(),
-                        this.Sources(),
-                        this.Radio(),
-                        this.Status(),
-                        this.Theme_toggle(),
-                    ];
-                return [this.Feedback_link(), this.Version(), this.Powered(), this.Sources(), this.Status(), this.Theme_toggle()];
+                const is_host = this.Lobby().is_host();
+                return [is_host ? this.Radio() : null, this.Feedback_link(), this.Settings()];
             }
             screen_body() {
                 const page = this.pages()[this.screen()];
@@ -37926,28 +37938,6 @@ var $;
                     items: 'center',
                 },
             },
-            Version: {
-                opacity: 0.3,
-                font: {
-                    size: '.75rem',
-                },
-                margin: {
-                    right: '.5rem',
-                },
-            },
-            Powered: {
-                opacity: 0.5,
-                font: {
-                    size: '.875rem',
-                },
-                gap: '.25rem',
-                align: {
-                    items: 'center',
-                },
-                flex: {
-                    wrap: 'wrap',
-                },
-            },
             Mobile_menu: {
                 display: 'none',
             },
@@ -37957,11 +37947,6 @@ var $;
                         display: 'flex',
                     },
                     Navbar: {
-                        display: 'none',
-                    },
-                },
-                '(width < 1030px)': {
-                    Powered: {
                         display: 'none',
                     },
                 },

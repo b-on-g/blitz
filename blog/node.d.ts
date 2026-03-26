@@ -14392,127 +14392,13 @@ declare namespace $ {
 //# sourceMappingURL=draw.view.tree.d.ts.map
 declare namespace $ {
 
-	export class $mol_icon_music extends $mol_icon {
+	export class $mol_icon_cog extends $mol_icon {
 		path( ): string
 	}
 	
 }
 
-//# sourceMappingURL=music.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_check__checked_bog_blitz_radio_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['menu_showed'] >
-		,
-		ReturnType< $mol_check['checked'] >
-	>
-	type $mol_check__sub_bog_blitz_radio_2 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_check['sub'] >
-	>
-	type $mol_string_button__value_bog_blitz_radio_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['volume_input'] >
-		,
-		ReturnType< $mol_string_button['value'] >
-	>
-	type $mol_button_minor__title_bog_blitz_radio_4 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_radio_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['volume_up'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_bog_blitz_radio_6 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_radio_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['volume_down'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_view__sub_bog_blitz_radio_8 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_radio_9 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_radio_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['stop_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_bog_blitz_radio_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['station_title'] >
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_radio_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['station_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_view__sub_bog_blitz_radio_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_radio['menu_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_radio extends $mol_pop {
-		menu_showed( next?: boolean ): boolean
-		Icon( ): $mol_icon_music
-		Toggle( ): $mol_check
-		volume_input( next?: string ): string
-		Volume_label( ): $mol_string_button
-		volume_up( next?: any ): any
-		Volume_up( ): $mol_button_minor
-		volume_down( next?: any ): any
-		Volume_down( ): $mol_button_minor
-		Volume_row( ): $mol_view
-		stop_click( next?: any ): any
-		Stop_button( ): $mol_button_minor
-		station_title( id: any): string
-		station_click( id: any, next?: any ): any
-		Station( id: any): $mol_button_minor
-		menu_content( ): readonly(any)[]
-		Menu( ): $mol_view
-		showed( next?: ReturnType< $bog_blitz_radio['menu_showed'] > ): ReturnType< $bog_blitz_radio['menu_showed'] >
-		Anchor( ): ReturnType< $bog_blitz_radio['Toggle'] >
-		bubble_content( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=radio.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_radio extends $.$bog_blitz_radio {
-        audio: HTMLAudioElement | null;
-        current_station(next?: string): string;
-        volume(next?: number): number;
-        volume_input(next?: string): string;
-        volume_up(next?: Event): void;
-        volume_down(next?: Event): void;
-        station_keys(): string[];
-        menu_content(): $mol_view[];
-        station_title(id: string): string;
-        station_click(id: string, e?: Event): null;
-        stop_click(next?: Event): void;
-        play(id: string): void;
-        stop(): void;
-    }
-}
-
-declare namespace $.$$ {
-}
-
+//# sourceMappingURL=cog.view.tree.d.ts.map
 declare namespace $ {
     const $bog_theme: Record<"image" | "line" | "text" | "current" | "field" | "focus" | "background" | "back" | "hover" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
     const $bog_theme_names: readonly ["$mol_theme_giper_smash_dark", "$mol_theme_giper_smash_light", "$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark", "$mol_theme_calm_dark", "$mol_theme_calm_light"];
@@ -14794,6 +14680,129 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
+	export class $mol_icon_music extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=music.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_check__checked_bog_blitz_radio_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['menu_showed'] >
+		,
+		ReturnType< $mol_check['checked'] >
+	>
+	type $mol_check__sub_bog_blitz_radio_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_check['sub'] >
+	>
+	type $mol_string_button__value_bog_blitz_radio_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_input'] >
+		,
+		ReturnType< $mol_string_button['value'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_up'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['volume_down'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_view__sub_bog_blitz_radio_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['stop_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_radio_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['station_title'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_radio_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['station_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_view__sub_bog_blitz_radio_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_radio['menu_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_radio extends $mol_pop {
+		menu_showed( next?: boolean ): boolean
+		Icon( ): $mol_icon_music
+		Toggle( ): $mol_check
+		volume_input( next?: string ): string
+		Volume_label( ): $mol_string_button
+		volume_up( next?: any ): any
+		Volume_up( ): $mol_button_minor
+		volume_down( next?: any ): any
+		Volume_down( ): $mol_button_minor
+		Volume_row( ): $mol_view
+		stop_click( next?: any ): any
+		Stop_button( ): $mol_button_minor
+		station_title( id: any): string
+		station_click( id: any, next?: any ): any
+		Station( id: any): $mol_button_minor
+		menu_content( ): readonly(any)[]
+		Menu( ): $mol_view
+		showed( next?: ReturnType< $bog_blitz_radio['menu_showed'] > ): ReturnType< $bog_blitz_radio['menu_showed'] >
+		Anchor( ): ReturnType< $bog_blitz_radio['Toggle'] >
+		bubble_content( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=radio.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_radio extends $.$bog_blitz_radio {
+        audio: HTMLAudioElement | null;
+        current_station(next?: string): string;
+        volume(next?: number): number;
+        volume_input(next?: string): string;
+        volume_up(next?: Event): void;
+        volume_down(next?: Event): void;
+        station_keys(): string[];
+        menu_content(): $mol_view[];
+        station_title(id: string): string;
+        station_click(id: string, e?: Event): null;
+        stop_click(next?: Event): void;
+        play(id: string): void;
+        stop(): void;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
 	type $mol_check__checked_mol_check_list_1 = $mol_type_enforce<
 		ReturnType< $mol_check_list['option_checked'] >
 		,
@@ -14893,102 +14902,87 @@ declare namespace $ {
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_5 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_link__uri_bog_blitz_6 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__title_bog_blitz_7 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_8 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_link__uri_bog_blitz_9 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__title_bog_blitz_10 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link['title'] >
-	>
-	type $mol_view__sub_bog_blitz_11 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_12 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_link_source__uri_bog_blitz_13 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_link_source['uri'] >
-	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_14 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_5 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_15 = $mol_type_enforce<
+	type $mol_link_source__uri_bog_blitz_6 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_link_source['uri'] >
+	>
+	type $mol_row__sub_bog_blitz_7 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_row['sub'] >
+	>
+	type $mol_text__text_bog_blitz_8 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_pick__hint_bog_blitz_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_pick['hint'] >
+	>
+	type $mol_pick__trigger_content_bog_blitz_10 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['trigger_content'] >
+	>
+	type $mol_pick__bubble_content_bog_blitz_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_pick['bubble_content'] >
+	>
+	type $bog_theme_auto__theme_light_bog_blitz_12 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_16 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_17 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_15 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_20 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_21 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_22 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_23 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_24 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -15004,16 +14998,14 @@ declare namespace $ {
 		Mobile_menu_trigger( ): $mol_check
 		Feedback_icon( ): $mol_icon_message_draw
 		Feedback_link( ): $mol_link
-		Powered_prefix( ): $mol_paragraph
-		Mol_link( ): $mol_link
-		Powered_and( ): $mol_paragraph
-		Baza_link( ): $mol_link
-		Powered( ): $mol_view
-		Version( ): $mol_paragraph
-		Sources( ): $mol_link_source
-		Radio( ): $bog_blitz_radio
+		Settings_icon( ): $mol_icon_cog
 		Status( ): $giper_baza_status
 		Theme_toggle( ): $bog_theme_toggle
+		Sources( ): $mol_link_source
+		Settings_content( ): $mol_row
+		Powered( ): $mol_text
+		Settings( ): $mol_pick
+		Radio( ): $bog_blitz_radio
 		Theme( ): $bog_theme_auto
 		screen_body( ): readonly(any)[]
 		title( ): string
@@ -15042,7 +15034,7 @@ declare namespace $ {
 //# sourceMappingURL=blitz.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz extends $.$bog_blitz {
-        tools(): ($mol_view | $.$mol_paragraph | $.$giper_baza_status | $.$bog_blitz_radio | $.$bog_theme_toggle | $mol_link_source)[];
+        tools(): ($.$mol_link | $.$mol_pick | $.$bog_blitz_radio | null)[];
         screen_body(): any[];
         screen(next?: string): string;
     }

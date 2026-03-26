@@ -432,8 +432,7 @@
     "$mol_icon_menu",
     "$mol_icon_message_draw",
     "$mol_icon_message",
-    "$bog_blitz_radio",
-    "$mol_icon_music",
+    "$mol_icon_cog",
     "$bog_theme_toggle",
     "$bog_theme",
     "$bog_theme_picker",
@@ -445,6 +444,8 @@
     "$mol_icon_weather_night",
     "$mol_icon_weather",
     "$mol_icon_monitor",
+    "$bog_blitz_radio",
+    "$mol_icon_music",
     "$mol_switch",
     "$mol_check_list"
   ],

@@ -2828,36 +2828,26 @@ h6[mol_text_header] {
 [bog_feedback_form_prompt] {
 	padding: var(--mol_gap_block);
 }
-[bog_feedback_form_entry_my] {
-	margin-bottom: var(--mol_gap_block);
+[bog_feedback_form_contact_field] {
+	margin-top: var(--mol_gap_space);
 }
 [bog_feedback_form_submit] {
 	margin-top: var(--mol_gap_block);
 }
-</style><style id="$mol_style_attach:$bog_blitz_radio">[bog_blitz_radio_menu] {
-	flex-direction: column;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	gap: 0.25rem;
-	min-width: 12rem;
+[bog_feedback_form_entries] {
+	margin-top: var(--mol_gap_block);
 }
-[bog_blitz_radio_volume_row] {
-	justify-content: center;
-	align-items: center;
-	gap: 0.25rem;
+[bog_feedback_form_entries_content] {
+	gap: var(--mol_gap_block);
 }
-[bog_blitz_radio_volume_label] {
-	font-size: 0.875rem;
-	min-width: 4rem;
-	text-align: center;
+[bog_feedback_form_entry_row] {
+	background-color: var(--mol_theme_card);
+	border-radius: var(--mol_gap_round);
+	padding: var(--mol_gap_block);
+	box-shadow: 0 0 0 1px var(--mol_theme_line);
 }
-[bog_blitz_radio_stop_button] {
-	justify-content: center;
-}
-[bog_blitz_radio_station] {
-	justify-content: flex-start;
+[bog_feedback_form_entry_row_head] {
+	font-size: 1rem;
 }
 </style><style id="$mol_style_attach:bog/theme/theme.css">:root {
 	--mol_theme_hue: 645deg;
@@ -3443,6 +3433,31 @@ h6[mol_text_header] {
 	max-height: 70vh;
 	z-index: 2;
 }
+</style><style id="$mol_style_attach:$bog_blitz_radio">[bog_blitz_radio_menu] {
+	flex-direction: column;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	gap: 0.25rem;
+	min-width: 12rem;
+}
+[bog_blitz_radio_volume_row] {
+	justify-content: center;
+	align-items: center;
+	gap: 0.25rem;
+}
+[bog_blitz_radio_volume_label] {
+	font-size: 0.875rem;
+	min-width: 4rem;
+	text-align: center;
+}
+[bog_blitz_radio_stop_button] {
+	justify-content: center;
+}
+[bog_blitz_radio_station] {
+	justify-content: flex-start;
+}
 </style><style id="$mol_style_attach:mol/check/list/list.view.css">[mol_check_list] {
 	display: flex;
 	flex-wrap: wrap;
@@ -3477,18 +3492,6 @@ h6[mol_text_header] {
 	justify-content: flex-end;
 	align-items: center;
 }
-[bog_blitz_version] {
-	opacity: 0.3;
-	font-size: .75rem;
-	margin-right: .5rem;
-}
-[bog_blitz_powered] {
-	opacity: 0.5;
-	font-size: .875rem;
-	gap: .25rem;
-	align-items: center;
-	flex-wrap: wrap;
-}
 [bog_blitz_mobile_menu] {
 	display: none;
 }
@@ -3497,11 +3500,6 @@ h6[mol_text_header] {
 	display: flex;
 }
 [bog_blitz_navbar] {
-	display: none;
-}
-}
-@media (width < 1030px) {
-[bog_blitz_powered] {
 	display: none;
 }
 }
