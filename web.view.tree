@@ -2999,7 +2999,7 @@ $bog_feedback_form $mol_page
 				<= Entry_row*0 $mol_section
 					title <= entry_row_contact* \
 					content /
-						<= Entry_row_text*0 $mol_text
+						<= Entry_row_text* $mol_text
 							text <= entry_row_text* \
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
@@ -3171,7 +3171,7 @@ $bog_blitz $mol_page
 					uri \https://t.me/mol_news/226
 					title \Giper Baza
 		<= Version $mol_paragraph
-			title \v1.4
+			title \v1.5
 		<= Sources $mol_link_source
 			uri \https://github.com/b-on-g/blitz
 		<= Radio $bog_blitz_radio

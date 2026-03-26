@@ -29125,7 +29125,7 @@ var $;
 		Entry_row(id){
 			const obj = new this.$.$mol_section();
 			(obj.title) = () => ((this.entry_row_contact(id)));
-			(obj.content) = () => ([(this.Entry_row_text("0"))]);
+			(obj.content) = () => ([(this.Entry_row_text(id))]);
 			return obj;
 		}
 		entry_rows(){
@@ -29175,8 +29175,8 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const LAND_ID = 'iexkmPYx_9RQxWRZF';
-        const OWNER_LORDS = ['30rPfnwR_eBFtt8H6', 'G4l4UZr3_ibnzXhgQ'];
+        const LAND_ID = 'Yv6cfn0R_FhyKACZ3';
+        const OWNER_LORDS = ['30rPfnwR_eBFtt8H6', 'G4l4UZr3_ibnzXhgQ', 'BJ7CAnEP_XYEV6Z67', 'yu093r0P_aTtfK2iV'];
         const Entries_dict = $giper_baza_dict_to($bog_feedback_entry);
         class $bog_feedback_form extends $.$bog_feedback_form {
             land() {
@@ -30665,7 +30665,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.4");
+			(obj.title) = () => ("v1.5");
 			return obj;
 		}
 		Sources(){
