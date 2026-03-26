@@ -37727,7 +37727,7 @@ var $;
 		}
 		Version(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ("v1.3");
+			(obj.title) = () => ("v1.4");
 			return obj;
 		}
 		Sources(){
