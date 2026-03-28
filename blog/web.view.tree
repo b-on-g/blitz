@@ -2976,10 +2976,11 @@ $mol_section $mol_list
 		<= Content $mol_list
 			rows <= content /
 
-$bog_feedback_form $mol_page
-	title @ \Feedback ( one per user ) 
+$bog_feedback2_form $mol_page
+	feedback_id \
+	registry_link \xueNKaHy_J2JzYrxC
+	title @ \Feedback ( one per user )
 	tools /
-		<= Status $giper_baza_status
 		<= Close null
 	body /
 		<= Prompt $mol_text
@@ -3001,6 +3002,8 @@ $bog_feedback_form $mol_page
 					content /
 						<= Entry_row_text* $mol_text
 							text <= entry_row_text* \
+	Not_configured $mol_status
+		message @ \Form not yet configured
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 
@@ -3135,7 +3138,8 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
 		profile <= Profile $bog_blitz_profile_page
-		feedback <= Feedback $bog_feedback_form
+		feedback <= Feedback $bog_feedback2_form
+			feedback_id \blitz
 	nav_options *
 		lobby \Лобби
 		admin \Админ

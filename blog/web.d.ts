@@ -292,6 +292,74 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    const $mol_theme: Record<"image" | "line" | "text" | "field" | "current" | "hover" | "focus" | "back" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    let $mol_gap: Record<"text" | "space" | "block" | "blur" | "page" | "emoji" | "round", $mol_style_func<"var", unknown>>;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    function $mol_fail(error: any): never;
+}
+
+declare namespace $ {
+    function $mol_func_name(this: $, func: Function): string;
+    function $mol_func_name_from<Target extends Function>(target: Target, source: Function): Target;
+}
+
+declare namespace $ {
+    function $mol_dom_render_children(el: Element | DocumentFragment, childNodes: NodeList | Array<Node | string | null>): void;
+}
+
+declare namespace $ {
+    type $mol_type_partial_deep<Val> = Val extends object ? Val extends Function ? Val : {
+        [field in keyof Val]?: $mol_type_partial_deep<Val[field]> | undefined;
+    } : Val;
+}
+
+declare namespace $ {
+    let $mol_jsx_prefix: string;
+    let $mol_jsx_crumbs: string;
+    let $mol_jsx_booked: null | Set<string>;
+    let $mol_jsx_document: $mol_jsx.JSX.ElementClass['ownerDocument'];
+    const $mol_jsx_frag = "";
+    function $mol_jsx<Props extends $mol_jsx.JSX.IntrinsicAttributes, Children extends Array<Node | string>>(Elem: string | ((props: Props, ...children: Children) => Element), props: Props, ...childNodes: Children): Element | DocumentFragment;
+    namespace $mol_jsx.JSX {
+        interface Element extends HTMLElement {
+            class?: string;
+        }
+        interface ElementClass {
+            attributes: {};
+            ownerDocument: Pick<Document, 'getElementById' | 'createElementNS' | 'createDocumentFragment'>;
+            childNodes: Array<Node | string>;
+            valueOf(): Element;
+        }
+        type OrString<Dict> = {
+            [key in keyof Dict]: Dict[key] | string;
+        };
+        type IntrinsicElements = {
+            [key in keyof ElementTagNameMap]?: $.$mol_type_partial_deep<OrString<Element & IntrinsicAttributes & ElementTagNameMap[key]>>;
+        };
+        interface IntrinsicAttributes {
+            id?: string;
+            xmlns?: string;
+        }
+        interface ElementAttributesProperty {
+            attributes: {};
+        }
+        interface ElementChildrenAttribute {
+        }
+    }
+}
+
+declare namespace $ {
     const $mol_ambient_ref: unique symbol;
     type $mol_ambient_context = $;
     function $mol_ambient(this: $ | void, overrides: Partial<$>): $;
@@ -316,10 +384,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    function $mol_fail(error: any): never;
-}
-
-declare namespace $ {
     function $mol_fail_hidden(error: any): never;
 }
 
@@ -327,11 +391,6 @@ declare namespace $ {
     type $mol_type_writable<T> = {
         -readonly [P in keyof T]: T[P];
     };
-}
-
-declare namespace $ {
-    function $mol_func_name(this: $, func: Function): string;
-    function $mol_func_name_from<Target extends Function>(target: Target, source: Function): Target;
 }
 
 declare namespace $ {
@@ -661,174 +720,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    let $mol_action: typeof $mol_wire_method;
-}
-
-declare namespace $ {
-    class $mol_state_arg extends $mol_object {
-        prefix: string;
-        static href(next?: string): string;
-        static href_normal(): string;
-        static href_absolute(): string;
-        static dict(next?: {
-            [key: string]: string | null;
-        }): Readonly<{
-            [key: string]: string;
-        }>;
-        static dict_cut(except: string[]): {
-            [key: string]: string;
-        };
-        static value(key: string, next?: string | null): string | null;
-        static link(next: Record<string, string | null>): string;
-        static prolog: string;
-        static separator: string;
-        static make_link(next: {
-            [key: string]: string | null;
-        }): string;
-        static commit(): void;
-        static go(next: {
-            [key: string]: string | null;
-        }): void;
-        static encode(str: string): string;
-        constructor(prefix?: string);
-        value(key: string, next?: string): string | null;
-        sub(postfix: string): $mol_state_arg;
-        link(next: Record<string, string | null>): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_media extends $mol_object2 {
-        static match(query: string, next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-    function $mol_wire_solid(): void;
-}
-
-declare namespace $ {
-    let $mol_mem_persist: typeof $mol_wire_solid;
-}
-
-declare namespace $ {
-    function $mol_wire_probe<Value>(task: () => Value, def?: Value): Value | undefined;
-}
-
-declare namespace $ {
-    let $mol_mem_cached: typeof $mol_wire_probe;
-}
-
-declare namespace $ {
-    export function $mol_wire_sync<Host extends object>(obj: Host): ObjectOrFunctionResultAwaited<Host>;
-    type FunctionResultAwaited<Some> = Some extends (...args: infer Args) => infer Res ? (...args: Args) => Awaited<Res> : Some;
-    type ConstructorResultAwaited<Some> = Some extends new (...args: infer Args) => infer Res ? new (...args: Args) => Res : {};
-    type MethodsResultAwaited<Host extends Object> = {
-        [K in keyof Host]: FunctionResultAwaited<Host[K]>;
-    };
-    type ObjectOrFunctionResultAwaited<Some> = (Some extends (...args: any) => unknown ? FunctionResultAwaited<Some> : {}) & (Some extends Object ? MethodsResultAwaited<Some> & ConstructorResultAwaited<Some> : Some);
-    export {};
-}
-
-declare namespace $ {
-    function $mol_wait_user_async(this: $): Promise<unknown>;
-    function $mol_wait_user(this: $): unknown;
-}
-
-declare namespace $ {
-    class $mol_storage extends $mol_object2 {
-        static native(): StorageManager;
-        static persisted(next?: boolean, cache?: 'cache'): boolean;
-        static estimate(): StorageEstimate;
-        static dir(): FileSystemDirectoryHandle;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_local<Value> extends $mol_object {
-        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-        static native(): Storage | {
-            getItem(key: string): any;
-            setItem(key: string, value: string): void;
-            removeItem(key: string): void;
-        };
-        static changes(next?: StorageEvent): StorageEvent | undefined;
-        static value<Value>(key: string, next?: Value | null): Value | null;
-        prefix(): string;
-        value(key: string, next?: Value): Value | null;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    function $mol_lights(this: $, next?: boolean): boolean;
-}
-
-declare namespace $ {
-    const $mol_theme: Record<"image" | "line" | "text" | "field" | "current" | "hover" | "focus" | "back" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    let $mol_gap: Record<"text" | "space" | "block" | "blur" | "page" | "emoji" | "round", $mol_style_func<"var", unknown>>;
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    function $mol_dom_render_children(el: Element | DocumentFragment, childNodes: NodeList | Array<Node | string | null>): void;
-}
-
-declare namespace $ {
-    type $mol_type_partial_deep<Val> = Val extends object ? Val extends Function ? Val : {
-        [field in keyof Val]?: $mol_type_partial_deep<Val[field]> | undefined;
-    } : Val;
-}
-
-declare namespace $ {
-    let $mol_jsx_prefix: string;
-    let $mol_jsx_crumbs: string;
-    let $mol_jsx_booked: null | Set<string>;
-    let $mol_jsx_document: $mol_jsx.JSX.ElementClass['ownerDocument'];
-    const $mol_jsx_frag = "";
-    function $mol_jsx<Props extends $mol_jsx.JSX.IntrinsicAttributes, Children extends Array<Node | string>>(Elem: string | ((props: Props, ...children: Children) => Element), props: Props, ...childNodes: Children): Element | DocumentFragment;
-    namespace $mol_jsx.JSX {
-        interface Element extends HTMLElement {
-            class?: string;
-        }
-        interface ElementClass {
-            attributes: {};
-            ownerDocument: Pick<Document, 'getElementById' | 'createElementNS' | 'createDocumentFragment'>;
-            childNodes: Array<Node | string>;
-            valueOf(): Element;
-        }
-        type OrString<Dict> = {
-            [key in keyof Dict]: Dict[key] | string;
-        };
-        type IntrinsicElements = {
-            [key in keyof ElementTagNameMap]?: $.$mol_type_partial_deep<OrString<Element & IntrinsicAttributes & ElementTagNameMap[key]>>;
-        };
-        interface IntrinsicAttributes {
-            id?: string;
-            xmlns?: string;
-        }
-        interface ElementAttributesProperty {
-            attributes: {};
-        }
-        interface ElementChildrenAttribute {
-        }
-    }
-}
-
-declare namespace $ {
     class $mol_window extends $mol_object {
         static size(): {
             width: number;
@@ -982,6 +873,10 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    function $mol_wire_probe<Value>(task: () => Value, def?: Value): Value | undefined;
+}
+
+declare namespace $ {
     function $mol_wire_watch(): void;
 }
 
@@ -990,6 +885,10 @@ declare namespace $ {
         (): Value;
         '()': Value;
     };
+}
+
+declare namespace $ {
+    function $mol_wire_solid(): void;
 }
 
 declare namespace $ {
@@ -1316,6 +1215,10 @@ declare namespace $ {
 
 //# sourceMappingURL=page.view.tree.d.ts.map
 declare namespace $.$$ {
+}
+
+declare namespace $ {
+    let $mol_mem_cached: typeof $mol_wire_probe;
 }
 
 declare namespace $ {
@@ -1746,6 +1649,10 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    let $mol_action: typeof $mol_wire_method;
+}
+
+declare namespace $ {
 
 	type $mol_hotkey__mod_ctrl_mol_string_1 = $mol_type_enforce<
 		ReturnType< $mol_string['submit_with_ctrl'] >
@@ -1837,6 +1744,53 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=button.view.tree.d.ts.map
+declare namespace $ {
+    let $mol_mem_persist: typeof $mol_wire_solid;
+}
+
+declare namespace $ {
+    export function $mol_wire_sync<Host extends object>(obj: Host): ObjectOrFunctionResultAwaited<Host>;
+    type FunctionResultAwaited<Some> = Some extends (...args: infer Args) => infer Res ? (...args: Args) => Awaited<Res> : Some;
+    type ConstructorResultAwaited<Some> = Some extends new (...args: infer Args) => infer Res ? new (...args: Args) => Res : {};
+    type MethodsResultAwaited<Host extends Object> = {
+        [K in keyof Host]: FunctionResultAwaited<Host[K]>;
+    };
+    type ObjectOrFunctionResultAwaited<Some> = (Some extends (...args: any) => unknown ? FunctionResultAwaited<Some> : {}) & (Some extends Object ? MethodsResultAwaited<Some> & ConstructorResultAwaited<Some> : Some);
+    export {};
+}
+
+declare namespace $ {
+    function $mol_wait_user_async(this: $): Promise<unknown>;
+    function $mol_wait_user(this: $): unknown;
+}
+
+declare namespace $ {
+    class $mol_storage extends $mol_object2 {
+        static native(): StorageManager;
+        static persisted(next?: boolean, cache?: 'cache'): boolean;
+        static estimate(): StorageEstimate;
+        static dir(): FileSystemDirectoryHandle;
+    }
+}
+
+declare namespace $ {
+    class $mol_state_local<Value> extends $mol_object {
+        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+        static native(): Storage | {
+            getItem(key: string): any;
+            setItem(key: string, value: string): void;
+            removeItem(key: string): void;
+        };
+        static changes(next?: StorageEvent): StorageEvent | undefined;
+        static value<Value>(key: string, next?: Value | null): Value | null;
+        prefix(): string;
+        value(key: string, next?: Value): Value | null;
+    }
+}
+
+declare namespace $ {
+}
+
 declare namespace $ {
     class $mol_lock extends $mol_object {
         protected promise: null | Promise<void>;
@@ -2451,6 +2405,39 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
+}
+
+declare namespace $ {
+    class $mol_state_arg extends $mol_object {
+        prefix: string;
+        static href(next?: string): string;
+        static href_normal(): string;
+        static href_absolute(): string;
+        static dict(next?: {
+            [key: string]: string | null;
+        }): Readonly<{
+            [key: string]: string;
+        }>;
+        static dict_cut(except: string[]): {
+            [key: string]: string;
+        };
+        static value(key: string, next?: string | null): string | null;
+        static link(next: Record<string, string | null>): string;
+        static prolog: string;
+        static separator: string;
+        static make_link(next: {
+            [key: string]: string | null;
+        }): string;
+        static commit(): void;
+        static go(next: {
+            [key: string]: string | null;
+        }): void;
+        static encode(str: string): string;
+        constructor(prefix?: string);
+        value(key: string, next?: string): string | null;
+        sub(postfix: string): $mol_state_arg;
+        link(next: Record<string, string | null>): string;
+    }
 }
 
 declare namespace $ {
@@ -16419,6 +16406,16 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_media extends $mol_object2 {
+        static match(query: string, next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
+    function $mol_lights(this: $, next?: boolean): boolean;
+}
+
+declare namespace $ {
 
 	export class $mol_theme_auto extends $mol_plugin {
 		dark( ): string
@@ -19941,7 +19938,7 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    const $bog_feedback_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+    const $bog_feedback2_entry_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
             readonly Text: (auto?: any) => $giper_baza_atom_text | null;
             readonly Contact: (auto?: any) => $giper_baza_atom_text | null;
@@ -19955,7 +19952,7 @@ declare namespace $ {
             readonly Contact: typeof $giper_baza_atom_text;
         };
     };
-    export class $bog_feedback_entry extends $bog_feedback_entry_base {
+    export class $bog_feedback2_entry extends $bog_feedback2_entry_base {
     }
     export {};
 }
@@ -20014,68 +20011,72 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_text__text_bog_feedback_form_1 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['prompt'] >
+	type $mol_text__text_bog_feedback2_form_1 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['prompt'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_textarea__hint_bog_feedback_form_2 = $mol_type_enforce<
+	type $mol_textarea__hint_bog_feedback2_form_2 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_textarea['hint'] >
 	>
-	type $mol_textarea__value_bog_feedback_form_3 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['draft_text'] >
+	type $mol_textarea__value_bog_feedback2_form_3 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['draft_text'] >
 		,
 		ReturnType< $mol_textarea['value'] >
 	>
-	type $mol_string__hint_bog_feedback_form_4 = $mol_type_enforce<
+	type $mol_string__hint_bog_feedback2_form_4 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_feedback_form_5 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['draft_contact'] >
+	type $mol_string__value_bog_feedback2_form_5 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['draft_contact'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_button_major__title_bog_feedback_form_6 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['submit_title'] >
+	type $mol_button_major__title_bog_feedback2_form_6 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['submit_title'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_feedback_form_7 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['submit'] >
+	type $mol_button_major__click_bog_feedback2_form_7 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['submit'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_text__text_bog_feedback_form_8 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['entry_row_text'] >
+	type $mol_text__text_bog_feedback2_form_8 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_text'] >
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_section__title_bog_feedback_form_9 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['entry_row_contact'] >
+	type $mol_section__title_bog_feedback2_form_9 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_contact'] >
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_10 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback2_form_10 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_section__title_bog_feedback_form_11 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback2_form_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback_form_12 = $mol_type_enforce<
-		ReturnType< $bog_feedback_form['entry_rows'] >
+	type $mol_section__content_bog_feedback2_form_12 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_rows'] >
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	export class $bog_feedback_form extends $mol_page {
-		Status( ): $giper_baza_status
+	type $mol_status__message_bog_feedback2_form_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_status['message'] >
+	>
+	export class $bog_feedback2_form extends $mol_page {
 		Close( ): any
 		prompt( ): string
 		Prompt( ): $mol_text
@@ -20092,20 +20093,23 @@ declare namespace $ {
 		Entry_row( id: any): $mol_section
 		entry_rows( ): readonly(any)[]
 		Entries( ): $mol_section
+		feedback_id( ): string
+		registry_link( ): string
 		title( ): string
 		tools( ): readonly(any)[]
 		body( ): readonly(any)[]
+		Not_configured( ): $mol_status
 	}
 	
 }
 
 //# sourceMappingURL=form.view.tree.d.ts.map
 declare namespace $.$$ {
-    class $bog_feedback_form extends $.$bog_feedback_form {
-        land(): $giper_baza_land;
-        entries_dict(): {
-            Value: typeof $bog_feedback_entry;
-            key(key: $giper_baza_vary_type, auto?: any): $bog_feedback_entry;
+    class $bog_feedback2_form extends $.$bog_feedback2_form {
+        registry_land(): $giper_baza_land;
+        registry_dict(): {
+            Value: typeof $giper_baza_atom_text;
+            key(key: $giper_baza_vary_type, auto?: any): $giper_baza_atom_text;
             keys(): readonly $giper_baza_vary_type[];
             dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
             [$mol_dev_format_head](): any[];
@@ -20141,21 +20145,30 @@ declare namespace $.$$ {
             [$mol_ambient_ref]: $;
             [Symbol.dispose](): void;
         };
+        my_pass(): $giper_baza_auth_pass;
         my_lord(): string;
+        can_manage_registry(): boolean;
+        feedback_land_link(): string | null;
+        land(): any;
+        land_ensure(): $giper_baza_land;
+        entries_dict(): any;
         is_owner(): boolean;
-        entry_mine(): $bog_feedback_entry;
-        entry_mine_or_create(): $bog_feedback_entry;
+        has_direct_link(): boolean;
+        is_configured(): boolean;
+        entry_mine(): any;
+        entry_mine_or_create(): any;
         prompt(): string;
-        draft_text(next?: string): string;
-        draft_contact(next?: string): string;
+        draft_text(next?: string): any;
+        draft_contact(next?: string): any;
         has_entry(): boolean;
         submit_title(): "Update feedback" | "Send feedback";
         submit(): void;
-        body(): ($.$mol_string | $.$giper_baza_status | $.$mol_textarea | $mol_button_major | $.$mol_text | $.$mol_section)[];
-        all_lords(): readonly $giper_baza_vary_type[];
-        entry_rows(): $.$mol_section[];
-        entry_row_text(index: number): string;
-        entry_row_contact(index: number): string;
+        tools(): any[];
+        body(): $.$mol_status[] | ($.$mol_string | $.$mol_textarea | $mol_button_major | $.$mol_text | $.$mol_section)[];
+        all_lords(): any;
+        entry_rows(): any;
+        entry_row_text(index: number): any;
+        entry_row_contact(index: number): any;
     }
 }
 
@@ -20679,109 +20692,114 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_check__checked_bog_blitz_1 = $mol_type_enforce<
+	type $bog_feedback2_form__feedback_id_bog_blitz_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_feedback2_form['feedback_id'] >
+	>
+	type $mol_check__checked_bog_blitz_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_check['checked'] >
 	>
-	type $mol_check__sub_bog_blitz_2 = $mol_type_enforce<
+	type $mol_check__sub_bog_blitz_3 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_check['sub'] >
 	>
-	type $mol_link__arg_bog_blitz_3 = $mol_type_enforce<
+	type $mol_link__arg_bog_blitz_4 = $mol_type_enforce<
 		({ 
 			'screen': string,
 		}) 
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_blitz_4 = $mol_type_enforce<
+	type $mol_link__sub_bog_blitz_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
-	type $bog_theme_toggle__theme_auto_bog_blitz_5 = $mol_type_enforce<
+	type $bog_theme_toggle__theme_auto_bog_blitz_6 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Theme'] >
 		,
 		ReturnType< $bog_theme_toggle['theme_auto'] >
 	>
-	type $mol_link_source__uri_bog_blitz_6 = $mol_type_enforce<
+	type $mol_link_source__uri_bog_blitz_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_link_source['uri'] >
 	>
-	type $mol_row__sub_bog_blitz_7 = $mol_type_enforce<
+	type $mol_row__sub_bog_blitz_8 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_text__text_bog_blitz_8 = $mol_type_enforce<
+	type $mol_text__text_bog_blitz_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_pick__hint_bog_blitz_9 = $mol_type_enforce<
+	type $mol_pick__hint_bog_blitz_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pick['hint'] >
 	>
-	type $mol_pick__trigger_content_bog_blitz_10 = $mol_type_enforce<
+	type $mol_pick__trigger_content_bog_blitz_11 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['trigger_content'] >
 	>
-	type $mol_pick__bubble_content_bog_blitz_11 = $mol_type_enforce<
+	type $mol_pick__bubble_content_bog_blitz_12 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_12 = $mol_type_enforce<
+	type $bog_theme_auto__theme_light_bog_blitz_13 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_13 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_14 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_15 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_15 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_16 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_17 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_18 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_19 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_20 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_21 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_22 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -20790,7 +20808,7 @@ declare namespace $ {
 		Lobby( ): $bog_blitz_lobby
 		Admin( ): $bog_blitz_admin
 		Profile( ): $bog_blitz_profile_page
-		Feedback( ): $bog_feedback_form
+		Feedback( ): $bog_feedback2_form
 		screen( next?: string ): string
 		mobile_menu_showed( next?: boolean ): boolean
 		Mobile_menu_icon( ): $mol_icon_menu
