@@ -4,7 +4,9 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
 		profile <= Profile $bog_blitz_profile_page
-		feedback <= Feedback $bog_feedback_form
+		feedback <= Feedback $bog_feedback2_form
+			feedback_id \blitz
+			Status null
 	nav_options *
 		lobby \Лобби
 		admin \Админ
