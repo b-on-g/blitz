@@ -69,6 +69,7 @@
 	"$bog_feedback2_form_Entry_my_hint": "Your feedback",
 	"$bog_feedback2_form_Not_configured_message": "Form not yet configured",
 	"$bog_feedback2_form_title": "Feedback ( one per user )",
+	"$bog_feedback2_form_waiting_title": "Waiting…",
 	"$bog_theme_picker_Search_hint": "Just start typing",
 	"$giper_baza_flex_field_Link_new_dictionary_deny": "🔐 Private",
 	"$giper_baza_flex_field_Link_new_dictionary_local": "💼 Local",

@@ -36199,6 +36199,9 @@ var $;
 			(obj.content) = () => ((this.entry_rows()));
 			return obj;
 		}
+		waiting_title(){
+			return (this.$.$mol_locale.text("$bog_feedback2_form_waiting_title"));
+		}
 		Head(){
 			return null;
 		}
@@ -36230,7 +36233,7 @@ var $;
 		}
 		Waiting(){
 			const obj = new this.$.$mol_paragraph();
-			(obj.sub) = () => ([(this.$.$mol_locale.text("$bog_feedback2_form_Waiting_sub"))]);
+			(obj.title) = () => ((this.waiting_title()));
 			return obj;
 		}
 	};

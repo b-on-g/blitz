@@ -67,6 +67,7 @@
 	"$bog_feedback2_form_Entry_my_hint": "Ваш отзыв",
 	"$bog_feedback2_form_Not_configured_message": "Форма ещё не настроена",
 	"$bog_feedback2_form_title": "Отзыв (один на пользователя)",
+	"$bog_feedback2_form_waiting_title": "Загрузка…",
 	"$bog_theme_picker_Search_hint": "Начните вводить для поиска",
 	"$giper_bot_Context_title": "Резюме",
 	"$giper_bot_Prompt_submit_hint": "Отправить",

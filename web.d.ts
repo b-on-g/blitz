@@ -20077,10 +20077,10 @@ declare namespace $ {
 		,
 		ReturnType< $mol_status['message'] >
 	>
-	type $mol_paragraph__sub_bog_feedback2_form_14 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_paragraph__title_bog_feedback2_form_14 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['waiting_title'] >
 		,
-		ReturnType< $mol_paragraph['sub'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
 	export class $bog_feedback2_form extends $mol_page {
 		Close( ): any
@@ -20099,6 +20099,7 @@ declare namespace $ {
 		Entry_row( id: any): $mol_section
 		entry_rows( ): readonly(any)[]
 		Entries( ): $mol_section
+		waiting_title( ): string
 		Head( ): any
 		feedback_id( ): string
 		registry_link( ): string
