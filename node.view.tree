@@ -1778,6 +1778,7 @@ $mol_section $mol_list
 			rows <= content /
 
 $bog_feedback2_form $mol_page
+	Head null
 	feedback_id \
 	registry_link \4o4ds4yH_SXDxOCPR
 	title @ \Feedback ( one per user )
@@ -1805,6 +1806,9 @@ $bog_feedback2_form $mol_page
 							text <= entry_row_text* \
 	Not_configured $mol_status
 		message @ \Form not yet configured
+	Waiting $mol_paragraph
+		sub /
+			@ \Waiting…
 
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
 

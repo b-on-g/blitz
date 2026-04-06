@@ -20077,6 +20077,11 @@ declare namespace $ {
 		,
 		ReturnType< $mol_status['message'] >
 	>
+	type $mol_paragraph__sub_bog_feedback2_form_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_paragraph['sub'] >
+	>
 	export class $bog_feedback2_form extends $mol_page {
 		Close( ): any
 		prompt( ): string
@@ -20094,12 +20099,14 @@ declare namespace $ {
 		Entry_row( id: any): $mol_section
 		entry_rows( ): readonly(any)[]
 		Entries( ): $mol_section
+		Head( ): any
 		feedback_id( ): string
 		registry_link( ): string
 		title( ): string
 		tools( ): readonly(any)[]
 		body( ): readonly(any)[]
 		Not_configured( ): $mol_status
+		Waiting( ): $mol_paragraph
 	}
 	
 }
@@ -20149,7 +20156,7 @@ declare namespace $.$$ {
         my_pass(): $giper_baza_auth_pass;
         my_lord(): string;
         feedback_land_link(): string | null;
-        land(): $giper_baza_land;
+        land(): $giper_baza_land | null;
         land_ensure(): $giper_baza_land;
         entries_dict(): {
             Value: typeof $bog_feedback2_entry;
@@ -20188,23 +20195,26 @@ declare namespace $.$$ {
             [Symbol.toStringTag]: string;
             [$mol_ambient_ref]: $;
             [Symbol.dispose](): void;
-        };
+        } | null;
         is_owner(): boolean;
         is_configured(): boolean;
-        entry_mine(): $bog_feedback2_entry;
-        entry_mine_or_create(): $bog_feedback2_entry;
+        entry_mine(): $bog_feedback2_entry | null;
+        entry_mine_or_create(): $bog_feedback2_entry | null;
         prompt(): string;
         draft_text(next?: string): string;
         draft_contact(next?: string): string;
         has_entry(): boolean;
         submit_title(): "Update feedback" | "Send feedback";
         submit(): void;
-        body(): $.$mol_status[] | ($.$mol_string | $.$mol_textarea | $mol_button_major | $.$mol_text | $.$mol_section)[];
+        body(): $.$mol_status[] | $.$mol_paragraph[] | ($.$mol_string | $.$mol_textarea | $mol_button_major | $.$mol_text | $.$mol_section)[];
         all_lords(): readonly $giper_baza_vary_type[];
         entry_rows(): $.$mol_section[];
         entry_row_text(index: number): string;
         entry_row_contact(index: number): string;
     }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
