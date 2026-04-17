@@ -30563,6 +30563,193 @@ var $;
 })($ || ($ = {}));
 
 ;
+"use strict";
+var $;
+(function ($) {
+    class $bog_metrics_event extends $giper_baza_dict.with({
+        App: $giper_baza_atom_text,
+        Type: $giper_baza_atom_text,
+        Url: $giper_baza_atom_text,
+        Uid: $giper_baza_atom_text,
+        Session_id: $giper_baza_atom_text,
+        Timestamp: $giper_baza_atom_real,
+        Referrer: $giper_baza_atom_text,
+        Data: $giper_baza_atom_text,
+    }) {
+    }
+    $.$bog_metrics_event = $bog_metrics_event;
+})($ || ($ = {}));
+
+;
+	($.$bog_metrics) = class $bog_metrics extends ($.$mol_plugin) {
+		app(){
+			return "";
+		}
+	};
+
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const Events_dict = $giper_baza_dict_to($bog_metrics_event);
+        class $bog_metrics extends $.$bog_metrics {
+            static land_link = 'CaoqVcdi_Ix22TDSf';
+            land() {
+                return this.$.$giper_baza_glob.Land(new $giper_baza_link($bog_metrics.land_link));
+            }
+            events_dict() {
+                const land = this.land();
+                if (!land)
+                    return null;
+                return land.Data(Events_dict);
+            }
+            uid() {
+                const key = 'bog_metrics_uid';
+                let uid = localStorage.getItem(key);
+                if (!uid) {
+                    uid = crypto.randomUUID();
+                    localStorage.setItem(key, uid);
+                }
+                return uid;
+            }
+            session_id() {
+                return this.constructor._session_id ??= crypto.randomUUID();
+            }
+            sanitize_url(url) {
+                try {
+                    const u = new URL(url);
+                    return u.origin + u.pathname + u.search;
+                }
+                catch {
+                    return url.replace(/[^\w/?.&=#:-]/g, '');
+                }
+            }
+            dnt_enabled() {
+                if (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+                    return false;
+                return navigator.doNotTrack === '1'
+                    || navigator.globalPrivacyControl === true;
+            }
+            track_safe(type, data) {
+                try {
+                    if (this.dnt_enabled())
+                        return;
+                    const dict = this.events_dict();
+                    if (!dict)
+                        return;
+                    const key = crypto.randomUUID();
+                    const event = dict.key(key, 'auto');
+                    if (!event)
+                        return;
+                    event.App('auto').val(this.app() || location.hostname);
+                    event.Type('auto').val(type);
+                    event.Url('auto').val(this.sanitize_url(location.href));
+                    event.Uid('auto').val(this.uid());
+                    event.Session_id('auto').val(this.session_id());
+                    event.Timestamp('auto').val(Date.now());
+                    event.Referrer('auto').val(document.referrer || '');
+                    if (data) {
+                        event.Data('auto').val(JSON.stringify(data));
+                    }
+                    console.log('[metrics]', type);
+                }
+                catch (e) {
+                    console.warn('[metrics] track failed:', type, e);
+                }
+            }
+            render() {
+                this.init_tracking();
+                this.listen_visibility();
+                this.listen_errors();
+                this.listen_vitals();
+                return null;
+            }
+            init_tracking() {
+                setTimeout(() => {
+                    this.track_safe('pageview');
+                    this.track_safe('session_start');
+                }, 1000);
+                return null;
+            }
+            listen_visibility() {
+                const handler = () => {
+                    if (document.visibilityState === 'hidden') {
+                        this.track_safe('session_end');
+                    }
+                };
+                document.addEventListener('visibilitychange', handler);
+                return { destructor: () => document.removeEventListener('visibilitychange', handler) };
+            }
+            listen_errors() {
+                const on_error = (event) => {
+                    this.track_safe('error', {
+                        message: event.message,
+                        filename: event.filename,
+                        lineno: event.lineno,
+                        colno: event.colno,
+                    });
+                };
+                const on_rejection = (event) => {
+                    this.track_safe('error', {
+                        message: String(event.reason),
+                    });
+                };
+                window.addEventListener('error', on_error);
+                window.addEventListener('unhandledrejection', on_rejection);
+                return {
+                    destructor: () => {
+                        window.removeEventListener('error', on_error);
+                        window.removeEventListener('unhandledrejection', on_rejection);
+                    },
+                };
+            }
+            listen_vitals() {
+                try {
+                    const tracked = new Set();
+                    const observer = new PerformanceObserver((list) => {
+                        for (const entry of list.getEntries()) {
+                            if (tracked.has(entry.entryType))
+                                continue;
+                            tracked.add(entry.entryType);
+                            this.track_safe('vital', {
+                                name: entry.name,
+                                value: entry.value ?? entry.duration,
+                                entryType: entry.entryType,
+                            });
+                        }
+                    });
+                    observer.observe({ type: 'largest-contentful-paint', buffered: true });
+                    observer.observe({ type: 'layout-shift', buffered: true });
+                    return { destructor: () => observer.disconnect() };
+                }
+                catch {
+                    return null;
+                }
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "init_tracking", null);
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "listen_visibility", null);
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "listen_errors", null);
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "listen_vitals", null);
+        $$.$bog_metrics = $bog_metrics;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
 	($.$mol_check_list) = class $mol_check_list extends ($.$mol_view) {
 		option_checked(id, next){
 			if(next !== undefined) return next;
@@ -30788,6 +30975,11 @@ var $;
 			const obj = new this.$.$bog_blitz_radio();
 			return obj;
 		}
+		Metrics(){
+			const obj = new this.$.$bog_metrics();
+			(obj.app) = () => ("blitz");
+			return obj;
+		}
 		Theme(){
 			const obj = new this.$.$bog_theme_auto();
 			(obj.theme_light) = () => ("$mol_theme_calm_light");
@@ -30851,7 +31043,7 @@ var $;
 			];
 		}
 		plugins(){
-			return [(this.Theme())];
+			return [(this.Metrics()), (this.Theme())];
 		}
 		body(){
 			return (this.screen_body());
@@ -30875,6 +31067,7 @@ var $;
 	($mol_mem(($.$bog_blitz.prototype), "Powered"));
 	($mol_mem(($.$bog_blitz.prototype), "Settings"));
 	($mol_mem(($.$bog_blitz.prototype), "Radio"));
+	($mol_mem(($.$bog_blitz.prototype), "Metrics"));
 	($mol_mem(($.$bog_blitz.prototype), "Theme"));
 	($mol_mem(($.$bog_blitz.prototype), "Navbar"));
 	($mol_mem(($.$bog_blitz.prototype), "Mobile_nav"));

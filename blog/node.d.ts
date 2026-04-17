@@ -14861,6 +14861,108 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    const $bog_metrics_event_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly App: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Type: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Url: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Uid: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Session_id: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Timestamp: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Referrer: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Data: (auto?: any) => $giper_baza_atom_text | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly App: typeof $giper_baza_atom_text;
+            readonly Type: typeof $giper_baza_atom_text;
+            readonly Url: typeof $giper_baza_atom_text;
+            readonly Uid: typeof $giper_baza_atom_text;
+            readonly Session_id: typeof $giper_baza_atom_text;
+            readonly Timestamp: typeof $giper_baza_atom_real;
+            readonly Referrer: typeof $giper_baza_atom_text;
+            readonly Data: typeof $giper_baza_atom_text;
+        };
+    };
+    export class $bog_metrics_event extends $bog_metrics_event_base {
+    }
+    export {};
+}
+
+declare namespace $.$$ {
+    class $bog_metrics extends $.$bog_metrics {
+        static land_link: string;
+        land(): $giper_baza_land;
+        events_dict(): {
+            Value: typeof $bog_metrics_event;
+            key(key: $giper_baza_vary_type, auto?: any): $bog_metrics_event;
+            keys(): readonly $giper_baza_vary_type[];
+            dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
+            [$mol_dev_format_head](): any[];
+            items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+            splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+            has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+            add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            cut(vary: $giper_baza_vary_type): void;
+            move(from: number, to: number): void;
+            wipe(seat: number): void;
+            pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+            land(): $giper_baza_land;
+            head(): $giper_baza_link;
+            land_link(): $giper_baza_link;
+            link(): $giper_baza_link;
+            toJSON(): string;
+            cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+            pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+            units(): $giper_baza_unit_sand[];
+            units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+            meta(next?: $giper_baza_link): $giper_baza_link | null;
+            meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+            filled(): boolean;
+            can_change(): boolean;
+            last_change(): $mol_time_moment | null;
+            authors(): $giper_baza_auth_pass[];
+            get $(): $;
+            set $(next: $);
+            destructor(): void;
+            toString(): string;
+            [Symbol.toStringTag]: string;
+            [$mol_ambient_ref]: $;
+            [Symbol.dispose](): void;
+        } | null;
+        uid(): string;
+        session_id(): any;
+        sanitize_url(url: string): string;
+        dnt_enabled(): boolean;
+        track_safe(type: string, data?: Record<string, any>): void;
+        render(): null;
+        init_tracking(): null;
+        listen_visibility(): {
+            destructor: () => void;
+        };
+        listen_errors(): {
+            destructor: () => void;
+        };
+        listen_vitals(): {
+            destructor: () => void;
+        } | null;
+    }
+}
+
+declare namespace $ {
+
+	export class $bog_metrics extends $mol_plugin {
+		app( ): string
+	}
+	
+}
+
+//# sourceMappingURL=metrics.view.tree.d.ts.map
+declare namespace $ {
 
 	type $mol_check__checked_mol_check_list_1 = $mol_type_enforce<
 		ReturnType< $mol_check_list['option_checked'] >
@@ -15001,52 +15103,57 @@ declare namespace $ {
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $bog_theme_auto__theme_light_bog_blitz_13 = $mol_type_enforce<
+	type $bog_metrics__app_bog_blitz_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $bog_metrics['app'] >
+	>
+	type $bog_theme_auto__theme_light_bog_blitz_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_light'] >
 	>
-	type $bog_theme_auto__theme_dark_bog_blitz_14 = $mol_type_enforce<
+	type $bog_theme_auto__theme_dark_bog_blitz_15 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $bog_theme_auto['theme_dark'] >
 	>
-	type $bog_theme_auto__themes_bog_blitz_15 = $mol_type_enforce<
+	type $bog_theme_auto__themes_bog_blitz_16 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $bog_theme_auto['themes'] >
 	>
-	type $mol_switch__value_bog_blitz_16 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_17 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_switch__value_bog_blitz_18 = $mol_type_enforce<
+	type $mol_switch__value_bog_blitz_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz['screen'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_blitz_19 = $mol_type_enforce<
+	type $mol_switch__options_bog_blitz_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz['nav_options'] >
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_pop__showed_bog_blitz_20 = $mol_type_enforce<
+	type $mol_pop__showed_bog_blitz_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz['mobile_menu_showed'] >
 		,
 		ReturnType< $mol_pop['showed'] >
 	>
-	type $mol_pop__Anchor_bog_blitz_21 = $mol_type_enforce<
+	type $mol_pop__Anchor_bog_blitz_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz['Mobile_menu_trigger'] >
 		,
 		ReturnType< $mol_pop['Anchor'] >
 	>
-	type $mol_pop__bubble_content_bog_blitz_22 = $mol_type_enforce<
+	type $mol_pop__bubble_content_bog_blitz_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pop['bubble_content'] >
@@ -15070,6 +15177,7 @@ declare namespace $ {
 		Powered( ): $mol_text
 		Settings( ): $mol_pick
 		Radio( ): $bog_blitz_radio
+		Metrics( ): $bog_metrics
 		Theme( ): $bog_theme_auto
 		screen_body( ): readonly(any)[]
 		title( ): string

@@ -447,6 +447,8 @@
     "$mol_icon_monitor",
     "$bog_blitz_radio",
     "$mol_icon_music",
+    "$bog_metrics",
+    "$bog_metrics_event",
     "$mol_switch",
     "$mol_check_list",
     "$bog_blitz_blog_menu",

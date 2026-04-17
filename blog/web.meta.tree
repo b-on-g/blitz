@@ -44,6 +44,7 @@
 	pack wikilive git \https://github.com/b-on-g/WikiLive.git
 	pack wiki git \https://github.com/b-on-g/wiki.git
 	pack wysiwyg git \https://github.com/b-on-g/wysiwyg.git
+	pack metrics git \https://github.com/b-on-g/metrics.git
 \/mol
 	pack icon git \https://github.com/nin-jin/mol_icon.git
 \/mol/view
@@ -154,6 +155,7 @@
 	deploy \/giper/bot/logo
 	include \/mol/offline/install
 \/bog/blitz
+	pack metrics git \https://github.com/b-on-g/metrics.git
 	include \/mol/offline/install
 	deploy \/bog/blitz/assets
 \/bog/blitz/blog
