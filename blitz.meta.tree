@@ -1,2 +1,3 @@
+pack metrics git \https://github.com/b-on-g/metrics.git
 include \/mol/offline/install
 deploy \/bog/blitz/assets
