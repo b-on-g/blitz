@@ -49,6 +49,8 @@ $bog_blitz $mol_page
 		<= Tools
 		<= Mobile_menu
 	plugins /
+		<= Metrics $bog_metrics
+			app \blitz
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_calm_light
 			theme_dark \$mol_theme_calm_dark
