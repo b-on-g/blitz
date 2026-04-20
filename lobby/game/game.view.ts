@@ -203,6 +203,8 @@ namespace $.$$ {
 		selected_options(next?: string[]): string[] {
 			this.current_question_index()
 			if (next !== undefined) return next
+			const ans = this.my_answer()
+			if (ans) return ans.split(',').filter(Boolean)
 			return []
 		}
 
@@ -210,7 +212,7 @@ namespace $.$$ {
 		text_draft(next?: string): string {
 			this.current_question_index()
 			if (next !== undefined) return next
-			return ''
+			return this.my_answer()
 		}
 
 		publish_question_meta(session: $bog_blitz_session, index: number) {
@@ -255,7 +257,7 @@ namespace $.$$ {
 				return [this.Answer_input()]
 			}
 			const views = this.option_views()
-			if (state === 'answering' && !this.is_host() && !this.has_answered()) {
+			if (state === 'answering' && !this.is_host()) {
 				return [...views, this.Submit_answer()]
 			}
 			return views
@@ -277,8 +279,7 @@ namespace $.$$ {
 		@$mol_mem
 		text_input_enabled() {
 			if (this.is_host()) return false
-			if (this.game_state() !== 'answering') return false
-			return !this.has_answered()
+			return this.game_state() === 'answering'
 		}
 
 		@$mol_mem
@@ -341,8 +342,7 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_enabled(key: string) {
 			if (this.is_host()) return false
-			if (this.game_state() !== 'answering') return false
-			return !this.has_answered()
+			return this.game_state() === 'answering'
 		}
 
 		@$mol_mem_key
@@ -360,7 +360,7 @@ namespace $.$$ {
 			const state = this.game_state()
 			if (state === 'reading') return ''
 			if (this.is_host()) return ''
-			if (state === 'answering' && !this.has_answered()) {
+			if (state === 'answering') {
 				return String(this.selected_options().includes(key))
 			}
 			if (!this.has_answered()) return ''
