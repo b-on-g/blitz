@@ -14698,6 +14698,7 @@ declare namespace $.$$ {
                 [Symbol.dispose](): void;
             } | null;
             readonly Answer_land: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Answered_count: (auto?: any) => $giper_baza_atom_real | null;
         }>;
         path: string;
     } & {
@@ -14762,6 +14763,7 @@ declare namespace $.$$ {
                 [$mol_key_handle](): any;
             };
             readonly Answer_land: typeof $giper_baza_atom_text;
+            readonly Answered_count: typeof $giper_baza_atom_real;
         };
     };
     export class $bog_blitz_player extends $bog_blitz_player_base {
@@ -16042,6 +16044,7 @@ declare namespace $.$$ {
         has_multiple_correct(): boolean;
         submit_enabled(): boolean;
         submit_answer(next?: Event): void;
+        mark_answered(answers: $bog_blitz_player_answers): void;
         answer_views(): ($.$mol_string | $.$mol_paragraph)[] | ($.$mol_paragraph | $mol_button_major)[];
         text_submit(next?: Event): void;
         text_input_enabled(): boolean;

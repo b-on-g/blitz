@@ -28329,6 +28329,7 @@ var $;
             IsHost: $giper_baza_atom_bool,
             Avatar: $giper_baza_atom_link_to(() => $giper_baza_file),
             Answer_land: $giper_baza_atom_text,
+            Answered_count: $giper_baza_atom_real,
         }) {
         }
         $$.$bog_blitz_player = $bog_blitz_player;
@@ -28851,10 +28852,14 @@ var $;
                         continue;
                     if (player.IsHost()?.val())
                         continue;
+                    const answered = player.Answered_count()?.val() ?? 0;
+                    const score = player.Score()?.val() ?? 0;
+                    if (answered <= 0 && score === 0)
+                        continue;
                     players.push({
                         key: String(key),
                         name: player.Name()?.val() ?? String(key).slice(0, 8),
-                        score: player.Score()?.val() ?? 0,
+                        score,
                     });
                 }
                 return players.sort((a, b) => b.score - a.score);
@@ -29896,7 +29901,11 @@ var $;
                     const p = dict.dive(key, $bog_blitz_player);
                     if (!p || p.IsHost()?.val())
                         continue;
-                    scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 });
+                    const answered = p.Answered_count()?.val() ?? 0;
+                    const score = p.Score()?.val() ?? 0;
+                    if (answered <= 0 && score === 0)
+                        continue;
+                    scores.push({ lord: String(key), score });
                 }
                 scores.sort((a, b) => b.score - a.score);
                 const my_lord = this.my_lord_str();
@@ -30068,10 +30077,22 @@ var $;
                     const answers = this.my_answers();
                     if (!answers)
                         return;
+                    this.mark_answered(answers);
                     answers.Answer('auto')?.val(selected.sort().join(','));
                     answers.Answer_time('auto')?.val(Date.now());
                     answers.Answer_question('auto')?.val(this.current_question_index());
                 }
+            }
+            mark_answered(answers) {
+                const current = this.current_question_index();
+                const prev_q = answers.Answer_question()?.val() ?? -1;
+                if (prev_q === current)
+                    return;
+                const player = this.my_player();
+                if (!player)
+                    return;
+                const prev_count = player.Answered_count()?.val() ?? 0;
+                player.Answered_count('auto')?.val(prev_count + 1);
             }
             answer_views() {
                 const state = this.game_state();
@@ -30100,6 +30121,7 @@ var $;
                     const answers = this.my_answers();
                     if (!answers)
                         return;
+                    this.mark_answered(answers);
                     answers.Answer('auto')?.val(draft);
                     answers.Answer_time('auto')?.val(Date.now());
                     answers.Answer_question('auto')?.val(this.current_question_index());
@@ -30299,6 +30321,7 @@ var $;
                     if (!this.has_multiple_correct() && next.length) {
                         const answers = this.my_answers();
                         if (answers) {
+                            this.mark_answered(answers);
                             answers.Answer('auto')?.val(next.sort().join(','));
                             answers.Answer_time('auto')?.val(Date.now());
                             answers.Answer_question('auto')?.val(this.current_question_index());
