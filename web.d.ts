@@ -20737,11 +20737,16 @@ declare namespace $.$$ {
             [Symbol.dispose](): void;
         } | null;
         uid(): string;
+        hash_fnv(s: string): string;
         session_id(): any;
         sanitize_url(url: string): string;
+        normalize_hash(hash: string): string;
         dnt_enabled(): boolean;
         track_safe(type: string, data?: Record<string, any>): void;
         render(): null;
+        listen_navigation(): {
+            destructor: () => void;
+        };
         init_tracking(): null;
         listen_visibility(): {
             destructor: () => void;

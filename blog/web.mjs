@@ -29603,13 +29603,16 @@ var $;
                 this.current_question_index();
                 if (next !== undefined)
                     return next;
+                const ans = this.my_answer();
+                if (ans)
+                    return ans.split(',').filter(Boolean);
                 return [];
             }
             text_draft(next) {
                 this.current_question_index();
                 if (next !== undefined)
                     return next;
-                return '';
+                return this.my_answer();
             }
             publish_question_meta(session, index) {
                 const keys = this.answers_key_data();
@@ -29650,7 +29653,7 @@ var $;
                     return [this.Answer_input()];
                 }
                 const views = this.option_views();
-                if (state === 'answering' && !this.is_host() && !this.has_answered()) {
+                if (state === 'answering' && !this.is_host()) {
                     return [...views, this.Submit_answer()];
                 }
                 return views;
@@ -29671,9 +29674,7 @@ var $;
             text_input_enabled() {
                 if (this.is_host())
                     return false;
-                if (this.game_state() !== 'answering')
-                    return false;
-                return !this.has_answered();
+                return this.game_state() === 'answering';
             }
             option_keys() {
                 const question = this.current_question();
@@ -29728,9 +29729,7 @@ var $;
             option_enabled(key) {
                 if (this.is_host())
                     return false;
-                if (this.game_state() !== 'answering')
-                    return false;
-                return !this.has_answered();
+                return this.game_state() === 'answering';
             }
             option_correct(key) {
                 if (this.game_state() !== 'reveal')
@@ -29748,7 +29747,7 @@ var $;
                     return '';
                 if (this.is_host())
                     return '';
-                if (state === 'answering' && !this.has_answered()) {
+                if (state === 'answering') {
                     return String(this.selected_options().includes(key));
                 }
                 if (!this.has_answered())
@@ -37667,13 +37666,23 @@ var $;
                 return land.Data(Events_dict);
             }
             uid() {
-                const key = 'bog_metrics_uid';
-                let uid = localStorage.getItem(key);
-                if (!uid) {
-                    uid = crypto.randomUUID();
-                    localStorage.setItem(key, uid);
+                const day = new Date().toISOString().slice(0, 10);
+                const parts = [
+                    day,
+                    navigator.userAgent,
+                    navigator.language,
+                    Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    `${screen.width}x${screen.height}`,
+                ];
+                return this.hash_fnv(parts.join('|'));
+            }
+            hash_fnv(s) {
+                let h = 2166136261;
+                for (let i = 0; i < s.length; i++) {
+                    h ^= s.charCodeAt(i);
+                    h = Math.imul(h, 16777619);
                 }
-                return uid;
+                return (h >>> 0).toString(36);
             }
             session_id() {
                 return this.constructor._session_id ??= crypto.randomUUID();
@@ -37681,11 +37690,16 @@ var $;
             sanitize_url(url) {
                 try {
                     const u = new URL(url);
-                    return u.origin + u.pathname + u.search;
+                    return u.origin + u.pathname + u.search + this.normalize_hash(u.hash);
                 }
                 catch {
                     return url.replace(/[^\w/?.&=#:-]/g, '');
                 }
+            }
+            normalize_hash(hash) {
+                if (!hash)
+                    return '';
+                return hash.replace(/=([^/&]+)/g, (_, v) => v.length >= 10 && /^[\w-]+$/.test(v) && !/^\d+$/.test(v) ? '=*' : '=' + v);
             }
             dnt_enabled() {
                 if (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
@@ -37722,10 +37736,22 @@ var $;
             }
             render() {
                 this.init_tracking();
+                this.listen_navigation();
                 this.listen_visibility();
                 this.listen_errors();
                 this.listen_vitals();
                 return null;
+            }
+            listen_navigation() {
+                const handler = () => this.track_safe('pageview');
+                window.addEventListener('hashchange', handler);
+                window.addEventListener('popstate', handler);
+                return {
+                    destructor: () => {
+                        window.removeEventListener('hashchange', handler);
+                        window.removeEventListener('popstate', handler);
+                    },
+                };
             }
             init_tracking() {
                 setTimeout(() => {
@@ -37790,6 +37816,9 @@ var $;
                 }
             }
         }
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "listen_navigation", null);
         __decorate([
             $mol_mem
         ], $bog_metrics.prototype, "init_tracking", null);
