@@ -38,6 +38,7 @@
 	"$bog_blitz_lobby_Go_admin_title": "前往管理面板",
 	"$bog_blitz_lobby_No_game_text_title": "没有活跃的游戏",
 	"$bog_blitz_lobby_game_Answer_input_hint": "输入您的答案...",
+	"$bog_blitz_lobby_game_get_ready_label": "准备好... {num}",
 	"$bog_blitz_lobby_game_leaderboard_Bottom_title_title": "后10名",
 	"$bog_blitz_lobby_game_leaderboard_Top_title_title": "前10名",
 	"$bog_blitz_lobby_game_next_label": "下一步",

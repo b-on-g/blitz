@@ -29233,6 +29233,17 @@ var $;
 			(obj.title) = () => ((this.countdown_text()));
 			return obj;
 		}
+		get_ready_label(){
+			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_get_ready_label"));
+		}
+		input_countdown_text(){
+			return "";
+		}
+		Get_ready(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.input_countdown_text()));
+			return obj;
+		}
 		sub(){
 			return (this.game_content());
 		}
@@ -29336,6 +29347,7 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "submit_answer"));
 	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "option_click"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown_number"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Get_ready"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Pause_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Resume_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Next_button"));
@@ -29410,6 +29422,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const INPUT_SYNC_DELAY = 2000;
         class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
             game_content() {
                 const state = this.game_state();
@@ -29629,6 +29642,8 @@ var $;
                 return session?.Multi_correct()?.val() ?? false;
             }
             submit_enabled() {
+                if (!this.input_ready())
+                    return false;
                 return this.selected_options().length > 0;
             }
             submit_answer(next) {
@@ -29646,14 +29661,19 @@ var $;
             }
             answer_views() {
                 const state = this.game_state();
+                const show_get_ready = state === 'answering' && !this.is_host() && !this.input_ready();
                 if (this.question_type() === 'text_input') {
                     if (state === 'reveal') {
                         return [this.Answer_input(), this.Reveal_correct()];
                     }
+                    if (show_get_ready)
+                        return [this.Get_ready(), this.Answer_input()];
                     return [this.Answer_input()];
                 }
                 const views = this.option_views();
                 if (state === 'answering' && !this.is_host()) {
+                    if (show_get_ready)
+                        return [this.Get_ready(), ...views, this.Submit_answer()];
                     return [...views, this.Submit_answer()];
                 }
                 return views;
@@ -29673,6 +29693,8 @@ var $;
             }
             text_input_enabled() {
                 if (this.is_host())
+                    return false;
+                if (!this.input_ready())
                     return false;
                 return this.game_state() === 'answering';
             }
@@ -29726,8 +29748,42 @@ var $;
             has_answered() {
                 return this.my_answer() !== '';
             }
+            input_ready(next) {
+                if (this.game_state() !== 'answering')
+                    return false;
+                const start = this.round_start();
+                if (!start)
+                    return false;
+                const elapsed = Date.now() - start;
+                if (elapsed >= INPUT_SYNC_DELAY)
+                    return true;
+                new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null));
+                return false;
+            }
+            input_countdown_number(next) {
+                if (this.game_state() !== 'answering')
+                    return 0;
+                const start = this.round_start();
+                if (!start)
+                    return 0;
+                const elapsed = Date.now() - start;
+                const remaining = INPUT_SYNC_DELAY - elapsed;
+                if (remaining <= 0)
+                    return 0;
+                const num = Math.ceil(remaining / 1000);
+                new $mol_after_timeout(remaining - (num - 1) * 1000 + 50, () => this.input_countdown_number(null));
+                return num;
+            }
+            input_countdown_text() {
+                const num = this.input_countdown_number();
+                if (!num)
+                    return '';
+                return this.get_ready_label().replace('{num}', String(num));
+            }
             option_enabled(key) {
                 if (this.is_host())
+                    return false;
+                if (!this.input_ready())
                     return false;
                 return this.game_state() === 'answering';
             }
@@ -30044,6 +30100,15 @@ var $;
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "has_answered", null);
         __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "input_ready", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "input_countdown_number", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "input_countdown_text", null);
+        __decorate([
             $mol_mem_key
         ], $bog_blitz_lobby_game.prototype, "option_enabled", null);
         __decorate([
@@ -30129,6 +30194,12 @@ var $;
             Countdown_number: {
                 font: { size: '15rem', weight: 900 },
                 opacity: 0.15,
+            },
+            Get_ready: {
+                font: { size: '1.25rem', weight: 600 },
+                textAlign: 'center',
+                opacity: 0.7,
+                padding: { top: '0.5rem', bottom: '0.5rem' },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
