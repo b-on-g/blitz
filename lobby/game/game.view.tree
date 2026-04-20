@@ -110,4 +110,5 @@ $bog_blitz_lobby_game $mol_view
 		enabled <= option_enabled* true
 		title <= option_text* \
 		image_uri <= option_image_uri* \
+		picker_keys <= option_picker_keys* /string
 		click? <=> option_click*? null

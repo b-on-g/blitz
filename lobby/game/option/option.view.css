@@ -1,0 +1,20 @@
+@keyframes bog_blitz_picker_wobble {
+	0%   { transform: rotate(-8deg) translateY(0); }
+	25%  { transform: rotate(8deg)  translateY(-2px); }
+	50%  { transform: rotate(-6deg) translateY(0); }
+	75%  { transform: rotate(6deg)  translateY(-1px); }
+	100% { transform: rotate(-8deg) translateY(0); }
+}
+
+[bog_blitz_picker] {
+	animation: bog_blitz_picker_wobble 1.2s ease-in-out infinite;
+	transform-origin: center bottom;
+}
+
+[bog_blitz_picker]:nth-child(2n) {
+	animation-delay: -0.4s;
+}
+
+[bog_blitz_picker]:nth-child(3n) {
+	animation-delay: -0.8s;
+}

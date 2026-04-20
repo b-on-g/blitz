@@ -410,6 +410,37 @@ namespace $.$$ {
 		}
 
 		@$mol_mem_key
+		option_picker_keys(key: string): string[] {
+			const state = this.game_state()
+			if (state !== 'answering' && state !== 'reveal') return []
+			if (this.question_type() === 'text_input') return []
+			const dict = this.players_dict() as $giper_baza_dict | null
+			if (!dict) return []
+			const current = this.current_question_index()
+			const keys = dict.keys() ?? []
+			const out: string[] = []
+			for (const k of keys) {
+				if ($bog_blitz_session_fields.has(String(k))) continue
+				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
+				if (!player) continue
+				if (player.IsHost()?.val()) continue
+				const link = player.Answer_land()?.val()
+				if (!link) continue
+				const pa = this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers) as $bog_blitz_player_answers | null
+				const pa_q = pa?.Answer_question()?.val() ?? -1
+				if (pa_q !== current) continue
+				const answer = pa?.Answer()?.val() ?? ''
+				if (!answer) continue
+				const picked = new Set(answer.split(',').filter(Boolean))
+				if (!picked.has(key)) continue
+				const lord = String(k)
+				const name = player.Name()?.val() ?? lord.slice(0, 8)
+				out.push(`${lord}\u0001${name}`)
+			}
+			return out
+		}
+
+		@$mol_mem_key
 		option_selected(key: string) {
 			const state = this.game_state()
 			if (state === 'reading') return ''
@@ -493,13 +524,19 @@ namespace $.$$ {
 					next = current.includes(key) ? [] : [key]
 				}
 				this.selected_options(next)
-				if (!this.has_multiple_correct() && next.length) {
-					const answers = this.my_answers() as $bog_blitz_player_answers | null
-					if (answers) {
+				// Live-publish current selection so other players see picks in real time.
+				// Single-choice Submit bypass is preserved; multi-choice still requires
+				// explicit Submit for scoring semantics, but the interim state is visible.
+				const answers = this.my_answers() as $bog_blitz_player_answers | null
+				if (answers) {
+					if (next.length) {
 						this.mark_answered(answers)
 						answers.Answer('auto')?.val(next.sort().join(','))
 						answers.Answer_time('auto')?.val(Date.now())
 						answers.Answer_question('auto')?.val(this.current_question_index())
+					} else if (this.has_multiple_correct()) {
+						// Multi-choice: cleared all picks → clear published answer too
+						answers.Answer('auto')?.val('')
 					}
 				}
 			}

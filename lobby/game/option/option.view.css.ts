@@ -1,10 +1,40 @@
 namespace $.$$ {
 	$mol_style_define($bog_blitz_lobby_game_option, {
+		flex: {
+			direction: 'row',
+			wrap: 'wrap',
+		},
+		align: { items: 'center' },
+		gap: '0.5rem',
 		Option_image: {
 			maxWidth: '8rem',
 			maxHeight: '6rem',
 			objectFit: 'contain',
 			borderRadius: '0.5rem',
+		},
+		Picker_area: {
+			flex: {
+				direction: 'row',
+				wrap: 'wrap',
+				basis: '100%',
+			},
+			align: { items: 'center' },
+			gap: '0.25rem',
+			margin: { top: '0.25rem' },
+			minHeight: '1.5rem',
+		},
+		Picker: {
+			width: '1.5rem',
+			height: '1.5rem',
+			borderRadius: '50%',
+			overflow: 'hidden',
+			flex: { shrink: 0 },
+			background: { color: $mol_theme.card },
+			boxShadow: `0 0 0 2px ${$mol_theme.back}`,
+		},
+		Picker_avatar: {
+			width: '100%',
+			height: '100%',
 		},
 		'@': {
 			'data-selected': {

@@ -7,3 +7,14 @@ $bog_blitz_lobby_game_option $mol_button_major
 	image_uri \
 	Option_image $mol_image
 		uri <= image_uri
+	picker_keys /string
+	Picker_area $mol_view
+		sub <= picker_views /
+	Picker* $mol_view
+		attr *
+			^
+			title <= picker_name* \
+			bog_blitz_picker true
+		sub /
+			<= Picker_avatar* $mol_avatar
+				id <= picker_avatar_id* \
