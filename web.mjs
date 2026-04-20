@@ -28732,6 +28732,11 @@ var $;
 			(obj.rows) = () => ((this.top_rows()));
 			return obj;
 		}
+		Top_scroll(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Top_list())]);
+			return obj;
+		}
 		Bottom_title(){
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_lobby_game_leaderboard_Bottom_title_title")));
@@ -28743,6 +28748,11 @@ var $;
 		Bottom_list(){
 			const obj = new this.$.$mol_list();
 			(obj.rows) = () => ((this.bottom_rows()));
+			return obj;
+		}
+		Bottom_scroll(){
+			const obj = new this.$.$mol_scroll();
+			(obj.sub) = () => ([(this.Bottom_list())]);
 			return obj;
 		}
 		row_rank(id){
@@ -28766,6 +28776,9 @@ var $;
 		is_host(){
 			return false;
 		}
+		final(){
+			return false;
+		}
 		sub(){
 			return (this.board_content());
 		}
@@ -28776,12 +28789,12 @@ var $;
 		}
 		Top(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Top_title()), (this.Top_list())]);
+			(obj.sub) = () => ([(this.Top_title()), (this.Top_scroll())]);
 			return obj;
 		}
 		Bottom(){
 			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Bottom_title()), (this.Bottom_list())]);
+			(obj.sub) = () => ([(this.Bottom_title()), (this.Bottom_scroll())]);
 			return obj;
 		}
 		Row(id){
@@ -28795,8 +28808,10 @@ var $;
 	};
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top_title"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top_list"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top_scroll"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom_title"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom_list"));
+	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom_scroll"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "My_row"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Top"));
 	($mol_mem(($.$bog_blitz_lobby_game_leaderboard.prototype), "Bottom"));
@@ -28818,7 +28833,8 @@ var $;
                 if (this.my_row_content().length)
                     parts.push(this.My_row());
                 parts.push(this.Top());
-                parts.push(this.Bottom());
+                if (this.bottom_rows().length)
+                    parts.push(this.Bottom());
                 return parts;
             }
             sorted_players() {
@@ -28861,11 +28877,16 @@ var $;
             }
             top_rows() {
                 const sorted = this.sorted_players();
-                return sorted.slice(0, 10).map((_, i) => this.Row(`top_${i}`));
+                return sorted.map((_, i) => this.Row(`top_${i}`));
             }
             bottom_rows() {
+                if (!this.final())
+                    return [];
                 const sorted = this.sorted_players();
-                return sorted.slice(-10).reverse().map((_, i) => this.Row(`bottom_${i}`));
+                if (sorted.length <= 3)
+                    return [];
+                const count = Math.min(3, sorted.length);
+                return sorted.slice(-count).reverse().map((_, i) => this.Row(`bottom_${i}`));
             }
             row_rank(key) {
                 const [type, index] = key.split('_');
@@ -28978,6 +28999,14 @@ var $;
                 font: { size: '1rem', weight: 700 },
                 opacity: 0.5,
                 padding: { bottom: '0.25rem', left: '0.75rem' },
+            },
+            Top_scroll: {
+                maxHeight: '60vh',
+                flex: { direction: 'column' },
+            },
+            Bottom_scroll: {
+                maxHeight: '60vh',
+                flex: { direction: 'column' },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -29493,6 +29522,7 @@ var $;
 			(obj.players_dict) = () => ((this.players_dict()));
 			(obj.my_lord_str) = () => ((this.my_lord_str()));
 			(obj.is_host) = () => ((this.is_host()));
+			(obj.final) = () => (true);
 			return obj;
 		}
 		Reactions_board(){
