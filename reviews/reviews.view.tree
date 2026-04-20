@@ -3,6 +3,7 @@ $bog_blitz_reviews $mol_view
 	my_lord \
 	my_name \
 	can_write false
+	can_reply false
 	empty_text @ \No reviews yet. Be the first to share your thoughts!
 	section_title @ \Reviews
 	submit_title \
@@ -26,6 +27,13 @@ $bog_blitz_reviews $mol_view
 		reply_author_name <= review_reply_author_name* \
 		reply_created_text <= review_reply_created_text* \
 		has_reply <= review_has_reply* false
+		can_reply <= review_can_reply* false
+		reply_form_open? <=> review_reply_form_open*? false
+		reply_draft? <=> review_reply_draft*? \
+		reply_submit_title <= review_reply_submit_title* \
+		reply_toggle_title <= review_reply_toggle_title* \
+		reply_submit? <=> review_reply_submit*? null
+		reply_toggle? <=> review_reply_toggle*? null
 	Title $mol_paragraph
 		title <= section_title
 	List $mol_view

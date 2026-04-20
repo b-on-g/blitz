@@ -36,6 +36,7 @@ $bog_blitz_lobby_host $mol_page
 			my_lord <= my_lord_str
 			my_name <= my_name
 			can_write false
+			can_reply true
 			form_visible false
 	Foot null
 	sub /

@@ -6,6 +6,13 @@ $bog_blitz_review_card $mol_view
 	reply_author_name \
 	reply_created_text \
 	has_reply false
+	can_reply false
+	reply_form_open? false
+	reply_draft? \
+	reply_submit_title \
+	reply_toggle_title \
+	reply_submit? null
+	reply_toggle? null
 	sub /
 		<= Header $mol_row
 			sub /
@@ -25,3 +32,14 @@ $bog_blitz_review_card $mol_view
 							title <= reply_created_text
 				<= Reply_body $mol_text
 					text <= reply_text
+		<= Reply_form $mol_view
+			sub /
+				<= Reply_input $mol_textarea
+					hint @ \Write your reply...
+					value? <=> reply_draft? \
+				<= Reply_form_submit $mol_button_major
+					title <= reply_submit_title
+					click? <=> reply_submit? null
+		<= Reply_toggle $mol_button_minor
+			title <= reply_toggle_title
+			click? <=> reply_toggle? null

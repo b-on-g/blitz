@@ -67,5 +67,18 @@ namespace $ {
 			font: { size: '0.95rem' },
 			whiteSpace: 'pre-wrap',
 		},
+
+		Reply_form: {
+			flex: {
+				direction: 'column',
+			},
+			gap: $mol_gap.space,
+			margin: { top: $mol_gap.space },
+		},
+
+		Reply_toggle: {
+			align: { self: 'flex-start' },
+			margin: { top: $mol_gap.space },
+		},
 	})
 }

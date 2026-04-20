@@ -153,5 +153,56 @@ namespace $.$$ {
 			const ts = this.entry_by_index(index)?.Reply_created()?.val() ?? 0
 			return format_time(ts)
 		}
+
+		review_can_reply(index: number) {
+			return this.can_reply()
+		}
+
+		private entry_by_index_or_create(index: number) {
+			const key = this.review_keys()[index]
+			if (!key) return null
+			return this.reviews_dict()?.key(key, 'auto') ?? null
+		}
+
+		@$mol_mem_key
+		review_reply_form_open(index: number, next?: boolean): boolean {
+			return next ?? false
+		}
+
+		@$mol_mem_key
+		review_reply_draft(index: number, next?: string): string {
+			if (next !== undefined) return next
+			return this.entry_by_index(index)?.Reply()?.val() ?? ''
+		}
+
+		review_reply_submit_title(index: number) {
+			const has = !!this.entry_by_index(index)?.Reply()?.val()
+			return has ? 'Update reply' : 'Send reply'
+		}
+
+		review_reply_toggle_title(index: number) {
+			const has = !!this.entry_by_index(index)?.Reply()?.val()
+			if (has) return 'Edit reply'
+			return this.review_reply_form_open(index) ? 'Cancel' : 'Reply'
+		}
+
+		@$mol_action
+		review_reply_toggle(index: number) {
+			const open = this.review_reply_form_open(index)
+			this.review_reply_form_open(index, !open)
+		}
+
+		@$mol_action
+		review_reply_submit(index: number) {
+			if (!this.can_reply()) return
+			const text = this.review_reply_draft(index).trim()
+			if (!text) return
+			const entry = this.entry_by_index_or_create(index)
+			if (!entry) return
+			entry.Reply('auto')!.val(text)
+			entry.Reply_author('auto')!.val(this.my_name() || 'Host')
+			entry.Reply_created('auto')!.val(Date.now())
+			this.review_reply_form_open(index, false)
+		}
 	}
 }

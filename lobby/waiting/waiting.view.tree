@@ -18,4 +18,5 @@ $bog_blitz_lobby_waiting $mol_page
 			my_lord <= my_lord_str
 			my_name <= my_name
 			can_write true
+			can_reply false
 			form_visible true
