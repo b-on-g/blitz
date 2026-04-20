@@ -94,6 +94,7 @@ $bog_blitz_lobby_game $mol_view
 			players_dict <= players_dict
 			my_lord_str <= my_lord_str \
 			is_host <= is_host
+			final true
 		<= Reactions_board $bog_blitz_lobby_game_reactboard
 			players_dict <= players_dict
 	reveal_correct_text \

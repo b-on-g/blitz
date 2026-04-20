@@ -32,5 +32,13 @@ namespace $.$$ {
 			opacity: 0.5,
 			padding: { bottom: '0.25rem', left: '0.75rem' },
 		},
+		Top_scroll: {
+			maxHeight: '60vh',
+			flex: { direction: 'column' },
+		},
+		Bottom_scroll: {
+			maxHeight: '60vh',
+			flex: { direction: 'column' },
+		},
 	})
 }

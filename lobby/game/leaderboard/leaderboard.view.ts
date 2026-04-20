@@ -5,7 +5,7 @@ namespace $.$$ {
 			const parts: ReturnType<typeof this.Top>[] = []
 			if (this.my_row_content().length) parts.push(this.My_row())
 			parts.push(this.Top())
-			parts.push(this.Bottom())
+			if (this.bottom_rows().length) parts.push(this.Bottom())
 			return parts
 		}
 
@@ -50,13 +50,16 @@ namespace $.$$ {
 		@$mol_mem
 		top_rows() {
 			const sorted = this.sorted_players()
-			return sorted.slice(0, 10).map((_, i) => this.Row(`top_${i}`))
+			return sorted.map((_, i) => this.Row(`top_${i}`))
 		}
 
 		@$mol_mem
 		bottom_rows() {
+			if (!this.final()) return []
 			const sorted = this.sorted_players()
-			return sorted.slice(-10).reverse().map((_, i) => this.Row(`bottom_${i}`))
+			if (sorted.length <= 3) return []
+			const count = Math.min(3, sorted.length)
+			return sorted.slice(-count).reverse().map((_, i) => this.Row(`bottom_${i}`))
 		}
 
 		@$mol_mem_key
