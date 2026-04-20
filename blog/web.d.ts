@@ -14809,6 +14809,7 @@ declare namespace $.$$ {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
             readonly Answer: (auto?: any) => $giper_baza_atom_text | null;
             readonly Answer_time: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Answer_question: (auto?: any) => $giper_baza_atom_real | null;
             readonly React_heart: (auto?: any) => $giper_baza_atom_real | null;
             readonly React_smile: (auto?: any) => $giper_baza_atom_real | null;
             readonly React_fire: (auto?: any) => $giper_baza_atom_real | null;
@@ -14822,6 +14823,7 @@ declare namespace $.$$ {
         } & {
             readonly Answer: typeof $giper_baza_atom_text;
             readonly Answer_time: typeof $giper_baza_atom_real;
+            readonly Answer_question: typeof $giper_baza_atom_real;
             readonly React_heart: typeof $giper_baza_atom_real;
             readonly React_smile: typeof $giper_baza_atom_real;
             readonly React_fire: typeof $giper_baza_atom_real;
@@ -15863,6 +15865,7 @@ declare namespace $.$$ {
         question_type(): string;
         question_image_uri(): string;
         selected_options(next?: string[]): string[];
+        text_draft(next?: string): string;
         publish_question_meta(session: $bog_blitz_session, index: number): void;
         has_multiple_correct(): boolean;
         submit_enabled(): boolean;

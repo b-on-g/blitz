@@ -28426,6 +28426,7 @@ var $;
         class $bog_blitz_player_answers extends $giper_baza_dict.with({
             Answer: $giper_baza_atom_text,
             Answer_time: $giper_baza_atom_real,
+            Answer_question: $giper_baza_atom_real,
             React_heart: $giper_baza_atom_real,
             React_smile: $giper_baza_atom_real,
             React_fire: $giper_baza_atom_real,
@@ -29604,6 +29605,12 @@ var $;
                     return next;
                 return [];
             }
+            text_draft(next) {
+                this.current_question_index();
+                if (next !== undefined)
+                    return next;
+                return '';
+            }
             publish_question_meta(session, index) {
                 const keys = this.answers_key_data();
                 if (!keys)
@@ -29631,6 +29638,7 @@ var $;
                         return;
                     answers.Answer('auto')?.val(selected.sort().join(','));
                     answers.Answer_time('auto')?.val(Date.now());
+                    answers.Answer_question('auto')?.val(this.current_question_index());
                 }
             }
             answer_views() {
@@ -29657,6 +29665,7 @@ var $;
                         return;
                     answers.Answer('auto')?.val(draft);
                     answers.Answer_time('auto')?.val(Date.now());
+                    answers.Answer_question('auto')?.val(this.current_question_index());
                 }
             }
             text_input_enabled() {
@@ -29706,7 +29715,12 @@ var $;
             }
             my_answer() {
                 const answers = this.my_answers();
-                return answers?.Answer()?.val() ?? '';
+                if (!answers)
+                    return '';
+                const q = answers.Answer_question()?.val() ?? -1;
+                if (q !== this.current_question_index())
+                    return '';
+                return answers.Answer()?.val() ?? '';
             }
             has_answered() {
                 return this.my_answer() !== '';
@@ -29911,6 +29925,7 @@ var $;
                 const time_multiplier = quiz.Time_multiplier().val();
                 const answer_duration = this.duration();
                 const round_start = this.round_start();
+                const index = this.current_question_index();
                 const session = this.session();
                 session?.Reveal_correct('auto')?.val(key.correct);
                 const dict = this.players_dict();
@@ -29926,8 +29941,10 @@ var $;
                     if (player.IsHost()?.val())
                         continue;
                     const pa = this.player_answers_data(player);
-                    const answer = pa?.Answer()?.val() ?? '';
-                    const answer_time = pa?.Answer_time()?.val() ?? 0;
+                    const pa_q = pa?.Answer_question()?.val() ?? -1;
+                    const is_current = pa_q === index;
+                    const answer = is_current ? (pa?.Answer()?.val() ?? '') : '';
+                    const answer_time = is_current ? (pa?.Answer_time()?.val() ?? 0) : 0;
                     const elapsed = answer_time && round_start ? (answer_time - round_start) / 1000 : answer_duration;
                     const time_ratio = Math.max(0, 1 - elapsed / answer_duration);
                     const base = points_base * (1 + time_ratio * time_multiplier);
@@ -29948,22 +29965,6 @@ var $;
                 }
             }
             reset_answers() {
-                const dict = this.players_dict();
-                if (!dict)
-                    return;
-                const keys = dict.keys() ?? [];
-                for (const key of keys) {
-                    if ($bog_blitz_session_fields.has(String(key)))
-                        continue;
-                    const player = dict.dive(key, $bog_blitz_player);
-                    if (!player)
-                        continue;
-                    const pa = this.player_answers_data(player);
-                    if (!pa)
-                        continue;
-                    pa.Answer('auto')?.val('');
-                    pa.Answer_time('auto')?.val(0);
-                }
                 const session = this.session();
                 session?.Reveal_correct('auto')?.val('');
             }
@@ -30007,6 +30008,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "selected_options", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game.prototype, "text_draft", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "submit_enabled", null);
