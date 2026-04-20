@@ -165,6 +165,19 @@ namespace $.$$ {
 			return this.quiz_data()?.Title()?.val() ?? ''
 		}
 
+		@$mol_mem
+		quiz_land_link() {
+			return this.session()?.Quiz_link()?.val() ?? ''
+		}
+
+		@$mol_mem
+		my_name() {
+			const player = this.my_player()
+			const from_player = player?.Name()?.val() ?? ''
+			if (from_player) return from_player
+			return this.profile_name()
+		}
+
 		@$mol_action
 		go_admin() {
 			this.$.$mol_state_arg.value('land', null)

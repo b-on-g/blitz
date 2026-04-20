@@ -3,6 +3,9 @@ $bog_blitz_lobby_host $mol_page
 	counter_string \
 	land_id \
 	quiz_title \
+	quiz_land_link \
+	my_lord_str \
+	my_name \
 	session null
 	quiz_data null
 	body /
@@ -28,6 +31,12 @@ $bog_blitz_lobby_host $mol_page
 		<= Counter $mol_paragraph
 			title <= counter_string
 		<= Players $bog_blitz_lobby_players
+		<= Reviews $bog_blitz_reviews
+			quiz_land_link <= quiz_land_link
+			my_lord <= my_lord_str
+			my_name <= my_name
+			can_write false
+			form_visible false
 	Foot null
 	sub /
 		^

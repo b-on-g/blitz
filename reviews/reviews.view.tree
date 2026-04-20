@@ -1,0 +1,37 @@
+$bog_blitz_reviews $mol_view
+	quiz_land_link \
+	my_lord \
+	my_name \
+	can_write false
+	empty_text @ \No reviews yet. Be the first to share your thoughts!
+	section_title @ \Reviews
+	submit_title \
+	form_hint @ \Share your thoughts about this quiz...
+	form_visible false
+	Form $mol_view
+		sub /
+			<= Entry_my $mol_textarea
+				hint <= form_hint
+				value? <=> draft_text? \
+			<= Submit $mol_button_major
+				title <= submit_title
+				click? <=> submit? null
+	Empty $mol_paragraph
+		title <= empty_text
+	Review_card* $bog_blitz_review_card
+		author_name <= review_author_name* \
+		created_text <= review_created_text* \
+		text <= review_text* \
+		reply_text <= review_reply_text* \
+		reply_author_name <= review_reply_author_name* \
+		reply_created_text <= review_reply_created_text* \
+		has_reply <= review_has_reply* false
+	Title $mol_paragraph
+		title <= section_title
+	List $mol_view
+		sub <= review_rows /
+	sub /
+		<= Title
+		<= Form_wrap $mol_view
+			sub <= form_sub /
+		<= List

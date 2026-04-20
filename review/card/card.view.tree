@@ -1,0 +1,27 @@
+$bog_blitz_review_card $mol_view
+	author_name \
+	created_text \
+	text \
+	reply_text \
+	reply_author_name \
+	reply_created_text \
+	has_reply false
+	sub /
+		<= Header $mol_row
+			sub /
+				<= Author_name $mol_paragraph
+					title <= author_name
+				<= Created_time $mol_paragraph
+					title <= created_text
+		<= Text_body $mol_text
+			text <= text
+		<= Reply_wrap $mol_view
+			sub /
+				<= Reply_header $mol_row
+					sub /
+						<= Reply_author $mol_paragraph
+							title <= reply_author_name
+						<= Reply_created $mol_paragraph
+							title <= reply_created_text
+				<= Reply_body $mol_text
+					text <= reply_text

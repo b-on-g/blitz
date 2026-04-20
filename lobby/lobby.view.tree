@@ -7,6 +7,9 @@ $bog_blitz_lobby $mol_page
 		counter_string <= counter_string \
 		land_id <= land_id
 		quiz_title <= quiz_title
+		quiz_land_link <= quiz_land_link \
+		my_lord_str <= my_lord_str \
+		my_name <= my_name \
 		session <= session null
 		quiz_data <= quiz_data null
 		Players <= Host_players $bog_blitz_lobby_players
@@ -21,6 +24,9 @@ $bog_blitz_lobby $mol_page
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		quiz_title <= quiz_title
+		quiz_land_link <= quiz_land_link \
+		my_lord_str <= my_lord_str \
+		my_name <= my_name \
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
