@@ -19,10 +19,19 @@ namespace $.$$ {
 			borderRadius: '0.75rem',
 			margin: { top: '1rem' },
 		},
+		Question_row: {
+			flex: { direction: 'row' },
+			align: { items: 'center' },
+			justify: { content: 'center' },
+			gap: '1rem',
+			width: '100%',
+			maxWidth: '40rem',
+			padding: { top: '1rem', bottom: '1.5rem', left: '1rem', right: '1rem' },
+		},
 		Question: {
+			flex: { grow: 1 },
 			font: { size: '1.75rem', weight: 700 },
 			textAlign: 'center',
-			padding: { top: '1rem', bottom: '1.5rem' },
 		},
 		Answer_area: {
 			flex: { direction: 'column' },

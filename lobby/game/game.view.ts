@@ -97,22 +97,21 @@ namespace $.$$ {
 				this.Host_controls(),
 				this.State(),
 				this.Question_image(),
-				this.Question(),
+				this.Question_row(),
 				this.Answer_area(),
 			]
 			if (this.manual_mode()) return base
-			return [this.Timer(), ...base, this.Countdown()]
+			return [...base, this.Countdown()]
 		}
 
 		@$mol_mem
 		leaderboard_content() {
-			const base = [
+			return [
+				this.Leaderboard_timer(),
 				this.Host_controls(),
 				this.State(),
 				this.Leaderboard(),
 			]
-			if (this.manual_mode()) return base
-			return [this.Leaderboard_timer(), ...base]
 		}
 
 		@$mol_mem
