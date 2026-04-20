@@ -1,27 +1,33 @@
 $bog_blitz_lobby_join $mol_page
 	Head null
 	is_synced false
-	profile_avatar_uri \
-	profile_name \
+	player_color? \
 	syncing_title @ \Syncing...
 	join_title @ \Syncing...
 	enter_title @ \Enter
+	choose_color_title @ \Pick a color
 	Avatar_icon $mol_avatar
 		id <= player_id \
-	Avatar_image $mol_image
-		uri <= avatar_uri \
+	Color_swatch* $mol_button_minor
+		event *
+			^
+			click? <=> color_swatch_click*? null
+		style *
+			backgroundColor <= color_swatch_bg* \
+			boxShadow <= color_swatch_shadow* \
+		sub /
 	body /
 		<= Avatar_circle $mol_view
+			style *
+				backgroundColor <= avatar_color \
 			sub /
-				<= avatar_preview null
-		<= Avatar $mol_button_open
+				<= Avatar_icon
+		<= Color_palette $mol_view
 			sub /
-				<= Avatar_label $mol_paragraph
-					title @ \Change photo
-				<= Avatar_native $mol_button_open_native
-					files? <=> avatar_files? /File
-					accept \image/*
-					multiple false
+				<= Color_hint $mol_paragraph
+					title <= choose_color_title
+				<= Color_swatches $mol_view
+					sub <= color_swatch_views /
 		<= Player_name_input $mol_string_button
 			hint @ \Touch to change your name
 			value? <=> player_name? \

@@ -30,27 +30,55 @@ namespace $.$$ {
 				shrink: 0,
 				grow: 0,
 			},
+			align: {
+				items: 'center',
+			},
+			justify: {
+				content: 'center',
+			},
+			color: '#ffffff',
 			margin: {
 				bottom: '0.5rem',
 			},
 		},
-		Avatar_image: {
-			width: '100%',
-			height: '100%',
-			objectFit: 'cover',
-		},
 		Avatar_icon: {
-			width: '100%',
-			height: '100%',
-			font: {
-				size: '3rem',
-			},
+			width: '70%',
+			height: '70%',
 		},
-		Avatar: {
-			font: {
-				size: '0.75rem',
+		Color_palette: {
+			flex: {
+				direction: 'column',
 			},
-			opacity: 0.5,
+			align: {
+				items: 'center',
+			},
+			gap: '0.5rem',
+			width: '100%',
+		},
+		Color_hint: {
+			font: {
+				size: '0.8rem',
+			},
+			opacity: 0.6,
+		},
+		Color_swatches: {
+			flex: {
+				direction: 'row',
+				wrap: 'wrap',
+			},
+			justify: {
+				content: 'center',
+			},
+			gap: '0.5rem',
+		},
+		Color_swatch: {
+			width: '2rem',
+			height: '2rem',
+			borderRadius: '50%',
+			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
+			minWidth: '2rem',
+			transition: 'box-shadow 0.15s',
+			cursor: 'pointer',
 		},
 		Player_name_input: {
 			font: {

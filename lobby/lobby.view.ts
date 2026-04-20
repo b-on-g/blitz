@@ -1,5 +1,11 @@
 namespace $.$$ {
-	const Players_dict = $giper_baza_dict_to($bog_blitz_player)
+	let _players_dict_class: ReturnType<typeof $giper_baza_dict_to<typeof $bog_blitz_player>> | null = null
+	function Players_dict() {
+		if (!_players_dict_class) {
+			_players_dict_class = $giper_baza_dict_to($bog_blitz_player)
+		}
+		return _players_dict_class
+	}
 
 	export class $bog_blitz_lobby extends $.$bog_blitz_lobby {
 		@$mol_mem
@@ -61,7 +67,7 @@ namespace $.$$ {
 		players_dict() {
 			const land = this.land()
 			if (!land) return null
-			return land.Data(Players_dict)
+			return land.Data(Players_dict())
 		}
 
 		@$mol_mem
@@ -93,14 +99,10 @@ namespace $.$$ {
 						player.Name('auto')?.val(join_name)
 					}
 
-					// Write avatar from join form
-					const files = this.my_avatar_files()
-					if (files?.length) {
-						const store = player.Avatar(null)!.ensure(null)
-						if (store) {
-							store.blob(files[0])
-							player.Avatar(null)!.remote(store)
-						}
+					// Write color from join form
+					const color = this.my_player_color()
+					if (color) {
+						player.Color('auto')?.val(color)
 					}
 
 					// Create answer land (may throw Promise on first run)
@@ -110,13 +112,13 @@ namespace $.$$ {
 					player.Answer_land('auto')?.val(answer_land.link().str)
 
 					// Sync with profile (may throw Promise — runs after core data is written)
-					this.sync_profile(player, join_name, files)
+					this.sync_profile(player, join_name, color)
 				}
 			}
 			return null
 		}
 
-		sync_profile(player: $bog_blitz_player, join_name: string, files?: readonly File[]) {
+		sync_profile(player: $bog_blitz_player, join_name: string, color: string) {
 			const profile = this.profile_data()
 
 			// Fallback name from profile if join name was empty
@@ -127,33 +129,25 @@ namespace $.$$ {
 				profile.Name('auto')?.val(join_name)
 			}
 
-			// Sync avatar
-			if (files?.length) {
-				const profile_store = profile.Avatar(null)!.ensure(null)
-				if (profile_store) {
-					profile_store.blob(files[0])
-					profile.Avatar(null)!.remote(profile_store)
-				}
+			// Sync color with profile
+			if (color) {
+				profile.Color('auto')?.val(color)
 			} else {
-				const profile_avatar = profile.Avatar()?.remote()
-				if (profile_avatar) {
-					player.Avatar(null)!.remote(profile_avatar)
-				}
+				const profile_color = profile.Color()?.val() ?? ''
+				if (profile_color) player.Color('auto')?.val(profile_color)
 			}
-		}
-
-		@$mol_mem
-		profile_avatar_uri() {
-			const profile = this.profile_data()
-			const file = profile.Avatar()?.remote()
-			if (!file) return ''
-			return file.uri() ?? ''
 		}
 
 		@$mol_mem
 		my_player_name(next?: string) {
 			if (next !== undefined) return next
 			return this.profile_name()
+		}
+
+		@$mol_mem
+		my_player_color(next?: string) {
+			if (next !== undefined) return next
+			return this.profile_data().Color()?.val() ?? ''
 		}
 
 		@$mol_mem

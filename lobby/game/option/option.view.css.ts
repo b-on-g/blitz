@@ -29,12 +29,14 @@ namespace $.$$ {
 			borderRadius: '50%',
 			overflow: 'hidden',
 			flex: { shrink: 0 },
-			background: { color: $mol_theme.card },
+			align: { items: 'center' },
+			justify: { content: 'center' },
+			color: '#ffffff',
 			boxShadow: `0 0 0 2px ${$mol_theme.back}`,
 		},
 		Picker_avatar: {
-			width: '100%',
-			height: '100%',
+			width: '70%',
+			height: '70%',
 		},
 		'@': {
 			'data-selected': {

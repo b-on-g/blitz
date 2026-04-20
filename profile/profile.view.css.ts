@@ -30,24 +30,52 @@ namespace $.$$ {
 				shrink: 0,
 				grow: 0,
 			},
-		},
-		Avatar: {
-			font: {
-				size: '0.75rem',
+			align: {
+				items: 'center',
 			},
-			opacity: 0.5,
-		},
-		Avatar_image: {
-			width: '100%',
-			height: '100%',
-			objectFit: 'cover',
+			justify: {
+				content: 'center',
+			},
+			color: '#ffffff',
 		},
 		Avatar_icon: {
-			width: '100%',
-			height: '100%',
-			font: {
-				size: '2.5rem',
+			width: '70%',
+			height: '70%',
+		},
+		Color_palette: {
+			flex: {
+				direction: 'column',
 			},
+			align: {
+				items: 'center',
+			},
+			gap: '0.5rem',
+			width: '100%',
+		},
+		Color_hint: {
+			font: {
+				size: '0.8rem',
+			},
+			opacity: 0.6,
+		},
+		Color_swatches: {
+			flex: {
+				direction: 'row',
+				wrap: 'wrap',
+			},
+			justify: {
+				content: 'center',
+			},
+			gap: '0.5rem',
+		},
+		Color_swatch: {
+			width: '2rem',
+			height: '2rem',
+			minWidth: '2rem',
+			borderRadius: '50%',
+			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
+			cursor: 'pointer',
+			transition: 'box-shadow 0.15s',
 		},
 		Name_row: {
 			justify: {

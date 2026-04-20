@@ -1,19 +1,21 @@
 $bog_blitz_profile_page $mol_page
 	Head null
+	choose_color_title @ \Pick a color
 	body /
 		<= Card $mol_view
 			sub /
 				<= Avatar_circle $mol_view
+					style *
+						backgroundColor <= avatar_color \
 					sub /
-						<= avatar_preview null
-				<= Avatar $mol_button_open
+						<= Avatar_icon $mol_avatar
+							id <= player_id \
+				<= Color_palette $mol_view
 					sub /
-						<= Avatar_label $mol_paragraph
-							title @ \Change photo
-						<= Avatar_native $mol_button_open_native
-							files? <=> avatar_files? /File
-							accept \image/*
-							multiple false
+						<= Color_hint $mol_paragraph
+							title <= choose_color_title
+						<= Color_swatches $mol_view
+							sub <= color_swatch_views /
 				<= Name_row $mol_view
 					sub /
 						<= Name_input $mol_string_button
@@ -37,10 +39,14 @@ $bog_blitz_profile_page $mol_page
 					rows <= game_rows /
 				<= Games_empty $mol_paragraph
 					title <= games_empty_text \
-	Avatar_image $mol_image
-		uri <= avatar_uri \
-	Avatar_icon $mol_avatar
-		id <= player_id \
+	Color_swatch* $mol_button_minor
+		event *
+			^
+			click? <=> color_swatch_click*? null
+		style *
+			backgroundColor <= color_swatch_bg* \
+			boxShadow <= color_swatch_shadow* \
+		sub /
 	Stat_row* $mol_view
 		sub /
 			<= Stat_label* $mol_paragraph

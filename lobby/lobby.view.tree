@@ -14,12 +14,10 @@ $bog_blitz_lobby $mol_page
 			my_lord_str <= my_lord_str \
 	Join_screen $bog_blitz_lobby_join
 		player_name? <=> my_player_name? \
-		avatar_files? <=> my_avatar_files? /File
+		player_color? <=> my_player_color? \
 		join? <=> join? null
 		is_synced <= is_synced false
 		player_id <= my_lord_str
-		profile_avatar_uri <= profile_avatar_uri \
-		profile_name <= profile_name \
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		quiz_title <= quiz_title

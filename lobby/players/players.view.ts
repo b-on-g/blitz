@@ -51,41 +51,61 @@ namespace $.$$ {
 				.map(k => String(k))
 				.filter(k => !$bog_blitz_session_fields.has(k))
 		}
+
 		@$mol_mem_key
-		player_avatar_uri(key: string) {
+		player_color_val(key: string, next?: string) {
 			const player = this.players_dict()?.key(key)
-			const file = player?.Avatar()?.remote()
-			if (!file) return ''
-			return URL.createObjectURL(file.blob())
-		}
-
-		@$mol_mem_key
-		player_avatar(key: string) {
-			if (this.player_avatar_uri(key)) return this.Player_image(key)
-			return this.Player_icon(key)
-		}
-
-		@$mol_mem_key
-		player_avatar_content(key: string) {
-			if (key === this.my_lord_str()) {
-				return this.Player_avatar_button(key)
+			if (!player) return ''
+			if (next !== undefined) {
+				player.Color('auto')?.val(next)
+				return next
 			}
-			return this.player_avatar(key)
+			return player.Color()?.val() ?? ''
 		}
 
 		@$mol_mem_key
-		player_avatar_files(key: string, next?: readonly File[]) {
-			if (next?.length) {
-				const player = this.players_dict()?.key(key)
-				if (player) {
-					const store = player.Avatar(null)!.ensure(null)
-					if (store) {
-						store.blob(next[0])
-						player.Avatar(null)!.remote(store)
-					}
-				}
+		player_color(key: string) {
+			return $bog_blitz_color_for(key, this.player_color_val(key))
+		}
+
+		@$mol_mem_key
+		player_color_controls(key: string) {
+			if (key !== this.my_lord_str()) return null
+			return this.Player_color_palette(key)
+		}
+
+		@$mol_mem_key
+		color_swatch_views(key: string) {
+			return $bog_blitz_palette.map(c => this.Color_swatch(`${key}\u0001${c}`))
+		}
+
+		color_swatch_bg(key: string) {
+			const idx = key.indexOf('\u0001')
+			return idx < 0 ? key : key.slice(idx + 1)
+		}
+
+		color_swatch_selected(key: string) {
+			const idx = key.indexOf('\u0001')
+			if (idx < 0) return false
+			const player_key = key.slice(0, idx)
+			const color = key.slice(idx + 1)
+			return this.player_color(player_key).toLowerCase() === color.toLowerCase()
+		}
+
+		color_swatch_shadow(key: string) {
+			return this.color_swatch_selected(key) ? `0 0 0 2px ${$mol_theme.text}` : '0 0 0 0 transparent'
+		}
+
+		@$mol_mem_key
+		color_swatch_click(key: string, next?: Event) {
+			if (next !== undefined) {
+				const idx = key.indexOf('\u0001')
+				if (idx < 0) return null
+				const player_key = key.slice(0, idx)
+				const color = key.slice(idx + 1)
+				this.player_color_val(player_key, color)
 			}
-			return next ?? []
+			return null
 		}
 
 		@$mol_mem_key

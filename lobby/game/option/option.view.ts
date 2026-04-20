@@ -14,17 +14,22 @@ namespace $.$$ {
 			return this.picker_keys().map(key => this.Picker(key))
 		}
 
-		/** Picker key encodes "<lord>\u0001<name>". Name is shown as tooltip, lord drives avatar color. */
+		picker_parts(key: string) {
+			const parts = key.split('\u0001')
+			return { lord: parts[0] ?? '', name: parts[1] ?? '', color: parts[2] ?? '' }
+		}
+
 		picker_name(key: string) {
-			const idx = key.indexOf('\u0001')
-			if (idx < 0) return key
-			return key.slice(idx + 1)
+			return this.picker_parts(key).name || key
 		}
 
 		picker_avatar_id(key: string) {
-			const idx = key.indexOf('\u0001')
-			if (idx < 0) return key
-			return key.slice(0, idx)
+			return this.picker_parts(key).lord || key
+		}
+
+		picker_bg(key: string) {
+			const { lord, color } = this.picker_parts(key)
+			return $bog_blitz_color_for(lord, color)
 		}
 	}
 }

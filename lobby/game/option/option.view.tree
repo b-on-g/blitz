@@ -15,6 +15,9 @@ $bog_blitz_lobby_game_option $mol_button_major
 			^
 			title <= picker_name* \
 			bog_blitz_picker true
+		style *
+			^
+			backgroundColor <= picker_bg* \
 		sub /
 			<= Picker_avatar* $mol_avatar
 				id <= picker_avatar_id* \

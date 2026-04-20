@@ -435,7 +435,8 @@ namespace $.$$ {
 				if (!picked.has(key)) continue
 				const lord = String(k)
 				const name = player.Name()?.val() ?? lord.slice(0, 8)
-				out.push(`${lord}\u0001${name}`)
+				const color = $bog_blitz_color_for(lord, player.Color()?.val() ?? '')
+				out.push(`${lord}\u0001${name}\u0001${color}`)
 			}
 			return out
 		}
