@@ -5,6 +5,16 @@
 	z-index: 100;
 }
 
+@media (max-width: 600px) {
+	[bog_blitz_lobby_reactions] {
+		bottom: 0.25rem !important;
+		right: 0.25rem !important;
+		transform: scale(0.75);
+		transform-origin: bottom right;
+		opacity: 0.85;
+	}
+}
+
 [bog_blitz_lobby_reactions_fly] {
 	animation: bog_blitz_fly_up 1.5s ease-out forwards;
 	transform: translateX(-50%);
