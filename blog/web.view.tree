@@ -2079,7 +2079,11 @@ $bog_blitz_lobby_game_timer $mol_view
 	duration 0
 	round_start 0
 	paused_at 0
+	manual_mode false
+	digits_text \
 	sub /
+		<= Digits $mol_paragraph
+			title <= digits_text
 		<= Bar $mol_view
 			style *
 				^
@@ -2224,18 +2228,21 @@ $bog_blitz_lobby_game $mol_view
 		click? <=> next_click?event null
 	question_type \choice
 	question_content /
-		<= Timer $bog_blitz_lobby_game_timer
-			round_start <= round_start
-			duration <= duration
-			paused_at <= paused_at
 		<= Host_controls $mol_view
 			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Question_image $mol_image
 			uri <= question_image_uri \
-		<= Question $mol_paragraph
-			title <= current_question_text
+		<= Question_row $mol_view
+			sub /
+				<= Question $mol_paragraph
+					title <= current_question_text
+				<= Timer $bog_blitz_lobby_game_timer
+					round_start <= round_start
+					duration <= duration
+					paused_at <= paused_at
+					manual_mode <= manual_mode
 		<= Answer_area $mol_view
 			sub <= answer_views /
 		<= Countdown $mol_view
@@ -2250,6 +2257,7 @@ $bog_blitz_lobby_game $mol_view
 			round_start <= round_start
 			duration <= duration
 			paused_at <= paused_at
+			manual_mode <= manual_mode
 		<= Host_controls $mol_view
 			sub <= host_controls /
 		<= State $mol_paragraph

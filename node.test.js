@@ -16639,6 +16639,11 @@ var $;
 
 ;
 	($.$bog_blitz_lobby_game_timer) = class $bog_blitz_lobby_game_timer extends ($.$mol_view) {
+		Digits(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.digits_text()));
+			return obj;
+		}
 		bar_width(){
 			return "100%";
 		}
@@ -16656,10 +16661,17 @@ var $;
 		paused_at(){
 			return 0;
 		}
+		manual_mode(){
+			return false;
+		}
+		digits_text(){
+			return "";
+		}
 		sub(){
-			return [(this.Bar())];
+			return [(this.Digits()), (this.Bar())];
 		}
 	};
+	($mol_mem(($.$bog_blitz_lobby_game_timer.prototype), "Digits"));
 	($mol_mem(($.$bog_blitz_lobby_game_timer.prototype), "Bar"));
 
 
@@ -16691,10 +16703,46 @@ var $;
                 }
                 return `${ratio * 100}%`;
             }
+            digits_text(next) {
+                const start = this.round_start();
+                if (!start)
+                    return '--';
+                const paused = this.paused_at();
+                const now = paused > 0 ? paused : Date.now();
+                if (now < start) {
+                    new $mol_after_timeout(start - now + 50, () => this.digits_text(null));
+                    return '0';
+                }
+                if (this.manual_mode()) {
+                    const elapsed = Math.floor((now - start) / 1000);
+                    if (!paused) {
+                        new $mol_after_timeout(250, () => this.digits_text(null));
+                    }
+                    return this.format_time(elapsed);
+                }
+                const duration = this.duration();
+                if (!duration)
+                    return '--';
+                const remaining = Math.max(0, Math.ceil((start + duration * 1000 - now) / 1000));
+                if (remaining > 0 && !paused) {
+                    new $mol_after_timeout(250, () => this.digits_text(null));
+                }
+                return this.format_time(remaining);
+            }
+            format_time(sec) {
+                if (sec < 60)
+                    return String(sec);
+                const m = Math.floor(sec / 60);
+                const s = sec % 60;
+                return `${m}:${String(s).padStart(2, '0')}`;
+            }
         }
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby_game_timer.prototype, "bar_width", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_timer.prototype, "digits_text", null);
         $$.$bog_blitz_lobby_game_timer = $bog_blitz_lobby_game_timer;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -16713,14 +16761,24 @@ var $;
     var $$;
     (function ($$) {
         $mol_style_define($bog_blitz_lobby_game_timer, {
-            width: '100%',
-            height: '0.35rem',
-            margin: { bottom: '1.5rem' },
+            flex: {
+                direction: 'column',
+            },
+            align: { items: 'stretch' },
+            gap: '0.35rem',
+            minWidth: '3.5rem',
+            Digits: {
+                font: { size: '2rem', weight: 800 },
+                textAlign: 'center',
+                color: $mol_theme.special,
+                lineHeight: '1',
+            },
             Bar: {
-                height: '100%',
+                height: '0.35rem',
                 background: {
                     color: $mol_theme.special,
                 },
+                borderRadius: '0.25rem',
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -17700,13 +17758,6 @@ var $;
 			if(next !== undefined) return next;
 			return null;
 		}
-		Timer(){
-			const obj = new this.$.$bog_blitz_lobby_game_timer();
-			(obj.round_start) = () => ((this.round_start()));
-			(obj.duration) = () => ((this.duration()));
-			(obj.paused_at) = () => ((this.paused_at()));
-			return obj;
-		}
 		host_controls(){
 			return [];
 		}
@@ -17731,6 +17782,19 @@ var $;
 		Question(){
 			const obj = new this.$.$mol_paragraph();
 			(obj.title) = () => ((this.current_question_text()));
+			return obj;
+		}
+		Timer(){
+			const obj = new this.$.$bog_blitz_lobby_game_timer();
+			(obj.round_start) = () => ((this.round_start()));
+			(obj.duration) = () => ((this.duration()));
+			(obj.paused_at) = () => ((this.paused_at()));
+			(obj.manual_mode) = () => ((this.manual_mode()));
+			return obj;
+		}
+		Question_row(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Question()), (this.Timer())]);
 			return obj;
 		}
 		answer_views(){
@@ -17765,6 +17829,7 @@ var $;
 			(obj.round_start) = () => ((this.round_start()));
 			(obj.duration) = () => ((this.duration()));
 			(obj.paused_at) = () => ((this.paused_at()));
+			(obj.manual_mode) = () => ((this.manual_mode()));
 			return obj;
 		}
 		my_lord_str(){
@@ -17938,11 +18003,10 @@ var $;
 		}
 		question_content(){
 			return [
-				(this.Timer()), 
 				(this.Host_controls()), 
 				(this.State()), 
 				(this.Question_image()), 
-				(this.Question()), 
+				(this.Question_row()), 
 				(this.Answer_area()), 
 				(this.Countdown())
 			];
@@ -17999,11 +18063,12 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "pause_click"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "resume_click"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "next_click"));
-	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Timer"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Host_controls"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "State"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Question_image"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Question"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Timer"));
+	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Question_row"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Answer_area"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "text_draft"));
@@ -18181,22 +18246,20 @@ var $;
                     this.Host_controls(),
                     this.State(),
                     this.Question_image(),
-                    this.Question(),
+                    this.Question_row(),
                     this.Answer_area(),
                 ];
                 if (this.manual_mode())
                     return base;
-                return [this.Timer(), ...base, this.Countdown()];
+                return [...base, this.Countdown()];
             }
             leaderboard_content() {
-                const base = [
+                return [
+                    this.Leaderboard_timer(),
                     this.Host_controls(),
                     this.State(),
                     this.Leaderboard(),
                 ];
-                if (this.manual_mode())
-                    return base;
-                return [this.Leaderboard_timer(), ...base];
             }
             countdown_content() {
                 if (this.manual_mode())
@@ -18841,10 +18904,19 @@ var $;
                 borderRadius: '0.75rem',
                 margin: { top: '1rem' },
             },
+            Question_row: {
+                flex: { direction: 'row' },
+                align: { items: 'center' },
+                justify: { content: 'center' },
+                gap: '1rem',
+                width: '100%',
+                maxWidth: '40rem',
+                padding: { top: '1rem', bottom: '1.5rem', left: '1rem', right: '1rem' },
+            },
             Question: {
+                flex: { grow: 1 },
                 font: { size: '1.75rem', weight: 700 },
                 textAlign: 'center',
-                padding: { top: '1rem', bottom: '1.5rem' },
             },
             Answer_area: {
                 flex: { direction: 'column' },
