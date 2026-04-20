@@ -41,6 +41,7 @@
 	"$bog_blitz_lobby_game_get_ready_label": "Get ready... {num}",
 	"$bog_blitz_lobby_game_leaderboard_Bottom_title_title": "Bottom 10",
 	"$bog_blitz_lobby_game_leaderboard_Top_title_title": "Top 10",
+	"$bog_blitz_lobby_game_meta_stats_percent_hint": "of those who answered",
 	"$bog_blitz_lobby_game_next_label": "Next",
 	"$bog_blitz_lobby_game_pause_label": "Pause",
 	"$bog_blitz_lobby_game_resume_label": "Resume",

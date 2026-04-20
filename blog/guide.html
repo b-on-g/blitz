@@ -1803,6 +1803,89 @@ body, :where([mol_theme]) {
 	background-color: var(--mol_theme_special);
 	border-radius: 0.25rem;
 }
+</style><style id="$mol_style_attach:$bog_blitz_lobby_game_meta">[bog_blitz_lobby_game_meta] {
+	flex-direction: column;
+	gap: 0.75rem;
+	width: 100%;
+	max-width: 30rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+[bog_blitz_lobby_game_meta_stats] {
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.75rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	background-color: var(--mol_theme_card);
+	border-radius: 0.75rem;
+}
+[bog_blitz_lobby_game_meta_stats_answered] {
+	font-weight: 600;
+}
+[bog_blitz_lobby_game_meta_stats_correct] {
+	font-weight: 600;
+	color: var(--mol_theme_special);
+}
+[bog_blitz_lobby_game_meta_stats_percent] {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-left: auto;
+}
+[bog_blitz_lobby_game_meta_stats_percent_hint] {
+	font-size: 0.75rem;
+	opacity: 0.6;
+	width: 100%;
+	text-align: right;
+}
+[bog_blitz_lobby_game_meta_players_list] {
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+[bog_blitz_lobby_game_meta_player_row] {
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+	padding-top: 0.375rem;
+	padding-bottom: 0.375rem;
+	padding-left: 0.625rem;
+	padding-right: 0.75rem;
+	background-color: var(--mol_theme_card);
+	border-radius: 1rem;
+	box-shadow: 0 0 0 1px var(--mol_theme_line) inset;
+}
+[bog_blitz_lobby_game_meta_player_bullet] {
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: 50%;
+	background-color: #8a8a8a99;
+	flex-shrink: 0;
+}
+[bog_blitz_lobby_game_meta_player_name] {
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+[bog_blitz_lobby_game_meta]:where([data-status="none"]) {
+	opacity: 0.6;
+}
+[bog_blitz_lobby_game_meta]:where([data-status="wrong"]) {
+	box-shadow: 0 0 0 1px #e74c3ccc inset;
+}
+[bog_blitz_lobby_game_meta]:where([data-status="wrong"]) :where([bog_blitz_lobby_game_meta_player_bullet]) {
+	background-color: #e74c3cff;
+}
+[bog_blitz_lobby_game_meta]:where([data-status="correct"]) {
+	box-shadow: 0 0 0 1px #2ecc71cc inset;
+}
+[bog_blitz_lobby_game_meta]:where([data-status="correct"]) :where([bog_blitz_lobby_game_meta_player_bullet]) {
+	background-color: #2ecc71ff;
+}
 </style><style id="$mol_style_attach:$bog_blitz_lobby_game_leaderboard_row">[bog_blitz_lobby_game_leaderboard_row] {
 	flex-direction: row;
 	align-items: center;

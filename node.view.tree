@@ -391,6 +391,32 @@ $bog_blitz_lobby_game_timer $mol_view
 				^
 				width <= bar_width \100%
 
+$bog_blitz_lobby_game_meta $mol_view
+	players_dict null
+	current_question_index 0
+	current_answer_key null
+	sub /
+		<= Stats $mol_view
+			sub /
+				<= Stats_answered $mol_paragraph
+					title <= stats_answered_text \
+				<= Stats_correct $mol_paragraph
+					title <= stats_correct_text \
+				<= Stats_percent $mol_paragraph
+					title <= stats_percent_text \
+				<= Stats_percent_hint $mol_paragraph
+					title <= stats_percent_hint @ \of those who answered
+		<= Players_list $mol_list
+			rows <= player_rows /
+	Player_row*0 $mol_view
+		attr *
+			^
+			data-status <= player_status* \gray
+		sub /
+			<= Player_bullet*0 $mol_view
+			<= Player_name*0 $mol_paragraph
+				title <= player_name* \
+
 $bog_blitz_lobby_game_leaderboard_row $mol_view
 	rank 0
 	name \
@@ -529,6 +555,7 @@ $bog_blitz_lobby_game $mol_view
 		title <= next_label @ \Next
 		click? <=> next_click?event null
 	question_type \choice
+	current_answer_key null
 	question_content /
 		<= Host_controls $mol_view
 			sub <= host_controls /
@@ -547,6 +574,10 @@ $bog_blitz_lobby_game $mol_view
 					manual_mode <= manual_mode
 		<= Answer_area $mol_view
 			sub <= answer_views /
+		<= Meta $bog_blitz_lobby_game_meta
+			players_dict <= players_dict
+			current_question_index <= current_question_index
+			current_answer_key <= current_answer_key
 		<= Countdown $mol_view
 			sub <= countdown_content /
 	Answer_input $mol_string
