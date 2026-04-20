@@ -13,6 +13,7 @@ namespace $.$$ {
 	export class $bog_blitz_player_answers extends $giper_baza_dict.with({
 		Answer: $giper_baza_atom_text,
 		Answer_time: $giper_baza_atom_real,
+		Answer_question: $giper_baza_atom_real,
 		React_heart: $giper_baza_atom_real,
 		React_smile: $giper_baza_atom_real,
 		React_fire: $giper_baza_atom_real,
