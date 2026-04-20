@@ -19,5 +19,13 @@ namespace $.$$ {
 			},
 			borderRadius: '0.25rem',
 		},
+		'@media': {
+			'(width < 600px)': {
+				minWidth: '2.75rem',
+				Digits: {
+					font: { size: '1.5rem', weight: 800 },
+				},
+			},
+		},
 	})
 }

@@ -16,6 +16,8 @@ namespace $.$$ {
 				right: '1.5rem',
 			},
 			maxWidth: '400px',
+			width: '100%',
+			boxSizing: 'border-box',
 		},
 		Avatar_circle: {
 			borderRadius: '50%',
@@ -92,6 +94,33 @@ namespace $.$$ {
 			width: '100%',
 			margin: {
 				top: '0.5rem',
+			},
+		},
+		'@media': {
+			'(width < 600px)': {
+				Body: {
+					gap: '1rem',
+					padding: {
+						top: '1.5rem',
+						bottom: '1rem',
+						left: '0.75rem',
+						right: '0.75rem',
+					},
+				},
+				Avatar_circle: {
+					width: '80px',
+					height: '80px',
+					minWidth: '80px',
+					minHeight: '80px',
+					maxWidth: '80px',
+					maxHeight: '80px',
+				},
+				Player_name_input: {
+					font: {
+						size: '1.25rem',
+						weight: 600,
+					},
+				},
 			},
 		},
 	})

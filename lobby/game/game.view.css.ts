@@ -38,7 +38,7 @@ namespace $.$$ {
 			gap: '0.75rem',
 			width: '100%',
 			maxWidth: '30rem',
-			padding: { left: '1rem', right: '1rem' },
+			padding: { left: '1rem', right: '1rem', bottom: '4rem' },
 		},
 		Answer_input: {
 			width: '100%',
@@ -63,6 +63,29 @@ namespace $.$$ {
 			textAlign: 'center',
 			opacity: 0.7,
 			padding: { top: '0.5rem', bottom: '0.5rem' },
+		},
+		'@media': {
+			'(width < 600px)': {
+				Question_row: {
+					gap: '0.5rem',
+					padding: { top: '0.5rem', bottom: '0.75rem', left: '0.5rem', right: '0.5rem' },
+				},
+				Question: {
+					font: { size: '1.25rem', weight: 700 },
+				},
+				Question_image: {
+					maxWidth: '100%',
+					maxHeight: '10rem',
+					margin: { top: '0.5rem' },
+				},
+				Answer_area: {
+					gap: '0.5rem',
+					padding: { left: '0.5rem', right: '0.5rem' },
+				},
+				Countdown_number: {
+					font: { size: '8rem', weight: 900 },
+				},
+			},
 		},
 	})
 }

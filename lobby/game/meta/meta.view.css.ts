@@ -72,5 +72,25 @@ namespace $.$$ {
 				},
 			},
 		},
+		'@media': {
+			'(width < 600px)': {
+				padding: { top: '0.25rem', bottom: '0.25rem', left: '0.5rem', right: '0.5rem' },
+				gap: '0.5rem',
+				Stats: {
+					gap: '0.5rem',
+					padding: { top: '0.375rem', bottom: '0.375rem', left: '0.5rem', right: '0.5rem' },
+				},
+				Stats_percent: {
+					font: { size: '1.1rem', weight: 700 },
+				},
+				Player_row: {
+					gap: '0.375rem',
+					padding: { top: '0.25rem', bottom: '0.25rem', left: '0.5rem', right: '0.5rem' },
+				},
+				Player_name: {
+					font: { size: '0.8rem', weight: 500 },
+				},
+			},
+		},
 	})
 }

@@ -31,5 +31,23 @@ namespace $.$$ {
 			opacity: 0.7,
 			margin: { top: '1.5rem', bottom: '1.5rem' },
 		},
+		'@media': {
+			'(width < 600px)': {
+				Qr: {
+					maxWidth: '16rem',
+				},
+				Quiz_title: {
+					font: { size: '1.35rem', weight: 700 },
+					margin: { top: '0.5rem' },
+				},
+				Start: {
+					margin: { top: '1rem' },
+				},
+				Counter: {
+					font: { size: '1rem', weight: 500 },
+					margin: { top: '0.75rem', bottom: '0.75rem' },
+				},
+			},
+		},
 	})
 }

@@ -228,5 +228,53 @@ namespace $.$$ {
 				size: '0.875rem',
 			},
 		},
+		'@media': {
+			'(width < 600px)': {
+				Card: {
+					padding: {
+						top: '1rem',
+						bottom: '1rem',
+						left: '0.5rem',
+						right: '0.5rem',
+					},
+					gap: '1rem',
+				},
+				Avatar_circle: {
+					width: '64px',
+					height: '64px',
+					minWidth: '64px',
+					minHeight: '64px',
+					maxWidth: '64px',
+					maxHeight: '64px',
+				},
+				Name_input: {
+					font: { size: '1.25rem', weight: 600 },
+				},
+				Stat_row: {
+					padding: {
+						top: '0.375rem',
+						bottom: '0.375rem',
+						left: '0.5rem',
+						right: '0.5rem',
+					},
+				},
+				Game_row: {
+					padding: {
+						top: '0.375rem',
+						bottom: '0.375rem',
+						left: '0.5rem',
+						right: '0.5rem',
+					},
+				},
+				Fun_card: {
+					padding: {
+						top: '0.75rem',
+						bottom: '0.75rem',
+						left: '0.5rem',
+						right: '0.5rem',
+					},
+				},
+			},
+		},
 	})
 }

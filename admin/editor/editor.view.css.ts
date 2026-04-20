@@ -45,5 +45,16 @@ namespace $.$$ {
 				radius: '0.5rem',
 			},
 		},
+		'@media': {
+			'(width < 600px)': {
+				gap: '0.75rem',
+				padding: {
+					top: '0.5rem',
+					bottom: '1rem',
+					left: '0.5rem',
+					right: '0.5rem',
+				},
+			},
+		},
 	})
 }

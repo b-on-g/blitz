@@ -52,5 +52,27 @@ namespace $.$$ {
 			},
 			overflow: 'hidden',
 		},
+		'@media': {
+			'(width < 600px)': {
+				padding: {
+					top: '0.375rem',
+					bottom: '0.375rem',
+					left: '0.5rem',
+					right: '0.5rem',
+				},
+				Options_section: {
+					padding: {
+						top: 0,
+						bottom: 0,
+						left: '0.5rem',
+						right: 0,
+					},
+				},
+				Image_preview: {
+					maxHeight: '6rem',
+					maxWidth: '100%',
+				},
+			},
+		},
 	})
 }

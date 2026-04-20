@@ -40,5 +40,23 @@ namespace $.$$ {
 			maxHeight: '60vh',
 			flex: { direction: 'column' },
 		},
+		'@media': {
+			'(width < 600px)': {
+				gap: '0.75rem',
+				padding: { top: '0.5rem', left: '0.5rem', right: '0.5rem' },
+				Top: {
+					minWidth: '100%',
+				},
+				Bottom: {
+					minWidth: '100%',
+				},
+				Top_scroll: {
+					maxHeight: '40vh',
+				},
+				Bottom_scroll: {
+					maxHeight: '40vh',
+				},
+			},
+		},
 	})
 }
