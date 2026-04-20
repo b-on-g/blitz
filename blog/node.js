@@ -19658,6 +19658,41 @@ var $;
 			(obj.sub) = () => ([(this.Reply_header()), (this.Reply_body())]);
 			return obj;
 		}
+		reply_draft(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Reply_input(){
+			const obj = new this.$.$mol_textarea();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_review_card_Reply_input_hint")));
+			(obj.value) = (next) => ((this.reply_draft(next)));
+			return obj;
+		}
+		reply_submit(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Reply_form_submit(){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.reply_submit_title()));
+			(obj.click) = (next) => ((this.reply_submit(next)));
+			return obj;
+		}
+		Reply_form(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Reply_input()), (this.Reply_form_submit())]);
+			return obj;
+		}
+		reply_toggle(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Reply_toggle(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.reply_toggle_title()));
+			(obj.click) = (next) => ((this.reply_toggle(next)));
+			return obj;
+		}
 		author_name(){
 			return "";
 		}
@@ -19679,11 +19714,26 @@ var $;
 		has_reply(){
 			return false;
 		}
+		can_reply(){
+			return false;
+		}
+		reply_form_open(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		reply_submit_title(){
+			return "";
+		}
+		reply_toggle_title(){
+			return "";
+		}
 		sub(){
 			return [
 				(this.Header()), 
 				(this.Text_body()), 
-				(this.Reply_wrap())
+				(this.Reply_wrap()), 
+				(this.Reply_form()), 
+				(this.Reply_toggle())
 			];
 		}
 	};
@@ -19696,6 +19746,14 @@ var $;
 	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_header"));
 	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_body"));
 	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_wrap"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "reply_draft"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_input"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "reply_submit"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_form_submit"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_form"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "reply_toggle"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "Reply_toggle"));
+	($mol_mem(($.$bog_blitz_review_card.prototype), "reply_form_open"));
 
 
 ;
@@ -19712,6 +19770,11 @@ var $;
                 const items = [this.Header(), this.Text_body()];
                 if (this.has_reply())
                     items.push(this.Reply_wrap());
+                if (this.can_reply()) {
+                    if (this.reply_form_open())
+                        items.push(this.Reply_form());
+                    items.push(this.Reply_toggle());
+                }
                 return items;
             }
         }
@@ -19782,6 +19845,17 @@ var $;
             font: { size: '0.95rem' },
             whiteSpace: 'pre-wrap',
         },
+        Reply_form: {
+            flex: {
+                direction: 'column',
+            },
+            gap: $mol_gap.space,
+            margin: { top: $mol_gap.space },
+        },
+        Reply_toggle: {
+            align: { self: 'flex-start' },
+            margin: { top: $mol_gap.space },
+        },
     });
 })($ || ($ = {}));
 
@@ -19828,6 +19902,31 @@ var $;
 		review_has_reply(id){
 			return false;
 		}
+		review_can_reply(id){
+			return false;
+		}
+		review_reply_form_open(id, next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		review_reply_draft(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		review_reply_submit_title(id){
+			return "";
+		}
+		review_reply_toggle_title(id){
+			return "";
+		}
+		review_reply_submit(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		review_reply_toggle(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		review_rows(){
 			return [];
 		}
@@ -19849,6 +19948,9 @@ var $;
 			return "";
 		}
 		can_write(){
+			return false;
+		}
+		can_reply(){
 			return false;
 		}
 		empty_text(){
@@ -19885,6 +19987,13 @@ var $;
 			(obj.reply_author_name) = () => ((this.review_reply_author_name(id)));
 			(obj.reply_created_text) = () => ((this.review_reply_created_text(id)));
 			(obj.has_reply) = () => ((this.review_has_reply(id)));
+			(obj.can_reply) = () => ((this.review_can_reply(id)));
+			(obj.reply_form_open) = (next) => ((this.review_reply_form_open(id, next)));
+			(obj.reply_draft) = (next) => ((this.review_reply_draft(id, next)));
+			(obj.reply_submit_title) = () => ((this.review_reply_submit_title(id)));
+			(obj.reply_toggle_title) = () => ((this.review_reply_toggle_title(id)));
+			(obj.reply_submit) = (next) => ((this.review_reply_submit(id, next)));
+			(obj.reply_toggle) = (next) => ((this.review_reply_toggle(id, next)));
 			return obj;
 		}
 		Title(){
@@ -19909,6 +20018,10 @@ var $;
 	($mol_mem(($.$bog_blitz_reviews.prototype), "Entry_my"));
 	($mol_mem(($.$bog_blitz_reviews.prototype), "submit"));
 	($mol_mem(($.$bog_blitz_reviews.prototype), "Submit"));
+	($mol_mem_key(($.$bog_blitz_reviews.prototype), "review_reply_form_open"));
+	($mol_mem_key(($.$bog_blitz_reviews.prototype), "review_reply_draft"));
+	($mol_mem_key(($.$bog_blitz_reviews.prototype), "review_reply_submit"));
+	($mol_mem_key(($.$bog_blitz_reviews.prototype), "review_reply_toggle"));
 	($mol_mem(($.$bog_blitz_reviews.prototype), "Form_wrap"));
 	($mol_mem(($.$bog_blitz_reviews.prototype), "Form"));
 	($mol_mem(($.$bog_blitz_reviews.prototype), "Empty"));
@@ -20069,6 +20182,51 @@ var $;
                 const ts = this.entry_by_index(index)?.Reply_created()?.val() ?? 0;
                 return format_time(ts);
             }
+            review_can_reply(index) {
+                return this.can_reply();
+            }
+            entry_by_index_or_create(index) {
+                const key = this.review_keys()[index];
+                if (!key)
+                    return null;
+                return this.reviews_dict()?.key(key, 'auto') ?? null;
+            }
+            review_reply_form_open(index, next) {
+                return next ?? false;
+            }
+            review_reply_draft(index, next) {
+                if (next !== undefined)
+                    return next;
+                return this.entry_by_index(index)?.Reply()?.val() ?? '';
+            }
+            review_reply_submit_title(index) {
+                const has = !!this.entry_by_index(index)?.Reply()?.val();
+                return has ? 'Update reply' : 'Send reply';
+            }
+            review_reply_toggle_title(index) {
+                const has = !!this.entry_by_index(index)?.Reply()?.val();
+                if (has)
+                    return 'Edit reply';
+                return this.review_reply_form_open(index) ? 'Cancel' : 'Reply';
+            }
+            review_reply_toggle(index) {
+                const open = this.review_reply_form_open(index);
+                this.review_reply_form_open(index, !open);
+            }
+            review_reply_submit(index) {
+                if (!this.can_reply())
+                    return;
+                const text = this.review_reply_draft(index).trim();
+                if (!text)
+                    return;
+                const entry = this.entry_by_index_or_create(index);
+                if (!entry)
+                    return;
+                entry.Reply('auto').val(text);
+                entry.Reply_author('auto').val(this.my_name() || 'Host');
+                entry.Reply_created('auto').val(Date.now());
+                this.review_reply_form_open(index, false);
+            }
         }
         __decorate([
             $mol_mem
@@ -20076,6 +20234,18 @@ var $;
         __decorate([
             $mol_action
         ], $bog_blitz_reviews.prototype, "submit", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_reviews.prototype, "review_reply_form_open", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_reviews.prototype, "review_reply_draft", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_reviews.prototype, "review_reply_toggle", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_reviews.prototype, "review_reply_submit", null);
         $$.$bog_blitz_reviews = $bog_blitz_reviews;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -20191,6 +20361,7 @@ var $;
 			(obj.my_lord) = () => ((this.my_lord_str()));
 			(obj.my_name) = () => ((this.my_name()));
 			(obj.can_write) = () => (false);
+			(obj.can_reply) = () => (true);
 			(obj.form_visible) = () => (false);
 			return obj;
 		}
@@ -20701,6 +20872,7 @@ var $;
 			(obj.my_lord) = () => ((this.my_lord_str()));
 			(obj.my_name) = () => ((this.my_name()));
 			(obj.can_write) = () => (true);
+			(obj.can_reply) = () => (false);
 			(obj.form_visible) = () => (true);
 			return obj;
 		}
@@ -29505,6 +29677,9 @@ var $;
     class $bog_feedback2_entry extends $giper_baza_dict.with({
         Text: $giper_baza_atom_text,
         Contact: $giper_baza_atom_text,
+        Reply: $giper_baza_atom_text,
+        Reply_author: $giper_baza_atom_text,
+        Reply_created: $giper_baza_atom_real,
     }) {
     }
     $.$bog_feedback2_entry = $bog_feedback2_entry;
@@ -29640,10 +29815,84 @@ var $;
 			(obj.text) = () => ((this.entry_row_text(id)));
 			return obj;
 		}
+		entry_row_reply_header_text(id){
+			return (this.$.$mol_locale.text("$bog_feedback2_form_entry_row_reply_header_text"));
+		}
+		Entry_row_reply_header(id){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.entry_row_reply_header_text(id)));
+			return obj;
+		}
+		entry_row_reply_text(id){
+			return "";
+		}
+		Entry_row_reply_text(id){
+			const obj = new this.$.$mol_text();
+			(obj.text) = () => ((this.entry_row_reply_text(id)));
+			return obj;
+		}
+		Entry_row_reply_display(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Entry_row_reply_header(id)), (this.Entry_row_reply_text(id))]);
+			return obj;
+		}
+		entry_row_reply_draft(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		Entry_row_reply_input(id){
+			const obj = new this.$.$mol_textarea();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_feedback2_form_Entry_row_reply_input_hint")));
+			(obj.value) = (next) => ((this.entry_row_reply_draft(id, next)));
+			return obj;
+		}
+		entry_row_reply_submit_title(id){
+			return "";
+		}
+		entry_row_reply_submit(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Entry_row_reply_submit(id){
+			const obj = new this.$.$mol_button_major();
+			(obj.title) = () => ((this.entry_row_reply_submit_title(id)));
+			(obj.click) = (next) => ((this.entry_row_reply_submit(id, next)));
+			return obj;
+		}
+		Entry_row_reply_form(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Entry_row_reply_input(id)), (this.Entry_row_reply_submit(id))]);
+			return obj;
+		}
+		entry_row_reply_toggle_title(id){
+			return "";
+		}
+		entry_row_reply_toggle(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		Entry_row_reply_toggle(id){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.entry_row_reply_toggle_title(id)));
+			(obj.click) = (next) => ((this.entry_row_reply_toggle(id, next)));
+			return obj;
+		}
+		entry_row_reply_sub(id){
+			return [
+				(this.Entry_row_reply_display(id)), 
+				(this.Entry_row_reply_form(id)), 
+				(this.Entry_row_reply_toggle(id))
+			];
+		}
+		Entry_row_reply_wrap(id){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.entry_row_reply_sub(id)));
+			return obj;
+		}
 		Entry_row(id){
 			const obj = new this.$.$mol_section();
 			(obj.title) = () => ((this.entry_row_contact(id)));
-			(obj.content) = () => ([(this.Entry_row_text(id))]);
+			(obj.content) = () => ([(this.Entry_row_text(id)), (this.Entry_row_reply_wrap(id))]);
 			return obj;
 		}
 		entry_rows(){
@@ -29701,6 +29950,17 @@ var $;
 	($mol_mem(($.$bog_feedback2_form.prototype), "submit"));
 	($mol_mem(($.$bog_feedback2_form.prototype), "Submit"));
 	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_text"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_header"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_text"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_display"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "entry_row_reply_draft"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_input"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "entry_row_reply_submit"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_submit"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_form"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "entry_row_reply_toggle"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_toggle"));
+	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row_reply_wrap"));
 	($mol_mem_key(($.$bog_feedback2_form.prototype), "Entry_row"));
 	($mol_mem(($.$bog_feedback2_form.prototype), "Entries"));
 	($mol_mem(($.$bog_feedback2_form.prototype), "Not_configured"));
@@ -29826,19 +30086,76 @@ var $;
             entry_rows() {
                 return this.all_lords().map((_, i) => this.Entry_row(i));
             }
-            entry_row_text(index) {
+            entry_by_index(index) {
                 const lord = this.all_lords()[index];
                 if (!lord)
-                    return '';
-                const entry = this.entries_dict()?.key(lord);
-                return entry?.Text()?.val() ?? '';
+                    return null;
+                return this.entries_dict()?.key(lord) ?? null;
+            }
+            entry_by_index_or_create(index) {
+                const lord = this.all_lords()[index];
+                if (!lord)
+                    return null;
+                return this.entries_dict()?.key(lord, 'auto') ?? null;
+            }
+            entry_row_text(index) {
+                return this.entry_by_index(index)?.Text()?.val() ?? '';
             }
             entry_row_contact(index) {
-                const lord = this.all_lords()[index];
-                if (!lord)
-                    return '';
-                const entry = this.entries_dict()?.key(lord);
-                return entry?.Contact()?.val() ?? 'Anonymous';
+                return this.entry_by_index(index)?.Contact()?.val() ?? 'Anonymous';
+            }
+            entry_row_has_reply(index) {
+                return !!this.entry_by_index(index)?.Reply()?.val();
+            }
+            entry_row_reply_text(index) {
+                return this.entry_by_index(index)?.Reply()?.val() ?? '';
+            }
+            entry_row_reply_form_open(index, next) {
+                return next ?? false;
+            }
+            entry_row_reply_draft(index, next) {
+                if (next !== undefined)
+                    return next;
+                return this.entry_by_index(index)?.Reply()?.val() ?? '';
+            }
+            entry_row_reply_submit_title(index) {
+                return this.entry_row_has_reply(index) ? 'Update reply' : 'Send reply';
+            }
+            entry_row_reply_toggle_title(index) {
+                if (this.entry_row_has_reply(index))
+                    return 'Edit reply';
+                return this.entry_row_reply_form_open(index) ? 'Cancel' : 'Reply';
+            }
+            entry_row_reply_toggle(index) {
+                const open = this.entry_row_reply_form_open(index);
+                this.entry_row_reply_form_open(index, !open);
+            }
+            entry_row_reply_submit(index) {
+                if (!this.is_owner())
+                    return;
+                const text = this.entry_row_reply_draft(index).trim();
+                if (!text)
+                    return;
+                const entry = this.entry_by_index_or_create(index);
+                if (!entry)
+                    return;
+                entry.Reply('auto').val(text);
+                entry.Reply_author('auto').val(this.my_lord());
+                entry.Reply_created('auto').val(Date.now());
+                this.entry_row_reply_form_open(index, false);
+            }
+            entry_row_reply_sub(index) {
+                const items = [];
+                const has_reply = this.entry_row_has_reply(index);
+                if (has_reply)
+                    items.push(this.Entry_row_reply_display(index));
+                if (!this.is_owner())
+                    return items;
+                if (this.entry_row_reply_form_open(index)) {
+                    items.push(this.Entry_row_reply_form(index));
+                }
+                items.push(this.Entry_row_reply_toggle(index));
+                return items;
             }
         }
         __decorate([
@@ -29856,6 +30173,18 @@ var $;
         __decorate([
             $mol_action
         ], $bog_feedback2_form.prototype, "submit", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_feedback2_form.prototype, "entry_row_reply_form_open", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_feedback2_form.prototype, "entry_row_reply_draft", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback2_form.prototype, "entry_row_reply_toggle", null);
+        __decorate([
+            $mol_action
+        ], $bog_feedback2_form.prototype, "entry_row_reply_submit", null);
         $$.$bog_feedback2_form = $bog_feedback2_form;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -29922,6 +30251,52 @@ var $;
                 font: {
                     size: '1rem',
                 },
+            },
+        },
+        Entry_row_reply_wrap: {
+            flex: {
+                direction: 'column',
+            },
+            gap: $mol_gap.space,
+            margin: {
+                top: $mol_gap.space,
+            },
+        },
+        Entry_row_reply_display: {
+            flex: {
+                direction: 'column',
+            },
+            gap: $mol_gap.space,
+            padding: $mol_gap.block,
+            background: {
+                color: $mol_theme.back,
+            },
+            border: {
+                radius: $mol_gap.round,
+            },
+        },
+        Entry_row_reply_header: {
+            font: {
+                weight: 700,
+                size: '0.95rem',
+            },
+            opacity: 0.8,
+        },
+        Entry_row_reply_text: {
+            font: {
+                size: '0.95rem',
+            },
+            whiteSpace: 'pre-wrap',
+        },
+        Entry_row_reply_form: {
+            flex: {
+                direction: 'column',
+            },
+            gap: $mol_gap.space,
+        },
+        Entry_row_reply_toggle: {
+            align: {
+                self: 'flex-start',
             },
         },
     });

@@ -8406,6 +8406,41 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
+	type $mol_textarea__hint_bog_blitz_review_card_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_textarea['hint'] >
+	>
+	type $mol_textarea__value_bog_blitz_review_card_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_review_card['reply_draft'] >
+		,
+		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_button_major__title_bog_blitz_review_card_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_review_card['reply_submit_title'] >
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_blitz_review_card_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_review_card['reply_submit'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_view__sub_bog_blitz_review_card_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_review_card_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_review_card['reply_toggle_title'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_review_card_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_review_card['reply_toggle'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
 	export class $bog_blitz_review_card extends $mol_view {
 		Author_name( ): $mol_paragraph
 		Created_time( ): $mol_paragraph
@@ -8416,6 +8451,13 @@ declare namespace $ {
 		Reply_header( ): $mol_row
 		Reply_body( ): $mol_text
 		Reply_wrap( ): $mol_view
+		reply_draft( next?: string ): string
+		Reply_input( ): $mol_textarea
+		reply_submit( next?: any ): any
+		Reply_form_submit( ): $mol_button_major
+		Reply_form( ): $mol_view
+		reply_toggle( next?: any ): any
+		Reply_toggle( ): $mol_button_minor
 		author_name( ): string
 		created_text( ): string
 		text( ): string
@@ -8423,6 +8465,10 @@ declare namespace $ {
 		reply_author_name( ): string
 		reply_created_text( ): string
 		has_reply( ): boolean
+		can_reply( ): boolean
+		reply_form_open( next?: boolean ): boolean
+		reply_submit_title( ): string
+		reply_toggle_title( ): string
 		sub( ): readonly(any)[]
 	}
 	
@@ -8510,12 +8556,47 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_review_card['has_reply'] >
 	>
-	type $mol_paragraph__title_bog_blitz_reviews_15 = $mol_type_enforce<
+	type $bog_blitz_review_card__can_reply_bog_blitz_reviews_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_can_reply'] >
+		,
+		ReturnType< $bog_blitz_review_card['can_reply'] >
+	>
+	type $bog_blitz_review_card__reply_form_open_bog_blitz_reviews_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_form_open'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_form_open'] >
+	>
+	type $bog_blitz_review_card__reply_draft_bog_blitz_reviews_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_draft'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_draft'] >
+	>
+	type $bog_blitz_review_card__reply_submit_title_bog_blitz_reviews_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_submit_title'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_submit_title'] >
+	>
+	type $bog_blitz_review_card__reply_toggle_title_bog_blitz_reviews_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_toggle_title'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_toggle_title'] >
+	>
+	type $bog_blitz_review_card__reply_submit_bog_blitz_reviews_20 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_submit'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_submit'] >
+	>
+	type $bog_blitz_review_card__reply_toggle_bog_blitz_reviews_21 = $mol_type_enforce<
+		ReturnType< $bog_blitz_reviews['review_reply_toggle'] >
+		,
+		ReturnType< $bog_blitz_review_card['reply_toggle'] >
+	>
+	type $mol_paragraph__title_bog_blitz_reviews_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz_reviews['section_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_reviews_16 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_reviews_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_reviews['review_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
@@ -8532,6 +8613,13 @@ declare namespace $ {
 		review_reply_author_name( id: any): string
 		review_reply_created_text( id: any): string
 		review_has_reply( id: any): boolean
+		review_can_reply( id: any): boolean
+		review_reply_form_open( id: any, next?: boolean ): boolean
+		review_reply_draft( id: any, next?: string ): string
+		review_reply_submit_title( id: any): string
+		review_reply_toggle_title( id: any): string
+		review_reply_submit( id: any, next?: any ): any
+		review_reply_toggle( id: any, next?: any ): any
 		review_rows( ): readonly(any)[]
 		form_sub( ): readonly(any)[]
 		Form_wrap( ): $mol_view
@@ -8539,6 +8627,7 @@ declare namespace $ {
 		my_lord( ): string
 		my_name( ): string
 		can_write( ): boolean
+		can_reply( ): boolean
 		empty_text( ): string
 		section_title( ): string
 		submit_title( ): string
@@ -8613,6 +8702,14 @@ declare namespace $.$$ {
         review_reply_text(index: number): string;
         review_reply_author_name(index: number): string;
         review_reply_created_text(index: number): string;
+        review_can_reply(index: number): boolean;
+        private entry_by_index_or_create;
+        review_reply_form_open(index: number, next?: boolean): boolean;
+        review_reply_draft(index: number, next?: string): string;
+        review_reply_submit_title(index: number): "Update reply" | "Send reply";
+        review_reply_toggle_title(index: number): "Edit reply" | "Cancel" | "Reply";
+        review_reply_toggle(index: number): void;
+        review_reply_submit(index: number): void;
     }
 }
 
@@ -8706,7 +8803,12 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_reviews['can_write'] >
 	>
-	type $bog_blitz_reviews__form_visible_bog_blitz_lobby_host_18 = $mol_type_enforce<
+	type $bog_blitz_reviews__can_reply_bog_blitz_lobby_host_18 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $bog_blitz_reviews['can_reply'] >
+	>
+	type $bog_blitz_reviews__form_visible_bog_blitz_lobby_host_19 = $mol_type_enforce<
 		boolean
 		,
 		ReturnType< $bog_blitz_reviews['form_visible'] >
@@ -8905,7 +9007,12 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_reviews['can_write'] >
 	>
-	type $bog_blitz_reviews__form_visible_bog_blitz_lobby_waiting_8 = $mol_type_enforce<
+	type $bog_blitz_reviews__can_reply_bog_blitz_lobby_waiting_8 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $bog_blitz_reviews['can_reply'] >
+	>
+	type $bog_blitz_reviews__form_visible_bog_blitz_lobby_waiting_9 = $mol_type_enforce<
 		boolean
 		,
 		ReturnType< $bog_blitz_reviews['form_visible'] >
@@ -14166,6 +14273,9 @@ declare namespace $ {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
             readonly Text: (auto?: any) => $giper_baza_atom_text | null;
             readonly Contact: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Reply: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Reply_author: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Reply_created: (auto?: any) => $giper_baza_atom_real | null;
         }>;
         path: string;
     } & {
@@ -14174,6 +14284,9 @@ declare namespace $ {
         } & {
             readonly Text: typeof $giper_baza_atom_text;
             readonly Contact: typeof $giper_baza_atom_text;
+            readonly Reply: typeof $giper_baza_atom_text;
+            readonly Reply_author: typeof $giper_baza_atom_text;
+            readonly Reply_created: typeof $giper_baza_atom_real;
         };
     };
     export class $bog_feedback2_entry extends $bog_feedback2_entry_base {
@@ -14275,32 +14388,87 @@ declare namespace $ {
 		,
 		ReturnType< $mol_text['text'] >
 	>
-	type $mol_section__title_bog_feedback2_form_9 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_feedback2_form_9 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_header_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_text__text_bog_feedback2_form_10 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_text'] >
+		,
+		ReturnType< $mol_text['text'] >
+	>
+	type $mol_view__sub_bog_feedback2_form_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_textarea__hint_bog_feedback2_form_12 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_textarea['hint'] >
+	>
+	type $mol_textarea__value_bog_feedback2_form_13 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_draft'] >
+		,
+		ReturnType< $mol_textarea['value'] >
+	>
+	type $mol_button_major__title_bog_feedback2_form_14 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_submit_title'] >
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_feedback2_form_15 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_submit'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_view__sub_bog_feedback2_form_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_feedback2_form_17 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_toggle_title'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_feedback2_form_18 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_toggle'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_view__sub_bog_feedback2_form_19 = $mol_type_enforce<
+		ReturnType< $bog_feedback2_form['entry_row_reply_sub'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_section__title_bog_feedback2_form_20 = $mol_type_enforce<
 		ReturnType< $bog_feedback2_form['entry_row_contact'] >
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback2_form_10 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback2_form_21 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_section__title_bog_feedback2_form_11 = $mol_type_enforce<
+	type $mol_section__title_bog_feedback2_form_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_section['title'] >
 	>
-	type $mol_section__content_bog_feedback2_form_12 = $mol_type_enforce<
+	type $mol_section__content_bog_feedback2_form_23 = $mol_type_enforce<
 		ReturnType< $bog_feedback2_form['entry_rows'] >
 		,
 		ReturnType< $mol_section['content'] >
 	>
-	type $mol_status__message_bog_feedback2_form_13 = $mol_type_enforce<
+	type $mol_status__message_bog_feedback2_form_24 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_status['message'] >
 	>
-	type $mol_paragraph__title_bog_feedback2_form_14 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_feedback2_form_25 = $mol_type_enforce<
 		ReturnType< $bog_feedback2_form['waiting_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
@@ -14319,6 +14487,22 @@ declare namespace $ {
 		entry_row_contact( id: any): string
 		entry_row_text( id: any): string
 		Entry_row_text( id: any): $mol_text
+		entry_row_reply_header_text( id: any): string
+		Entry_row_reply_header( id: any): $mol_paragraph
+		entry_row_reply_text( id: any): string
+		Entry_row_reply_text( id: any): $mol_text
+		Entry_row_reply_display( id: any): $mol_view
+		entry_row_reply_draft( id: any, next?: string ): string
+		Entry_row_reply_input( id: any): $mol_textarea
+		entry_row_reply_submit_title( id: any): string
+		entry_row_reply_submit( id: any, next?: any ): any
+		Entry_row_reply_submit( id: any): $mol_button_major
+		Entry_row_reply_form( id: any): $mol_view
+		entry_row_reply_toggle_title( id: any): string
+		entry_row_reply_toggle( id: any, next?: any ): any
+		Entry_row_reply_toggle( id: any): $mol_button_minor
+		entry_row_reply_sub( id: any): readonly(any)[]
+		Entry_row_reply_wrap( id: any): $mol_view
 		Entry_row( id: any): $mol_section
 		entry_rows( ): readonly(any)[]
 		Entries( ): $mol_section
@@ -14433,8 +14617,19 @@ declare namespace $.$$ {
         body(): $.$mol_paragraph[] | $.$mol_status[] | ($.$mol_string | $.$mol_textarea | $.$mol_text | $.$mol_section | $mol_button_major)[];
         all_lords(): readonly $giper_baza_vary_type[];
         entry_rows(): $.$mol_section[];
+        private entry_by_index;
+        private entry_by_index_or_create;
         entry_row_text(index: number): string;
         entry_row_contact(index: number): string;
+        entry_row_has_reply(index: number): boolean;
+        entry_row_reply_text(index: number): string;
+        entry_row_reply_form_open(index: number, next?: boolean): boolean;
+        entry_row_reply_draft(index: number, next?: string): string;
+        entry_row_reply_submit_title(index: number): "Update reply" | "Send reply";
+        entry_row_reply_toggle_title(index: number): "Edit reply" | "Cancel" | "Reply";
+        entry_row_reply_toggle(index: number): void;
+        entry_row_reply_submit(index: number): void;
+        entry_row_reply_sub(index: number): readonly any[];
     }
 }
 

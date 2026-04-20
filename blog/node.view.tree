@@ -764,6 +764,13 @@ $bog_blitz_review_card $mol_view
 	reply_author_name \
 	reply_created_text \
 	has_reply false
+	can_reply false
+	reply_form_open? false
+	reply_draft? \
+	reply_submit_title \
+	reply_toggle_title \
+	reply_submit? null
+	reply_toggle? null
 	sub /
 		<= Header $mol_row
 			sub /
@@ -783,12 +790,24 @@ $bog_blitz_review_card $mol_view
 							title <= reply_created_text
 				<= Reply_body $mol_text
 					text <= reply_text
+		<= Reply_form $mol_view
+			sub /
+				<= Reply_input $mol_textarea
+					hint @ \Write your reply...
+					value? <=> reply_draft? \
+				<= Reply_form_submit $mol_button_major
+					title <= reply_submit_title
+					click? <=> reply_submit? null
+		<= Reply_toggle $mol_button_minor
+			title <= reply_toggle_title
+			click? <=> reply_toggle? null
 
 $bog_blitz_reviews $mol_view
 	quiz_land_link \
 	my_lord \
 	my_name \
 	can_write false
+	can_reply false
 	empty_text @ \No reviews yet. Be the first to share your thoughts!
 	section_title @ \Reviews
 	submit_title \
@@ -812,6 +831,13 @@ $bog_blitz_reviews $mol_view
 		reply_author_name <= review_reply_author_name* \
 		reply_created_text <= review_reply_created_text* \
 		has_reply <= review_has_reply* false
+		can_reply <= review_can_reply* false
+		reply_form_open? <=> review_reply_form_open*? false
+		reply_draft? <=> review_reply_draft*? \
+		reply_submit_title <= review_reply_submit_title* \
+		reply_toggle_title <= review_reply_toggle_title* \
+		reply_submit? <=> review_reply_submit*? null
+		reply_toggle? <=> review_reply_toggle*? null
 	Title $mol_paragraph
 		title <= section_title
 	List $mol_view
@@ -860,6 +886,7 @@ $bog_blitz_lobby_host $mol_page
 			my_lord <= my_lord_str
 			my_name <= my_name
 			can_write false
+			can_reply true
 			form_visible false
 	Foot null
 	sub /
@@ -922,6 +949,7 @@ $bog_blitz_lobby_waiting $mol_page
 			my_lord <= my_lord_str
 			my_name <= my_name
 			can_write true
+			can_reply false
 			form_visible true
 
 $bog_blitz_lobby_game_timer $mol_view
@@ -1854,6 +1882,25 @@ $bog_feedback2_form $mol_page
 					content /
 						<= Entry_row_text* $mol_text
 							text <= entry_row_text* \
+						<= Entry_row_reply_wrap* $mol_view
+							sub <= entry_row_reply_sub* /
+								<= Entry_row_reply_display* $mol_view
+									sub /
+										<= Entry_row_reply_header* $mol_paragraph
+											title <= entry_row_reply_header_text* @ \Reply from admin
+										<= Entry_row_reply_text* $mol_text
+											text <= entry_row_reply_text* \
+								<= Entry_row_reply_form* $mol_view
+									sub /
+										<= Entry_row_reply_input* $mol_textarea
+											hint @ \Write a reply...
+											value? <=> entry_row_reply_draft*? \
+										<= Entry_row_reply_submit* $mol_button_major
+											title <= entry_row_reply_submit_title* \
+											click? <=> entry_row_reply_submit*? null
+								<= Entry_row_reply_toggle* $mol_button_minor
+									title <= entry_row_reply_toggle_title* \
+									click? <=> entry_row_reply_toggle*? null
 	Not_configured $mol_status
 		message @ \Form not yet configured
 	Waiting $mol_paragraph
