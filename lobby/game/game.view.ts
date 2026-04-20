@@ -467,15 +467,24 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_click(key: string, e?: any) {
 			if (e) {
+				if (!this.option_enabled(key)) return null
 				const current = this.selected_options()
+				let next: string[]
 				if (this.has_multiple_correct()) {
-					if (current.includes(key)) {
-						this.selected_options(current.filter(k => k !== key))
-					} else {
-						this.selected_options([...current, key])
-					}
+					next = current.includes(key)
+						? current.filter(k => k !== key)
+						: [...current, key]
 				} else {
-					this.selected_options(current.includes(key) ? [] : [key])
+					next = current.includes(key) ? [] : [key]
+				}
+				this.selected_options(next)
+				if (!this.has_multiple_correct() && next.length) {
+					const answers = this.my_answers() as $bog_blitz_player_answers | null
+					if (answers) {
+						answers.Answer('auto')?.val(next.sort().join(','))
+						answers.Answer_time('auto')?.val(Date.now())
+						answers.Answer_question('auto')?.val(this.current_question_index())
+					}
 				}
 			}
 			return null
