@@ -28,6 +28,10 @@ $bog_blitz_lobby_game $mol_view
 	countdown_text \
 	Countdown_number $mol_paragraph
 		title <= countdown_text
+	get_ready_label @ \Get ready... {num}
+	input_countdown_text \
+	Get_ready $mol_paragraph
+		title <= input_countdown_text
 	sub <= game_content /
 	Pause_button $mol_button_minor
 		title <= pause_label @ \Pause

@@ -49,5 +49,11 @@ namespace $.$$ {
 			font: { size: '15rem', weight: 900 },
 			opacity: 0.15,
 		},
+		Get_ready: {
+			font: { size: '1.25rem', weight: 600 },
+			textAlign: 'center',
+			opacity: 0.7,
+			padding: { top: '0.5rem', bottom: '0.5rem' },
+		},
 	})
 }

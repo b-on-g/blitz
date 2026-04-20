@@ -1,4 +1,6 @@
 namespace $.$$ {
+	const INPUT_SYNC_DELAY = 2000
+
 	export class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
 		@$mol_mem
 		game_content() {
@@ -231,6 +233,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		submit_enabled() {
+			if (!this.input_ready()) return false
 			return this.selected_options().length > 0
 		}
 
@@ -250,14 +253,17 @@ namespace $.$$ {
 		@$mol_mem
 		answer_views() {
 			const state = this.game_state()
+			const show_get_ready = state === 'answering' && !this.is_host() && !this.input_ready()
 			if (this.question_type() === 'text_input') {
 				if (state === 'reveal') {
 					return [this.Answer_input(), this.Reveal_correct()]
 				}
+				if (show_get_ready) return [this.Get_ready(), this.Answer_input()]
 				return [this.Answer_input()]
 			}
 			const views = this.option_views()
 			if (state === 'answering' && !this.is_host()) {
+				if (show_get_ready) return [this.Get_ready(), ...views, this.Submit_answer()]
 				return [...views, this.Submit_answer()]
 			}
 			return views
@@ -279,6 +285,7 @@ namespace $.$$ {
 		@$mol_mem
 		text_input_enabled() {
 			if (this.is_host()) return false
+			if (!this.input_ready()) return false
 			return this.game_state() === 'answering'
 		}
 
@@ -339,9 +346,41 @@ namespace $.$$ {
 			return this.my_answer() !== ''
 		}
 
+		@$mol_mem
+		input_ready(next?: null): boolean {
+			if (this.game_state() !== 'answering') return false
+			const start = this.round_start()
+			if (!start) return false
+			const elapsed = Date.now() - start
+			if (elapsed >= INPUT_SYNC_DELAY) return true
+			new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null))
+			return false
+		}
+
+		@$mol_mem
+		input_countdown_number(next?: null): number {
+			if (this.game_state() !== 'answering') return 0
+			const start = this.round_start()
+			if (!start) return 0
+			const elapsed = Date.now() - start
+			const remaining = INPUT_SYNC_DELAY - elapsed
+			if (remaining <= 0) return 0
+			const num = Math.ceil(remaining / 1000)
+			new $mol_after_timeout(remaining - (num - 1) * 1000 + 50, () => this.input_countdown_number(null))
+			return num
+		}
+
+		@$mol_mem
+		input_countdown_text() {
+			const num = this.input_countdown_number()
+			if (!num) return ''
+			return this.get_ready_label().replace('{num}', String(num))
+		}
+
 		@$mol_mem_key
 		option_enabled(key: string) {
 			if (this.is_host()) return false
+			if (!this.input_ready()) return false
 			return this.game_state() === 'answering'
 		}
 

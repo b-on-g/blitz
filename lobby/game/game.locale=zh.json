@@ -9,5 +9,6 @@
 	"$bog_blitz_lobby_game_state_paused": "已暂停",
 	"$bog_blitz_lobby_game_Answer_input_hint": "输入您的答案...",
 	"$bog_blitz_lobby_game_submit_label": "提交",
-	"$bog_blitz_lobby_game_next_label": "下一步"
+	"$bog_blitz_lobby_game_next_label": "下一步",
+	"$bog_blitz_lobby_game_get_ready_label": "准备好... {num}"
 }
