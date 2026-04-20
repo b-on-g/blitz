@@ -19677,7 +19677,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bog/blitz/lobby/reactions/reactions.view.css", "[bog_blitz_lobby_reactions] {\n\tposition: fixed !important;\n\tbottom: 1rem !important;\n\tright: 1rem !important;\n\tz-index: 100;\n}\n\n[bog_blitz_lobby_reactions_fly] {\n\tanimation: bog_blitz_fly_up 1.5s ease-out forwards;\n\ttransform: translateX(-50%);\n}\n\n@keyframes bog_blitz_fly_up {\n\t0% {\n\t\topacity: 1;\n\t\ttransform: translateX(-50%) translateY(0);\n\t}\n\t100% {\n\t\topacity: 0;\n\t\ttransform: translateX(-50%) translateY(-200px);\n\t}\n}\n");
+    $mol_style_attach("bog/blitz/lobby/reactions/reactions.view.css", "[bog_blitz_lobby_reactions] {\n\tposition: fixed !important;\n\tbottom: 1rem !important;\n\tright: 1rem !important;\n\tz-index: 100;\n}\n\n@media (max-width: 600px) {\n\t[bog_blitz_lobby_reactions] {\n\t\tbottom: 0.25rem !important;\n\t\tright: 0.25rem !important;\n\t\ttransform: scale(0.75);\n\t\ttransform-origin: bottom right;\n\t\topacity: 0.85;\n\t}\n}\n\n[bog_blitz_lobby_reactions_fly] {\n\tanimation: bog_blitz_fly_up 1.5s ease-out forwards;\n\ttransform: translateX(-50%);\n}\n\n@keyframes bog_blitz_fly_up {\n\t0% {\n\t\topacity: 1;\n\t\ttransform: translateX(-50%) translateY(0);\n\t}\n\t100% {\n\t\topacity: 0;\n\t\ttransform: translateX(-50%) translateY(-200px);\n\t}\n}\n");
 })($ || ($ = {}));
 
 ;
@@ -19939,8 +19939,6 @@ var $;
             sub() {
                 const base = super.sub();
                 if (!this.my_player())
-                    return base;
-                if (this.game_state() === 'final')
                     return base;
                 return [...base, this.Reactions()];
             }
