@@ -16689,6 +16689,10 @@ var $;
                     return '100%';
                 const paused = this.paused_at();
                 const now = paused > 0 ? paused : Date.now();
+                if (now < start) {
+                    new $mol_after_timeout(start - now + 50, () => this.bar_width(null));
+                    return '100%';
+                }
                 const elapsed = (now - start) / 1000;
                 const ratio = Math.max(0, 1 - elapsed / duration);
                 if (ratio > 0 && !paused) {
@@ -18427,10 +18431,10 @@ var $;
                 const start = this.round_start();
                 if (!start)
                     return false;
-                const elapsed = Date.now() - start;
-                if (elapsed >= INPUT_SYNC_DELAY)
+                const remaining = start - Date.now();
+                if (remaining <= 0)
                     return true;
-                new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null));
+                new $mol_after_timeout(remaining + 50, () => this.input_ready(null));
                 return false;
             }
             input_countdown_number(next) {
@@ -18439,8 +18443,7 @@ var $;
                 const start = this.round_start();
                 if (!start)
                     return 0;
-                const elapsed = Date.now() - start;
-                const remaining = INPUT_SYNC_DELAY - elapsed;
+                const remaining = start - Date.now();
                 if (remaining <= 0)
                     return 0;
                 const num = Math.ceil(remaining / 1000);
@@ -18575,7 +18578,7 @@ var $;
                 const index = this.current_question_index();
                 const total = this.total_questions();
                 if (state === 'reading') {
-                    session.Round_start('auto')?.val(Date.now());
+                    session.Round_start('auto')?.val(Date.now() + INPUT_SYNC_DELAY);
                     session.Game_state('auto')?.val('answering');
                 }
                 else if (state === 'answering') {
