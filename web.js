@@ -27278,6 +27278,24 @@ var $;
                 opacity: 0.7,
                 margin: { top: '1.5rem', bottom: '1.5rem' },
             },
+            '@media': {
+                '(width < 600px)': {
+                    Qr: {
+                        maxWidth: '16rem',
+                    },
+                    Quiz_title: {
+                        font: { size: '1.35rem', weight: 700 },
+                        margin: { top: '0.5rem' },
+                    },
+                    Start: {
+                        margin: { top: '1rem' },
+                    },
+                    Counter: {
+                        font: { size: '1rem', weight: 500 },
+                        margin: { top: '0.75rem', bottom: '0.75rem' },
+                    },
+                },
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -27427,6 +27445,8 @@ var $;
                     right: '1.5rem',
                 },
                 maxWidth: '400px',
+                width: '100%',
+                boxSizing: 'border-box',
             },
             Avatar_circle: {
                 borderRadius: '50%',
@@ -27503,6 +27523,33 @@ var $;
                 width: '100%',
                 margin: {
                     top: '0.5rem',
+                },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Body: {
+                        gap: '1rem',
+                        padding: {
+                            top: '1.5rem',
+                            bottom: '1rem',
+                            left: '0.75rem',
+                            right: '0.75rem',
+                        },
+                    },
+                    Avatar_circle: {
+                        width: '80px',
+                        height: '80px',
+                        minWidth: '80px',
+                        minHeight: '80px',
+                        maxWidth: '80px',
+                        maxHeight: '80px',
+                    },
+                    Player_name_input: {
+                        font: {
+                            size: '1.25rem',
+                            weight: 600,
+                        },
+                    },
                 },
             },
         });
@@ -27635,6 +27682,22 @@ var $;
                 font: { size: '1.25rem', weight: 500 },
                 opacity: 0.7,
                 padding: { bottom: '1.5rem', top: '1rem' },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Quiz_title: {
+                        font: { size: '1.35rem', weight: 700 },
+                        margin: { top: '0.5rem' },
+                    },
+                    Waiting_message: {
+                        font: { size: '1.15rem', weight: 500 },
+                        padding: { bottom: '0.25rem', top: '0.5rem' },
+                    },
+                    Counter: {
+                        font: { size: '1rem', weight: 500 },
+                        padding: { bottom: '0.75rem', top: '0.5rem' },
+                    },
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -27782,6 +27845,14 @@ var $;
                     color: $mol_theme.special,
                 },
                 borderRadius: '0.25rem',
+            },
+            '@media': {
+                '(width < 600px)': {
+                    minWidth: '2.75rem',
+                    Digits: {
+                        font: { size: '1.5rem', weight: 800 },
+                    },
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -28083,6 +28154,26 @@ var $;
                     },
                     'none': {
                         opacity: 0.6,
+                    },
+                },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    padding: { top: '0.25rem', bottom: '0.25rem', left: '0.5rem', right: '0.5rem' },
+                    gap: '0.5rem',
+                    Stats: {
+                        gap: '0.5rem',
+                        padding: { top: '0.375rem', bottom: '0.375rem', left: '0.5rem', right: '0.5rem' },
+                    },
+                    Stats_percent: {
+                        font: { size: '1.1rem', weight: 700 },
+                    },
+                    Player_row: {
+                        gap: '0.375rem',
+                        padding: { top: '0.25rem', bottom: '0.25rem', left: '0.5rem', right: '0.5rem' },
+                    },
+                    Player_name: {
+                        font: { size: '0.8rem', weight: 500 },
                     },
                 },
             },
@@ -28548,6 +28639,24 @@ var $;
             Bottom_scroll: {
                 maxHeight: '60vh',
                 flex: { direction: 'column' },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    gap: '0.75rem',
+                    padding: { top: '0.5rem', left: '0.5rem', right: '0.5rem' },
+                    Top: {
+                        minWidth: '100%',
+                    },
+                    Bottom: {
+                        minWidth: '100%',
+                    },
+                    Top_scroll: {
+                        maxHeight: '40vh',
+                    },
+                    Bottom_scroll: {
+                        maxHeight: '40vh',
+                    },
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -30364,7 +30473,7 @@ var $;
                 gap: '0.75rem',
                 width: '100%',
                 maxWidth: '30rem',
-                padding: { left: '1rem', right: '1rem' },
+                padding: { left: '1rem', right: '1rem', bottom: '4rem' },
             },
             Answer_input: {
                 width: '100%',
@@ -30389,6 +30498,29 @@ var $;
                 textAlign: 'center',
                 opacity: 0.7,
                 padding: { top: '0.5rem', bottom: '0.5rem' },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Question_row: {
+                        gap: '0.5rem',
+                        padding: { top: '0.5rem', bottom: '0.75rem', left: '0.5rem', right: '0.5rem' },
+                    },
+                    Question: {
+                        font: { size: '1.25rem', weight: 700 },
+                    },
+                    Question_image: {
+                        maxWidth: '100%',
+                        maxHeight: '10rem',
+                        margin: { top: '0.5rem' },
+                    },
+                    Answer_area: {
+                        gap: '0.5rem',
+                        padding: { left: '0.5rem', right: '0.5rem' },
+                    },
+                    Countdown_number: {
+                        font: { size: '8rem', weight: 900 },
+                    },
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -34268,6 +34400,28 @@ var $;
                 },
                 overflow: 'hidden',
             },
+            '@media': {
+                '(width < 600px)': {
+                    padding: {
+                        top: '0.375rem',
+                        bottom: '0.375rem',
+                        left: '0.5rem',
+                        right: '0.5rem',
+                    },
+                    Options_section: {
+                        padding: {
+                            top: 0,
+                            bottom: 0,
+                            left: '0.5rem',
+                            right: 0,
+                        },
+                    },
+                    Image_preview: {
+                        maxHeight: '6rem',
+                        maxWidth: '100%',
+                    },
+                },
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -35174,6 +35328,17 @@ var $;
                     radius: '0.5rem',
                 },
             },
+            '@media': {
+                '(width < 600px)': {
+                    gap: '0.75rem',
+                    padding: {
+                        top: '0.5rem',
+                        bottom: '1rem',
+                        left: '0.5rem',
+                        right: '0.5rem',
+                    },
+                },
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -35882,6 +36047,48 @@ var $;
                     bottom: '0.5rem',
                     left: '1rem',
                     right: '1rem',
+                },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Create_button: {
+                        margin: {
+                            top: '0.5rem',
+                            bottom: '0.5rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
+                    Bot_expander: {
+                        margin: {
+                            top: 0,
+                            bottom: 0,
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
+                    Bot: {
+                        height: '18rem',
+                    },
+                    Import_expander: {
+                        margin: {
+                            top: 0,
+                            bottom: 0,
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
+                    Import_area: {
+                        height: '14rem',
+                    },
+                    Quizzes_list: {
+                        padding: {
+                            top: '0.5rem',
+                            bottom: '0.5rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
                 },
             },
         });
@@ -38462,6 +38669,24 @@ var $;
             Row_count: {
                 font: { size: '0.875rem', weight: 700 },
             },
+            '@media': {
+                '(width < 600px)': {
+                    padding: { top: '1rem', left: '0.5rem', right: '0.5rem' },
+                    gap: '0.25rem',
+                    Title_heart: { font: { size: '1.5rem' } },
+                    Title_smile: { font: { size: '1.5rem' } },
+                    Title_fire: { font: { size: '1.5rem' } },
+                    Title_clap: { font: { size: '1.5rem' } },
+                    Title_poop: { font: { size: '1.5rem' } },
+                    Table_heart: { minWidth: '3.5rem' },
+                    Table_smile: { minWidth: '3.5rem' },
+                    Table_fire: { minWidth: '3.5rem' },
+                    Table_clap: { minWidth: '3.5rem' },
+                    Table_poop: { minWidth: '3.5rem' },
+                    Row_name: { font: { size: '0.75rem' } },
+                    Row_count: { font: { size: '0.75rem', weight: 700 } },
+                },
+            },
         });
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -39366,6 +39591,54 @@ var $;
                 opacity: 0.7,
                 font: {
                     size: '0.875rem',
+                },
+            },
+            '@media': {
+                '(width < 600px)': {
+                    Card: {
+                        padding: {
+                            top: '1rem',
+                            bottom: '1rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                        gap: '1rem',
+                    },
+                    Avatar_circle: {
+                        width: '64px',
+                        height: '64px',
+                        minWidth: '64px',
+                        minHeight: '64px',
+                        maxWidth: '64px',
+                        maxHeight: '64px',
+                    },
+                    Name_input: {
+                        font: { size: '1.25rem', weight: 600 },
+                    },
+                    Stat_row: {
+                        padding: {
+                            top: '0.375rem',
+                            bottom: '0.375rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
+                    Game_row: {
+                        padding: {
+                            top: '0.375rem',
+                            bottom: '0.375rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
+                    Fun_card: {
+                        padding: {
+                            top: '0.75rem',
+                            bottom: '0.75rem',
+                            left: '0.5rem',
+                            right: '0.5rem',
+                        },
+                    },
                 },
             },
         });
