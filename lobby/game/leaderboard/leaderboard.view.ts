@@ -20,10 +20,16 @@ namespace $.$$ {
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
+				const answered = player.Answered_count()?.val() ?? 0
+				const score = player.Score()?.val() ?? 0
+				// Dropping players who skipped ALL questions (never answered).
+				// Fallback: if Answered_count isn't populated yet but Score is non-zero,
+				// treat as answered — keeps existing sessions intact.
+				if (answered <= 0 && score === 0) continue
 				players.push({
 					key: String(key),
 					name: player.Name()?.val() ?? String(key).slice(0, 8),
-					score: player.Score()?.val() ?? 0,
+					score,
 				})
 			}
 			return players.sort((a, b) => b.score - a.score)

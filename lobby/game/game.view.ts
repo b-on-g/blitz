@@ -65,7 +65,10 @@ namespace $.$$ {
 				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
-				scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 })
+				const answered = p.Answered_count()?.val() ?? 0
+				const score = p.Score()?.val() ?? 0
+				if (answered <= 0 && score === 0) continue
+				scores.push({ lord: String(key), score })
 			}
 			scores.sort((a, b) => b.score - a.score)
 			const my_lord = this.my_lord_str()
@@ -244,10 +247,22 @@ namespace $.$$ {
 				if (!selected.length) return
 				const answers = this.my_answers() as $bog_blitz_player_answers | null
 				if (!answers) return
+				this.mark_answered(answers)
 				answers.Answer('auto')?.val(selected.sort().join(','))
 				answers.Answer_time('auto')?.val(Date.now())
 				answers.Answer_question('auto')?.val(this.current_question_index())
 			}
+		}
+
+		/** Инкрементит Answered_count игрока при ПЕРВОМ ответе на ТЕКУЩИЙ вопрос */
+		mark_answered(answers: $bog_blitz_player_answers) {
+			const current = this.current_question_index()
+			const prev_q = answers.Answer_question()?.val() ?? -1
+			if (prev_q === current) return
+			const player = this.my_player() as $bog_blitz_player | null
+			if (!player) return
+			const prev_count = player.Answered_count()?.val() ?? 0
+			player.Answered_count('auto')?.val(prev_count + 1)
 		}
 
 		@$mol_mem
@@ -276,6 +291,7 @@ namespace $.$$ {
 				if (!draft) return
 				const answers = this.my_answers() as $bog_blitz_player_answers | null
 				if (!answers) return
+				this.mark_answered(answers)
 				answers.Answer('auto')?.val(draft)
 				answers.Answer_time('auto')?.val(Date.now())
 				answers.Answer_question('auto')?.val(this.current_question_index())
@@ -480,6 +496,7 @@ namespace $.$$ {
 				if (!this.has_multiple_correct() && next.length) {
 					const answers = this.my_answers() as $bog_blitz_player_answers | null
 					if (answers) {
+						this.mark_answered(answers)
 						answers.Answer('auto')?.val(next.sort().join(','))
 						answers.Answer_time('auto')?.val(Date.now())
 						answers.Answer_question('auto')?.val(this.current_question_index())

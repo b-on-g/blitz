@@ -7,6 +7,7 @@ namespace $.$$ {
 		IsHost: $giper_baza_atom_bool,
 		Avatar: $giper_baza_atom_link_to(() => $giper_baza_file),
 		Answer_land: $giper_baza_atom_text,
+		Answered_count: $giper_baza_atom_real,
 	}) {}
 
 	/** В собственном ленде игрока — только игрок пишет */
