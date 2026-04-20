@@ -43,6 +43,7 @@ $bog_blitz_lobby_game $mol_view
 		title <= next_label @ \Next
 		click? <=> next_click?event null
 	question_type \choice
+	current_answer_key null
 	question_content /
 		<= Host_controls $mol_view
 			sub <= host_controls /
@@ -61,6 +62,10 @@ $bog_blitz_lobby_game $mol_view
 					manual_mode <= manual_mode
 		<= Answer_area $mol_view
 			sub <= answer_views /
+		<= Meta $bog_blitz_lobby_game_meta
+			players_dict <= players_dict
+			current_question_index <= current_question_index
+			current_answer_key <= current_answer_key
 		<= Countdown $mol_view
 			sub <= countdown_content /
 	Answer_input $mol_string

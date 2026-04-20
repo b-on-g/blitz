@@ -100,6 +100,7 @@ namespace $.$$ {
 				this.Question_row(),
 				this.Answer_area(),
 			]
+			if (this.game_state() === 'reveal') base.push(this.Meta())
 			if (this.manual_mode()) return base
 			return [...base, this.Countdown()]
 		}
@@ -556,9 +557,17 @@ namespace $.$$ {
 
 		current_answer_key() {
 			const keys = this.answers_key_data()
-			if (!keys) return null
-			const index = this.current_question_index()
-			return keys[index] ?? null
+			if (keys) {
+				const index = this.current_question_index()
+				if (keys[index]) return keys[index]
+			}
+			// Fallback for non-host: use session.Reveal_correct (only available in reveal phase)
+			if (this.game_state() !== 'reveal') return null
+			const session = this.session() as $bog_blitz_session | null
+			if (!session) return null
+			const correct = session.Reveal_correct()?.val() ?? ''
+			if (!correct) return null
+			return { type: this.question_type(), correct }
 		}
 
 		player_answers_data(player: $bog_blitz_player) {

@@ -1,0 +1,25 @@
+$bog_blitz_lobby_game_meta $mol_view
+	players_dict null
+	current_question_index 0
+	current_answer_key null
+	sub /
+		<= Stats $mol_view
+			sub /
+				<= Stats_answered $mol_paragraph
+					title <= stats_answered_text \
+				<= Stats_correct $mol_paragraph
+					title <= stats_correct_text \
+				<= Stats_percent $mol_paragraph
+					title <= stats_percent_text \
+				<= Stats_percent_hint $mol_paragraph
+					title <= stats_percent_hint @ \of those who answered
+		<= Players_list $mol_list
+			rows <= player_rows /
+	Player_row*0 $mol_view
+		attr *
+			^
+			data-status <= player_status* \gray
+		sub /
+			<= Player_bullet*0 $mol_view
+			<= Player_name*0 $mol_paragraph
+				title <= player_name* \
