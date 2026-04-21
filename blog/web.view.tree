@@ -2495,6 +2495,32 @@ $bog_blitz_reviews $mol_view
 			sub <= form_sub /
 		<= List
 
+$bog_blitz_lobby_game_option $mol_button_major
+	correct \
+	submitted \false
+	attr *
+		^
+		data-selected <= selected \false
+		data-submitted <= submitted \false
+		data-correct <= correct \
+	image_uri \
+	Option_image $mol_image
+		uri <= image_uri
+	picker_keys /string
+	Picker_area $mol_view
+		sub <= picker_views /
+	Picker* $mol_view
+		attr *
+			^
+			title <= picker_name* \
+			bog_blitz_picker true
+		style *
+			^
+			backgroundColor <= picker_bg* \
+		sub /
+			<= Picker_avatar* $mol_avatar
+				id <= picker_avatar_id* \
+
 $bog_blitz_lobby_game $mol_view
 	land_id \
 	session null
@@ -3514,29 +3540,3 @@ $bog_blitz_lobby_game_reactboard $mol_view
 				title <= row_name* \
 			<= Row_count* $mol_paragraph
 				title <= row_count* \
-
-$bog_blitz_lobby_game_option $mol_button_major
-	correct \
-	submitted \false
-	attr *
-		^
-		data-selected <= selected \false
-		data-submitted <= submitted \false
-		data-correct <= correct \
-	image_uri \
-	Option_image $mol_image
-		uri <= image_uri
-	picker_keys /string
-	Picker_area $mol_view
-		sub <= picker_views /
-	Picker* $mol_view
-		attr *
-			^
-			title <= picker_name* \
-			bog_blitz_picker true
-		style *
-			^
-			backgroundColor <= picker_bg* \
-		sub /
-			<= Picker_avatar* $mol_avatar
-				id <= picker_avatar_id* \

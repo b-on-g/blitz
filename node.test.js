@@ -16810,13 +16810,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bog/blitz/lobby/game/timer/timer.view.css", "@keyframes bog_blitz_timer_shrink {\n\tfrom { width: 100%; }\n\tto { width: 0%; }\n}\n");
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     var $$;
     (function ($$) {
         $mol_style_define($bog_blitz_lobby_game_timer, {
@@ -16848,6 +16841,7 @@ var $;
                 },
             },
         });
+        $mol_style_attach('bog_blitz_lobby_game_timer_keyframes', '@keyframes bog_blitz_timer_shrink { from { width: 100%; } to { width: 0%; } }');
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
@@ -21887,6 +21881,240 @@ var $;
             padding: $mol_gap.block,
         },
     });
+})($ || ($ = {}));
+
+;
+	($.$bog_blitz_lobby_game_option) = class $bog_blitz_lobby_game_option extends ($.$mol_button_major) {
+		selected(){
+			return "false";
+		}
+		submitted(){
+			return "false";
+		}
+		correct(){
+			return "";
+		}
+		picker_views(){
+			return [];
+		}
+		picker_name(id){
+			return "";
+		}
+		picker_bg(id){
+			return "";
+		}
+		picker_avatar_id(id){
+			return "";
+		}
+		Picker_avatar(id){
+			const obj = new this.$.$mol_avatar();
+			(obj.id) = () => ((this.picker_avatar_id(id)));
+			return obj;
+		}
+		attr(){
+			return {
+				...(super.attr()), 
+				"data-selected": (this.selected()), 
+				"data-submitted": (this.submitted()), 
+				"data-correct": (this.correct())
+			};
+		}
+		image_uri(){
+			return "";
+		}
+		Option_image(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ((this.image_uri()));
+			return obj;
+		}
+		picker_keys(){
+			return [];
+		}
+		Picker_area(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ((this.picker_views()));
+			return obj;
+		}
+		Picker(id){
+			const obj = new this.$.$mol_view();
+			(obj.attr) = () => ({
+				...(this.$.$mol_view.prototype.attr.call(obj)), 
+				"title": (this.picker_name(id)), 
+				"bog_blitz_picker": true
+			});
+			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "backgroundColor": (this.picker_bg(id))});
+			(obj.sub) = () => ([(this.Picker_avatar(id))]);
+			return obj;
+		}
+	};
+	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker_avatar"));
+	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Option_image"));
+	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Picker_area"));
+	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
+            sub() {
+                const parts = [];
+                if (this.image_uri())
+                    parts.push(this.Option_image());
+                parts.push(this.title());
+                if (this.picker_keys().length)
+                    parts.push(this.Picker_area());
+                return parts;
+            }
+            picker_views() {
+                return this.picker_keys().map(key => this.Picker(key));
+            }
+            picker_parts(key) {
+                const parts = key.split('\u0001');
+                return { lord: parts[0] ?? '', name: parts[1] ?? '', color: parts[2] ?? '' };
+            }
+            picker_name(key) {
+                return this.picker_parts(key).name || key;
+            }
+            picker_avatar_id(key) {
+                return this.picker_parts(key).lord || key;
+            }
+            picker_bg(key) {
+                const { lord, color } = this.picker_parts(key);
+                return $bog_blitz_color_for(lord, color);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_option.prototype, "sub", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby_game_option.prototype, "picker_views", null);
+        $$.$bog_blitz_lobby_game_option = $bog_blitz_lobby_game_option;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_lobby_game_option, {
+            flex: {
+                direction: 'row',
+                wrap: 'wrap',
+            },
+            align: { items: 'center' },
+            gap: '0.5rem',
+            outline: 'none',
+            transition: 'transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease',
+            ':focus': { outline: 'none' },
+            ':focus-visible': { outline: 'none' },
+            Option_image: {
+                maxWidth: '8rem',
+                maxHeight: '6rem',
+                objectFit: 'contain',
+                borderRadius: '0.5rem',
+            },
+            Picker_area: {
+                flex: {
+                    direction: 'row',
+                    wrap: 'wrap',
+                    basis: '100%',
+                },
+                align: { items: 'center' },
+                gap: '0.25rem',
+                margin: { top: '0.25rem' },
+                minHeight: '1.5rem',
+            },
+            Picker: {
+                width: '1.5rem',
+                height: '1.5rem',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                flex: { shrink: 0 },
+                align: { items: 'center' },
+                justify: { content: 'center' },
+                color: '#ffffff',
+                boxShadow: `0 0 0 2px ${$mol_theme.back}`,
+                animation: {
+                    name: 'bog_blitz_picker_wobble',
+                    duration: '1.2s',
+                    timingFunction: 'ease-in-out',
+                    iterationCount: 'infinite',
+                },
+                transformOrigin: 'center bottom',
+                ':nth-child(2n)': {
+                    animationDelay: '-0.4s',
+                },
+                ':nth-child(3n)': {
+                    animationDelay: '-0.8s',
+                },
+            },
+            Picker_avatar: {
+                width: '70%',
+                height: '70%',
+            },
+            '@': {
+                'data-selected': {
+                    true: {
+                        boxShadow: `inset 0 0 0 2px ${$mol_theme.special}`,
+                        background: {
+                            color: '#a855f733',
+                        },
+                        transform: 'scale(1.01)',
+                        opacity: 1,
+                    },
+                    false: {
+                        opacity: 1,
+                    },
+                },
+                'data-submitted': {
+                    true: {
+                        boxShadow: `0 0 0 3px ${$mol_theme.special}`,
+                        background: {
+                            color: '#a855f755',
+                        },
+                        transform: 'scale(1.02)',
+                        opacity: 1,
+                    },
+                    false: {},
+                },
+                'data-correct': {
+                    true: {
+                        boxShadow: '0 0 0 3px #22c55e',
+                        background: {
+                            color: '#22c55e33',
+                        },
+                        opacity: 1,
+                        transform: 'none',
+                    },
+                    false: {
+                        boxShadow: '0 0 0 3px #ef4444',
+                        background: {
+                            color: '#ef444433',
+                        },
+                        opacity: 0.6,
+                        transform: 'none',
+                    },
+                },
+            },
+        });
+        $mol_style_attach('bog_blitz_lobby_game_option_keyframes', `@keyframes bog_blitz_picker_wobble {
+			0%   { transform: rotate(-8deg) translateY(0); }
+			25%  { transform: rotate(8deg)  translateY(-2px); }
+			50%  { transform: rotate(-6deg) translateY(0); }
+			75%  { transform: rotate(6deg)  translateY(-1px); }
+			100% { transform: rotate(-8deg) translateY(0); }
+		}`);
+    })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 
 ;
@@ -29496,12 +29724,6 @@ var $;
                         }
                     }
                 }
-                if (key.startsWith('s_')) {
-                    this.registry().Shared_quizzes('auto').cut(source.link());
-                }
-                else {
-                    this.registry().Quizzes('auto').cut(source.link());
-                }
             }
             back_to_list() {
                 this.$.$mol_state_arg.value('quiz', null);
@@ -32694,225 +32916,6 @@ var $;
 })($ || ($ = {}));
 
 ;
-	($.$bog_blitz_lobby_game_option) = class $bog_blitz_lobby_game_option extends ($.$mol_button_major) {
-		selected(){
-			return "false";
-		}
-		submitted(){
-			return "false";
-		}
-		correct(){
-			return "";
-		}
-		picker_views(){
-			return [];
-		}
-		picker_name(id){
-			return "";
-		}
-		picker_bg(id){
-			return "";
-		}
-		picker_avatar_id(id){
-			return "";
-		}
-		Picker_avatar(id){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.picker_avatar_id(id)));
-			return obj;
-		}
-		attr(){
-			return {
-				...(super.attr()), 
-				"data-selected": (this.selected()), 
-				"data-submitted": (this.submitted()), 
-				"data-correct": (this.correct())
-			};
-		}
-		image_uri(){
-			return "";
-		}
-		Option_image(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ((this.image_uri()));
-			return obj;
-		}
-		picker_keys(){
-			return [];
-		}
-		Picker_area(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ((this.picker_views()));
-			return obj;
-		}
-		Picker(id){
-			const obj = new this.$.$mol_view();
-			(obj.attr) = () => ({
-				...(this.$.$mol_view.prototype.attr.call(obj)), 
-				"title": (this.picker_name(id)), 
-				"bog_blitz_picker": true
-			});
-			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "backgroundColor": (this.picker_bg(id))});
-			(obj.sub) = () => ([(this.Picker_avatar(id))]);
-			return obj;
-		}
-	};
-	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker_avatar"));
-	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Option_image"));
-	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Picker_area"));
-	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker"));
-
-
-;
-"use strict";
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
-            sub() {
-                const parts = [];
-                if (this.image_uri())
-                    parts.push(this.Option_image());
-                parts.push(this.title());
-                if (this.picker_keys().length)
-                    parts.push(this.Picker_area());
-                return parts;
-            }
-            picker_views() {
-                return this.picker_keys().map(key => this.Picker(key));
-            }
-            picker_parts(key) {
-                const parts = key.split('\u0001');
-                return { lord: parts[0] ?? '', name: parts[1] ?? '', color: parts[2] ?? '' };
-            }
-            picker_name(key) {
-                return this.picker_parts(key).name || key;
-            }
-            picker_avatar_id(key) {
-                return this.picker_parts(key).lord || key;
-            }
-            picker_bg(key) {
-                const { lord, color } = this.picker_parts(key);
-                return $bog_blitz_color_for(lord, color);
-            }
-        }
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_game_option.prototype, "sub", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_game_option.prototype, "picker_views", null);
-        $$.$bog_blitz_lobby_game_option = $bog_blitz_lobby_game_option;
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("bog/blitz/lobby/game/option/option.view.css", "[mol_view_root][class*=\" $bog_blitz_lobby_game_option\"]:focus,\n[mol_view_root][class*=\" $bog_blitz_lobby_game_option\"]:focus-visible,\n[class*=\" $bog_blitz_lobby_game_option\"]:focus,\n[class*=\" $bog_blitz_lobby_game_option\"]:focus-visible {\n\toutline: none;\n}\n\n@keyframes bog_blitz_picker_wobble {\n\t0%   { transform: rotate(-8deg) translateY(0); }\n\t25%  { transform: rotate(8deg)  translateY(-2px); }\n\t50%  { transform: rotate(-6deg) translateY(0); }\n\t75%  { transform: rotate(6deg)  translateY(-1px); }\n\t100% { transform: rotate(-8deg) translateY(0); }\n}\n\n[bog_blitz_picker] {\n\tanimation: bog_blitz_picker_wobble 1.2s ease-in-out infinite;\n\ttransform-origin: center bottom;\n}\n\n[bog_blitz_picker]:nth-child(2n) {\n\tanimation-delay: -0.4s;\n}\n\n[bog_blitz_picker]:nth-child(3n) {\n\tanimation-delay: -0.8s;\n}\n");
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    var $$;
-    (function ($$) {
-        $mol_style_define($bog_blitz_lobby_game_option, {
-            flex: {
-                direction: 'row',
-                wrap: 'wrap',
-            },
-            align: { items: 'center' },
-            gap: '0.5rem',
-            outline: 'none',
-            transition: 'transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease',
-            Option_image: {
-                maxWidth: '8rem',
-                maxHeight: '6rem',
-                objectFit: 'contain',
-                borderRadius: '0.5rem',
-            },
-            Picker_area: {
-                flex: {
-                    direction: 'row',
-                    wrap: 'wrap',
-                    basis: '100%',
-                },
-                align: { items: 'center' },
-                gap: '0.25rem',
-                margin: { top: '0.25rem' },
-                minHeight: '1.5rem',
-            },
-            Picker: {
-                width: '1.5rem',
-                height: '1.5rem',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                flex: { shrink: 0 },
-                align: { items: 'center' },
-                justify: { content: 'center' },
-                color: '#ffffff',
-                boxShadow: `0 0 0 2px ${$mol_theme.back}`,
-            },
-            Picker_avatar: {
-                width: '70%',
-                height: '70%',
-            },
-            '@': {
-                'data-selected': {
-                    true: {
-                        boxShadow: `inset 0 0 0 2px ${$mol_theme.special}`,
-                        background: {
-                            color: '#a855f733',
-                        },
-                        transform: 'scale(1.01)',
-                        opacity: 1,
-                    },
-                    false: {
-                        opacity: 1,
-                    },
-                },
-                'data-submitted': {
-                    true: {
-                        boxShadow: `0 0 0 3px ${$mol_theme.special}`,
-                        background: {
-                            color: '#a855f755',
-                        },
-                        transform: 'scale(1.02)',
-                        opacity: 1,
-                    },
-                    false: {},
-                },
-                'data-correct': {
-                    true: {
-                        boxShadow: '0 0 0 3px #22c55e',
-                        background: {
-                            color: '#22c55e33',
-                        },
-                        opacity: 1,
-                        transform: 'none',
-                    },
-                    false: {
-                        boxShadow: '0 0 0 3px #ef4444',
-                        background: {
-                            color: '#ef444433',
-                        },
-                        opacity: 0.6,
-                        transform: 'none',
-                    },
-                },
-            },
-        });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-
-;
 	($.$bog_blitz_profile_page) = class $bog_blitz_profile_page extends ($.$mol_page) {
 		player_id(){
 			return "";
@@ -33999,13 +34002,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bog/blitz/lobby/reactions/reactions.view.css", "[bog_blitz_lobby_reactions] {\n\tposition: fixed !important;\n\tbottom: 1rem !important;\n\tright: 1rem !important;\n\tz-index: 100;\n}\n\n[bog_blitz_lobby_reactions][data-in-flow=\"true\"] {\n\tposition: static !important;\n\tbottom: auto !important;\n\tright: auto !important;\n\tz-index: auto;\n}\n\n@media (max-width: 600px) {\n\t[bog_blitz_lobby_reactions] {\n\t\tbottom: 0.25rem !important;\n\t\tright: 0.25rem !important;\n\t\ttransform: scale(0.75);\n\t\ttransform-origin: bottom right;\n\t\topacity: 0.85;\n\t}\n\t[bog_blitz_lobby_reactions][data-in-flow=\"true\"] {\n\t\tbottom: auto !important;\n\t\tright: auto !important;\n\t\ttransform: none;\n\t\topacity: 1;\n\t}\n}\n\n[bog_blitz_lobby_reactions_fly] {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 50%;\n\tfont-size: 2rem;\n\tline-height: 1;\n\tpointer-events: none;\n\twill-change: transform, opacity;\n\tanimation: bog_blitz_fly_up 1.5s ease-out forwards;\n\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n}\n\n@keyframes bog_blitz_fly_up {\n\t0% {\n\t\topacity: 1;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n\t}\n\t100% {\n\t\topacity: 0;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px);\n\t}\n}\n");
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     var $$;
     (function ($$) {
         const group_style = {
@@ -34029,9 +34025,38 @@ var $;
             align: { items: 'flex-end', self: 'stretch' },
             width: '95%',
             padding: { bottom: '1rem', right: '0.75rem' },
+            position: 'fixed',
+            bottom: '1rem',
+            right: '1rem',
+            zIndex: 100,
+            '@': {
+                'data-in-flow': {
+                    'true': {
+                        position: 'static',
+                        bottom: 'auto',
+                        right: 'auto',
+                        zIndex: 'auto',
+                    },
+                },
+            },
             '@media': {
                 '(width < 600px)': {
                     padding: { bottom: '1.5rem', right: '1rem' },
+                    bottom: '0.25rem',
+                    right: '0.25rem',
+                    transform: 'scale(0.75)',
+                    transformOrigin: 'bottom right',
+                    opacity: 0.85,
+                    '@': {
+                        'data-in-flow': {
+                            'true': {
+                                bottom: 'auto',
+                                right: 'auto',
+                                transform: 'none',
+                                opacity: 1,
+                            },
+                        },
+                    },
                 },
             },
             Spacer: {
@@ -34056,10 +34081,25 @@ var $;
             Count_poop: count_style,
             Fly: {
                 position: 'absolute',
+                top: '0px',
+                left: '50%',
                 font: { size: '2rem' },
+                lineHeight: '1',
                 pointerEvents: 'none',
+                willChange: 'transform, opacity',
+                animation: {
+                    name: 'bog_blitz_fly_up',
+                    duration: '1.5s',
+                    timingFunction: 'ease-out',
+                    fillMode: 'forwards',
+                },
+                transform: 'translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0)',
             },
         });
+        $mol_style_attach('bog_blitz_lobby_reactions_keyframes', `@keyframes bog_blitz_fly_up {
+			0% { opacity: 1; transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0); }
+			100% { opacity: 0; transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px); }
+		}`);
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 

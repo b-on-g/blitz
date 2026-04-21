@@ -12773,9 +12773,6 @@ declare namespace $.$$ {
     }
 }
 
-declare namespace $ {
-}
-
 declare namespace $.$$ {
 }
 
@@ -14330,6 +14327,85 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_avatar__id_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['picker_avatar_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_image__uri_bog_blitz_lobby_game_option_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_option_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['picker_views'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__attr_bog_blitz_lobby_game_option_4 = $mol_type_enforce<
+		({ 
+			'title': ReturnType< $bog_blitz_lobby_game_option['picker_name'] >,
+			'bog_blitz_picker': boolean,
+		})  & ReturnType< $mol_view['attr'] >
+		,
+		ReturnType< $mol_view['attr'] >
+	>
+	type $mol_view__style_bog_blitz_lobby_game_option_5 = $mol_type_enforce<
+		({ 
+			'backgroundColor': ReturnType< $bog_blitz_lobby_game_option['picker_bg'] >,
+		})  & ReturnType< $mol_view['style'] >
+		,
+		ReturnType< $mol_view['style'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_option_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_lobby_game_option extends $mol_button_major {
+		selected( ): string
+		submitted( ): string
+		correct( ): string
+		picker_views( ): readonly(any)[]
+		picker_name( id: any): string
+		picker_bg( id: any): string
+		picker_avatar_id( id: any): string
+		Picker_avatar( id: any): $mol_avatar
+		attr( ): ({ 
+			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
+			'data-submitted': ReturnType< $bog_blitz_lobby_game_option['submitted'] >,
+			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
+		})  & ReturnType< $mol_button_major['attr'] >
+		image_uri( ): string
+		Option_image( ): $mol_image
+		picker_keys( ): readonly(string)[]
+		Picker_area( ): $mol_view
+		Picker( id: any): $mol_view
+	}
+	
+}
+
+//# sourceMappingURL=option.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
+        sub(): (string | $mol_view)[];
+        picker_views(): $mol_view[];
+        picker_parts(key: string): {
+            lord: string;
+            name: string;
+            color: string;
+        };
+        picker_name(key: string): string;
+        picker_avatar_id(key: string): string;
+        picker_bg(key: string): string;
+    }
+}
+
+declare namespace $.$$ {
 }
 
 declare namespace $ {
@@ -21577,88 +21653,6 @@ declare namespace $.$$ {
 declare namespace $.$$ {
 }
 
-declare namespace $ {
-
-	type $mol_avatar__id_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_avatar_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_image__uri_bog_blitz_lobby_game_option_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_option_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__attr_bog_blitz_lobby_game_option_4 = $mol_type_enforce<
-		({ 
-			'title': ReturnType< $bog_blitz_lobby_game_option['picker_name'] >,
-			'bog_blitz_picker': boolean,
-		})  & ReturnType< $mol_view['attr'] >
-		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__style_bog_blitz_lobby_game_option_5 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_game_option['picker_bg'] >,
-		})  & ReturnType< $mol_view['style'] >
-		,
-		ReturnType< $mol_view['style'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_option_6 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_lobby_game_option extends $mol_button_major {
-		selected( ): string
-		submitted( ): string
-		correct( ): string
-		picker_views( ): readonly(any)[]
-		picker_name( id: any): string
-		picker_bg( id: any): string
-		picker_avatar_id( id: any): string
-		Picker_avatar( id: any): $mol_avatar
-		attr( ): ({ 
-			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
-			'data-submitted': ReturnType< $bog_blitz_lobby_game_option['submitted'] >,
-			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
-		})  & ReturnType< $mol_button_major['attr'] >
-		image_uri( ): string
-		Option_image( ): $mol_image
-		picker_keys( ): readonly(string)[]
-		Picker_area( ): $mol_view
-		Picker( id: any): $mol_view
-	}
-	
-}
-
-//# sourceMappingURL=option.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
-        sub(): (string | $mol_view)[];
-        picker_views(): $mol_view[];
-        picker_parts(key: string): {
-            lord: string;
-            name: string;
-            color: string;
-        };
-        picker_name(key: string): string;
-        picker_avatar_id(key: string): string;
-        picker_bg(key: string): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-}
-
 declare namespace $.$$ {
     const $bog_blitz_profile_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
@@ -22209,9 +22203,6 @@ declare namespace $.$$ {
         auto(): void;
         spawn_fly(key: string): void;
     }
-}
-
-declare namespace $ {
 }
 
 declare namespace $.$$ {
