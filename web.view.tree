@@ -2612,6 +2612,7 @@ $bog_blitz_lobby_game $mol_view
 		enabled <= submit_enabled true
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
+		submitted <= option_submitted* \false
 		correct <= option_correct* \
 		enabled <= option_enabled* true
 		title <= option_text* \
@@ -3335,9 +3336,11 @@ $bog_blitz_lobby_game_reactboard $mol_view
 
 $bog_blitz_lobby_game_option $mol_button_major
 	correct \
+	submitted \false
 	attr *
 		^
 		data-selected <= selected \false
+		data-submitted <= submitted \false
 		data-correct <= correct \
 	image_uri \
 	Option_image $mol_image

@@ -10020,32 +10020,37 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_50 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__submitted_bog_blitz_lobby_game_50 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_submitted'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['submitted'] >
+	>
+	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_51 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_correct'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['correct'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_51 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_52 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_52 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_53 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_53 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_54 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 	>
-	type $bog_blitz_lobby_game_option__picker_keys_bog_blitz_lobby_game_54 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__picker_keys_bog_blitz_lobby_game_55 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_picker_keys'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['picker_keys'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_55 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_56 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
@@ -10086,6 +10091,7 @@ declare namespace $ {
 		submit_answer( next?: any ): any
 		submit_enabled( ): boolean
 		option_selected( id: any): string
+		option_submitted( id: any): string
 		option_correct( id: any): string
 		option_enabled( id: any): boolean
 		option_text( id: any): string
@@ -10167,7 +10173,7 @@ declare namespace $.$$ {
         submit_enabled(): boolean;
         submit_answer(next?: Event): void;
         mark_answered(answers: $bog_blitz_player_answers): void;
-        answer_views(): ($.$mol_paragraph | $.$mol_string)[] | ($.$mol_paragraph | $mol_button_major)[];
+        answer_views(): ($.$mol_paragraph | $.$mol_string | $mol_button_major)[];
         text_submit(next?: Event): void;
         text_input_enabled(): boolean;
         option_keys(): string[];
@@ -10176,11 +10182,14 @@ declare namespace $.$$ {
         option_image_uri(key: string): string;
         my_answer(): string;
         has_answered(): boolean;
+        has_submitted(): boolean;
+        option_submitted(key: string): string;
+        private _first_answering_ts;
         input_ready(next?: null): boolean;
         input_countdown_number(next?: null): number;
         input_countdown_text(): string;
         option_enabled(key: string): boolean;
-        option_correct(key: string): "" | "true" | "false";
+        option_correct(key: string): "" | "false" | "true";
         option_picker_keys(key: string): string[];
         option_selected(key: string): string;
         reveal_correct_text(): string;
@@ -15793,6 +15802,7 @@ declare namespace $ {
 	>
 	export class $bog_blitz_lobby_game_option extends $mol_button_major {
 		selected( ): string
+		submitted( ): string
 		correct( ): string
 		picker_views( ): readonly(any)[]
 		picker_name( id: any): string
@@ -15801,6 +15811,7 @@ declare namespace $ {
 		Picker_avatar( id: any): $mol_avatar
 		attr( ): ({ 
 			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
+			'data-submitted': ReturnType< $bog_blitz_lobby_game_option['submitted'] >,
 			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
 		})  & ReturnType< $mol_button_major['attr'] >
 		image_uri( ): string
