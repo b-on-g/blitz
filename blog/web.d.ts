@@ -19548,12 +19548,32 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_open['files'] >
 	>
-	type $mol_button_minor__title_bog_blitz_admin_question_20 = $mol_type_enforce<
+	type $mol_string__hint_bog_blitz_admin_question_20 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_blitz_admin_question_21 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_question['question_image_url'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_button_minor__title_bog_blitz_admin_question_22 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_admin_question_21 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_admin_question_23 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_question['import_image_url'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_admin_question_24 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_admin_question_25 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
@@ -19578,6 +19598,8 @@ declare namespace $ {
 		image_section_content( ): readonly(any)[]
 		question_image_files( next?: readonly(any)[] ): readonly(any)[]
 		question_image_uri( ): string
+		question_image_url( next?: string ): string
+		import_image_url( next?: any ): any
 		remove_image( next?: any ): any
 		question( ): any
 		number( ): number
@@ -19586,6 +19608,8 @@ declare namespace $ {
 		Image_upload( ): $mol_button_open
 		Image_preview( ): $mol_image
 		Image_replace( ): $mol_button_open
+		Image_url_input( ): $mol_string
+		Image_url_import( ): $mol_button_minor
 		Image_remove( ): $mol_button_minor
 	}
 	
@@ -19594,7 +19618,7 @@ declare namespace $ {
 //# sourceMappingURL=question.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
-        image_section_content(): ($mol_button_minor | $.$mol_button_open | $.$mol_image)[];
+        image_section_content(): ($.$mol_string | $mol_button_minor | $.$mol_button_open | $.$mol_image)[];
         question_rows(): ($mol_row | $mol_string_button)[];
     }
 }
@@ -19604,100 +19628,125 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_string_button__hint_bog_blitz_admin_option_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string_button['hint'] >
-	>
-	type $mol_string_button__value_bog_blitz_admin_option_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_text'] >
-		,
-		ReturnType< $mol_string_button['value'] >
-	>
-	type $mol_check_box__title_bog_blitz_admin_option_3 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_check_box['title'] >
-	>
-	type $mol_check_box__checked_bog_blitz_admin_option_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['is_correct'] >
-		,
-		ReturnType< $mol_check_box['checked'] >
-	>
-	type $mol_button_minor__title_bog_blitz_admin_option_5 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_admin_option_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['delete'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_row__sub_bog_blitz_admin_option_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['image_section_content'] >
+	type $mol_row__sub_bog_blitz_admin_option_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['main_row_content'] >
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_image__uri_bog_blitz_admin_option_8 = $mol_type_enforce<
+	type $mol_image__uri_bog_blitz_admin_option_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_button_open__title_bog_blitz_admin_option_9 = $mol_type_enforce<
+	type $mol_string_button__hint_bog_blitz_admin_option_3 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $mol_button_open['title'] >
+		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_button_open__files_bog_blitz_admin_option_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_image_files'] >
+	type $mol_string_button__value_bog_blitz_admin_option_4 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['option_text'] >
 		,
-		ReturnType< $mol_button_open['files'] >
+		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_button_open__title_bog_blitz_admin_option_11 = $mol_type_enforce<
+	type $mol_check_box__title_bog_blitz_admin_option_5 = $mol_type_enforce<
 		string
 		,
-		ReturnType< $mol_button_open['title'] >
+		ReturnType< $mol_check_box['title'] >
 	>
-	type $mol_button_open__files_bog_blitz_admin_option_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_image_files'] >
+	type $mol_check_box__checked_bog_blitz_admin_option_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['is_correct'] >
 		,
-		ReturnType< $mol_button_open['files'] >
+		ReturnType< $mol_check_box['checked'] >
 	>
-	type $mol_button_minor__title_bog_blitz_admin_option_13 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_admin_option_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_admin_option_14 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_admin_option_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['delete'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_row__sub_bog_blitz_admin_option_9 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['image_section_content'] >
+		,
+		ReturnType< $mol_row['sub'] >
+	>
+	type $mol_button_open__title_bog_blitz_admin_option_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open['title'] >
+	>
+	type $mol_button_open__files_bog_blitz_admin_option_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['option_image_files'] >
+		,
+		ReturnType< $mol_button_open['files'] >
+	>
+	type $mol_button_open__title_bog_blitz_admin_option_12 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open['title'] >
+	>
+	type $mol_button_open__files_bog_blitz_admin_option_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['option_image_files'] >
+		,
+		ReturnType< $mol_button_open['files'] >
+	>
+	type $mol_string__hint_bog_blitz_admin_option_14 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_blitz_admin_option_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['option_image_url'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_button_minor__title_bog_blitz_admin_option_16 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_admin_option_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['import_image_url'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_admin_option_18 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_admin_option_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_row__sub_bog_blitz_admin_option_15 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_row['sub'] >
-	>
 	export class $bog_blitz_admin_option extends $mol_list {
 		option_content( ): readonly(any)[]
-		image_section_content( ): readonly(any)[]
+		main_row_content( ): readonly(any)[]
 		option_image_uri( ): string
-		option_image_files( next?: readonly(any)[] ): readonly(any)[]
-		remove_image( next?: any ): any
 		option_text( next?: string ): string
-		Text( ): $mol_string_button
 		is_correct( next?: boolean ): boolean
-		Checkbox( ): $mol_check_box
 		delete( next?: any ): any
-		Delete( ): $mol_button_minor
+		image_section_content( ): readonly(any)[]
+		option_image_files( next?: readonly(any)[] ): readonly(any)[]
+		option_image_url( next?: string ): string
+		import_image_url( next?: any ): any
+		remove_image( next?: any ): any
 		rows( ): ReturnType< $bog_blitz_admin_option['option_content'] >
+		Main_row( ): $mol_row
+		Image_thumb( ): $mol_image
+		Text( ): $mol_string_button
+		Checkbox( ): $mol_check_box
+		Delete( ): $mol_button_minor
 		Image_section( ): $mol_row
-		Image_preview( ): $mol_image
 		Image_upload( ): $mol_button_open
 		Image_replace( ): $mol_button_open
+		Image_url_input( ): $mol_string
+		Image_url_import( ): $mol_button_minor
 		Image_remove( ): $mol_button_minor
-		Controls( ): $mol_row
 	}
 	
 }
@@ -19705,7 +19754,8 @@ declare namespace $ {
 //# sourceMappingURL=option.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_admin_option extends $.$bog_blitz_admin_option {
-        image_section_content(): ($mol_button_minor | $.$mol_button_open | $.$mol_image)[];
+        image_section_content(): ($.$mol_string | $mol_button_minor | $.$mol_button_open)[];
+        main_row_content(): $mol_view[];
         option_content(): $mol_row[];
     }
 }
@@ -19890,37 +19940,57 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_uri'] >
 	>
-	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_36 = $mol_type_enforce<
+	type $bog_blitz_admin_question__question_image_url_bog_blitz_admin_editor_36 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['question_image_url'] >
+		,
+		ReturnType< $bog_blitz_admin_question['question_image_url'] >
+	>
+	type $bog_blitz_admin_question__import_image_url_bog_blitz_admin_editor_37 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['import_question_image_url'] >
+		,
+		ReturnType< $bog_blitz_admin_question['import_image_url'] >
+	>
+	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_question_image'] >
 		,
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 	>
-	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_37 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_text'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_text'] >
 	>
-	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_38 = $mol_type_enforce<
+	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_40 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['is_correct'] >
 		,
 		ReturnType< $bog_blitz_admin_option['is_correct'] >
 	>
-	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_39 = $mol_type_enforce<
+	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_41 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_option'] >
 		,
 		ReturnType< $bog_blitz_admin_option['delete'] >
 	>
-	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_40 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_42 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_files'] >
 	>
-	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_41 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_43 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
 	>
-	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_42 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_url_bog_blitz_admin_editor_44 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['option_image_url'] >
+		,
+		ReturnType< $bog_blitz_admin_option['option_image_url'] >
+	>
+	type $bog_blitz_admin_option__import_image_url_bog_blitz_admin_editor_45 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_editor['import_option_image_url'] >
+		,
+		ReturnType< $bog_blitz_admin_option['import_image_url'] >
+	>
+	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_46 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_option_image'] >
 		,
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
@@ -19959,12 +20029,16 @@ declare namespace $ {
 		correct_text( id: any, next?: string ): string
 		question_image_files( id: any, next?: readonly(any)[] ): readonly(any)[]
 		question_image_uri( id: any): string
+		question_image_url( id: any, next?: string ): string
+		import_question_image_url( id: any, next?: any ): any
 		remove_question_image( id: any, next?: any ): any
 		option_text( id: any, next?: string ): string
 		is_correct( id: any, next?: boolean ): boolean
 		delete_option( id: any, next?: any ): any
 		option_image_files( id: any, next?: readonly(any)[] ): readonly(any)[]
 		option_image_uri( id: any): string
+		option_image_url( id: any, next?: string ): string
+		import_option_image_url( id: any, next?: any ): any
 		remove_option_image( id: any, next?: any ): any
 		quiz_land( ): any
 		rows( ): ReturnType< $bog_blitz_admin_editor['editor_rows'] >
@@ -20001,6 +20075,10 @@ declare namespace $.$$ {
         option_image_files(key: string, next?: readonly File[]): readonly File[];
         remove_question_image(key: string): void;
         remove_option_image(key: string): void;
+        question_image_url(key: string, next?: string): string;
+        import_question_image_url(key: string): void;
+        option_image_url(key: string, next?: string): string;
+        import_option_image_url(key: string): void;
         manual_mode(next?: boolean): any;
         time_read(next?: number): any;
         time_answer(next?: number): any;

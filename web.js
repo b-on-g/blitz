@@ -35305,6 +35305,14 @@ var $;
 		question_image_uri(){
 			return "";
 		}
+		question_image_url(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		import_image_url(next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		remove_image(next){
 			if(next !== undefined) return next;
 			return null;
@@ -35340,6 +35348,18 @@ var $;
 			(obj.files) = (next) => ((this.question_image_files(next)));
 			return obj;
 		}
+		Image_url_input(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Image_url_input_hint")));
+			(obj.value) = (next) => ((this.question_image_url(next)));
+			return obj;
+		}
+		Image_url_import(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Image_url_import_title")));
+			(obj.click) = (next) => ((this.import_image_url(next)));
+			return obj;
+		}
 		Image_remove(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Image_remove_title")));
@@ -35361,11 +35381,15 @@ var $;
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "correct_text"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Correct_text_input"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "question_image_files"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "question_image_url"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "import_image_url"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "remove_image"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_section"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_upload"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_preview"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_replace"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_url_input"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_url_import"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_remove"));
 
 
@@ -35381,9 +35405,19 @@ var $;
         class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
             image_section_content() {
                 if (this.question_image_uri()) {
-                    return [this.Image_preview(), this.Image_replace(), this.Image_remove()];
+                    return [
+                        this.Image_preview(),
+                        this.Image_replace(),
+                        this.Image_url_input(),
+                        this.Image_url_import(),
+                        this.Image_remove(),
+                    ];
                 }
-                return [this.Image_upload()];
+                return [
+                    this.Image_upload(),
+                    this.Image_url_input(),
+                    this.Image_url_import(),
+                ];
             }
             question_rows() {
                 const rows = [this.Text_input(), this.Header()];
@@ -35451,7 +35485,10 @@ var $;
                 align: {
                     items: 'center',
                 },
-                gap: '0.5rem',
+                gap: '0.375rem',
+                flex: {
+                    wrap: 'wrap',
+                },
             },
             Image_upload: {
                 Native: {
@@ -35460,12 +35497,23 @@ var $;
                 },
             },
             Image_preview: {
-                maxHeight: '8rem',
-                maxWidth: '12rem',
+                width: '4rem',
+                height: '4rem',
+                minWidth: '4rem',
                 border: {
-                    radius: '0.25rem',
+                    radius: '0.375rem',
                 },
                 overflow: 'hidden',
+                flex: {
+                    shrink: 0,
+                },
+            },
+            Image_url_input: {
+                flex: {
+                    grow: 1,
+                    shrink: 1,
+                    basis: '8rem',
+                },
             },
             '@media': {
                 '(width < 600px)': {
@@ -35484,8 +35532,9 @@ var $;
                         },
                     },
                     Image_preview: {
-                        maxHeight: '6rem',
-                        maxWidth: '100%',
+                        width: '3rem',
+                        height: '3rem',
+                        minWidth: '3rem',
                     },
                 },
             },
@@ -35498,23 +35547,55 @@ var $;
 		option_content(){
 			return [];
 		}
-		image_section_content(){
+		main_row_content(){
 			return [];
 		}
 		option_image_uri(){
 			return "";
 		}
+		option_text(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		is_correct(next){
+			if(next !== undefined) return next;
+			return false;
+		}
+		delete(next){
+			if(next !== undefined) return next;
+			return null;
+		}
+		image_section_content(){
+			return [];
+		}
 		option_image_files(next){
 			if(next !== undefined) return next;
 			return [];
+		}
+		option_image_url(next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		import_image_url(next){
+			if(next !== undefined) return next;
+			return null;
 		}
 		remove_image(next){
 			if(next !== undefined) return next;
 			return null;
 		}
-		option_text(next){
-			if(next !== undefined) return next;
-			return "";
+		rows(){
+			return (this.option_content());
+		}
+		Main_row(){
+			const obj = new this.$.$mol_row();
+			(obj.sub) = () => ((this.main_row_content()));
+			return obj;
+		}
+		Image_thumb(){
+			const obj = new this.$.$mol_image();
+			(obj.uri) = () => ((this.option_image_uri()));
+			return obj;
 		}
 		Text(){
 			const obj = new this.$.$mol_string_button();
@@ -35522,19 +35603,11 @@ var $;
 			(obj.value) = (next) => ((this.option_text(next)));
 			return obj;
 		}
-		is_correct(next){
-			if(next !== undefined) return next;
-			return false;
-		}
 		Checkbox(){
 			const obj = new this.$.$mol_check_box();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Checkbox_title")));
 			(obj.checked) = (next) => ((this.is_correct(next)));
 			return obj;
-		}
-		delete(next){
-			if(next !== undefined) return next;
-			return null;
 		}
 		Delete(){
 			const obj = new this.$.$mol_button_minor();
@@ -35542,17 +35615,9 @@ var $;
 			(obj.click) = (next) => ((this.delete(next)));
 			return obj;
 		}
-		rows(){
-			return (this.option_content());
-		}
 		Image_section(){
 			const obj = new this.$.$mol_row();
 			(obj.sub) = () => ((this.image_section_content()));
-			return obj;
-		}
-		Image_preview(){
-			const obj = new this.$.$mol_image();
-			(obj.uri) = () => ((this.option_image_uri()));
 			return obj;
 		}
 		Image_upload(){
@@ -35567,36 +35632,43 @@ var $;
 			(obj.files) = (next) => ((this.option_image_files(next)));
 			return obj;
 		}
+		Image_url_input(){
+			const obj = new this.$.$mol_string();
+			(obj.hint) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Image_url_input_hint")));
+			(obj.value) = (next) => ((this.option_image_url(next)));
+			return obj;
+		}
+		Image_url_import(){
+			const obj = new this.$.$mol_button_minor();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Image_url_import_title")));
+			(obj.click) = (next) => ((this.import_image_url(next)));
+			return obj;
+		}
 		Image_remove(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Image_remove_title")));
 			(obj.click) = (next) => ((this.remove_image(next)));
 			return obj;
 		}
-		Controls(){
-			const obj = new this.$.$mol_row();
-			(obj.sub) = () => ([
-				(this.Text()), 
-				(this.Checkbox()), 
-				(this.Delete())
-			]);
-			return obj;
-		}
 	};
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "option_image_files"));
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "remove_image"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "option_text"));
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "Text"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "is_correct"));
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "Checkbox"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "delete"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "option_image_files"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "option_image_url"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "import_image_url"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "remove_image"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Main_row"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_thumb"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Text"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Checkbox"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Delete"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_section"));
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_preview"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_upload"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_replace"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_url_input"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_url_import"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_remove"));
-	($mol_mem(($.$bog_blitz_admin_option.prototype), "Controls"));
 
 
 ;
@@ -35611,17 +35683,36 @@ var $;
         class $bog_blitz_admin_option extends $.$bog_blitz_admin_option {
             image_section_content() {
                 if (this.option_image_uri()) {
-                    return [this.Image_preview(), this.Image_replace(), this.Image_remove()];
+                    return [
+                        this.Image_replace(),
+                        this.Image_url_input(),
+                        this.Image_url_import(),
+                        this.Image_remove(),
+                    ];
                 }
-                return [this.Image_upload()];
+                return [
+                    this.Image_upload(),
+                    this.Image_url_input(),
+                    this.Image_url_import(),
+                ];
+            }
+            main_row_content() {
+                const rows = [];
+                if (this.option_image_uri())
+                    rows.push(this.Image_thumb());
+                rows.push(this.Text(), this.Checkbox(), this.Delete());
+                return rows;
             }
             option_content() {
-                return [this.Image_section(), this.Controls()];
+                return [this.Main_row(), this.Image_section()];
             }
         }
         __decorate([
             $mol_mem
         ], $bog_blitz_admin_option.prototype, "image_section_content", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_admin_option.prototype, "main_row_content", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin_option.prototype, "option_content", null);
@@ -35640,16 +35731,23 @@ var $;
                 color: $mol_theme.hover,
             },
             border: {
-                radius: '0.25rem',
+                radius: '0.375rem',
             },
             padding: {
-                top: '0.25rem',
-                bottom: '0.25rem',
+                top: '0.375rem',
+                bottom: '0.375rem',
                 left: '0.5rem',
-                right: '0.25rem',
+                right: '0.375rem',
             },
-            Controls: {
-                gap: '0.25rem',
+            flex: {
+                direction: 'column',
+            },
+            gap: '0.25rem',
+            Main_row: {
+                align: {
+                    items: 'center',
+                },
+                gap: '0.375rem',
             },
             Text: {
                 flex: {
@@ -35660,11 +35758,26 @@ var $;
             Delete: {
                 color: '#cc3333',
             },
+            Image_thumb: {
+                width: '2.5rem',
+                height: '2.5rem',
+                minWidth: '2.5rem',
+                border: {
+                    radius: '0.25rem',
+                },
+                overflow: 'hidden',
+                flex: {
+                    shrink: 0,
+                },
+            },
             Image_section: {
                 align: {
                     items: 'center',
                 },
-                gap: '0.5rem',
+                gap: '0.375rem',
+                flex: {
+                    wrap: 'wrap',
+                },
             },
             Image_upload: {
                 Native: {
@@ -35672,13 +35785,12 @@ var $;
                     height: '100%',
                 },
             },
-            Image_preview: {
-                maxHeight: '6rem',
-                maxWidth: '10rem',
-                border: {
-                    radius: '0.25rem',
+            Image_url_input: {
+                flex: {
+                    grow: 1,
+                    shrink: 1,
+                    basis: '8rem',
                 },
-                overflow: 'hidden',
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -35835,6 +35947,14 @@ var $;
 		question_image_uri(id){
 			return "";
 		}
+		question_image_url(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		import_question_image_url(id, next){
+			if(next !== undefined) return next;
+			return null;
+		}
 		remove_question_image(id, next){
 			if(next !== undefined) return next;
 			return null;
@@ -35857,6 +35977,14 @@ var $;
 		}
 		option_image_uri(id){
 			return "";
+		}
+		option_image_url(id, next){
+			if(next !== undefined) return next;
+			return "";
+		}
+		import_option_image_url(id, next){
+			if(next !== undefined) return next;
+			return null;
 		}
 		remove_option_image(id, next){
 			if(next !== undefined) return next;
@@ -35904,6 +36032,8 @@ var $;
 			(obj.correct_text) = (next) => ((this.correct_text(id, next)));
 			(obj.question_image_files) = (next) => ((this.question_image_files(id, next)));
 			(obj.question_image_uri) = () => ((this.question_image_uri(id)));
+			(obj.question_image_url) = (next) => ((this.question_image_url(id, next)));
+			(obj.import_image_url) = (next) => ((this.import_question_image_url(id, next)));
 			(obj.remove_image) = (next) => ((this.remove_question_image(id, next)));
 			return obj;
 		}
@@ -35914,6 +36044,8 @@ var $;
 			(obj.delete) = (next) => ((this.delete_option(id, next)));
 			(obj.option_image_files) = (next) => ((this.option_image_files(id, next)));
 			(obj.option_image_uri) = () => ((this.option_image_uri(id)));
+			(obj.option_image_url) = (next) => ((this.option_image_url(id, next)));
+			(obj.import_image_url) = (next) => ((this.import_option_image_url(id, next)));
 			(obj.remove_image) = (next) => ((this.remove_option_image(id, next)));
 			return obj;
 		}
@@ -35947,11 +36079,15 @@ var $;
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "add_option"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "correct_text"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "question_image_files"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "question_image_url"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "import_question_image_url"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "remove_question_image"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "option_text"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "is_correct"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "delete_option"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "option_image_files"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "option_image_url"));
+	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "import_option_image_url"));
 	($mol_mem_key(($.$bog_blitz_admin_editor.prototype), "remove_option_image"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Title_input"));
 	($mol_mem(($.$bog_blitz_admin_editor.prototype), "Settings"));
@@ -35969,7 +36105,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        function compress_image(file, max_size = 400, quality = 0.3) {
+        function compress_image(source, max_size = 400, quality = 0.3) {
             return new Promise((resolve, reject) => {
                 const img = new Image();
                 img.onload = () => {
@@ -35986,8 +36122,17 @@ var $;
                     canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('compress failed')), 'image/jpeg', quality);
                 };
                 img.onerror = reject;
-                img.src = URL.createObjectURL(file);
+                img.src = URL.createObjectURL(source);
             });
+        }
+        function fetch_image_compressed(url) {
+            return fetch(url)
+                .then(res => {
+                if (!res.ok)
+                    throw new Error(`fetch ${url} failed: ${res.status}`);
+                return res.blob();
+            })
+                .then(blob => compress_image(blob));
         }
         class $bog_blitz_admin_editor extends $.$bog_blitz_admin_editor {
             quiz_data() {
@@ -36194,6 +36339,52 @@ var $;
                     return;
                 opt.Image('auto')?.val(null);
             }
+            question_image_url(key, next) {
+                return next ?? '';
+            }
+            import_question_image_url(key) {
+                const url = this.question_image_url(key);
+                if (!url)
+                    return;
+                const q = this.questions()[Number(key)];
+                if (!q)
+                    return;
+                const store = q.Image(null).ensure(null);
+                if (!store)
+                    return;
+                fetch_image_compressed(url)
+                    .then(blob => {
+                    store.blob(blob);
+                    q.Image(null).remote(store);
+                })
+                    .catch(err => console.warn('image URL import failed:', url, err));
+                this.question_image_url(key, '');
+            }
+            option_image_url(key, next) {
+                return next ?? '';
+            }
+            import_option_image_url(key) {
+                const url = this.option_image_url(key);
+                if (!url)
+                    return;
+                const [qKey, oKey] = key.split('_');
+                const q = this.questions()[Number(qKey)];
+                if (!q)
+                    return;
+                const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)];
+                if (!opt)
+                    return;
+                const store = opt.Image(null).ensure(null);
+                if (!store)
+                    return;
+                fetch_image_compressed(url)
+                    .then(blob => {
+                    store.blob(blob);
+                    opt.Image(null).remote(store);
+                })
+                    .catch(err => console.warn('image URL import failed:', url, err));
+                this.option_image_url(key, '');
+            }
             manual_mode(next) {
                 const quiz = this.quiz_data();
                 if (!quiz)
@@ -36325,6 +36516,18 @@ var $;
         __decorate([
             $mol_action
         ], $bog_blitz_admin_editor.prototype, "remove_option_image", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "question_image_url", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "import_question_image_url", null);
+        __decorate([
+            $mol_mem_key
+        ], $bog_blitz_admin_editor.prototype, "option_image_url", null);
+        __decorate([
+            $mol_action
+        ], $bog_blitz_admin_editor.prototype, "import_option_image_url", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_admin_editor.prototype, "manual_mode", null);
