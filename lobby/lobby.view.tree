@@ -61,4 +61,8 @@ $bog_blitz_lobby $mol_page
 		my_answers <= my_answers null
 		players_dict <= players_dict null
 		is_host <= is_host false
+		in_flow <= reactions_in_flow false
+		attr *
+			^
+			data-in-flow <= reactions_in_flow false
 	body <= lobby_content /

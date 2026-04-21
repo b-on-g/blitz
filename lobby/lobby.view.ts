@@ -12,8 +12,12 @@ namespace $.$$ {
 		sub() {
 			const base = super.sub()
 			if (!this.my_player()) return base
-			if (this.game_state() === 'final') return base
 			return [...base, this.Reactions()]
+		}
+
+		@$mol_mem
+		reactions_in_flow() {
+			return this.game_state() === 'final'
 		}
 
 		@$mol_mem

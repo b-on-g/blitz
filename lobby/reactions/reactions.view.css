@@ -5,6 +5,13 @@
 	z-index: 100;
 }
 
+[bog_blitz_lobby_reactions][data-in-flow="true"] {
+	position: static !important;
+	bottom: auto !important;
+	right: auto !important;
+	z-index: auto;
+}
+
 @media (max-width: 600px) {
 	[bog_blitz_lobby_reactions] {
 		bottom: 0.25rem !important;
@@ -12,6 +19,12 @@
 		transform: scale(0.75);
 		transform-origin: bottom right;
 		opacity: 0.85;
+	}
+	[bog_blitz_lobby_reactions][data-in-flow="true"] {
+		bottom: auto !important;
+		right: auto !important;
+		transform: none;
+		opacity: 1;
 	}
 }
 
