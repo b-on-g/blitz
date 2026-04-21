@@ -8,6 +8,8 @@ namespace $.$$ {
 		gap: '0.5rem',
 		outline: 'none',
 		transition: 'transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease',
+		':focus': { outline: 'none' },
+		':focus-visible': { outline: 'none' },
 		Option_image: {
 			maxWidth: '8rem',
 			maxHeight: '6rem',
@@ -35,6 +37,14 @@ namespace $.$$ {
 			justify: { content: 'center' },
 			color: '#ffffff',
 			boxShadow: `0 0 0 2px ${$mol_theme.back}`,
+			animation: 'bog_blitz_picker_wobble 1.2s ease-in-out infinite',
+			transformOrigin: 'center bottom',
+			':nth-child(2n)': {
+				animationDelay: '-0.4s',
+			},
+			':nth-child(3n)': {
+				animationDelay: '-0.8s',
+			},
 		},
 		Picker_avatar: {
 			width: '70%',
@@ -85,4 +95,15 @@ namespace $.$$ {
 			},
 		},
 	})
+
+	$mol_style_attach(
+		'bog_blitz_lobby_game_option_keyframes',
+		`@keyframes bog_blitz_picker_wobble {
+			0%   { transform: rotate(-8deg) translateY(0); }
+			25%  { transform: rotate(8deg)  translateY(-2px); }
+			50%  { transform: rotate(-6deg) translateY(0); }
+			75%  { transform: rotate(6deg)  translateY(-1px); }
+			100% { transform: rotate(-8deg) translateY(0); }
+		}`,
+	)
 }

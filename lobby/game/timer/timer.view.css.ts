@@ -28,4 +28,9 @@ namespace $.$$ {
 			},
 		},
 	})
+
+	$mol_style_attach(
+		'bog_blitz_lobby_game_timer_keyframes',
+		'@keyframes bog_blitz_timer_shrink { from { width: 100%; } to { width: 0%; } }',
+	)
 }

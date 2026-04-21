@@ -23,26 +23,40 @@ namespace $.$$ {
 		align: { items: 'flex-end', self: 'stretch' },
 		width: '95%',
 		padding: { bottom: '1rem', right: '0.75rem' },
+		position: 'fixed',
+		bottom: '1rem',
+		right: '1rem',
+		zIndex: 100,
+		'@': {
+			'data-in-flow': {
+				'true': {
+					position: 'static',
+					bottom: 'auto',
+					right: 'auto',
+					zIndex: 'auto',
+				},
+			},
+		},
 		'@media': {
 			'(width < 600px)': {
 				padding: { bottom: '1.5rem', right: '1rem' },
+				bottom: '0.25rem',
+				right: '0.25rem',
+				transform: 'scale(0.75)',
+				transformOrigin: 'bottom right',
+				opacity: 0.85,
+				'@': {
+					'data-in-flow': {
+						'true': {
+							bottom: 'auto',
+							right: 'auto',
+							transform: 'none',
+							opacity: 1,
+						},
+					},
+				},
 			},
 		},
-		// Mol_qr: {
-		// 	width: '9rem',
-		// 	height: '9rem',
-		// 	border: {
-		// 		radius: $mol_gap.round,
-		// 	},
-		// },
-		// GiperBaza_qr: {
-		// 	width: '9rem',
-		// 	height: '9rem',
-		// 	marginLeft: '4rem',
-		// 	border: {
-		// 		radius: $mol_gap.round,
-		// 	},
-		// },
 		Spacer: {
 			flex: {
 				grow: 1,
@@ -65,8 +79,22 @@ namespace $.$$ {
 		Count_poop: count_style,
 		Fly: {
 			position: 'absolute',
+			top: '0px',
+			left: '50%',
 			font: { size: '2rem' },
+			lineHeight: '1',
 			pointerEvents: 'none',
+			willChange: 'transform, opacity',
+			animation: 'bog_blitz_fly_up 1.5s ease-out forwards',
+			transform: 'translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0)',
 		},
 	})
+
+	$mol_style_attach(
+		'bog_blitz_lobby_reactions_keyframes',
+		`@keyframes bog_blitz_fly_up {
+			0% { opacity: 1; transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0); }
+			100% { opacity: 0; transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px); }
+		}`,
+	)
 }
