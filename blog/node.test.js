@@ -23495,7 +23495,7 @@ var $;
                 gap: '0.75rem',
                 width: '100%',
                 maxWidth: '30rem',
-                padding: { left: '1rem', right: '1rem', bottom: '4rem' },
+                padding: { left: '1rem', right: '1rem', bottom: '7rem' },
             },
             Answer_input: {
                 width: '100%',
@@ -23532,7 +23532,7 @@ var $;
                     },
                     Answer_area: {
                         gap: '0.5rem',
-                        padding: { left: '0.5rem', right: '0.5rem' },
+                        padding: { left: '0.5rem', right: '0.5rem', bottom: '6rem' },
                     },
                     Countdown_number: {
                         font: { size: '8rem', weight: 900 },
