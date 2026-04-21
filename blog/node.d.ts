@@ -9921,7 +9921,7 @@ declare namespace $ {
 		ReturnType< $bog_blitz_reviews['my_name'] >
 	>
 	type $bog_blitz_reviews__can_write_bog_blitz_lobby_game_30 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['reviews_can_write'] >
+		ReturnType< $bog_blitz_lobby_game['reviews_can_write_final'] >
 		,
 		ReturnType< $bog_blitz_reviews['can_write'] >
 	>
@@ -10084,7 +10084,6 @@ declare namespace $ {
 		Leaderboard( ): $bog_blitz_lobby_game_leaderboard
 		Final( ): $bog_blitz_lobby_game_leaderboard
 		Reactions_board( ): $bog_blitz_lobby_game_reactboard
-		reviews_can_write( ): boolean
 		reviews_form_visible( ): boolean
 		Reviews( ): $bog_blitz_reviews
 		submit_label( ): string
@@ -10136,6 +10135,7 @@ declare namespace $ {
 		Next_button( ): $mol_button_major
 		question_type( ): string
 		current_answer_key( ): any
+		reviews_can_write_final( ): boolean
 		question_content( ): readonly(any)[]
 		Answer_input( ): $mol_string
 		leaderboard_content( ): readonly(any)[]
@@ -10152,6 +10152,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
         game_content(): readonly any[];
+        reviews_can_write_final(): boolean;
         save_game_to_profile(): void;
         my_place(): number;
         players_count(): number;

@@ -30920,9 +30920,6 @@ var $;
 			(obj.players_dict) = () => ((this.players_dict()));
 			return obj;
 		}
-		reviews_can_write(){
-			return true;
-		}
 		reviews_form_visible(){
 			return true;
 		}
@@ -30931,7 +30928,7 @@ var $;
 			(obj.quiz_land_link) = () => ((this.quiz_land_link()));
 			(obj.my_lord) = () => ((this.my_lord_str()));
 			(obj.my_name) = () => ((this.my_name()));
-			(obj.can_write) = () => ((this.reviews_can_write()));
+			(obj.can_write) = () => ((this.reviews_can_write_final()));
 			(obj.can_reply) = () => ((this.is_host()));
 			(obj.form_visible) = () => ((this.reviews_form_visible()));
 			return obj;
@@ -31097,6 +31094,9 @@ var $;
 		}
 		current_answer_key(){
 			return null;
+		}
+		reviews_can_write_final(){
+			return false;
 		}
 		question_content(){
 			return [
@@ -31796,6 +31796,9 @@ var $;
                     return this.final_content();
                 }
                 return this.question_content();
+            }
+            reviews_can_write_final() {
+                return !this.is_host();
             }
             save_game_to_profile() {
                 if (this.is_host())
@@ -32922,6 +32925,8 @@ var $;
             sub() {
                 const base = super.sub();
                 if (!this.my_player())
+                    return base;
+                if (this.game_state() === 'final')
                     return base;
                 return [...base, this.Reactions()];
             }

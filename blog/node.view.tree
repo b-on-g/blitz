@@ -1074,6 +1074,7 @@ $bog_blitz_lobby_game $mol_view
 		click? <=> next_click?event null
 	question_type \choice
 	current_answer_key null
+	reviews_can_write_final false
 	question_content /
 		<= Host_controls $mol_view
 			sub <= host_controls /
@@ -1131,7 +1132,7 @@ $bog_blitz_lobby_game $mol_view
 			quiz_land_link <= quiz_land_link
 			my_lord <= my_lord_str
 			my_name <= my_name
-			can_write <= reviews_can_write true
+			can_write <= reviews_can_write_final
 			can_reply <= is_host
 			form_visible <= reviews_form_visible true
 	reveal_correct_text \
