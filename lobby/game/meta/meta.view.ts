@@ -20,8 +20,11 @@ namespace $.$$ {
 				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
+				// Reactive triggers: re-run on any change of these player-level fields
+				void player.Answered_count()?.val()
+				void player.Score()?.val()
 				const lord = String(k)
-				const name = player.Name()?.val() ?? lord.slice(0, 8)
+				const name = player.Name()?.val() || lord.slice(0, 8)
 				const link = player.Answer_land()?.val()
 				let status: Player_state['status'] = 'none'
 				if (link) {

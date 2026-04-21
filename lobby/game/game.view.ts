@@ -237,21 +237,34 @@ namespace $.$$ {
 		@$mol_mem
 		submit_enabled() {
 			if (!this.input_ready()) return false
+			if (this.question_type() === 'text_input') {
+				return this.text_draft().trim().length > 0
+			}
 			return this.selected_options().length > 0
 		}
 
 		@$mol_mem
 		submit_answer(next?: Event) {
-			if (next !== undefined) {
-				const selected = this.selected_options()
-				if (!selected.length) return
+			if (next === undefined) return
+			if (this.question_type() === 'text_input') {
+				const draft = this.text_draft()
+				if (!draft) return
 				const answers = this.my_answers() as $bog_blitz_player_answers | null
 				if (!answers) return
 				this.mark_answered(answers)
-				answers.Answer('auto')?.val(selected.sort().join(','))
+				answers.Answer('auto')?.val(draft)
 				answers.Answer_time('auto')?.val(Date.now())
 				answers.Answer_question('auto')?.val(this.current_question_index())
+				return
 			}
+			const selected = this.selected_options()
+			if (!selected.length) return
+			const answers = this.my_answers() as $bog_blitz_player_answers | null
+			if (!answers) return
+			this.mark_answered(answers)
+			answers.Answer('auto')?.val(selected.sort().join(','))
+			answers.Answer_time('auto')?.val(Date.now())
+			answers.Answer_question('auto')?.val(this.current_question_index())
 		}
 
 		/** Инкрементит Answered_count игрока при ПЕРВОМ ответе на ТЕКУЩИЙ вопрос */
@@ -273,8 +286,9 @@ namespace $.$$ {
 				if (state === 'reveal') {
 					return [this.Answer_input(), this.Reveal_correct()]
 				}
-				if (show_get_ready) return [this.Get_ready(), this.Answer_input()]
-				return [this.Answer_input()]
+				if (this.is_host()) return [this.Answer_input()]
+				if (show_get_ready) return [this.Get_ready(), this.Answer_input(), this.Submit_answer()]
+				return [this.Answer_input(), this.Submit_answer()]
 			}
 			const views = this.option_views()
 			if (state === 'answering' && !this.is_host()) {
@@ -363,22 +377,38 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		has_submitted() {
+			const ans = this.my_answer()
+			return ans.length > 0
+		}
+
+		@$mol_mem_key
+		option_submitted(key: string) {
+			if (this.is_host()) return 'false'
+			if (!this.has_submitted()) return 'false'
+			return String(this.my_answer().split(',').includes(key))
+		}
+
+		private _first_answering_ts = 0
+
+		@$mol_mem
 		input_ready(next?: null): boolean {
-			if (this.game_state() !== 'answering') return false
-			const start = this.round_start()
-			if (!start) return false
-			const remaining = start - Date.now()
-			if (remaining <= 0) return true
-			new $mol_after_timeout(remaining + 50, () => this.input_ready(null))
+			if (this.game_state() !== 'answering') {
+				this._first_answering_ts = 0
+				return false
+			}
+			if (!this._first_answering_ts) this._first_answering_ts = Date.now()
+			const elapsed = Date.now() - this._first_answering_ts
+			if (elapsed >= INPUT_SYNC_DELAY) return true
+			new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null))
 			return false
 		}
 
 		@$mol_mem
 		input_countdown_number(next?: null): number {
 			if (this.game_state() !== 'answering') return 0
-			const start = this.round_start()
-			if (!start) return 0
-			const remaining = start - Date.now()
+			if (!this._first_answering_ts) this._first_answering_ts = Date.now()
+			const remaining = INPUT_SYNC_DELAY - (Date.now() - this._first_answering_ts)
 			if (remaining <= 0) return 0
 			const num = Math.ceil(remaining / 1000)
 			new $mol_after_timeout(remaining - (num - 1) * 1000 + 50, () => this.input_countdown_number(null))
@@ -525,21 +555,6 @@ namespace $.$$ {
 					next = current.includes(key) ? [] : [key]
 				}
 				this.selected_options(next)
-				// Live-publish current selection so other players see picks in real time.
-				// Single-choice Submit bypass is preserved; multi-choice still requires
-				// explicit Submit for scoring semantics, but the interim state is visible.
-				const answers = this.my_answers() as $bog_blitz_player_answers | null
-				if (answers) {
-					if (next.length) {
-						this.mark_answered(answers)
-						answers.Answer('auto')?.val(next.sort().join(','))
-						answers.Answer_time('auto')?.val(Date.now())
-						answers.Answer_question('auto')?.val(this.current_question_index())
-					} else if (this.has_multiple_correct()) {
-						// Multi-choice: cleared all picks → clear published answer too
-						answers.Answer('auto')?.val('')
-					}
-				}
 			}
 			return null
 		}

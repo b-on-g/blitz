@@ -1,3 +1,10 @@
+[mol_view_root][class*=" $bog_blitz_lobby_game_option"]:focus,
+[mol_view_root][class*=" $bog_blitz_lobby_game_option"]:focus-visible,
+[class*=" $bog_blitz_lobby_game_option"]:focus,
+[class*=" $bog_blitz_lobby_game_option"]:focus-visible {
+	outline: none;
+}
+
 @keyframes bog_blitz_picker_wobble {
 	0%   { transform: rotate(-8deg) translateY(0); }
 	25%  { transform: rotate(8deg)  translateY(-2px); }

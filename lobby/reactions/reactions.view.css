@@ -16,17 +16,24 @@
 }
 
 [bog_blitz_lobby_reactions_fly] {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	font-size: 2rem;
+	line-height: 1;
+	pointer-events: none;
+	will-change: transform, opacity;
 	animation: bog_blitz_fly_up 1.5s ease-out forwards;
-	transform: translateX(-50%);
+	transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);
 }
 
 @keyframes bog_blitz_fly_up {
 	0% {
 		opacity: 1;
-		transform: translateX(-50%) translateY(0);
+		transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);
 	}
 	100% {
 		opacity: 0;
-		transform: translateX(-50%) translateY(-200px);
+		transform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px);
 	}
 }

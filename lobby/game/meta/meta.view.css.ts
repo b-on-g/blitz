@@ -31,17 +31,14 @@ namespace $.$$ {
 			textAlign: 'right',
 		},
 		Players_list: {
-			flex: { direction: 'row', wrap: 'wrap' },
-			gap: '0.5rem',
+			flex: { direction: 'column' },
+			gap: '0.125rem',
 		},
 		Player_row: {
 			flex: { direction: 'row' },
 			align: { items: 'center' },
 			gap: '0.5rem',
-			padding: { top: '0.375rem', bottom: '0.375rem', left: '0.625rem', right: '0.75rem' },
-			background: { color: $mol_theme.card },
-			borderRadius: '1rem',
-			boxShadow: `0 0 0 1px ${$mol_theme.line} inset`,
+			padding: { top: '0.25rem', bottom: '0.25rem', left: '0.25rem', right: '0.25rem' },
 		},
 		Player_bullet: {
 			width: '0.625rem',
@@ -49,6 +46,7 @@ namespace $.$$ {
 			borderRadius: '50%',
 			background: { color: '#8a8a8a99' },
 			flex: { shrink: 0 },
+			margin: { left: 'auto' },
 		},
 		Player_name: {
 			font: { size: '0.875rem', weight: 500 },
@@ -56,13 +54,11 @@ namespace $.$$ {
 		'@': {
 			'data-status': {
 				'correct': {
-					boxShadow: '0 0 0 1px #2ecc71cc inset',
 					Player_bullet: {
 						background: { color: '#2ecc71ff' },
 					},
 				},
 				'wrong': {
-					boxShadow: '0 0 0 1px #e74c3ccc inset',
 					Player_bullet: {
 						background: { color: '#e74c3cff' },
 					},
@@ -85,7 +81,7 @@ namespace $.$$ {
 				},
 				Player_row: {
 					gap: '0.375rem',
-					padding: { top: '0.25rem', bottom: '0.25rem', left: '0.5rem', right: '0.5rem' },
+					padding: { top: '0.2rem', bottom: '0.2rem', left: '0.125rem', right: '0.125rem' },
 				},
 				Player_name: {
 					font: { size: '0.8rem', weight: 500 },

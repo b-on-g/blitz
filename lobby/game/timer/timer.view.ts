@@ -30,11 +30,15 @@ namespace $.$$ {
 				return '0'
 			}
 			if (this.manual_mode()) {
-				const elapsed = Math.floor((now - start) / 1000)
+				const duration_m = this.duration()
+				if (!duration_m) return '0:00'
+				const elapsed_m = (now - start) / 1000
+				const remaining_m = Math.max(0, Math.ceil(duration_m - elapsed_m))
+				if (remaining_m <= 0) return '0:00'
 				if (!paused) {
 					new $mol_after_timeout(250, () => this.digits_text(null!))
 				}
-				return this.format_time(elapsed)
+				return this.format_time(remaining_m)
 			}
 			const duration = this.duration()
 			if (!duration) return '--'
