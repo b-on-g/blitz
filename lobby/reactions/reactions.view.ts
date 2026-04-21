@@ -94,7 +94,7 @@ namespace $.$$ {
 					const count = Math.min(diff, 5)
 					for (let i = 0; i < count; i++) {
 						if (i === 0) this.spawn_fly(key)
-						else new $mol_after_timeout(i * 120, () => this.spawn_fly(key))
+						else new $mol_after_timeout(i * 100, () => this.spawn_fly(key))
 					}
 				}
 				this.prev_totals[key] = total

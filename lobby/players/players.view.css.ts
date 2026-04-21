@@ -25,19 +25,9 @@ namespace $.$$ {
 				},
 			},
 		},
-		Player_avatar_circle: {
+		Player_avatar: {
 			width: '2.5rem',
 			height: '2.5rem',
-			borderRadius: '50%',
-			overflow: 'hidden',
-			flex: { shrink: 0 },
-			align: { items: 'center' },
-			justify: { content: 'center' },
-			color: '#ffffff',
-		},
-		Player_icon: {
-			width: '70%',
-			height: '70%',
 		},
 		Player_color_palette: {
 			flex: {

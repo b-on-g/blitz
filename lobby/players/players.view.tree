@@ -6,12 +6,9 @@ $bog_blitz_lobby_players $mol_list
 		attr *
 			bog_blitz_mine <= is_mine* false
 		sub /
-			<= Player_avatar_circle* $mol_view
-				style *
-					backgroundColor <= player_color* \
-				sub /
-					<= Player_icon* $mol_avatar
-						id <= player_id* \
+			<= Player_avatar* $bog_blitz_avatar
+				color <= player_color* \
+				player_id <= player_id* \
 			<= Player_id* $mol_paragraph
 				title <= player_id* \
 			<= player_name_content* null

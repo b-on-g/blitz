@@ -6,22 +6,22 @@ $bog_blitz_lobby_join $mol_page
 	join_title @ \Syncing...
 	enter_title @ \Enter
 	choose_color_title @ \Pick a color
-	Avatar_icon $mol_avatar
-		id <= player_id \
+	player_id \
+	Avatar $bog_blitz_avatar
+		color <= avatar_color \
+		player_id <= player_id
 	Color_swatch* $mol_button_minor
 		event *
 			^
 			click? <=> color_swatch_click*? null
 		style *
-			backgroundColor <= color_swatch_bg* \
 			boxShadow <= color_swatch_shadow* \
 		sub /
+			<= Swatch_avatar* $bog_blitz_avatar
+				color <= color_swatch_bg* \
+				player_id <= player_id
 	body /
-		<= Avatar_circle $mol_view
-			style *
-				backgroundColor <= avatar_color \
-			sub /
-				<= Avatar_icon
+		<= Avatar
 		<= Color_palette $mol_view
 			sub /
 				<= Color_hint $mol_paragraph

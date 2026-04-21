@@ -30,12 +30,6 @@ namespace $.$$ {
 		Picker: {
 			width: '1.5rem',
 			height: '1.5rem',
-			borderRadius: '50%',
-			overflow: 'hidden',
-			flex: { shrink: 0 },
-			align: { items: 'center' },
-			justify: { content: 'center' },
-			color: '#ffffff',
 			boxShadow: `0 0 0 2px ${$mol_theme.back}`,
 			animation: {
 				name: 'bog_blitz_picker_wobble',
@@ -50,10 +44,6 @@ namespace $.$$ {
 			':nth-child(3n)': {
 				animationDelay: '-0.8s',
 			},
-		},
-		Picker_avatar: {
-			width: '70%',
-			height: '70%',
 		},
 		'@': {
 			'data-selected': {

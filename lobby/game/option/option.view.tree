@@ -12,14 +12,10 @@ $bog_blitz_lobby_game_option $mol_button_major
 	picker_keys /string
 	Picker_area $mol_view
 		sub <= picker_views /
-	Picker* $mol_view
+	Picker* $bog_blitz_avatar
+		color <= picker_bg* \
+		player_id <= picker_avatar_id* \
 		attr *
 			^
 			title <= picker_name* \
 			bog_blitz_picker true
-		style *
-			^
-			backgroundColor <= picker_bg* \
-		sub /
-			<= Picker_avatar* $mol_avatar
-				id <= picker_avatar_id* \

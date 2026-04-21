@@ -19,33 +19,12 @@ namespace $.$$ {
 			width: '100%',
 			boxSizing: 'border-box',
 		},
-		Avatar_circle: {
-			borderRadius: '50%',
-			overflow: 'hidden',
+		Avatar: {
 			width: '100px',
 			height: '100px',
-			minWidth: '100px',
-			minHeight: '100px',
-			maxWidth: '100px',
-			maxHeight: '100px',
-			flex: {
-				shrink: 0,
-				grow: 0,
-			},
 			align: {
-				items: 'center',
+				self: 'center',
 			},
-			justify: {
-				content: 'center',
-			},
-			color: '#ffffff',
-			margin: {
-				bottom: '0.5rem',
-			},
-		},
-		Avatar_icon: {
-			width: '70%',
-			height: '70%',
 		},
 		Color_palette: {
 			flex: {
@@ -56,6 +35,9 @@ namespace $.$$ {
 			},
 			gap: '0.5rem',
 			width: '100%',
+			margin: {
+				bottom: '1rem',
+			},
 		},
 		Color_hint: {
 			font: {
@@ -74,13 +56,18 @@ namespace $.$$ {
 			gap: '0.5rem',
 		},
 		Color_swatch: {
-			width: '2rem',
-			height: '2rem',
+			width: '2.25rem',
+			height: '2.25rem',
+			minWidth: '2.25rem',
 			borderRadius: '50%',
 			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
-			minWidth: '2rem',
-			transition: 'box-shadow 0.15s',
+			transition: 'box-shadow 0.15s, transform 0.15s',
 			cursor: 'pointer',
+			overflow: 'visible',
+		},
+		Swatch_avatar: {
+			width: '100%',
+			height: '100%',
 		},
 		Player_name_input: {
 			font: {
@@ -107,13 +94,9 @@ namespace $.$$ {
 						right: '0.75rem',
 					},
 				},
-				Avatar_circle: {
+				Avatar: {
 					width: '80px',
 					height: '80px',
-					minWidth: '80px',
-					minHeight: '80px',
-					maxWidth: '80px',
-					maxHeight: '80px',
 				},
 				Player_name_input: {
 					font: {
