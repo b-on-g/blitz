@@ -1,5 +1,4 @@
 namespace $.$$ {
-	const INPUT_SYNC_DELAY = 2000
 
 	export class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
 		@$mol_mem
@@ -285,18 +284,15 @@ namespace $.$$ {
 		@$mol_mem
 		answer_views() {
 			const state = this.game_state()
-			const show_get_ready = state === 'answering' && !this.is_host() && !this.input_ready()
 			if (this.question_type() === 'text_input') {
 				if (state === 'reveal') {
 					return [this.Answer_input(), this.Reveal_correct()]
 				}
 				if (this.is_host()) return [this.Answer_input()]
-				if (show_get_ready) return [this.Get_ready(), this.Answer_input(), this.Submit_answer()]
 				return [this.Answer_input(), this.Submit_answer()]
 			}
 			const views = this.option_views()
 			if (state === 'answering' && !this.is_host()) {
-				if (show_get_ready) return [this.Get_ready(), ...views, this.Submit_answer()]
 				return [...views, this.Submit_answer()]
 			}
 			return views
@@ -393,37 +389,9 @@ namespace $.$$ {
 			return String(this.my_answer().split(',').includes(key))
 		}
 
-		private _first_answering_ts = 0
-
 		@$mol_mem
-		input_ready(next?: null): boolean {
-			if (this.game_state() !== 'answering') {
-				this._first_answering_ts = 0
-				return false
-			}
-			if (!this._first_answering_ts) this._first_answering_ts = Date.now()
-			const elapsed = Date.now() - this._first_answering_ts
-			if (elapsed >= INPUT_SYNC_DELAY) return true
-			new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null))
-			return false
-		}
-
-		@$mol_mem
-		input_countdown_number(next?: null): number {
-			if (this.game_state() !== 'answering') return 0
-			if (!this._first_answering_ts) this._first_answering_ts = Date.now()
-			const remaining = INPUT_SYNC_DELAY - (Date.now() - this._first_answering_ts)
-			if (remaining <= 0) return 0
-			const num = Math.ceil(remaining / 1000)
-			new $mol_after_timeout(remaining - (num - 1) * 1000 + 50, () => this.input_countdown_number(null))
-			return num
-		}
-
-		@$mol_mem
-		input_countdown_text() {
-			const num = this.input_countdown_number()
-			if (!num) return ''
-			return this.get_ready_label().replace('{num}', String(num))
+		input_ready(): boolean {
+			return this.game_state() === 'answering'
 		}
 
 		@$mol_mem_key
@@ -446,7 +414,7 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_picker_keys(key: string): string[] {
 			const state = this.game_state()
-			if (state !== 'answering' && state !== 'reveal') return []
+			if (state !== 'reveal') return []
 			if (this.question_type() === 'text_input') return []
 			const dict = this.players_dict() as $giper_baza_dict | null
 			if (!dict) return []
@@ -573,7 +541,7 @@ namespace $.$$ {
 			const total = this.total_questions()
 
 			if (state === 'reading') {
-				session.Round_start('auto')?.val(Date.now() + INPUT_SYNC_DELAY)
+				session.Round_start('auto')?.val(Date.now())
 				session.Game_state('auto')?.val('answering')
 			} else if (state === 'answering') {
 				this.calculate_scores()
