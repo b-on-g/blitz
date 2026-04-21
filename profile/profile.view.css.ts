@@ -22,6 +22,7 @@ namespace $.$$ {
 			height: '4rem',
 			flex: { shrink: 0, grow: 0 },
 			align: { self: 'center' },
+			strokeWidth: '2px',
 		},
 		Color_palette: {
 			flex: {
