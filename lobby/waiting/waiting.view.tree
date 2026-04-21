@@ -13,10 +13,3 @@ $bog_blitz_lobby_waiting $mol_page
 		<= Counter $mol_paragraph
 			title <= counter_string
 		<= Players $bog_blitz_lobby_players
-		<= Reviews $bog_blitz_reviews
-			quiz_land_link <= quiz_land_link
-			my_lord <= my_lord_str
-			my_name <= my_name
-			can_write true
-			can_reply false
-			form_visible true

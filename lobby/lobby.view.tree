@@ -55,6 +55,8 @@ $bog_blitz_lobby $mol_page
 		current_question_index <= current_question_index 0
 		players_dict <= players_dict null
 		my_lord_str <= my_lord_str
+		quiz_land_link <= quiz_land_link \
+		my_name <= my_name \
 	Reactions $bog_blitz_lobby_reactions
 		my_answers <= my_answers null
 		players_dict <= players_dict null
