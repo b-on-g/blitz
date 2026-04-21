@@ -3864,9 +3864,12 @@ h6[mol_text_header] {
 	justify-content: center;
 	color: #ffffff;
 }
-[bog_blitz_profile_page_avatar_icon] {
-	width: 70%;
-	height: 70%;
+[bog_blitz_profile_page_avatar_initial] {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #ffffff;
+	text-align: center;
+	line-height: 1;
 }
 [bog_blitz_profile_page_color_palette] {
 	flex-direction: column;
@@ -3888,11 +3891,17 @@ h6[mol_text_header] {
 	width: 2rem;
 	height: 2rem;
 	min-width: 2rem;
+	min-height: 2rem;
+	max-width: 2rem;
+	max-height: 2rem;
 	border-radius: 50%;
 	padding-top: 0px;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
+	box-sizing: border-box;
+	flex-shrink: 0;
+	flex-grow: 0;
 	cursor: pointer;
 	transition: box-shadow 0.15s;
 }

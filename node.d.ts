@@ -15249,6 +15249,9 @@ declare namespace $.$$ {
         listen_errors(): {
             destructor: () => void;
         };
+        listen_clicks(): {
+            destructor: () => void;
+        };
         listen_vitals(): {
             destructor: () => void;
         } | null;
@@ -15992,10 +15995,10 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_avatar__id_bog_blitz_profile_page_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['player_id'] >
+	type $mol_paragraph__title_bog_blitz_profile_page_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['avatar_initial'] >
 		,
-		ReturnType< $mol_avatar['id'] >
+		ReturnType< $mol_paragraph['title'] >
 	>
 	type $mol_view__style_bog_blitz_profile_page_2 = $mol_type_enforce<
 		({ 
@@ -16156,8 +16159,8 @@ declare namespace $ {
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
 		avatar_color( ): string
-		player_id( ): string
-		Avatar_icon( ): $mol_avatar
+		avatar_initial( ): string
+		Avatar_initial( ): $mol_paragraph
 		Avatar_circle( ): $mol_view
 		Color_hint( ): $mol_paragraph
 		color_swatch_views( ): readonly(any)[]
@@ -16214,6 +16217,7 @@ declare namespace $.$$ {
         profile_name(next?: string): string;
         profile_color(next?: string): string;
         avatar_color(): string;
+        avatar_initial(): string;
         color_swatch_views(): $mol_button_minor[];
         color_swatch_bg(key: string): string;
         color_swatch_selected(key: string): boolean;

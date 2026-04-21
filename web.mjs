@@ -38777,6 +38777,7 @@ var $;
                 this.listen_visibility();
                 this.listen_errors();
                 this.listen_vitals();
+                this.listen_clicks();
                 return null;
             }
             listen_navigation() {
@@ -38829,6 +38830,26 @@ var $;
                     },
                 };
             }
+            listen_clicks() {
+                const handler = (event) => {
+                    try {
+                        const vw = window.innerWidth || document.documentElement.clientWidth || 1;
+                        const vh = window.innerHeight || document.documentElement.clientHeight || 1;
+                        this.track_safe('click', {
+                            x: event.clientX / vw,
+                            y: event.clientY / vh,
+                            path: location.pathname + location.hash,
+                            viewport_w: vw,
+                            viewport_h: vh,
+                        });
+                    }
+                    catch { }
+                };
+                window.addEventListener('click', handler, { capture: true, passive: true });
+                return {
+                    destructor: () => window.removeEventListener('click', handler, { capture: true }),
+                };
+            }
             listen_vitals() {
                 try {
                     const tracked = new Set();
@@ -38865,6 +38886,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_metrics.prototype, "listen_errors", null);
+        __decorate([
+            $mol_mem
+        ], $bog_metrics.prototype, "listen_clicks", null);
         __decorate([
             $mol_mem
         ], $bog_metrics.prototype, "listen_vitals", null);
@@ -39879,18 +39903,18 @@ var $;
 		avatar_color(){
 			return "";
 		}
-		player_id(){
+		avatar_initial(){
 			return "";
 		}
-		Avatar_icon(){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.player_id()));
+		Avatar_initial(){
+			const obj = new this.$.$mol_paragraph();
+			(obj.title) = () => ((this.avatar_initial()));
 			return obj;
 		}
 		Avatar_circle(){
 			const obj = new this.$.$mol_view();
 			(obj.style) = () => ({"backgroundColor": (this.avatar_color())});
-			(obj.sub) = () => ([(this.Avatar_icon())]);
+			(obj.sub) = () => ([(this.Avatar_initial())]);
 			return obj;
 		}
 		Color_hint(){
@@ -40089,7 +40113,7 @@ var $;
 			return obj;
 		}
 	};
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_initial"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_swatches"));
@@ -40192,6 +40216,13 @@ var $;
             }
             avatar_color() {
                 return $bog_blitz_color_for(this.player_id(), this.profile_color());
+            }
+            avatar_initial() {
+                const name = this.profile_name().trim();
+                if (name)
+                    return name.charAt(0).toUpperCase();
+                const id = this.player_id();
+                return id ? id.charAt(0).toUpperCase() : '?';
             }
             color_swatch_views() {
                 return $bog_blitz_palette.map(c => this.Color_swatch(c));
@@ -40316,6 +40347,9 @@ var $;
         ], $bog_blitz_profile_page.prototype, "avatar_color", null);
         __decorate([
             $mol_mem
+        ], $bog_blitz_profile_page.prototype, "avatar_initial", null);
+        __decorate([
+            $mol_mem
         ], $bog_blitz_profile_page.prototype, "color_swatch_views", null);
         __decorate([
             $mol_mem_key
@@ -40390,9 +40424,14 @@ var $;
                 },
                 color: '#ffffff',
             },
-            Avatar_icon: {
-                width: '70%',
-                height: '70%',
+            Avatar_initial: {
+                font: {
+                    size: '2.5rem',
+                    weight: 700,
+                },
+                color: '#ffffff',
+                textAlign: 'center',
+                lineHeight: '1',
             },
             Color_palette: {
                 flex: {
@@ -40424,8 +40463,13 @@ var $;
                 width: '2rem',
                 height: '2rem',
                 minWidth: '2rem',
+                minHeight: '2rem',
+                maxWidth: '2rem',
+                maxHeight: '2rem',
                 borderRadius: '50%',
                 padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
+                boxSizing: 'border-box',
+                flex: { shrink: 0, grow: 0 },
                 cursor: 'pointer',
                 transition: 'box-shadow 0.15s',
             },
