@@ -17,7 +17,8 @@ namespace $.$$ {
 				items: 'center',
 			},
 		},
-		Avatar_circle: {
+		Avatar_wrap: {
+			position: 'relative',
 			borderRadius: '50%',
 			overflow: 'hidden',
 			width: '80px',
@@ -26,21 +27,20 @@ namespace $.$$ {
 			minHeight: '80px',
 			maxWidth: '80px',
 			maxHeight: '80px',
-			flex: {
-				shrink: 0,
-				grow: 0,
-			},
-			align: {
-				items: 'center',
-			},
-			justify: {
-				content: 'center',
-			},
-			color: '#ffffff',
+			flex: { shrink: 0, grow: 0 },
 		},
 		Avatar_icon: {
 			width: '100%',
 			height: '100%',
+		},
+		Avatar_tint: {
+			position: 'absolute',
+			top: '0px',
+			left: '0px',
+			right: '0px',
+			bottom: '0px',
+			mixBlendMode: 'color',
+			pointerEvents: 'none',
 		},
 		Color_palette: {
 			flex: {
@@ -244,7 +244,7 @@ namespace $.$$ {
 					},
 					gap: '1rem',
 				},
-				Avatar_circle: {
+				Avatar_wrap: {
 					width: '64px',
 					height: '64px',
 					minWidth: '64px',
