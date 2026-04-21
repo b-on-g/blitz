@@ -33995,6 +33995,12 @@ var $;
             gap: '0.25rem',
             align: { items: 'flex-end', self: 'stretch' },
             width: '95%',
+            padding: { bottom: '1rem', right: '0.75rem' },
+            '@media': {
+                '(width < 600px)': {
+                    padding: { bottom: '1.5rem', right: '1rem' },
+                },
+            },
             Spacer: {
                 flex: {
                     grow: 1,
