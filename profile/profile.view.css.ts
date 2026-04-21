@@ -17,10 +17,7 @@ namespace $.$$ {
 				items: 'center',
 			},
 		},
-		Avatar_wrap: {
-			position: 'relative',
-			borderRadius: '50%',
-			overflow: 'hidden',
+		Avatar_icon: {
 			width: '80px',
 			height: '80px',
 			minWidth: '80px',
@@ -28,19 +25,7 @@ namespace $.$$ {
 			maxWidth: '80px',
 			maxHeight: '80px',
 			flex: { shrink: 0, grow: 0 },
-		},
-		Avatar_icon: {
-			width: '100%',
-			height: '100%',
-		},
-		Avatar_tint: {
-			position: 'absolute',
-			top: '0px',
-			left: '0px',
-			right: '0px',
-			bottom: '0px',
-			mixBlendMode: 'color',
-			pointerEvents: 'none',
+			align: { self: 'center' },
 		},
 		Color_palette: {
 			flex: {
@@ -244,7 +229,7 @@ namespace $.$$ {
 					},
 					gap: '1rem',
 				},
-				Avatar_wrap: {
+				Avatar_icon: {
 					width: '64px',
 					height: '64px',
 					minWidth: '64px',
