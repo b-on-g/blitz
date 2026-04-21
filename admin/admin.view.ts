@@ -358,11 +358,6 @@ namespace $.$$ {
 				}
 			}
 
-			if (key.startsWith('s_')) {
-				this.registry().Shared_quizzes('auto')!.cut(source.link())
-			} else {
-				this.registry().Quizzes('auto')!.cut(source.link())
-			}
 		}
 
 		@$mol_action

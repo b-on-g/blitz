@@ -37,7 +37,12 @@ namespace $.$$ {
 			justify: { content: 'center' },
 			color: '#ffffff',
 			boxShadow: `0 0 0 2px ${$mol_theme.back}`,
-			animation: 'bog_blitz_picker_wobble 1.2s ease-in-out infinite',
+			animation: {
+				name: 'bog_blitz_picker_wobble',
+				duration: '1.2s',
+				timingFunction: 'ease-in-out',
+				iterationCount: 'infinite',
+			},
 			transformOrigin: 'center bottom',
 			':nth-child(2n)': {
 				animationDelay: '-0.4s',

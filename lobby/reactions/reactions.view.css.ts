@@ -85,7 +85,12 @@ namespace $.$$ {
 			lineHeight: '1',
 			pointerEvents: 'none',
 			willChange: 'transform, opacity',
-			animation: 'bog_blitz_fly_up 1.5s ease-out forwards',
+			animation: {
+				name: 'bog_blitz_fly_up',
+				duration: '1.5s',
+				timingFunction: 'ease-out',
+				fillMode: 'forwards',
+			},
 			transform: 'translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0)',
 		},
 	})
