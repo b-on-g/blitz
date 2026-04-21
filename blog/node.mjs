@@ -23478,6 +23478,9 @@ var $;
 		current_question_index(){
 			return 0;
 		}
+		reactions_in_flow(){
+			return false;
+		}
 		lobby_content(){
 			return [];
 		}
@@ -23558,6 +23561,8 @@ var $;
 			(obj.my_answers) = () => ((this.my_answers()));
 			(obj.players_dict) = () => ((this.players_dict()));
 			(obj.is_host) = () => ((this.is_host()));
+			(obj.in_flow) = () => ((this.reactions_in_flow()));
+			(obj.attr) = () => ({...(this.$.$bog_blitz_lobby_reactions.prototype.attr.call(obj)), "data-in-flow": (this.reactions_in_flow())});
 			return obj;
 		}
 		body(){
@@ -23600,9 +23605,10 @@ var $;
                 const base = super.sub();
                 if (!this.my_player())
                     return base;
-                if (this.game_state() === 'final')
-                    return base;
                 return [...base, this.Reactions()];
+            }
+            reactions_in_flow() {
+                return this.game_state() === 'final';
             }
             land() {
                 const link = this.$.$mol_state_arg.value('land') ?? '';
@@ -23830,6 +23836,9 @@ var $;
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "sub", null);
+        __decorate([
+            $mol_mem
+        ], $bog_blitz_lobby.prototype, "reactions_in_flow", null);
         __decorate([
             $mol_mem
         ], $bog_blitz_lobby.prototype, "land", null);
@@ -33758,6 +33767,9 @@ var $;
 		is_host(){
 			return false;
 		}
+		in_flow(){
+			return false;
+		}
 		Fly(){
 			const obj = new this.$.$mol_view();
 			return obj;
@@ -33971,7 +33983,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bog/blitz/lobby/reactions/reactions.view.css", "[bog_blitz_lobby_reactions] {\n\tposition: fixed !important;\n\tbottom: 1rem !important;\n\tright: 1rem !important;\n\tz-index: 100;\n}\n\n@media (max-width: 600px) {\n\t[bog_blitz_lobby_reactions] {\n\t\tbottom: 0.25rem !important;\n\t\tright: 0.25rem !important;\n\t\ttransform: scale(0.75);\n\t\ttransform-origin: bottom right;\n\t\topacity: 0.85;\n\t}\n}\n\n[bog_blitz_lobby_reactions_fly] {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 50%;\n\tfont-size: 2rem;\n\tline-height: 1;\n\tpointer-events: none;\n\twill-change: transform, opacity;\n\tanimation: bog_blitz_fly_up 1.5s ease-out forwards;\n\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n}\n\n@keyframes bog_blitz_fly_up {\n\t0% {\n\t\topacity: 1;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n\t}\n\t100% {\n\t\topacity: 0;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px);\n\t}\n}\n");
+    $mol_style_attach("bog/blitz/lobby/reactions/reactions.view.css", "[bog_blitz_lobby_reactions] {\n\tposition: fixed !important;\n\tbottom: 1rem !important;\n\tright: 1rem !important;\n\tz-index: 100;\n}\n\n[bog_blitz_lobby_reactions][data-in-flow=\"true\"] {\n\tposition: static !important;\n\tbottom: auto !important;\n\tright: auto !important;\n\tz-index: auto;\n}\n\n@media (max-width: 600px) {\n\t[bog_blitz_lobby_reactions] {\n\t\tbottom: 0.25rem !important;\n\t\tright: 0.25rem !important;\n\t\ttransform: scale(0.75);\n\t\ttransform-origin: bottom right;\n\t\topacity: 0.85;\n\t}\n\t[bog_blitz_lobby_reactions][data-in-flow=\"true\"] {\n\t\tbottom: auto !important;\n\t\tright: auto !important;\n\t\ttransform: none;\n\t\topacity: 1;\n\t}\n}\n\n[bog_blitz_lobby_reactions_fly] {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 50%;\n\tfont-size: 2rem;\n\tline-height: 1;\n\tpointer-events: none;\n\twill-change: transform, opacity;\n\tanimation: bog_blitz_fly_up 1.5s ease-out forwards;\n\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n}\n\n@keyframes bog_blitz_fly_up {\n\t0% {\n\t\topacity: 1;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), 0);\n\t}\n\t100% {\n\t\topacity: 0;\n\t\ttransform: translate(calc(-50% + var(--bog_blitz_fly_jitter, 0px)), -200px);\n\t}\n}\n");
 })($ || ($ = {}));
 
 ;

@@ -10460,6 +10460,18 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
 	>
+	type $bog_blitz_lobby_reactions__in_flow_bog_blitz_lobby_49 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['reactions_in_flow'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['in_flow'] >
+	>
+	type $bog_blitz_lobby_reactions__attr_bog_blitz_lobby_50 = $mol_type_enforce<
+		({ 
+			'data-in-flow': ReturnType< $bog_blitz_lobby['reactions_in_flow'] >,
+		})  & ReturnType< $bog_blitz_lobby_reactions['attr'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['attr'] >
+	>
 	export class $bog_blitz_lobby extends $mol_page {
 		counter_string( ): string
 		quiz_land_link( ): string
@@ -10488,6 +10500,7 @@ declare namespace $ {
 		duration( ): number
 		total_questions( ): number
 		current_question_index( ): number
+		reactions_in_flow( ): boolean
 		lobby_content( ): readonly(any)[]
 		Head( ): any
 		players_string( ): string
@@ -10508,6 +10521,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby extends $.$bog_blitz_lobby {
         sub(): readonly any[];
+        reactions_in_flow(): boolean;
         land(): $giper_baza_land | null;
         session(): $bog_blitz_session | null;
         quiz_data(): $bog_blitz_quiz | null;
@@ -16373,6 +16387,7 @@ declare namespace $ {
 		my_answers( ): any
 		players_dict( ): any
 		is_host( ): boolean
+		in_flow( ): boolean
 		Fly( ): $mol_view
 		sub( ): readonly(any)[]
 	}
