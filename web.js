@@ -35334,6 +35334,12 @@ var $;
 			(obj.uri) = () => ((this.question_image_uri()));
 			return obj;
 		}
+		Image_replace(){
+			const obj = new this.$.$mol_button_open();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Image_replace_title")));
+			(obj.files) = (next) => ((this.question_image_files(next)));
+			return obj;
+		}
 		Image_remove(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_question_Image_remove_title")));
@@ -35359,6 +35365,7 @@ var $;
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_section"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_upload"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_preview"));
+	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_replace"));
 	($mol_mem(($.$bog_blitz_admin_question.prototype), "Image_remove"));
 
 
@@ -35374,7 +35381,7 @@ var $;
         class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
             image_section_content() {
                 if (this.question_image_uri()) {
-                    return [this.Image_preview(), this.Image_remove()];
+                    return [this.Image_preview(), this.Image_replace(), this.Image_remove()];
                 }
                 return [this.Image_upload()];
             }
@@ -35554,6 +35561,12 @@ var $;
 			(obj.files) = (next) => ((this.option_image_files(next)));
 			return obj;
 		}
+		Image_replace(){
+			const obj = new this.$.$mol_button_open();
+			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Image_replace_title")));
+			(obj.files) = (next) => ((this.option_image_files(next)));
+			return obj;
+		}
 		Image_remove(){
 			const obj = new this.$.$mol_button_minor();
 			(obj.title) = () => ((this.$.$mol_locale.text("$bog_blitz_admin_option_Image_remove_title")));
@@ -35581,6 +35594,7 @@ var $;
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_section"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_preview"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_upload"));
+	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_replace"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Image_remove"));
 	($mol_mem(($.$bog_blitz_admin_option.prototype), "Controls"));
 
@@ -35597,7 +35611,7 @@ var $;
         class $bog_blitz_admin_option extends $.$bog_blitz_admin_option {
             image_section_content() {
                 if (this.option_image_uri()) {
-                    return [this.Image_preview(), this.Image_remove()];
+                    return [this.Image_preview(), this.Image_replace(), this.Image_remove()];
                 }
                 return [this.Image_upload()];
             }
