@@ -20501,7 +20501,7 @@ declare namespace $.$$ {
         submit_title(): "Update feedback" | "Send feedback";
         submit(): void;
         body(): $.$mol_status[] | $.$mol_paragraph[] | ($.$mol_string | $.$mol_textarea | $mol_button_major | $.$mol_text | $.$mol_section)[];
-        all_lords(): readonly $giper_baza_vary_type[];
+        all_lords(): string[];
         entry_rows(): $.$mol_section[];
         private entry_by_index;
         private entry_by_index_or_create;
@@ -21808,136 +21808,131 @@ declare namespace $ {
 		,
 		ReturnType< $mol_avatar['id'] >
 	>
-	type $mol_view__style_bog_blitz_profile_page_2 = $mol_type_enforce<
+	type $mol_avatar__style_bog_blitz_profile_page_2 = $mol_type_enforce<
 		({ 
-			'backgroundColor': ReturnType< $bog_blitz_profile_page['avatar_color'] >,
+			'color': ReturnType< $bog_blitz_profile_page['avatar_color'] >,
 		}) 
 		,
-		ReturnType< $mol_view['style'] >
+		ReturnType< $mol_avatar['style'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_4 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['choose_color_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_4 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['color_swatch_views'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_6 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_profile_page_7 = $mol_type_enforce<
+	type $mol_string_button__hint_bog_blitz_profile_page_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_profile_page_8 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_profile_page_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['profile_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_9 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_8 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_10 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_12 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['persona_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_profile_page_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_blitz_profile_page_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_15 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_14 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_search__query_bog_blitz_profile_page_16 = $mol_type_enforce<
+	type $mol_search__query_bog_blitz_profile_page_15 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['games_query'] >
 		,
 		ReturnType< $mol_search['query'] >
 	>
-	type $mol_list__rows_bog_blitz_profile_page_17 = $mol_type_enforce<
+	type $mol_list__rows_bog_blitz_profile_page_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_rows'] >
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_18 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['games_empty_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_19 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_18 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_20 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_label'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_21 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_value'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_22 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_23 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_details'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_24 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_23 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_25 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_24 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_score'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__event_bog_blitz_profile_page_26 = $mol_type_enforce<
+	type $mol_button_minor__event_bog_blitz_profile_page_25 = $mol_type_enforce<
 		({ 
 			click( next?: ReturnType< $bog_blitz_profile_page['color_swatch_click'] > ): ReturnType< $bog_blitz_profile_page['color_swatch_click'] >,
 		})  & ReturnType< $mol_button_minor['event'] >
 		,
 		ReturnType< $mol_button_minor['event'] >
 	>
-	type $mol_button_minor__style_bog_blitz_profile_page_27 = $mol_type_enforce<
+	type $mol_button_minor__style_bog_blitz_profile_page_26 = $mol_type_enforce<
 		({ 
 			'backgroundColor': ReturnType< $bog_blitz_profile_page['color_swatch_bg'] >,
 			'boxShadow': ReturnType< $bog_blitz_profile_page['color_swatch_shadow'] >,
@@ -21945,32 +21940,30 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['style'] >
 	>
-	type $mol_button_minor__sub_bog_blitz_profile_page_28 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_blitz_profile_page_27 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_29 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_28 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_link__arg_bog_blitz_profile_page_30 = $mol_type_enforce<
+	type $mol_link__arg_bog_blitz_profile_page_29 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_arg'] >
 		,
 		ReturnType< $mol_link['arg'] >
 	>
-	type $mol_link__sub_bog_blitz_profile_page_31 = $mol_type_enforce<
+	type $mol_link__sub_bog_blitz_profile_page_30 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
 		player_id( ): string
-		Avatar_icon( ): $mol_avatar
 		avatar_color( ): string
-		Avatar_tint( ): $mol_view
-		Avatar_wrap( ): $mol_view
+		Avatar_icon( ): $mol_avatar
 		Color_hint( ): $mol_paragraph
 		color_swatch_views( ): readonly(any)[]
 		Color_swatches( ): $mol_view

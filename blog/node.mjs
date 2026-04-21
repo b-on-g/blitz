@@ -30129,7 +30129,15 @@ var $;
                 ];
             }
             all_lords() {
-                return this.entries_dict()?.keys() ?? [];
+                const raw = this.entries_dict()?.keys() ?? [];
+                const lords = Array.from(raw).map(l => String(l));
+                const mine = this.my_lord();
+                if (!mine)
+                    return lords;
+                const idx = lords.indexOf(mine);
+                if (idx <= 0)
+                    return lords;
+                return [mine, ...lords.slice(0, idx), ...lords.slice(idx + 1)];
             }
             entry_rows() {
                 return this.all_lords().map((_, i) => this.Entry_row(i));
@@ -32781,22 +32789,13 @@ var $;
 		player_id(){
 			return "";
 		}
-		Avatar_icon(){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.player_id()));
-			return obj;
-		}
 		avatar_color(){
 			return "";
 		}
-		Avatar_tint(){
-			const obj = new this.$.$mol_view();
-			(obj.style) = () => ({"backgroundColor": (this.avatar_color())});
-			return obj;
-		}
-		Avatar_wrap(){
-			const obj = new this.$.$mol_view();
-			(obj.sub) = () => ([(this.Avatar_icon()), (this.Avatar_tint())]);
+		Avatar_icon(){
+			const obj = new this.$.$mol_avatar();
+			(obj.id) = () => ((this.player_id()));
+			(obj.style) = () => ({"color": (this.avatar_color())});
 			return obj;
 		}
 		Color_hint(){
@@ -32861,7 +32860,7 @@ var $;
 		Card(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Avatar_wrap()), 
+				(this.Avatar_icon()), 
 				(this.Color_palette()), 
 				(this.Name_row()), 
 				(this.Stats()), 
@@ -32996,8 +32995,6 @@ var $;
 		}
 	};
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_tint"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_wrap"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_swatches"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_palette"));
@@ -33286,10 +33283,7 @@ var $;
                     items: 'center',
                 },
             },
-            Avatar_wrap: {
-                position: 'relative',
-                borderRadius: '50%',
-                overflow: 'hidden',
+            Avatar_icon: {
                 width: '80px',
                 height: '80px',
                 minWidth: '80px',
@@ -33297,19 +33291,7 @@ var $;
                 maxWidth: '80px',
                 maxHeight: '80px',
                 flex: { shrink: 0, grow: 0 },
-            },
-            Avatar_icon: {
-                width: '100%',
-                height: '100%',
-            },
-            Avatar_tint: {
-                position: 'absolute',
-                top: '0px',
-                left: '0px',
-                right: '0px',
-                bottom: '0px',
-                mixBlendMode: 'color',
-                pointerEvents: 'none',
+                align: { self: 'center' },
             },
             Color_palette: {
                 flex: {
@@ -33513,7 +33495,7 @@ var $;
                         },
                         gap: '1rem',
                     },
-                    Avatar_wrap: {
+                    Avatar_icon: {
                         width: '64px',
                         height: '64px',
                         minWidth: '64px',
