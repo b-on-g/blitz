@@ -6,5 +6,6 @@
 	"$bog_blitz_admin_question_Add_option_title": "Добавить вариант",
 	"$bog_blitz_admin_question_Correct_text_input_hint": "Правильный ответ...",
 	"$bog_blitz_admin_question_Image_upload_title": "Добавить картинку",
+	"$bog_blitz_admin_question_Image_replace_title": "Заменить картинку",
 	"$bog_blitz_admin_question_Image_remove_title": "Удалить картинку"
 }

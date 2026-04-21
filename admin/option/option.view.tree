@@ -7,6 +7,9 @@ $bog_blitz_admin_option $mol_list
 	Image_upload $mol_button_open
 		title @ \Image
 		files? <=> option_image_files? /
+	Image_replace $mol_button_open
+		title @ \Replace Image
+		files? <=> option_image_files? /
 	Image_remove $mol_button_minor
 		title @ \Remove Image
 		click? <=> remove_image? null

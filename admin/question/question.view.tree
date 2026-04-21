@@ -32,6 +32,9 @@ $bog_blitz_admin_question $mol_list
 		files? <=> question_image_files? /
 	Image_preview $mol_image
 		uri <= question_image_uri \
+	Image_replace $mol_button_open
+		title @ \Replace Image
+		files? <=> question_image_files? /
 	Image_remove $mol_button_minor
 		title @ \Remove Image
 		click? <=> remove_image? null
