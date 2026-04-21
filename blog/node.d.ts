@@ -1460,6 +1460,29 @@ declare namespace $ {
 
 declare namespace $ {
 
+	type $mol_avatar__id_bog_blitz_avatar_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_avatar['player_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	export class $bog_blitz_avatar extends $mol_view {
+		Icon( ): $mol_avatar
+		color( ): string
+		player_id( ): string
+		style( ): ({ 
+			'backgroundColor': ReturnType< $bog_blitz_avatar['color'] >,
+		}) 
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=avatar.view.tree.d.ts.map
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
 	export class $mol_paragraph extends $mol_view {
 		line_height( ): number
 		letter_width( ): number
@@ -2044,68 +2067,61 @@ declare namespace $ {
 //# sourceMappingURL=minor.view.tree.d.ts.map
 declare namespace $ {
 
-	type $mol_avatar__id_bog_blitz_lobby_players_1 = $mol_type_enforce<
+	type $bog_blitz_avatar__color_bog_blitz_lobby_players_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_color'] >
+		,
+		ReturnType< $bog_blitz_avatar['color'] >
+	>
+	type $bog_blitz_avatar__player_id_bog_blitz_lobby_players_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_id'] >
 		,
-		ReturnType< $mol_avatar['id'] >
+		ReturnType< $bog_blitz_avatar['player_id'] >
 	>
-	type $mol_view__style_bog_blitz_lobby_players_2 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_players['player_color'] >,
-		}) 
-		,
-		ReturnType< $mol_view['style'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_players_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_4 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_id'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_row__attr_bog_blitz_lobby_players_5 = $mol_type_enforce<
+	type $mol_row__attr_bog_blitz_lobby_players_4 = $mol_type_enforce<
 		({ 
 			'bog_blitz_mine': ReturnType< $bog_blitz_lobby_players['is_mine'] >,
 		}) 
 		,
 		ReturnType< $mol_row['attr'] >
 	>
-	type $mol_row__sub_bog_blitz_lobby_players_6 = $mol_type_enforce<
+	type $mol_row__sub_bog_blitz_lobby_players_5 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_lobby_players_7 = $mol_type_enforce<
+	type $mol_string_button__hint_bog_blitz_lobby_players_6 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_lobby_players_8 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_lobby_players_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_9 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_8 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_players_10 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_players_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['color_swatch_views'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_button_minor__event_bog_blitz_lobby_players_11 = $mol_type_enforce<
+	type $mol_button_minor__event_bog_blitz_lobby_players_10 = $mol_type_enforce<
 		({ 
 			click( next?: ReturnType< $bog_blitz_lobby_players['color_swatch_click'] > ): ReturnType< $bog_blitz_lobby_players['color_swatch_click'] >,
 		})  & ReturnType< $mol_button_minor['event'] >
 		,
 		ReturnType< $mol_button_minor['event'] >
 	>
-	type $mol_button_minor__style_bog_blitz_lobby_players_12 = $mol_type_enforce<
+	type $mol_button_minor__style_bog_blitz_lobby_players_11 = $mol_type_enforce<
 		({ 
 			'backgroundColor': ReturnType< $bog_blitz_lobby_players['color_swatch_bg'] >,
 			'boxShadow': ReturnType< $bog_blitz_lobby_players['color_swatch_shadow'] >,
@@ -2113,7 +2129,7 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['style'] >
 	>
-	type $mol_button_minor__sub_bog_blitz_lobby_players_13 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_blitz_lobby_players_12 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
@@ -2123,8 +2139,7 @@ declare namespace $ {
 		is_mine( id: any): boolean
 		player_color( id: any): string
 		player_id( id: any): string
-		Player_icon( id: any): $mol_avatar
-		Player_avatar_circle( id: any): $mol_view
+		Player_avatar( id: any): $bog_blitz_avatar
 		Player_id( id: any): $mol_paragraph
 		player_name_content( id: any): any
 		player_color_controls( id: any): any
@@ -6562,17 +6577,15 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_view__style_bog_blitz_lobby_join_1 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_join['avatar_color'] >,
-		}) 
+	type $bog_blitz_avatar__color_bog_blitz_lobby_join_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_join['color_swatch_bg'] >
 		,
-		ReturnType< $mol_view['style'] >
+		ReturnType< $bog_blitz_avatar['color'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_join_2 = $mol_type_enforce<
-		readonly(any)[]
+	type $bog_blitz_avatar__player_id_bog_blitz_lobby_join_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_join['player_id'] >
 		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $bog_blitz_avatar['player_id'] >
 	>
 	type $mol_paragraph__title_bog_blitz_lobby_join_3 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['choose_color_title'] >
@@ -6609,38 +6622,41 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_avatar__id_bog_blitz_lobby_join_10 = $mol_type_enforce<
+	type $bog_blitz_avatar__color_bog_blitz_lobby_join_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_join['avatar_color'] >
+		,
+		ReturnType< $bog_blitz_avatar['color'] >
+	>
+	type $bog_blitz_avatar__player_id_bog_blitz_lobby_join_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['player_id'] >
 		,
-		ReturnType< $mol_avatar['id'] >
+		ReturnType< $bog_blitz_avatar['player_id'] >
 	>
-	type $mol_button_minor__event_bog_blitz_lobby_join_11 = $mol_type_enforce<
+	type $mol_button_minor__event_bog_blitz_lobby_join_12 = $mol_type_enforce<
 		({ 
 			click( next?: ReturnType< $bog_blitz_lobby_join['color_swatch_click'] > ): ReturnType< $bog_blitz_lobby_join['color_swatch_click'] >,
 		})  & ReturnType< $mol_button_minor['event'] >
 		,
 		ReturnType< $mol_button_minor['event'] >
 	>
-	type $mol_button_minor__style_bog_blitz_lobby_join_12 = $mol_type_enforce<
+	type $mol_button_minor__style_bog_blitz_lobby_join_13 = $mol_type_enforce<
 		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_join['color_swatch_bg'] >,
 			'boxShadow': ReturnType< $bog_blitz_lobby_join['color_swatch_shadow'] >,
 		}) 
 		,
 		ReturnType< $mol_button_minor['style'] >
 	>
-	type $mol_button_minor__sub_bog_blitz_lobby_join_13 = $mol_type_enforce<
+	type $mol_button_minor__sub_bog_blitz_lobby_join_14 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
 	export class $bog_blitz_lobby_join extends $mol_page {
-		player_id( ): string
-		color_swatch_click( id: any, next?: any ): any
-		color_swatch_bg( id: any): string
-		color_swatch_shadow( id: any): string
 		avatar_color( ): string
-		Avatar_circle( ): $mol_view
+		color_swatch_click( id: any, next?: any ): any
+		color_swatch_shadow( id: any): string
+		color_swatch_bg( id: any): string
+		Swatch_avatar( id: any): $bog_blitz_avatar
 		Color_hint( ): $mol_paragraph
 		color_swatch_views( ): readonly(any)[]
 		Color_swatches( ): $mol_view
@@ -6656,7 +6672,8 @@ declare namespace $ {
 		join_title( ): string
 		enter_title( ): string
 		choose_color_title( ): string
-		Avatar_icon( ): $mol_avatar
+		player_id( ): string
+		Avatar( ): $bog_blitz_avatar
 		Color_swatch( id: any): $mol_button_minor
 		body( ): readonly(any)[]
 	}
@@ -9293,50 +9310,42 @@ declare namespace $ {
 
 declare namespace $ {
 
-	type $mol_avatar__id_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_avatar_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_image__uri_bog_blitz_lobby_game_option_2 = $mol_type_enforce<
+	type $mol_image__uri_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_game_option_3 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_game_option_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_option['picker_views'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__attr_bog_blitz_lobby_game_option_4 = $mol_type_enforce<
+	type $bog_blitz_avatar__color_bog_blitz_lobby_game_option_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['picker_bg'] >
+		,
+		ReturnType< $bog_blitz_avatar['color'] >
+	>
+	type $bog_blitz_avatar__player_id_bog_blitz_lobby_game_option_4 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['picker_avatar_id'] >
+		,
+		ReturnType< $bog_blitz_avatar['player_id'] >
+	>
+	type $bog_blitz_avatar__attr_bog_blitz_lobby_game_option_5 = $mol_type_enforce<
 		({ 
 			'title': ReturnType< $bog_blitz_lobby_game_option['picker_name'] >,
 			'bog_blitz_picker': boolean,
-		})  & ReturnType< $mol_view['attr'] >
+		})  & ReturnType< $bog_blitz_avatar['attr'] >
 		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__style_bog_blitz_lobby_game_option_5 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_game_option['picker_bg'] >,
-		})  & ReturnType< $mol_view['style'] >
-		,
-		ReturnType< $mol_view['style'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_option_6 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
+		ReturnType< $bog_blitz_avatar['attr'] >
 	>
 	export class $bog_blitz_lobby_game_option extends $mol_button_major {
 		selected( ): string
 		submitted( ): string
 		correct( ): string
 		picker_views( ): readonly(any)[]
-		picker_name( id: any): string
 		picker_bg( id: any): string
 		picker_avatar_id( id: any): string
-		Picker_avatar( id: any): $mol_avatar
+		picker_name( id: any): string
 		attr( ): ({ 
 			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
 			'data-submitted': ReturnType< $bog_blitz_lobby_game_option['submitted'] >,
@@ -9346,7 +9355,7 @@ declare namespace $ {
 		Option_image( ): $mol_image
 		picker_keys( ): readonly(string)[]
 		Picker_area( ): $mol_view
-		Picker( id: any): $mol_view
+		Picker( id: any): $bog_blitz_avatar
 	}
 	
 }
@@ -9355,7 +9364,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
         sub(): (string | $mol_view)[];
-        picker_views(): $mol_view[];
+        picker_views(): $bog_blitz_avatar[];
         picker_parts(key: string): {
             lord: string;
             name: string;

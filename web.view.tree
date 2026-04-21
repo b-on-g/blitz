@@ -82,6 +82,15 @@ $mol_avatar $mol_icon
 	id \
 	path \M 12 12 l 0 0 M 0 0 l 0 0 M 24 24 l 0 0 M 0 24 l 0 0 M 24 0 l 0 0
 
+$bog_blitz_avatar $mol_view
+	color \
+	player_id \
+	style *
+		backgroundColor <= color
+	sub /
+		<= Icon $mol_avatar
+			id <= player_id
+
 $mol_paragraph $mol_view
 	line_height 24
 	letter_width 7
@@ -176,12 +185,9 @@ $bog_blitz_lobby_players $mol_list
 		attr *
 			bog_blitz_mine <= is_mine* false
 		sub /
-			<= Player_avatar_circle* $mol_view
-				style *
-					backgroundColor <= player_color* \
-				sub /
-					<= Player_icon* $mol_avatar
-						id <= player_id* \
+			<= Player_avatar* $bog_blitz_avatar
+				color <= player_color* \
+				player_id <= player_id* \
 			<= Player_id* $mol_paragraph
 				title <= player_id* \
 			<= player_name_content* null
@@ -2047,22 +2053,22 @@ $bog_blitz_lobby_join $mol_page
 	join_title @ \Syncing...
 	enter_title @ \Enter
 	choose_color_title @ \Pick a color
-	Avatar_icon $mol_avatar
-		id <= player_id \
+	player_id \
+	Avatar $bog_blitz_avatar
+		color <= avatar_color \
+		player_id <= player_id
 	Color_swatch* $mol_button_minor
 		event *
 			^
 			click? <=> color_swatch_click*? null
 		style *
-			backgroundColor <= color_swatch_bg* \
 			boxShadow <= color_swatch_shadow* \
 		sub /
+			<= Swatch_avatar* $bog_blitz_avatar
+				color <= color_swatch_bg* \
+				player_id <= player_id
 	body /
-		<= Avatar_circle $mol_view
-			style *
-				backgroundColor <= avatar_color \
-			sub /
-				<= Avatar_icon
+		<= Avatar
 		<= Color_palette $mol_view
 			sub /
 				<= Color_hint $mol_paragraph
@@ -2509,17 +2515,13 @@ $bog_blitz_lobby_game_option $mol_button_major
 	picker_keys /string
 	Picker_area $mol_view
 		sub <= picker_views /
-	Picker* $mol_view
+	Picker* $bog_blitz_avatar
+		color <= picker_bg* \
+		player_id <= picker_avatar_id* \
 		attr *
 			^
 			title <= picker_name* \
 			bog_blitz_picker true
-		style *
-			^
-			backgroundColor <= picker_bg* \
-		sub /
-			<= Picker_avatar* $mol_avatar
-				id <= picker_avatar_id* \
 
 $bog_blitz_lobby_game $mol_view
 	land_id \

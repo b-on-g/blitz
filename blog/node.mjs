@@ -4827,6 +4827,53 @@ var $;
 })($ || ($ = {}));
 
 ;
+	($.$bog_blitz_avatar) = class $bog_blitz_avatar extends ($.$mol_view) {
+		Icon(){
+			const obj = new this.$.$mol_avatar();
+			(obj.id) = () => ((this.player_id()));
+			return obj;
+		}
+		color(){
+			return "";
+		}
+		player_id(){
+			return "";
+		}
+		style(){
+			return {"backgroundColor": (this.color())};
+		}
+		sub(){
+			return [(this.Icon())];
+		}
+	};
+	($mol_mem(($.$bog_blitz_avatar.prototype), "Icon"));
+
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $mol_style_define($bog_blitz_avatar, {
+            borderRadius: '50%',
+            overflow: 'hidden',
+            align: { items: 'center' },
+            justify: { content: 'center' },
+            color: '#ffffff',
+            flex: { shrink: 0, grow: 0 },
+            Icon: {
+                width: '70%',
+                height: '70%',
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+
+;
 	($.$mol_paragraph) = class $mol_paragraph extends ($.$mol_view) {
 		line_height(){
 			return 24;
@@ -6573,15 +6620,10 @@ var $;
 		player_id(id){
 			return "";
 		}
-		Player_icon(id){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.player_id(id)));
-			return obj;
-		}
-		Player_avatar_circle(id){
-			const obj = new this.$.$mol_view();
-			(obj.style) = () => ({"backgroundColor": (this.player_color(id))});
-			(obj.sub) = () => ([(this.Player_icon(id))]);
+		Player_avatar(id){
+			const obj = new this.$.$bog_blitz_avatar();
+			(obj.color) = () => ((this.player_color(id)));
+			(obj.player_id) = () => ((this.player_id(id)));
 			return obj;
 		}
 		Player_id(id){
@@ -6624,7 +6666,7 @@ var $;
 			const obj = new this.$.$mol_row();
 			(obj.attr) = () => ({"bog_blitz_mine": (this.is_mine(id))});
 			(obj.sub) = () => ([
-				(this.Player_avatar_circle(id)), 
+				(this.Player_avatar(id)), 
 				(this.Player_id(id)), 
 				(this.player_name_content(id)), 
 				(this.player_color_controls(id))
@@ -6655,8 +6697,7 @@ var $;
 			return obj;
 		}
 	};
-	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "Player_icon"));
-	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "Player_avatar_circle"));
+	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "Player_avatar"));
 	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "Player_id"));
 	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "color_swatch_click"));
 	($mol_mem_key(($.$bog_blitz_lobby_players.prototype), "Player"));
@@ -6840,19 +6881,9 @@ var $;
                     },
                 },
             },
-            Player_avatar_circle: {
+            Player_avatar: {
                 width: '2.5rem',
                 height: '2.5rem',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                flex: { shrink: 0 },
-                align: { items: 'center' },
-                justify: { content: 'center' },
-                color: '#ffffff',
-            },
-            Player_icon: {
-                width: '70%',
-                height: '70%',
             },
             Player_color_palette: {
                 flex: {
@@ -16289,26 +16320,23 @@ var $;
 
 ;
 	($.$bog_blitz_lobby_join) = class $bog_blitz_lobby_join extends ($.$mol_page) {
-		player_id(){
+		avatar_color(){
 			return "";
 		}
 		color_swatch_click(id, next){
 			if(next !== undefined) return next;
 			return null;
 		}
-		color_swatch_bg(id){
-			return "";
-		}
 		color_swatch_shadow(id){
 			return "";
 		}
-		avatar_color(){
+		color_swatch_bg(id){
 			return "";
 		}
-		Avatar_circle(){
-			const obj = new this.$.$mol_view();
-			(obj.style) = () => ({"backgroundColor": (this.avatar_color())});
-			(obj.sub) = () => ([(this.Avatar_icon())]);
+		Swatch_avatar(id){
+			const obj = new this.$.$bog_blitz_avatar();
+			(obj.color) = () => ((this.color_swatch_bg(id)));
+			(obj.player_id) = () => ((this.player_id()));
 			return obj;
 		}
 		Color_hint(){
@@ -16371,21 +16399,25 @@ var $;
 		choose_color_title(){
 			return (this.$.$mol_locale.text("$bog_blitz_lobby_join_choose_color_title"));
 		}
-		Avatar_icon(){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.player_id()));
+		player_id(){
+			return "";
+		}
+		Avatar(){
+			const obj = new this.$.$bog_blitz_avatar();
+			(obj.color) = () => ((this.avatar_color()));
+			(obj.player_id) = () => ((this.player_id()));
 			return obj;
 		}
 		Color_swatch(id){
 			const obj = new this.$.$mol_button_minor();
 			(obj.event) = () => ({...(this.$.$mol_button_minor.prototype.event.call(obj)), "click": (next) => (this.color_swatch_click(id, next))});
-			(obj.style) = () => ({"backgroundColor": (this.color_swatch_bg(id)), "boxShadow": (this.color_swatch_shadow(id))});
-			(obj.sub) = () => ([]);
+			(obj.style) = () => ({"boxShadow": (this.color_swatch_shadow(id))});
+			(obj.sub) = () => ([(this.Swatch_avatar(id))]);
 			return obj;
 		}
 		body(){
 			return [
-				(this.Avatar_circle()), 
+				(this.Avatar()), 
 				(this.Color_palette()), 
 				(this.Player_name_input()), 
 				(this.Join())
@@ -16393,7 +16425,7 @@ var $;
 		}
 	};
 	($mol_mem_key(($.$bog_blitz_lobby_join.prototype), "color_swatch_click"));
-	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar_circle"));
+	($mol_mem_key(($.$bog_blitz_lobby_join.prototype), "Swatch_avatar"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Color_hint"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Color_swatches"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Color_palette"));
@@ -16402,7 +16434,7 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "join"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Join"));
 	($mol_mem(($.$bog_blitz_lobby_join.prototype), "player_color"));
-	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar_icon"));
+	($mol_mem(($.$bog_blitz_lobby_join.prototype), "Avatar"));
 	($mol_mem_key(($.$bog_blitz_lobby_join.prototype), "Color_swatch"));
 
 
@@ -16435,33 +16467,12 @@ var $;
                 width: '100%',
                 boxSizing: 'border-box',
             },
-            Avatar_circle: {
-                borderRadius: '50%',
-                overflow: 'hidden',
+            Avatar: {
                 width: '100px',
                 height: '100px',
-                minWidth: '100px',
-                minHeight: '100px',
-                maxWidth: '100px',
-                maxHeight: '100px',
-                flex: {
-                    shrink: 0,
-                    grow: 0,
-                },
                 align: {
-                    items: 'center',
+                    self: 'center',
                 },
-                justify: {
-                    content: 'center',
-                },
-                color: '#ffffff',
-                margin: {
-                    bottom: '0.5rem',
-                },
-            },
-            Avatar_icon: {
-                width: '70%',
-                height: '70%',
             },
             Color_palette: {
                 flex: {
@@ -16472,6 +16483,9 @@ var $;
                 },
                 gap: '0.5rem',
                 width: '100%',
+                margin: {
+                    bottom: '1rem',
+                },
             },
             Color_hint: {
                 font: {
@@ -16490,13 +16504,18 @@ var $;
                 gap: '0.5rem',
             },
             Color_swatch: {
-                width: '2rem',
-                height: '2rem',
+                width: '2.25rem',
+                height: '2.25rem',
+                minWidth: '2.25rem',
                 borderRadius: '50%',
                 padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
-                minWidth: '2rem',
-                transition: 'box-shadow 0.15s',
+                transition: 'box-shadow 0.15s, transform 0.15s',
                 cursor: 'pointer',
+                overflow: 'visible',
+            },
+            Swatch_avatar: {
+                width: '100%',
+                height: '100%',
             },
             Player_name_input: {
                 font: {
@@ -16523,13 +16542,9 @@ var $;
                             right: '0.75rem',
                         },
                     },
-                    Avatar_circle: {
+                    Avatar: {
                         width: '80px',
                         height: '80px',
-                        minWidth: '80px',
-                        minHeight: '80px',
-                        maxWidth: '80px',
-                        maxHeight: '80px',
                     },
                     Player_name_input: {
                         font: {
@@ -21906,19 +21921,14 @@ var $;
 		picker_views(){
 			return [];
 		}
-		picker_name(id){
-			return "";
-		}
 		picker_bg(id){
 			return "";
 		}
 		picker_avatar_id(id){
 			return "";
 		}
-		Picker_avatar(id){
-			const obj = new this.$.$mol_avatar();
-			(obj.id) = () => ((this.picker_avatar_id(id)));
-			return obj;
+		picker_name(id){
+			return "";
 		}
 		attr(){
 			return {
@@ -21945,18 +21955,17 @@ var $;
 			return obj;
 		}
 		Picker(id){
-			const obj = new this.$.$mol_view();
+			const obj = new this.$.$bog_blitz_avatar();
+			(obj.color) = () => ((this.picker_bg(id)));
+			(obj.player_id) = () => ((this.picker_avatar_id(id)));
 			(obj.attr) = () => ({
-				...(this.$.$mol_view.prototype.attr.call(obj)), 
+				...(this.$.$bog_blitz_avatar.prototype.attr.call(obj)), 
 				"title": (this.picker_name(id)), 
 				"bog_blitz_picker": true
 			});
-			(obj.style) = () => ({...(this.$.$mol_view.prototype.style.call(obj)), "backgroundColor": (this.picker_bg(id))});
-			(obj.sub) = () => ([(this.Picker_avatar(id))]);
 			return obj;
 		}
 	};
-	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker_avatar"));
 	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Option_image"));
 	($mol_mem(($.$bog_blitz_lobby_game_option.prototype), "Picker_area"));
 	($mol_mem_key(($.$bog_blitz_lobby_game_option.prototype), "Picker"));
@@ -22046,12 +22055,6 @@ var $;
             Picker: {
                 width: '1.5rem',
                 height: '1.5rem',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                flex: { shrink: 0 },
-                align: { items: 'center' },
-                justify: { content: 'center' },
-                color: '#ffffff',
                 boxShadow: `0 0 0 2px ${$mol_theme.back}`,
                 animation: {
                     name: 'bog_blitz_picker_wobble',
@@ -22066,10 +22069,6 @@ var $;
                 ':nth-child(3n)': {
                     animationDelay: '-0.8s',
                 },
-            },
-            Picker_avatar: {
-                width: '70%',
-                height: '70%',
             },
             '@': {
                 'data-selected': {
@@ -34314,7 +34313,7 @@ var $;
                             if (i === 0)
                                 this.spawn_fly(key);
                             else
-                                new $mol_after_timeout(i * 120, () => this.spawn_fly(key));
+                                new $mol_after_timeout(i * 100, () => this.spawn_fly(key));
                         }
                     }
                     this.prev_totals[key] = total;

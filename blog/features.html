@@ -422,6 +422,19 @@ body, :where([mol_theme]) {
 	margin: 0 -.25rem; */
 	/* box-shadow: 0 0 0 1px var(--mol_theme_line); */
 }
+</style><style id="$mol_style_attach:$bog_blitz_avatar">[bog_blitz_avatar] {
+	border-radius: 50%;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+	flex-shrink: 0;
+	flex-grow: 0;
+}
+[bog_blitz_avatar_icon] {
+	width: 70%;
+	height: 70%;
+}
 </style><style id="$mol_style_attach:mol/paragraph/paragraph.view.css">:where([mol_paragraph]) {
 	margin: 0;
 	max-width: 100%;
@@ -594,19 +607,9 @@ body, :where([mol_theme]) {
 	box-shadow: 0 0 0 1px var(--mol_theme_line);
 	border-radius: 0.5rem;
 }
-[bog_blitz_lobby_players_player_avatar_circle] {
+[bog_blitz_lobby_players_player_avatar] {
 	width: 2.5rem;
 	height: 2.5rem;
-	border-radius: 50%;
-	overflow: hidden;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-	color: #ffffff;
-}
-[bog_blitz_lobby_players_player_icon] {
-	width: 70%;
-	height: 70%;
 }
 [bog_blitz_lobby_players_player_color_palette] {
 	flex-direction: row;
@@ -1762,31 +1765,17 @@ body, :where([mol_theme]) {
 	width: 100%;
 	box-sizing: border-box;
 }
-[bog_blitz_lobby_join_avatar_circle] {
-	border-radius: 50%;
-	overflow: hidden;
+[bog_blitz_lobby_join_avatar] {
 	width: 100px;
 	height: 100px;
-	min-width: 100px;
-	min-height: 100px;
-	max-width: 100px;
-	max-height: 100px;
-	flex-shrink: 0;
-	flex-grow: 0;
-	align-items: center;
-	justify-content: center;
-	color: #ffffff;
-	margin-bottom: 0.5rem;
-}
-[bog_blitz_lobby_join_avatar_icon] {
-	width: 70%;
-	height: 70%;
+	align-self: center;
 }
 [bog_blitz_lobby_join_color_palette] {
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
 	width: 100%;
+	margin-bottom: 1rem;
 }
 [bog_blitz_lobby_join_color_hint] {
 	font-size: 0.8rem;
@@ -1799,16 +1788,21 @@ body, :where([mol_theme]) {
 	gap: 0.5rem;
 }
 [bog_blitz_lobby_join_color_swatch] {
-	width: 2rem;
-	height: 2rem;
+	width: 2.25rem;
+	height: 2.25rem;
+	min-width: 2.25rem;
 	border-radius: 50%;
 	padding-top: 0px;
 	padding-bottom: 0px;
 	padding-left: 0px;
 	padding-right: 0px;
-	min-width: 2rem;
-	transition: box-shadow 0.15s;
+	transition: box-shadow 0.15s, transform 0.15s;
 	cursor: pointer;
+	overflow: visible;
+}
+[bog_blitz_lobby_join_swatch_avatar] {
+	width: 100%;
+	height: 100%;
 }
 [bog_blitz_lobby_join_player_name_input] {
 	font-size: 1.5rem;
@@ -1828,13 +1822,9 @@ body, :where([mol_theme]) {
 	padding-left: 0.75rem;
 	padding-right: 0.75rem;
 }
-[bog_blitz_lobby_join_avatar_circle] {
+[bog_blitz_lobby_join_avatar] {
 	width: 80px;
 	height: 80px;
-	min-width: 80px;
-	min-height: 80px;
-	max-width: 80px;
-	max-height: 80px;
 }
 [bog_blitz_lobby_join_player_name_input] {
 	font-size: 1.25rem;
@@ -2624,12 +2614,6 @@ h6[mol_text_header] {
 [bog_blitz_lobby_game_option_picker] {
 	width: 1.5rem;
 	height: 1.5rem;
-	border-radius: 50%;
-	overflow: hidden;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-	color: #ffffff;
 	box-shadow: 0 0 0 2px var(--mol_theme_back);
 	animation-name: bog_blitz_picker_wobble;
 	animation-duration: 1.2s;
@@ -2642,10 +2626,6 @@ h6[mol_text_header] {
 }
 [bog_blitz_lobby_game_option_picker]:nth-child(3n) {
 	animation-delay: -0.8s;
-}
-[bog_blitz_lobby_game_option_picker_avatar] {
-	width: 70%;
-	height: 70%;
 }
 [bog_blitz_lobby_game_option]:where([data-selected="false"]) {
 	opacity: 1;
