@@ -3366,12 +3366,13 @@ $bog_blitz_profile_page $mol_page
 	body /
 		<= Card $mol_view
 			sub /
-				<= Avatar_circle $mol_view
-					style *
-						backgroundColor <= avatar_color \
+				<= Avatar_wrap $mol_view
 					sub /
 						<= Avatar_icon $mol_avatar
 							id <= player_id \
+						<= Avatar_tint $mol_view
+							style *
+								backgroundColor <= avatar_color \
 				<= Color_palette $mol_view
 					sub /
 						<= Color_hint $mol_paragraph

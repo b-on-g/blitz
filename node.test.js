@@ -32906,9 +32906,6 @@ var $;
 
 ;
 	($.$bog_blitz_profile_page) = class $bog_blitz_profile_page extends ($.$mol_page) {
-		avatar_color(){
-			return "";
-		}
 		player_id(){
 			return "";
 		}
@@ -32917,10 +32914,17 @@ var $;
 			(obj.id) = () => ((this.player_id()));
 			return obj;
 		}
-		Avatar_circle(){
+		avatar_color(){
+			return "";
+		}
+		Avatar_tint(){
 			const obj = new this.$.$mol_view();
 			(obj.style) = () => ({"backgroundColor": (this.avatar_color())});
-			(obj.sub) = () => ([(this.Avatar_icon())]);
+			return obj;
+		}
+		Avatar_wrap(){
+			const obj = new this.$.$mol_view();
+			(obj.sub) = () => ([(this.Avatar_icon()), (this.Avatar_tint())]);
 			return obj;
 		}
 		Color_hint(){
@@ -32985,7 +32989,7 @@ var $;
 		Card(){
 			const obj = new this.$.$mol_view();
 			(obj.sub) = () => ([
-				(this.Avatar_circle()), 
+				(this.Avatar_wrap()), 
 				(this.Color_palette()), 
 				(this.Name_row()), 
 				(this.Stats()), 
@@ -33120,7 +33124,8 @@ var $;
 		}
 	};
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_tint"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_wrap"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_swatches"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_palette"));
@@ -33409,7 +33414,8 @@ var $;
                     items: 'center',
                 },
             },
-            Avatar_circle: {
+            Avatar_wrap: {
+                position: 'relative',
                 borderRadius: '50%',
                 overflow: 'hidden',
                 width: '80px',
@@ -33418,21 +33424,20 @@ var $;
                 minHeight: '80px',
                 maxWidth: '80px',
                 maxHeight: '80px',
-                flex: {
-                    shrink: 0,
-                    grow: 0,
-                },
-                align: {
-                    items: 'center',
-                },
-                justify: {
-                    content: 'center',
-                },
-                color: '#ffffff',
+                flex: { shrink: 0, grow: 0 },
             },
             Avatar_icon: {
                 width: '100%',
                 height: '100%',
+            },
+            Avatar_tint: {
+                position: 'absolute',
+                top: '0px',
+                left: '0px',
+                right: '0px',
+                bottom: '0px',
+                mixBlendMode: 'color',
+                pointerEvents: 'none',
             },
             Color_palette: {
                 flex: {
@@ -33636,7 +33641,7 @@ var $;
                         },
                         gap: '1rem',
                     },
-                    Avatar_circle: {
+                    Avatar_wrap: {
                         width: '64px',
                         height: '64px',
                         minWidth: '64px',

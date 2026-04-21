@@ -15952,10 +15952,11 @@ declare namespace $ {
 		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
-		avatar_color( ): string
 		player_id( ): string
 		Avatar_icon( ): $mol_avatar
-		Avatar_circle( ): $mol_view
+		avatar_color( ): string
+		Avatar_tint( ): $mol_view
+		Avatar_wrap( ): $mol_view
 		Color_hint( ): $mol_paragraph
 		color_swatch_views( ): readonly(any)[]
 		Color_swatches( ): $mol_view
