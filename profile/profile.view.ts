@@ -44,6 +44,14 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
+		avatar_initial() {
+			const name = this.profile_name().trim()
+			if (name) return name.charAt(0).toUpperCase()
+			const id = this.player_id()
+			return id ? id.charAt(0).toUpperCase() : '?'
+		}
+
+		@$mol_mem
 		color_swatch_views() {
 			return $bog_blitz_palette.map(c => this.Color_swatch(c))
 		}

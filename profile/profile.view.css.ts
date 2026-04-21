@@ -38,9 +38,14 @@ namespace $.$$ {
 			},
 			color: '#ffffff',
 		},
-		Avatar_icon: {
-			width: '70%',
-			height: '70%',
+		Avatar_initial: {
+			font: {
+				size: '2.5rem',
+				weight: 700,
+			},
+			color: '#ffffff',
+			textAlign: 'center',
+			lineHeight: '1',
 		},
 		Color_palette: {
 			flex: {
@@ -72,8 +77,13 @@ namespace $.$$ {
 			width: '2rem',
 			height: '2rem',
 			minWidth: '2rem',
+			minHeight: '2rem',
+			maxWidth: '2rem',
+			maxHeight: '2rem',
 			borderRadius: '50%',
 			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
+			boxSizing: 'border-box',
+			flex: { shrink: 0, grow: 0 },
 			cursor: 'pointer',
 			transition: 'box-shadow 0.15s',
 		},

@@ -8,8 +8,8 @@ $bog_blitz_profile_page $mol_page
 					style *
 						backgroundColor <= avatar_color \
 					sub /
-						<= Avatar_icon $mol_avatar
-							id <= player_id \
+						<= Avatar_initial $mol_paragraph
+							title <= avatar_initial \
 				<= Color_palette $mol_view
 					sub /
 						<= Color_hint $mol_paragraph
