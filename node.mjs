@@ -33400,13 +33400,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("bog/blitz/profile/profile.view.css", "[bog_blitz_profile_page] [mol_avatar] {\n\tstroke-width: 2px;\n}\n");
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     var $$;
     (function ($$) {
         $mol_style_define($bog_blitz_profile_page, {
@@ -33432,6 +33425,7 @@ var $;
                 height: '4rem',
                 flex: { shrink: 0, grow: 0 },
                 align: { self: 'center' },
+                strokeWidth: '2px',
             },
             Color_palette: {
                 flex: {
