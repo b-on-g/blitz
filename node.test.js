@@ -32909,18 +32909,18 @@ var $;
 		avatar_color(){
 			return "";
 		}
-		avatar_initial(){
+		player_id(){
 			return "";
 		}
-		Avatar_initial(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.avatar_initial()));
+		Avatar_icon(){
+			const obj = new this.$.$mol_avatar();
+			(obj.id) = () => ((this.player_id()));
 			return obj;
 		}
 		Avatar_circle(){
 			const obj = new this.$.$mol_view();
 			(obj.style) = () => ({"backgroundColor": (this.avatar_color())});
-			(obj.sub) = () => ([(this.Avatar_initial())]);
+			(obj.sub) = () => ([(this.Avatar_icon())]);
 			return obj;
 		}
 		Color_hint(){
@@ -33119,7 +33119,7 @@ var $;
 			return obj;
 		}
 	};
-	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_initial"));
+	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_icon"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Avatar_circle"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_hint"));
 	($mol_mem(($.$bog_blitz_profile_page.prototype), "Color_swatches"));
@@ -33430,14 +33430,9 @@ var $;
                 },
                 color: '#ffffff',
             },
-            Avatar_initial: {
-                font: {
-                    size: '2.5rem',
-                    weight: 700,
-                },
-                color: '#ffffff',
-                textAlign: 'center',
-                lineHeight: '1',
+            Avatar_icon: {
+                width: '100%',
+                height: '100%',
             },
             Color_palette: {
                 flex: {

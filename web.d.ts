@@ -21803,10 +21803,10 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_paragraph__title_bog_blitz_profile_page_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['avatar_initial'] >
+	type $mol_avatar__id_bog_blitz_profile_page_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['player_id'] >
 		,
-		ReturnType< $mol_paragraph['title'] >
+		ReturnType< $mol_avatar['id'] >
 	>
 	type $mol_view__style_bog_blitz_profile_page_2 = $mol_type_enforce<
 		({ 
@@ -21967,8 +21967,8 @@ declare namespace $ {
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
 		avatar_color( ): string
-		avatar_initial( ): string
-		Avatar_initial( ): $mol_paragraph
+		player_id( ): string
+		Avatar_icon( ): $mol_avatar
 		Avatar_circle( ): $mol_view
 		Color_hint( ): $mol_paragraph
 		color_swatch_views( ): readonly(any)[]
