@@ -22045,6 +22045,9 @@ declare namespace $.$$ {
     }
 }
 
+declare namespace $ {
+}
+
 declare namespace $.$$ {
 }
 
