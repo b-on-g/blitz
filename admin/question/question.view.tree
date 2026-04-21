@@ -33,8 +33,14 @@ $bog_blitz_admin_question $mol_list
 	Image_preview $mol_image
 		uri <= question_image_uri \
 	Image_replace $mol_button_open
-		title @ \Replace Image
+		title @ \Replace
 		files? <=> question_image_files? /
+	Image_url_input $mol_string
+		hint @ \Paste image URL
+		value? <=> question_image_url? \
+	Image_url_import $mol_button_minor
+		title @ \Load
+		click? <=> import_image_url? null
 	Image_remove $mol_button_minor
-		title @ \Remove Image
+		title @ \Remove
 		click? <=> remove_image? null

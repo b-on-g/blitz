@@ -36,7 +36,10 @@ namespace $.$$ {
 			align: {
 				items: 'center',
 			},
-			gap: '0.5rem',
+			gap: '0.375rem',
+			flex: {
+				wrap: 'wrap',
+			},
 		},
 		Image_upload: {
 			Native: {
@@ -45,12 +48,23 @@ namespace $.$$ {
 			},
 		},
 		Image_preview: {
-			maxHeight: '8rem',
-			maxWidth: '12rem',
+			width: '4rem',
+			height: '4rem',
+			minWidth: '4rem',
 			border: {
-				radius: '0.25rem',
+				radius: '0.375rem',
 			},
 			overflow: 'hidden',
+			flex: {
+				shrink: 0,
+			},
+		},
+		Image_url_input: {
+			flex: {
+				grow: 1,
+				shrink: 1,
+				basis: '8rem',
+			},
 		},
 		'@media': {
 			'(width < 600px)': {
@@ -69,8 +83,9 @@ namespace $.$$ {
 					},
 				},
 				Image_preview: {
-					maxHeight: '6rem',
-					maxWidth: '100%',
+					width: '3rem',
+					height: '3rem',
+					minWidth: '3rem',
 				},
 			},
 		},

@@ -3,9 +3,19 @@ namespace $.$$ {
 		@$mol_mem
 		image_section_content() {
 			if (this.question_image_uri()) {
-				return [this.Image_preview(), this.Image_replace(), this.Image_remove()]
+				return [
+					this.Image_preview(),
+					this.Image_replace(),
+					this.Image_url_input(),
+					this.Image_url_import(),
+					this.Image_remove(),
+				]
 			}
-			return [this.Image_upload()]
+			return [
+				this.Image_upload(),
+				this.Image_url_input(),
+				this.Image_url_import(),
+			]
 		}
 
 		@$mol_mem

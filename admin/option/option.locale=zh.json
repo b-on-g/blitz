@@ -3,6 +3,8 @@
 	"$bog_blitz_admin_option_Checkbox_title": "正确答案？",
 	"$bog_blitz_admin_option_Delete_title": "删除",
 	"$bog_blitz_admin_option_Image_upload_title": "图片",
-	"$bog_blitz_admin_option_Image_replace_title": "替换图片",
-	"$bog_blitz_admin_option_Image_remove_title": "删除图片"
+	"$bog_blitz_admin_option_Image_replace_title": "替换",
+	"$bog_blitz_admin_option_Image_remove_title": "删除",
+	"$bog_blitz_admin_option_Image_url_input_hint": "粘贴图片链接",
+	"$bog_blitz_admin_option_Image_url_import_title": "加载"
 }
