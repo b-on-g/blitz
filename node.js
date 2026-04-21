@@ -29423,6 +29423,35 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        function compress_blob(blob, max_size = 400, quality = 0.3) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    let { width, height } = img;
+                    if (width > max_size || height > max_size) {
+                        const ratio = Math.min(max_size / width, max_size / height);
+                        width = Math.round(width * ratio);
+                        height = Math.round(height * ratio);
+                    }
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+                    canvas.toBlob(out => out ? resolve(out) : reject(new Error('compress failed')), 'image/jpeg', quality);
+                };
+                img.onerror = reject;
+                img.src = URL.createObjectURL(blob);
+            });
+        }
+        function fetch_image_compressed(url) {
+            return fetch(url)
+                .then(res => {
+                if (!res.ok)
+                    throw new Error(`fetch ${url} failed: ${res.status}`);
+                return res.blob();
+            })
+                .then(blob => compress_blob(blob));
+        }
         class $bog_blitz_admin extends $.$bog_blitz_admin {
             home_ref() {
                 const home = this.$.$giper_baza_glob.home();
@@ -29516,6 +29545,7 @@ var $;
                     '    {',
                     '      "text": "Question?",',
                     '      "type": "choice",',
+                    '      "image": "https://example.com/pic.png",',
                     '      "options": [',
                     '        { "text": "Option A", "is_correct": true },',
                     '        { "text": "Option B", "is_correct": false }',
@@ -29556,12 +29586,34 @@ var $;
                         if (qData.type === 'text_input' && qData.correct_text) {
                             q.Correct_text('auto')?.val(qData.correct_text);
                         }
+                        if (typeof qData.image === 'string' && qData.image) {
+                            const store = q.Image(null).ensure(null);
+                            if (store) {
+                                fetch_image_compressed(qData.image)
+                                    .then(blob => {
+                                    store.blob(blob);
+                                    q.Image(null).remote(store);
+                                })
+                                    .catch(err => console.warn('image import failed:', qData.image, err));
+                            }
+                        }
                         if (Array.isArray(qData.options)) {
                             const options_list = q.Options('auto');
                             for (const oData of qData.options) {
                                 const opt = options_list.make(null);
                                 opt.Text('auto')?.val(oData.text ?? '');
                                 opt.Is_correct('auto')?.val(oData.is_correct ?? false);
+                                if (typeof oData.image === 'string' && oData.image) {
+                                    const store = opt.Image(null).ensure(null);
+                                    if (store) {
+                                        fetch_image_compressed(oData.image)
+                                            .then(blob => {
+                                            store.blob(blob);
+                                            opt.Image(null).remote(store);
+                                        })
+                                            .catch(err => console.warn('image import failed:', oData.image, err));
+                                    }
+                                }
                             }
                         }
                     }
