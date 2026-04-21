@@ -22384,17 +22384,6 @@ var $;
 			(obj.title) = () => ((this.countdown_text()));
 			return obj;
 		}
-		get_ready_label(){
-			return (this.$.$mol_locale.text("$bog_blitz_lobby_game_get_ready_label"));
-		}
-		input_countdown_text(){
-			return "";
-		}
-		Get_ready(){
-			const obj = new this.$.$mol_paragraph();
-			(obj.title) = () => ((this.input_countdown_text()));
-			return obj;
-		}
 		sub(){
 			return (this.game_content());
 		}
@@ -22510,7 +22499,6 @@ var $;
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "submit_answer"));
 	($mol_mem_key(($.$bog_blitz_lobby_game.prototype), "option_click"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Countdown_number"));
-	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Get_ready"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Pause_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Resume_button"));
 	($mol_mem(($.$bog_blitz_lobby_game.prototype), "Next_button"));
@@ -22678,7 +22666,6 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        const INPUT_SYNC_DELAY = 2000;
         class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
             game_content() {
                 const state = this.game_state();
@@ -22952,21 +22939,16 @@ var $;
             }
             answer_views() {
                 const state = this.game_state();
-                const show_get_ready = state === 'answering' && !this.is_host() && !this.input_ready();
                 if (this.question_type() === 'text_input') {
                     if (state === 'reveal') {
                         return [this.Answer_input(), this.Reveal_correct()];
                     }
                     if (this.is_host())
                         return [this.Answer_input()];
-                    if (show_get_ready)
-                        return [this.Get_ready(), this.Answer_input(), this.Submit_answer()];
                     return [this.Answer_input(), this.Submit_answer()];
                 }
                 const views = this.option_views();
                 if (state === 'answering' && !this.is_host()) {
-                    if (show_get_ready)
-                        return [this.Get_ready(), ...views, this.Submit_answer()];
                     return [...views, this.Submit_answer()];
                 }
                 return views;
@@ -23053,37 +23035,8 @@ var $;
                     return 'false';
                 return String(this.my_answer().split(',').includes(key));
             }
-            _first_answering_ts = 0;
-            input_ready(next) {
-                if (this.game_state() !== 'answering') {
-                    this._first_answering_ts = 0;
-                    return false;
-                }
-                if (!this._first_answering_ts)
-                    this._first_answering_ts = Date.now();
-                const elapsed = Date.now() - this._first_answering_ts;
-                if (elapsed >= INPUT_SYNC_DELAY)
-                    return true;
-                new $mol_after_timeout(INPUT_SYNC_DELAY - elapsed + 50, () => this.input_ready(null));
-                return false;
-            }
-            input_countdown_number(next) {
-                if (this.game_state() !== 'answering')
-                    return 0;
-                if (!this._first_answering_ts)
-                    this._first_answering_ts = Date.now();
-                const remaining = INPUT_SYNC_DELAY - (Date.now() - this._first_answering_ts);
-                if (remaining <= 0)
-                    return 0;
-                const num = Math.ceil(remaining / 1000);
-                new $mol_after_timeout(remaining - (num - 1) * 1000 + 50, () => this.input_countdown_number(null));
-                return num;
-            }
-            input_countdown_text() {
-                const num = this.input_countdown_number();
-                if (!num)
-                    return '';
-                return this.get_ready_label().replace('{num}', String(num));
+            input_ready() {
+                return this.game_state() === 'answering';
             }
             option_enabled(key) {
                 if (this.is_host())
@@ -23104,7 +23057,7 @@ var $;
             }
             option_picker_keys(key) {
                 const state = this.game_state();
-                if (state !== 'answering' && state !== 'reveal')
+                if (state !== 'reveal')
                     return [];
                 if (this.question_type() === 'text_input')
                     return [];
@@ -23239,7 +23192,7 @@ var $;
                 const index = this.current_question_index();
                 const total = this.total_questions();
                 if (state === 'reading') {
-                    session.Round_start('auto')?.val(Date.now() + INPUT_SYNC_DELAY);
+                    session.Round_start('auto')?.val(Date.now());
                     session.Game_state('auto')?.val('answering');
                 }
                 else if (state === 'answering') {
@@ -23465,12 +23418,6 @@ var $;
             $mol_mem
         ], $bog_blitz_lobby_game.prototype, "input_ready", null);
         __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_game.prototype, "input_countdown_number", null);
-        __decorate([
-            $mol_mem
-        ], $bog_blitz_lobby_game.prototype, "input_countdown_text", null);
-        __decorate([
             $mol_mem_key
         ], $bog_blitz_lobby_game.prototype, "option_enabled", null);
         __decorate([
@@ -23569,15 +23516,10 @@ var $;
                 font: { size: '15rem', weight: 900 },
                 opacity: 0.15,
             },
-            Get_ready: {
-                font: { size: '1.25rem', weight: 600 },
-                textAlign: 'center',
-                opacity: 0.7,
-                padding: { top: '0.5rem', bottom: '0.5rem' },
-            },
             '@media': {
                 '(width < 600px)': {
                     Question_row: {
+                        flex: { direction: 'column' },
                         gap: '0.5rem',
                         padding: { top: '0.5rem', bottom: '0.75rem', left: '0.5rem', right: '0.5rem' },
                     },

@@ -10016,117 +10016,112 @@ declare namespace $ {
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_34 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['input_countdown_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_35 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_game_34 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['pause_label'] >
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_36 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_lobby_game_35 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['pause_click'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_37 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_lobby_game_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['resume_label'] >
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_38 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_lobby_game_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['resume_click'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_major__title_bog_blitz_lobby_game_39 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_lobby_game_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['next_label'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_lobby_game_40 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_lobby_game_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['next_click'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_string__hint_bog_blitz_lobby_game_41 = $mol_type_enforce<
+	type $mol_string__hint_bog_blitz_lobby_game_40 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_blitz_lobby_game_42 = $mol_type_enforce<
+	type $mol_string__value_bog_blitz_lobby_game_41 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_draft'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_string__enabled_bog_blitz_lobby_game_43 = $mol_type_enforce<
+	type $mol_string__enabled_bog_blitz_lobby_game_42 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
 		,
 		ReturnType< $mol_string['enabled'] >
 	>
-	type $mol_string__submit_bog_blitz_lobby_game_44 = $mol_type_enforce<
+	type $mol_string__submit_bog_blitz_lobby_game_43 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['text_submit'] >
 		,
 		ReturnType< $mol_string['submit'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_45 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_game_44 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['reveal_correct_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_major__title_bog_blitz_lobby_game_46 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_lobby_game_45 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_label'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_lobby_game_47 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_lobby_game_46 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_answer'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_button_major__enabled_bog_blitz_lobby_game_48 = $mol_type_enforce<
+	type $mol_button_major__enabled_bog_blitz_lobby_game_47 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['submit_enabled'] >
 		,
 		ReturnType< $mol_button_major['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_49 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_48 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_selected'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['selected'] >
 	>
-	type $bog_blitz_lobby_game_option__submitted_bog_blitz_lobby_game_50 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__submitted_bog_blitz_lobby_game_49 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_submitted'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['submitted'] >
 	>
-	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_51 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_50 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_correct'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['correct'] >
 	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_52 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_51 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
 	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_53 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_52 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_text'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['title'] >
 	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_54 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_53 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
 	>
-	type $bog_blitz_lobby_game_option__picker_keys_bog_blitz_lobby_game_55 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__picker_keys_bog_blitz_lobby_game_54 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_picker_keys'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['picker_keys'] >
 	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_56 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_55 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game['option_click'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_option['click'] >
@@ -10202,9 +10197,6 @@ declare namespace $ {
 		countdown_number( ): number
 		countdown_text( ): string
 		Countdown_number( ): $mol_paragraph
-		get_ready_label( ): string
-		input_countdown_text( ): string
-		Get_ready( ): $mol_paragraph
 		sub( ): ReturnType< $bog_blitz_lobby_game['game_content'] >
 		Pause_button( ): $mol_button_minor
 		Resume_button( ): $mol_button_minor
@@ -10250,7 +10242,7 @@ declare namespace $.$$ {
         submit_enabled(): boolean;
         submit_answer(next?: Event): void;
         mark_answered(answers: $bog_blitz_player_answers): void;
-        answer_views(): ($.$mol_paragraph | $.$mol_string | $mol_button_major)[];
+        answer_views(): ($.$mol_paragraph | $.$mol_string)[] | ($.$mol_string | $mol_button_major)[];
         text_submit(next?: Event): void;
         text_input_enabled(): boolean;
         option_keys(): string[];
@@ -10261,10 +10253,7 @@ declare namespace $.$$ {
         has_answered(): boolean;
         has_submitted(): boolean;
         option_submitted(key: string): string;
-        private _first_answering_ts;
-        input_ready(next?: null): boolean;
-        input_countdown_number(next?: null): number;
-        input_countdown_text(): string;
+        input_ready(): boolean;
         option_enabled(key: string): boolean;
         option_correct(key: string): "" | "false" | "true";
         option_picker_keys(key: string): string[];

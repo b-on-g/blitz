@@ -44,7 +44,6 @@
 	"$bog_blitz_lobby_Go_admin_title": "Go to Admin",
 	"$bog_blitz_lobby_No_game_text_title": "No active game",
 	"$bog_blitz_lobby_game_Answer_input_hint": "Type your answer...",
-	"$bog_blitz_lobby_game_get_ready_label": "Get ready... {num}",
 	"$bog_blitz_lobby_game_leaderboard_Bottom_title_title": "Anti-Top 3",
 	"$bog_blitz_lobby_game_leaderboard_Top_title_title": "Leaderboard",
 	"$bog_blitz_lobby_game_meta_stats_percent_hint": "of those who answered",
