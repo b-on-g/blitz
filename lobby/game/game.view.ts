@@ -14,6 +14,10 @@ namespace $.$$ {
 			return this.question_content()
 		}
 
+		reviews_can_write_final() {
+			return !this.is_host()
+		}
+
 		@$mol_mem
 		save_game_to_profile() {
 			if (this.is_host()) return
