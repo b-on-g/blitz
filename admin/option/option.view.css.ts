@@ -4,23 +4,16 @@ namespace $.$$ {
 			color: $mol_theme.hover,
 		},
 		border: {
-			radius: '0.375rem',
+			radius: '0.25rem',
 		},
 		padding: {
-			top: '0.375rem',
-			bottom: '0.375rem',
+			top: '0.25rem',
+			bottom: '0.25rem',
 			left: '0.5rem',
-			right: '0.375rem',
+			right: '0.25rem',
 		},
-		flex: {
-			direction: 'column',
-		},
-		gap: '0.25rem',
-		Main_row: {
-			align: {
-				items: 'center',
-			},
-			gap: '0.375rem',
+		Controls: {
+			gap: '0.25rem',
 		},
 		Text: {
 			flex: {
@@ -31,26 +24,11 @@ namespace $.$$ {
 		Delete: {
 			color: '#cc3333',
 		},
-		Image_thumb: {
-			width: '2.5rem',
-			height: '2.5rem',
-			minWidth: '2.5rem',
-			border: {
-				radius: '0.25rem',
-			},
-			overflow: 'hidden',
-			flex: {
-				shrink: 0,
-			},
-		},
 		Image_section: {
 			align: {
 				items: 'center',
 			},
-			gap: '0.375rem',
-			flex: {
-				wrap: 'wrap',
-			},
+			gap: '0.5rem',
 		},
 		Image_upload: {
 			Native: {
@@ -58,12 +36,13 @@ namespace $.$$ {
 				height: '100%',
 			},
 		},
-		Image_url_input: {
-			flex: {
-				grow: 1,
-				shrink: 1,
-				basis: '8rem',
+		Image_preview: {
+			maxHeight: '6rem',
+			maxWidth: '10rem',
+			border: {
+				radius: '0.25rem',
 			},
+			overflow: 'hidden',
 		},
 	})
 }

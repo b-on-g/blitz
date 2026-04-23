@@ -91,10 +91,8 @@ namespace $.$$ {
 				const prev = this.prev_totals[key] ?? 0
 				if (total > prev && prev > 0) {
 					const diff = total - prev
-					const count = Math.min(diff, 5)
-					for (let i = 0; i < count; i++) {
-						if (i === 0) this.spawn_fly(key)
-						else new $mol_after_timeout(i * 100, () => this.spawn_fly(key))
+					for (let i = 0; i < Math.min(diff, 5); i++) {
+						this.spawn_fly(key)
 					}
 				}
 				this.prev_totals[key] = total
@@ -115,14 +113,19 @@ namespace $.$$ {
 				clap: () => this.Btn_clap(),
 				poop: () => this.Btn_poop(),
 			}
+			const container = this.dom_node() as HTMLElement
 			const btn = btn_map[key]?.().dom_node() as HTMLElement | undefined
-			if (!btn) return
 			const fly = document.createElement('div')
 			fly.textContent = emoji
 			fly.setAttribute('bog_blitz_lobby_reactions_fly', '')
-			const jitter = Math.round((Math.random() - 0.5) * 40)
-			fly.style.setProperty('--bog_blitz_fly_jitter', `${jitter}px`)
-			btn.appendChild(fly)
+			if (btn) {
+				const btnRect = btn.getBoundingClientRect()
+				const containerRect = container.getBoundingClientRect()
+				fly.style.left = `${btnRect.left - containerRect.left + btnRect.width / 2}px`
+			} else {
+				fly.style.left = '50%'
+			}
+			container.appendChild(fly)
 			fly.addEventListener('animationend', () => fly.remove())
 		}
 	}

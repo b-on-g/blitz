@@ -47,8 +47,6 @@ $bog_blitz_admin_editor $mol_list
 		correct_text? <=> correct_text*? \
 		question_image_files? <=> question_image_files*? /
 		question_image_uri <= question_image_uri* \
-		question_image_url? <=> question_image_url*? \
-		import_image_url? <=> import_question_image_url*? null
 		remove_image? <=> remove_question_image*? null
 	Option*0 $bog_blitz_admin_option
 		option_text? <=> option_text*? \
@@ -56,6 +54,4 @@ $bog_blitz_admin_editor $mol_list
 		delete? <=> delete_option*? null
 		option_image_files? <=> option_image_files*? /
 		option_image_uri <= option_image_uri* \
-		option_image_url? <=> option_image_url*? \
-		import_image_url? <=> import_option_image_url*? null
 		remove_image? <=> remove_option_image*? null

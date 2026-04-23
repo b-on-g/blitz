@@ -16,58 +16,41 @@ namespace $.$$ {
 				right: '1.5rem',
 			},
 			maxWidth: '400px',
-			width: '100%',
-			boxSizing: 'border-box',
 		},
-		Avatar: {
+		Avatar_circle: {
+			borderRadius: '50%',
+			overflow: 'hidden',
 			width: '100px',
 			height: '100px',
-			align: {
-				self: 'center',
-			},
-		},
-		Color_palette: {
+			minWidth: '100px',
+			minHeight: '100px',
+			maxWidth: '100px',
+			maxHeight: '100px',
 			flex: {
-				direction: 'column',
+				shrink: 0,
+				grow: 0,
 			},
-			align: {
-				items: 'center',
-			},
-			gap: '0.5rem',
-			width: '100%',
 			margin: {
-				bottom: '1rem',
+				bottom: '0.5rem',
 			},
 		},
-		Color_hint: {
-			font: {
-				size: '0.8rem',
-			},
-			opacity: 0.6,
-		},
-		Color_swatches: {
-			flex: {
-				direction: 'row',
-				wrap: 'wrap',
-			},
-			justify: {
-				content: 'center',
-			},
-			gap: '0.5rem',
-		},
-		Color_swatch: {
-			width: '2.25rem',
-			height: '2.25rem',
-			minWidth: '2.25rem',
-			borderRadius: '50%',
-			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
-			transition: 'box-shadow 0.15s, transform 0.15s',
-			cursor: 'pointer',
-			overflow: 'visible',
-		},
-		Swatch_avatar: {
+		Avatar_image: {
 			width: '100%',
 			height: '100%',
+			objectFit: 'cover',
+		},
+		Avatar_icon: {
+			width: '100%',
+			height: '100%',
+			font: {
+				size: '3rem',
+			},
+		},
+		Avatar: {
+			font: {
+				size: '0.75rem',
+			},
+			opacity: 0.5,
 		},
 		Player_name_input: {
 			font: {
@@ -81,29 +64,6 @@ namespace $.$$ {
 			width: '100%',
 			margin: {
 				top: '0.5rem',
-			},
-		},
-		'@media': {
-			'(width < 600px)': {
-				Body: {
-					gap: '1rem',
-					padding: {
-						top: '1.5rem',
-						bottom: '1rem',
-						left: '0.75rem',
-						right: '0.75rem',
-					},
-				},
-				Avatar: {
-					width: '80px',
-					height: '80px',
-				},
-				Player_name_input: {
-					font: {
-						size: '1.25rem',
-						weight: 600,
-					},
-				},
 			},
 		},
 	})

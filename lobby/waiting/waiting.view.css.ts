@@ -18,21 +18,5 @@ namespace $.$$ {
 			opacity: 0.7,
 			padding: { bottom: '1.5rem', top: '1rem' },
 		},
-		'@media': {
-			'(width < 600px)': {
-				Quiz_title: {
-					font: { size: '1.35rem', weight: 700 },
-					margin: { top: '0.5rem' },
-				},
-				Waiting_message: {
-					font: { size: '1.15rem', weight: 500 },
-					padding: { bottom: '0.25rem', top: '0.5rem' },
-				},
-				Counter: {
-					font: { size: '1rem', weight: 500 },
-					padding: { bottom: '0.75rem', top: '0.5rem' },
-				},
-			},
-		},
 	})
 }

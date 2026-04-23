@@ -39,23 +39,5 @@ namespace $.$$ {
 		Row_count: {
 			font: { size: '0.875rem', weight: 700 },
 		},
-		'@media': {
-			'(width < 600px)': {
-				padding: { top: '1rem', left: '0.5rem', right: '0.5rem' },
-				gap: '0.25rem',
-				Title_heart: { font: { size: '1.5rem' } },
-				Title_smile: { font: { size: '1.5rem' } },
-				Title_fire: { font: { size: '1.5rem' } },
-				Title_clap: { font: { size: '1.5rem' } },
-				Title_poop: { font: { size: '1.5rem' } },
-				Table_heart: { minWidth: '3.5rem' },
-				Table_smile: { minWidth: '3.5rem' },
-				Table_fire: { minWidth: '3.5rem' },
-				Table_clap: { minWidth: '3.5rem' },
-				Table_poop: { minWidth: '3.5rem' },
-				Row_name: { font: { size: '0.75rem' } },
-				Row_count: { font: { size: '0.75rem', weight: 700 } },
-			},
-		},
 	})
 }

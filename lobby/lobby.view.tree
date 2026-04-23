@@ -7,9 +7,6 @@ $bog_blitz_lobby $mol_page
 		counter_string <= counter_string \
 		land_id <= land_id
 		quiz_title <= quiz_title
-		quiz_land_link <= quiz_land_link \
-		my_lord_str <= my_lord_str \
-		my_name <= my_name \
 		session <= session null
 		quiz_data <= quiz_data null
 		Players <= Host_players $bog_blitz_lobby_players
@@ -17,16 +14,15 @@ $bog_blitz_lobby $mol_page
 			my_lord_str <= my_lord_str \
 	Join_screen $bog_blitz_lobby_join
 		player_name? <=> my_player_name? \
-		player_color? <=> my_player_color? \
+		avatar_files? <=> my_avatar_files? /File
 		join? <=> join? null
 		is_synced <= is_synced false
 		player_id <= my_lord_str
+		profile_avatar_uri <= profile_avatar_uri \
+		profile_name <= profile_name \
 	Waiting $bog_blitz_lobby_waiting
 		counter_string <= counter_string \
 		quiz_title <= quiz_title
-		quiz_land_link <= quiz_land_link \
-		my_lord_str <= my_lord_str \
-		my_name <= my_name \
 		Players <= Host_players $bog_blitz_lobby_players
 			players_dict <= players_dict null
 			my_lord_str <= my_lord_str \
@@ -55,14 +51,8 @@ $bog_blitz_lobby $mol_page
 		current_question_index <= current_question_index 0
 		players_dict <= players_dict null
 		my_lord_str <= my_lord_str
-		quiz_land_link <= quiz_land_link \
-		my_name <= my_name \
 	Reactions $bog_blitz_lobby_reactions
 		my_answers <= my_answers null
 		players_dict <= players_dict null
 		is_host <= is_host false
-		in_flow <= reactions_in_flow false
-		attr *
-			^
-			data-in-flow <= reactions_in_flow false
 	body <= lobby_content /

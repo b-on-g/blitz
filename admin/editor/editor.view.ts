@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	function compress_image(source: Blob, max_size = 400, quality = 0.3): Promise<Blob> {
+	function compress_image(file: File, max_size = 400, quality = 0.3): Promise<Blob> {
 		return new Promise((resolve, reject) => {
 			const img = new Image()
 			img.onload = () => {
@@ -21,17 +21,8 @@ namespace $.$$ {
 				)
 			}
 			img.onerror = reject
-			img.src = URL.createObjectURL(source)
+			img.src = URL.createObjectURL(file)
 		})
-	}
-
-	function fetch_image_compressed(url: string): Promise<Blob> {
-		return fetch(url)
-			.then(res => {
-				if (!res.ok) throw new Error(`fetch ${url} failed: ${res.status}`)
-				return res.blob()
-			})
-			.then(blob => compress_image(blob))
 	}
 
 	export class $bog_blitz_admin_editor extends $.$bog_blitz_admin_editor {
@@ -251,53 +242,6 @@ namespace $.$$ {
 			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
 			if (!opt) return
 			opt.Image('auto')?.val(null)
-		}
-
-		@$mol_mem_key
-		question_image_url(key: string, next?: string) {
-			return next ?? ''
-		}
-
-		@$mol_action
-		import_question_image_url(key: string) {
-			const url = this.question_image_url(key)
-			if (!url) return
-			const q = this.questions()[Number(key)]
-			if (!q) return
-			const store = q.Image(null)!.ensure(null)
-			if (!store) return
-			fetch_image_compressed(url)
-				.then(blob => {
-					store.blob(blob)
-					q.Image(null)!.remote(store)
-				})
-				.catch(err => console.warn('image URL import failed:', url, err))
-			this.question_image_url(key, '')
-		}
-
-		@$mol_mem_key
-		option_image_url(key: string, next?: string) {
-			return next ?? ''
-		}
-
-		@$mol_action
-		import_option_image_url(key: string) {
-			const url = this.option_image_url(key)
-			if (!url) return
-			const [qKey, oKey] = key.split('_')
-			const q = this.questions()[Number(qKey)]
-			if (!q) return
-			const opt = (q.Options()?.remote_list() ?? [])[Number(oKey)]
-			if (!opt) return
-			const store = opt.Image(null)!.ensure(null)
-			if (!store) return
-			fetch_image_compressed(url)
-				.then(blob => {
-					store.blob(blob)
-					opt.Image(null)!.remote(store)
-				})
-				.catch(err => console.warn('image URL import failed:', url, err))
-			this.option_image_url(key, '')
 		}
 
 		@$mol_mem

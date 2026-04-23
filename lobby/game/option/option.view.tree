@@ -1,21 +1,9 @@
 $bog_blitz_lobby_game_option $mol_button_major
 	correct \
-	submitted \false
 	attr *
 		^
 		data-selected <= selected \false
-		data-submitted <= submitted \false
 		data-correct <= correct \
 	image_uri \
 	Option_image $mol_image
 		uri <= image_uri
-	picker_keys /string
-	Picker_area $mol_view
-		sub <= picker_views /
-	Picker* $bog_blitz_avatar
-		color <= picker_bg* \
-		player_id <= picker_avatar_id* \
-		attr *
-			^
-			title <= picker_name* \
-			bog_blitz_picker true

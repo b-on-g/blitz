@@ -19,26 +19,17 @@ namespace $.$$ {
 			borderRadius: '0.75rem',
 			margin: { top: '1rem' },
 		},
-		Question_row: {
-			flex: { direction: 'row' },
-			align: { items: 'center' },
-			justify: { content: 'center' },
-			gap: '1rem',
-			width: '100%',
-			maxWidth: '40rem',
-			padding: { top: '1rem', bottom: '1.5rem', left: '1rem', right: '1rem' },
-		},
 		Question: {
-			flex: { grow: 1 },
 			font: { size: '1.75rem', weight: 700 },
 			textAlign: 'center',
+			padding: { top: '1rem', bottom: '1.5rem' },
 		},
 		Answer_area: {
 			flex: { direction: 'column' },
 			gap: '0.75rem',
 			width: '100%',
 			maxWidth: '30rem',
-			padding: { left: '1rem', right: '1rem', bottom: '7rem' },
+			padding: { left: '1rem', right: '1rem' },
 		},
 		Answer_input: {
 			width: '100%',
@@ -57,30 +48,6 @@ namespace $.$$ {
 		Countdown_number: {
 			font: { size: '15rem', weight: 900 },
 			opacity: 0.15,
-		},
-		'@media': {
-			'(width < 600px)': {
-				Question_row: {
-					flex: { direction: 'column' },
-					gap: '0.5rem',
-					padding: { top: '0.5rem', bottom: '0.75rem', left: '0.5rem', right: '0.5rem' },
-				},
-				Question: {
-					font: { size: '1.25rem', weight: 700 },
-				},
-				Question_image: {
-					maxWidth: '100%',
-					maxHeight: '10rem',
-					margin: { top: '0.5rem' },
-				},
-				Answer_area: {
-					gap: '0.5rem',
-					padding: { left: '0.5rem', right: '0.5rem', bottom: '6rem' },
-				},
-				Countdown_number: {
-					font: { size: '8rem', weight: 900 },
-				},
-			},
 		},
 	})
 }

@@ -1,4 +1,4 @@
 {
-	"$bog_blitz_lobby_game_leaderboard_Top_title_title": "排行榜",
-	"$bog_blitz_lobby_game_leaderboard_Bottom_title_title": "后3名"
+	"$bog_blitz_lobby_game_leaderboard_Top_title_title": "前10名",
+	"$bog_blitz_lobby_game_leaderboard_Bottom_title_title": "后10名"
 }

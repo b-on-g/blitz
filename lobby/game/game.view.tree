@@ -24,8 +24,6 @@ $bog_blitz_lobby_game $mol_view
 	current_question_index 0
 	players_dict null
 	my_lord_str \
-	quiz_land_link \
-	my_name \
 	countdown_number 0
 	countdown_text \
 	Countdown_number $mol_paragraph
@@ -41,30 +39,21 @@ $bog_blitz_lobby_game $mol_view
 		title <= next_label @ \Next
 		click? <=> next_click?event null
 	question_type \choice
-	current_answer_key null
-	reviews_can_write_final false
 	question_content /
+		<= Timer $bog_blitz_lobby_game_timer
+			round_start <= round_start
+			duration <= duration
+			paused_at <= paused_at
 		<= Host_controls $mol_view
 			sub <= host_controls /
 		<= State $mol_paragraph
 			title <= state_label
 		<= Question_image $mol_image
 			uri <= question_image_uri \
-		<= Question_row $mol_view
-			sub /
-				<= Question $mol_paragraph
-					title <= current_question_text
-				<= Timer $bog_blitz_lobby_game_timer
-					round_start <= round_start
-					duration <= duration
-					paused_at <= paused_at
-					manual_mode <= manual_mode
+		<= Question $mol_paragraph
+			title <= current_question_text
 		<= Answer_area $mol_view
 			sub <= answer_views /
-		<= Meta $bog_blitz_lobby_game_meta
-			players_dict <= players_dict
-			current_question_index <= current_question_index
-			current_answer_key <= current_answer_key
 		<= Countdown $mol_view
 			sub <= countdown_content /
 	Answer_input $mol_string
@@ -77,7 +66,6 @@ $bog_blitz_lobby_game $mol_view
 			round_start <= round_start
 			duration <= duration
 			paused_at <= paused_at
-			manual_mode <= manual_mode
 		<= Host_controls $mol_view
 			sub <= host_controls /
 		<= State $mol_paragraph
@@ -93,16 +81,8 @@ $bog_blitz_lobby_game $mol_view
 			players_dict <= players_dict
 			my_lord_str <= my_lord_str \
 			is_host <= is_host
-			final true
 		<= Reactions_board $bog_blitz_lobby_game_reactboard
 			players_dict <= players_dict
-		<= Reviews $bog_blitz_reviews
-			quiz_land_link <= quiz_land_link
-			my_lord <= my_lord_str
-			my_name <= my_name
-			can_write <= reviews_can_write_final
-			can_reply <= is_host
-			form_visible <= reviews_form_visible true
 	reveal_correct_text \
 	Reveal_correct $mol_paragraph
 		title <= reveal_correct_text
@@ -112,10 +92,8 @@ $bog_blitz_lobby_game $mol_view
 		enabled <= submit_enabled true
 	Option*0 $bog_blitz_lobby_game_option
 		selected <= option_selected* \false
-		submitted <= option_submitted* \false
 		correct <= option_correct* \
 		enabled <= option_enabled* true
 		title <= option_text* \
 		image_uri <= option_image_uri* \
-		picker_keys <= option_picker_keys* /string
 		click? <=> option_click*? null

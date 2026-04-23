@@ -3,8 +3,5 @@
 	"$bog_blitz_admin_option_Checkbox_title": "Правильный ответ?",
 	"$bog_blitz_admin_option_Delete_title": "Удалить",
 	"$bog_blitz_admin_option_Image_upload_title": "Картинка",
-	"$bog_blitz_admin_option_Image_replace_title": "Заменить",
-	"$bog_blitz_admin_option_Image_remove_title": "Убрать",
-	"$bog_blitz_admin_option_Image_url_input_hint": "Ссылка на картинку",
-	"$bog_blitz_admin_option_Image_url_import_title": "Загрузить"
+	"$bog_blitz_admin_option_Image_remove_title": "Удалить картинку"
 }

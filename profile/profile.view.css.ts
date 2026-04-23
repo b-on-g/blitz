@@ -17,52 +17,37 @@ namespace $.$$ {
 				items: 'center',
 			},
 		},
-		Avatar_icon: {
-			width: '4rem',
-			height: '4rem',
-			flex: { shrink: 0, grow: 0 },
-			align: { self: 'center' },
-			strokeWidth: '2px',
-		},
-		Color_palette: {
-			flex: {
-				direction: 'column',
-			},
-			align: {
-				items: 'center',
-			},
-			gap: '0.5rem',
-			width: '100%',
-		},
-		Color_hint: {
-			font: {
-				size: '0.8rem',
-			},
-			opacity: 0.6,
-		},
-		Color_swatches: {
-			flex: {
-				direction: 'row',
-				wrap: 'wrap',
-			},
-			justify: {
-				content: 'center',
-			},
-			gap: '0.5rem',
-		},
-		Color_swatch: {
-			width: '2rem',
-			height: '2rem',
-			minWidth: '2rem',
-			minHeight: '2rem',
-			maxWidth: '2rem',
-			maxHeight: '2rem',
+		Avatar_circle: {
 			borderRadius: '50%',
-			padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
-			boxSizing: 'border-box',
-			flex: { shrink: 0, grow: 0 },
-			cursor: 'pointer',
-			transition: 'box-shadow 0.15s',
+			overflow: 'hidden',
+			width: '80px',
+			height: '80px',
+			minWidth: '80px',
+			minHeight: '80px',
+			maxWidth: '80px',
+			maxHeight: '80px',
+			flex: {
+				shrink: 0,
+				grow: 0,
+			},
+		},
+		Avatar: {
+			font: {
+				size: '0.75rem',
+			},
+			opacity: 0.5,
+		},
+		Avatar_image: {
+			width: '100%',
+			height: '100%',
+			objectFit: 'cover',
+		},
+		Avatar_icon: {
+			width: '100%',
+			height: '100%',
+			font: {
+				size: '2.5rem',
+			},
 		},
 		Name_row: {
 			justify: {
@@ -213,46 +198,6 @@ namespace $.$$ {
 			opacity: 0.7,
 			font: {
 				size: '0.875rem',
-			},
-		},
-		'@media': {
-			'(width < 600px)': {
-				Card: {
-					padding: {
-						top: '1rem',
-						bottom: '1rem',
-						left: '0.5rem',
-						right: '0.5rem',
-					},
-					gap: '1rem',
-				},
-				Name_input: {
-					font: { size: '1.25rem', weight: 600 },
-				},
-				Stat_row: {
-					padding: {
-						top: '0.375rem',
-						bottom: '0.375rem',
-						left: '0.5rem',
-						right: '0.5rem',
-					},
-				},
-				Game_row: {
-					padding: {
-						top: '0.375rem',
-						bottom: '0.375rem',
-						left: '0.5rem',
-						right: '0.5rem',
-					},
-				},
-				Fun_card: {
-					padding: {
-						top: '0.75rem',
-						bottom: '0.75rem',
-						left: '0.5rem',
-						right: '0.5rem',
-					},
-				},
 			},
 		},
 	})

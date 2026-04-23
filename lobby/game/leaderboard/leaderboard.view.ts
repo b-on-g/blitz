@@ -5,7 +5,7 @@ namespace $.$$ {
 			const parts: ReturnType<typeof this.Top>[] = []
 			if (this.my_row_content().length) parts.push(this.My_row())
 			parts.push(this.Top())
-			if (this.bottom_rows().length) parts.push(this.Bottom())
+			parts.push(this.Bottom())
 			return parts
 		}
 
@@ -20,16 +20,10 @@ namespace $.$$ {
 				const player = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!player) continue
 				if (player.IsHost()?.val()) continue
-				const answered = player.Answered_count()?.val() ?? 0
-				const score = player.Score()?.val() ?? 0
-				// Dropping players who skipped ALL questions (never answered).
-				// Fallback: if Answered_count isn't populated yet but Score is non-zero,
-				// treat as answered — keeps existing sessions intact.
-				if (answered <= 0 && score === 0) continue
 				players.push({
 					key: String(key),
 					name: player.Name()?.val() ?? String(key).slice(0, 8),
-					score,
+					score: player.Score()?.val() ?? 0,
 				})
 			}
 			return players.sort((a, b) => b.score - a.score)
@@ -56,16 +50,13 @@ namespace $.$$ {
 		@$mol_mem
 		top_rows() {
 			const sorted = this.sorted_players()
-			return sorted.map((_, i) => this.Row(`top_${i}`))
+			return sorted.slice(0, 10).map((_, i) => this.Row(`top_${i}`))
 		}
 
 		@$mol_mem
 		bottom_rows() {
-			if (!this.final()) return []
 			const sorted = this.sorted_players()
-			if (sorted.length <= 3) return []
-			const count = Math.min(3, sorted.length)
-			return sorted.slice(-count).reverse().map((_, i) => this.Row(`bottom_${i}`))
+			return sorted.slice(-10).reverse().map((_, i) => this.Row(`bottom_${i}`))
 		}
 
 		@$mol_mem_key

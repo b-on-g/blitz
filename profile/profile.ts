@@ -1,7 +1,7 @@
 namespace $.$$ {
 	export class $bog_blitz_profile extends $giper_baza_dict.with({
 		Name: $giper_baza_atom_text,
-		Color: $giper_baza_atom_text,
+		Avatar: $giper_baza_atom_link_to(() => $giper_baza_file),
 		Games_played: $giper_baza_atom_real,
 		Total_score: $giper_baza_atom_real,
 		Wins: $giper_baza_atom_real,

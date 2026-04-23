@@ -6,25 +6,23 @@ $bog_blitz_lobby_players $mol_list
 		attr *
 			bog_blitz_mine <= is_mine* false
 		sub /
-			<= Player_avatar* $bog_blitz_avatar
-				color <= player_color* \
-				player_id <= player_id* \
+			<= player_avatar_content* null
 			<= Player_id* $mol_paragraph
 				title <= player_id* \
 			<= player_name_content* null
-			<= player_color_controls* null
+	Player_icon* $mol_avatar
+		id <= player_id* \
+	Player_image* $mol_image
+		uri <= player_avatar_uri* \
 	Player_name_input* $mol_string_button
 		hint @ \Touch to change
 		value? <=> player_name*? \
 	Player_name_label* $mol_paragraph
 		title <= player_name* \
-	Player_color_palette* $mol_view
-		sub <= color_swatch_views* /
-	Color_swatch* $mol_button_minor
-		event *
-			^
-			click? <=> color_swatch_click*? null
-		style *
-			backgroundColor <= color_swatch_bg* \
-			boxShadow <= color_swatch_shadow* \
+	Player_avatar_button* $mol_button_open
 		sub /
+			<= player_avatar* null
+			<= Player_avatar_native* $mol_button_open_native
+				files? <=> player_avatar_files*? /File
+				accept \image/*
+				multiple false

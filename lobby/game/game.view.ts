@@ -1,5 +1,4 @@
 namespace $.$$ {
-
 	export class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
 		@$mol_mem
 		game_content() {
@@ -11,10 +10,6 @@ namespace $.$$ {
 			}
 
 			return this.question_content()
-		}
-
-		reviews_can_write_final() {
-			return !this.is_host()
 		}
 
 		@$mol_mem
@@ -68,10 +63,7 @@ namespace $.$$ {
 				if ($bog_blitz_session_fields.has(String(key))) continue
 				const p = dict.dive(key, $bog_blitz_player) as $bog_blitz_player | null
 				if (!p || p.IsHost()?.val()) continue
-				const answered = p.Answered_count()?.val() ?? 0
-				const score = p.Score()?.val() ?? 0
-				if (answered <= 0 && score === 0) continue
-				scores.push({ lord: String(key), score })
+				scores.push({ lord: String(key), score: p.Score()?.val() ?? 0 })
 			}
 			scores.sort((a, b) => b.score - a.score)
 			const my_lord = this.my_lord_str()
@@ -103,22 +95,22 @@ namespace $.$$ {
 				this.Host_controls(),
 				this.State(),
 				this.Question_image(),
-				this.Question_row(),
+				this.Question(),
 				this.Answer_area(),
 			]
-			if (this.game_state() === 'reveal') base.push(this.Meta())
 			if (this.manual_mode()) return base
-			return [...base, this.Countdown()]
+			return [this.Timer(), ...base, this.Countdown()]
 		}
 
 		@$mol_mem
 		leaderboard_content() {
-			return [
-				this.Leaderboard_timer(),
+			const base = [
 				this.Host_controls(),
 				this.State(),
 				this.Leaderboard(),
 			]
+			if (this.manual_mode()) return base
+			return [this.Leaderboard_timer(), ...base]
 		}
 
 		@$mol_mem
@@ -211,8 +203,6 @@ namespace $.$$ {
 		selected_options(next?: string[]): string[] {
 			this.current_question_index()
 			if (next !== undefined) return next
-			const ans = this.my_answer()
-			if (ans) return ans.split(',').filter(Boolean)
 			return []
 		}
 
@@ -220,7 +210,7 @@ namespace $.$$ {
 		text_draft(next?: string): string {
 			this.current_question_index()
 			if (next !== undefined) return next
-			return this.my_answer()
+			return ''
 		}
 
 		publish_question_meta(session: $bog_blitz_session, index: number) {
@@ -239,46 +229,20 @@ namespace $.$$ {
 
 		@$mol_mem
 		submit_enabled() {
-			if (!this.input_ready()) return false
-			if (this.question_type() === 'text_input') {
-				return this.text_draft().trim().length > 0
-			}
 			return this.selected_options().length > 0
 		}
 
 		@$mol_mem
 		submit_answer(next?: Event) {
-			if (next === undefined) return
-			if (this.question_type() === 'text_input') {
-				const draft = this.text_draft()
-				if (!draft) return
+			if (next !== undefined) {
+				const selected = this.selected_options()
+				if (!selected.length) return
 				const answers = this.my_answers() as $bog_blitz_player_answers | null
 				if (!answers) return
-				this.mark_answered(answers)
-				answers.Answer('auto')?.val(draft)
+				answers.Answer('auto')?.val(selected.sort().join(','))
 				answers.Answer_time('auto')?.val(Date.now())
 				answers.Answer_question('auto')?.val(this.current_question_index())
-				return
 			}
-			const selected = this.selected_options()
-			if (!selected.length) return
-			const answers = this.my_answers() as $bog_blitz_player_answers | null
-			if (!answers) return
-			this.mark_answered(answers)
-			answers.Answer('auto')?.val(selected.sort().join(','))
-			answers.Answer_time('auto')?.val(Date.now())
-			answers.Answer_question('auto')?.val(this.current_question_index())
-		}
-
-		/** Инкрементит Answered_count игрока при ПЕРВОМ ответе на ТЕКУЩИЙ вопрос */
-		mark_answered(answers: $bog_blitz_player_answers) {
-			const current = this.current_question_index()
-			const prev_q = answers.Answer_question()?.val() ?? -1
-			if (prev_q === current) return
-			const player = this.my_player() as $bog_blitz_player | null
-			if (!player) return
-			const prev_count = player.Answered_count()?.val() ?? 0
-			player.Answered_count('auto')?.val(prev_count + 1)
 		}
 
 		@$mol_mem
@@ -288,11 +252,10 @@ namespace $.$$ {
 				if (state === 'reveal') {
 					return [this.Answer_input(), this.Reveal_correct()]
 				}
-				if (this.is_host()) return [this.Answer_input()]
-				return [this.Answer_input(), this.Submit_answer()]
+				return [this.Answer_input()]
 			}
 			const views = this.option_views()
-			if (state === 'answering' && !this.is_host()) {
+			if (state === 'answering' && !this.is_host() && !this.has_answered()) {
 				return [...views, this.Submit_answer()]
 			}
 			return views
@@ -305,7 +268,6 @@ namespace $.$$ {
 				if (!draft) return
 				const answers = this.my_answers() as $bog_blitz_player_answers | null
 				if (!answers) return
-				this.mark_answered(answers)
 				answers.Answer('auto')?.val(draft)
 				answers.Answer_time('auto')?.val(Date.now())
 				answers.Answer_question('auto')?.val(this.current_question_index())
@@ -315,8 +277,8 @@ namespace $.$$ {
 		@$mol_mem
 		text_input_enabled() {
 			if (this.is_host()) return false
-			if (!this.input_ready()) return false
-			return this.game_state() === 'answering'
+			if (this.game_state() !== 'answering') return false
+			return !this.has_answered()
 		}
 
 		@$mol_mem
@@ -376,29 +338,11 @@ namespace $.$$ {
 			return this.my_answer() !== ''
 		}
 
-		@$mol_mem
-		has_submitted() {
-			const ans = this.my_answer()
-			return ans.length > 0
-		}
-
-		@$mol_mem_key
-		option_submitted(key: string) {
-			if (this.is_host()) return 'false'
-			if (!this.has_submitted()) return 'false'
-			return String(this.my_answer().split(',').includes(key))
-		}
-
-		@$mol_mem
-		input_ready(): boolean {
-			return this.game_state() === 'answering'
-		}
-
 		@$mol_mem_key
 		option_enabled(key: string) {
 			if (this.is_host()) return false
-			if (!this.input_ready()) return false
-			return this.game_state() === 'answering'
+			if (this.game_state() !== 'answering') return false
+			return !this.has_answered()
 		}
 
 		@$mol_mem_key
@@ -412,43 +356,11 @@ namespace $.$$ {
 		}
 
 		@$mol_mem_key
-		option_picker_keys(key: string): string[] {
-			const state = this.game_state()
-			if (state !== 'reveal') return []
-			if (this.question_type() === 'text_input') return []
-			const dict = this.players_dict() as $giper_baza_dict | null
-			if (!dict) return []
-			const current = this.current_question_index()
-			const keys = dict.keys() ?? []
-			const out: string[] = []
-			for (const k of keys) {
-				if ($bog_blitz_session_fields.has(String(k))) continue
-				const player = dict.dive(k, $bog_blitz_player) as $bog_blitz_player | null
-				if (!player) continue
-				if (player.IsHost()?.val()) continue
-				const link = player.Answer_land()?.val()
-				if (!link) continue
-				const pa = this.$.$giper_baza_glob.Land(new $giper_baza_link(link)).Data($bog_blitz_player_answers) as $bog_blitz_player_answers | null
-				const pa_q = pa?.Answer_question()?.val() ?? -1
-				if (pa_q !== current) continue
-				const answer = pa?.Answer()?.val() ?? ''
-				if (!answer) continue
-				const picked = new Set(answer.split(',').filter(Boolean))
-				if (!picked.has(key)) continue
-				const lord = String(k)
-				const name = player.Name()?.val() ?? lord.slice(0, 8)
-				const color = $bog_blitz_color_for(lord, player.Color()?.val() ?? '')
-				out.push(`${lord}\u0001${name}\u0001${color}`)
-			}
-			return out
-		}
-
-		@$mol_mem_key
 		option_selected(key: string) {
 			const state = this.game_state()
 			if (state === 'reading') return ''
 			if (this.is_host()) return ''
-			if (state === 'answering') {
+			if (state === 'answering' && !this.has_answered()) {
 				return String(this.selected_options().includes(key))
 			}
 			if (!this.has_answered()) return ''
@@ -516,17 +428,16 @@ namespace $.$$ {
 		@$mol_mem_key
 		option_click(key: string, e?: any) {
 			if (e) {
-				if (!this.option_enabled(key)) return null
 				const current = this.selected_options()
-				let next: string[]
 				if (this.has_multiple_correct()) {
-					next = current.includes(key)
-						? current.filter(k => k !== key)
-						: [...current, key]
+					if (current.includes(key)) {
+						this.selected_options(current.filter(k => k !== key))
+					} else {
+						this.selected_options([...current, key])
+					}
 				} else {
-					next = current.includes(key) ? [] : [key]
+					this.selected_options(current.includes(key) ? [] : [key])
 				}
-				this.selected_options(next)
 			}
 			return null
 		}
@@ -599,17 +510,9 @@ namespace $.$$ {
 
 		current_answer_key() {
 			const keys = this.answers_key_data()
-			if (keys) {
-				const index = this.current_question_index()
-				if (keys[index]) return keys[index]
-			}
-			// Fallback for non-host: use session.Reveal_correct (only available in reveal phase)
-			if (this.game_state() !== 'reveal') return null
-			const session = this.session() as $bog_blitz_session | null
-			if (!session) return null
-			const correct = session.Reveal_correct()?.val() ?? ''
-			if (!correct) return null
-			return { type: this.question_type(), correct }
+			if (!keys) return null
+			const index = this.current_question_index()
+			return keys[index] ?? null
 		}
 
 		player_answers_data(player: $bog_blitz_player) {

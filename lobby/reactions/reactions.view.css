@@ -1,0 +1,22 @@
+[bog_blitz_lobby_reactions] {
+	position: fixed !important;
+	bottom: 1rem !important;
+	right: 1rem !important;
+	z-index: 100;
+}
+
+[bog_blitz_lobby_reactions_fly] {
+	animation: bog_blitz_fly_up 1.5s ease-out forwards;
+	transform: translateX(-50%);
+}
+
+@keyframes bog_blitz_fly_up {
+	0% {
+		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateX(-50%) translateY(-200px);
+	}
+}

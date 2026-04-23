@@ -2,11 +2,7 @@ $bog_blitz_lobby_game_timer $mol_view
 	duration 0
 	round_start 0
 	paused_at 0
-	manual_mode false
-	digits_text \
 	sub /
-		<= Digits $mol_paragraph
-			title <= digits_text
 		<= Bar $mol_view
 			style *
 				^

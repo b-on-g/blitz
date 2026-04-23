@@ -1,32 +1,23 @@
 $bog_blitz_admin_option $mol_list
 	rows <= option_content /
-	Main_row $mol_row
-		sub <= main_row_content /
-	Image_thumb $mol_image
-		uri <= option_image_uri \
-	Text $mol_string_button
-		hint @ \Write your option
-		value? <=> option_text? \
-	Checkbox $mol_check_box
-		title @ \Is it correct ?
-		checked? <=> is_correct? false
-	Delete $mol_button_minor
-		title @ \Delete
-		click? <=> delete? null
 	Image_section $mol_row
 		sub <= image_section_content /
+	Image_preview $mol_image
+		uri <= option_image_uri \
 	Image_upload $mol_button_open
 		title @ \Image
 		files? <=> option_image_files? /
-	Image_replace $mol_button_open
-		title @ \Replace
-		files? <=> option_image_files? /
-	Image_url_input $mol_string
-		hint @ \Paste image URL
-		value? <=> option_image_url? \
-	Image_url_import $mol_button_minor
-		title @ \Load
-		click? <=> import_image_url? null
 	Image_remove $mol_button_minor
-		title @ \Remove
+		title @ \Remove Image
 		click? <=> remove_image? null
+	Controls $mol_row
+		sub /
+			<= Text $mol_string_button
+				hint @ \Write your option
+				value? <=> option_text? \
+			<= Checkbox $mol_check_box
+				title @ \Is it correct ?
+				checked? <=> is_correct? false
+			<= Delete $mol_button_minor
+				title @ \Delete
+				click? <=> delete? null

@@ -36,10 +36,7 @@ namespace $.$$ {
 			align: {
 				items: 'center',
 			},
-			gap: '0.375rem',
-			flex: {
-				wrap: 'wrap',
-			},
+			gap: '0.5rem',
 		},
 		Image_upload: {
 			Native: {
@@ -48,46 +45,12 @@ namespace $.$$ {
 			},
 		},
 		Image_preview: {
-			width: '4rem',
-			height: '4rem',
-			minWidth: '4rem',
+			maxHeight: '8rem',
+			maxWidth: '12rem',
 			border: {
-				radius: '0.375rem',
+				radius: '0.25rem',
 			},
 			overflow: 'hidden',
-			flex: {
-				shrink: 0,
-			},
-		},
-		Image_url_input: {
-			flex: {
-				grow: 1,
-				shrink: 1,
-				basis: '8rem',
-			},
-		},
-		'@media': {
-			'(width < 600px)': {
-				padding: {
-					top: '0.375rem',
-					bottom: '0.375rem',
-					left: '0.5rem',
-					right: '0.5rem',
-				},
-				Options_section: {
-					padding: {
-						top: 0,
-						bottom: 0,
-						left: '0.5rem',
-						right: 0,
-					},
-				},
-				Image_preview: {
-					width: '3rem',
-					height: '3rem',
-					minWidth: '3rem',
-				},
-			},
 		},
 	})
 }

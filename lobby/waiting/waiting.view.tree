@@ -2,9 +2,6 @@ $bog_blitz_lobby_waiting $mol_page
 	Head null
 	counter_string \
 	quiz_title \
-	quiz_land_link \
-	my_lord_str \
-	my_name \
 	body /
 		<= Quiz_title $mol_paragraph
 			title <= quiz_title

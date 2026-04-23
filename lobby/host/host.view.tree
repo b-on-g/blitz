@@ -3,9 +3,6 @@ $bog_blitz_lobby_host $mol_page
 	counter_string \
 	land_id \
 	quiz_title \
-	quiz_land_link \
-	my_lord_str \
-	my_name \
 	session null
 	quiz_data null
 	body /

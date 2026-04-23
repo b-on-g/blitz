@@ -1,8 +1,0 @@
-$bog_blitz_avatar $mol_view
-	color \
-	player_id \
-	style *
-		backgroundColor <= color
-	sub /
-		<= Icon $mol_avatar
-			id <= player_id

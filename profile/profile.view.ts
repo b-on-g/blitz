@@ -29,51 +29,36 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		profile_color(next?: string) {
+		avatar_uri() {
+			const files = this.avatar_files()
+			if (files.length) return URL.createObjectURL(files[0])
+
 			const profile = this.profile_data()
-			if (next !== undefined) {
-				profile.Color('auto')?.val(next)
-				return next
+			const file = profile.Avatar()?.remote()
+			if (!file) return ''
+			return file.uri() ?? ''
+		}
+
+		@$mol_mem
+		avatar_files(next?: File[]) {
+			if (next?.length) {
+				const profile = this.profile_data()
+				const store = profile.Avatar(null)!.ensure(null)
+				if (store) {
+					store.blob(next[0])
+					profile.Avatar(null)!.remote(store)
+				}
 			}
-			return profile.Color()?.val() ?? ''
+			return next ?? []
 		}
 
 		@$mol_mem
-		avatar_color() {
-			return $bog_blitz_color_for(this.player_id(), this.profile_color())
-		}
-
-		@$mol_mem
-		avatar_initial() {
-			const name = this.profile_name().trim()
-			if (name) return name.charAt(0).toUpperCase()
-			const id = this.player_id()
-			return id ? id.charAt(0).toUpperCase() : '?'
-		}
-
-		@$mol_mem
-		color_swatch_views() {
-			return $bog_blitz_palette.map(c => this.Color_swatch(c))
-		}
-
-		color_swatch_bg(key: string) {
-			return key
-		}
-
-		color_swatch_selected(key: string) {
-			return this.avatar_color().toLowerCase() === key.toLowerCase()
-		}
-
-		color_swatch_shadow(key: string) {
-			return this.color_swatch_selected(key) ? `0 0 0 3px ${$mol_theme.text}` : '0 0 0 0 transparent'
-		}
-
-		@$mol_mem_key
-		color_swatch_click(key: string, next?: Event) {
-			if (next !== undefined) {
-				this.profile_color(key)
-			}
-			return null
+		avatar_preview() {
+			try {
+				const uri = this.avatar_uri()
+				if (uri) return this.Avatar_image()
+			} catch {}
+			return this.Avatar_icon()
 		}
 
 		@$mol_mem
