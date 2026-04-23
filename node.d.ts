@@ -772,14 +772,14 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $mol_theme: Record<"image" | "line" | "text" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "focus" | "field" | "spirit", $mol_style_func<"var", unknown>>;
+    const $mol_theme: Record<"image" | "line" | "text" | "current" | "field" | "focus" | "back" | "hover" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
 }
 
 declare namespace $ {
-    let $mol_gap: Record<"text" | "space" | "blur" | "block" | "page" | "emoji" | "round", $mol_style_func<"var", unknown>>;
+    let $mol_gap: Record<"text" | "space" | "block" | "blur" | "page" | "emoji" | "round", $mol_style_func<"var", unknown>>;
 }
 
 declare namespace $ {
@@ -1350,138 +1350,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_state_time extends $mol_object {
-        static task(precision: number, reset?: null): $mol_after_timeout | $mol_after_frame;
-        static now(precision: number): number;
-    }
-}
-
-declare namespace $ {
-
-	export class $mol_svg extends $mol_view {
-		dom_name( ): string
-		dom_name_space( ): string
-		font_size( ): number
-		font_family( ): string
-		style_size( ): Record<string, any>
-	}
-	
-}
-
-//# sourceMappingURL=svg.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_svg extends $.$mol_svg {
-        computed_style(): Record<string, any>;
-        font_size(): number;
-        font_family(): any;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_svg_root extends $mol_svg {
-		view_box( ): string
-		aspect( ): string
-		dom_name( ): string
-		attr( ): ({ 
-			'viewBox': ReturnType< $mol_svg_root['view_box'] >,
-			'preserveAspectRatio': ReturnType< $mol_svg_root['aspect'] >,
-		})  & ReturnType< $mol_svg['attr'] >
-	}
-	
-}
-
-//# sourceMappingURL=root.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_svg_path extends $mol_svg {
-		geometry( ): string
-		dom_name( ): string
-		attr( ): ({ 
-			'd': ReturnType< $mol_svg_path['geometry'] >,
-		})  & ReturnType< $mol_svg['attr'] >
-	}
-	
-}
-
-//# sourceMappingURL=path.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_svg_path__geometry_mol_icon_1 = $mol_type_enforce<
-		ReturnType< $mol_icon['path'] >
-		,
-		ReturnType< $mol_svg_path['geometry'] >
-	>
-	export class $mol_icon extends $mol_svg_root {
-		path( ): string
-		Path( ): $mol_svg_path
-		view_box( ): string
-		minimal_width( ): number
-		minimal_height( ): number
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=icon.view.tree.d.ts.map
-declare namespace $ {
-    function $mol_hash_numbers(buff: ArrayLike<number>, seed?: number): number;
-}
-
-declare namespace $ {
-    function $mol_hash_string(str: string, seed?: number): number;
-}
-
-declare namespace $ {
-
-	export class $mol_avatar extends $mol_icon {
-		view_box( ): string
-		id( ): string
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=avatar.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_avatar extends $.$mol_avatar {
-        path(): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_avatar__id_bog_blitz_avatar_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_avatar['player_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	export class $bog_blitz_avatar extends $mol_view {
-		Icon( ): $mol_avatar
-		color( ): string
-		player_id( ): string
-		style( ): ({ 
-			'backgroundColor': ReturnType< $bog_blitz_avatar['color'] >,
-		}) 
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=avatar.view.tree.d.ts.map
-declare namespace $.$$ {
-}
-
-declare namespace $ {
 
 	export class $mol_paragraph extends $mol_view {
 		line_height( ): number
@@ -1508,16 +1376,26 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    let $mol_layer: Record<"focus" | "float" | "hover" | "speck" | "popup", $mol_style_func<"var", unknown>>;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
 
-	export class $mol_row extends $mol_view {
+	export class $mol_speck extends $mol_view {
+		value( ): any
+		theme( ): string
+		sub( ): readonly(any)[]
 	}
 	
 }
 
-//# sourceMappingURL=row.view.tree.d.ts.map
+//# sourceMappingURL=speck.view.tree.d.ts.map
 declare namespace $ {
     enum $mol_keyboard_code {
         backspace = 8,
@@ -1625,6 +1503,305 @@ declare namespace $ {
 
 declare namespace $ {
 
+	type $mol_speck__value_mol_button_1 = $mol_type_enforce<
+		ReturnType< $mol_button['error'] >
+		,
+		ReturnType< $mol_speck['value'] >
+	>
+	export class $mol_button extends $mol_view {
+		event_activate( next?: any ): any
+		activate( next?: ReturnType< $mol_button['event_activate'] > ): ReturnType< $mol_button['event_activate'] >
+		clicks( next?: any ): any
+		event_key_press( next?: any ): any
+		key_press( next?: ReturnType< $mol_button['event_key_press'] > ): ReturnType< $mol_button['event_key_press'] >
+		disabled( ): boolean
+		tab_index( ): number
+		hint( ): string
+		hint_safe( ): ReturnType< $mol_button['hint'] >
+		error( ): string
+		enabled( ): boolean
+		click( next?: any ): any
+		event_click( next?: any ): any
+		status( next?: readonly(any)[] ): readonly(any)[]
+		event( ): ({ 
+			click( next?: ReturnType< $mol_button['activate'] > ): ReturnType< $mol_button['activate'] >,
+			dblclick( next?: ReturnType< $mol_button['clicks'] > ): ReturnType< $mol_button['clicks'] >,
+			keydown( next?: ReturnType< $mol_button['key_press'] > ): ReturnType< $mol_button['key_press'] >,
+		})  & ReturnType< $mol_view['event'] >
+		attr( ): ({ 
+			'disabled': ReturnType< $mol_button['disabled'] >,
+			'role': string,
+			'tabindex': ReturnType< $mol_button['tab_index'] >,
+			'title': ReturnType< $mol_button['hint_safe'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		sub( ): readonly($mol_view_content)[]
+		Speck( ): $mol_speck
+	}
+	
+}
+
+//# sourceMappingURL=button.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_button extends $.$mol_button {
+        disabled(): boolean;
+        event_activate(next: Event): void;
+        event_key_press(event: KeyboardEvent): any;
+        tab_index(): number;
+        error(): string;
+        hint_safe(): string;
+        sub_visible(): ($mol_view_content | $mol_speck)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_button_typed extends $mol_button {
+		minimal_height( ): number
+		minimal_width( ): number
+	}
+	
+}
+
+//# sourceMappingURL=typed.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_button_minor extends $mol_button_typed {
+	}
+	
+}
+
+//# sourceMappingURL=minor.view.tree.d.ts.map
+declare namespace $ {
+    class $mol_state_time extends $mol_object {
+        static task(precision: number, reset?: null): $mol_after_timeout | $mol_after_frame;
+        static now(precision: number): number;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_svg extends $mol_view {
+		dom_name( ): string
+		dom_name_space( ): string
+		font_size( ): number
+		font_family( ): string
+		style_size( ): Record<string, any>
+	}
+	
+}
+
+//# sourceMappingURL=svg.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_svg extends $.$mol_svg {
+        computed_style(): Record<string, any>;
+        font_size(): number;
+        font_family(): any;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_svg_root extends $mol_svg {
+		view_box( ): string
+		aspect( ): string
+		dom_name( ): string
+		attr( ): ({ 
+			'viewBox': ReturnType< $mol_svg_root['view_box'] >,
+			'preserveAspectRatio': ReturnType< $mol_svg_root['aspect'] >,
+		})  & ReturnType< $mol_svg['attr'] >
+	}
+	
+}
+
+//# sourceMappingURL=root.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_svg_path extends $mol_svg {
+		geometry( ): string
+		dom_name( ): string
+		attr( ): ({ 
+			'd': ReturnType< $mol_svg_path['geometry'] >,
+		})  & ReturnType< $mol_svg['attr'] >
+	}
+	
+}
+
+//# sourceMappingURL=path.view.tree.d.ts.map
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_svg_path__geometry_mol_icon_1 = $mol_type_enforce<
+		ReturnType< $mol_icon['path'] >
+		,
+		ReturnType< $mol_svg_path['geometry'] >
+	>
+	export class $mol_icon extends $mol_svg_root {
+		path( ): string
+		Path( ): $mol_svg_path
+		view_box( ): string
+		minimal_width( ): number
+		minimal_height( ): number
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=icon.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_upload extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=upload.view.tree.d.ts.map
+declare namespace $ {
+
+	type $mol_button_open_native__files_mol_button_open_1 = $mol_type_enforce<
+		ReturnType< $mol_button_open['files_handled'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_mol_button_open_2 = $mol_type_enforce<
+		ReturnType< $mol_button_open['accept'] >
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_mol_button_open_3 = $mol_type_enforce<
+		ReturnType< $mol_button_open['multiple'] >
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	export class $mol_button_open extends $mol_button_minor {
+		Icon( ): $mol_icon_upload
+		files( next?: readonly(File)[] ): readonly(File)[]
+		files_handled( next?: ReturnType< $mol_button_open['files'] > ): ReturnType< $mol_button_open['files'] >
+		accept( ): string
+		multiple( ): boolean
+		Native( ): $mol_button_open_native
+		sub( ): readonly(any)[]
+	}
+	
+	export class $mol_button_open_native extends $mol_view {
+		accept( ): string
+		multiple( ): boolean
+		picked( next?: any ): any
+		dom_name( ): string
+		files( next?: readonly(File)[] ): readonly(File)[]
+		attr( ): ({ 
+			'type': string,
+			'accept': ReturnType< $mol_button_open_native['accept'] >,
+			'multiple': ReturnType< $mol_button_open_native['multiple'] >,
+		}) 
+		event( ): ({ 
+			change( next?: ReturnType< $mol_button_open_native['picked'] > ): ReturnType< $mol_button_open_native['picked'] >,
+		}) 
+	}
+	
+}
+
+//# sourceMappingURL=open.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_button_open extends $.$mol_button_open {
+        files_handled(next?: readonly File[]): readonly File[];
+    }
+    class $mol_button_open_native extends $.$mol_button_open_native {
+        dom_node(): HTMLInputElement;
+        picked(): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_row extends $mol_view {
+	}
+	
+}
+
+//# sourceMappingURL=row.view.tree.d.ts.map
+declare namespace $ {
+    function $mol_hash_numbers(buff: ArrayLike<number>, seed?: number): number;
+}
+
+declare namespace $ {
+    function $mol_hash_string(str: string, seed?: number): number;
+}
+
+declare namespace $ {
+
+	export class $mol_avatar extends $mol_icon {
+		view_box( ): string
+		id( ): string
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=avatar.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_avatar extends $.$mol_avatar {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_image extends $mol_view {
+		uri( ): string
+		title( ): string
+		loading( ): string
+		decoding( ): string
+		cors( ): any
+		natural_width( ): number
+		natural_height( ): number
+		load( next?: any ): any
+		dom_name( ): string
+		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
+		event( ): Record<string, any>
+		minimal_width( ): number
+		minimal_height( ): number
+	}
+	
+}
+
+//# sourceMappingURL=image.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_image extends $.$mol_image {
+        natural_width(next?: null): number;
+        natural_height(next?: null): number;
+        load(): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
 	export class $mol_hotkey extends $mol_plugin {
 		keydown( next?: any ): any
 		event( ): ({ 
@@ -1648,13 +1825,6 @@ declare namespace $.$$ {
 
 declare namespace $ {
     let $mol_action: typeof $mol_wire_method;
-}
-
-declare namespace $ {
-    let $mol_layer: Record<"hover" | "focus" | "speck" | "float" | "popup", $mol_style_func<"var", unknown>>;
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -1973,189 +2143,90 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
 
-declare namespace $ {
-
-	export class $mol_speck extends $mol_view {
-		value( ): any
-		theme( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=speck.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_speck__value_mol_button_1 = $mol_type_enforce<
-		ReturnType< $mol_button['error'] >
-		,
-		ReturnType< $mol_speck['value'] >
-	>
-	export class $mol_button extends $mol_view {
-		event_activate( next?: any ): any
-		activate( next?: ReturnType< $mol_button['event_activate'] > ): ReturnType< $mol_button['event_activate'] >
-		clicks( next?: any ): any
-		event_key_press( next?: any ): any
-		key_press( next?: ReturnType< $mol_button['event_key_press'] > ): ReturnType< $mol_button['event_key_press'] >
-		disabled( ): boolean
-		tab_index( ): number
-		hint( ): string
-		hint_safe( ): ReturnType< $mol_button['hint'] >
-		error( ): string
-		enabled( ): boolean
-		click( next?: any ): any
-		event_click( next?: any ): any
-		status( next?: readonly(any)[] ): readonly(any)[]
-		event( ): ({ 
-			click( next?: ReturnType< $mol_button['activate'] > ): ReturnType< $mol_button['activate'] >,
-			dblclick( next?: ReturnType< $mol_button['clicks'] > ): ReturnType< $mol_button['clicks'] >,
-			keydown( next?: ReturnType< $mol_button['key_press'] > ): ReturnType< $mol_button['key_press'] >,
-		})  & ReturnType< $mol_view['event'] >
-		attr( ): ({ 
-			'disabled': ReturnType< $mol_button['disabled'] >,
-			'role': string,
-			'tabindex': ReturnType< $mol_button['tab_index'] >,
-			'title': ReturnType< $mol_button['hint_safe'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		sub( ): readonly($mol_view_content)[]
-		Speck( ): $mol_speck
-	}
-	
-}
-
-//# sourceMappingURL=button.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_button extends $.$mol_button {
-        disabled(): boolean;
-        event_activate(next: Event): void;
-        event_key_press(event: KeyboardEvent): any;
-        tab_index(): number;
-        error(): string;
-        hint_safe(): string;
-        sub_visible(): ($mol_view_content | $mol_speck)[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_button_typed extends $mol_button {
-		minimal_height( ): number
-		minimal_width( ): number
-	}
-	
-}
-
-//# sourceMappingURL=typed.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_button_minor extends $mol_button_typed {
-	}
-	
-}
-
-//# sourceMappingURL=minor.view.tree.d.ts.map
-declare namespace $ {
-
-	type $bog_blitz_avatar__color_bog_blitz_lobby_players_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_players['player_color'] >
-		,
-		ReturnType< $bog_blitz_avatar['color'] >
-	>
-	type $bog_blitz_avatar__player_id_bog_blitz_lobby_players_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_players['player_id'] >
-		,
-		ReturnType< $bog_blitz_avatar['player_id'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_3 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_1 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_id'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_row__attr_bog_blitz_lobby_players_4 = $mol_type_enforce<
+	type $mol_button_open_native__files_bog_blitz_lobby_players_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_avatar_files'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_bog_blitz_lobby_players_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_bog_blitz_lobby_players_4 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	type $mol_row__attr_bog_blitz_lobby_players_5 = $mol_type_enforce<
 		({ 
 			'bog_blitz_mine': ReturnType< $bog_blitz_lobby_players['is_mine'] >,
 		}) 
 		,
 		ReturnType< $mol_row['attr'] >
 	>
-	type $mol_row__sub_bog_blitz_lobby_players_5 = $mol_type_enforce<
+	type $mol_row__sub_bog_blitz_lobby_players_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_lobby_players_6 = $mol_type_enforce<
+	type $mol_avatar__id_bog_blitz_lobby_players_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_id'] >
+		,
+		ReturnType< $mol_avatar['id'] >
+	>
+	type $mol_image__uri_bog_blitz_lobby_players_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_players['player_avatar_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_string_button__hint_bog_blitz_lobby_players_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_lobby_players_7 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_lobby_players_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_paragraph__title_bog_blitz_lobby_players_8 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_players_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_players['player_name'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_players_9 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_players['color_swatch_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__event_bog_blitz_lobby_players_10 = $mol_type_enforce<
-		({ 
-			click( next?: ReturnType< $bog_blitz_lobby_players['color_swatch_click'] > ): ReturnType< $bog_blitz_lobby_players['color_swatch_click'] >,
-		})  & ReturnType< $mol_button_minor['event'] >
-		,
-		ReturnType< $mol_button_minor['event'] >
-	>
-	type $mol_button_minor__style_bog_blitz_lobby_players_11 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_lobby_players['color_swatch_bg'] >,
-			'boxShadow': ReturnType< $bog_blitz_lobby_players['color_swatch_shadow'] >,
-		}) 
-		,
-		ReturnType< $mol_button_minor['style'] >
-	>
-	type $mol_button_minor__sub_bog_blitz_lobby_players_12 = $mol_type_enforce<
+	type $mol_button_open__sub_bog_blitz_lobby_players_12 = $mol_type_enforce<
 		readonly(any)[]
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_button_open['sub'] >
 	>
 	export class $bog_blitz_lobby_players extends $mol_list {
 		player_views( ): readonly(any)[]
 		is_mine( id: any): boolean
-		player_color( id: any): string
+		player_avatar_content( id: any): any
 		player_id( id: any): string
-		Player_avatar( id: any): $bog_blitz_avatar
 		Player_id( id: any): $mol_paragraph
 		player_name_content( id: any): any
-		player_color_controls( id: any): any
+		player_avatar_uri( id: any): string
 		player_name( id: any): string
-		color_swatch_views( id: any): readonly(any)[]
-		color_swatch_click( id: any, next?: any ): any
-		color_swatch_bg( id: any): string
-		color_swatch_shadow( id: any): string
+		player_avatar( id: any): any
+		player_avatar_files( id: any, next?: readonly(File)[] ): readonly(File)[]
+		Player_avatar_native( id: any): $mol_button_open_native
 		players_dict( ): any
 		my_lord_str( ): string
 		rows( ): ReturnType< $bog_blitz_lobby_players['player_views'] >
 		Player( id: any): $mol_row
+		Player_icon( id: any): $mol_avatar
+		Player_image( id: any): $mol_image
 		Player_name_input( id: any): $mol_string_button
 		Player_name_label( id: any): $mol_paragraph
-		Player_color_palette( id: any): $mol_view
-		Color_swatch( id: any): $mol_button_minor
+		Player_avatar_button( id: any): $mol_button_open
 	}
 	
 }
@@ -2169,14 +2240,10 @@ declare namespace $.$$ {
         player_views(): $mol_row[];
         player_name(key: string, next?: string): any;
         player_keys(): string[];
-        player_color_val(key: string, next?: string): any;
-        player_color(key: string): string;
-        player_color_controls(key: string): $mol_view | null;
-        color_swatch_views(key: string): $mol_button_minor[];
-        color_swatch_bg(key: string): string;
-        color_swatch_selected(key: string): boolean;
-        color_swatch_shadow(key: string): string;
-        color_swatch_click(key: string, next?: Event): null;
+        player_avatar_uri(key: string): string;
+        player_avatar(key: string): $.$mol_avatar | $.$mol_image;
+        player_avatar_content(key: string): $.$mol_button_open | $.$mol_avatar | $.$mol_image;
+        player_avatar_files(key: string, next?: readonly File[]): readonly File[];
         is_mine(key: string): boolean;
     }
 }
@@ -2196,38 +2263,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=major.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_image extends $mol_view {
-		uri( ): string
-		title( ): string
-		loading( ): string
-		decoding( ): string
-		cors( ): any
-		natural_width( ): number
-		natural_height( ): number
-		load( next?: any ): any
-		dom_name( ): string
-		attr( ): Record<string, any> & ReturnType< $mol_view['attr'] >
-		event( ): Record<string, any>
-		minimal_width( ): number
-		minimal_height( ): number
-	}
-	
-}
-
-//# sourceMappingURL=image.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_image extends $.$mol_image {
-        natural_width(next?: null): number;
-        natural_height(next?: null): number;
-        load(): void;
-    }
-}
-
-declare namespace $ {
-}
-
 declare namespace $ {
     class $mol_import extends $mol_object2 {
         static module(uri: string): any;
@@ -2794,7 +2829,7 @@ declare namespace $ {
             op: keyof typeof $mol_websocket_frame_op;
             fin: boolean;
         } | {
-            op: "stop" | "con" | "txt" | "bin" | "ping" | "pong";
+            op: "stop" | "txt" | "bin" | "con" | "ping" | "pong";
             fin: number;
         };
         data(next?: {
@@ -5892,7 +5927,7 @@ declare namespace $ {
         static meta: $giper_baza_link;
         path(next?: string): string;
         type(next?: string): string;
-        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $giper_baza_link | Uint8Array<ArrayBuffer> | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | $mol_time_interval | $mol_tree2 | readonly $giper_baza_vary_type[] | Readonly<{
+        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | Uint8Array<ArrayBuffer> | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | $mol_time_interval | $mol_tree2 | $giper_baza_link | readonly $giper_baza_vary_type[] | Readonly<{
             [x: string]: $giper_baza_vary_type;
         }> | null;
         kind(next?: $giper_baza_flex_meta): $giper_baza_flex_meta | null;
@@ -6552,9 +6587,6 @@ declare namespace $ {
 		counter_string( ): string
 		land_id( ): string
 		quiz_title( ): string
-		quiz_land_link( ): string
-		my_lord_str( ): string
-		my_name( ): string
 		session( ): any
 		quiz_data( ): any
 		body( ): readonly(any)[]
@@ -6577,104 +6609,88 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $bog_blitz_avatar__color_bog_blitz_lobby_join_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_join['color_swatch_bg'] >
-		,
-		ReturnType< $bog_blitz_avatar['color'] >
-	>
-	type $bog_blitz_avatar__player_id_bog_blitz_lobby_join_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_join['player_id'] >
-		,
-		ReturnType< $bog_blitz_avatar['player_id'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_join_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_join['choose_color_title'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_join_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_join['color_swatch_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_join_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_join_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_lobby_join_6 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_join_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_open_native__files_bog_blitz_lobby_join_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_join['avatar_files'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_bog_blitz_lobby_join_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_bog_blitz_lobby_join_5 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	type $mol_button_open__sub_bog_blitz_lobby_join_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_open['sub'] >
+	>
+	type $mol_string_button__hint_bog_blitz_lobby_join_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_lobby_join_7 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_lobby_join_8 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['player_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_button_major__title_bog_blitz_lobby_join_8 = $mol_type_enforce<
+	type $mol_button_major__title_bog_blitz_lobby_join_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['join_title'] >
 		,
 		ReturnType< $mol_button_major['title'] >
 	>
-	type $mol_button_major__click_bog_blitz_lobby_join_9 = $mol_type_enforce<
+	type $mol_button_major__click_bog_blitz_lobby_join_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['join'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $bog_blitz_avatar__color_bog_blitz_lobby_join_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_join['avatar_color'] >
-		,
-		ReturnType< $bog_blitz_avatar['color'] >
-	>
-	type $bog_blitz_avatar__player_id_bog_blitz_lobby_join_11 = $mol_type_enforce<
+	type $mol_avatar__id_bog_blitz_lobby_join_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_join['player_id'] >
 		,
-		ReturnType< $bog_blitz_avatar['player_id'] >
+		ReturnType< $mol_avatar['id'] >
 	>
-	type $mol_button_minor__event_bog_blitz_lobby_join_12 = $mol_type_enforce<
-		({ 
-			click( next?: ReturnType< $bog_blitz_lobby_join['color_swatch_click'] > ): ReturnType< $bog_blitz_lobby_join['color_swatch_click'] >,
-		})  & ReturnType< $mol_button_minor['event'] >
+	type $mol_image__uri_bog_blitz_lobby_join_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_join['avatar_uri'] >
 		,
-		ReturnType< $mol_button_minor['event'] >
-	>
-	type $mol_button_minor__style_bog_blitz_lobby_join_13 = $mol_type_enforce<
-		({ 
-			'boxShadow': ReturnType< $bog_blitz_lobby_join['color_swatch_shadow'] >,
-		}) 
-		,
-		ReturnType< $mol_button_minor['style'] >
-	>
-	type $mol_button_minor__sub_bog_blitz_lobby_join_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_image['uri'] >
 	>
 	export class $bog_blitz_lobby_join extends $mol_page {
-		avatar_color( ): string
-		color_swatch_click( id: any, next?: any ): any
-		color_swatch_shadow( id: any): string
-		color_swatch_bg( id: any): string
-		Swatch_avatar( id: any): $bog_blitz_avatar
-		Color_hint( ): $mol_paragraph
-		color_swatch_views( ): readonly(any)[]
-		Color_swatches( ): $mol_view
-		Color_palette( ): $mol_view
+		player_id( ): string
+		avatar_uri( ): string
+		avatar_preview( ): any
+		Avatar_circle( ): $mol_view
+		Avatar_label( ): $mol_paragraph
+		avatar_files( next?: readonly(File)[] ): readonly(File)[]
+		Avatar_native( ): $mol_button_open_native
+		Avatar( ): $mol_button_open
 		player_name( next?: string ): string
 		Player_name_input( ): $mol_string_button
 		join( next?: any ): any
 		Join( ): $mol_button_major
 		Head( ): any
 		is_synced( ): boolean
-		player_color( next?: string ): string
+		profile_avatar_uri( ): string
+		profile_name( ): string
 		syncing_title( ): string
 		join_title( ): string
 		enter_title( ): string
-		choose_color_title( ): string
-		player_id( ): string
-		Avatar( ): $bog_blitz_avatar
-		Color_swatch( id: any): $mol_button_minor
+		Avatar_icon( ): $mol_avatar
+		Avatar_image( ): $mol_image
 		body( ): readonly(any)[]
 	}
 	
@@ -6686,12 +6702,8 @@ declare namespace $.$$ {
 
 declare namespace $.$$ {
     class $bog_blitz_lobby_join extends $.$bog_blitz_lobby_join {
-        avatar_color(): string;
-        color_swatch_views(): $mol_button_minor[];
-        color_swatch_bg(key: string): string;
-        color_swatch_selected(key: string): boolean;
-        color_swatch_shadow(key: string): string;
-        color_swatch_click(key: string, next?: Event): null;
+        avatar_preview(): $.$mol_avatar | $.$mol_image;
+        avatar_uri(): string;
         join_title(): string;
     }
 }
@@ -6721,9 +6733,6 @@ declare namespace $ {
 		Head( ): any
 		counter_string( ): string
 		quiz_title( ): string
-		quiz_land_link( ): string
-		my_lord_str( ): string
-		my_name( ): string
 		body( ): readonly(any)[]
 	}
 	
@@ -6735,12 +6744,7 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_paragraph__title_bog_blitz_lobby_game_timer_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_timer['digits_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__style_bog_blitz_lobby_game_timer_2 = $mol_type_enforce<
+	type $mol_view__style_bog_blitz_lobby_game_timer_1 = $mol_type_enforce<
 		({ 
 			'width': ReturnType< $bog_blitz_lobby_game_timer['bar_width'] >,
 		})  & ReturnType< $mol_view['style'] >
@@ -6748,14 +6752,11 @@ declare namespace $ {
 		ReturnType< $mol_view['style'] >
 	>
 	export class $bog_blitz_lobby_game_timer extends $mol_view {
-		Digits( ): $mol_paragraph
 		bar_width( ): string
 		Bar( ): $mol_view
 		duration( ): number
 		round_start( ): number
 		paused_at( ): number
-		manual_mode( ): boolean
-		digits_text( ): string
 		sub( ): readonly(any)[]
 	}
 	
@@ -6765,112 +6766,10 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_blitz_lobby_game_timer extends $.$bog_blitz_lobby_game_timer {
         bar_width(next?: string): string;
-        digits_text(next?: string): string;
-        format_time(sec: number): string;
     }
-}
-
-declare namespace $.$$ {
 }
 
 declare namespace $ {
-
-	type $mol_paragraph__title_bog_blitz_lobby_game_meta_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['stats_answered_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_meta_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['stats_correct_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_meta_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['stats_percent_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_meta_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['stats_percent_hint'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_meta_5 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_meta_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['player_rows'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_meta_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_meta['player_name'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__attr_bog_blitz_lobby_game_meta_8 = $mol_type_enforce<
-		({ 
-			'data-status': ReturnType< $bog_blitz_lobby_game_meta['player_status'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		,
-		ReturnType< $mol_view['attr'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_meta_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_lobby_game_meta extends $mol_view {
-		stats_answered_text( ): string
-		Stats_answered( ): $mol_paragraph
-		stats_correct_text( ): string
-		Stats_correct( ): $mol_paragraph
-		stats_percent_text( ): string
-		Stats_percent( ): $mol_paragraph
-		stats_percent_hint( ): string
-		Stats_percent_hint( ): $mol_paragraph
-		Stats( ): $mol_view
-		player_rows( ): readonly(any)[]
-		Players_list( ): $mol_list
-		player_status( id: any): string
-		Player_bullet( id: any): $mol_view
-		player_name( id: any): string
-		Player_name( id: any): $mol_paragraph
-		players_dict( ): any
-		current_question_index( ): number
-		current_answer_key( ): any
-		sub( ): readonly(any)[]
-		Player_row( id: any): $mol_view
-	}
-	
-}
-
-//# sourceMappingURL=meta.view.tree.d.ts.map
-declare namespace $.$$ {
-    type Player_state = {
-        key: string;
-        name: string;
-        status: 'correct' | 'wrong' | 'none';
-    };
-    export class $bog_blitz_lobby_game_meta extends $.$bog_blitz_lobby_game_meta {
-        player_states(): Player_state[];
-        is_correct(answer: string, key: {
-            type: string;
-            correct: string;
-        } | null): boolean;
-        total_players(): number;
-        answered_count(): number;
-        correct_count(): number;
-        stats_answered_text(): string;
-        stats_correct_text(): string;
-        stats_percent_text(): string;
-        player_rows(): $mol_view[];
-        player_status(key: string): "correct" | "wrong" | "none";
-        player_name(key: string): string;
-    }
-    export {};
 }
 
 declare namespace $.$$ {
@@ -6926,6 +6825,197 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    type $mol_blob = Blob;
+    let $mol_blob: {
+        prototype: Blob;
+        new (blobParts?: readonly BlobPart[], options?: BlobPropertyBag): Blob;
+    };
+}
+
+declare namespace $ {
+    function $mol_offline(): void;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    const $giper_baza_file_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Name: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Type: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Chunks: (auto?: any) => $giper_baza_list_bin | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Name: typeof $giper_baza_atom_text;
+            readonly Type: typeof $giper_baza_atom_text;
+            readonly Chunks: typeof $giper_baza_list_bin;
+        };
+    };
+    export class $giper_baza_file extends $giper_baza_file_base {
+        uri(): string;
+        name(next?: string | null): string;
+        type(next?: string | null): string;
+        blob(next?: $mol_blob): $mol_blob;
+        buffer(next?: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>;
+        chunks(next?: readonly (Uint8Array<ArrayBuffer> | null)[]): Uint8Array<ArrayBuffer>[];
+        str(next?: string, type?: string): string;
+        json(next?: any, type?: string): any;
+    }
+    export {};
+}
+
+declare namespace $.$$ {
+    const $bog_blitz_player_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Score: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Name: (auto?: any) => $giper_baza_atom_text | null;
+            readonly IsHost: (auto?: any) => $giper_baza_atom_bool | null;
+            readonly Avatar: (auto?: any) => {
+                Value: Value;
+                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_here(peer: $giper_baza_link | null): void;
+                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                local_ensure(): $giper_baza_file | null;
+                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
+            readonly Answer_land: (auto?: any) => $giper_baza_atom_text | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Score: typeof $giper_baza_atom_real;
+            readonly Name: typeof $giper_baza_atom_text;
+            readonly IsHost: typeof $giper_baza_atom_bool;
+            readonly Avatar: {
+                new (): {
+                    Value: () => typeof $giper_baza_file;
+                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_here(peer: $giper_baza_link | null): void;
+                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                    local_ensure(): $giper_baza_file | null;
+                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                toString(): any;
+                Value: typeof $giper_baza_dict;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+            readonly Answer_land: typeof $giper_baza_atom_text;
+        };
+    };
+    export class $bog_blitz_player extends $bog_blitz_player_base {
+    }
+    const $bog_blitz_player_answers_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Answer: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Answer_time: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Answer_question: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_heart: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_smile: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_fire: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_clap: (auto?: any) => $giper_baza_atom_real | null;
+            readonly React_poop: (auto?: any) => $giper_baza_atom_real | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Answer: typeof $giper_baza_atom_text;
+            readonly Answer_time: typeof $giper_baza_atom_real;
+            readonly Answer_question: typeof $giper_baza_atom_real;
+            readonly React_heart: typeof $giper_baza_atom_real;
+            readonly React_smile: typeof $giper_baza_atom_real;
+            readonly React_fire: typeof $giper_baza_atom_real;
+            readonly React_clap: typeof $giper_baza_atom_real;
+            readonly React_poop: typeof $giper_baza_atom_real;
+        };
+    };
+    export class $bog_blitz_player_answers extends $bog_blitz_player_answers_base {
+    }
+    export {};
+}
+
+declare namespace $ {
 
 	type $mol_paragraph__title_bog_blitz_lobby_game_leaderboard_1 = $mol_type_enforce<
 		string
@@ -6937,57 +7027,47 @@ declare namespace $ {
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_scroll__sub_bog_blitz_lobby_game_leaderboard_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_scroll['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_leaderboard_4 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_lobby_game_leaderboard_3 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_list__rows_bog_blitz_lobby_game_leaderboard_5 = $mol_type_enforce<
+	type $mol_list__rows_bog_blitz_lobby_game_leaderboard_4 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['bottom_rows'] >
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_scroll__sub_bog_blitz_lobby_game_leaderboard_6 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_scroll['sub'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_7 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_5 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['my_row_content'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_8 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_6 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_9 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_lobby_game_leaderboard_7 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard_row__rank_bog_blitz_lobby_game_leaderboard_10 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard_row__rank_bog_blitz_lobby_game_leaderboard_8 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['row_rank'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard_row['rank'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard_row__name_bog_blitz_lobby_game_leaderboard_11 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard_row__name_bog_blitz_lobby_game_leaderboard_9 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['row_name'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard_row['name'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard_row__score_bog_blitz_lobby_game_leaderboard_12 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard_row__score_bog_blitz_lobby_game_leaderboard_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['row_score'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard_row['score'] >
 	>
-	type $bog_blitz_lobby_game_leaderboard_row__mine_bog_blitz_lobby_game_leaderboard_13 = $mol_type_enforce<
+	type $bog_blitz_lobby_game_leaderboard_row__mine_bog_blitz_lobby_game_leaderboard_11 = $mol_type_enforce<
 		ReturnType< $bog_blitz_lobby_game_leaderboard['row_mine'] >
 		,
 		ReturnType< $bog_blitz_lobby_game_leaderboard_row['mine'] >
@@ -6998,11 +7078,9 @@ declare namespace $ {
 		Top_title( ): $mol_paragraph
 		top_rows( ): readonly(any)[]
 		Top_list( ): $mol_list
-		Top_scroll( ): $mol_scroll
 		Bottom_title( ): $mol_paragraph
 		bottom_rows( ): readonly(any)[]
 		Bottom_list( ): $mol_list
-		Bottom_scroll( ): $mol_scroll
 		row_rank( id: any): number
 		row_name( id: any): string
 		row_score( id: any): number
@@ -7010,7 +7088,6 @@ declare namespace $ {
 		players_dict( ): any
 		my_lord_str( ): string
 		is_host( ): boolean
-		final( ): boolean
 		sub( ): ReturnType< $bog_blitz_lobby_game_leaderboard['board_content'] >
 		My_row( ): $mol_view
 		Top( ): $mol_view
@@ -7049,6 +7126,1917 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_heart'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_3 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_smile'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_7 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_fire'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_9 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_10 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_clap'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_list__rows_bog_blitz_lobby_game_reactboard_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['rows_poop'] >
+		,
+		ReturnType< $mol_list['rows'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_15 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['row_name'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_reactboard['row_count'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_reactboard_18 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_lobby_game_reactboard extends $mol_view {
+		Title_heart( ): $mol_paragraph
+		rows_heart( ): readonly(any)[]
+		List_heart( ): $mol_list
+		Table_heart( ): $mol_view
+		Title_smile( ): $mol_paragraph
+		rows_smile( ): readonly(any)[]
+		List_smile( ): $mol_list
+		Table_smile( ): $mol_view
+		Title_fire( ): $mol_paragraph
+		rows_fire( ): readonly(any)[]
+		List_fire( ): $mol_list
+		Table_fire( ): $mol_view
+		Title_clap( ): $mol_paragraph
+		rows_clap( ): readonly(any)[]
+		List_clap( ): $mol_list
+		Table_clap( ): $mol_view
+		Title_poop( ): $mol_paragraph
+		rows_poop( ): readonly(any)[]
+		List_poop( ): $mol_list
+		Table_poop( ): $mol_view
+		row_name( id: any): string
+		Row_name( id: any): $mol_paragraph
+		row_count( id: any): string
+		Row_count( id: any): $mol_paragraph
+		players_dict( ): any
+		sub( ): readonly(any)[]
+		Row( id: any): $mol_view
+	}
+	
+}
+
+//# sourceMappingURL=reactboard.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game_reactboard extends $.$bog_blitz_lobby_game_reactboard {
+        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
+        sorted_by(key: string): {
+            name: string;
+            count: number;
+        }[];
+        make_rows(key: string): $mol_view[];
+        rows_heart(): $mol_view[];
+        rows_smile(): $mol_view[];
+        rows_fire(): $mol_view[];
+        rows_clap(): $mol_view[];
+        rows_poop(): $mol_view[];
+        row_name(id: string): string;
+        row_count(id: string): string;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_image__uri_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	export class $bog_blitz_lobby_game_option extends $mol_button_major {
+		selected( ): string
+		correct( ): string
+		attr( ): ({ 
+			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
+			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
+		})  & ReturnType< $mol_button_major['attr'] >
+		image_uri( ): string
+		Option_image( ): $mol_image
+	}
+	
+}
+
+//# sourceMappingURL=option.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
+        sub(): (string | $mol_view)[];
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
+    const $bog_blitz_question_option_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Image: (auto?: any) => {
+                Value: Value;
+                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_here(peer: $giper_baza_link | null): void;
+                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                local_ensure(): $giper_baza_file | null;
+                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
+            readonly Is_correct: (auto?: any) => $giper_baza_atom_bool | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Text: typeof $giper_baza_atom_text;
+            readonly Image: {
+                new (): {
+                    Value: () => typeof $giper_baza_file;
+                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_here(peer: $giper_baza_link | null): void;
+                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                    local_ensure(): $giper_baza_file | null;
+                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                toString(): any;
+                Value: typeof $giper_baza_dict;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+            readonly Is_correct: typeof $giper_baza_atom_bool;
+        };
+    };
+    export class $bog_blitz_question_option extends $bog_blitz_question_option_base {
+    }
+    export {};
+}
+
+declare namespace $.$$ {
+    const $bog_blitz_question_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Type: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Options: (auto?: any) => {
+                remote_list(next?: readonly $bog_blitz_question_option[] | undefined): readonly $bog_blitz_question_option[];
+                remote_add(item: $bog_blitz_question_option): void;
+                make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question_option;
+                items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                cut(vary: $giper_baza_vary_type): void;
+                move(from: number, to: number): void;
+                wipe(seat: number): void;
+                pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
+            readonly Correct_text: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Image: (auto?: any) => {
+                Value: Value;
+                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_here(peer: $giper_baza_link | null): void;
+                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                local_ensure(): $giper_baza_file | null;
+                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Text: typeof $giper_baza_atom_text;
+            readonly Type: typeof $giper_baza_atom_text;
+            readonly Options: {
+                new (): {
+                    remote_list(next?: readonly $bog_blitz_question_option[] | undefined): readonly $bog_blitz_question_option[];
+                    remote_add(item: $bog_blitz_question_option): void;
+                    make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question_option;
+                    items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                    items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                    splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                    has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                    add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    cut(vary: $giper_baza_vary_type): void;
+                    move(from: number, to: number): void;
+                    wipe(seat: number): void;
+                    pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                Value: Value;
+                toString(): any;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+            readonly Correct_text: typeof $giper_baza_atom_text;
+            readonly Image: {
+                new (): {
+                    Value: () => typeof $giper_baza_file;
+                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_here(peer: $giper_baza_link | null): void;
+                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                    local_ensure(): $giper_baza_file | null;
+                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                toString(): any;
+                Value: typeof $giper_baza_dict;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+        };
+    };
+    export class $bog_blitz_question extends $bog_blitz_question_base {
+    }
+    export {};
+}
+
+declare namespace $.$$ {
+    const $bog_blitz_quiz_base: Omit<typeof $giper_baza_dict, "prototype"> & {
+        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
+            readonly Title: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Questions: (auto?: any) => {
+                remote_list(next?: readonly $bog_blitz_question[] | undefined): readonly $bog_blitz_question[];
+                remote_add(item: $bog_blitz_question): void;
+                make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question;
+                items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                cut(vary: $giper_baza_vary_type): void;
+                move(from: number, to: number): void;
+                wipe(seat: number): void;
+                pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
+            readonly Time_read: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Time_answer: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Time_leaderboard: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Time_reveal: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Points_base: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Time_multiplier: (auto?: any) => $giper_baza_atom_real | null;
+            readonly Manual_mode: (auto?: any) => $giper_baza_atom_bool | null;
+        }>;
+        path: string;
+    } & {
+        schema: {
+            [x: string]: typeof $giper_baza_pawn;
+        } & {
+            readonly Title: typeof $giper_baza_atom_text;
+            readonly Questions: {
+                new (): {
+                    remote_list(next?: readonly $bog_blitz_question[] | undefined): readonly $bog_blitz_question[];
+                    remote_add(item: $bog_blitz_question): void;
+                    make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question;
+                    items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
+                    items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+                    splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+                    has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+                    add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+                    cut(vary: $giper_baza_vary_type): void;
+                    move(from: number, to: number): void;
+                    wipe(seat: number): void;
+                    pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                Value: Value;
+                toString(): any;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
+            readonly Time_read: typeof $giper_baza_atom_real;
+            readonly Time_answer: typeof $giper_baza_atom_real;
+            readonly Time_leaderboard: typeof $giper_baza_atom_real;
+            readonly Time_reveal: typeof $giper_baza_atom_real;
+            readonly Points_base: typeof $giper_baza_atom_real;
+            readonly Time_multiplier: typeof $giper_baza_atom_real;
+            readonly Manual_mode: typeof $giper_baza_atom_bool;
+        };
+    };
+    export class $bog_blitz_quiz extends $bog_blitz_quiz_base {
+    }
+    export {};
+}
+
+declare namespace $ {
+
+	type $bog_blitz_lobby_game_timer__round_start_bog_blitz_lobby_game_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['round_start'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['round_start'] >
+	>
+	type $bog_blitz_lobby_game_timer__duration_bog_blitz_lobby_game_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['duration'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
+	>
+	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_4 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['host_controls'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['state_label'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_image__uri_bog_blitz_lobby_game_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['question_image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['answer_views'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_game_9 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['countdown_content'] >
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_blitz_lobby_game_timer__round_start_bog_blitz_lobby_game_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['round_start'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['round_start'] >
+	>
+	type $bog_blitz_lobby_game_timer__duration_bog_blitz_lobby_game_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['duration'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
+	>
+	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['is_host'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
+	>
+	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['is_host'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
+	>
+	type $bog_blitz_lobby_game_reactboard__players_dict_bog_blitz_lobby_game_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_reactboard['players_dict'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_20 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['countdown_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_game_21 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['pause_label'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_game_22 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['pause_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_game_23 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['resume_label'] >
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_game_24 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['resume_click'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_button_major__title_bog_blitz_lobby_game_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['next_label'] >
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_blitz_lobby_game_26 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['next_click'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_string__hint_bog_blitz_lobby_game_27 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_string['hint'] >
+	>
+	type $mol_string__value_bog_blitz_lobby_game_28 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_draft'] >
+		,
+		ReturnType< $mol_string['value'] >
+	>
+	type $mol_string__enabled_bog_blitz_lobby_game_29 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
+		,
+		ReturnType< $mol_string['enabled'] >
+	>
+	type $mol_string__submit_bog_blitz_lobby_game_30 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['text_submit'] >
+		,
+		ReturnType< $mol_string['submit'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_game_31 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['reveal_correct_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_major__title_bog_blitz_lobby_game_32 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['submit_label'] >
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_blitz_lobby_game_33 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['submit_answer'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $mol_button_major__enabled_bog_blitz_lobby_game_34 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['submit_enabled'] >
+		,
+		ReturnType< $mol_button_major['enabled'] >
+	>
+	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_35 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_selected'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['selected'] >
+	>
+	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_36 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_correct'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['correct'] >
+	>
+	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_37 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
+	>
+	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_38 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_text'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['title'] >
+	>
+	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_39 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
+	>
+	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_40 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_game['option_click'] >
+		,
+		ReturnType< $bog_blitz_lobby_game_option['click'] >
+	>
+	export class $bog_blitz_lobby_game extends $mol_view {
+		game_content( ): readonly(any)[]
+		pause_label( ): string
+		pause_click( next?: any ): any
+		resume_label( ): string
+		resume_click( next?: any ): any
+		next_label( ): string
+		next_click( next?: any ): any
+		Timer( ): $bog_blitz_lobby_game_timer
+		host_controls( ): readonly(any)[]
+		Host_controls( ): $mol_view
+		State( ): $mol_paragraph
+		question_image_uri( ): string
+		Question_image( ): $mol_image
+		Question( ): $mol_paragraph
+		answer_views( ): readonly(any)[]
+		Answer_area( ): $mol_view
+		countdown_content( ): readonly(any)[]
+		Countdown( ): $mol_view
+		text_draft( next?: string ): string
+		text_input_enabled( ): boolean
+		text_submit( next?: any ): any
+		Leaderboard_timer( ): $bog_blitz_lobby_game_timer
+		my_lord_str( ): string
+		Leaderboard( ): $bog_blitz_lobby_game_leaderboard
+		Final( ): $bog_blitz_lobby_game_leaderboard
+		Reactions_board( ): $bog_blitz_lobby_game_reactboard
+		submit_label( ): string
+		submit_answer( next?: any ): any
+		submit_enabled( ): boolean
+		option_selected( id: any): string
+		option_correct( id: any): string
+		option_enabled( id: any): boolean
+		option_text( id: any): string
+		option_image_uri( id: any): string
+		option_click( id: any, next?: any ): any
+		land_id( ): string
+		session( ): any
+		quiz_data( ): any
+		game_state( ): string
+		current_question( ): any
+		current_question_text( ): string
+		my_player( ): any
+		my_answers( ): any
+		is_host( ): boolean
+		paused_at( ): number
+		manual_mode( ): boolean
+		state_reading( ): string
+		state_answering( ): string
+		state_reveal( ): string
+		state_leaderboard( ): string
+		state_final( ): string
+		state_paused( ): string
+		state_label( ): string
+		option_keys( ): readonly(string)[]
+		round_start( ): number
+		duration( ): number
+		total_questions( ): number
+		current_question_index( ): number
+		players_dict( ): any
+		countdown_number( ): number
+		countdown_text( ): string
+		Countdown_number( ): $mol_paragraph
+		sub( ): ReturnType< $bog_blitz_lobby_game['game_content'] >
+		Pause_button( ): $mol_button_minor
+		Resume_button( ): $mol_button_minor
+		Next_button( ): $mol_button_major
+		question_type( ): string
+		question_content( ): readonly(any)[]
+		Answer_input( ): $mol_string
+		leaderboard_content( ): readonly(any)[]
+		final_content( ): readonly(any)[]
+		reveal_correct_text( ): string
+		Reveal_correct( ): $mol_paragraph
+		Submit_answer( ): $mol_button_major
+		Option( id: any): $bog_blitz_lobby_game_option
+	}
+	
+}
+
+//# sourceMappingURL=game.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
+        game_content(): readonly any[];
+        save_game_to_profile(): void;
+        my_place(): number;
+        players_count(): number;
+        is_paused(): boolean;
+        question_content(): ($mol_view | $.$mol_paragraph | $.$mol_image | $.$bog_blitz_lobby_game_timer)[];
+        leaderboard_content(): ($mol_view | $.$mol_paragraph | $.$bog_blitz_lobby_game_timer | $.$bog_blitz_lobby_game_leaderboard)[];
+        countdown_content(): $.$mol_paragraph[];
+        state_label(): string;
+        pause_click(next?: Event): void;
+        resume_click(next?: Event): void;
+        host_controls(): $mol_button_minor[];
+        next_click(next?: Event): void;
+        question_type(): string;
+        question_image_uri(): string;
+        selected_options(next?: string[]): string[];
+        text_draft(next?: string): string;
+        publish_question_meta(session: $bog_blitz_session, index: number): void;
+        has_multiple_correct(): boolean;
+        submit_enabled(): boolean;
+        submit_answer(next?: Event): void;
+        answer_views(): ($.$mol_paragraph | $.$mol_string)[] | $mol_button_major[];
+        text_submit(next?: Event): void;
+        text_input_enabled(): boolean;
+        option_keys(): string[];
+        option_views(): $.$bog_blitz_lobby_game_option[];
+        option_text(key: string): string;
+        option_image_uri(key: string): string;
+        my_answer(): string;
+        has_answered(): boolean;
+        option_enabled(key: string): boolean;
+        option_correct(key: string): "" | "true" | "false";
+        option_selected(key: string): string;
+        reveal_correct_text(): string;
+        countdown_number(next?: number): number;
+        countdown_text(): string;
+        last_tick_num: number;
+        play_tick(num: number): void;
+        option_click(key: string, e?: any): null;
+        advance_state(): void;
+        auto_advance(next?: null): void;
+        answers_key_data(): {
+            type: string;
+            correct: string;
+        }[] | null;
+        current_answer_key(): {
+            type: string;
+            correct: string;
+        } | null;
+        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
+        calculate_scores(): void;
+        reset_answers(): void;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_1 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_heart'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_heart_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_4 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_5 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_smile'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_smile_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_9 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_fire'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_fire_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_12 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_13 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_clap'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_clap_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_16 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_minor__title_bog_blitz_lobby_reactions_17 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__click_bog_blitz_lobby_reactions_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['react_poop'] >
+		,
+		ReturnType< $mol_button_minor['click'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_reactions_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby_reactions['count_poop_text'] >
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_reactions_20 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $bog_blitz_lobby_reactions extends $mol_view {
+		Spacer( ): $mol_view
+		react_heart( next?: any ): any
+		Btn_heart( ): $mol_button_minor
+		count_heart_text( ): string
+		Count_heart( ): $mol_paragraph
+		Group_heart( ): $mol_view
+		react_smile( next?: any ): any
+		Btn_smile( ): $mol_button_minor
+		count_smile_text( ): string
+		Count_smile( ): $mol_paragraph
+		Group_smile( ): $mol_view
+		react_fire( next?: any ): any
+		Btn_fire( ): $mol_button_minor
+		count_fire_text( ): string
+		Count_fire( ): $mol_paragraph
+		Group_fire( ): $mol_view
+		react_clap( next?: any ): any
+		Btn_clap( ): $mol_button_minor
+		count_clap_text( ): string
+		Count_clap( ): $mol_paragraph
+		Group_clap( ): $mol_view
+		react_poop( next?: any ): any
+		Btn_poop( ): $mol_button_minor
+		count_poop_text( ): string
+		Count_poop( ): $mol_paragraph
+		Group_poop( ): $mol_view
+		my_answers( ): any
+		players_dict( ): any
+		is_host( ): boolean
+		Fly( ): $mol_view
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=reactions.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby_reactions extends $.$bog_blitz_lobby_reactions {
+        react(key: string): void;
+        react_heart(next?: Event): void;
+        react_smile(next?: Event): void;
+        react_fire(next?: Event): void;
+        react_clap(next?: Event): void;
+        react_poop(next?: Event): void;
+        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
+        total_count(key: string): number;
+        count_text(key: string): string;
+        count_heart_text(): string;
+        count_smile_text(): string;
+        count_fire_text(): string;
+        count_clap_text(): string;
+        count_poop_text(): string;
+        prev_totals: Record<string, number>;
+        watch_reactions(): void;
+        auto(): void;
+        spawn_fly(key: string): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $bog_blitz_lobby_players__players_dict_bog_blitz_lobby_1 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_players['players_dict'] >
+	>
+	type $bog_blitz_lobby_players__my_lord_str_bog_blitz_lobby_2 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_players['my_lord_str'] >
+	>
+	type $mol_paragraph__title_bog_blitz_lobby_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_major__title_bog_blitz_lobby_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_major['title'] >
+	>
+	type $mol_button_major__click_bog_blitz_lobby_5 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['go_admin'] >
+		,
+		ReturnType< $mol_button_major['click'] >
+	>
+	type $bog_blitz_lobby_host__counter_string_bog_blitz_lobby_6 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['counter_string'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['counter_string'] >
+	>
+	type $bog_blitz_lobby_host__land_id_bog_blitz_lobby_7 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['land_id'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['land_id'] >
+	>
+	type $bog_blitz_lobby_host__quiz_title_bog_blitz_lobby_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['quiz_title'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['quiz_title'] >
+	>
+	type $bog_blitz_lobby_host__session_bog_blitz_lobby_9 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['session'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['session'] >
+	>
+	type $bog_blitz_lobby_host__quiz_data_bog_blitz_lobby_10 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['quiz_data'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['quiz_data'] >
+	>
+	type $bog_blitz_lobby_host__Players_bog_blitz_lobby_11 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['Host_players'] >
+		,
+		ReturnType< $bog_blitz_lobby_host['Players'] >
+	>
+	type $bog_blitz_lobby_join__player_name_bog_blitz_lobby_12 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_player_name'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['player_name'] >
+	>
+	type $bog_blitz_lobby_join__avatar_files_bog_blitz_lobby_13 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_avatar_files'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['avatar_files'] >
+	>
+	type $bog_blitz_lobby_join__join_bog_blitz_lobby_14 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['join'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['join'] >
+	>
+	type $bog_blitz_lobby_join__is_synced_bog_blitz_lobby_15 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['is_synced'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['is_synced'] >
+	>
+	type $bog_blitz_lobby_join__player_id_bog_blitz_lobby_16 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['player_id'] >
+	>
+	type $bog_blitz_lobby_join__profile_avatar_uri_bog_blitz_lobby_17 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['profile_avatar_uri'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['profile_avatar_uri'] >
+	>
+	type $bog_blitz_lobby_join__profile_name_bog_blitz_lobby_18 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['profile_name'] >
+		,
+		ReturnType< $bog_blitz_lobby_join['profile_name'] >
+	>
+	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_19 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['counter_string'] >
+		,
+		ReturnType< $bog_blitz_lobby_waiting['counter_string'] >
+	>
+	type $bog_blitz_lobby_waiting__quiz_title_bog_blitz_lobby_20 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['quiz_title'] >
+		,
+		ReturnType< $bog_blitz_lobby_waiting['quiz_title'] >
+	>
+	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_21 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['Host_players'] >
+		,
+		ReturnType< $bog_blitz_lobby_waiting['Players'] >
+	>
+	type $mol_view__sub_bog_blitz_lobby_22 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $bog_blitz_lobby_game__land_id_bog_blitz_lobby_23 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['land_id'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['land_id'] >
+	>
+	type $bog_blitz_lobby_game__session_bog_blitz_lobby_24 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['session'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['session'] >
+	>
+	type $bog_blitz_lobby_game__quiz_data_bog_blitz_lobby_25 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['quiz_data'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['quiz_data'] >
+	>
+	type $bog_blitz_lobby_game__game_state_bog_blitz_lobby_26 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['game_state'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['game_state'] >
+	>
+	type $bog_blitz_lobby_game__current_question_bog_blitz_lobby_27 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['current_question'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['current_question'] >
+	>
+	type $bog_blitz_lobby_game__current_question_text_bog_blitz_lobby_28 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['current_question_text'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
+	>
+	type $bog_blitz_lobby_game__my_player_bog_blitz_lobby_29 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_player'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['my_player'] >
+	>
+	type $bog_blitz_lobby_game__my_answers_bog_blitz_lobby_30 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_answers'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['my_answers'] >
+	>
+	type $bog_blitz_lobby_game__is_host_bog_blitz_lobby_31 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['is_host'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['is_host'] >
+	>
+	type $bog_blitz_lobby_game__paused_at_bog_blitz_lobby_32 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['paused_at'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['paused_at'] >
+	>
+	type $bog_blitz_lobby_game__manual_mode_bog_blitz_lobby_33 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['manual_mode'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['manual_mode'] >
+	>
+	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_34 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['round_start'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['round_start'] >
+	>
+	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_35 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['duration'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['duration'] >
+	>
+	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_36 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['total_questions'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['total_questions'] >
+	>
+	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_37 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['current_question_index'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
+	>
+	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_38 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['players_dict'] >
+	>
+	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_39 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_lord_str'] >
+		,
+		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
+	>
+	type $bog_blitz_lobby_reactions__my_answers_bog_blitz_lobby_40 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['my_answers'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['my_answers'] >
+	>
+	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_41 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['players_dict'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['players_dict'] >
+	>
+	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_42 = $mol_type_enforce<
+		ReturnType< $bog_blitz_lobby['is_host'] >
+		,
+		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
+	>
+	export class $bog_blitz_lobby extends $mol_page {
+		counter_string( ): string
+		session( ): any
+		quiz_data( ): any
+		players_dict( ): any
+		my_lord_str( ): string
+		Host_players( ): $bog_blitz_lobby_players
+		my_player_name( next?: string ): string
+		my_avatar_files( next?: readonly(File)[] ): readonly(File)[]
+		join( next?: any ): any
+		is_synced( ): boolean
+		profile_avatar_uri( ): string
+		profile_name( ): string
+		No_game_text( ): $mol_paragraph
+		go_admin( next?: any ): any
+		Go_admin( ): $mol_button_major
+		game_state( ): string
+		current_question( ): any
+		current_question_text( ): string
+		my_player( ): any
+		my_answers( ): any
+		is_host( ): boolean
+		paused_at( ): number
+		manual_mode( ): boolean
+		round_start( ): number
+		duration( ): number
+		total_questions( ): number
+		current_question_index( ): number
+		lobby_content( ): readonly(any)[]
+		Head( ): any
+		players_string( ): string
+		land_id( ): string
+		quiz_title( ): string
+		Host( ): $bog_blitz_lobby_host
+		Join_screen( ): $bog_blitz_lobby_join
+		Waiting( ): $bog_blitz_lobby_waiting
+		No_game( ): $mol_view
+		Game_screen( ): $bog_blitz_lobby_game
+		Reactions( ): $bog_blitz_lobby_reactions
+		body( ): ReturnType< $bog_blitz_lobby['lobby_content'] >
+	}
+	
+}
+
+//# sourceMappingURL=lobby.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $bog_blitz_lobby extends $.$bog_blitz_lobby {
+        sub(): readonly any[];
+        land(): $giper_baza_land | null;
+        session(): $bog_blitz_session | null;
+        quiz_data(): $bog_blitz_quiz | null;
+        is_host(): boolean;
+        my_player(): $bog_blitz_player | null;
+        my_answers(): $bog_blitz_player_answers | null;
+        players_dict(): {
+            Value: typeof $bog_blitz_player;
+            key(key: $giper_baza_vary_type, auto?: any): $bog_blitz_player;
+            keys(): readonly $giper_baza_vary_type[];
+            dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
+            [$mol_dev_format_head](): any[];
+            items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
+            splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
+            has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
+            add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
+            cut(vary: $giper_baza_vary_type): void;
+            move(from: number, to: number): void;
+            wipe(seat: number): void;
+            pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
+            land(): $giper_baza_land;
+            head(): $giper_baza_link;
+            land_link(): $giper_baza_link;
+            link(): $giper_baza_link;
+            toJSON(): string;
+            cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+            pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+            units(): $giper_baza_unit_sand[];
+            units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+            meta(next?: $giper_baza_link): $giper_baza_link | null;
+            meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+            filled(): boolean;
+            can_change(): boolean;
+            last_change(): $mol_time_moment | null;
+            authors(): $giper_baza_auth_pass[];
+            get $(): $;
+            set $(next: $);
+            destructor(): void;
+            toString(): string;
+            [Symbol.toStringTag]: string;
+            [$mol_ambient_ref]: $;
+            [Symbol.dispose](): void;
+        } | null;
+        my_lord_str(): string;
+        my_player_create(): $bog_blitz_player | null;
+        profile_data(): $bog_blitz_profile;
+        join(e?: any): null;
+        sync_profile(player: $bog_blitz_player, join_name: string, files?: readonly File[]): void;
+        profile_avatar_uri(): string;
+        my_player_name(next?: string): string;
+        profile_name(): string;
+        land_id(): string;
+        quiz_title(): string;
+        go_admin(): void;
+        player_keys(): string[];
+        game_state(): string;
+        current_question(): $bog_blitz_question | null;
+        current_question_text(): string;
+        paused_at(): number;
+        manual_mode(): boolean;
+        round_start(): number;
+        duration(): number;
+        total_questions(): number;
+        current_question_index(): number;
+        lobby_content(): $mol_view[] | $.$bog_blitz_lobby_join[] | $.$bog_blitz_lobby_game[] | $.$bog_blitz_lobby_host[] | $bog_blitz_lobby_waiting[];
+        counter_string(): string;
+        is_synced(): boolean;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	type $mol_book2_sub__1 = $mol_type_enforce<
+		ReturnType< $mol_book2['pages'] >[number]
+		,
+		$mol_view
+	>
+	type $mol_book2_sub__2 = $mol_type_enforce<
+		ReturnType< $mol_book2['placeholders'] >[number]
+		,
+		$mol_view
+	>
+	type $mol_view__title_mol_book2_3 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_view['title'] >
+	>
+	export class $mol_book2 extends $mol_scroll {
+		pages_deep( ): readonly($mol_view)[]
+		pages( ): ReturnType< $mol_book2['pages_deep'] >
+		Placeholder( ): $mol_view
+		placeholders( ): readonly($mol_view)[]
+		menu_title( ): string
+		sub( ): readonly($mol_view)[]
+		minimal_width( ): number
+		Gap( id: any): $mol_view
+	}
+	
+}
+
+//# sourceMappingURL=book2.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_book2 extends $.$mol_book2 {
+        pages_deep(): $mol_view[];
+        title(): string;
+        menu_title(): string;
+        sub(): $mol_view[];
+        bring(): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_media extends $mol_object2 {
+        static match(query: string, next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
+    function $mol_lights(this: $, next?: boolean): boolean;
+}
+
+declare namespace $ {
+
+	export class $mol_theme_auto extends $mol_plugin {
+		dark( ): string
+		theme( ): ReturnType< $mol_theme_auto['dark'] >
+		light( ): string
+		attr( ): ({ 
+			'mol_theme': ReturnType< $mol_theme_auto['theme'] >,
+		}) 
+	}
+	
+}
+
+//# sourceMappingURL=auto.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_theme_auto extends $.$mol_theme_auto {
+        theme(): string;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_link extends $mol_view {
+		uri_toggle( ): string
+		hint( ): string
+		hint_safe( ): ReturnType< $mol_link['hint'] >
+		target( ): string
+		file_name( ): string
+		current( ): boolean
+		relation( ): string
+		event_click( next?: any ): any
+		click( next?: ReturnType< $mol_link['event_click'] > ): ReturnType< $mol_link['event_click'] >
+		uri( ): string
+		dom_name( ): string
+		uri_off( ): string
+		uri_native( ): any
+		external( ): boolean
+		attr( ): ({ 
+			'href': ReturnType< $mol_link['uri_toggle'] >,
+			'title': ReturnType< $mol_link['hint_safe'] >,
+			'target': ReturnType< $mol_link['target'] >,
+			'download': ReturnType< $mol_link['file_name'] >,
+			'mol_link_current': ReturnType< $mol_link['current'] >,
+			'rel': ReturnType< $mol_link['relation'] >,
+		})  & ReturnType< $mol_view['attr'] >
+		sub( ): readonly($mol_view_content)[]
+		arg( ): Record<string, any>
+		event( ): ({ 
+			click( next?: ReturnType< $mol_link['click'] > ): ReturnType< $mol_link['click'] >,
+		})  & ReturnType< $mol_view['event'] >
+	}
+	
+}
+
+//# sourceMappingURL=link.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_link extends $.$mol_link {
+        uri_toggle(): string;
+        uri(): string;
+        uri_off(): string;
+        uri_native(): URL;
+        current(): boolean;
+        file_name(): string;
+        minimal_height(): number;
+        external(): boolean;
+        target(): '_self' | '_blank' | '_top' | '_parent' | string;
+        hint_safe(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    function $mol_wait_timeout_async(this: $, timeout: number): Promise<void>;
+    function $mol_wait_timeout(this: $, timeout: number): void;
+}
+
+declare namespace $ {
+
+	type $mol_link__uri_mol_embed_native_1 = $mol_type_enforce<
+		ReturnType< $mol_embed_native['uri'] >
+		,
+		ReturnType< $mol_link['uri'] >
+	>
+	type $mol_link__sub_mol_embed_native_2 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_link['sub'] >
+	>
+	export class $mol_embed_native extends $mol_scroll {
+		uri( next?: string ): string
+		title( ): string
+		Fallback( ): $mol_link
+		uri_change( next?: any ): any
+		dom_name( ): string
+		window( ): any
+		attr( ): ({ 
+			'src': ReturnType< $mol_embed_native['uri'] >,
+		})  & ReturnType< $mol_scroll['attr'] >
+		sub( ): readonly(any)[]
+		message( ): ({ 
+			hashchange( next?: ReturnType< $mol_embed_native['uri_change'] > ): ReturnType< $mol_embed_native['uri_change'] >,
+		}) 
+	}
+	
+}
+
+//# sourceMappingURL=native.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_embed_native extends $.$mol_embed_native {
+        window(): Window;
+        load(frame: HTMLIFrameElement): Promise<Window>;
+        uri_resource(): string;
+        message_listener(): $mol_dom_listener;
+        sub_visible(): readonly $mol_view_content[];
+        message_receive(event?: MessageEvent<[string, string]>): void;
+        uri_change(event: MessageEvent<[string, string]>): void;
+        auto(): (Window | $mol_dom_listener)[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_frame extends $mol_embed_native {
+		allow( ): string
+		html( ): any
+		attr( ): ({ 
+			'tabindex': ReturnType< $mol_frame['tabindex'] >,
+			'allow': ReturnType< $mol_frame['allow'] >,
+			'src': ReturnType< $mol_frame['uri'] >,
+			'srcdoc': ReturnType< $mol_frame['html'] >,
+		}) 
+		fullscreen( ): boolean
+		accelerometer( ): boolean
+		autoplay( ): boolean
+		encription( ): boolean
+		gyroscope( ): boolean
+		pip( ): boolean
+		clipboard_read( ): boolean
+		clipboard_write( ): boolean
+	}
+	
+}
+
+//# sourceMappingURL=frame.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_frame extends $.$mol_frame {
+        window(): any;
+        allow(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $giper_web_frame extends $mol_frame {
+		uri( ): string
+		query( ): string
+	}
+	
+}
+
+//# sourceMappingURL=frame.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $giper_web_frame extends $.$giper_web_frame {
+        uri(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $ {
+
+	export class $mol_icon_trash_can extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=can.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_trash_can_outline extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=outline.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_script extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=script.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_script_text extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=text.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_link_source extends $mol_link {
+		Icon( ): $mol_icon_script_text
+		hint( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=source.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_gift extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=gift.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_gift_outline extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=outline.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_link_donate extends $mol_link {
+		Icon( ): $mol_icon_gift_outline
+		hint( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=donate.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_face extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=face.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_face_agent extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=agent.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_link_support extends $mol_link {
+		Icon( ): $mol_icon_face_agent
+		hint( ): string
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=support.view.tree.d.ts.map
+declare namespace $ {
+    class $mol_dom_event<EventType extends Event> extends $mol_object {
+        readonly native: EventType;
+        constructor(native: EventType);
+        prevented(next?: boolean): boolean;
+        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_view__sub_mol_check_1 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	export class $mol_check extends $mol_button_minor {
+		checked( next?: boolean ): boolean
+		aria_checked( ): string
+		aria_role( ): string
+		Icon( ): any
+		title( ): string
+		Title( ): $mol_view
+		label( ): readonly(any)[]
+		attr( ): ({ 
+			'mol_check_checked': ReturnType< $mol_check['checked'] >,
+			'aria-checked': ReturnType< $mol_check['aria_checked'] >,
+			'role': ReturnType< $mol_check['aria_role'] >,
+		})  & ReturnType< $mol_button_minor['attr'] >
+		sub( ): readonly($mol_view_content)[]
+	}
+	
+}
+
+//# sourceMappingURL=check.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_check extends $.$mol_check {
+        click(next?: Event): void;
+        sub(): readonly $mol_view_content[];
+        label(): readonly any[];
+        aria_checked(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_check_icon extends $mol_check {
+	}
+	
+}
+
+//# sourceMappingURL=icon.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_icon_brightness_4 extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=4.view.tree.d.ts.map
+declare namespace $ {
+
+	export class $mol_lights_toggle extends $mol_check_icon {
+		Lights_icon( ): $mol_icon_brightness_4
+		lights( next?: boolean ): boolean
+		Icon( ): ReturnType< $mol_lights_toggle['Lights_icon'] >
+		hint( ): string
+		checked( next?: ReturnType< $mol_lights_toggle['lights'] > ): ReturnType< $mol_lights_toggle['lights'] >
+	}
+	
+}
+
+//# sourceMappingURL=toggle.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_lights_toggle extends $.$mol_lights_toggle {
+        lights(next?: boolean): boolean;
+    }
+}
+
+declare namespace $ {
+
+	export class $mol_status extends $mol_view {
+		message( ): string
+		status( ): ReturnType< $mol_status['title'] >
+		minimal_height( ): number
+		minimal_width( ): number
+		sub( ): readonly(any)[]
+	}
+	
+}
+
+//# sourceMappingURL=status.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_status extends $.$mol_status {
+        message(): any;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -7059,25 +9047,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=stack.view.tree.d.ts.map
-declare namespace $ {
-    class $mol_syntax2<Lexems extends {
-        [name: string]: RegExp;
-    } = {}> {
-        lexems: Lexems;
-        constructor(lexems: Lexems);
-        rules: Array<{
-            regExp: RegExp;
-            name: string;
-            size: number;
-        }>;
-        regexp: RegExp;
-        tokenize(text: string, handle: (name: string, found: string, chunks: string[], offset: number) => void): void;
-        parse(text: string, handlers: {
-            [key in keyof Lexems | '']: (found: string, chunks: string[], offset: number) => void;
-        }): void;
-    }
-}
-
 declare namespace $ {
     type $mol_type_equals<A, B> = (<X>() => X extends A ? 1 : 2) extends (<X>() => X extends B ? 1 : 2) ? unknown : never;
 }
@@ -7249,6 +9218,25 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_syntax2<Lexems extends {
+        [name: string]: RegExp;
+    } = {}> {
+        lexems: Lexems;
+        constructor(lexems: Lexems);
+        rules: Array<{
+            regExp: RegExp;
+            name: string;
+            size: number;
+        }>;
+        regexp: RegExp;
+        tokenize(text: string, handle: (name: string, found: string, chunks: string[], offset: number) => void): void;
+        parse(text: string, handlers: {
+            [key in keyof Lexems | '']: (found: string, chunks: string[], offset: number) => void;
+        }): void;
+    }
+}
+
+declare namespace $ {
     var $mol_syntax2_md_flow: $mol_syntax2<{
         quote: RegExp;
         spoiler: RegExp;
@@ -7396,14 +9384,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
-}
-
-declare namespace $ {
-    type $mol_blob = Blob;
-    let $mol_blob: {
-        prototype: Blob;
-        new (blobParts?: readonly BlobPart[], options?: BlobPropertyBag): Blob;
-    };
 }
 
 declare namespace $ {
@@ -7593,185 +9573,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-
-	type $mol_textarea_edit__value_mol_textarea_1 = $mol_type_enforce<
-		ReturnType< $mol_textarea['value'] >
-		,
-		ReturnType< $mol_textarea_edit['value'] >
-	>
-	type $mol_textarea_edit__hint_mol_textarea_2 = $mol_type_enforce<
-		ReturnType< $mol_textarea['hint'] >
-		,
-		ReturnType< $mol_textarea_edit['hint'] >
-	>
-	type $mol_textarea_edit__enabled_mol_textarea_3 = $mol_type_enforce<
-		ReturnType< $mol_textarea['enabled'] >
-		,
-		ReturnType< $mol_textarea_edit['enabled'] >
-	>
-	type $mol_textarea_edit__spellcheck_mol_textarea_4 = $mol_type_enforce<
-		ReturnType< $mol_textarea['spellcheck'] >
-		,
-		ReturnType< $mol_textarea_edit['spellcheck'] >
-	>
-	type $mol_textarea_edit__length_max_mol_textarea_5 = $mol_type_enforce<
-		ReturnType< $mol_textarea['length_max'] >
-		,
-		ReturnType< $mol_textarea_edit['length_max'] >
-	>
-	type $mol_textarea_edit__selection_mol_textarea_6 = $mol_type_enforce<
-		ReturnType< $mol_textarea['selection'] >
-		,
-		ReturnType< $mol_textarea_edit['selection'] >
-	>
-	type $mol_textarea_edit__submit_mol_textarea_7 = $mol_type_enforce<
-		ReturnType< $mol_textarea['submit'] >
-		,
-		ReturnType< $mol_textarea_edit['submit'] >
-	>
-	type $mol_textarea_edit__submit_with_ctrl_mol_textarea_8 = $mol_type_enforce<
-		ReturnType< $mol_textarea['submit_with_ctrl'] >
-		,
-		ReturnType< $mol_textarea_edit['submit_with_ctrl'] >
-	>
-	type $mol_text_code__text_mol_textarea_9 = $mol_type_enforce<
-		ReturnType< $mol_textarea['value'] >
-		,
-		ReturnType< $mol_text_code['text'] >
-	>
-	type $mol_text_code__render_visible_only_mol_textarea_10 = $mol_type_enforce<
-		boolean
-		,
-		ReturnType< $mol_text_code['render_visible_only'] >
-	>
-	type $mol_text_code__row_numb_mol_textarea_11 = $mol_type_enforce<
-		ReturnType< $mol_textarea['row_numb'] >
-		,
-		ReturnType< $mol_text_code['row_numb'] >
-	>
-	type $mol_text_code__sidebar_showed_mol_textarea_12 = $mol_type_enforce<
-		ReturnType< $mol_textarea['sidebar_showed'] >
-		,
-		ReturnType< $mol_text_code['sidebar_showed'] >
-	>
-	type $mol_text_code__highlight_mol_textarea_13 = $mol_type_enforce<
-		ReturnType< $mol_textarea['highlight'] >
-		,
-		ReturnType< $mol_text_code['highlight'] >
-	>
-	type $mol_text_code__syntax_mol_textarea_14 = $mol_type_enforce<
-		ReturnType< $mol_textarea['syntax'] >
-		,
-		ReturnType< $mol_text_code['syntax'] >
-	>
-	export class $mol_textarea extends $mol_stack {
-		clickable( next?: boolean ): boolean
-		sidebar_showed( ): boolean
-		press( next?: any ): any
-		hover( next?: any ): any
-		value( next?: string ): string
-		hint( ): string
-		enabled( ): boolean
-		spellcheck( ): boolean
-		length_max( ): number
-		selection( next?: readonly(number)[] ): readonly(number)[]
-		bring( ): ReturnType< ReturnType< $mol_textarea['Edit'] >['bring'] >
-		submit( next?: any ): any
-		submit_with_ctrl( ): boolean
-		Edit( ): $mol_textarea_edit
-		row_numb( id: any): number
-		highlight( ): string
-		syntax( ): $mol_syntax2
-		View( ): $mol_text_code
-		attr( ): ({ 
-			'mol_textarea_clickable': ReturnType< $mol_textarea['clickable'] >,
-			'mol_textarea_sidebar_showed': ReturnType< $mol_textarea['sidebar_showed'] >,
-		})  & ReturnType< $mol_stack['attr'] >
-		event( ): ({ 
-			keydown( next?: ReturnType< $mol_textarea['press'] > ): ReturnType< $mol_textarea['press'] >,
-			pointermove( next?: ReturnType< $mol_textarea['hover'] > ): ReturnType< $mol_textarea['hover'] >,
-		}) 
-		sub( ): readonly(any)[]
-		symbols_alt( ): Record<string, string>
-		symbols_alt_ctrl( ): Record<string, string>
-		symbols_alt_shift( ): Record<string, string>
-	}
-	
-	export class $mol_textarea_edit extends $mol_string {
-		dom_name( ): string
-		enter( ): string
-		field( ): ({ 
-			'scrollTop': number,
-		})  & ReturnType< $mol_string['field'] >
-	}
-	
-}
-
-//# sourceMappingURL=textarea.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_textarea extends $.$mol_textarea {
-        indent_inc(): void;
-        indent_dec(): void;
-        symbol_insert(event: KeyboardEvent): void;
-        clickable(next?: boolean): boolean;
-        hover(event: PointerEvent): void;
-        press(event: KeyboardEvent): void;
-        row_numb(index: number): number;
-        syntax(): $mol_syntax2<{
-            'code-indent': RegExp;
-            'code-docs': RegExp;
-            'code-comment-block': RegExp;
-            'code-link': RegExp;
-            'code-comment-inline': RegExp;
-            'code-string': RegExp;
-            'code-number': RegExp;
-            'code-call': RegExp;
-            'code-sexpr': RegExp;
-            'code-field': RegExp;
-            'code-keyword': RegExp;
-            'code-global': RegExp;
-            'code-word': RegExp;
-            'code-decorator': RegExp;
-            'code-tag': RegExp;
-            'code-punctuation': RegExp;
-        }>;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    const $bog_blitz_review_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Author_name: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Author_lord: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Created: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Reply: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Reply_author: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Reply_created: (auto?: any) => $giper_baza_atom_real | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Text: typeof $giper_baza_atom_text;
-            readonly Author_name: typeof $giper_baza_atom_text;
-            readonly Author_lord: typeof $giper_baza_atom_text;
-            readonly Created: typeof $giper_baza_atom_real;
-            readonly Reply: typeof $giper_baza_atom_text;
-            readonly Reply_author: typeof $giper_baza_atom_text;
-            readonly Reply_created: typeof $giper_baza_atom_real;
-        };
-    };
-    export class $bog_blitz_review extends $bog_blitz_review_base {
-    }
-    export {};
-}
-
-declare namespace $ {
 }
 
 declare namespace $ {
@@ -7785,53 +9586,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=float.view.tree.d.ts.map
-declare namespace $ {
-    class $mol_dom_event<EventType extends Event> extends $mol_object {
-        readonly native: EventType;
-        constructor(native: EventType);
-        prevented(next?: boolean): boolean;
-        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_view__sub_mol_check_1 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $mol_check extends $mol_button_minor {
-		checked( next?: boolean ): boolean
-		aria_checked( ): string
-		aria_role( ): string
-		Icon( ): any
-		title( ): string
-		Title( ): $mol_view
-		label( ): readonly(any)[]
-		attr( ): ({ 
-			'mol_check_checked': ReturnType< $mol_check['checked'] >,
-			'aria-checked': ReturnType< $mol_check['aria_checked'] >,
-			'role': ReturnType< $mol_check['aria_role'] >,
-		})  & ReturnType< $mol_button_minor['attr'] >
-		sub( ): readonly($mol_view_content)[]
-	}
-	
-}
-
-//# sourceMappingURL=check.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_check extends $.$mol_check {
-        click(next?: Event): void;
-        sub(): readonly $mol_view_content[];
-        label(): readonly any[];
-        aria_checked(): string;
-    }
-}
-
 declare namespace $ {
 
 	export class $mol_icon_chevron extends $mol_icon {
@@ -8019,7 +9773,7 @@ declare namespace $.$$ {
         col_head_content(colId: string): readonly string[];
         rows(): readonly $mol_view[];
         cells(row_id: string[]): readonly $mol_view[];
-        col_type(col_id: string): "text" | "number" | "branch";
+        col_type(col_id: string): "number" | "text" | "branch";
         Cell(id: {
             row: string[];
             col: string;
@@ -8052,59 +9806,6 @@ declare namespace $.$$ {
             row: string[];
         }, next?: boolean): boolean;
         sub(): readonly any[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_link extends $mol_view {
-		uri_toggle( ): string
-		hint( ): string
-		hint_safe( ): ReturnType< $mol_link['hint'] >
-		target( ): string
-		file_name( ): string
-		current( ): boolean
-		relation( ): string
-		event_click( next?: any ): any
-		click( next?: ReturnType< $mol_link['event_click'] > ): ReturnType< $mol_link['event_click'] >
-		uri( ): string
-		dom_name( ): string
-		uri_off( ): string
-		uri_native( ): any
-		external( ): boolean
-		attr( ): ({ 
-			'href': ReturnType< $mol_link['uri_toggle'] >,
-			'title': ReturnType< $mol_link['hint_safe'] >,
-			'target': ReturnType< $mol_link['target'] >,
-			'download': ReturnType< $mol_link['file_name'] >,
-			'mol_link_current': ReturnType< $mol_link['current'] >,
-			'rel': ReturnType< $mol_link['relation'] >,
-		})  & ReturnType< $mol_view['attr'] >
-		sub( ): readonly($mol_view_content)[]
-		arg( ): Record<string, any>
-		event( ): ({ 
-			click( next?: ReturnType< $mol_link['click'] > ): ReturnType< $mol_link['click'] >,
-		})  & ReturnType< $mol_view['event'] >
-	}
-	
-}
-
-//# sourceMappingURL=link.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_link extends $.$mol_link {
-        uri_toggle(): string;
-        uri(): string;
-        uri_off(): string;
-        uri_native(): URL;
-        current(): boolean;
-        file_name(): string;
-        minimal_height(): number;
-        external(): boolean;
-        target(): '_self' | '_blank' | '_top' | '_parent' | string;
-        hint_safe(): string;
     }
 }
 
@@ -8148,58 +9849,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    function $mol_wait_timeout_async(this: $, timeout: number): Promise<void>;
-    function $mol_wait_timeout(this: $, timeout: number): void;
-}
-
-declare namespace $ {
-
-	type $mol_link__uri_mol_embed_native_1 = $mol_type_enforce<
-		ReturnType< $mol_embed_native['uri'] >
-		,
-		ReturnType< $mol_link['uri'] >
-	>
-	type $mol_link__sub_mol_embed_native_2 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_link['sub'] >
-	>
-	export class $mol_embed_native extends $mol_scroll {
-		uri( next?: string ): string
-		title( ): string
-		Fallback( ): $mol_link
-		uri_change( next?: any ): any
-		dom_name( ): string
-		window( ): any
-		attr( ): ({ 
-			'src': ReturnType< $mol_embed_native['uri'] >,
-		})  & ReturnType< $mol_scroll['attr'] >
-		sub( ): readonly(any)[]
-		message( ): ({ 
-			hashchange( next?: ReturnType< $mol_embed_native['uri_change'] > ): ReturnType< $mol_embed_native['uri_change'] >,
-		}) 
-	}
-	
-}
-
-//# sourceMappingURL=native.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_embed_native extends $.$mol_embed_native {
-        window(): Window;
-        load(frame: HTMLIFrameElement): Promise<Window>;
-        uri_resource(): string;
-        message_listener(): $mol_dom_listener;
-        sub_visible(): readonly $mol_view_content[];
-        message_receive(event?: MessageEvent<[string, string]>): void;
-        uri_change(event: MessageEvent<[string, string]>): void;
-        auto(): ($mol_dom_listener | Window)[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
 
 	export class $mol_icon_youtube extends $mol_icon {
 		path( ): string
@@ -8208,40 +9857,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=youtube.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_frame extends $mol_embed_native {
-		allow( ): string
-		html( ): any
-		attr( ): ({ 
-			'tabindex': ReturnType< $mol_frame['tabindex'] >,
-			'allow': ReturnType< $mol_frame['allow'] >,
-			'src': ReturnType< $mol_frame['uri'] >,
-			'srcdoc': ReturnType< $mol_frame['html'] >,
-		}) 
-		fullscreen( ): boolean
-		accelerometer( ): boolean
-		autoplay( ): boolean
-		encription( ): boolean
-		gyroscope( ): boolean
-		pip( ): boolean
-		clipboard_read( ): boolean
-		clipboard_write( ): boolean
-	}
-	
-}
-
-//# sourceMappingURL=frame.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_frame extends $.$mol_frame {
-        window(): any;
-        allow(): string;
-    }
-}
-
-declare namespace $ {
-}
-
 declare namespace $ {
 
 	type $mol_image__title_mol_embed_service_1 = $mol_type_enforce<
@@ -8918,2091 +10533,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_text_list_item__index_mol_text_list_1 = $mol_type_enforce<
-		ReturnType< $mol_text_list['item_index'] >
-		,
-		ReturnType< $mol_text_list_item['index'] >
-	>
-	type $mol_text_list_item__sub_mol_text_list_2 = $mol_type_enforce<
-		ReturnType< $mol_text_list['block_content'] >
-		,
-		ReturnType< $mol_text_list_item['sub'] >
-	>
-	export class $mol_text_list extends $mol_text {
-		type( ): string
-		auto_scroll( ): any
-		attr( ): ({ 
-			'mol_text_list_type': ReturnType< $mol_text_list['type'] >,
-		})  & ReturnType< $mol_text['attr'] >
-		Paragraph( id: any): $mol_text_list_item
-	}
-	
-	export class $mol_text_list_item extends $mol_paragraph {
-		index( ): number
-		attr( ): ({ 
-			'mol_text_list_item_index': ReturnType< $mol_text_list_item['index'] >,
-		})  & ReturnType< $mol_paragraph['attr'] >
-	}
-	
-}
-
-//# sourceMappingURL=list.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_paragraph__title_bog_blitz_review_card_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['author_name'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_review_card_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['created_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_row__sub_bog_blitz_review_card_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_row['sub'] >
-	>
-	type $mol_text__text_bog_blitz_review_card_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['text'] >
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_paragraph__title_bog_blitz_review_card_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_author_name'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_review_card_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_created_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_row__sub_bog_blitz_review_card_7 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_row['sub'] >
-	>
-	type $mol_text__text_bog_blitz_review_card_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_text'] >
-		,
-		ReturnType< $mol_text['text'] >
-	>
-	type $mol_view__sub_bog_blitz_review_card_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_textarea__hint_bog_blitz_review_card_10 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_textarea['hint'] >
-	>
-	type $mol_textarea__value_bog_blitz_review_card_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_draft'] >
-		,
-		ReturnType< $mol_textarea['value'] >
-	>
-	type $mol_button_major__title_bog_blitz_review_card_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_submit_title'] >
-		,
-		ReturnType< $mol_button_major['title'] >
-	>
-	type $mol_button_major__click_bog_blitz_review_card_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_submit'] >
-		,
-		ReturnType< $mol_button_major['click'] >
-	>
-	type $mol_view__sub_bog_blitz_review_card_14 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_review_card_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_toggle_title'] >
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_review_card_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_review_card['reply_toggle'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	export class $bog_blitz_review_card extends $mol_view {
-		Author_name( ): $mol_paragraph
-		Created_time( ): $mol_paragraph
-		Header( ): $mol_row
-		Text_body( ): $mol_text
-		Reply_author( ): $mol_paragraph
-		Reply_created( ): $mol_paragraph
-		Reply_header( ): $mol_row
-		Reply_body( ): $mol_text
-		Reply_wrap( ): $mol_view
-		reply_draft( next?: string ): string
-		Reply_input( ): $mol_textarea
-		reply_submit( next?: any ): any
-		Reply_form_submit( ): $mol_button_major
-		Reply_form( ): $mol_view
-		reply_toggle( next?: any ): any
-		Reply_toggle( ): $mol_button_minor
-		author_name( ): string
-		created_text( ): string
-		text( ): string
-		reply_text( ): string
-		reply_author_name( ): string
-		reply_created_text( ): string
-		has_reply( ): boolean
-		can_reply( ): boolean
-		reply_form_open( next?: boolean ): boolean
-		reply_submit_title( ): string
-		reply_toggle_title( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=card.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_review_card extends $.$bog_blitz_review_card {
-        sub(): any[];
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_textarea__hint_bog_blitz_reviews_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['form_hint'] >
-		,
-		ReturnType< $mol_textarea['hint'] >
-	>
-	type $mol_textarea__value_bog_blitz_reviews_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['draft_text'] >
-		,
-		ReturnType< $mol_textarea['value'] >
-	>
-	type $mol_button_major__title_bog_blitz_reviews_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['submit_title'] >
-		,
-		ReturnType< $mol_button_major['title'] >
-	>
-	type $mol_button_major__click_bog_blitz_reviews_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['submit'] >
-		,
-		ReturnType< $mol_button_major['click'] >
-	>
-	type $mol_view__sub_bog_blitz_reviews_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['form_sub'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_blitz_reviews_6 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_reviews_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['empty_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $bog_blitz_review_card__author_name_bog_blitz_reviews_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_author_name'] >
-		,
-		ReturnType< $bog_blitz_review_card['author_name'] >
-	>
-	type $bog_blitz_review_card__created_text_bog_blitz_reviews_9 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_created_text'] >
-		,
-		ReturnType< $bog_blitz_review_card['created_text'] >
-	>
-	type $bog_blitz_review_card__text_bog_blitz_reviews_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_text'] >
-		,
-		ReturnType< $bog_blitz_review_card['text'] >
-	>
-	type $bog_blitz_review_card__reply_text_bog_blitz_reviews_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_text'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_text'] >
-	>
-	type $bog_blitz_review_card__reply_author_name_bog_blitz_reviews_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_author_name'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_author_name'] >
-	>
-	type $bog_blitz_review_card__reply_created_text_bog_blitz_reviews_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_created_text'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_created_text'] >
-	>
-	type $bog_blitz_review_card__has_reply_bog_blitz_reviews_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_has_reply'] >
-		,
-		ReturnType< $bog_blitz_review_card['has_reply'] >
-	>
-	type $bog_blitz_review_card__can_reply_bog_blitz_reviews_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_can_reply'] >
-		,
-		ReturnType< $bog_blitz_review_card['can_reply'] >
-	>
-	type $bog_blitz_review_card__reply_form_open_bog_blitz_reviews_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_form_open'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_form_open'] >
-	>
-	type $bog_blitz_review_card__reply_draft_bog_blitz_reviews_17 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_draft'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_draft'] >
-	>
-	type $bog_blitz_review_card__reply_submit_title_bog_blitz_reviews_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_submit_title'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_submit_title'] >
-	>
-	type $bog_blitz_review_card__reply_toggle_title_bog_blitz_reviews_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_toggle_title'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_toggle_title'] >
-	>
-	type $bog_blitz_review_card__reply_submit_bog_blitz_reviews_20 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_submit'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_submit'] >
-	>
-	type $bog_blitz_review_card__reply_toggle_bog_blitz_reviews_21 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_reply_toggle'] >
-		,
-		ReturnType< $bog_blitz_review_card['reply_toggle'] >
-	>
-	type $mol_paragraph__title_bog_blitz_reviews_22 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['section_title'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_reviews_23 = $mol_type_enforce<
-		ReturnType< $bog_blitz_reviews['review_rows'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_reviews extends $mol_view {
-		draft_text( next?: string ): string
-		Entry_my( ): $mol_textarea
-		submit( next?: any ): any
-		Submit( ): $mol_button_major
-		review_author_name( id: any): string
-		review_created_text( id: any): string
-		review_text( id: any): string
-		review_reply_text( id: any): string
-		review_reply_author_name( id: any): string
-		review_reply_created_text( id: any): string
-		review_has_reply( id: any): boolean
-		review_can_reply( id: any): boolean
-		review_reply_form_open( id: any, next?: boolean ): boolean
-		review_reply_draft( id: any, next?: string ): string
-		review_reply_submit_title( id: any): string
-		review_reply_toggle_title( id: any): string
-		review_reply_submit( id: any, next?: any ): any
-		review_reply_toggle( id: any, next?: any ): any
-		review_rows( ): readonly(any)[]
-		form_sub( ): readonly(any)[]
-		Form_wrap( ): $mol_view
-		quiz_land_link( ): string
-		my_lord( ): string
-		my_name( ): string
-		can_write( ): boolean
-		can_reply( ): boolean
-		empty_text( ): string
-		section_title( ): string
-		submit_title( ): string
-		form_hint( ): string
-		form_visible( ): boolean
-		Form( ): $mol_view
-		Empty( ): $mol_paragraph
-		Review_card( id: any): $bog_blitz_review_card
-		Title( ): $mol_paragraph
-		List( ): $mol_view
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=reviews.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_reviews extends $.$bog_blitz_reviews {
-        quiz_land(): $giper_baza_land | null;
-        reviews_dict(): {
-            Value: typeof $bog_blitz_review;
-            key(key: $giper_baza_vary_type, auto?: any): $bog_blitz_review;
-            keys(): readonly $giper_baza_vary_type[];
-            dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
-            [$mol_dev_format_head](): any[];
-            items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-            splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-            find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-            has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-            add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-            cut(vary: $giper_baza_vary_type): void;
-            move(from: number, to: number): void;
-            wipe(seat: number): void;
-            pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-            land(): $giper_baza_land;
-            head(): $giper_baza_link;
-            land_link(): $giper_baza_link;
-            link(): $giper_baza_link;
-            toJSON(): string;
-            cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-            pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-            units(): $giper_baza_unit_sand[];
-            units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-            meta(next?: $giper_baza_link): $giper_baza_link | null;
-            meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-            filled(): boolean;
-            can_change(): boolean;
-            last_change(): $mol_time_moment | null;
-            authors(): $giper_baza_auth_pass[];
-            get $(): $;
-            set $(next: $);
-            destructor(): void;
-            toString(): string;
-            [Symbol.toStringTag]: string;
-            [$mol_ambient_ref]: $;
-            [Symbol.dispose](): void;
-        } | null;
-        review_keys(): string[];
-        my_entry(): $bog_blitz_review | null;
-        my_entry_or_create(): $bog_blitz_review | null;
-        has_entry(): boolean;
-        draft_text(next?: string): string;
-        submit_title(): "Update review" | "Submit review";
-        submit(): void;
-        form_sub(): $mol_view[];
-        review_rows(): $.$mol_paragraph[] | $.$bog_blitz_review_card[];
-        private entry_by_index;
-        review_author_name(index: number): string;
-        review_created_text(index: number): string;
-        review_text(index: number): string;
-        review_has_reply(index: number): boolean;
-        review_reply_text(index: number): string;
-        review_reply_author_name(index: number): string;
-        review_reply_created_text(index: number): string;
-        review_can_reply(index: number): boolean;
-        private entry_by_index_or_create;
-        review_reply_form_open(index: number, next?: boolean): boolean;
-        review_reply_draft(index: number, next?: string): string;
-        review_reply_submit_title(index: number): "Update reply" | "Send reply";
-        review_reply_toggle_title(index: number): "Edit reply" | "Cancel" | "Reply";
-        review_reply_toggle(index: number): void;
-        review_reply_submit(index: number): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	type $mol_image__uri_bog_blitz_lobby_game_option_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_option_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_blitz_avatar__color_bog_blitz_lobby_game_option_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_bg'] >
-		,
-		ReturnType< $bog_blitz_avatar['color'] >
-	>
-	type $bog_blitz_avatar__player_id_bog_blitz_lobby_game_option_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_option['picker_avatar_id'] >
-		,
-		ReturnType< $bog_blitz_avatar['player_id'] >
-	>
-	type $bog_blitz_avatar__attr_bog_blitz_lobby_game_option_5 = $mol_type_enforce<
-		({ 
-			'title': ReturnType< $bog_blitz_lobby_game_option['picker_name'] >,
-			'bog_blitz_picker': boolean,
-		})  & ReturnType< $bog_blitz_avatar['attr'] >
-		,
-		ReturnType< $bog_blitz_avatar['attr'] >
-	>
-	export class $bog_blitz_lobby_game_option extends $mol_button_major {
-		selected( ): string
-		submitted( ): string
-		correct( ): string
-		picker_views( ): readonly(any)[]
-		picker_bg( id: any): string
-		picker_avatar_id( id: any): string
-		picker_name( id: any): string
-		attr( ): ({ 
-			'data-selected': ReturnType< $bog_blitz_lobby_game_option['selected'] >,
-			'data-submitted': ReturnType< $bog_blitz_lobby_game_option['submitted'] >,
-			'data-correct': ReturnType< $bog_blitz_lobby_game_option['correct'] >,
-		})  & ReturnType< $mol_button_major['attr'] >
-		image_uri( ): string
-		Option_image( ): $mol_image
-		picker_keys( ): readonly(string)[]
-		Picker_area( ): $mol_view
-		Picker( id: any): $bog_blitz_avatar
-	}
-	
-}
-
-//# sourceMappingURL=option.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby_game_option extends $.$bog_blitz_lobby_game_option {
-        sub(): (string | $mol_view)[];
-        picker_views(): $bog_blitz_avatar[];
-        picker_parts(key: string): {
-            lord: string;
-            name: string;
-            color: string;
-        };
-        picker_name(key: string): string;
-        picker_avatar_id(key: string): string;
-        picker_bg(key: string): string;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-    function $mol_offline(): void;
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    const $giper_baza_file_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Name: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Type: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Chunks: (auto?: any) => $giper_baza_list_bin | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Name: typeof $giper_baza_atom_text;
-            readonly Type: typeof $giper_baza_atom_text;
-            readonly Chunks: typeof $giper_baza_list_bin;
-        };
-    };
-    export class $giper_baza_file extends $giper_baza_file_base {
-        uri(): string;
-        name(next?: string | null): string;
-        type(next?: string | null): string;
-        blob(next?: $mol_blob): $mol_blob;
-        buffer(next?: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>;
-        chunks(next?: readonly (Uint8Array<ArrayBuffer> | null)[]): Uint8Array<ArrayBuffer>[];
-        str(next?: string, type?: string): string;
-        json(next?: any, type?: string): any;
-    }
-    export {};
-}
-
-declare namespace $.$$ {
-    const $bog_blitz_question_option_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Image: (auto?: any) => {
-                Value: Value;
-                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                ensure_here(peer: $giper_baza_link | null): void;
-                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
-                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
-                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
-                local_ensure(): $giper_baza_file | null;
-                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
-                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                [$mol_dev_format_head](): any[];
-                land(): $giper_baza_land;
-                head(): $giper_baza_link;
-                land_link(): $giper_baza_link;
-                link(): $giper_baza_link;
-                toJSON(): string;
-                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                units(): $giper_baza_unit_sand[];
-                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                meta(next?: $giper_baza_link): $giper_baza_link | null;
-                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                filled(): boolean;
-                can_change(): boolean;
-                last_change(): $mol_time_moment | null;
-                authors(): $giper_baza_auth_pass[];
-                get $(): $;
-                set $(next: $);
-                destructor(): void;
-                toString(): string;
-                [Symbol.toStringTag]: string;
-                [$mol_ambient_ref]: $;
-                [Symbol.dispose](): void;
-            } | null;
-            readonly Is_correct: (auto?: any) => $giper_baza_atom_bool | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Text: typeof $giper_baza_atom_text;
-            readonly Image: {
-                new (): {
-                    Value: () => typeof $giper_baza_file;
-                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                    ensure_here(peer: $giper_baza_link | null): void;
-                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
-                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
-                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
-                    local_ensure(): $giper_baza_file | null;
-                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
-                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                    [$mol_dev_format_head](): any[];
-                    land(): $giper_baza_land;
-                    head(): $giper_baza_link;
-                    land_link(): $giper_baza_link;
-                    link(): $giper_baza_link;
-                    toJSON(): string;
-                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                    units(): $giper_baza_unit_sand[];
-                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                    meta(next?: $giper_baza_link): $giper_baza_link | null;
-                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                    filled(): boolean;
-                    can_change(): boolean;
-                    last_change(): $mol_time_moment | null;
-                    authors(): $giper_baza_auth_pass[];
-                    get $(): $;
-                    set $(next: $);
-                    destructor(): void;
-                    toString(): string;
-                    [Symbol.toStringTag]: string;
-                    [$mol_ambient_ref]: $;
-                    [Symbol.dispose](): void;
-                };
-                toString(): any;
-                Value: typeof $giper_baza_dict;
-                parse: typeof $giper_baza_vary_cast_link;
-                tag: keyof typeof $giper_baza_unit_sand_tag;
-                meta: null | $giper_baza_link;
-                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
-                $: $;
-                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
-                toJSON(): any;
-                destructor(): void;
-                [Symbol.toPrimitive](): any;
-                [$mol_key_handle](): any;
-            };
-            readonly Is_correct: typeof $giper_baza_atom_bool;
-        };
-    };
-    export class $bog_blitz_question_option extends $bog_blitz_question_option_base {
-    }
-    export {};
-}
-
-declare namespace $.$$ {
-    const $bog_blitz_question_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Text: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Type: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Options: (auto?: any) => {
-                remote_list(next?: readonly $bog_blitz_question_option[] | undefined): readonly $bog_blitz_question_option[];
-                remote_add(item: $bog_blitz_question_option): void;
-                make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question_option;
-                items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
-                items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-                splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-                has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-                add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                cut(vary: $giper_baza_vary_type): void;
-                move(from: number, to: number): void;
-                wipe(seat: number): void;
-                pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-                [$mol_dev_format_head](): any[];
-                land(): $giper_baza_land;
-                head(): $giper_baza_link;
-                land_link(): $giper_baza_link;
-                link(): $giper_baza_link;
-                toJSON(): string;
-                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                units(): $giper_baza_unit_sand[];
-                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                meta(next?: $giper_baza_link): $giper_baza_link | null;
-                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                filled(): boolean;
-                can_change(): boolean;
-                last_change(): $mol_time_moment | null;
-                authors(): $giper_baza_auth_pass[];
-                get $(): $;
-                set $(next: $);
-                destructor(): void;
-                toString(): string;
-                [Symbol.toStringTag]: string;
-                [$mol_ambient_ref]: $;
-                [Symbol.dispose](): void;
-            } | null;
-            readonly Correct_text: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Image: (auto?: any) => {
-                Value: Value;
-                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                ensure_here(peer: $giper_baza_link | null): void;
-                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
-                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
-                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
-                local_ensure(): $giper_baza_file | null;
-                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
-                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                [$mol_dev_format_head](): any[];
-                land(): $giper_baza_land;
-                head(): $giper_baza_link;
-                land_link(): $giper_baza_link;
-                link(): $giper_baza_link;
-                toJSON(): string;
-                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                units(): $giper_baza_unit_sand[];
-                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                meta(next?: $giper_baza_link): $giper_baza_link | null;
-                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                filled(): boolean;
-                can_change(): boolean;
-                last_change(): $mol_time_moment | null;
-                authors(): $giper_baza_auth_pass[];
-                get $(): $;
-                set $(next: $);
-                destructor(): void;
-                toString(): string;
-                [Symbol.toStringTag]: string;
-                [$mol_ambient_ref]: $;
-                [Symbol.dispose](): void;
-            } | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Text: typeof $giper_baza_atom_text;
-            readonly Type: typeof $giper_baza_atom_text;
-            readonly Options: {
-                new (): {
-                    remote_list(next?: readonly $bog_blitz_question_option[] | undefined): readonly $bog_blitz_question_option[];
-                    remote_add(item: $bog_blitz_question_option): void;
-                    make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question_option;
-                    items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
-                    items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-                    splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                    find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-                    has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-                    add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                    cut(vary: $giper_baza_vary_type): void;
-                    move(from: number, to: number): void;
-                    wipe(seat: number): void;
-                    pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-                    [$mol_dev_format_head](): any[];
-                    land(): $giper_baza_land;
-                    head(): $giper_baza_link;
-                    land_link(): $giper_baza_link;
-                    link(): $giper_baza_link;
-                    toJSON(): string;
-                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                    units(): $giper_baza_unit_sand[];
-                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                    meta(next?: $giper_baza_link): $giper_baza_link | null;
-                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                    filled(): boolean;
-                    can_change(): boolean;
-                    last_change(): $mol_time_moment | null;
-                    authors(): $giper_baza_auth_pass[];
-                    get $(): $;
-                    set $(next: $);
-                    destructor(): void;
-                    toString(): string;
-                    [Symbol.toStringTag]: string;
-                    [$mol_ambient_ref]: $;
-                    [Symbol.dispose](): void;
-                };
-                Value: Value;
-                toString(): any;
-                parse: typeof $giper_baza_vary_cast_link;
-                tag: keyof typeof $giper_baza_unit_sand_tag;
-                meta: null | $giper_baza_link;
-                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
-                $: $;
-                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
-                toJSON(): any;
-                destructor(): void;
-                [Symbol.toPrimitive](): any;
-                [$mol_key_handle](): any;
-            };
-            readonly Correct_text: typeof $giper_baza_atom_text;
-            readonly Image: {
-                new (): {
-                    Value: () => typeof $giper_baza_file;
-                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
-                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
-                    ensure_here(peer: $giper_baza_link | null): void;
-                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
-                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
-                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
-                    local_ensure(): $giper_baza_file | null;
-                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
-                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
-                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
-                    [$mol_dev_format_head](): any[];
-                    land(): $giper_baza_land;
-                    head(): $giper_baza_link;
-                    land_link(): $giper_baza_link;
-                    link(): $giper_baza_link;
-                    toJSON(): string;
-                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                    units(): $giper_baza_unit_sand[];
-                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                    meta(next?: $giper_baza_link): $giper_baza_link | null;
-                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                    filled(): boolean;
-                    can_change(): boolean;
-                    last_change(): $mol_time_moment | null;
-                    authors(): $giper_baza_auth_pass[];
-                    get $(): $;
-                    set $(next: $);
-                    destructor(): void;
-                    toString(): string;
-                    [Symbol.toStringTag]: string;
-                    [$mol_ambient_ref]: $;
-                    [Symbol.dispose](): void;
-                };
-                toString(): any;
-                Value: typeof $giper_baza_dict;
-                parse: typeof $giper_baza_vary_cast_link;
-                tag: keyof typeof $giper_baza_unit_sand_tag;
-                meta: null | $giper_baza_link;
-                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
-                $: $;
-                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
-                toJSON(): any;
-                destructor(): void;
-                [Symbol.toPrimitive](): any;
-                [$mol_key_handle](): any;
-            };
-        };
-    };
-    export class $bog_blitz_question extends $bog_blitz_question_base {
-    }
-    export {};
-}
-
-declare namespace $.$$ {
-    const $bog_blitz_quiz_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Title: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Questions: (auto?: any) => {
-                remote_list(next?: readonly $bog_blitz_question[] | undefined): readonly $bog_blitz_question[];
-                remote_add(item: $bog_blitz_question): void;
-                make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question;
-                items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
-                items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-                splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-                has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-                add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                cut(vary: $giper_baza_vary_type): void;
-                move(from: number, to: number): void;
-                wipe(seat: number): void;
-                pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-                [$mol_dev_format_head](): any[];
-                land(): $giper_baza_land;
-                head(): $giper_baza_link;
-                land_link(): $giper_baza_link;
-                link(): $giper_baza_link;
-                toJSON(): string;
-                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                units(): $giper_baza_unit_sand[];
-                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                meta(next?: $giper_baza_link): $giper_baza_link | null;
-                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                filled(): boolean;
-                can_change(): boolean;
-                last_change(): $mol_time_moment | null;
-                authors(): $giper_baza_auth_pass[];
-                get $(): $;
-                set $(next: $);
-                destructor(): void;
-                toString(): string;
-                [Symbol.toStringTag]: string;
-                [$mol_ambient_ref]: $;
-                [Symbol.dispose](): void;
-            } | null;
-            readonly Time_read: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Time_answer: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Time_leaderboard: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Time_reveal: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Points_base: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Time_multiplier: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Manual_mode: (auto?: any) => $giper_baza_atom_bool | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Title: typeof $giper_baza_atom_text;
-            readonly Questions: {
-                new (): {
-                    remote_list(next?: readonly $bog_blitz_question[] | undefined): readonly $bog_blitz_question[];
-                    remote_add(item: $bog_blitz_question): void;
-                    make(config: null | number | $giper_baza_rank_preset | $giper_baza_land): $bog_blitz_question;
-                    items(next?: readonly ($giper_baza_link | null)[] | undefined): readonly ($giper_baza_link | null)[];
-                    items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-                    splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                    find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-                    has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-                    add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-                    cut(vary: $giper_baza_vary_type): void;
-                    move(from: number, to: number): void;
-                    wipe(seat: number): void;
-                    pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-                    [$mol_dev_format_head](): any[];
-                    land(): $giper_baza_land;
-                    head(): $giper_baza_link;
-                    land_link(): $giper_baza_link;
-                    link(): $giper_baza_link;
-                    toJSON(): string;
-                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-                    units(): $giper_baza_unit_sand[];
-                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-                    meta(next?: $giper_baza_link): $giper_baza_link | null;
-                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-                    filled(): boolean;
-                    can_change(): boolean;
-                    last_change(): $mol_time_moment | null;
-                    authors(): $giper_baza_auth_pass[];
-                    get $(): $;
-                    set $(next: $);
-                    destructor(): void;
-                    toString(): string;
-                    [Symbol.toStringTag]: string;
-                    [$mol_ambient_ref]: $;
-                    [Symbol.dispose](): void;
-                };
-                Value: Value;
-                toString(): any;
-                parse: typeof $giper_baza_vary_cast_link;
-                tag: keyof typeof $giper_baza_unit_sand_tag;
-                meta: null | $giper_baza_link;
-                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
-                $: $;
-                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
-                toJSON(): any;
-                destructor(): void;
-                [Symbol.toPrimitive](): any;
-                [$mol_key_handle](): any;
-            };
-            readonly Time_read: typeof $giper_baza_atom_real;
-            readonly Time_answer: typeof $giper_baza_atom_real;
-            readonly Time_leaderboard: typeof $giper_baza_atom_real;
-            readonly Time_reveal: typeof $giper_baza_atom_real;
-            readonly Points_base: typeof $giper_baza_atom_real;
-            readonly Time_multiplier: typeof $giper_baza_atom_real;
-            readonly Manual_mode: typeof $giper_baza_atom_bool;
-        };
-    };
-    export class $bog_blitz_quiz extends $bog_blitz_quiz_base {
-    }
-    export {};
-}
-
-declare namespace $ {
-
-	type $mol_view__sub_bog_blitz_lobby_game_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['host_controls'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['state_label'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_image__uri_bog_blitz_lobby_game_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['question_image_uri'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $bog_blitz_lobby_game_timer__round_start_bog_blitz_lobby_game_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['round_start'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['round_start'] >
-	>
-	type $bog_blitz_lobby_game_timer__duration_bog_blitz_lobby_game_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['duration'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
-	>
-	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['paused_at'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
-	>
-	type $bog_blitz_lobby_game_timer__manual_mode_bog_blitz_lobby_game_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['manual_mode'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['manual_mode'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['answer_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_blitz_lobby_game_meta__players_dict_bog_blitz_lobby_game_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_meta['players_dict'] >
-	>
-	type $bog_blitz_lobby_game_meta__current_question_index_bog_blitz_lobby_game_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_meta['current_question_index'] >
-	>
-	type $bog_blitz_lobby_game_meta__current_answer_key_bog_blitz_lobby_game_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['current_answer_key'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_meta['current_answer_key'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['countdown_content'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_blitz_lobby_game_timer__round_start_bog_blitz_lobby_game_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['round_start'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['round_start'] >
-	>
-	type $bog_blitz_lobby_game_timer__duration_bog_blitz_lobby_game_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['duration'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['duration'] >
-	>
-	type $bog_blitz_lobby_game_timer__paused_at_bog_blitz_lobby_game_17 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['paused_at'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['paused_at'] >
-	>
-	type $bog_blitz_lobby_game_timer__manual_mode_bog_blitz_lobby_game_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['manual_mode'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_timer['manual_mode'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_20 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_21 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['is_host'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__players_dict_bog_blitz_lobby_game_22 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['players_dict'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__my_lord_str_bog_blitz_lobby_game_23 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['my_lord_str'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__is_host_bog_blitz_lobby_game_24 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['is_host'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['is_host'] >
-	>
-	type $bog_blitz_lobby_game_leaderboard__final_bog_blitz_lobby_game_25 = $mol_type_enforce<
-		boolean
-		,
-		ReturnType< $bog_blitz_lobby_game_leaderboard['final'] >
-	>
-	type $bog_blitz_lobby_game_reactboard__players_dict_bog_blitz_lobby_game_26 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_reactboard['players_dict'] >
-	>
-	type $bog_blitz_reviews__quiz_land_link_bog_blitz_lobby_game_27 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['quiz_land_link'] >
-		,
-		ReturnType< $bog_blitz_reviews['quiz_land_link'] >
-	>
-	type $bog_blitz_reviews__my_lord_bog_blitz_lobby_game_28 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_reviews['my_lord'] >
-	>
-	type $bog_blitz_reviews__my_name_bog_blitz_lobby_game_29 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['my_name'] >
-		,
-		ReturnType< $bog_blitz_reviews['my_name'] >
-	>
-	type $bog_blitz_reviews__can_write_bog_blitz_lobby_game_30 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['reviews_can_write_final'] >
-		,
-		ReturnType< $bog_blitz_reviews['can_write'] >
-	>
-	type $bog_blitz_reviews__can_reply_bog_blitz_lobby_game_31 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['is_host'] >
-		,
-		ReturnType< $bog_blitz_reviews['can_reply'] >
-	>
-	type $bog_blitz_reviews__form_visible_bog_blitz_lobby_game_32 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['reviews_form_visible'] >
-		,
-		ReturnType< $bog_blitz_reviews['form_visible'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_33 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['countdown_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_34 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['pause_label'] >
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_35 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['pause_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_game_36 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['resume_label'] >
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_game_37 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['resume_click'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_major__title_bog_blitz_lobby_game_38 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['next_label'] >
-		,
-		ReturnType< $mol_button_major['title'] >
-	>
-	type $mol_button_major__click_bog_blitz_lobby_game_39 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['next_click'] >
-		,
-		ReturnType< $mol_button_major['click'] >
-	>
-	type $mol_string__hint_bog_blitz_lobby_game_40 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string['hint'] >
-	>
-	type $mol_string__value_bog_blitz_lobby_game_41 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['text_draft'] >
-		,
-		ReturnType< $mol_string['value'] >
-	>
-	type $mol_string__enabled_bog_blitz_lobby_game_42 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['text_input_enabled'] >
-		,
-		ReturnType< $mol_string['enabled'] >
-	>
-	type $mol_string__submit_bog_blitz_lobby_game_43 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['text_submit'] >
-		,
-		ReturnType< $mol_string['submit'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_44 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['reveal_correct_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_button_major__title_bog_blitz_lobby_game_45 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['submit_label'] >
-		,
-		ReturnType< $mol_button_major['title'] >
-	>
-	type $mol_button_major__click_bog_blitz_lobby_game_46 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['submit_answer'] >
-		,
-		ReturnType< $mol_button_major['click'] >
-	>
-	type $mol_button_major__enabled_bog_blitz_lobby_game_47 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['submit_enabled'] >
-		,
-		ReturnType< $mol_button_major['enabled'] >
-	>
-	type $bog_blitz_lobby_game_option__selected_bog_blitz_lobby_game_48 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_selected'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['selected'] >
-	>
-	type $bog_blitz_lobby_game_option__submitted_bog_blitz_lobby_game_49 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_submitted'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['submitted'] >
-	>
-	type $bog_blitz_lobby_game_option__correct_bog_blitz_lobby_game_50 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_correct'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['correct'] >
-	>
-	type $bog_blitz_lobby_game_option__enabled_bog_blitz_lobby_game_51 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_enabled'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['enabled'] >
-	>
-	type $bog_blitz_lobby_game_option__title_bog_blitz_lobby_game_52 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_text'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['title'] >
-	>
-	type $bog_blitz_lobby_game_option__image_uri_bog_blitz_lobby_game_53 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_image_uri'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['image_uri'] >
-	>
-	type $bog_blitz_lobby_game_option__picker_keys_bog_blitz_lobby_game_54 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_picker_keys'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['picker_keys'] >
-	>
-	type $bog_blitz_lobby_game_option__click_bog_blitz_lobby_game_55 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game['option_click'] >
-		,
-		ReturnType< $bog_blitz_lobby_game_option['click'] >
-	>
-	export class $bog_blitz_lobby_game extends $mol_view {
-		game_content( ): readonly(any)[]
-		pause_label( ): string
-		pause_click( next?: any ): any
-		resume_label( ): string
-		resume_click( next?: any ): any
-		next_label( ): string
-		next_click( next?: any ): any
-		host_controls( ): readonly(any)[]
-		Host_controls( ): $mol_view
-		State( ): $mol_paragraph
-		question_image_uri( ): string
-		Question_image( ): $mol_image
-		Question( ): $mol_paragraph
-		Timer( ): $bog_blitz_lobby_game_timer
-		Question_row( ): $mol_view
-		answer_views( ): readonly(any)[]
-		Answer_area( ): $mol_view
-		Meta( ): $bog_blitz_lobby_game_meta
-		countdown_content( ): readonly(any)[]
-		Countdown( ): $mol_view
-		text_draft( next?: string ): string
-		text_input_enabled( ): boolean
-		text_submit( next?: any ): any
-		Leaderboard_timer( ): $bog_blitz_lobby_game_timer
-		my_lord_str( ): string
-		Leaderboard( ): $bog_blitz_lobby_game_leaderboard
-		Final( ): $bog_blitz_lobby_game_leaderboard
-		Reactions_board( ): $bog_blitz_lobby_game_reactboard
-		reviews_form_visible( ): boolean
-		Reviews( ): $bog_blitz_reviews
-		submit_label( ): string
-		submit_answer( next?: any ): any
-		submit_enabled( ): boolean
-		option_selected( id: any): string
-		option_submitted( id: any): string
-		option_correct( id: any): string
-		option_enabled( id: any): boolean
-		option_text( id: any): string
-		option_image_uri( id: any): string
-		option_picker_keys( id: any): readonly(string)[]
-		option_click( id: any, next?: any ): any
-		land_id( ): string
-		session( ): any
-		quiz_data( ): any
-		game_state( ): string
-		current_question( ): any
-		current_question_text( ): string
-		my_player( ): any
-		my_answers( ): any
-		is_host( ): boolean
-		paused_at( ): number
-		manual_mode( ): boolean
-		state_reading( ): string
-		state_answering( ): string
-		state_reveal( ): string
-		state_leaderboard( ): string
-		state_final( ): string
-		state_paused( ): string
-		state_label( ): string
-		option_keys( ): readonly(string)[]
-		round_start( ): number
-		duration( ): number
-		total_questions( ): number
-		current_question_index( ): number
-		players_dict( ): any
-		quiz_land_link( ): string
-		my_name( ): string
-		countdown_number( ): number
-		countdown_text( ): string
-		Countdown_number( ): $mol_paragraph
-		sub( ): ReturnType< $bog_blitz_lobby_game['game_content'] >
-		Pause_button( ): $mol_button_minor
-		Resume_button( ): $mol_button_minor
-		Next_button( ): $mol_button_major
-		question_type( ): string
-		current_answer_key( ): any
-		reviews_can_write_final( ): boolean
-		question_content( ): readonly(any)[]
-		Answer_input( ): $mol_string
-		leaderboard_content( ): readonly(any)[]
-		final_content( ): readonly(any)[]
-		reveal_correct_text( ): string
-		Reveal_correct( ): $mol_paragraph
-		Submit_answer( ): $mol_button_major
-		Option( id: any): $bog_blitz_lobby_game_option
-	}
-	
-}
-
-//# sourceMappingURL=game.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby_game extends $.$bog_blitz_lobby_game {
-        game_content(): readonly any[];
-        reviews_can_write_final(): boolean;
-        save_game_to_profile(): void;
-        my_place(): number;
-        players_count(): number;
-        is_paused(): boolean;
-        question_content(): ($mol_view | $.$mol_paragraph | $.$mol_image)[];
-        leaderboard_content(): ($mol_view | $.$mol_paragraph | $.$bog_blitz_lobby_game_timer | $.$bog_blitz_lobby_game_leaderboard)[];
-        countdown_content(): $.$mol_paragraph[];
-        state_label(): string;
-        pause_click(next?: Event): void;
-        resume_click(next?: Event): void;
-        host_controls(): $mol_button_minor[];
-        next_click(next?: Event): void;
-        question_type(): string;
-        question_image_uri(): string;
-        selected_options(next?: string[]): string[];
-        text_draft(next?: string): string;
-        publish_question_meta(session: $bog_blitz_session, index: number): void;
-        has_multiple_correct(): boolean;
-        submit_enabled(): boolean;
-        submit_answer(next?: Event): void;
-        mark_answered(answers: $bog_blitz_player_answers): void;
-        answer_views(): ($.$mol_paragraph | $.$mol_string)[] | ($.$mol_string | $mol_button_major)[];
-        text_submit(next?: Event): void;
-        text_input_enabled(): boolean;
-        option_keys(): string[];
-        option_views(): $.$bog_blitz_lobby_game_option[];
-        option_text(key: string): string;
-        option_image_uri(key: string): string;
-        my_answer(): string;
-        has_answered(): boolean;
-        has_submitted(): boolean;
-        option_submitted(key: string): string;
-        input_ready(): boolean;
-        option_enabled(key: string): boolean;
-        option_correct(key: string): "" | "false" | "true";
-        option_picker_keys(key: string): string[];
-        option_selected(key: string): string;
-        reveal_correct_text(): string;
-        countdown_number(next?: number): number;
-        countdown_text(): string;
-        last_tick_num: number;
-        play_tick(num: number): void;
-        option_click(key: string, e?: any): null;
-        advance_state(): void;
-        auto_advance(next?: null): void;
-        answers_key_data(): {
-            type: string;
-            correct: string;
-        }[] | null;
-        current_answer_key(): {
-            type: string;
-            correct: string;
-        } | null;
-        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
-        calculate_scores(): void;
-        reset_answers(): void;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	type $bog_blitz_lobby_players__players_dict_bog_blitz_lobby_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_players['players_dict'] >
-	>
-	type $bog_blitz_lobby_players__my_lord_str_bog_blitz_lobby_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_players['my_lord_str'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_3 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_button_major__title_bog_blitz_lobby_4 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_major['title'] >
-	>
-	type $mol_button_major__click_bog_blitz_lobby_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['go_admin'] >
-		,
-		ReturnType< $mol_button_major['click'] >
-	>
-	type $bog_blitz_lobby_host__counter_string_bog_blitz_lobby_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['counter_string'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['counter_string'] >
-	>
-	type $bog_blitz_lobby_host__land_id_bog_blitz_lobby_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['land_id'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['land_id'] >
-	>
-	type $bog_blitz_lobby_host__quiz_title_bog_blitz_lobby_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_title'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['quiz_title'] >
-	>
-	type $bog_blitz_lobby_host__quiz_land_link_bog_blitz_lobby_9 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_land_link'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['quiz_land_link'] >
-	>
-	type $bog_blitz_lobby_host__my_lord_str_bog_blitz_lobby_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['my_lord_str'] >
-	>
-	type $bog_blitz_lobby_host__my_name_bog_blitz_lobby_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_name'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['my_name'] >
-	>
-	type $bog_blitz_lobby_host__session_bog_blitz_lobby_12 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['session'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['session'] >
-	>
-	type $bog_blitz_lobby_host__quiz_data_bog_blitz_lobby_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_data'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['quiz_data'] >
-	>
-	type $bog_blitz_lobby_host__Players_bog_blitz_lobby_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['Host_players'] >
-		,
-		ReturnType< $bog_blitz_lobby_host['Players'] >
-	>
-	type $bog_blitz_lobby_join__player_name_bog_blitz_lobby_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_player_name'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['player_name'] >
-	>
-	type $bog_blitz_lobby_join__player_color_bog_blitz_lobby_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_player_color'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['player_color'] >
-	>
-	type $bog_blitz_lobby_join__join_bog_blitz_lobby_17 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['join'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['join'] >
-	>
-	type $bog_blitz_lobby_join__is_synced_bog_blitz_lobby_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['is_synced'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['is_synced'] >
-	>
-	type $bog_blitz_lobby_join__player_id_bog_blitz_lobby_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_join['player_id'] >
-	>
-	type $bog_blitz_lobby_waiting__counter_string_bog_blitz_lobby_20 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['counter_string'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['counter_string'] >
-	>
-	type $bog_blitz_lobby_waiting__quiz_title_bog_blitz_lobby_21 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_title'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['quiz_title'] >
-	>
-	type $bog_blitz_lobby_waiting__quiz_land_link_bog_blitz_lobby_22 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_land_link'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['quiz_land_link'] >
-	>
-	type $bog_blitz_lobby_waiting__my_lord_str_bog_blitz_lobby_23 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['my_lord_str'] >
-	>
-	type $bog_blitz_lobby_waiting__my_name_bog_blitz_lobby_24 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_name'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['my_name'] >
-	>
-	type $bog_blitz_lobby_waiting__Players_bog_blitz_lobby_25 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['Host_players'] >
-		,
-		ReturnType< $bog_blitz_lobby_waiting['Players'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_26 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $bog_blitz_lobby_game__land_id_bog_blitz_lobby_27 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['land_id'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['land_id'] >
-	>
-	type $bog_blitz_lobby_game__session_bog_blitz_lobby_28 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['session'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['session'] >
-	>
-	type $bog_blitz_lobby_game__quiz_data_bog_blitz_lobby_29 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_data'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['quiz_data'] >
-	>
-	type $bog_blitz_lobby_game__game_state_bog_blitz_lobby_30 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['game_state'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['game_state'] >
-	>
-	type $bog_blitz_lobby_game__current_question_bog_blitz_lobby_31 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['current_question'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['current_question'] >
-	>
-	type $bog_blitz_lobby_game__current_question_text_bog_blitz_lobby_32 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['current_question_text'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['current_question_text'] >
-	>
-	type $bog_blitz_lobby_game__my_player_bog_blitz_lobby_33 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_player'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['my_player'] >
-	>
-	type $bog_blitz_lobby_game__my_answers_bog_blitz_lobby_34 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_answers'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['my_answers'] >
-	>
-	type $bog_blitz_lobby_game__is_host_bog_blitz_lobby_35 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['is_host'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['is_host'] >
-	>
-	type $bog_blitz_lobby_game__paused_at_bog_blitz_lobby_36 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['paused_at'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['paused_at'] >
-	>
-	type $bog_blitz_lobby_game__manual_mode_bog_blitz_lobby_37 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['manual_mode'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['manual_mode'] >
-	>
-	type $bog_blitz_lobby_game__round_start_bog_blitz_lobby_38 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['round_start'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['round_start'] >
-	>
-	type $bog_blitz_lobby_game__duration_bog_blitz_lobby_39 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['duration'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['duration'] >
-	>
-	type $bog_blitz_lobby_game__total_questions_bog_blitz_lobby_40 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['total_questions'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['total_questions'] >
-	>
-	type $bog_blitz_lobby_game__current_question_index_bog_blitz_lobby_41 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['current_question_index'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['current_question_index'] >
-	>
-	type $bog_blitz_lobby_game__players_dict_bog_blitz_lobby_42 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['players_dict'] >
-	>
-	type $bog_blitz_lobby_game__my_lord_str_bog_blitz_lobby_43 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_lord_str'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['my_lord_str'] >
-	>
-	type $bog_blitz_lobby_game__quiz_land_link_bog_blitz_lobby_44 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['quiz_land_link'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['quiz_land_link'] >
-	>
-	type $bog_blitz_lobby_game__my_name_bog_blitz_lobby_45 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_name'] >
-		,
-		ReturnType< $bog_blitz_lobby_game['my_name'] >
-	>
-	type $bog_blitz_lobby_reactions__my_answers_bog_blitz_lobby_46 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['my_answers'] >
-		,
-		ReturnType< $bog_blitz_lobby_reactions['my_answers'] >
-	>
-	type $bog_blitz_lobby_reactions__players_dict_bog_blitz_lobby_47 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['players_dict'] >
-		,
-		ReturnType< $bog_blitz_lobby_reactions['players_dict'] >
-	>
-	type $bog_blitz_lobby_reactions__is_host_bog_blitz_lobby_48 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['is_host'] >
-		,
-		ReturnType< $bog_blitz_lobby_reactions['is_host'] >
-	>
-	type $bog_blitz_lobby_reactions__in_flow_bog_blitz_lobby_49 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby['reactions_in_flow'] >
-		,
-		ReturnType< $bog_blitz_lobby_reactions['in_flow'] >
-	>
-	type $bog_blitz_lobby_reactions__attr_bog_blitz_lobby_50 = $mol_type_enforce<
-		({ 
-			'data-in-flow': ReturnType< $bog_blitz_lobby['reactions_in_flow'] >,
-		})  & ReturnType< $bog_blitz_lobby_reactions['attr'] >
-		,
-		ReturnType< $bog_blitz_lobby_reactions['attr'] >
-	>
-	export class $bog_blitz_lobby extends $mol_page {
-		counter_string( ): string
-		quiz_land_link( ): string
-		my_lord_str( ): string
-		my_name( ): string
-		session( ): any
-		quiz_data( ): any
-		players_dict( ): any
-		Host_players( ): $bog_blitz_lobby_players
-		my_player_name( next?: string ): string
-		my_player_color( next?: string ): string
-		join( next?: any ): any
-		is_synced( ): boolean
-		No_game_text( ): $mol_paragraph
-		go_admin( next?: any ): any
-		Go_admin( ): $mol_button_major
-		game_state( ): string
-		current_question( ): any
-		current_question_text( ): string
-		my_player( ): any
-		my_answers( ): any
-		is_host( ): boolean
-		paused_at( ): number
-		manual_mode( ): boolean
-		round_start( ): number
-		duration( ): number
-		total_questions( ): number
-		current_question_index( ): number
-		reactions_in_flow( ): boolean
-		lobby_content( ): readonly(any)[]
-		Head( ): any
-		players_string( ): string
-		land_id( ): string
-		quiz_title( ): string
-		Host( ): $bog_blitz_lobby_host
-		Join_screen( ): $bog_blitz_lobby_join
-		Waiting( ): $bog_blitz_lobby_waiting
-		No_game( ): $mol_view
-		Game_screen( ): $bog_blitz_lobby_game
-		Reactions( ): $bog_blitz_lobby_reactions
-		body( ): ReturnType< $bog_blitz_lobby['lobby_content'] >
-	}
-	
-}
-
-//# sourceMappingURL=lobby.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby extends $.$bog_blitz_lobby {
-        sub(): readonly any[];
-        reactions_in_flow(): boolean;
-        land(): $giper_baza_land | null;
-        session(): $bog_blitz_session | null;
-        quiz_data(): $bog_blitz_quiz | null;
-        is_host(): boolean;
-        my_player(): $bog_blitz_player | null;
-        my_answers(): $bog_blitz_player_answers | null;
-        players_dict(): {
-            Value: typeof $bog_blitz_player;
-            key(key: $giper_baza_vary_type, auto?: any): $bog_blitz_player;
-            keys(): readonly $giper_baza_vary_type[];
-            dive<Pawn_1 extends typeof $giper_baza_pawn>(key: $giper_baza_vary_type, Pawn: Pawn_1, auto?: any): InstanceType<Pawn_1> | null;
-            [$mol_dev_format_head](): any[];
-            items_vary(next?: readonly $giper_baza_vary_type[], tag?: keyof typeof $giper_baza_unit_sand_tag): readonly $giper_baza_vary_type[];
-            splice(next: readonly $giper_baza_vary_type[], from?: number, to?: number, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-            find(vary: $giper_baza_vary_type): $giper_baza_unit_sand | null;
-            has(vary: $giper_baza_vary_type, next?: boolean, tag?: keyof typeof $giper_baza_unit_sand_tag): boolean;
-            add(vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): void;
-            cut(vary: $giper_baza_vary_type): void;
-            move(from: number, to: number): void;
-            wipe(seat: number): void;
-            pawn_make<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1, vary: $giper_baza_vary_type, tag?: keyof typeof $giper_baza_unit_sand_tag): InstanceType<Pawn_1>;
-            land(): $giper_baza_land;
-            head(): $giper_baza_link;
-            land_link(): $giper_baza_link;
-            link(): $giper_baza_link;
-            toJSON(): string;
-            cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
-            pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
-            units(): $giper_baza_unit_sand[];
-            units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
-            meta(next?: $giper_baza_link): $giper_baza_link | null;
-            meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
-            filled(): boolean;
-            can_change(): boolean;
-            last_change(): $mol_time_moment | null;
-            authors(): $giper_baza_auth_pass[];
-            get $(): $;
-            set $(next: $);
-            destructor(): void;
-            toString(): string;
-            [Symbol.toStringTag]: string;
-            [$mol_ambient_ref]: $;
-            [Symbol.dispose](): void;
-        } | null;
-        my_lord_str(): string;
-        my_player_create(): $bog_blitz_player | null;
-        profile_data(): $bog_blitz_profile;
-        join(e?: any): null;
-        sync_profile(player: $bog_blitz_player, join_name: string, color: string): void;
-        my_player_name(next?: string): string;
-        my_player_color(next?: string): string;
-        profile_name(): string;
-        land_id(): string;
-        quiz_title(): string;
-        quiz_land_link(): string;
-        my_name(): string;
-        go_admin(): void;
-        player_keys(): string[];
-        game_state(): string;
-        current_question(): $bog_blitz_question | null;
-        current_question_text(): string;
-        paused_at(): number;
-        manual_mode(): boolean;
-        round_start(): number;
-        duration(): number;
-        total_questions(): number;
-        current_question_index(): number;
-        lobby_content(): $mol_view[] | $.$bog_blitz_lobby_join[] | $.$bog_blitz_lobby_game[] | $.$bog_blitz_lobby_host[] | $bog_blitz_lobby_waiting[];
-        counter_string(): string;
-        is_synced(): boolean;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	type $mol_book2_sub__1 = $mol_type_enforce<
-		ReturnType< $mol_book2['pages'] >[number]
-		,
-		$mol_view
-	>
-	type $mol_book2_sub__2 = $mol_type_enforce<
-		ReturnType< $mol_book2['placeholders'] >[number]
-		,
-		$mol_view
-	>
-	type $mol_view__title_mol_book2_3 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_view['title'] >
-	>
-	export class $mol_book2 extends $mol_scroll {
-		pages_deep( ): readonly($mol_view)[]
-		pages( ): ReturnType< $mol_book2['pages_deep'] >
-		Placeholder( ): $mol_view
-		placeholders( ): readonly($mol_view)[]
-		menu_title( ): string
-		sub( ): readonly($mol_view)[]
-		minimal_width( ): number
-		Gap( id: any): $mol_view
-	}
-	
-}
-
-//# sourceMappingURL=book2.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_book2 extends $.$mol_book2 {
-        pages_deep(): $mol_view[];
-        title(): string;
-        menu_title(): string;
-        sub(): $mol_view[];
-        bring(): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_media extends $mol_object2 {
-        static match(query: string, next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-    function $mol_lights(this: $, next?: boolean): boolean;
-}
-
-declare namespace $ {
-
-	export class $mol_theme_auto extends $mol_plugin {
-		dark( ): string
-		theme( ): ReturnType< $mol_theme_auto['dark'] >
-		light( ): string
-		attr( ): ({ 
-			'mol_theme': ReturnType< $mol_theme_auto['theme'] >,
-		}) 
-	}
-	
-}
-
-//# sourceMappingURL=auto.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_theme_auto extends $.$mol_theme_auto {
-        theme(): string;
-    }
-}
-
-declare namespace $ {
-
-	export class $giper_web_frame extends $mol_frame {
-		uri( ): string
-		query( ): string
-	}
-	
-}
-
-//# sourceMappingURL=frame.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $giper_web_frame extends $.$giper_web_frame {
-        uri(): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	export class $mol_icon_trash_can extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=can.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_trash_can_outline extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=outline.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_script extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=script.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_script_text extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=text.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_link_source extends $mol_link {
-		Icon( ): $mol_icon_script_text
-		hint( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=source.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_gift extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=gift.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_gift_outline extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=outline.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_link_donate extends $mol_link {
-		Icon( ): $mol_icon_gift_outline
-		hint( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=donate.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_face extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=face.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_face_agent extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=agent.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_link_support extends $mol_link {
-		Icon( ): $mol_icon_face_agent
-		hint( ): string
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=support.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_check_icon extends $mol_check {
-	}
-	
-}
-
-//# sourceMappingURL=icon.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_brightness_4 extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=4.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_lights_toggle extends $mol_check_icon {
-		Lights_icon( ): $mol_icon_brightness_4
-		lights( next?: boolean ): boolean
-		Icon( ): ReturnType< $mol_lights_toggle['Lights_icon'] >
-		hint( ): string
-		checked( next?: ReturnType< $mol_lights_toggle['lights'] > ): ReturnType< $mol_lights_toggle['lights'] >
-	}
-	
-}
-
-//# sourceMappingURL=toggle.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_lights_toggle extends $.$mol_lights_toggle {
-        lights(next?: boolean): boolean;
-    }
-}
-
-declare namespace $ {
-
-	export class $mol_status extends $mol_view {
-		message( ): string
-		status( ): ReturnType< $mol_status['title'] >
-		minimal_height( ): number
-		minimal_width( ): number
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=status.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_status extends $.$mol_status {
-        message(): any;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_icon_upload extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=upload.view.tree.d.ts.map
-declare namespace $ {
-
-	type $mol_button_open_native__files_mol_button_open_1 = $mol_type_enforce<
-		ReturnType< $mol_button_open['files_handled'] >
-		,
-		ReturnType< $mol_button_open_native['files'] >
-	>
-	type $mol_button_open_native__accept_mol_button_open_2 = $mol_type_enforce<
-		ReturnType< $mol_button_open['accept'] >
-		,
-		ReturnType< $mol_button_open_native['accept'] >
-	>
-	type $mol_button_open_native__multiple_mol_button_open_3 = $mol_type_enforce<
-		ReturnType< $mol_button_open['multiple'] >
-		,
-		ReturnType< $mol_button_open_native['multiple'] >
-	>
-	export class $mol_button_open extends $mol_button_minor {
-		Icon( ): $mol_icon_upload
-		files( next?: readonly(File)[] ): readonly(File)[]
-		files_handled( next?: ReturnType< $mol_button_open['files'] > ): ReturnType< $mol_button_open['files'] >
-		accept( ): string
-		multiple( ): boolean
-		Native( ): $mol_button_open_native
-		sub( ): readonly(any)[]
-	}
-	
-	export class $mol_button_open_native extends $mol_view {
-		accept( ): string
-		multiple( ): boolean
-		picked( next?: any ): any
-		dom_name( ): string
-		files( next?: readonly(File)[] ): readonly(File)[]
-		attr( ): ({ 
-			'type': string,
-			'accept': ReturnType< $mol_button_open_native['accept'] >,
-			'multiple': ReturnType< $mol_button_open_native['multiple'] >,
-		}) 
-		event( ): ({ 
-			change( next?: ReturnType< $mol_button_open_native['picked'] > ): ReturnType< $mol_button_open_native['picked'] >,
-		}) 
-	}
-	
-}
-
-//# sourceMappingURL=open.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $mol_button_open extends $.$mol_button_open {
-        files_handled(next?: readonly File[]): readonly File[];
-    }
-    class $mol_button_open_native extends $.$mol_button_open_native {
-        dom_node(): HTMLInputElement;
-        picked(): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
 
 	type $mol_image__title_mol_attach_1 = $mol_type_enforce<
 		string
@@ -11053,9 +10583,158 @@ declare namespace $ {
 declare namespace $.$$ {
     class $mol_attach extends $.$mol_attach {
         attach_new(files: File[]): void;
-        content(): ($mol_button_minor | $.$mol_button_open)[];
+        content(): ($.$mol_button_open | $mol_button_minor)[];
         item_uri(index: number): string;
         item_drop(index: number, event?: Event): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_textarea_edit__value_mol_textarea_1 = $mol_type_enforce<
+		ReturnType< $mol_textarea['value'] >
+		,
+		ReturnType< $mol_textarea_edit['value'] >
+	>
+	type $mol_textarea_edit__hint_mol_textarea_2 = $mol_type_enforce<
+		ReturnType< $mol_textarea['hint'] >
+		,
+		ReturnType< $mol_textarea_edit['hint'] >
+	>
+	type $mol_textarea_edit__enabled_mol_textarea_3 = $mol_type_enforce<
+		ReturnType< $mol_textarea['enabled'] >
+		,
+		ReturnType< $mol_textarea_edit['enabled'] >
+	>
+	type $mol_textarea_edit__spellcheck_mol_textarea_4 = $mol_type_enforce<
+		ReturnType< $mol_textarea['spellcheck'] >
+		,
+		ReturnType< $mol_textarea_edit['spellcheck'] >
+	>
+	type $mol_textarea_edit__length_max_mol_textarea_5 = $mol_type_enforce<
+		ReturnType< $mol_textarea['length_max'] >
+		,
+		ReturnType< $mol_textarea_edit['length_max'] >
+	>
+	type $mol_textarea_edit__selection_mol_textarea_6 = $mol_type_enforce<
+		ReturnType< $mol_textarea['selection'] >
+		,
+		ReturnType< $mol_textarea_edit['selection'] >
+	>
+	type $mol_textarea_edit__submit_mol_textarea_7 = $mol_type_enforce<
+		ReturnType< $mol_textarea['submit'] >
+		,
+		ReturnType< $mol_textarea_edit['submit'] >
+	>
+	type $mol_textarea_edit__submit_with_ctrl_mol_textarea_8 = $mol_type_enforce<
+		ReturnType< $mol_textarea['submit_with_ctrl'] >
+		,
+		ReturnType< $mol_textarea_edit['submit_with_ctrl'] >
+	>
+	type $mol_text_code__text_mol_textarea_9 = $mol_type_enforce<
+		ReturnType< $mol_textarea['value'] >
+		,
+		ReturnType< $mol_text_code['text'] >
+	>
+	type $mol_text_code__render_visible_only_mol_textarea_10 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_text_code['render_visible_only'] >
+	>
+	type $mol_text_code__row_numb_mol_textarea_11 = $mol_type_enforce<
+		ReturnType< $mol_textarea['row_numb'] >
+		,
+		ReturnType< $mol_text_code['row_numb'] >
+	>
+	type $mol_text_code__sidebar_showed_mol_textarea_12 = $mol_type_enforce<
+		ReturnType< $mol_textarea['sidebar_showed'] >
+		,
+		ReturnType< $mol_text_code['sidebar_showed'] >
+	>
+	type $mol_text_code__highlight_mol_textarea_13 = $mol_type_enforce<
+		ReturnType< $mol_textarea['highlight'] >
+		,
+		ReturnType< $mol_text_code['highlight'] >
+	>
+	type $mol_text_code__syntax_mol_textarea_14 = $mol_type_enforce<
+		ReturnType< $mol_textarea['syntax'] >
+		,
+		ReturnType< $mol_text_code['syntax'] >
+	>
+	export class $mol_textarea extends $mol_stack {
+		clickable( next?: boolean ): boolean
+		sidebar_showed( ): boolean
+		press( next?: any ): any
+		hover( next?: any ): any
+		value( next?: string ): string
+		hint( ): string
+		enabled( ): boolean
+		spellcheck( ): boolean
+		length_max( ): number
+		selection( next?: readonly(number)[] ): readonly(number)[]
+		bring( ): ReturnType< ReturnType< $mol_textarea['Edit'] >['bring'] >
+		submit( next?: any ): any
+		submit_with_ctrl( ): boolean
+		Edit( ): $mol_textarea_edit
+		row_numb( id: any): number
+		highlight( ): string
+		syntax( ): $mol_syntax2
+		View( ): $mol_text_code
+		attr( ): ({ 
+			'mol_textarea_clickable': ReturnType< $mol_textarea['clickable'] >,
+			'mol_textarea_sidebar_showed': ReturnType< $mol_textarea['sidebar_showed'] >,
+		})  & ReturnType< $mol_stack['attr'] >
+		event( ): ({ 
+			keydown( next?: ReturnType< $mol_textarea['press'] > ): ReturnType< $mol_textarea['press'] >,
+			pointermove( next?: ReturnType< $mol_textarea['hover'] > ): ReturnType< $mol_textarea['hover'] >,
+		}) 
+		sub( ): readonly(any)[]
+		symbols_alt( ): Record<string, string>
+		symbols_alt_ctrl( ): Record<string, string>
+		symbols_alt_shift( ): Record<string, string>
+	}
+	
+	export class $mol_textarea_edit extends $mol_string {
+		dom_name( ): string
+		enter( ): string
+		field( ): ({ 
+			'scrollTop': number,
+		})  & ReturnType< $mol_string['field'] >
+	}
+	
+}
+
+//# sourceMappingURL=textarea.view.tree.d.ts.map
+declare namespace $.$$ {
+    class $mol_textarea extends $.$mol_textarea {
+        indent_inc(): void;
+        indent_dec(): void;
+        symbol_insert(event: KeyboardEvent): void;
+        clickable(next?: boolean): boolean;
+        hover(event: PointerEvent): void;
+        press(event: KeyboardEvent): void;
+        row_numb(index: number): number;
+        syntax(): $mol_syntax2<{
+            'code-indent': RegExp;
+            'code-docs': RegExp;
+            'code-comment-block': RegExp;
+            'code-link': RegExp;
+            'code-comment-inline': RegExp;
+            'code-string': RegExp;
+            'code-number': RegExp;
+            'code-call': RegExp;
+            'code-sexpr': RegExp;
+            'code-field': RegExp;
+            'code-keyword': RegExp;
+            'code-global': RegExp;
+            'code-word': RegExp;
+            'code-decorator': RegExp;
+            'code-tag': RegExp;
+            'code-punctuation': RegExp;
+        }>;
     }
 }
 
@@ -11232,7 +10911,7 @@ declare namespace $ {
     class $mol_fetch_response extends $mol_object {
         readonly native: Response;
         readonly request: $mol_fetch_request;
-        status(): "wrong" | "unknown" | "success" | "inform" | "redirect" | "failed";
+        status(): "unknown" | "success" | "inform" | "redirect" | "wrong" | "failed";
         code(): number;
         ok(): boolean;
         message(): string;
@@ -11282,6 +10961,7 @@ declare namespace $ {
     export const $mol_github_model_keys: string[];
     export const $mol_github_model_polyglots: string[];
     const Message: ((val: {
+        role: "system";
         content: string | readonly ({
             text: string;
             type: "text";
@@ -11291,16 +10971,16 @@ declare namespace $ {
                 url: string;
             };
         })[];
-        role: "system";
     } | {
         tool_calls?: readonly {
             function: {
                 name: string;
                 arguments: string;
             };
-            type: "function";
             id: string;
+            type: "function";
         }[] | undefined;
+        role: "assistant";
         content: string | readonly ({
             text: string;
             type: "text";
@@ -11310,19 +10990,8 @@ declare namespace $ {
                 url: string;
             };
         })[] | null;
-        role: "assistant";
     } | {
-        content: string | readonly ({
-            text: string;
-            type: "text";
-        } | {
-            type: "image_url";
-            image_url: {
-                url: string;
-            };
-        })[];
         role: "user";
-    } | {
         content: string | readonly ({
             text: string;
             type: "text";
@@ -11332,9 +11001,20 @@ declare namespace $ {
                 url: string;
             };
         })[];
+    } | {
         role: "tool";
+        content: string | readonly ({
+            text: string;
+            type: "text";
+        } | {
+            type: "image_url";
+            image_url: {
+                url: string;
+            };
+        })[];
         tool_call_id: string;
     }) => Readonly<{
+        role: "system";
         content: string | readonly (Readonly<{
             text: string;
             type: "text";
@@ -11344,16 +11024,16 @@ declare namespace $ {
                 url: string;
             }>;
         }>)[];
-        role: "system";
     }> | Readonly<{
         tool_calls?: readonly Readonly<{
             function: Readonly<{
                 name: string;
                 arguments: string;
             }>;
-            type: "function";
             id: string;
+            type: "function";
         }>[] | undefined;
+        role: "assistant";
         content: string | readonly (Readonly<{
             text: string;
             type: "text";
@@ -11363,19 +11043,8 @@ declare namespace $ {
                 url: string;
             }>;
         }>)[] | null;
-        role: "assistant";
     }> | Readonly<{
-        content: string | readonly (Readonly<{
-            text: string;
-            type: "text";
-        }> | Readonly<{
-            type: "image_url";
-            image_url: Readonly<{
-                url: string;
-            }>;
-        }>)[];
         role: "user";
-    }> | Readonly<{
         content: string | readonly (Readonly<{
             text: string;
             type: "text";
@@ -11385,10 +11054,21 @@ declare namespace $ {
                 url: string;
             }>;
         }>)[];
+    }> | Readonly<{
         role: "tool";
+        content: string | readonly (Readonly<{
+            text: string;
+            type: "text";
+        }> | Readonly<{
+            type: "image_url";
+            image_url: Readonly<{
+                url: string;
+            }>;
+        }>)[];
         tool_call_id: string;
     }>) & {
         config: [((val: {
+            role: "system";
             content: string | readonly ({
                 text: string;
                 type: "text";
@@ -11398,8 +11078,8 @@ declare namespace $ {
                     url: string;
                 };
             })[];
-            role: "system";
         }) => Readonly<{
+            role: "system";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -11409,7 +11089,6 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
-            role: "system";
         }>) & {
             config: {
                 role: ((val: "system") => "system") & {
@@ -11553,6 +11232,7 @@ declare namespace $ {
                 };
             };
             Value: Readonly<{
+                role: "system";
                 content: string | readonly (Readonly<{
                     text: string;
                     type: "text";
@@ -11562,7 +11242,6 @@ declare namespace $ {
                         url: string;
                     }>;
                 }>)[];
-                role: "system";
             }>;
         }, ((val: {
             tool_calls?: readonly {
@@ -11570,9 +11249,10 @@ declare namespace $ {
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
+            role: "assistant";
             content: string | readonly ({
                 text: string;
                 type: "text";
@@ -11582,16 +11262,16 @@ declare namespace $ {
                     url: string;
                 };
             })[] | null;
-            role: "assistant";
         }) => Readonly<{
             tool_calls?: readonly Readonly<{
                 function: Readonly<{
                     name: string;
                     arguments: string;
                 }>;
-                type: "function";
                 id: string;
+                type: "function";
             }>[] | undefined;
+            role: "assistant";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -11601,7 +11281,6 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[] | null;
-            role: "assistant";
         }>) & {
             config: {
                 role: ((val: "assistant") => "assistant") & {
@@ -11775,15 +11454,15 @@ declare namespace $ {
                         name: string;
                         arguments: string;
                     };
-                    type: "function";
                     id: string;
+                    type: "function";
                 }[] | undefined) => readonly Readonly<{
                     function: Readonly<{
                         name: string;
                         arguments: string;
                     }>;
-                    type: "function";
                     id: string;
+                    type: "function";
                 }>[] | undefined) & {
                     config: {
                         sub: ((val: readonly {
@@ -11791,30 +11470,30 @@ declare namespace $ {
                                 name: string;
                                 arguments: string;
                             };
-                            type: "function";
                             id: string;
+                            type: "function";
                         }[]) => readonly Readonly<{
                             function: Readonly<{
                                 name: string;
                                 arguments: string;
                             }>;
-                            type: "function";
                             id: string;
+                            type: "function";
                         }>[]) & {
                             config: ((val: {
                                 function: {
                                     name: string;
                                     arguments: string;
                                 };
-                                type: "function";
                                 id: string;
+                                type: "function";
                             }) => Readonly<{
                                 function: Readonly<{
                                     name: string;
                                     arguments: string;
                                 }>;
-                                type: "function";
                                 id: string;
+                                type: "function";
                             }>) & {
                                 config: {
                                     type: ((val: "function") => "function") & {
@@ -11844,8 +11523,8 @@ declare namespace $ {
                                         name: string;
                                         arguments: string;
                                     }>;
-                                    type: "function";
                                     id: string;
+                                    type: "function";
                                 }>;
                             };
                             Value: readonly Readonly<{
@@ -11853,8 +11532,8 @@ declare namespace $ {
                                     name: string;
                                     arguments: string;
                                 }>;
-                                type: "function";
                                 id: string;
+                                type: "function";
                             }>[];
                         };
                         fallback: (() => readonly Readonly<{
@@ -11862,8 +11541,8 @@ declare namespace $ {
                                 name: string;
                                 arguments: string;
                             }>;
-                            type: "function";
                             id: string;
+                            type: "function";
                         }>[]) | undefined;
                     };
                     Value: readonly Readonly<{
@@ -11871,8 +11550,8 @@ declare namespace $ {
                             name: string;
                             arguments: string;
                         }>;
-                        type: "function";
                         id: string;
+                        type: "function";
                     }>[] | undefined;
                 };
             };
@@ -11882,9 +11561,10 @@ declare namespace $ {
                         name: string;
                         arguments: string;
                     }>;
-                    type: "function";
                     id: string;
+                    type: "function";
                 }>[] | undefined;
+                role: "assistant";
                 content: string | readonly (Readonly<{
                     text: string;
                     type: "text";
@@ -11894,9 +11574,9 @@ declare namespace $ {
                         url: string;
                     }>;
                 }>)[] | null;
-                role: "assistant";
             }>;
         }, ((val: {
+            role: "user";
             content: string | readonly ({
                 text: string;
                 type: "text";
@@ -11906,8 +11586,8 @@ declare namespace $ {
                     url: string;
                 };
             })[];
-            role: "user";
         }) => Readonly<{
+            role: "user";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -11917,7 +11597,6 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
-            role: "user";
         }>) & {
             config: {
                 role: ((val: "user") => "user") & {
@@ -12061,6 +11740,7 @@ declare namespace $ {
                 };
             };
             Value: Readonly<{
+                role: "user";
                 content: string | readonly (Readonly<{
                     text: string;
                     type: "text";
@@ -12070,9 +11750,9 @@ declare namespace $ {
                         url: string;
                     }>;
                 }>)[];
-                role: "user";
             }>;
         }, ((val: {
+            role: "tool";
             content: string | readonly ({
                 text: string;
                 type: "text";
@@ -12082,9 +11762,9 @@ declare namespace $ {
                     url: string;
                 };
             })[];
-            role: "tool";
             tool_call_id: string;
         }) => Readonly<{
+            role: "tool";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12094,7 +11774,6 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
-            role: "tool";
             tool_call_id: string;
         }>) & {
             config: {
@@ -12240,6 +11919,7 @@ declare namespace $ {
                 };
             };
             Value: Readonly<{
+                role: "tool";
                 content: string | readonly (Readonly<{
                     text: string;
                     type: "text";
@@ -12249,11 +11929,11 @@ declare namespace $ {
                         url: string;
                     }>;
                 }>)[];
-                role: "tool";
                 tool_call_id: string;
             }>;
         }];
         Value: Readonly<{
+            role: "system";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12263,16 +11943,16 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
-            role: "system";
         }> | Readonly<{
             tool_calls?: readonly Readonly<{
                 function: Readonly<{
                     name: string;
                     arguments: string;
                 }>;
-                type: "function";
                 id: string;
+                type: "function";
             }>[] | undefined;
+            role: "assistant";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12282,19 +11962,8 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[] | null;
-            role: "assistant";
         }> | Readonly<{
-            content: string | readonly (Readonly<{
-                text: string;
-                type: "text";
-            }> | Readonly<{
-                type: "image_url";
-                image_url: Readonly<{
-                    url: string;
-                }>;
-            }>)[];
             role: "user";
-        }> | Readonly<{
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12304,7 +11973,17 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
+        }> | Readonly<{
             role: "tool";
+            content: string | readonly (Readonly<{
+                text: string;
+                type: "text";
+            }> | Readonly<{
+                type: "image_url";
+                image_url: Readonly<{
+                    url: string;
+                }>;
+            }>)[];
             tool_call_id: string;
         }>;
     };
@@ -12333,6 +12012,7 @@ declare namespace $ {
         state(next?: readonly string[]): readonly string[];
         params(next?: {}): {};
         history(next?: typeof Message.Value[]): (Readonly<{
+            role: "system";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12342,16 +12022,16 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
-            role: "system";
         }> | Readonly<{
             tool_calls?: readonly Readonly<{
                 function: Readonly<{
                     name: string;
                     arguments: string;
                 }>;
-                type: "function";
                 id: string;
+                type: "function";
             }>[] | undefined;
+            role: "assistant";
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12361,19 +12041,8 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[] | null;
-            role: "assistant";
         }> | Readonly<{
-            content: string | readonly (Readonly<{
-                text: string;
-                type: "text";
-            }> | Readonly<{
-                type: "image_url";
-                image_url: Readonly<{
-                    url: string;
-                }>;
-            }>)[];
             role: "user";
-        }> | Readonly<{
             content: string | readonly (Readonly<{
                 text: string;
                 type: "text";
@@ -12383,7 +12052,17 @@ declare namespace $ {
                     url: string;
                 }>;
             }>)[];
+        }> | Readonly<{
             role: "tool";
+            content: string | readonly (Readonly<{
+                text: string;
+                type: "text";
+            }> | Readonly<{
+                type: "image_url";
+                image_url: Readonly<{
+                    url: string;
+                }>;
+            }>)[];
             tool_call_id: string;
         }>)[];
         fork(): $mol_github_model;
@@ -12400,9 +12079,10 @@ declare namespace $ {
                             name: string;
                             arguments: string;
                         }>;
-                        type: "function";
                         id: string;
+                        type: "function";
                     }>[] | undefined;
+                    role: "assistant";
                     content: string | readonly (Readonly<{
                         text: string;
                         type: "text";
@@ -12412,7 +12092,6 @@ declare namespace $ {
                             url: string;
                         }>;
                     }>)[] | null;
-                    role: "assistant";
                 }>;
             }>[];
         }>;
@@ -12421,6 +12100,40 @@ declare namespace $ {
     export {};
 }
 
+declare namespace $ {
+}
+
+declare namespace $ {
+
+	type $mol_text_list_item__index_mol_text_list_1 = $mol_type_enforce<
+		ReturnType< $mol_text_list['item_index'] >
+		,
+		ReturnType< $mol_text_list_item['index'] >
+	>
+	type $mol_text_list_item__sub_mol_text_list_2 = $mol_type_enforce<
+		ReturnType< $mol_text_list['block_content'] >
+		,
+		ReturnType< $mol_text_list_item['sub'] >
+	>
+	export class $mol_text_list extends $mol_text {
+		type( ): string
+		auto_scroll( ): any
+		attr( ): ({ 
+			'mol_text_list_type': ReturnType< $mol_text_list['type'] >,
+		})  & ReturnType< $mol_text['attr'] >
+		Paragraph( id: any): $mol_text_list_item
+	}
+	
+	export class $mol_text_list_item extends $mol_paragraph {
+		index( ): number
+		attr( ): ({ 
+			'mol_text_list_item_index': ReturnType< $mol_text_list_item['index'] >,
+		})  & ReturnType< $mol_paragraph['attr'] >
+	}
+	
+}
+
+//# sourceMappingURL=list.view.tree.d.ts.map
 declare namespace $ {
     class $mol_picture extends $mol_object2 {
         readonly canvas: HTMLCanvasElement;
@@ -13144,7 +12857,7 @@ declare namespace $.$$ {
         height_max(): number;
         align(): string;
         align_vert(): "suspense" | "top" | "bottom";
-        align_hor(): "left" | "right" | "suspense";
+        align_hor(): "suspense" | "left" | "right";
         bubble_offset(): number[];
         bubble_align(): number[];
         bubble(): void;
@@ -13409,10 +13122,10 @@ declare namespace $ {
 //# sourceMappingURL=search.view.tree.d.ts.map
 declare namespace $.$$ {
     class $mol_search extends $.$mol_search {
-        anchor_content(): ($.$mol_string | $mol_button_minor)[];
+        anchor_content(): ($mol_button_minor | $.$mol_string)[];
         suggests_showed(next?: boolean): boolean;
         suggest_selected(next?: string): void;
-        nav_components(): ($.$mol_string | $mol_button_minor)[];
+        nav_components(): ($mol_button_minor | $.$mol_string)[];
         nav_focused(component?: $mol_view): $mol_view | $.$mol_string | null;
         suggest_label(key: string): string;
         menu_items(): $mol_button_minor[];
@@ -13657,42 +13370,12 @@ declare namespace $ {
 		,
 		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_button_open__title_bog_blitz_admin_question_18 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_open['title'] >
-	>
-	type $mol_button_open__files_bog_blitz_admin_question_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_question['question_image_files'] >
-		,
-		ReturnType< $mol_button_open['files'] >
-	>
-	type $mol_string__hint_bog_blitz_admin_question_20 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string['hint'] >
-	>
-	type $mol_string__value_bog_blitz_admin_question_21 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_question['question_image_url'] >
-		,
-		ReturnType< $mol_string['value'] >
-	>
-	type $mol_button_minor__title_bog_blitz_admin_question_22 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_admin_question_18 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_admin_question_23 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_question['import_image_url'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_bog_blitz_admin_question_24 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_admin_question_25 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_admin_question_19 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
@@ -13717,8 +13400,6 @@ declare namespace $ {
 		image_section_content( ): readonly(any)[]
 		question_image_files( next?: readonly(any)[] ): readonly(any)[]
 		question_image_uri( ): string
-		question_image_url( next?: string ): string
-		import_image_url( next?: any ): any
 		remove_image( next?: any ): any
 		question( ): any
 		number( ): number
@@ -13726,9 +13407,6 @@ declare namespace $ {
 		Image_section( ): $mol_row
 		Image_upload( ): $mol_button_open
 		Image_preview( ): $mol_image
-		Image_replace( ): $mol_button_open
-		Image_url_input( ): $mol_string
-		Image_url_import( ): $mol_button_minor
 		Image_remove( ): $mol_button_minor
 	}
 	
@@ -13737,7 +13415,7 @@ declare namespace $ {
 //# sourceMappingURL=question.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_admin_question extends $.$bog_blitz_admin_question {
-        image_section_content(): ($.$mol_string | $mol_button_minor | $.$mol_image | $.$mol_button_open)[];
+        image_section_content(): ($mol_button_minor | $.$mol_image)[] | $.$mol_button_open[];
         question_rows(): ($mol_row | $mol_string_button)[];
     }
 }
@@ -13747,125 +13425,89 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_row__sub_bog_blitz_admin_option_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['main_row_content'] >
-		,
-		ReturnType< $mol_row['sub'] >
-	>
-	type $mol_image__uri_bog_blitz_admin_option_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_string_button__hint_bog_blitz_admin_option_3 = $mol_type_enforce<
+	type $mol_string_button__hint_bog_blitz_admin_option_1 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_admin_option_4 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_admin_option_2 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['option_text'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_check_box__title_bog_blitz_admin_option_5 = $mol_type_enforce<
+	type $mol_check_box__title_bog_blitz_admin_option_3 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_check_box['title'] >
 	>
-	type $mol_check_box__checked_bog_blitz_admin_option_6 = $mol_type_enforce<
+	type $mol_check_box__checked_bog_blitz_admin_option_4 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['is_correct'] >
 		,
 		ReturnType< $mol_check_box['checked'] >
 	>
-	type $mol_button_minor__title_bog_blitz_admin_option_7 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_admin_option_5 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_admin_option_8 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_admin_option_6 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['delete'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_row__sub_bog_blitz_admin_option_9 = $mol_type_enforce<
+	type $mol_row__sub_bog_blitz_admin_option_7 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['image_section_content'] >
 		,
 		ReturnType< $mol_row['sub'] >
 	>
-	type $mol_button_open__title_bog_blitz_admin_option_10 = $mol_type_enforce<
+	type $mol_image__uri_bog_blitz_admin_option_8 = $mol_type_enforce<
+		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
+		,
+		ReturnType< $mol_image['uri'] >
+	>
+	type $mol_button_open__title_bog_blitz_admin_option_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_open['title'] >
 	>
-	type $mol_button_open__files_bog_blitz_admin_option_11 = $mol_type_enforce<
+	type $mol_button_open__files_bog_blitz_admin_option_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['option_image_files'] >
 		,
 		ReturnType< $mol_button_open['files'] >
 	>
-	type $mol_button_open__title_bog_blitz_admin_option_12 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_open['title'] >
-	>
-	type $mol_button_open__files_bog_blitz_admin_option_13 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_image_files'] >
-		,
-		ReturnType< $mol_button_open['files'] >
-	>
-	type $mol_string__hint_bog_blitz_admin_option_14 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_string['hint'] >
-	>
-	type $mol_string__value_bog_blitz_admin_option_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['option_image_url'] >
-		,
-		ReturnType< $mol_string['value'] >
-	>
-	type $mol_button_minor__title_bog_blitz_admin_option_16 = $mol_type_enforce<
+	type $mol_button_minor__title_bog_blitz_admin_option_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__click_bog_blitz_admin_option_17 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_option['import_image_url'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_bog_blitz_admin_option_18 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_admin_option_19 = $mol_type_enforce<
+	type $mol_button_minor__click_bog_blitz_admin_option_12 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
+	type $mol_row__sub_bog_blitz_admin_option_13 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_row['sub'] >
+	>
 	export class $bog_blitz_admin_option extends $mol_list {
 		option_content( ): readonly(any)[]
-		main_row_content( ): readonly(any)[]
-		option_image_uri( ): string
-		option_text( next?: string ): string
-		is_correct( next?: boolean ): boolean
-		delete( next?: any ): any
 		image_section_content( ): readonly(any)[]
+		option_image_uri( ): string
 		option_image_files( next?: readonly(any)[] ): readonly(any)[]
-		option_image_url( next?: string ): string
-		import_image_url( next?: any ): any
 		remove_image( next?: any ): any
-		rows( ): ReturnType< $bog_blitz_admin_option['option_content'] >
-		Main_row( ): $mol_row
-		Image_thumb( ): $mol_image
+		option_text( next?: string ): string
 		Text( ): $mol_string_button
+		is_correct( next?: boolean ): boolean
 		Checkbox( ): $mol_check_box
+		delete( next?: any ): any
 		Delete( ): $mol_button_minor
+		rows( ): ReturnType< $bog_blitz_admin_option['option_content'] >
 		Image_section( ): $mol_row
+		Image_preview( ): $mol_image
 		Image_upload( ): $mol_button_open
-		Image_replace( ): $mol_button_open
-		Image_url_input( ): $mol_string
-		Image_url_import( ): $mol_button_minor
 		Image_remove( ): $mol_button_minor
+		Controls( ): $mol_row
 	}
 	
 }
@@ -13873,8 +13515,7 @@ declare namespace $ {
 //# sourceMappingURL=option.view.tree.d.ts.map
 declare namespace $.$$ {
     class $bog_blitz_admin_option extends $.$bog_blitz_admin_option {
-        image_section_content(): ($.$mol_string | $mol_button_minor | $.$mol_button_open)[];
-        main_row_content(): $mol_view[];
+        image_section_content(): ($mol_button_minor | $.$mol_image)[] | $.$mol_button_open[];
         option_content(): $mol_row[];
     }
 }
@@ -14059,57 +13700,37 @@ declare namespace $ {
 		,
 		ReturnType< $bog_blitz_admin_question['question_image_uri'] >
 	>
-	type $bog_blitz_admin_question__question_image_url_bog_blitz_admin_editor_36 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['question_image_url'] >
-		,
-		ReturnType< $bog_blitz_admin_question['question_image_url'] >
-	>
-	type $bog_blitz_admin_question__import_image_url_bog_blitz_admin_editor_37 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['import_question_image_url'] >
-		,
-		ReturnType< $bog_blitz_admin_question['import_image_url'] >
-	>
-	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_38 = $mol_type_enforce<
+	type $bog_blitz_admin_question__remove_image_bog_blitz_admin_editor_36 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_question_image'] >
 		,
 		ReturnType< $bog_blitz_admin_question['remove_image'] >
 	>
-	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_39 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_text_bog_blitz_admin_editor_37 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_text'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_text'] >
 	>
-	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_40 = $mol_type_enforce<
+	type $bog_blitz_admin_option__is_correct_bog_blitz_admin_editor_38 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['is_correct'] >
 		,
 		ReturnType< $bog_blitz_admin_option['is_correct'] >
 	>
-	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_41 = $mol_type_enforce<
+	type $bog_blitz_admin_option__delete_bog_blitz_admin_editor_39 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['delete_option'] >
 		,
 		ReturnType< $bog_blitz_admin_option['delete'] >
 	>
-	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_42 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_files_bog_blitz_admin_editor_40 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_files'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_files'] >
 	>
-	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_43 = $mol_type_enforce<
+	type $bog_blitz_admin_option__option_image_uri_bog_blitz_admin_editor_41 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['option_image_uri'] >
 		,
 		ReturnType< $bog_blitz_admin_option['option_image_uri'] >
 	>
-	type $bog_blitz_admin_option__option_image_url_bog_blitz_admin_editor_44 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['option_image_url'] >
-		,
-		ReturnType< $bog_blitz_admin_option['option_image_url'] >
-	>
-	type $bog_blitz_admin_option__import_image_url_bog_blitz_admin_editor_45 = $mol_type_enforce<
-		ReturnType< $bog_blitz_admin_editor['import_option_image_url'] >
-		,
-		ReturnType< $bog_blitz_admin_option['import_image_url'] >
-	>
-	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_46 = $mol_type_enforce<
+	type $bog_blitz_admin_option__remove_image_bog_blitz_admin_editor_42 = $mol_type_enforce<
 		ReturnType< $bog_blitz_admin_editor['remove_option_image'] >
 		,
 		ReturnType< $bog_blitz_admin_option['remove_image'] >
@@ -14148,16 +13769,12 @@ declare namespace $ {
 		correct_text( id: any, next?: string ): string
 		question_image_files( id: any, next?: readonly(any)[] ): readonly(any)[]
 		question_image_uri( id: any): string
-		question_image_url( id: any, next?: string ): string
-		import_question_image_url( id: any, next?: any ): any
 		remove_question_image( id: any, next?: any ): any
 		option_text( id: any, next?: string ): string
 		is_correct( id: any, next?: boolean ): boolean
 		delete_option( id: any, next?: any ): any
 		option_image_files( id: any, next?: readonly(any)[] ): readonly(any)[]
 		option_image_uri( id: any): string
-		option_image_url( id: any, next?: string ): string
-		import_option_image_url( id: any, next?: any ): any
 		remove_option_image( id: any, next?: any ): any
 		quiz_land( ): any
 		rows( ): ReturnType< $bog_blitz_admin_editor['editor_rows'] >
@@ -14194,10 +13811,6 @@ declare namespace $.$$ {
         option_image_files(key: string, next?: readonly File[]): readonly File[];
         remove_question_image(key: string): void;
         remove_option_image(key: string): void;
-        question_image_url(key: string, next?: string): string;
-        import_question_image_url(key: string): void;
-        option_image_url(key: string, next?: string): string;
-        import_option_image_url(key: string): void;
         manual_mode(next?: boolean): any;
         time_read(next?: number): any;
         time_answer(next?: number): any;
@@ -14427,7 +14040,7 @@ declare namespace $.$$ {
         current_quiz_land(): $giper_baza_land | null;
         is_game_land(): boolean;
         ensure_in_registry(): void;
-        admin_body(): ($mol_button_minor | $.$mol_status)[] | ($mol_button_minor | $.$bog_blitz_admin_editor)[] | ($.$mol_list | $.$mol_expander | $mol_button_major)[];
+        admin_body(): ($mol_button_minor | $.$mol_status)[] | ($mol_button_minor | $.$bog_blitz_admin_editor)[] | ($.$mol_list | $mol_button_major | $.$mol_expander)[];
         import_json_template(): string;
         create_quiz_from_json(text: string): void;
         import_json_text(next?: string): string;
@@ -14795,7 +14408,7 @@ declare namespace $.$$ {
         has_entry(): boolean;
         submit_title(): "Update feedback" | "Send feedback";
         submit(): void;
-        body(): $.$mol_paragraph[] | $.$mol_status[] | ($.$mol_string | $.$mol_textarea | $.$mol_text | $mol_button_major | $.$mol_section)[];
+        body(): $.$mol_paragraph[] | $.$mol_status[] | ($.$mol_string | $mol_button_major | $.$mol_text | $.$mol_textarea | $.$mol_section)[];
         all_lords(): string[];
         entry_rows(): $.$mol_section[];
         private entry_by_index;
@@ -14937,7 +14550,7 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    const $bog_theme: Record<"image" | "line" | "text" | "back" | "hover" | "card" | "current" | "special" | "control" | "shade" | "focus" | "field" | "spirit" | "background", $mol_style_func<"var", unknown>>;
+    const $bog_theme: Record<"image" | "line" | "text" | "current" | "field" | "focus" | "background" | "back" | "hover" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
     const $bog_theme_names: readonly ["$mol_theme_giper_smash_dark", "$mol_theme_giper_smash_light", "$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark", "$mol_theme_calm_dark", "$mol_theme_calm_light"];
     type $bog_theme_name = (typeof $bog_theme_names)[number];
 }
@@ -15749,214 +15362,49 @@ declare namespace $.$$ {
 }
 
 declare namespace $.$$ {
-    export const $bog_blitz_palette: readonly string[];
-    export function $bog_blitz_color_for(id: string, color?: string): string;
-    const $bog_blitz_player_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Score: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Name: (auto?: any) => $giper_baza_atom_text | null;
-            readonly IsHost: (auto?: any) => $giper_baza_atom_bool | null;
-            readonly Color: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Answer_land: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Answered_count: (auto?: any) => $giper_baza_atom_real | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Score: typeof $giper_baza_atom_real;
-            readonly Name: typeof $giper_baza_atom_text;
-            readonly IsHost: typeof $giper_baza_atom_bool;
-            readonly Color: typeof $giper_baza_atom_text;
-            readonly Answer_land: typeof $giper_baza_atom_text;
-            readonly Answered_count: typeof $giper_baza_atom_real;
-        };
-    };
-    export class $bog_blitz_player extends $bog_blitz_player_base {
-    }
-    const $bog_blitz_player_answers_base: Omit<typeof $giper_baza_dict, "prototype"> & {
-        new (...args: any[]): $mol_type_override<$giper_baza_dict, {
-            readonly Answer: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Answer_time: (auto?: any) => $giper_baza_atom_real | null;
-            readonly Answer_question: (auto?: any) => $giper_baza_atom_real | null;
-            readonly React_heart: (auto?: any) => $giper_baza_atom_real | null;
-            readonly React_smile: (auto?: any) => $giper_baza_atom_real | null;
-            readonly React_fire: (auto?: any) => $giper_baza_atom_real | null;
-            readonly React_clap: (auto?: any) => $giper_baza_atom_real | null;
-            readonly React_poop: (auto?: any) => $giper_baza_atom_real | null;
-        }>;
-        path: string;
-    } & {
-        schema: {
-            [x: string]: typeof $giper_baza_pawn;
-        } & {
-            readonly Answer: typeof $giper_baza_atom_text;
-            readonly Answer_time: typeof $giper_baza_atom_real;
-            readonly Answer_question: typeof $giper_baza_atom_real;
-            readonly React_heart: typeof $giper_baza_atom_real;
-            readonly React_smile: typeof $giper_baza_atom_real;
-            readonly React_fire: typeof $giper_baza_atom_real;
-            readonly React_clap: typeof $giper_baza_atom_real;
-            readonly React_poop: typeof $giper_baza_atom_real;
-        };
-    };
-    export class $bog_blitz_player_answers extends $bog_blitz_player_answers_base {
-    }
-    export {};
-}
-
-declare namespace $ {
-
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_reactboard_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['rows_heart'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_3 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_4 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_reactboard_5 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['rows_smile'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_6 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_7 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_reactboard_8 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['rows_fire'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_9 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_10 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_reactboard_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['rows_clap'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_13 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_list__rows_bog_blitz_lobby_game_reactboard_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['rows_poop'] >
-		,
-		ReturnType< $mol_list['rows'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_15 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_16 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['row_name'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_game_reactboard_17 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_game_reactboard['row_count'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_game_reactboard_18 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_lobby_game_reactboard extends $mol_view {
-		Title_heart( ): $mol_paragraph
-		rows_heart( ): readonly(any)[]
-		List_heart( ): $mol_list
-		Table_heart( ): $mol_view
-		Title_smile( ): $mol_paragraph
-		rows_smile( ): readonly(any)[]
-		List_smile( ): $mol_list
-		Table_smile( ): $mol_view
-		Title_fire( ): $mol_paragraph
-		rows_fire( ): readonly(any)[]
-		List_fire( ): $mol_list
-		Table_fire( ): $mol_view
-		Title_clap( ): $mol_paragraph
-		rows_clap( ): readonly(any)[]
-		List_clap( ): $mol_list
-		Table_clap( ): $mol_view
-		Title_poop( ): $mol_paragraph
-		rows_poop( ): readonly(any)[]
-		List_poop( ): $mol_list
-		Table_poop( ): $mol_view
-		row_name( id: any): string
-		Row_name( id: any): $mol_paragraph
-		row_count( id: any): string
-		Row_count( id: any): $mol_paragraph
-		players_dict( ): any
-		sub( ): readonly(any)[]
-		Row( id: any): $mol_view
-	}
-	
-}
-
-//# sourceMappingURL=reactboard.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby_game_reactboard extends $.$bog_blitz_lobby_game_reactboard {
-        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
-        sorted_by(key: string): {
-            name: string;
-            count: number;
-        }[];
-        make_rows(key: string): $mol_view[];
-        rows_heart(): $mol_view[];
-        rows_smile(): $mol_view[];
-        rows_fire(): $mol_view[];
-        rows_clap(): $mol_view[];
-        rows_poop(): $mol_view[];
-        row_name(id: string): string;
-        row_count(id: string): string;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $.$$ {
     const $bog_blitz_profile_base: Omit<typeof $giper_baza_dict, "prototype"> & {
         new (...args: any[]): $mol_type_override<$giper_baza_dict, {
             readonly Name: (auto?: any) => $giper_baza_atom_text | null;
-            readonly Color: (auto?: any) => $giper_baza_atom_text | null;
+            readonly Avatar: (auto?: any) => {
+                Value: Value;
+                remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                ensure_here(peer: $giper_baza_link | null): void;
+                ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                local_ensure(): $giper_baza_file | null;
+                val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                [$mol_dev_format_head](): any[];
+                land(): $giper_baza_land;
+                head(): $giper_baza_link;
+                land_link(): $giper_baza_link;
+                link(): $giper_baza_link;
+                toJSON(): string;
+                cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                units(): $giper_baza_unit_sand[];
+                units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                meta(next?: $giper_baza_link): $giper_baza_link | null;
+                meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                filled(): boolean;
+                can_change(): boolean;
+                last_change(): $mol_time_moment | null;
+                authors(): $giper_baza_auth_pass[];
+                get $(): $;
+                set $(next: $);
+                destructor(): void;
+                toString(): string;
+                [Symbol.toStringTag]: string;
+                [$mol_ambient_ref]: $;
+                [Symbol.dispose](): void;
+            } | null;
             readonly Games_played: (auto?: any) => $giper_baza_atom_real | null;
             readonly Total_score: (auto?: any) => $giper_baza_atom_real | null;
             readonly Wins: (auto?: any) => $giper_baza_atom_real | null;
@@ -16006,7 +15454,60 @@ declare namespace $.$$ {
             [x: string]: typeof $giper_baza_pawn;
         } & {
             readonly Name: typeof $giper_baza_atom_text;
-            readonly Color: typeof $giper_baza_atom_text;
+            readonly Avatar: {
+                new (): {
+                    Value: () => typeof $giper_baza_file;
+                    remote(next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    remote_of(peer: $giper_baza_link | null, next?: $giper_baza_file | null | undefined): $giper_baza_file | null;
+                    ensure(config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_of(peer: $giper_baza_link | null, config?: null | $giper_baza_rank_preset | $giper_baza_land): $giper_baza_file | null;
+                    ensure_here(peer: $giper_baza_link | null): void;
+                    ensure_area(peer: $giper_baza_link | null, land: $giper_baza_land): void;
+                    ensure_lord(peer: $giper_baza_link | null, preset: $giper_baza_rank_preset): void;
+                    remote_ensure(preset?: $giper_baza_rank_preset): $giper_baza_file | null;
+                    local_ensure(): $giper_baza_file | null;
+                    val(next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    val_of(peer: $giper_baza_link | null, next?: $giper_baza_link | null | undefined): $giper_baza_link | null;
+                    pick_unit(peer: $giper_baza_link | null): $giper_baza_unit_sand | undefined;
+                    vary(next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    vary_of(peer: $giper_baza_link | null, next?: $giper_baza_vary_type): $giper_baza_vary_type;
+                    [$mol_dev_format_head](): any[];
+                    land(): $giper_baza_land;
+                    head(): $giper_baza_link;
+                    land_link(): $giper_baza_link;
+                    link(): $giper_baza_link;
+                    toJSON(): string;
+                    cast<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1): InstanceType<Pawn_1>;
+                    pawns<Pawn_1 extends typeof $giper_baza_pawn>(Pawn: Pawn_1 | null): readonly InstanceType<Pawn_1>[];
+                    units(): $giper_baza_unit_sand[];
+                    units_of(peer: $giper_baza_link | null): $giper_baza_unit_sand[];
+                    meta(next?: $giper_baza_link): $giper_baza_link | null;
+                    meta_of(peer: $giper_baza_link | null): $giper_baza_link | null;
+                    filled(): boolean;
+                    can_change(): boolean;
+                    last_change(): $mol_time_moment | null;
+                    authors(): $giper_baza_auth_pass[];
+                    get $(): $;
+                    set $(next: $);
+                    destructor(): void;
+                    toString(): string;
+                    [Symbol.toStringTag]: string;
+                    [$mol_ambient_ref]: $;
+                    [Symbol.dispose](): void;
+                };
+                toString(): any;
+                Value: typeof $giper_baza_dict;
+                parse: typeof $giper_baza_vary_cast_link;
+                tag: keyof typeof $giper_baza_unit_sand_tag;
+                meta: null | $giper_baza_link;
+                make<This extends typeof $mol_object>(this: This, config: Partial<InstanceType<This>>): InstanceType<This>;
+                $: $;
+                create<Instance>(this: new (init?: (instance: any) => void) => Instance, init?: (instance: $mol_type_writable<Instance>) => void): Instance;
+                toJSON(): any;
+                destructor(): void;
+                [Symbol.toPrimitive](): any;
+                [$mol_key_handle](): any;
+            };
             readonly Games_played: typeof $giper_baza_atom_real;
             readonly Total_score: typeof $giper_baza_atom_real;
             readonly Wins: typeof $giper_baza_atom_real;
@@ -16096,147 +15597,140 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
-	type $mol_avatar__id_bog_blitz_profile_page_1 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['player_id'] >
-		,
-		ReturnType< $mol_avatar['id'] >
-	>
-	type $mol_avatar__style_bog_blitz_profile_page_2 = $mol_type_enforce<
-		({ 
-			'color': ReturnType< $bog_blitz_profile_page['avatar_color'] >,
-		}) 
-		,
-		ReturnType< $mol_avatar['style'] >
-	>
-	type $mol_paragraph__title_bog_blitz_profile_page_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['choose_color_title'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_profile_page_4 = $mol_type_enforce<
-		ReturnType< $bog_blitz_profile_page['color_swatch_views'] >
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_view__sub_bog_blitz_profile_page_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_1 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_string_button__hint_bog_blitz_profile_page_6 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_2 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_paragraph['title'] >
+	>
+	type $mol_button_open_native__files_bog_blitz_profile_page_3 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['avatar_files'] >
+		,
+		ReturnType< $mol_button_open_native['files'] >
+	>
+	type $mol_button_open_native__accept_bog_blitz_profile_page_4 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_open_native['accept'] >
+	>
+	type $mol_button_open_native__multiple_bog_blitz_profile_page_5 = $mol_type_enforce<
+		boolean
+		,
+		ReturnType< $mol_button_open_native['multiple'] >
+	>
+	type $mol_button_open__sub_bog_blitz_profile_page_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_button_open['sub'] >
+	>
+	type $mol_string_button__hint_bog_blitz_profile_page_7 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string_button['hint'] >
 	>
-	type $mol_string_button__value_bog_blitz_profile_page_7 = $mol_type_enforce<
+	type $mol_string_button__value_bog_blitz_profile_page_8 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['profile_name'] >
 		,
 		ReturnType< $mol_string_button['value'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_8 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_9 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_9 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_10 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_rows'] >
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_10 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_11 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_12 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['persona_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_profile_page_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
 	>
 	type $mol_view__sub_bog_blitz_profile_page_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_14 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_paragraph__title_bog_blitz_profile_page_15 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_search__query_bog_blitz_profile_page_15 = $mol_type_enforce<
+	type $mol_search__query_bog_blitz_profile_page_16 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['games_query'] >
 		,
 		ReturnType< $mol_search['query'] >
 	>
-	type $mol_list__rows_bog_blitz_profile_page_16 = $mol_type_enforce<
+	type $mol_list__rows_bog_blitz_profile_page_17 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_rows'] >
 		,
 		ReturnType< $mol_list['rows'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_17 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_18 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['games_empty_text'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_18 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_19 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_19 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_20 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_label'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_20 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_21 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['stat_value'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_21 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_22 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_title'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_22 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_23 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_details'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_view__sub_bog_blitz_profile_page_23 = $mol_type_enforce<
+	type $mol_view__sub_bog_blitz_profile_page_24 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_paragraph__title_bog_blitz_profile_page_24 = $mol_type_enforce<
+	type $mol_paragraph__title_bog_blitz_profile_page_25 = $mol_type_enforce<
 		ReturnType< $bog_blitz_profile_page['game_score'] >
 		,
 		ReturnType< $mol_paragraph['title'] >
 	>
-	type $mol_button_minor__event_bog_blitz_profile_page_25 = $mol_type_enforce<
-		({ 
-			click( next?: ReturnType< $bog_blitz_profile_page['color_swatch_click'] > ): ReturnType< $bog_blitz_profile_page['color_swatch_click'] >,
-		})  & ReturnType< $mol_button_minor['event'] >
+	type $mol_image__uri_bog_blitz_profile_page_26 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['avatar_uri'] >
 		,
-		ReturnType< $mol_button_minor['event'] >
+		ReturnType< $mol_image['uri'] >
 	>
-	type $mol_button_minor__style_bog_blitz_profile_page_26 = $mol_type_enforce<
-		({ 
-			'backgroundColor': ReturnType< $bog_blitz_profile_page['color_swatch_bg'] >,
-			'boxShadow': ReturnType< $bog_blitz_profile_page['color_swatch_shadow'] >,
-		}) 
+	type $mol_avatar__id_bog_blitz_profile_page_27 = $mol_type_enforce<
+		ReturnType< $bog_blitz_profile_page['player_id'] >
 		,
-		ReturnType< $mol_button_minor['style'] >
-	>
-	type $mol_button_minor__sub_bog_blitz_profile_page_27 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_avatar['id'] >
 	>
 	type $mol_view__sub_bog_blitz_profile_page_28 = $mol_type_enforce<
 		readonly(any)[]
@@ -16254,13 +15748,12 @@ declare namespace $ {
 		ReturnType< $mol_link['sub'] >
 	>
 	export class $bog_blitz_profile_page extends $mol_page {
-		player_id( ): string
-		avatar_color( ): string
-		Avatar_icon( ): $mol_avatar
-		Color_hint( ): $mol_paragraph
-		color_swatch_views( ): readonly(any)[]
-		Color_swatches( ): $mol_view
-		Color_palette( ): $mol_view
+		avatar_preview( ): any
+		Avatar_circle( ): $mol_view
+		Avatar_label( ): $mol_paragraph
+		avatar_files( next?: readonly(File)[] ): readonly(File)[]
+		Avatar_native( ): $mol_button_open_native
+		Avatar( ): $mol_button_open
 		profile_name( next?: string ): string
 		Name_input( ): $mol_string_button
 		Name_row( ): $mol_view
@@ -16279,9 +15772,8 @@ declare namespace $ {
 		games_empty_text( ): string
 		Games_empty( ): $mol_paragraph
 		Games_section( ): $mol_view
-		color_swatch_click( id: any, next?: any ): any
-		color_swatch_bg( id: any): string
-		color_swatch_shadow( id: any): string
+		avatar_uri( ): string
+		player_id( ): string
 		stat_label( id: any): string
 		Stat_label( id: any): $mol_paragraph
 		stat_value( id: any): string
@@ -16295,9 +15787,9 @@ declare namespace $ {
 		game_score( id: any): string
 		Game_score( id: any): $mol_paragraph
 		Head( ): any
-		choose_color_title( ): string
 		body( ): readonly(any)[]
-		Color_swatch( id: any): $mol_button_minor
+		Avatar_image( ): $mol_image
+		Avatar_icon( ): $mol_avatar
 		Stat_row( id: any): $mol_view
 		Game_row( id: any): $mol_link
 	}
@@ -16310,14 +15802,9 @@ declare namespace $.$$ {
         profile_data(): $bog_blitz_profile;
         player_id(): string;
         profile_name(next?: string): string;
-        profile_color(next?: string): string;
-        avatar_color(): string;
-        avatar_initial(): string;
-        color_swatch_views(): $mol_button_minor[];
-        color_swatch_bg(key: string): string;
-        color_swatch_selected(key: string): boolean;
-        color_swatch_shadow(key: string): string;
-        color_swatch_click(key: string, next?: Event): null;
+        avatar_uri(): string;
+        avatar_files(next?: File[]): File[];
+        avatar_preview(): $.$mol_avatar | $.$mol_image;
         all_stats(): string[];
         stat_rows(): $mol_view[];
         stat_label(key: string): string;
@@ -16335,172 +15822,6 @@ declare namespace $.$$ {
         game_title(key: string): string;
         game_details(key: string): string;
         game_score(key: string): string;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $ {
-
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_1 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_2 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_heart'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_3 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_heart_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_4 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_5 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_6 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_smile'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_7 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_smile_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_8 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_9 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_10 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_fire'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_11 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_fire_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_12 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_13 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_14 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_clap'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_15 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_clap_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_16 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	type $mol_button_minor__title_bog_blitz_lobby_reactions_17 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__click_bog_blitz_lobby_reactions_18 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['react_poop'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_paragraph__title_bog_blitz_lobby_reactions_19 = $mol_type_enforce<
-		ReturnType< $bog_blitz_lobby_reactions['count_poop_text'] >
-		,
-		ReturnType< $mol_paragraph['title'] >
-	>
-	type $mol_view__sub_bog_blitz_lobby_reactions_20 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_view['sub'] >
-	>
-	export class $bog_blitz_lobby_reactions extends $mol_view {
-		Spacer( ): $mol_view
-		react_heart( next?: any ): any
-		Btn_heart( ): $mol_button_minor
-		count_heart_text( ): string
-		Count_heart( ): $mol_paragraph
-		Group_heart( ): $mol_view
-		react_smile( next?: any ): any
-		Btn_smile( ): $mol_button_minor
-		count_smile_text( ): string
-		Count_smile( ): $mol_paragraph
-		Group_smile( ): $mol_view
-		react_fire( next?: any ): any
-		Btn_fire( ): $mol_button_minor
-		count_fire_text( ): string
-		Count_fire( ): $mol_paragraph
-		Group_fire( ): $mol_view
-		react_clap( next?: any ): any
-		Btn_clap( ): $mol_button_minor
-		count_clap_text( ): string
-		Count_clap( ): $mol_paragraph
-		Group_clap( ): $mol_view
-		react_poop( next?: any ): any
-		Btn_poop( ): $mol_button_minor
-		count_poop_text( ): string
-		Count_poop( ): $mol_paragraph
-		Group_poop( ): $mol_view
-		my_answers( ): any
-		players_dict( ): any
-		is_host( ): boolean
-		in_flow( ): boolean
-		Fly( ): $mol_view
-		sub( ): readonly(any)[]
-	}
-	
-}
-
-//# sourceMappingURL=reactions.view.tree.d.ts.map
-declare namespace $.$$ {
-    class $bog_blitz_lobby_reactions extends $.$bog_blitz_lobby_reactions {
-        react(key: string): void;
-        react_heart(next?: Event): void;
-        react_smile(next?: Event): void;
-        react_fire(next?: Event): void;
-        react_clap(next?: Event): void;
-        react_poop(next?: Event): void;
-        player_answers_data(player: $bog_blitz_player): $bog_blitz_player_answers | null;
-        total_count(key: string): number;
-        count_text(key: string): string;
-        count_heart_text(): string;
-        count_smile_text(): string;
-        count_fire_text(): string;
-        count_clap_text(): string;
-        count_poop_text(): string;
-        prev_totals: Record<string, number>;
-        watch_reactions(): void;
-        auto(): void;
-        spawn_fly(key: string): void;
     }
 }
 
