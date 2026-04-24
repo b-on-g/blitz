@@ -451,6 +451,9 @@
     "$bog_metrics_event",
     "$mol_switch",
     "$mol_check_list",
+    "$bog_ui_router_path",
+    "$bog_ui_router",
+    "$bog_ui",
     "$bog_blitz_blog_menu",
     "$bog_blitz_blog_page"
   ],

@@ -155,6 +155,8 @@
 \/giper/bot
 	deploy \/giper/bot/logo
 	include \/mol/offline/install
+\/bog/ui
+	namespace \bog\ui
 \/bog/blitz
 	include \/mol/offline/install
 	deploy \/bog/blitz/assets

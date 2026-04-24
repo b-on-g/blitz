@@ -38401,6 +38401,119 @@ var $;
 
 ;
 "use strict";
+var $;
+(function ($) {
+    class $bog_ui_router_path extends $mol_state_arg {
+        static base() {
+            const script = $mol_dom.document.querySelector('script[src$="web.js"]');
+            if (script && script.src) {
+                return new URL(script.src).pathname.replace(/web\.js$/, '');
+            }
+            const p = $mol_dom.location.pathname;
+            return p.endsWith('/') ? p : p.replace(/[^/]*$/, '');
+        }
+        static href(next) {
+            if (next === undefined) {
+                const segment = decodeURIComponent($mol_dom.location.pathname).slice(this.base().length);
+                return $mol_dom.location.origin + this.base() + '#!' + segment;
+            }
+            const i = next.indexOf('#!');
+            const segment = i >= 0 ? next.slice(i + 2) : (next.indexOf('#') >= 0 ? next.slice(next.indexOf('#') + 1) : '');
+            const target = this.base() + segment;
+            new $mol_after_frame(() => {
+                const current = decodeURIComponent($mol_dom.location.pathname);
+                if (current === decodeURIComponent(target))
+                    return;
+                $mol_dom.history.replaceState($mol_dom.history.state, $mol_dom.document.title, target);
+            });
+            return next;
+        }
+        static commit() {
+            const segment = decodeURIComponent($mol_dom.location.pathname).slice(this.base().length);
+            $mol_dom.history.pushState($mol_dom.history.state, $mol_dom.document.title, this.base() + segment);
+        }
+        static go(next) {
+            const link = this.link(next);
+            const i = link.indexOf('#!');
+            const segment = i >= 0 ? link.slice(i + 2) : '';
+            $mol_dom.history.pushState(null, '', this.base() + segment);
+            this.href($mol_dom.location.origin + this.base() + '#!' + segment);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $bog_ui_router_path, "base", null);
+    __decorate([
+        $mol_mem
+    ], $bog_ui_router_path, "href", null);
+    __decorate([
+        $mol_action
+    ], $bog_ui_router_path, "commit", null);
+    __decorate([
+        $mol_action
+    ], $bog_ui_router_path, "go", null);
+    $.$bog_ui_router_path = $bog_ui_router_path;
+    ;
+    (function activate() {
+        const is_local = /^(localhost$|127\.|\[::1\]|0\.0\.0\.0)/.test($mol_dom.location.hostname);
+        if (is_local)
+            return;
+        $.$mol_state_arg = $bog_ui_router_path;
+        const href = $bog_ui_router_path.base();
+        const doc = $mol_dom.document;
+        let base_el = doc.querySelector('base');
+        if (!base_el) {
+            base_el = doc.createElement('base');
+            doc.head.insertBefore(base_el, doc.head.firstChild);
+        }
+        base_el.setAttribute('href', href);
+        const s = $mol_dom.location.search;
+        if (s.length > 1 && s.charAt(1) === '/') {
+            const decoded = s.slice(2).split('&').map(p => p.replace(/~and~/g, '&')).join('?');
+            const parts = decoded.split('?');
+            const path_segment = parts[0];
+            const query = parts[1] ? '?' + parts[1] : '';
+            $mol_dom.history.replaceState(null, '', href + path_segment + query + $mol_dom.location.hash);
+        }
+        self.addEventListener('popstate', () => {
+            $bog_ui_router_path.href($mol_dom.location.origin + $bog_ui_router_path.base() + '#!' +
+                decodeURIComponent($mol_dom.location.pathname).slice($bog_ui_router_path.base().length));
+        });
+        self.addEventListener('click', (e) => {
+            if (e.defaultPrevented)
+                return;
+            if (e.button !== 0)
+                return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+                return;
+            let el = e.target;
+            while (el && el.tagName !== 'A')
+                el = el.parentElement;
+            if (!el)
+                return;
+            const a = el;
+            if (a.hasAttribute('download'))
+                return;
+            if (a.target && a.target !== '' && a.target !== '_self')
+                return;
+            if (a.origin !== $mol_dom.location.origin)
+                return;
+            const mount = $bog_ui_router_path.base();
+            if (!a.pathname.startsWith(mount))
+                return;
+            e.preventDefault();
+            const target = a.pathname + a.search + a.hash;
+            if (target === $mol_dom.location.pathname + $mol_dom.location.search + $mol_dom.location.hash)
+                return;
+            $mol_dom.history.pushState(null, '', target);
+            $bog_ui_router_path.href($mol_dom.location.origin + mount + '#!' +
+                decodeURIComponent(a.pathname).slice(mount.length));
+        }, true);
+    })();
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -38408,6 +38521,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        void $bog_ui_router_path;
         class $bog_blitz extends $.$bog_blitz {
             tools() {
                 const is_host = this.Lobby().is_host();

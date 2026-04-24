@@ -31336,6 +31336,15 @@ var $;
 
 ;
 "use strict";
+var $;
+(function ($) {
+    class $bog_ui_router_path extends $mol_state_arg {
+    }
+    $.$bog_ui_router_path = $bog_ui_router_path;
+})($ || ($ = {}));
+
+;
+"use strict";
 
 ;
 "use strict";
@@ -31343,6 +31352,7 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        void $bog_ui_router_path;
         class $bog_blitz extends $.$bog_blitz {
             tools() {
                 const is_host = this.Lobby().is_host();

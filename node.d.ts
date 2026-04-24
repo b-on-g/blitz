@@ -15139,6 +15139,11 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $bog_ui_router_path extends $mol_state_arg {
+    }
+}
+
+declare namespace $ {
 
 	type $bog_feedback2_form__feedback_id_bog_blitz_1 = $mol_type_enforce<
 		string
