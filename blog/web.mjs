@@ -38455,6 +38455,10 @@ var $;
     $.$bog_ui_router_path = $bog_ui_router_path;
     ;
     (function activate() {
+        if (typeof window === 'undefined')
+            return;
+        if (typeof document === 'undefined')
+            return;
         const is_local = /^(localhost$|127\.|\[::1\]|0\.0\.0\.0)/.test($mol_dom.location.hostname);
         if (is_local)
             return;
@@ -38501,13 +38505,23 @@ var $;
             const mount = $bog_ui_router_path.base();
             if (!a.pathname.startsWith(mount))
                 return;
+            let segment;
+            if (a.hash.startsWith('#!')) {
+                segment = a.hash.slice(2);
+            }
+            else if (a.hash) {
+                return;
+            }
+            else {
+                segment = decodeURIComponent(a.pathname).slice(mount.length);
+            }
             e.preventDefault();
-            const target = a.pathname + a.search + a.hash;
-            if (target === $mol_dom.location.pathname + $mol_dom.location.search + $mol_dom.location.hash)
+            const target = mount + segment + a.search;
+            const current = $mol_dom.location.pathname + $mol_dom.location.search;
+            if (target === current)
                 return;
             $mol_dom.history.pushState(null, '', target);
-            $bog_ui_router_path.href($mol_dom.location.origin + mount + '#!' +
-                decodeURIComponent(a.pathname).slice(mount.length));
+            $bog_ui_router_path.href($mol_dom.location.origin + mount + '#!' + segment);
         }, true);
     })();
 })($ || ($ = {}));
