@@ -1,4 +1,7 @@
 namespace $.$$ {
+    // Activate path-based URL routing (no `#!`).
+    void $bog_ui_router_path
+
     export class $bog_blitz extends $.$bog_blitz {
         @$mol_mem
         tools() {

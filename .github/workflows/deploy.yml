@@ -43,6 +43,15 @@ jobs:
                       guide
                       features
 
+            - name: Add 404.html SPA fallback
+              if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/feature/')
+              run: |
+                  if [ -f bog/404.html ]; then
+                    cp bog/404.html bog/blitz/-/404.html
+                  else
+                    curl -fsSL https://raw.githubusercontent.com/b-on-g/bog/master/404.html -o bog/blitz/-/404.html
+                  fi
+
             - uses: hyoo-ru/gh-deploy@v4.4.1
               if: github.ref == 'refs/heads/master'
               with:
