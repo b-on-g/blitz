@@ -37723,7 +37723,7 @@ var $;
 			return "";
 		}
 		registry_link(){
-			return "4o4ds4yH_SXDxOCPR";
+			return "CbZOQk9f_AuSVoHLt";
 		}
 		title(){
 			return (this.$.$mol_locale.text("$bog_feedback2_form_title"));
