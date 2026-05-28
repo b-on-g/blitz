@@ -1134,6 +1134,185 @@ var $;
 
 ;
 "use strict";
+/** @jsx $mol_jsx */
+var $;
+(function ($) {
+    $mol_test({
+        'Primitives'() {
+            $mol_assert_equal($mol_key(null), 'null');
+            $mol_assert_equal($mol_key(false), 'false');
+            $mol_assert_equal($mol_key(true), 'true');
+            $mol_assert_equal($mol_key(0), '0');
+            $mol_assert_equal($mol_key(1n << 64n), '18446744073709551616n');
+            $mol_assert_equal($mol_key(''), '""');
+        },
+        'Array & POJO'() {
+            $mol_assert_equal($mol_key([null]), '[null]');
+            $mol_assert_equal($mol_key({ foo: 0 }), '{"foo":0}');
+            $mol_assert_equal($mol_key({ foo: [false] }), '{"foo":[false]}');
+        },
+        'Uint8Array'() {
+            $mol_assert_equal($mol_key(new Uint8Array([1, 2])), 'Uint8Array([1,2])');
+            $mol_assert_equal($mol_key([new Uint8Array([1, 2])]), '[Uint8Array([1,2])]');
+            $mol_assert_equal($mol_key({ foo: new Uint8Array([1, 2]) }), '{"foo":Uint8Array([1,2])}');
+        },
+        'Function'() {
+            const func = () => { };
+            $mol_assert_equal($mol_key(func), $mol_key(func));
+            $mol_assert_unique($mol_key(func), $mol_key(() => { }));
+        },
+        'Objects'() {
+            class User {
+            }
+            const jin = new User();
+            $mol_assert_equal($mol_key(jin), $mol_key(jin));
+            $mol_assert_unique($mol_key(jin), $mol_key(new User()));
+        },
+        'Elements'() {
+            const foo = $mol_jsx("div", null, "bar");
+            $mol_assert_equal($mol_key(foo), $mol_key(foo));
+            $mol_assert_unique($mol_key(foo), $mol_key($mol_jsx("div", null, "bar")));
+        },
+        'Custom JSON representation'() {
+            class User {
+                toJSON() { return 'jin'; }
+            }
+            $mol_assert_unique([$mol_key(new User)], [$mol_key(new User)]);
+        },
+        'Custom key handler'() {
+            class User {
+                name;
+                age;
+                constructor(name, age) {
+                    this.name = name;
+                    this.age = age;
+                }
+                [$mol_key_handle]() { return `User(${JSON.stringify(this.name)})`; }
+            }
+            $mol_assert_equal($mol_key([new User('jin', 16)]), $mol_key([new User('jin', 18)]), '[User("jin")]');
+        },
+        'Special native classes'() {
+            $mol_assert_equal($mol_key(new Date('xyz')), 'Date(NaN)');
+            $mol_assert_equal($mol_key(new Date(12345)), 'Date(12345)');
+            $mol_assert_equal($mol_key(/./), '/./');
+            $mol_assert_equal($mol_key(/\./gimsu), '/\\./gimsu');
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Float schema"($) {
+                $mol_assert_equal('$mol_schema_float', $mol_schema_float + '', $mol_key($mol_schema_float));
+                $mol_assert_equal(true, $mol_schema_float.check(0));
+                $mol_assert_equal(true, $mol_schema_float.check(Number.NaN));
+                $mol_assert_equal(true, $mol_schema_float.check(Number.POSITIVE_INFINITY));
+                $mol_assert_equal(false, $mol_schema_float.check(null));
+                $mol_assert_equal(1.5, $mol_schema_float.cast(1.5));
+                $mol_assert_equal(Number.NaN, $mol_schema_float.cast('0'));
+                $mol_assert_equal(Number.EPSILON, $mol_schema_float.guard(Number.EPSILON));
+                $mol_assert_fail(() => $mol_schema_float.guard('0'), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "String schema"($) {
+                $mol_assert_equal('$mol_schema_string', $mol_schema_string + '', $mol_key($mol_schema_string));
+                $mol_assert_equal(true, $mol_schema_string.check('foo'));
+                $mol_assert_equal(false, $mol_schema_string.check(123));
+                $mol_assert_equal('foo', $mol_schema_string.cast('foo'));
+                $mol_assert_equal('', $mol_schema_string.cast(123));
+                $mol_assert_equal('foo', $mol_schema_string.guard('foo'));
+                $mol_assert_fail(() => $mol_schema_string.guard(123), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of maybe schema"($) {
+                $mol_assert_equal($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_float));
+                $mol_assert_unique($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_string));
+            },
+            "Optional value"($) {
+                const Config = $mol_schema_maybe($mol_schema_string);
+                $mol_assert_equal('$mol_schema_maybe<$mol_schema_string>', Config + '');
+                $mol_assert_equal(true, Config.check('foo'));
+                $mol_assert_equal(true, Config.check(undefined));
+                $mol_assert_equal(true, Config.check(null));
+                $mol_assert_equal(false, Config.check(0));
+                $mol_assert_equal('foo', Config.cast('foo'));
+                $mol_assert_equal(undefined, Config.cast(undefined));
+                $mol_assert_equal(null, Config.cast(null));
+                $mol_assert_equal(null, Config.cast(0));
+                $mol_assert_equal('foo', Config.guard('foo'));
+                $mol_assert_fail(() => Config.guard(123), 'Wrong type');
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $mol_test({
+            "Cache of instance schema"($) {
+                $mol_assert_equal($mol_schema_instance(Uint8Array), $mol_schema_instance(Uint8Array));
+                $mol_assert_unique($mol_schema_instance(Uint8Array), $mol_schema_instance(Int8Array));
+            },
+            "Class instance schema"($) {
+                const Blob = $mol_schema_instance(Uint8Array);
+                $mol_assert_equal('$mol_schema_instance<Uint8Array>', Blob + '', $mol_key(Blob));
+                $mol_assert_equal(true, Blob.check(new Uint8Array));
+                $mol_assert_equal(false, Blob.check(new Int8Array));
+                $mol_assert_equal(false, Blob.check(null));
+                $mol_assert_equal(new Uint8Array([0, 1]), Blob.cast(new Uint8Array([0, 1])));
+                $mol_assert_fail(() => Blob.cast(new Int8Array), 'Wrong class');
+                $mol_assert_equal(new Uint8Array, Blob.guard(new Uint8Array));
+                $mol_assert_fail(() => Blob.guard(new Int8Array), 'Wrong class');
+            },
+            "Boxed instance schema"($) {
+                const Str = $mol_schema_instance(String);
+                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
+                $mol_assert_equal(true, Str.check(Object('')));
+                $mol_assert_equal(true, Str.check(''));
+                $mol_assert_equal(true, Object('') instanceof Str);
+            },
+            "Schema instance schema"($) {
+                const Str = $mol_schema_instance($mol_schema_instance(String));
+                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
+                $mol_assert_equal(true, Str.check(Object('')));
+                $mol_assert_equal(true, Str.check(''));
+                $mol_assert_equal(true, Object('') instanceof Str);
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+
+;
+"use strict";
 var $;
 (function ($_1) {
     var $$;
@@ -2389,74 +2568,6 @@ var $;
 
 ;
 "use strict";
-/** @jsx $mol_jsx */
-var $;
-(function ($) {
-    $mol_test({
-        'Primitives'() {
-            $mol_assert_equal($mol_key(null), 'null');
-            $mol_assert_equal($mol_key(false), 'false');
-            $mol_assert_equal($mol_key(true), 'true');
-            $mol_assert_equal($mol_key(0), '0');
-            $mol_assert_equal($mol_key(1n << 64n), '18446744073709551616n');
-            $mol_assert_equal($mol_key(''), '""');
-        },
-        'Array & POJO'() {
-            $mol_assert_equal($mol_key([null]), '[null]');
-            $mol_assert_equal($mol_key({ foo: 0 }), '{"foo":0}');
-            $mol_assert_equal($mol_key({ foo: [false] }), '{"foo":[false]}');
-        },
-        'Uint8Array'() {
-            $mol_assert_equal($mol_key(new Uint8Array([1, 2])), 'Uint8Array([1,2])');
-            $mol_assert_equal($mol_key([new Uint8Array([1, 2])]), '[Uint8Array([1,2])]');
-            $mol_assert_equal($mol_key({ foo: new Uint8Array([1, 2]) }), '{"foo":Uint8Array([1,2])}');
-        },
-        'Function'() {
-            const func = () => { };
-            $mol_assert_equal($mol_key(func), $mol_key(func));
-            $mol_assert_unique($mol_key(func), $mol_key(() => { }));
-        },
-        'Objects'() {
-            class User {
-            }
-            const jin = new User();
-            $mol_assert_equal($mol_key(jin), $mol_key(jin));
-            $mol_assert_unique($mol_key(jin), $mol_key(new User()));
-        },
-        'Elements'() {
-            const foo = $mol_jsx("div", null, "bar");
-            $mol_assert_equal($mol_key(foo), $mol_key(foo));
-            $mol_assert_unique($mol_key(foo), $mol_key($mol_jsx("div", null, "bar")));
-        },
-        'Custom JSON representation'() {
-            class User {
-                toJSON() { return 'jin'; }
-            }
-            $mol_assert_unique([$mol_key(new User)], [$mol_key(new User)]);
-        },
-        'Custom key handler'() {
-            class User {
-                name;
-                age;
-                constructor(name, age) {
-                    this.name = name;
-                    this.age = age;
-                }
-                [$mol_key_handle]() { return `User(${JSON.stringify(this.name)})`; }
-            }
-            $mol_assert_equal($mol_key([new User('jin', 16)]), $mol_key([new User('jin', 18)]), '[User("jin")]');
-        },
-        'Special native classes'() {
-            $mol_assert_equal($mol_key(new Date('xyz')), 'Date(NaN)');
-            $mol_assert_equal($mol_key(new Date(12345)), 'Date(12345)');
-            $mol_assert_equal($mol_key(/./), '/./');
-            $mol_assert_equal($mol_key(/\./gimsu), '/\\./gimsu');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
 var $;
 (function ($_1) {
     $mol_test_mocks.push($ => {
@@ -3195,6 +3306,22 @@ var $;
 var $;
 (function ($) {
     $mol_test({
+        'all cases of using maybe'() {
+            $mol_assert_equal($mol_maybe(0)[0], 0);
+            $mol_assert_equal($mol_maybe(false)[0], false);
+            $mol_assert_equal($mol_maybe(null)[0], void 0);
+            $mol_assert_equal($mol_maybe(void 0)[0], void 0);
+            $mol_assert_equal($mol_maybe(void 0).map(v => v.toString())[0], void 0);
+            $mol_assert_equal($mol_maybe(0).map(v => v.toString())[0], '0');
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
         'triplets'() {
             $mol_assert_equal(new $mol_time_interval('2015-01-01/P1M').end.toString(), '2015-02-01');
             $mol_assert_equal(new $mol_time_interval('P1M/2015-02-01').start.toString(), '2015-01-01');
@@ -3325,22 +3452,6 @@ var $;
                 'Unexpected EOF, LF required\ntest#1:9/1\n        !\nfoo  bar',
             ]);
             $mol_assert_equal(res.toString(), 'foo bar\n');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'all cases of using maybe'() {
-            $mol_assert_equal($mol_maybe(0)[0], 0);
-            $mol_assert_equal($mol_maybe(false)[0], false);
-            $mol_assert_equal($mol_maybe(null)[0], void 0);
-            $mol_assert_equal($mol_maybe(void 0)[0], void 0);
-            $mol_assert_equal($mol_maybe(void 0).map(v => v.toString())[0], void 0);
-            $mol_assert_equal($mol_maybe(0).map(v => v.toString())[0], '0');
         },
     });
 })($ || ($ = {}));
@@ -3879,264 +3990,6 @@ var $;
 ;
 "use strict";
 var $;
-(function ($) {
-    $mol_test({
-        'empty array'() {
-            $mol_assert_equal($mol_array_chunks([], () => true), []);
-        },
-        'one chunk'() {
-            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], () => false), [[1, 2, 3, 4, 5]]);
-        },
-        'fixed size chunk'() {
-            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], 3), [[1, 2, 3], [4, 5]]);
-        },
-        'first empty chunk'() {
-            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], (_, i) => i === 0), [[1, 2, 3, 4, 5]]);
-        },
-        'chunk for every item'() {
-            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], () => true), [[1], [2], [3], [4], [5]]);
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_test({
-        'fromJSON'() {
-            $mol_assert_equal($mol_tree2_from_json([]).toString(), '/\n');
-            $mol_assert_equal($mol_tree2_from_json([false, true]).toString(), '/\n\tfalse\n\ttrue\n');
-            $mol_assert_equal($mol_tree2_from_json([0, 1, 2.3]).toString(), '/\n\t0\n\t1\n\t2.3\n');
-            $mol_assert_equal($mol_tree2_from_json(new Uint16Array([1, 10, 255, 256, 65535])).toString(), '\\01 00 0A 00 FF 00 00 01\n\\FF FF\n');
-            $mol_assert_equal($mol_tree2_from_json(['', 'foo', 'bar\nbaz']).toString(), '/\n\t\\\n\t\\foo\n\t\\\n\t\t\\bar\n\t\t\\baz\n');
-            $mol_assert_equal($mol_tree2_from_json({ 'foo': false, 'bar\nbaz': 'lol' }).toString(), '*\n\tfoo false\n\t\\\n\t\t\\bar\n\t\t\\baz\n\t\t\\lol\n');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    var $$;
-    (function ($$) {
-        $mol_test({
-            "Cast from blob"($) {
-                const vary = new Uint8Array([1, 2, 3]);
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), vary);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 3n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 3);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'AQID');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [1, 2, 3]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>AQID</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '\\01\n\\02\n\\03\n');
-            },
-            "Cast from false"($) {
-                const vary = false;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), false);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 0n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 0);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'false');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [false]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>false</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), 'false\n');
-            },
-            "Cast from true"($) {
-                const vary = true;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 1n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 1);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'true');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [true]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>true</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), 'true\n');
-            },
-            "Cast from 0n"($) {
-                const vary = 0n;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), false);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 0n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 0);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '0');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary)?.toOffset(0).toString(), '1970-01-01T00:00:00+00:00');
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary)?.toString(), 'PT');
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), ['0']);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>0</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '0\n');
-            },
-            "Cast from big int"($) {
-                const vary = 4611686018427387903n;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 4611686018427387903n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 4611686018427388000);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '4611686018427387903');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary)?.toOffset(0).toString(), '10889-08-02T05:31:50.655+00:00');
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary)?.toString(), 'PT281474976710.655S');
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), ['4611686018427387903']);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>4611686018427387903</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '4611686018427387903\n');
-            },
-            "Cast from 0"($) {
-                const vary = 0;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), false);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 0n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 0);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '0');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary)?.toOffset(0).toString(), '1970-01-01T00:00:00+00:00');
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary)?.toString(), 'PT');
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [0]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>0</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '0\n');
-            },
-            "Cast from PI"($) {
-                const vary = Math.PI;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 3n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), Math.PI);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '3.141592653589793');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary)?.toOffset(0).toString(), '1970-01-01T00:00:00.003+00:00');
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary)?.toString(), "PT0.0031415926535897933S");
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [Math.PI]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>3.141592653589793</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '3.141592653589793\n');
-            },
-            "Cast from NaN"($) {
-                const vary = Number.NaN;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), false);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), Number.NaN);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'NaN');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>NaN</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), 'NaN\n');
-            },
-            "Cast from Infinity"($) {
-                const vary = Number.POSITIVE_INFINITY;
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), Number.POSITIVE_INFINITY);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'Infinity');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>Infinity</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), 'Infinity\n');
-            },
-            "Cast from empty string"($) {
-                const vary = '';
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), false);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary), null);
-            },
-            "Cast from number string"($) {
-                const vary = '123456789012345678901234567890123456789';
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), 123456789012345678901234567890123456789n);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), 1.2345678901234568e+38);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), '123456789012345678901234567890123456789');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), [1.2345678901234568e+38]);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>123456789012345678901234567890123456789</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '\\123456789012345678901234567890123456789\n');
-            },
-            "Cast from wild string"($) {
-                const vary = 'foo';
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), Number.NaN);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), 'foo');
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), ['foo']);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>foo</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), '\\foo\n');
-            },
-            "Cast from Link"($) {
-                const vary = new $giper_baza_link('qwertyui_asdfghjk_zxcvbnm0');
-                $mol_assert_equal($giper_baza_vary_cast_blob(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_bool(vary), true);
-                $mol_assert_equal($giper_baza_vary_cast_bint(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_real(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_link(vary), vary);
-                $mol_assert_equal($giper_baza_vary_cast_text(vary), vary.str);
-                $mol_assert_equal($giper_baza_vary_cast_time(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dura(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_span(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_dict(vary), null);
-                $mol_assert_equal($giper_baza_vary_cast_list(vary), ['qwertyui_asdfghjk_zxcvbnm0']);
-                $mol_assert_equal($giper_baza_vary_cast_elem(vary)?.outerHTML, '<body>qwertyui_asdfghjk_zxcvbnm0</body>');
-                $mol_assert_equal($giper_baza_vary_cast_tree(vary)?.toString(), 'qwertyui_asdfghjk_zxcvbnm0\n');
-            },
-        });
-    })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
 (function ($_1) {
     $mol_test_mocks.push($ => {
         class $mol_bus extends $.$mol_bus {
@@ -4197,6 +4050,29 @@ var $;
             $mol_assert_equal(Nested.value('xxx'), '123');
             Nested.value('foo', 'lol');
             $mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#!foo=bar/nested.xxx=123/nested.foo=lol');
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
+        'empty array'() {
+            $mol_assert_equal($mol_array_chunks([], () => true), []);
+        },
+        'one chunk'() {
+            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], () => false), [[1, 2, 3, 4, 5]]);
+        },
+        'fixed size chunk'() {
+            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], 3), [[1, 2, 3], [4, 5]]);
+        },
+        'first empty chunk'() {
+            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], (_, i) => i === 0), [[1, 2, 3, 4, 5]]);
+        },
+        'chunk for every item'() {
+            $mol_assert_equal($mol_array_chunks([1, 2, 3, 4, 5], () => true), [[1], [2], [3], [4], [5]]);
         },
     });
 })($ || ($ = {}));
@@ -4773,46 +4649,6 @@ var $;
     var $$;
     (function ($$) {
         $mol_test({
-            "Cache of instance schema"($) {
-                $mol_assert_equal($mol_schema_instance(Uint8Array), $mol_schema_instance(Uint8Array));
-                $mol_assert_unique($mol_schema_instance(Uint8Array), $mol_schema_instance(Int8Array));
-            },
-            "Class instance schema"($) {
-                const Blob = $mol_schema_instance(Uint8Array);
-                $mol_assert_equal('$mol_schema_instance<Uint8Array>', Blob + '', $mol_key(Blob));
-                $mol_assert_equal(true, Blob.check(new Uint8Array));
-                $mol_assert_equal(false, Blob.check(new Int8Array));
-                $mol_assert_equal(false, Blob.check(null));
-                $mol_assert_equal(new Uint8Array([0, 1]), Blob.cast(new Uint8Array([0, 1])));
-                $mol_assert_fail(() => Blob.cast(new Int8Array), 'Wrong class');
-                $mol_assert_equal(new Uint8Array, Blob.guard(new Uint8Array));
-                $mol_assert_fail(() => Blob.guard(new Int8Array), 'Wrong class');
-            },
-            "Boxed instance schema"($) {
-                const Str = $mol_schema_instance(String);
-                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
-                $mol_assert_equal(true, Str.check(Object('')));
-                $mol_assert_equal(true, Str.check(''));
-                $mol_assert_equal(true, Object('') instanceof Str);
-            },
-            "Schema instance schema"($) {
-                const Str = $mol_schema_instance($mol_schema_instance(String));
-                $mol_assert_equal('$mol_schema_instance<String>', Str + '', $mol_key(Str));
-                $mol_assert_equal(true, Str.check(Object('')));
-                $mol_assert_equal(true, Str.check(''));
-                $mol_assert_equal(true, Object('') instanceof Str);
-            },
-        });
-    })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    var $$;
-    (function ($$) {
-        $mol_test({
             "Boolean schema"($) {
                 $mol_assert_equal('$mol_schema_boolean', $mol_schema_boolean + '', $mol_key($mol_schema_boolean));
                 $mol_assert_equal(true, $mol_schema_boolean.check(false));
@@ -4823,28 +4659,6 @@ var $;
                 $mol_assert_equal(false, $mol_schema_boolean.cast('true'));
                 $mol_assert_equal(false, $mol_schema_boolean.guard(false));
                 $mol_assert_fail(() => $mol_schema_boolean.guard(null), 'Wrong type');
-            },
-        });
-    })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    var $$;
-    (function ($$) {
-        $mol_test({
-            "Float schema"($) {
-                $mol_assert_equal('$mol_schema_float', $mol_schema_float + '', $mol_key($mol_schema_float));
-                $mol_assert_equal(true, $mol_schema_float.check(0));
-                $mol_assert_equal(true, $mol_schema_float.check(Number.NaN));
-                $mol_assert_equal(true, $mol_schema_float.check(Number.POSITIVE_INFINITY));
-                $mol_assert_equal(false, $mol_schema_float.check(null));
-                $mol_assert_equal(1.5, $mol_schema_float.cast(1.5));
-                $mol_assert_equal(Number.NaN, $mol_schema_float.cast('0'));
-                $mol_assert_equal(Number.EPSILON, $mol_schema_float.guard(Number.EPSILON));
-                $mol_assert_fail(() => $mol_schema_float.guard('0'), 'Wrong type');
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
@@ -4892,26 +4706,6 @@ var $;
                 $mol_assert_equal(1n, $mol_schema_bigint.cast(1));
                 $mol_assert_equal(0n, $mol_schema_bigint.guard(0n));
                 $mol_assert_fail(() => $mol_schema_bigint.guard(1), 'Wrong type');
-            },
-        });
-    })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    var $$;
-    (function ($$) {
-        $mol_test({
-            "String schema"($) {
-                $mol_assert_equal('$mol_schema_string', $mol_schema_string + '', $mol_key($mol_schema_string));
-                $mol_assert_equal(true, $mol_schema_string.check('foo'));
-                $mol_assert_equal(false, $mol_schema_string.check(123));
-                $mol_assert_equal('foo', $mol_schema_string.cast('foo'));
-                $mol_assert_equal('', $mol_schema_string.cast(123));
-                $mol_assert_equal('foo', $mol_schema_string.guard('foo'));
-                $mol_assert_fail(() => $mol_schema_string.guard(123), 'Wrong type');
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
@@ -5018,35 +4812,6 @@ var $;
                 $mol_assert_equal([123], Vector.guard([123]));
                 $mol_assert_fail(() => Vector.guard(0), 'Non array');
                 $mol_assert_fail(() => Vector.guard([false]), 'Wrong item');
-            },
-        });
-    })($$ = $_1.$$ || ($_1.$$ = {}));
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    var $$;
-    (function ($$) {
-        $mol_test({
-            "Cache of maybe schema"($) {
-                $mol_assert_equal($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_float));
-                $mol_assert_unique($mol_schema_maybe($mol_schema_float), $mol_schema_maybe($mol_schema_string));
-            },
-            "Optional value"($) {
-                const Config = $mol_schema_maybe($mol_schema_string);
-                $mol_assert_equal('$mol_schema_maybe<$mol_schema_string>', Config + '');
-                $mol_assert_equal(true, Config.check('foo'));
-                $mol_assert_equal(true, Config.check(undefined));
-                $mol_assert_equal(true, Config.check(null));
-                $mol_assert_equal(false, Config.check(0));
-                $mol_assert_equal('foo', Config.cast('foo'));
-                $mol_assert_equal(undefined, Config.cast(undefined));
-                $mol_assert_equal(null, Config.cast(null));
-                $mol_assert_equal(null, Config.cast(0));
-                $mol_assert_equal('foo', Config.guard('foo'));
-                $mol_assert_fail(() => Config.guard(123), 'Wrong type');
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
