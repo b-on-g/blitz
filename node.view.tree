@@ -1765,74 +1765,7 @@ $bog_blitz_admin $mol_page
 		option_rows <= option_rows* /
 		add_option? <=> add_option*? null
 
-$mol_section $mol_list
-	level 1
-	rows /
-		<= Head $mol_view
-			sub <= head /
-				<= Title $mol_view
-					dom_name <= title_dom_name \h1
-					sub / <= title
-				<= Tools $mol_view sub <= tools /
-		<= Content $mol_list
-			rows <= content /
-
-$bog_feedback2_form $mol_page
-	Head null
-	feedback_id \
-	registry_link \CbZOQk9f_AuSVoHLt
-	title @ \Feedback ( one per user )
-	tools /
-		<= Close null
-	body /
-		<= Prompt $mol_text
-			text <= prompt \
-		<= Entry_my $mol_textarea
-			hint @ \Your feedback
-			value? <=> draft_text? \
-		<= Contact_field $mol_string
-			hint @ \Contact (optional)
-			value? <=> draft_contact? \
-		<= Submit $mol_button_major
-			title <= submit_title \
-			click? <=> submit? null
-		<= Entries $mol_section
-			title @ \All feedback
-			content <= entry_rows /
-				<= Entry_row*0 $mol_section
-					title <= entry_row_contact* \
-					content /
-						<= Entry_row_text* $mol_text
-							text <= entry_row_text* \
-						<= Entry_row_reply_wrap* $mol_view
-							sub <= entry_row_reply_sub* /
-								<= Entry_row_reply_display* $mol_view
-									sub /
-										<= Entry_row_reply_header* $mol_paragraph
-											title <= entry_row_reply_header_text* @ \Reply from admin
-										<= Entry_row_reply_text* $mol_text
-											text <= entry_row_reply_text* \
-								<= Entry_row_reply_form* $mol_view
-									sub /
-										<= Entry_row_reply_input* $mol_textarea
-											hint @ \Write a reply...
-											value? <=> entry_row_reply_draft*? \
-										<= Entry_row_reply_submit* $mol_button_major
-											title <= entry_row_reply_submit_title* \
-											click? <=> entry_row_reply_submit*? null
-								<= Entry_row_reply_toggle* $mol_button_minor
-									title <= entry_row_reply_toggle_title* \
-									click? <=> entry_row_reply_toggle*? null
-	Not_configured $mol_status
-		message @ \Form not yet configured
-	Waiting $mol_paragraph
-		title <= waiting_title @ \Waiting…
-
 $mol_icon_menu $mol_icon path \M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z
-
-$mol_icon_message $mol_icon path \M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z
-
-$mol_icon_message_draw $mol_icon path \M18,14H10.5L12.5,12H18M6,14V11.5L12.88,4.64C13.07,4.45 13.39,4.45 13.59,4.64L15.35,6.41C15.55,6.61 15.55,6.92 15.35,7.12L8.47,14M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4C22,2.89 21.1,2 20,2Z
 
 $mol_icon_cog $mol_icon path \M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z
 
@@ -1982,7 +1915,7 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
 		profile <= Profile $bog_blitz_profile_page
-		feedback <= Feedback $bog_feedback2_form
+		- feedback <= Feedback $bog_feedback2_form
 			feedback_id \blitz
 	nav_options *
 		lobby \Лобби
@@ -2003,7 +1936,7 @@ $bog_blitz $mol_page
 		bubble_content /
 			<= Mobile_nav 
 	tools /
-		<= Feedback_link $mol_link
+		- <= Feedback_link $mol_link
 			arg *
 				screen \feedback
 			sub /
