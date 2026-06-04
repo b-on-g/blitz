@@ -4,7 +4,7 @@ $bog_blitz $mol_page
 		lobby <= Lobby $bog_blitz_lobby
 		admin <= Admin $bog_blitz_admin
 		profile <= Profile $bog_blitz_profile_page
-		feedback <= Feedback $bog_feedback2_form
+		- feedback <= Feedback $bog_feedback2_form
 			feedback_id \blitz
 	nav_options *
 		lobby \Лобби
@@ -25,7 +25,7 @@ $bog_blitz $mol_page
 		bubble_content /
 			<= Mobile_nav 
 	tools /
-		<= Feedback_link $mol_link
+		- <= Feedback_link $mol_link
 			arg *
 				screen \feedback
 			sub /

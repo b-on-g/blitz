@@ -6,7 +6,8 @@ namespace $.$$ {
         @$mol_mem
         tools() {
             const is_host = this.Lobby().is_host()
-            return [is_host ? this.Radio() : null, this.Feedback_link(), this.Settings()]
+            // return [is_host ? this.Radio() : null, this.Feedback_link(), this.Settings()]
+            return [is_host ? this.Radio() : null, this.Settings()]
         }
 
         screen_body() {
