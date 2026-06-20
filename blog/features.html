@@ -3334,6 +3334,17 @@ h6[mol_text_header] {
 [bog_theme_picker_search] {
 	border-radius: 8px;
 }
+</style><style id="$mol_style_attach:bog/theme/toggle/toggle.view.css">.bog_theme_switching,
+.bog_theme_switching * {
+	transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bog_theme_switching,
+	.bog_theme_switching * {
+		transition: none !important;
+	}
+}
 </style><style id="$mol_style_attach:$bog_theme_toggle">[bog_theme_toggle_bubble] {
 	position: fixed !important;
 	left: 0 !important;
