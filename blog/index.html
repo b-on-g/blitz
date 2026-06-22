@@ -3321,6 +3321,17 @@ h6[mol_text_header] {
 	--mol_theme_back: oklch(83% 0.1 calc(var(--mol_theme_hue) + 180deg));
 	--mol_theme_card: oklch(98% 0.03 calc(var(--mol_theme_hue) + 180deg) / 0.25);
 }
+</style><style id="$mol_style_attach:bog/theme/auto/auto.view.css">.bog_theme_switching,
+.bog_theme_switching * {
+	transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bog_theme_switching,
+	.bog_theme_switching * {
+		transition: none !important;
+	}
+}
 </style><style id="$mol_style_attach:$bog_theme_picker_row">[bog_theme_picker_row]:where([bog_theme_picker_row_focused="true"]) {
 	background-color: var(--mol_theme_hover);
 	box-shadow: inset 0 0 0 1px #000, inset 0 0 0 2px #fff;
@@ -3333,17 +3344,6 @@ h6[mol_text_header] {
 }
 [bog_theme_picker_search] {
 	border-radius: 8px;
-}
-</style><style id="$mol_style_attach:bog/theme/toggle/toggle.view.css">.bog_theme_switching,
-.bog_theme_switching * {
-	transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, fill 300ms ease !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.bog_theme_switching,
-	.bog_theme_switching * {
-		transition: none !important;
-	}
 }
 </style><style id="$mol_style_attach:$bog_theme_toggle">[bog_theme_toggle_bubble] {
 	position: fixed !important;
