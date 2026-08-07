@@ -31851,9 +31851,24 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
-        // Activate path-based URL routing (no `#!`).
-        $bog_ui_router_path.activate();
         class $bog_blitz extends $.$bog_blitz {
+            /**
+             * Путевые адреса вместо `#!`.
+             *
+             * Вызов стоит в статическом блоке приложения, а не в теле модуля.
+             * Раньше он был на уровне namespace и срабатывал при одной лишь
+             * загрузке файла — то есть у любого, кто заимствовал отсюда хоть один
+             * компонент. Роутер подменяет собой глобальный `$mol_state_arg`, и
+             * такой сосед молча забирал навигацию себе: у bog/journal клик менял
+             * адрес, но не экран. Диагностику усложняло то, что на localhost
+             * activate() объявлен как no-op, поэтому ломалось только на проде.
+             *
+             * Менять глобальное состояние при импорте нельзя — только при запуске
+             * того приложения, которое об этом просило.
+             */
+            static {
+                $bog_ui_router_path.activate();
+            }
             tools() {
                 const is_host = this.Lobby().is_host();
                 // return [is_host ? this.Radio() : null, this.Feedback_link(), this.Settings()]
