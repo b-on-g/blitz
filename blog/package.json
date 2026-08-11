@@ -344,6 +344,7 @@
     "$mol_type_intersect",
     "$mol_unicode",
     "$mol_link",
+    "$mol_dom_safe",
     "$bog_blitz_quiz",
     "$bog_blitz_question",
     "$bog_blitz_question_option",
