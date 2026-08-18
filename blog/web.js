@@ -39014,6 +39014,11 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        // Синхронизация через Гипер Базу отключена: список мастеров пустой.
+        // Чистки одного masters_default мало — masters() склеивает его с пирами
+        // из бандленного сида, где зашит публичный мастер. Глушим сам masters().
+        $giper_baza_yard.masters_default.length = 0;
+        $giper_baza_yard.masters = () => [];
         class $bog_blitz extends $.$bog_blitz {
             /**
              * Путевые адреса вместо `#!`.
@@ -40325,6 +40330,11 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        // Синхронизация через Гипер Базу отключена: список мастеров пустой.
+        // Чистки одного masters_default мало — masters() склеивает его с пирами
+        // из бандленного сида, где зашит публичный мастер. Глушим сам masters().
+        $giper_baza_yard.masters_default.length = 0;
+        $giper_baza_yard.masters = () => [];
         class $bog_blitz_blog extends $.$bog_blitz_blog {
             page(next) {
                 return this.$.$mol_state_arg.value('screen', next || undefined) ?? '';
