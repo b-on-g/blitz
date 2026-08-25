@@ -1359,6 +1359,9 @@ body, :where([mol_theme]) {
 	flex-wrap: wrap;
 	flex-shrink: 1;
 }
+[giper_baza_flex_field_list_drop]:where([mol_drop_status="drag"]) {
+	box-shadow: inset 0 1px 0 0 var(--mol_theme_focus);
+}
 [giper_baza_flex_field_list_item_drop]:where([mol_drop_status="drag"]) {
 	box-shadow: inset 0 1px 0 0 var(--mol_theme_focus);
 }
@@ -1636,6 +1639,12 @@ body, :where([mol_theme]) {
 	height: 20rem;
 	flex-basis: 25rem;
 	flex-shrink: 0;
+}
+</style><style id="$mol_style_attach:$giper_baza_app_stat_list">[giper_baza_app_stat_list_menu] {
+	flex-basis: 20rem;
+}
+[giper_baza_app_stat_list_menu_link] {
+	justify-content: space-between;
 }
 </style><style id="$mol_style_attach:mol/check/icon/icon.view.css">[mol_check_icon]:where([mol_check_checked]) {
 	color: var(--mol_theme_current);
@@ -2377,6 +2386,7 @@ body, :where([mol_theme]) {
 	text-shadow: 0 0;
 	font-weight: normal;
 	break-after: avoid;
+	letter-spacing: 2px;
 }
 
 * + [mol_text_header] {
