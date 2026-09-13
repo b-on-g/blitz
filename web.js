@@ -38814,6 +38814,9 @@ var $;
                 else
                     this.mode(this.is_light_now() ? 'dark' : 'light');
             }
+            system_light() {
+                return this.$.$mol_media.match('(prefers-color-scheme: light)');
+            }
             is_light_now() {
                 const mode = this.mode();
                 if (mode === 'light')
@@ -38821,7 +38824,7 @@ var $;
                 if (mode === 'dark')
                     return false;
                 if (mode === 'system')
-                    return this.$.$mol_lights();
+                    return this.system_light();
                 return this.theme().toLowerCase().includes('light');
             }
             theme_index(next) {
@@ -38833,8 +38836,7 @@ var $;
             }
             system_theme_index() {
                 const themes = this.themes();
-                const prefersLight = this.$.$mol_lights();
-                const preferredTheme = prefersLight ? this.theme_light() : this.theme_dark();
+                const preferredTheme = this.system_light() ? this.theme_light() : this.theme_dark();
                 const index = themes.indexOf(preferredTheme);
                 return index !== -1 ? index : 0;
             }
@@ -38851,8 +38853,7 @@ var $;
                         return this.theme_light();
                     return themes[index % themes.length];
                 }
-                // system — follow browser preference
-                return this.$.$mol_lights() ? this.theme_light() : this.theme_dark();
+                return this.system_light() ? this.theme_light() : this.theme_dark();
             }
             theme_next() {
                 this.mode_next();
@@ -38890,6 +38891,9 @@ var $;
         __decorate([
             $mol_action
         ], $bog_theme_auto.prototype, "mode_next", null);
+        __decorate([
+            $mol_mem
+        ], $bog_theme_auto.prototype, "system_light", null);
         __decorate([
             $mol_mem
         ], $bog_theme_auto.prototype, "is_light_now", null);
