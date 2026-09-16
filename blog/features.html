@@ -1390,6 +1390,99 @@ body, :where([mol_theme]) {
 	flex: auto;
 	position: relative;
 }
+</style><style id="$mol_style_attach:mol/float/float.view.css">[mol_float] {
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: var(--mol_layer_float);
+	opacity: 1;
+	transition: opacity .25s ease-in;
+	display: block;
+	background: linear-gradient( var(--mol_theme_card), var(--mol_theme_card) ), var(--mol_theme_back);
+	box-shadow: 0 0 .5rem hsla(0,0%,0%,.25);
+}
+
+</style><style id="$mol_style_attach:giper/baza/rich/edit/edit.view.css">[giper_baza_rich_edit] {
+	flex-direction: column;
+	flex: 1;
+	border-radius: var(--mol_gap_round);
+	outline: 1px solid var(--mol_theme_line);
+	background-color: var(--mol_theme_field);
+}
+[giper_baza_rich_edit]:focus-within {
+	z-index: var(--mol_layer_focus);
+	outline: 1px solid var(--mol_theme_focus);
+}
+
+[giper_baza_rich_edit_tools] {
+	border-radius: var(--mol_gap_round);
+}
+
+[giper_baza_rich_edit_content] {
+	flex-direction: column;
+	flex: 1;
+	white-space: pre-wrap;
+	outline: none;
+}
+
+[giper_baza_rich_edit_content] a {
+	color: var(--mol_theme_control);
+	text-decoration: none;
+	border-radius: var(--mol_gap_round);
+}
+
+[giper_baza_rich_edit_content] a:hover {
+	background: var(--mol_theme_card);
+	box-shadow: 0 0 0 .25rem var(--mol_theme_card);
+}
+
+[giper_baza_rich_edit_content] p {
+	margin: 0;
+	padding: var(--mol_gap_text);
+}
+
+[giper_baza_rich_edit_content] img {
+	margin: var(--mol_gap_block);
+	max-width: calc( 100% - 2 * var(--mol_gap_block) );
+}
+
+[giper_baza_rich_edit_content] strong {
+	text-shadow: 0 0;
+	font-weight: normal;
+}
+
+[giper_baza_rich_edit_content] em {
+	font-style: italic;
+}
+
+[giper_baza_rich_edit_content] ins {
+	text-decoration: none;
+	color: var(--mol_theme_special);
+}
+
+[giper_baza_rich_edit_content] del {
+	text-decoration: none;
+	color: var(--mol_theme_shade);
+}
+
+[giper_baza_rich_edit_content] del {
+	font-family: monospace;
+}
+
+[giper_baza_rich_edit_content] hr {
+	margin: var(--mol_gap_block);
+	border: none;
+	box-shadow: 0 -1px 0 0px var(--mol_theme_line);
+    height: 1px;
+}
+
+[giper_baza_rich_edit_content] h1,
+[giper_baza_rich_edit_content] h2 {
+	font-size: 1em;
+	font-weight: bolder;
+	margin: 0;
+	padding: var(--mol_gap_text);
+}
 </style><style id="$mol_style_attach:$giper_baza_flex_field">[giper_baza_flex_field] {
 	flex-grow: 1;
 	flex-shrink: 1;
@@ -2251,18 +2344,6 @@ body, :where([mol_theme]) {
 [mol_status]:not([mol_view_error="Promise"]):empty {
 	display: none;
 }
-</style><style id="$mol_style_attach:mol/float/float.view.css">[mol_float] {
-	position: sticky;
-	top: 0;
-	left: 0;
-	z-index: var(--mol_layer_float);
-	opacity: 1;
-	transition: opacity .25s ease-in;
-	display: block;
-	background: linear-gradient( var(--mol_theme_card), var(--mol_theme_card) ), var(--mol_theme_back);
-	box-shadow: 0 0 .5rem hsla(0,0%,0%,.25);
-}
-
 </style><style id="$mol_style_attach:mol/grid/grid.view.css">[mol_grid] {
 	display: block;
 	flex: 0 1 auto;
