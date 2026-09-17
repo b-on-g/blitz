@@ -164,6 +164,7 @@
     "$mol_string_button",
     "$mol_string",
     "$mol_hotkey",
+    "$mol_hotkey2",
     "$mol_action",
     "$mol_locale",
     "$mol_state_local",
