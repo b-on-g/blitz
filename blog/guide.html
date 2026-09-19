@@ -1745,55 +1745,6 @@ body, :where([mol_theme]) {
 	top: .75em;
 	transform: translateY(-50%);
 }
-</style><style id="$mol_style_attach:mol/svg/text/text.view.css">[mol_svg_text] {
-	fill: currentColor;
-	stroke: none;
-}
-</style><style id="$mol_style_attach:mol/plot/ruler/ruler.view.css">[mol_plot_ruler_curve] {
-	color: var(--mol_theme_line);
-	stroke-width: 1px;
-	stroke: currentColor;
-}
-
-[mol_plot_ruler_label] {
-	color: var(--mol_theme_text);
-	text-shadow: 0 -1px var(--mol_theme_back), 0px 1px var(--mol_theme_back);
-}
-
-[mol_plot_ruler_title] {
-	color: var(--mol_theme_shade);
-	background-color: var(--mol_theme_back);
-	text-shadow: 0 -1px var(--mol_theme_back), 0px 1px var(--mol_theme_back);
-}
-
-[mol_plot_ruler_background] {
-	stroke: none;
-	fill: var(--mol_theme_back);
-	opacity: 0.8;
-}
-</style><style id="$mol_style_attach:mol/plot/ruler/vert/vert.view.css">[mol_plot_ruler_vert_label] {
-	transform: translateY( 4px );
-}
-</style><style id="$mol_style_attach:mol/svg/text/box/box.view.css">[mol_svg_text_box_back] {
-	stroke: none;
-	fill: var(--mol_theme_back);
-	transition: none;
-}
-</style><style id="$mol_style_attach:mol/plot/mark/cross/cross.view.css">[mol_plot_mark_cross_curve] {
-	color: var(--mol_theme_focus);
-	stroke-width: 1px;
-	stroke: currentColor;
-	pointer-events: none;
-}
-
-[mol_plot_mark_cross_label_x], [mol_plot_mark_cross_label_y] {
-	color: var(--mol_theme_focus);
-	pointer-events: none;
-}
-
-[mol_plot_mark_cross_label_y] {
-	transform: translateY( 4px );
-}
 </style><style id="$mol_style_attach:mol/gallery/gallery.view.css">[mol_gallery] {
 	flex-wrap: wrap;
 	flex: 1 1 auto;
@@ -1842,6 +1793,72 @@ body, :where([mol_theme]) {
 [mol_chart_plot] {
 	flex: 1 0 50%;
 	margin: .5rem;
+}
+</style><style id="$mol_style_attach:mol/plot/fill/fill.view.css">[mol_plot_fill] {
+	stroke: none;
+	stroke-width: 0;
+	opacity: .1;
+	fill: currentColor;
+	pointer-events: none;
+}
+
+[mol_plot_fill_sample] {
+	opacity: .1;
+	background: currentColor;
+	position: absolute;
+	bottom: 0;
+	top: .75em;
+	left: 0;
+	right: 0;
+}
+</style><style id="$mol_style_attach:mol/svg/text/text.view.css">[mol_svg_text] {
+	fill: currentColor;
+	stroke: none;
+}
+</style><style id="$mol_style_attach:mol/plot/ruler/ruler.view.css">[mol_plot_ruler_curve] {
+	color: var(--mol_theme_line);
+	stroke-width: 1px;
+	stroke: currentColor;
+}
+
+[mol_plot_ruler_label] {
+	color: var(--mol_theme_text);
+	text-shadow: 0 -1px var(--mol_theme_back), 0px 1px var(--mol_theme_back);
+}
+
+[mol_plot_ruler_title] {
+	color: var(--mol_theme_shade);
+	background-color: var(--mol_theme_back);
+	text-shadow: 0 -1px var(--mol_theme_back), 0px 1px var(--mol_theme_back);
+}
+
+[mol_plot_ruler_background] {
+	stroke: none;
+	fill: var(--mol_theme_back);
+	opacity: 0.8;
+}
+</style><style id="$mol_style_attach:mol/plot/ruler/vert/vert.view.css">[mol_plot_ruler_vert_label] {
+	transform: translateY( 4px );
+}
+</style><style id="$mol_style_attach:mol/svg/text/box/box.view.css">[mol_svg_text_box_back] {
+	stroke: none;
+	fill: var(--mol_theme_back);
+	transition: none;
+}
+</style><style id="$mol_style_attach:mol/plot/mark/cross/cross.view.css">[mol_plot_mark_cross_curve] {
+	color: var(--mol_theme_focus);
+	stroke-width: 1px;
+	stroke: currentColor;
+	pointer-events: none;
+}
+
+[mol_plot_mark_cross_label_x], [mol_plot_mark_cross_label_y] {
+	color: var(--mol_theme_focus);
+	pointer-events: none;
+}
+
+[mol_plot_mark_cross_label_y] {
+	transform: translateY( 4px );
 }
 </style><style id="$mol_style_attach:$giper_baza_app_stat_page">[giper_baza_app_stat_page] {
 	flex-basis: 100%;
