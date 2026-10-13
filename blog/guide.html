@@ -997,6 +997,11 @@ body, :where([mol_theme]) {
 </style><style id="$mol_style_attach:$giper_baza_link_chip">[giper_baza_link_chip] {
 	font-family: monospace;
 }
+</style><style id="$mol_style_attach:mol/bar/bar.view.css">[mol_bar] {
+	display: flex;
+	/* box-shadow: inset 0 0 0 1px var(--mol_theme_line); */
+	border-radius: var(--mol_gap_round);
+}
 </style><style id="$mol_style_attach:mol/check/box/box.view.css">[mol_check_box_icon] {
 	border-radius: var(--mol_gap_round);
 	box-shadow: inset 0 0 0 1px var(--mol_theme_line);
@@ -1012,11 +1017,6 @@ body, :where([mol_theme]) {
 [mol_check]:not([disabled]) > [mol_check_box_icon] {
 	background: var(--mol_theme_field);
 	color: var(--mol_theme_text);
-}
-</style><style id="$mol_style_attach:mol/bar/bar.view.css">[mol_bar] {
-	display: flex;
-	/* box-shadow: inset 0 0 0 1px var(--mol_theme_line); */
-	border-radius: var(--mol_gap_round);
 }
 </style><style id="$mol_style_attach:$mol_bigint_field">[mol_bigint_field] {
 	max-width: 100%;
@@ -1390,6 +1390,9 @@ body, :where([mol_theme]) {
 	flex: auto;
 	position: relative;
 }
+</style><style id="$mol_style_attach:mol/check/icon/icon.view.css">[mol_check_icon]:where([mol_check_checked]) {
+	color: var(--mol_theme_current);
+}
 </style><style id="$mol_style_attach:mol/float/float.view.css">[mol_float] {
 	position: sticky;
 	top: 0;
@@ -1420,7 +1423,12 @@ body, :where([mol_theme]) {
 
 [giper_baza_rich_edit_tools] {
 	border-radius: var(--mol_gap_round);
+	bottom: 0;
 }
+
+/* [giper_baza_rich_edit]:not(:focus-within) [giper_baza_rich_edit_tools] {
+	display: none;
+} */
 
 [giper_baza_rich_edit_content] {
 	flex-direction: column;
@@ -1453,6 +1461,7 @@ body, :where([mol_theme]) {
 
 [giper_baza_rich_edit_content] ul > p:before {
 	content: '• ';
+    color: var(--mol_theme_shade);
 	width: 0;
     display: inline-flex;
     white-space: pre;
@@ -1462,10 +1471,13 @@ body, :where([mol_theme]) {
 [giper_baza_rich_edit_content] ol {
 	margin: 0;
 	padding: 0 1.5rem;
+	counter-reset: giper_baza_rich_edit_content_ol 0;
 }
 
 [giper_baza_rich_edit_content] ol > p:before {
-	content: counter(giper_baza_rich_edit_content_ol) ". ";
+	counter-increment: giper_baza_rich_edit_content_ol 1;
+	content: counters(giper_baza_rich_edit_content_ol, ".") ". ";
+	color: var(--mol_theme_shade);
 	width: 0;
     display: inline-flex;
     white-space: pre;
@@ -1510,7 +1522,7 @@ body, :where([mol_theme]) {
 	color: var(--mol_theme_shade);
 }
 
-[giper_baza_rich_edit_content] del {
+[giper_baza_rich_edit_content] code {
 	font-family: monospace;
 }
 
@@ -1883,9 +1895,6 @@ body, :where([mol_theme]) {
 }
 [giper_baza_app_stat_list_menu_link_title] {
 	flex-grow: 1;
-}
-</style><style id="$mol_style_attach:mol/check/icon/icon.view.css">[mol_check_icon]:where([mol_check_checked]) {
-	color: var(--mol_theme_current);
 }
 </style><style id="$mol_style_attach:$giper_baza_auth_slot">[giper_baza_auth_slot] {
 	flex-basis: 25rem;
