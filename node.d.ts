@@ -3958,7 +3958,7 @@ declare namespace $ {
             op: keyof typeof $mol_websocket_frame_op;
             fin: boolean;
         } | {
-            op: "stop" | "txt" | "bin" | "con" | "ping" | "pong";
+            op: "stop" | "bin" | "con" | "txt" | "ping" | "pong";
             fin: number;
         };
         /** Payload info. */
@@ -29929,7 +29929,7 @@ declare namespace $ {
         static meta: $giper_baza_link;
         path(next?: string): string;
         type(next?: string): string;
-        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $giper_baza_link | Uint8Array<ArrayBuffer> | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | $mol_time_interval | $mol_tree2 | readonly $giper_baza_vary_type[] | Readonly<{
+        base(next?: $giper_baza_vary_type): string | number | bigint | boolean | Element | $giper_baza_link | Uint8Array<ArrayBuffer> | $mol_time_moment | $mol_time_duration | Uint16Array<ArrayBuffer> | Uint32Array<ArrayBuffer> | BigUint64Array<ArrayBuffer> | Int8Array<ArrayBuffer> | Int16Array<ArrayBuffer> | Int32Array<ArrayBuffer> | BigInt64Array<ArrayBuffer> | Float64Array<ArrayBuffer> | Float32Array<ArrayBuffer> | $mol_time_interval | $mol_tree2 | readonly $giper_baza_vary_type[] | Readonly<{
             [x: string]: $giper_baza_vary_type;
         }> | null;
         kind(next?: $giper_baza_flex_meta): $giper_baza_flex_meta | null;
@@ -34916,6 +34916,9 @@ declare namespace $ {
 
 declare namespace $ {
     let $mol_file_extensions: Record<string, $mol_rest_port_mime>;
+    let $mol_file_extensions_mime: {
+        [k: string]: string;
+    };
 }
 
 declare namespace $ {
@@ -45634,11 +45637,27 @@ declare namespace $ {
 
 //# sourceMappingURL=outline.view.tree.d.ts.map
 declare namespace $ {
+    class $mol_dom_transfer extends $mol_object {
+        readonly native: DataTransfer;
+        static wrap(native: DataTransfer): $mol_dom_transfer;
+        constructor(native: DataTransfer);
+        get(type: string): string;
+        files(): {
+            [x: number]: File;
+            readonly length: number;
+            item: (index: number) => File | null;
+            [Symbol.iterator]: () => ArrayIterator<File>;
+        };
+    }
+}
+
+declare namespace $ {
     class $mol_dom_event<EventType extends Event> extends $mol_object {
         readonly native: EventType;
+        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
         constructor(native: EventType);
         prevented(next?: boolean): boolean;
-        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
+        transfer(): $mol_dom_transfer | null;
     }
 }
 
@@ -46487,7 +46506,7 @@ declare namespace $.$$ {
         col_head_content(colId: string): readonly string[];
         rows(): readonly $mol_view[];
         cells(row_id: string[]): readonly $mol_view[];
-        col_type(col_id: string): "number" | "text" | "branch";
+        col_type(col_id: string): "text" | "number" | "branch";
         Cell(id: {
             row: string[];
             col: string;

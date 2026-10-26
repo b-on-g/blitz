@@ -261,7 +261,7 @@ body, :where([mol_theme]) {
 	align-items: flex-start;
 	box-sizing: border-box;
 	will-change: scroll-position;
-	scroll-padding: 0.75rem 0;
+	scroll-padding: 2.5rem 0;
 	max-height: 100%;
 	max-width: 100%;
 	webkit-overflow-scrolling: touch;
@@ -1384,9 +1384,6 @@ body, :where([mol_theme]) {
 	flex: auto;
 	position: relative;
 }
-</style><style id="$mol_style_attach:mol/check/icon/icon.view.css">[mol_check_icon]:where([mol_check_checked]) {
-	color: var(--mol_theme_current);
-}
 </style><style id="$mol_style_attach:mol/float/float.view.css">[mol_float] {
 	position: sticky;
 	top: 0;
@@ -1453,14 +1450,14 @@ body, :where([mol_theme]) {
 	padding: 0 1.5rem;
 }
 
-[giper_baza_rich_edit_content] ul > p:before {
+/* [giper_baza_rich_edit_content] ul > p:before {
 	content: '• ';
     color: var(--mol_theme_shade);
 	width: 0;
     display: inline-flex;
     white-space: pre;
     flex-direction: row-reverse;
-}
+} */
 
 [giper_baza_rich_edit_content] ol {
 	margin: 0;
@@ -1490,11 +1487,11 @@ body, :where([mol_theme]) {
 	padding: 0 var(--mol_gap_block);
 	border-radius: var(--mol_gap_round);
 	overflow-x: auto;
+	box-shadow: inset 1px 0 var(--mol_theme_line);
 }
 
 [giper_baza_rich_edit_content] img {
-	margin: var(--mol_gap_block);
-	max-width: calc( 100% - 2 * var(--mol_gap_block) );
+	max-width: 100%;
 }
 
 [giper_baza_rich_edit_content] strong {
@@ -1889,6 +1886,9 @@ body, :where([mol_theme]) {
 }
 [giper_baza_app_stat_list_menu_link_title] {
 	flex-grow: 1;
+}
+</style><style id="$mol_style_attach:mol/check/icon/icon.view.css">[mol_check_icon]:where([mol_check_checked]) {
+	color: var(--mol_theme_current);
 }
 </style><style id="$mol_style_attach:$giper_baza_auth_slot">[giper_baza_auth_slot] {
 	flex-basis: 25rem;

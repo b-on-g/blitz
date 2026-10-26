@@ -5955,24 +5955,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_test({
-        'decode utf8 string'() {
-            const str = 'Hello, ΧΨΩЫ';
-            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
-            $mol_assert_equal($mol_charset_decode(encoded), str);
-            $mol_assert_equal($mol_charset_decode(encoded, 'utf8'), str);
-        },
-        'decode empty string'() {
-            const encoded = new Uint8Array([]);
-            $mol_assert_equal($mol_charset_decode(encoded), '');
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($) {
     class TestClass extends Uint8Array {
     }
     $mol_test({
@@ -5983,6 +5965,24 @@ var $;
         },
         'Uint8Array vs subclassed array'() {
             $mol_assert_not($mol_compare_array(new Uint8Array, new TestClass));
+        },
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_test({
+        'decode utf8 string'() {
+            const str = 'Hello, ΧΨΩЫ';
+            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
+            $mol_assert_equal($mol_charset_decode(encoded), str);
+            $mol_assert_equal($mol_charset_decode(encoded, 'utf8'), str);
+        },
+        'decode empty string'() {
+            const encoded = new Uint8Array([]);
+            $mol_assert_equal($mol_charset_decode(encoded), '');
         },
     });
 })($ || ($ = {}));
@@ -6011,6 +6011,32 @@ var $;
             static lands_touched = new $mol_wire_set();
         }
         $.$giper_baza_glob = $giper_baza_glob_mock;
+    });
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($_1) {
+    $mol_test({
+        'save and load buffers'($) {
+            const land = $giper_baza_land.make({ $ });
+            const file = land.Data($giper_baza_file);
+            const source = new Uint8Array(2 ** 15 + 1);
+            source[2 ** 15] = 255;
+            file.buffer(source);
+            $mol_assert_equal(file.chunks().length, 2);
+            $mol_assert_equal(file.buffer(), source);
+        },
+        async 'save and load blobs'($) {
+            const land = $giper_baza_land.make({ $ });
+            const file = land.Data($giper_baza_file);
+            const source = new Uint8Array(2 ** 16 + 1);
+            source[2 ** 16 + 1] = 255;
+            await $mol_wire_async(file).blob(new $mol_blob([source], { type: 'test/test' }));
+            $mol_assert_equal('test/test', file.blob().type);
+            $mol_assert_equal(source, new Uint8Array(await file.blob().arrayBuffer()));
+        },
     });
 })($ || ($ = {}));
 
@@ -7411,32 +7437,6 @@ var $;
             $mol_assert_equal($mol_state_session.value(key), '$mol_state_session_test');
             $mol_state_session.value(key, null);
             $mol_assert_equal($mol_state_session.value(key), null);
-        },
-    });
-})($ || ($ = {}));
-
-;
-"use strict";
-var $;
-(function ($_1) {
-    $mol_test({
-        'save and load buffers'($) {
-            const land = $giper_baza_land.make({ $ });
-            const file = land.Data($giper_baza_file);
-            const source = new Uint8Array(2 ** 15 + 1);
-            source[2 ** 15] = 255;
-            file.buffer(source);
-            $mol_assert_equal(file.chunks().length, 2);
-            $mol_assert_equal(file.buffer(), source);
-        },
-        async 'save and load blobs'($) {
-            const land = $giper_baza_land.make({ $ });
-            const file = land.Data($giper_baza_file);
-            const source = new Uint8Array(2 ** 16 + 1);
-            source[2 ** 16 + 1] = 255;
-            await $mol_wire_async(file).blob(new $mol_blob([source], { type: 'test/test' }));
-            $mol_assert_equal('test/test', file.blob().type);
-            $mol_assert_equal(source, new Uint8Array(await file.blob().arrayBuffer()));
         },
     });
 })($ || ($ = {}));
