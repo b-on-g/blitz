@@ -167,7 +167,7 @@ body, :where([mol_theme]) {
 	scrollbar-color: var(--mol_theme_line) transparent;
 	scrollbar-width: thin;
 	/* text-wrap-style: pretty; dont work in textarea */
-	unicode-bidi: plaintext
+	unicode-bidi: plaintext;
 }
 
 [mol_view]::selection {
@@ -194,6 +194,7 @@ body, :where([mol_theme]) {
 
 [mol_view] > * {
 	word-break: inherit;
+	unicode-bidi: inherit;
 }
 
 [mol_view_root] {
@@ -1247,6 +1248,7 @@ body, :where([mol_theme]) {
 	white-space: inherit;
 	font-family: inherit;
 	tab-size: inherit;
+	unicode-bidi: normal;
 }
 
 [mol_textarea_view_copy] {
@@ -1400,6 +1402,7 @@ body, :where([mol_theme]) {
 }
 
 </style><style id="$mol_style_attach:giper/baza/rich/edit/edit.view.css">[giper_baza_rich_edit] {
+	min-width: 0;
 	flex-direction: column;
 	flex: 1;
 	border-radius: var(--mol_gap_round);
@@ -1450,7 +1453,7 @@ body, :where([mol_theme]) {
 
 [giper_baza_rich_edit_content] ul {
 	margin: 0;
-	padding: 0 1.5rem;
+	padding: 0 0 0 1.5rem;
 }
 
 /* [giper_baza_rich_edit_content] ul > p:before {
@@ -1464,7 +1467,7 @@ body, :where([mol_theme]) {
 
 [giper_baza_rich_edit_content] ol {
 	margin: 0;
-	padding: 0 1.5rem;
+	padding: 0 0 0 1.5rem;
 	counter-reset: giper_baza_rich_edit_content_ol 0;
 }
 
@@ -1495,6 +1498,7 @@ body, :where([mol_theme]) {
 
 [giper_baza_rich_edit_content] img {
 	max-width: 100%;
+	height: auto;
 }
 
 [giper_baza_rich_edit_content] strong {
@@ -1570,6 +1574,7 @@ body, :where([mol_theme]) {
 	box-shadow: 0 1px 0 0 var(--mol_theme_line);
 }
 </style><style id="$mol_style_attach:$giper_baza_flex_field">[giper_baza_flex_field] {
+	min-width: 0;
 	flex-grow: 1;
 	flex-shrink: 1;
 }
